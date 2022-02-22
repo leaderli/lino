@@ -1,0 +1,26 @@
+{
+  "alwaysUpdateLinks": true,
+  "vimMode": true,
+  "fileSortOrder": "alphabetical",
+  "foldHeading": true,
+  "foldIndent": true,
+  "showLineNumber": true,
+  "showUnsupportedFiles": true,
+  "attachmentFolderPath": "resource",
+  "showFrontmatter": true,
+  "readableLineLength": false,
+  "newFileLocation": "folder",
+  "newFileFolderPath": "md",
+  "promptDelete": false,
+  "defaultViewMode": "source",
+  "emacsyKeys": false,
+  "legacyEditor": false,
+  "livePreview": true,
+  "autoPairBrackets": false,
+  "pdfExportSettings": {
+    "pageSize": "Letter",
+    "landscape": false,
+    "margin": "0",
+    "downscalePercent": 100
+  }
+}
