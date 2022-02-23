@@ -1,5 +1,10 @@
 [[bytecode|字节码]] 文件的主要java版本
 
+查看class文件的二进制文件，第8字节就表示版本号，其中34对应十进制位52，即 JDK8
+```txt
+CAFE BABE 0000 0034
+```
+
 ### 查看版本
 1. [[command#javap| javap]]
 2.  [[file#^dc4f9b|linux file]]
