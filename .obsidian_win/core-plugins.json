@@ -3,6 +3,7 @@
   "global-search",
   "graph",
   "backlink",
+  "outgoing-link",
   "page-preview",
   "command-palette",
   "editor-status",
