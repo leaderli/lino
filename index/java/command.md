@@ -1,3 +1,9 @@
+---
+aliases: [AI, Artificial Intelligence]
+---
+
+
+```
 ### javap
 
 `javap [option] class`
