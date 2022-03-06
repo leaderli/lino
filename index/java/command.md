@@ -1,9 +1,10 @@
 ---
-aliases: [AI, Artificial Intelligence]
+aliases: 命令行
 ---
 
 
-```
+
+
 ### javap
 
 `javap [option] class`
