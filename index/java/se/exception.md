@@ -109,3 +109,27 @@ public static void simpleTryCatchFinally();
       40: athrow     //如果异常没有被catch捕获，而是到了这里，执行完finally的语句后，仍然要把这个异常抛出去，传递给调用处。
       41: return
 ```
+
+### 常见错误
+
+#### NoSuchMethodError
+
+`NoSuchMethodError`一般是由版本冲突造成的
+
+#### Throwable
+对于一个 Throwable 的异常
+
+```java
+Throwable e;
+
+// 获取其异常栈
+e.getStackTrace();
+//栈顶通常是发生异常的地方
+e.getStackTrace()[0];
+
+//当cause不为空时，直接发生异常的地方会在cause中
+if( e.getCause() !=null){
+  e = e.getCause();
+  e.getStackTrace()[0];
+}
+```
