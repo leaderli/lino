@@ -1,5 +1,6 @@
 ---
 aliases: SPI
+tags: java
 ---
 
 ## 概述

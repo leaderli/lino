@@ -1,5 +1,6 @@
 ---
 aliases:  emoj
+tags: snippet
 ---
 
  🛠️

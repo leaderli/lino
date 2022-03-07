@@ -1,5 +1,6 @@
 ---
 alias: java基础
+tags: catagory
 ---
 
 ### [[basic data type|基础数据类型]]

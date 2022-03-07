@@ -1,5 +1,6 @@
 ---
 aliases: 快捷键
+tags: snippet
 ---
 
 ## safari

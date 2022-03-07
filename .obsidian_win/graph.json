@@ -5,41 +5,48 @@
   "showAttachments": false,
   "hideUnresolved": false,
   "showOrphans": true,
-  "collapse-color-groups": false,
+  "collapse-color-groups": true,
   "colorGroups": [
     {
-      "query": "section:(java)",
-      "color": {
-        "a": 1,
-        "rgb": 12001286
-      }
-    },
-    {
-      "query": "section:(linux)",
+      "query": "tag:#linux",
       "color": {
         "a": 1,
         "rgb": 3383551
       }
     },
     {
-      "query": "section:(js)",
+      "query": "tag:#java",
       "color": {
         "a": 1,
-        "rgb": 16759837
+        "rgb": 12981516
       }
     },
     {
-      "query": "section:(shell)",
+      "query": "tag:#js",
       "color": {
         "a": 1,
-        "rgb": 6084188
+        "rgb": 1608457
       }
     },
     {
-      "query": "section:(bash)",
+      "query": "tag:#protocol",
+      "color": {
+        "a": 1,
+        "rgb": 12344534
+      }
+    },
+    {
+      "query": "tag:#snippet",
       "color": {
         "a": 1,
         "rgb": 6084269
+      }
+    },
+    {
+      "query": "tag:#catagory",
+      "color": {
+        "a": 1,
+        "rgb": 16500750
       }
     }
   ],
@@ -49,10 +56,10 @@
   "nodeSizeMultiplier": 1.25769230769231,
   "lineSizeMultiplier": 0.998894230769231,
   "collapse-forces": false,
-  "centerStrength": 0,
-  "repelStrength": 3.49450549450549,
-  "linkStrength": 0.456043956043956,
-  "linkDistance": 191,
-  "scale": 0.5334257528756658,
-  "close": true
+  "centerStrength": 1,
+  "repelStrength": 13.3626373626374,
+  "linkStrength": 0.545054945054945,
+  "linkDistance": 272,
+  "scale": 0.8137713085498782,
+  "close": false
 }

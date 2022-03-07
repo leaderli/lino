@@ -1,5 +1,6 @@
 ---
 aliases:  常用数学符号
+tags: snippet
 ---
 
 
