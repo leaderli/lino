@@ -145,13 +145,20 @@
       "key": "F"
     }
   ],
-  "graph:open": [],
   "graph:open-local": [
     {
       "modifiers": [
         "Alt"
       ],
       "key": "G"
+    }
+  ],
+  "graph:open": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "3"
     }
   ]
 }
