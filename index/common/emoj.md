@@ -1,6 +1,7 @@
 ---
 aliases:  emoj
-tags: snippet
+tags: 
+- 常用/emoj
 ---
 
  🛠️

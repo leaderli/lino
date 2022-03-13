@@ -1,6 +1,8 @@
 ---
 aliases:  URL
-tags: protocol,java
+tags: 
+- protocol/url
+- java
 ---
 
 

@@ -4,6 +4,7 @@ tags:
  - redis
  - zookeeper
  - java
+ - 计算机基础/分布式锁
 ---
 
 #todo	

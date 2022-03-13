@@ -1,6 +1,7 @@
 ---
 aliases: IP
-tags: protocol
+tags: 
+- protocol/IP
 ---
 
 IP4 报文的报文头由 14 个属性构成，其中 13 个是必须的，第 14 个属性是可选的。

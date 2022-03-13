@@ -1,5 +1,8 @@
 ---
-tags: catagory
+tags: 
+- catagory
+- linux
+
 ---
 
 

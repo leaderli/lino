@@ -1,6 +1,8 @@
 ---
 aliases:  数据结构,算法
-tags: catagory
+tags: 
+- catagory
+- 数据结构
 ---
 
 ### [[knapsack problem|背包问题]]

@@ -1,5 +1,7 @@
 ---
 aliases:  java数组
+tags:
+- java/se/数组
 ---
 
 ## java 在堆中的内存分为三个部分

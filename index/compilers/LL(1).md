@@ -1,3 +1,8 @@
+---
+tags:
+- compilers/LL(1)
+---
+
 ## 预测分析法
 
 从 [[grammar#文法|文法]] [[grammar#开始符号（start symbol）|开始符号]] 出发，在每一步 [[grammar#推导|推导]] 过程中根据当前 [[grammar#句型|句型]] 的最左 [[grammar#非终结符|非终结符A]] 和当前输入符号$\alpha$ ，选择正确的 [[grammar#产生式|A-产生式]] 。为保证分析的确定性，选出的 [[grammar#候选式|候选式]] 必须是唯一的。

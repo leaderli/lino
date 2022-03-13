@@ -1,6 +1,7 @@
 ---
 aliases: SPI
-tags: java
+tags:
+- java/se/SPI
 ---
 
 ## 概述

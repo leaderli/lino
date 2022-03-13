@@ -1,5 +1,7 @@
 ---
 aliases:  自动机理论
+tags: 
+- compilers/自动机理论
 ---
 ## 定义
 

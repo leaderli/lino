@@ -1,6 +1,8 @@
 ---
 aliases: java
-tags: catagory
+tags: 
+- java
+- catagory
 ---
 ### [[jdk|安装 源码]]
 ### [[command|命令行]] 
@@ -8,4 +10,5 @@ tags: catagory
 ### [[jvm|JVM]]
 ### [[se|java基础]]
 ### [[ee|javaEE]]
+### [[framework|库]]
 

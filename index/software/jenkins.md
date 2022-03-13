@@ -1,4 +1,8 @@
-
+---
+aliases: 
+tags: 
+-  软件/jenkins
+---
 
 ## 版本说明
 

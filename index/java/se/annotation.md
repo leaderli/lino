@@ -1,5 +1,7 @@
 ---
 aliases:  注解
+tags:
+- java/se/注解
 ---
 ## 元注解
 
