@@ -1,7 +1,7 @@
 ---
 tags: catagory
 ---
-###  [[index/java]]
+###  [[java|java]]
 ### [[frontend|前端]]
 ### [[linux]]
 ### [[compilers|编译原理]]
