@@ -8,38 +8,31 @@
   "collapse-color-groups": true,
   "colorGroups": [
     {
-      "query": "tag:#linux",
+      "query": "path:index/linux",
       "color": {
         "a": 1,
         "rgb": 3383551
       }
     },
     {
-      "query": "tag:#java",
+      "query": "path:index/java",
       "color": {
         "a": 1,
         "rgb": 12981516
       }
     },
     {
-      "query": "tag:#js",
+      "query": "path:index/frontend",
       "color": {
         "a": 1,
         "rgb": 1608457
       }
     },
     {
-      "query": "tag:#protocol",
+      "query": "path:index/protocol",
       "color": {
         "a": 1,
         "rgb": 12344534
-      }
-    },
-    {
-      "query": "tag:#snippet",
-      "color": {
-        "a": 1,
-        "rgb": 6084269
       }
     },
     {
@@ -47,6 +40,41 @@
       "color": {
         "a": 1,
         "rgb": 16500750
+      }
+    },
+    {
+      "query": "path:\"index/data structure\"",
+      "color": {
+        "a": 1,
+        "rgb": 6053078
+      }
+    },
+    {
+      "query": "path:\"index/reading note\"",
+      "color": {
+        "a": 1,
+        "rgb": 6070742
+      }
+    },
+    {
+      "query": "path:index/common",
+      "color": {
+        "a": 1,
+        "rgb": 13555292
+      }
+    },
+    {
+      "query": "path:index/compilers",
+      "color": {
+        "a": 1,
+        "rgb": 6062550
+      }
+    },
+    {
+      "query": "path:index/software",
+      "color": {
+        "a": 1,
+        "rgb": 6084263
       }
     }
   ],
@@ -59,7 +87,7 @@
   "centerStrength": 1,
   "repelStrength": 13.3626373626374,
   "linkStrength": 0.545054945054945,
-  "linkDistance": 272,
+  "linkDistance": 500,
   "scale": 0.8137713085498782,
-  "close": true
+  "close": false
 }

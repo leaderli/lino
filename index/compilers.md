@@ -3,4 +3,7 @@ aliases:  编译原理
 tags: catagory
 ---
 
-### [[computer fundametation|计算机组成原理]]
+
+### [[automation|自动机理论]]
+### [[fundamentals of compiling|编译原理概述]]
+### [[grammar|文法]]

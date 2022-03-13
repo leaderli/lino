@@ -1,5 +1,5 @@
 ---
-aliases:  常用资源
+aliases: 常用资源
 tags: catagory
 ---
 
@@ -8,3 +8,5 @@ tags: catagory
 ### [[emoj]]
 
 ### [[cheatsheet|快捷键]]
+
+### [[english|常用英语单词]]
