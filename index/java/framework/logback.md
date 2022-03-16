@@ -182,4 +182,4 @@ public class LiFileAppender<E> extends FileAppender<E> {
 - 如果该标签指向一个字符串类型的class成员变量，则查找其set或者add方法。对于简单的变量，可以直接定义set方法，对于集合变量可以使用add方法，add方法的优先级要高于set方法。
 - 如果该标签指向的是一个类，则递归生成该类。
 
-#todo 源码解析
+#todo 源码解析 
