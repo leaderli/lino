@@ -1,5 +1,7 @@
 ---
 aliases:  泛型
+tags:
+- java/se/泛型
 ---
 
 

@@ -1,4 +1,8 @@
-
+---
+aliases: 
+tags:
+- java/jdk
+---
 ### JDK下载
 [openJDK](https://jdk.java.net/java-se-ri/11)
 ### 源码下载

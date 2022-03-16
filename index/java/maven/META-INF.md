@@ -1,5 +1,7 @@
 ---
 aliases: META-INF
+tags:
+- java/maven/meta-inf
 ---
 
 jar包指定 `META-INF`的内容

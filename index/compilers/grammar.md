@@ -1,5 +1,7 @@
 ---
 aliases: 文法
+tags:
+- compilers/文法
 ---
 
 ## 名词解释

@@ -1,5 +1,7 @@
 ---
 aliases: 编译原理概述
+tags:
+- compilers/编译原理概述
 ---
 
 [编译原理（哈工大）_哔哩哔哩](https://www.bilibili.com/video/BV1zW411t7YE?from=search&seid=17662228773593089278)

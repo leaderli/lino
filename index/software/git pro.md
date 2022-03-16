@@ -1,5 +1,7 @@
 ---
 aliases: git原理
+tags: 
+-  软件/git原理
 ---
 
 

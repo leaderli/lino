@@ -1,6 +1,9 @@
 ---
 aliases: 常用资源
-tags: catagory
+tags: 
+- catagory
+- 常用
+
 ---
 
 ### [[math|常用数学符号]]

@@ -1,6 +1,8 @@
 ---
 aliases: 计算机基础
-tags: catagory
+tags: 
+- catagory
+- 计算机基础
 ---
 
 

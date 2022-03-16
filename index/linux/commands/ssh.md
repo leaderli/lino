@@ -1,5 +1,7 @@
 ---
 aliases: ssh免密
+tags:
+- linux/commands/ssh
 ---
 
 ## ssh免密

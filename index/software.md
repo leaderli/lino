@@ -1,5 +1,7 @@
 ---
-tags: catagory
+tags: 
+- catagory
+- 软件
 ---
 
 ### [[software list|常用软件清单]]

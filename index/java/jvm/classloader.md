@@ -1,5 +1,7 @@
 ---
 aliases:  类加载,类加载机制,类加载器
+tags:
+- java/jvm/类加载
 ---
 
 ## Java 类加载器

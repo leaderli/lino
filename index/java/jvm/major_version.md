@@ -1,3 +1,8 @@
+---
+aliases: 
+tags:
+- java/jvm/字节码/major_version
+---
 [[bytecode|字节码]] 文件的主要java版本
 
 查看class文件的二进制文件，第8字节就表示版本号，其中34对应十进制位52，即 JDK8

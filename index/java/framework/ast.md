@@ -1,7 +1,7 @@
 ---
 aliases:  抽象语法树
 tags:
-- java
+- java/框架/ast
 ---
 
 ## 概述

@@ -2,6 +2,7 @@
 aliases:  git
 tags:
 - linux
+- 软件/git
 ---
 
 ## 安装 git

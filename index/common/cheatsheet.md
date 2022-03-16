@@ -1,6 +1,7 @@
 ---
 aliases: 快捷键
-tags: snippet
+tags: 
+- 常用/快捷键
 ---
 
 ## 常用特殊符号

@@ -1,6 +1,7 @@
 ---
 aliases:  字节码
-tags: java
+tags: 
+- java/jvm/字节码
 ---
 class字节码文件是java跨平台的基础，其本质是一个满足JVM规范的二进制文件。class文件以一个个8位字节位基础单位，每个数据严格按照指定的数据结构排列在class文件之中。
 

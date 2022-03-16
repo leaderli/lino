@@ -1,5 +1,7 @@
 ---
 aliases: 命令行
+tags:
+- java/command
 ---
 
 

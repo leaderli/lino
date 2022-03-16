@@ -1,5 +1,7 @@
 ---
 aliases:  异常机制
+tags:
+- java/se/异常机制
 ---
 
 ###  不要捕获 Throwable 类

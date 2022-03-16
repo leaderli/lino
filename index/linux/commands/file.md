@@ -1,6 +1,7 @@
 ---
 aliases: 查看文件类型
-tags: linux
+tags: 
+- linux/commands/file
 ---
 用于识别文件类型
 

@@ -1,5 +1,7 @@
 ---
-aliases:  catagory
+aliases:  
+- catagory
+- 读书笔记
 ---
 
 ### [[motivation science|动机心理学]]
