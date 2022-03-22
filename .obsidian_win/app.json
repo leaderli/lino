@@ -25,5 +25,6 @@
   "strictLineBreaks": true,
   "livePreview": false,
   "spellcheck": false,
-  "legacyEditor": false
+  "legacyEditor": false,
+  "communityPluginSortOrder": "download"
 }
