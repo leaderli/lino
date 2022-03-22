@@ -2,7 +2,7 @@
 aliases: 字节码
 tags:
   - java/jvm/字节码
-date updated: 2022-03-22 15:16
+date updated: 2022-03-22 19:53
 ---
 
 class字节码文件是java跨平台的基础，其本质是一个满足JVM规范的二进制文件。class文件以一个个8位字节位基础单位，每个数据严格按照指定的数据结构排列在class文件之中。
@@ -283,25 +283,31 @@ _Note that any referenced "value" refers to a 32-bit int as per the Java instruc
 ## 描述符
 
 在jvm规范中，每个变量、字段都有描述信息，描述符的作用是用来描述字段的数据类型、方法的参数列表（包括数量、类型以及顺序）和返回值。
-根据描述符规则，基本数据类型（`byte`、`char`、`double`、`float`、`int`、`long`、`short`、`boolean`）以及代表无返回值的 `void` 类型都用一个大写字符`V`来表示，而对象类型则用字符`L` 加对象的全限定名来表示，详见下表:
+根据描述符规则，基本数据类型（ `byte`、`char`、`double`、`float`、`int`、`long`、`short`、`boolean` ）以及代表无返回值的 `void` 类型都用一个大写字符 `V` 来表示，而对象类型则用字符`L` 加对象的全限定名来表示，详见下表:
 
-| 标志符 | 含义                        |
-| :-- | :------------------------ |
-| B   | 基本数据类型 byte               |
-| C   | 基本数据类型 char               |
-| D   | 基本数据类型 double             |
-| F   | 基本数据类型 float              |
-| I   | 基本数据类型 int                |
-| J   | 基本数据类型 long               |
-| S   | 基本数据类型 short              |
-| Z   | 基本数据类型 boolean            |
-| V   | 基本数据类型 void               |
-| L   | 对象类型,如 Ljava/lang/Object  |
-| [*  | 数组类型,如 [Ljava/lang/Object |
+| 标志符  | 含义                        |
+| :--- | :------------------------ |
+| B    | 基本数据类型 byte               |
+| C    | 基本数据类型 char               |
+| D    | 基本数据类型 double             |
+| F    | 基本数据类型 float              |
+| I    | 基本数据类型 int                |
+| J    | 基本数据类型 long               |
+| S    | 基本数据类型 short              |
+| Z    | 基本数据类型 boolean            |
+| V    | 基本数据类型 void               |
+| L    | 对象类型,如 Ljava/lang/Object  |
+| `[*` | 数组类型,如 [Ljava/lang/Object |
 
 方法的描述符，先参数列表后返回值的顺序来描述，参数列表按参数顺序放在 `()` 之间。
 
 通过查看  [[command#^e7cce6|示例]] ，我们观察到 [[constant pool| 常量池]] 中字段的描述符，也可以看到方法的描述符。例如最常见的main方法的描述符，`descriptor: ([Ljava/lang/String;)V`
+
+描述符示例：
+
+- `public void method(): ()V`
+- `public void method(String s, int i): (Ljava/lang/String;I)V`
+- `public String method(String s, int i, boolan flag):(Ljava/lang/String;IZ)Ljava/lang/String`
 
 ## 参考文档
 

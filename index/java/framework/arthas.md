@@ -1,5 +1,11 @@
 ---
 date created: 2022-03-22 17:22
+aliases: Java诊断工具
+tags:
+  - java/框架/arthas
+date updated: 2022-03-22 18:39
+---
+
 ---
 
 Java诊断工具
@@ -179,7 +185,6 @@ ts=2021-12-20 00:13:20; [cost=0.243086ms] result=@ArrayList[
     @Integer[13],
     @Integer[1117],
 ]
-
 ```
 
 ### jvm
