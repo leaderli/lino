@@ -3023,12 +3023,12 @@ ol > li {
 /* Code */
 /* --------------- */
 
-.markdown-preview-view code {
+/* .markdown-preview-view code {
   color: var(--code-color);
-}
-.cm-inline-code {
-  color: var(--code-color) !important;
-}
+} */
+/* .cm-inline-code {
+  color: var(--code-color);
+} */
 .theme-light :not(pre) > code[class*='language-'],
 .theme-light pre[class*='language-'] {
   background-color: var(--background-primary-alt);
