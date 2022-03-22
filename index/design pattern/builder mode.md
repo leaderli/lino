@@ -83,7 +83,7 @@ public class LayuiResponse<T> {
 使用时，需指定内部类的泛型
 
 ```java
- List<String> list = new ArrayList<>();
+List<String> list = new ArrayList<>();
 list.add("123");
 LayuiResponse<String> ok = LayuiResponse.<String>builder().code(0).msg("ok").data(list).build();
 ```
