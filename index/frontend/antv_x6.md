@@ -1,13 +1,11 @@
 ---
-
-tags: 
-- 前端/antv_x6
+tags:
+  - 前端/antv_x6
+date updated: 2022-03-28 15:01
 ---
 
-
-
-
 ## 安装
+
 ```shell
 npm install @antv/x6 --save
 ```
@@ -17,7 +15,6 @@ npm install @antv/x6 --save
 ```js
 import { Graph } from '@antv/x6';
 ```
-
 
 ## 快速入门
 
@@ -149,10 +146,10 @@ export default {
 import {Base} from '@antv/x6/src/shape/base.ts'
 ```
 
-
 ## 一些示例
 
 ###  自定义组件的dnd
+
 当使用dnd拖拽生成控件时，默认会clone node，对于自定义node的一些metadata无法被clone，需要重写clone方法
 
 ```js
@@ -198,6 +195,7 @@ graph.on('node:embedded',function({e,cell,x,y,node,view,previousParent,currentPa
 
 源码大致分析
 `@antv/x6/src/addon/dnd/index.ts`的`onDragEnd`方法内
+
 ```js
 protected onDragEnd(evt: JQuery.MouseUpEvent) {  
   const draggingNode = this.draggingNode  
@@ -248,6 +246,7 @@ protected onDragEnd(evt: JQuery.MouseUpEvent) {
 ```
 
 finalizeEmbedding方法内部
+
 ```js
 finalizeEmbedding(e: JQuery.MouseUpEvent, data: EventData.MovingTargetNode) {  
   const cell = data.cell || this.cell  
@@ -288,7 +287,6 @@ finalizeEmbedding(e: JQuery.MouseUpEvent, data: EventData.MovingTargetNode) {
 }
 ```
 
-
 ### 禁止节点移动
 
 [Interaction | X6](https://antv-x6.gitee.io/zh/docs/api/graph/interaction#interacting)
@@ -298,7 +296,6 @@ const graph = new Graph({
 	edgeMovable:false
 })
 ```
-
 
 ### 参考文档
 

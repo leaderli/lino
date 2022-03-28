@@ -3,18 +3,12 @@ date created: 2022-03-22 17:22
 aliases: Java诊断工具
 tags:
   - java/框架/arthas
-date updated: 2022-03-22 18:39
+date updated: 2022-03-28 14:59
 ---
 
 ---
 
 Java诊断工具
-
-[📒 官方文档](https://arthas.aliyun.com/doc/)
-
-[命令列表 — Arthas 3.5.5 文档](https://arthas.aliyun.com/doc/commands.html)
-
-[进阶使用 — Arthas 3.5.5 文档](https://arthas.aliyun.com/doc/advanced-use.html)
 
 [💾  全量包下载地址](https://github.com/alibaba/arthas/releases)
 
@@ -336,3 +330,11 @@ null
 ```shell
 ognl -c 3d4eac69  '@demo.MathGame@illegalArgumentCount'
 ```
+
+## 参考文档
+
+[📒 官方文档](https://arthas.aliyun.com/doc/)
+
+[命令列表 — Arthas 3.5.5 文档](https://arthas.aliyun.com/doc/commands.html)
+
+[进阶使用 — Arthas 3.5.5 文档](https://arthas.aliyun.com/doc/advanced-use.html)

@@ -1,13 +1,14 @@
 ---
 tags:
-- java/框架/javaparser
+  - java/框架/javaparser
+date updated: 2022-03-28 14:58
 ---
+
 ### 概述
 
 一个用于操作[[ast|抽象语法树]]的类库
 
 ### 依赖
-
 
 ```xml
 <dependency>  
@@ -17,14 +18,10 @@ tags:
 </dependency>
 ```
 
-
-[官方地址](https://github.com/javaparser/javaparser)
-
-
-
 ### 打印出语法树的结构
 
 #### 使用yaml结构
+
 ```java
 
 CompilationUnit cu = StaticJavaParser.parse("class X { int x; }");  
@@ -96,7 +93,7 @@ System.out.println(printer.output(cu));
 </root>
 ```
 
-###   一个分析返回值是否正确的示例
+### 一个分析返回值是否正确的示例
 
 去解析一个方法`m1`有几个返回值的从而进行提前校验异常规则的一个示例。可先打印出语法树的结构，然后使用指定类型的`visitor`去访问
 需要分析的源文件
@@ -289,10 +286,10 @@ public class TestJavaParser {
 
 ```
 
-
 ### 替换方法内容的示例
 
 待替换的源代码
+
 ```java
 package com.leaderli.litest;
 
@@ -339,7 +336,9 @@ System.out.println(cu);
 //将改动写回文件
 sourceRoot.saveAll();
 ```
+
 ## API说明
+
 `javaparser`使用访问者模式对语法树进行遍历访问，下面是一些常用的`visitor`
 
 - `ReturnStmt` 含有`return`的语法树，例如`return 1;`
@@ -347,7 +346,8 @@ sourceRoot.saveAll();
 - `VariableDeclarator` 变量声明，例如`int a = 1`，其中包含子语法树类型`SimpleName`，即为`a`
 - `AssignExpr` 赋值语句，例如`a=2`，其中包含子语法树类型`NameExpr`,即为`a`
 
+## 参考文档
 
 [[JavaParser_ Visited.pdf]]
 
-
+[官方地址](https://github.com/javaparser/javaparser)

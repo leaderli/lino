@@ -2,7 +2,7 @@
 tags:
   - 前端/axios
   - ajax
-date updated: 2022-03-24 15:00
+date updated: 2022-03-28 14:59
 ---
 
 ## 安装
@@ -12,8 +12,6 @@ npm install --save axios
 ```
 
 ## 示例
-
-[官方文档](https://github.com/axios/axios)
 
 基础示例
 
@@ -153,3 +151,7 @@ axios({
     console.log(response);
   });
 ```
+
+## 参考文档
+
+[官方文档](https://github.com/axios/axios)
