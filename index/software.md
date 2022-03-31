@@ -15,6 +15,7 @@ date updated: 2022-03-28 16:05
 
 ### [[git pro|git原理]]
 
+### [[intellij_idea]]
 ### [[jenkins]]
 
 ### [[software list|常用软件清单]]
