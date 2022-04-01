@@ -1,7 +1,7 @@
 ---
 tags:
   - 软件/win10
-date updated: 2022-04-02 00:07
+date updated: 2022-04-02 00:09
 ---
 
 ## 注册表
@@ -50,3 +50,9 @@ netsh winsock reset
 ## 添加右键菜单
 
 [vscode如何添加鼠标右键打开文件_zzsan的博客-CSDN博客_vscode怎么设置右键打开](https://blog.csdn.net/zzsan/article/details/79305279)
+
+## 策略
+
+关机时候有应用弹出来禁止关机，需要在Windows 10中设置关机弹出结束程序的窗口以确认关机
+
+[解决办法](https://www.cnblogs.com/lumc5/p/15264886.html)
