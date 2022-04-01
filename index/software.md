@@ -2,7 +2,7 @@
 tags:
   - catagory
   - 软件
-date updated: 2022-03-28 16:05
+date updated: 2022-04-02 00:07
 ---
 
 ### [[docker]]
@@ -16,8 +16,11 @@ date updated: 2022-03-28 16:05
 ### [[git pro|git原理]]
 
 ### [[intellij_idea]]
+
 ### [[jenkins]]
 
 ### [[software list|常用软件清单]]
 
 ### [[vscode]]
+
+### [[win10]]
