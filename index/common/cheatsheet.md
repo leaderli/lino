@@ -1,28 +1,27 @@
 ---
 aliases: 快捷键
-tags: 
-- 常用/快捷键
+tags:
+  - 常用/快捷键
+date updated: 2022-04-02 01:38
 ---
 
 ## 常用特殊符号
 
 - `↑`
 - `↓`
--  `→`
--  `←`
-
+- `→`
+- `←`
 
 ## safari
 
-
-| 快捷键     | 解释                    |
-| :-------- | :--------------------- |
-|⌃1|显示或隐藏收藏夹|
-|⌃3|切换 ipad 视图|
-|⇧⌘D|添加当前页面到阅读列表|
-|⌘/ |显示所有标签页|
-|⌃f|全屏|
-## iTerm2
+| 快捷键       | 解释          |
+| :-------- | :---------- |
+| ⌃1        | 显示或隐藏收藏夹    |
+| ⌃3        | 切换 ipad 视图  |
+| ⇧⌘D       | 添加当前页面到阅读列表 |
+| ⌘/        | 显示所有标签页     |
+| ⌃f        | 全屏          |
+| ## iTerm2 |             |
 
 ### 切换编辑模式
 
@@ -51,21 +50,26 @@ iTerm2 可以自动补齐命令，输入若干字符，按 ⌘+;弹出自动补�
 ### 截图
 
 1. F12
+
 2. cmmand+shift+p
+
 3. 输入“capture”
+
 4. 选择以下任意
 
    > 1）“ capture full size screenshot”【整个网页】
    > 2）“capture node screenshot”【节点网页】
    > 3）“capture screenshot”【当前屏幕】
 
-##  idea
+5. `shift del` 删除浏览器地址栏补全记录
+
+## idea
 
 mac 上使用 command 键替代 alt
 
 可以自定义一组快捷命令，`Quick List`
 
-| 快捷键     | 解释                    |
+| 快捷键       | 解释                     |
 | :-------- | :--------------------- |
 | F1        | quick list             |
 | F2        | next highlight error   |
@@ -74,12 +78,12 @@ mac 上使用 command 键替代 alt
 | F5        | debug                  |
 | ALT 1     | project view           |
 | ALT 2     | structure view         |
-| ALT 3     | find view          |
+| ALT 3     | find view              |
 | ALT 4     | run view               |
 | ALT 5     | debug view             |
-| ALT 6     | favorites view          |
+| ALT 6     | favorites view         |
 | ALT F3    | show bookmark          |
-| ALT b     | Find usage|
+| ALT b     | Find usage             |
 | ALT d     | goto to declration     |
 | ALT i     | goto to implemetation  |
 | ALT e     | recent files           |
@@ -113,29 +117,27 @@ win中使用`alt`
 9. `command+[`   backward history返回
 10. `command+]`  forward history 前进
 
-
 ```ad-info
 title:设置选中变量高亮
 Windows-> Preferences->Java->Editor->Mark Occurrences
 ```
 
-
 ## obsidian
 
-| 按键               | 说明                     |
-| ------------------ | ------------------------ |
-| `alt + ←`          | 折叠打开左侧栏           |
-| `alt + →`          | 折叠打开左侧栏           |
+| 按键                 | 说明               |
+| ------------------ | ---------------- |
+| `alt + ←`          | 折叠打开左侧栏          |
+| `alt + →`          | 折叠打开左侧栏          |
 | `alt + r`          | 切换编辑预览模式         |
-| `alt + e`          | 切换live preview模式         |
-| `alt + o`          | 快速打开文件             |
-| `alt + p`          | 命令面板                 |
-| `alt + ↑`          | 折叠所有                 |
-| `alt + ↓`          | 打开所有                 |
-| `alt + l`          | 折叠当前行               |
-| `alt + [`          | 返回                     |
-| `alt + ]`          | 前进                     |
-| `CTRL + SHIFT + I` | 打开内置浏览器的调试模式 | 
-| `CTRL + SHIFT + v` | 粘贴纯文本               |
+| `alt + e`          | 切换live preview模式 |
+| `alt + o`          | 快速打开文件           |
+| `alt + p`          | 命令面板             |
+| `alt + ↑`          | 折叠所有             |
+| `alt + ↓`          | 打开所有             |
+| `alt + l`          | 折叠当前行            |
+| `alt + [`          | 返回               |
+| `alt + ]`          | 前进               |
+| `CTRL + SHIFT + I` | 打开内置浏览器的调试模式     |
+| `CTRL + SHIFT + v` | 粘贴纯文本            |
 
 mac下的将`alt`替换为`command`
