@@ -2,7 +2,7 @@
 aliases: 快捷键
 tags:
   - 常用/快捷键
-date updated: 2022-04-02 01:38
+date updated: 2022-04-05 16:26
 ---
 
 ## 常用特殊符号
@@ -11,39 +11,6 @@ date updated: 2022-04-02 01:38
 - `↓`
 - `→`
 - `←`
-
-## safari
-
-| 快捷键       | 解释          |
-| :-------- | :---------- |
-| ⌃1        | 显示或隐藏收藏夹    |
-| ⌃3        | 切换 ipad 视图  |
-| ⇧⌘D       | 添加当前页面到阅读列表 |
-| ⌘/        | 显示所有标签页     |
-| ⌃f        | 全屏          |
-| ## iTerm2 |             |
-
-### 切换编辑模式
-
-```shell
-# Emacs mode
-bindkey -e
-
-# Vi mode
-bindkey -v
-```
-
-### 自动完成
-
-iTerm2 可以自动补齐命令，输入若干字符，按 ⌘+;弹出自动补齐窗口，列出曾经使用过的命令
-
-### 分屏
-
-垂直分屏：command + d
-
-水平分屏：command + shift + d
-
-切换屏幕：command + option + 方向键 command + [ 或 command + ]
 
 ## chrome
 
@@ -62,6 +29,27 @@ iTerm2 可以自动补齐命令，输入若干字符，按 ⌘+;弹出自动补�
    > 3）“capture screenshot”【当前屏幕】
 
 5. `shift del` 删除浏览器地址栏补全记录
+
+## eclipse
+
+[eclipse下载地址](https://archive.eclipse.org/eclipse/downloads/)
+win中使用`alt`
+
+1. `command + 1` quick fix 快速修复
+2. `F2` next 查找下一个错误
+3. `command + e` 选择打开的文件
+4. `command + o`  quick outline 快速outline
+5. `command + r`  open resource 打开资源
+6. `command + b`  open call hierarchy 打开方法调用处
+7. `command + d`  open declaration 进入声明处
+8. `command + i` open implementation 打开实现类
+9. `command+[`   backward history返回
+10. `command+]`  forward history 前进
+
+```ad-info
+title:设置选中变量高亮
+Windows-> Preferences->Java->Editor->Mark Occurrences
+```
 
 ## idea
 
@@ -101,26 +89,32 @@ mac 上使用 command 键替代 alt
 
 1. 窗口视图回车键进入代码
 
-## eclipse
+## Iterm2
 
-[eclipse下载地址](https://archive.eclipse.org/eclipse/downloads/)
-win中使用`alt`
+### 切换编辑模式
 
-1. `command + 1` quick fix 快速修复
-2. `F2` next 查找下一个错误
-3. `command + e` 选择打开的文件
-4. `command + o`  quick outline 快速outline
-5. `command + r`  open resource 打开资源
-6. `command + b`  open call hierarchy 打开方法调用处
-7. `command + d`  open declaration 进入声明处
-8. `command + i` open implementation 打开实现类
-9. `command+[`   backward history返回
-10. `command+]`  forward history 前进
+```shell
+# Emacs mode
+bindkey -e
 
-```ad-info
-title:设置选中变量高亮
-Windows-> Preferences->Java->Editor->Mark Occurrences
+# Vi mode
+bindkey -v
 ```
+
+### 自动完成
+
+iTerm2 可以自动补齐命令，输入若干字符，按 ⌘+;弹出自动补齐窗口，列出曾经使用过的命令
+
+### 分屏
+
+垂直分屏：command + d
+
+水平分屏：command + shift + d
+
+切换屏幕：command + option + 方向键 command + [ 或 command + ]
+
+根据编号切换屏幕
+![iterm2_根据编号切换.png|400](iterm2_根据编号切换.png)
 
 ## obsidian
 
@@ -141,3 +135,36 @@ Windows-> Preferences->Java->Editor->Mark Occurrences
 | `CTRL + SHIFT + v` | 粘贴纯文本            |
 
 mac下的将`alt`替换为`command`
+
+## safari
+
+| 快捷键       | 解释          |
+| :-------- | :---------- |
+| ⌃1        | 显示或隐藏收藏夹    |
+| ⌃3        | 切换 ipad 视图  |
+| ⇧⌘D       | 添加当前页面到阅读列表 |
+| ⌘/        | 显示所有标签页     |
+| ⌃f        | 全屏          |
+| ## iTerm2 |             |
+
+### 切换编辑模式
+
+```shell
+# Emacs mode
+bindkey -e
+
+# Vi mode
+bindkey -v
+```
+
+### 自动完成
+
+iTerm2 可以自动补齐命令，输入若干字符，按 ⌘+;弹出自动补齐窗口，列出曾经使用过的命令
+
+### 分屏
+
+垂直分屏：command + d
+
+水平分屏：command + shift + d
+
+切换屏幕：command + option + 方向键 command + [ 或 command + ]

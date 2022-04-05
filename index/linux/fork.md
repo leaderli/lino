@@ -1,7 +1,7 @@
 ---
 tags:
   - linux/fork
-date updated: 2022-03-28 16:09
+date updated: 2022-04-05 16:01
 ---
 
 ```cpp
@@ -56,4 +56,118 @@ fork 子进程完全复制父进程的栈空间，也复制了页表，但没有
 （注 1：在理解时，你可以认为 fork 后，这两个相同的虚拟地址指向的是不同的物理地址，这样方便理解父子进程之间的独立性）
 
 （注 2：但实际上，linux 为了提高 fork 的效率，采用了 copy-on-write 技术，fork 后，这两个虚拟地址实际上指向相同的物理地址（内存页），只有任何一个进程试图修改这个虚拟地址里的内容前，两个虚拟地址才会指向不同的物理地址（新的物理地址的内容从原物理地址中复制得到））
+```
+
+### ForkJoinPool
+
+```java
+//使用公共的线程池
+ForkJoinPool pool = ForkJoinPool.commonPool();
+```
+
+无返回值的调用
+
+```java
+class PrintStack extends RecursiveAction{  
+  
+  
+    private static final int THRED_HOLD = 9;  
+  
+  
+  
+    private final int start;  
+    private final  int end;  
+  
+    private PrintStack(int start, int end) {  
+        this.start = start;  
+        this.end = end;  
+    }  
+  
+  
+    @Override  
+    protected void compute() {  
+        if(end-start<THRED_HOLD){  
+  
+            for (int i = start ; i <end ; i++) {  
+  
+                System.out.println(Thread.currentThread().getName()+" i="+i);  
+            }  
+        }else{  
+  
+            int middle  = (start+end)/2;  
+  
+            PrintStack firstTask  = new PrintStack(start, middle);  
+            PrintStack secondTask= new PrintStack(middle+1, end);  
+  
+            invokeAll(firstTask,secondTask);  
+        }  
+  
+    }  
+}
+```
+
+```java
+ForkJoinPool pool = new ForkJoinPool();  
+  
+PrintStack task= new PrintStack(0, 50);  
+pool.submit(task);  
+  
+pool.awaitTermination(2, TimeUnit.SECONDS);  
+pool.shutdown()
+```
+
+有返回值的调用
+
+```java
+class CalculateStack extends RecursiveTask<Integer> {  
+  
+  
+    private static final int THRED_HOLD = 9;  
+  
+  
+  
+    private final int start;  
+    private final  int end;  
+  
+    private CalculateStack(int start, int end) {  
+        this.start = start;  
+        this.end = end;  
+    }  
+  
+  
+    @Override  
+    protected Integer compute() {  
+        if(end-start<THRED_HOLD){  
+  
+            int result = 0;  
+            for (int i = start ; i <end ; i++) {  
+  
+                result +=i;  
+            }  
+            return result;  
+        }else{  
+  
+            int middle  = (start+end)/2;  
+  
+            CalculateStack firstTask  = new CalculateStack(start, middle);  
+            CalculateStack secondTask= new CalculateStack(middle+1, end);  
+  
+            invokeAll(firstTask,secondTask);  
+  
+            return firstTask.join() + secondTask.join();  
+        }  
+  
+    }  
+}
+```
+
+```java
+ForkJoinPool pool = new ForkJoinPool();  
+  
+CalculateStack task= new CalculateStack(0, Integer.MAX_VALUE);  
+pool.submit(task);  
+System.out.println(task.get());  
+  
+pool.awaitTermination(2, TimeUnit.SECONDS);  
+pool.shutdown();
 ```

@@ -1,5 +1,8 @@
 ---
 aliases: String,字符串
+tags:
+  - java/ee/string
+date updated: 2022-04-05 16:35
 ---
 
 [[basic data type#String]]
@@ -75,7 +78,6 @@ URLDecoder.decode("%E4%B8%AD%E6%96%87", StandardCharsets.UTF_8.name())
 String.format("%03d",num)
 ```
 
-
 ### inputstream 转换 String
 
 ```java
@@ -83,10 +85,10 @@ String text = new BufferedReader( new InputStreamReader(inputStream, StandardCha
 ```
 
 使用`Apache Commons IO`
+
 ```java
 String text = IOUtils.toString(inputStream, StandardCharsets.UTF_8.name());
 ```
-
 
 ### string 转 inputstream
 

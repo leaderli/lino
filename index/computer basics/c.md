@@ -1,7 +1,7 @@
 ---
-aliases: c语音
+aliases: c语言
 tags:
-  - 计算机基础/c语音
+  - 计算机基础/c语言
 date created: 2022-03-24 16:22
 date updated: 2022-03-24 16:22
 ---
