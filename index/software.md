@@ -2,17 +2,22 @@
 tags:
   - catagory
   - 软件
-date updated: 2022-04-02 00:07
+date updated: 2022-04-05 23:40
 ---
 
 ### [[chrome]]
+
 ### [[docker]]
 
 ### [[elasticsearch]]
 
 ### [[excel]]
 
+### [[flink]]
+
 ### [[git]]
+
+### [[gitlab]]
 
 ### [[git pro|git原理]]
 
@@ -21,6 +26,8 @@ date updated: 2022-04-02 00:07
 ### [[jenkins]]
 
 ### [[software list|常用软件清单]]
+
+### [[vim]]
 
 ### [[vscode]]
 

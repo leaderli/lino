@@ -2,7 +2,7 @@
 tags:
   - catagory
   - eclipse
-date updated: 2022-04-05 16:09
+date updated: 2022-04-05 23:01
 ---
 
 ### [[eclipse-plugin-develop-tutorial-setup]]
@@ -14,3 +14,7 @@ date updated: 2022-04-05 16:09
 ### [[eclipse-wizard]]
 
 ### [[gef-event]]
+
+### [[swt_constant]]
+
+### [[visual_editor]]

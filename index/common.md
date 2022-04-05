@@ -3,10 +3,10 @@ aliases: 常用资源
 tags:
   - catagory
   - 常用
-date updated: 2022-04-02 23:40
+date updated: 2022-04-05 23:40
 ---
 
-### [[math|常用数学符号]]
+### [[bookmark]]
 
 ### [[emoj]]
 
