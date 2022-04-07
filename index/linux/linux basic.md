@@ -2,7 +2,7 @@
 aliases: linux基础知识
 tags:
   - linux/basic
-date updated: 2022-04-07 10:00
+date updated: 2022-04-07 15:16
 ---
 
 ## 用户
@@ -110,3 +110,23 @@ li$ more 1.txt
 ### 参考文档
 
 [Linux文件系统和inode - 简书](https://www.jianshu.com/p/9ef6542ced92)
+
+## 其他
+
+### 重复执行上次命令
+
+1. 使用上方向键，并回车执行。
+
+2. 按 `!!` 并回车执行。
+
+3. 输入` !-1` 并回车执行。`!-n` 执行上第 n 条命令
+
+4. 按 `Ctrl+P` 并回车执行。
+
+```ad-info
+可以使用 `sudo`，以 root 用户执行上条命令
+
+`sudo !!`
+
+`sudo !-1`
+```

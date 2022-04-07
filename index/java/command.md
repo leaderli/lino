@@ -2,8 +2,19 @@
 aliases: 命令行
 tags:
   - java/command
-date updated: 2022-04-05 17:58
+date updated: 2022-04-07 14:43
 ---
+
+### linux上查看java安装目录
+
+```shell
+han@ubuntu:/etc$ whereis java
+java: /usr/bin/java /usr/share/java /usr/lib/jvm/java-8-openjdk-amd64/bin/java /usr/share/man/man1/java.1.gz
+han@ubuntu:/etc$ ls -lrt /usr/bin/java
+lrwxrwxrwx 1 root root 22 4月   2 15:54 /usr/bin/java -> /etc/alternatives/java
+han@ubuntu:/etc$ ls -lrt /etc/alternatives/java
+lrwxrwxrwx 1 root root 46 4月   2 15:54 /etc/alternatives/java -> /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+```
 
 ### javap
 

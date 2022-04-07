@@ -1,7 +1,7 @@
 ---
 tags:
   - linux/commands/echo
-date updated: 2022-04-07 11:20
+date updated: 2022-04-07 15:00
 ---
 
 - `-e` 对输出内容进行格式调整，命令格式 `echo -e "\033[字背景颜色;文字颜色m字符串\033[0m"`
@@ -29,3 +29,19 @@ echo -e "\033[47;30m 白底黑字 \033[0m"
 ```
 
 ![[Pasted image 20220407112034.png|100]]
+
+### 查看当前是否 root
+
+```shell
+# 0既是root
+echo $UID
+```
+
+### 显示当前 IP 的 hostname
+
+```shell
+echo $HOSTNAME
+
+#显示当前ip
+hostname -i
+```

@@ -1,8 +1,9 @@
 ---
-aliases:  git
+aliases: git
 tags:
-- linux
-- 软件/git
+  - linux
+  - 软件/git
+date updated: 2022-04-07 14:42
 ---
 
 ## 安装 git
@@ -32,6 +33,14 @@ sudo yum -y install https://packages.endpoint.com/rhel/7/os/x86_64/endpoint-repo
 sudo yum install git
 
 ```
+
+离线安装
+
+```shell
+rpm2cpio git-1.7.9.6-1.e16.rfx.x86_64.rpm|cpio -idmv
+```
+
+[[rpm#离线安装 rpm 忽略依赖]]
 
 ## 配置
 
@@ -78,14 +87,14 @@ sw = checkout
 
 ### 配置颜色
 
-
 使用默认的颜色配置
+
 ```shell
 git config --global color.ui auto
 ```
 
-
 自定义颜色配置，指定具体颜色
+
 ```
 [color]
   diff = auto
@@ -107,16 +116,18 @@ git config --global color.ui auto
 假如你正在Windows上写程序，又或者你正在和其他人合作，他们在Windows上编程，而你却在其他系统上，在这些情况下，就可能会遇到行尾结束符问题，这是因为Windows使用回车和换行两个字符来结束一行，而Mac和Linux只使用换行符一个字符。虽然这是小问题，但它会极大地扰乱跨平台协作，在提交时产生非常多的冲突
 
 对于不同的平台，有不同的处理方案：
+
 1. Git可以在你提交时自动地把行结束符CRLF转换成LF，而在签出代码时把LF转换成CRLF。设置core.autocrlf来打开此项功能，如果是在Windows系统上，就把它设置成true，这样当签出代码时，LF会被转换成CRLF：
-	```
-	$ git config --global core.autocrlf true
-	```
+   ```
+   $ git config --global core.autocrlf true
+   ```
 2. Linux或Mac系统使用LF作为行结束符，因此你不想Git在签出文件时进行自动的转换；当一个以CRLF为行结束符的文件不小心被引入时你肯定想进行修正，把core.autocrlf设置成input来告诉Git在提交时把CRLF转换成LF，签出时不转换：
-	```
-	$ git config --global core.autocrlf input
-	```
-	
+   ```
+   $ git config --global core.autocrlf input
+   ```
+
 这样会在Windows系统上的签出文件中保留CRLF，会在Mac和Linux系统上，包括仓库中保留LF。
+
 ## 查看
 
 ### 查看状态
@@ -174,7 +185,7 @@ git log -p <file>
 
 ### 比较差异
 
-`git diff` 比较工作区和缓存区，当修改工作区内容时且未 `add` ,缓存区的内容则与工作区有差异，此时缓存区与仓库同样是没有变动，所以使用 `git diff --cached` ,发现没有差异，当使用 `add` 后，缓存区则和工作区相同了。单因为没有 `commit` ,所以使用 `git diff --cached` ，可以看到差异的内容。当使用 `commit` 后，则变成一致的状态  
+`git diff` 比较工作区和缓存区，当修改工作区内容时且未 `add` ,缓存区的内容则与工作区有差异，此时缓存区与仓库同样是没有变动，所以使用 `git diff --cached` ,发现没有差异，当使用 `add` 后，缓存区则和工作区相同了。单因为没有 `commit` ,所以使用 `git diff --cached` ，可以看到差异的内容。当使用 `commit` 后，则变成一致的状态\
 用 `git diff HEAD -- readme.txt` 命令可以查看工作区和版本库里面最新版本的区别，`HEAD` 可以使用 `git log` 或者 `git reflog` 查看的版本号替换
 
 ```shell
@@ -245,7 +256,7 @@ git commit --amend
 
 ### checkout
 
-1. 未 `add` 到 `stage `时可用 `git checkout -- file` ,丢弃工作区的修改。
+1. 未 `add` 到 ` stage  `时可用 `git checkout -- file` ,丢弃工作区的修改。
 2. 已 `add` 到 `stage`先用 `git reset HEAD <file>` 可以把暂存区的修改撤销掉（ `unstage` ），重新放回工作区，然后再丢弃工作区修改
 3. `git checkout <branch>` 切换分支
 4. `git checkout -b <branch> <commit>`  在 `commit` 创建一个分支
@@ -257,7 +268,7 @@ git commit --amend
 ### `revert`
 
 > `git revert <commit>`，撤销提交。不同于 `reset` ，`revert` 不是回退版本，而是通过一个新的反向的提交来实现。会进入交互模式，需要填写新的 `commit` 信息
->  `git revert -n <commit>` ,撤销提交，需要手动`commit`
+> `git revert -n <commit>` ,撤销提交，需要手动`commit`
 
 ### apply
 
@@ -351,8 +362,8 @@ git  cherry-pick 7
 git checkout <branch> <file>
 ```
 
-
 ### 游离分支
+
 ```shell
 #  commit1 游离分支的sha1
 git branch tmp  <commit1>
@@ -377,7 +388,7 @@ git tag -a v0.1 -m "version 0.1 released"
 
 ```
 
-默认标签是打在最新提交的 `commit` 上的。有时候，如果忘了打标签，比如，现在已经是周五了，但应该在周一打的标签没有打，怎么办？  
+默认标签是打在最新提交的 `commit` 上的。有时候，如果忘了打标签，比如，现在已经是周五了，但应该在周一打的标签没有打，怎么办？\
 方法是找到历史提交的 `commit id` ，然后打上就可以了：
 
 ```shell
@@ -417,7 +428,7 @@ git show tag
 git tag -l |xargs git tag -d
 ```
 
-##  rebase
+## rebase
 
 提交信息过多过杂，或者分支合并操作过多,可以使用 `git rebase` 整理提交记录
 
@@ -540,7 +551,6 @@ git reset --hard <remote>/<branch>
 git push #推送前会校验是否在最新状态
 git push -f #强制推送
 ```
-
 
 ### 一些错误
 

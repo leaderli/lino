@@ -1,9 +1,11 @@
 ---
 aliases: 查看文件类型
-tags: 
-- linux/commands/file
+tags:
+  - linux/commands/file
+date updated: 2022-04-07 15:22
 ---
-用于识别文件类型
+
+用于识别文件类型，查看文件格式
 
 ```shell
 file [-b] [文件或目录...]
@@ -20,4 +22,3 @@ compiled Java class data, version 52.0 (Java 1.8)
 ```
 
 ^dc4f9b
-
