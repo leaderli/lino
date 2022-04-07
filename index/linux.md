@@ -2,7 +2,7 @@
 tags:
   - catagory
   - linux
-date updated: 2022-03-28 14:51
+date updated: 2022-04-07 09:29
 ---
 
 ### [[bash]]
@@ -10,6 +10,10 @@ date updated: 2022-03-28 14:51
 ### [[centos]]
 
 ### [[commands|常用命令]]
+
+### [[complete|自动补全]]
+
+### [[fork]]
 
 ### [[linux basic|linux基础知识]]
 

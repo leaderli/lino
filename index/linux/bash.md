@@ -1,8 +1,24 @@
 ---
+aliases: shell
 tags:
   - linux/bash
-date updated: 2022-03-24 16:19
+date updated: 2022-04-07 09:22
 ---
+
+## shell
+
+shell 是系统内核和用户沟通的桥梁，它作为系统的命令解释器为用户提供解释命令的功能。linux 系统上存在多种 shell。可通过
+
+```shell
+#查看系统支持的 shell 软件
+cat /etc/shells
+#查看用户登录后默认使用的shell(当前用户时li)
+cat /etc/passwd|grep ^li:
+# 查看所有shell
+chsh -l
+# 切换shell
+chsh
+```
 
 ## 重定向符
 
@@ -155,8 +171,8 @@ cd ~/Downloads/ && rm -rf temp`
 
 ## `[` 和`[[`
 
-`[`是 shell 的一个内置命令（和命令 test 是一样的），`[`到`]`之间都被视为`[`的参数
-`[[`是一个关键字，它的参数会根据一定规则进行处理，其他的和`[`是一样的
+`[` 是 shell 的一个内置命令（和命令 test 是一样的），`[` 到 `]` 之间都被视为 `[` 的参数
+`[[` 是一个关键字，它的参数会根据一定规则进行处理，其他的和 `[` 是一样的
 
 所以下述用法就是不对的
 
@@ -184,7 +200,7 @@ $ if test -n "$name"
 not empty
 ```
 
-`[`的常用语法有
+`[` 的常用语法有
 
 1. 判断
 
@@ -247,7 +263,7 @@ not empty
    | -ge | 大于等于          |
    | -le | 小于等于          |
 
-`[[`的用法示例
+`[[` 的用法示例
 
 ```shell
 #比较两个字符串
@@ -259,7 +275,7 @@ fi
 
 ## 数值运算
 
-在 bool 运算中使用`((expression))`
+在 bool 运算中使用 `((expression))`
 
 ```shell
 var=10
@@ -281,8 +297,6 @@ let "i-=1"
 # 自增
 ((i+=1))
 let "i+=1" 
-
-
 ```
 
 ## case
