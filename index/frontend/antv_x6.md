@@ -300,3 +300,6 @@ const graph = new Graph({
 ### 参考文档
 
 [快速入门](https://antv-x6.gitee.io/zh/docs/tutorial/getting-started)
+
+
+[LogicFlow](http://logic-flow.org/)
