@@ -8,6 +8,6 @@ date updated: 2022-04-05 23:37
 
 ### [[URL|URL]]
 
-### [[IP]]
+### [[index/protocol/IP]]
 
 ### [[xml]]

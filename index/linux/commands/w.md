@@ -1,10 +1,10 @@
 ---
 tags:
   - linux/commands/w
-date updated: 2022-04-05 17:54
+date updated: 2022-04-10 12:13
 ---
 
-查看当前用户
+查看当前用户，[[tty]]
 
 ```shell
 $ w

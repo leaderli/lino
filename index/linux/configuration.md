@@ -2,7 +2,7 @@
 aliases: 设置
 tags:
   - linux/configuration
-date updated: 2022-04-07 15:21
+date updated: 2022-04-10 12:14
 ---
 
 ## 配置文件的加载
@@ -84,6 +84,16 @@ PS1='\[\e[1m\]\[\e[35m\]\$ \[\e[0m\]'
 ntpdate  ntp.api.bz
 # 查看时区
 date -R
+```
+
+### 关闭自动退出
+
+```shell
+# vi /etc/profile
+
+unset TMOUT
+# 或者
+TMOUT=0
 ```
 
 ## IFS
