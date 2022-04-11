@@ -2,7 +2,7 @@
 aliases: linux基础知识
 tags:
   - linux/basic
-date updated: 2022-04-10 14:35
+date updated: 2022-04-11 10:18
 ---
 
 ## 用户
@@ -103,6 +103,112 @@ li$ more 1.txt
 
 linux 使用虚拟目录来管理硬盘，第一个被加载的硬盘被视为 root 驱动器，root 驱动包含虚拟目录的核心部分，在 root 驱动器上，linux 创建一个特殊的目录被称为 mount points,用来挂载其他硬盘。使用虚拟目录可以将所有文件都存储在一起，尽管他们可能存储在不同的硬盘上，通常来说，系统的核心文件存储在 root 驱动器上。
 
+### proc 目录
+
+Linux 内核提供了一种通过 proc 文件系统，在运行时访问内核内部数据结构、改变内核设置的机制。proc 文件系统是一个伪文件系统，它只存在内存当中，而不占用外存空间。它以文件系统的方式为访问系统内核数据的操作提供接口。
+
+1. cmdline 启动时传递给 kernel 的参数信息
+
+2. cpuinfo cpu 的信息
+
+3. filesystems 内核当前支持的文件系统类型
+
+4. locks 内核锁住的文件列表
+
+5. meminfo RAM 使用的相关信息
+
+6. swaps 交换空间的使用情况
+
+7. version Linux 内核版本和 gcc 版本
+
+8. self 链接到当前正在运行的进程
+
+proc 目录下一些以数字命名的目录，它们是进程目录。系统中当前运行的每一个进程都有对应的一个目录在 proc 下，以进程的 PID 号为目录名，它们是读取进程信息的接口。而 self 目录则是读取进程本身的信息接口，是一个 link。
+
+1. `/proc/[pid]/cmdline` 该进程的命令及参数
+
+2. `/proc/[pid]/comm` 该进程的命令
+
+3. `/proc/[pid]/cwd` 进程工作目录
+
+4. `/proc/[pid]/environ` 该进程的环境变量
+
+5. `/proc/[pid]/exe` 该进程命令的实际命令地址
+
+6. `/proc/[pid]/fd` 该进程打开的文件描述符
+
+7. `/proc/[pid]/maps` 显示进程的内存区域映射信息
+
+8. `/proc/[pid]/statm` 显示进程所占用内存大小的统计信息 。包含七个值，度量单位是 page(page 大小可通过 getconf PAGESIZE 得到)。举例如下：
+
+   ```shell
+   $ cat statm
+   26999 154 130 15 0 79 0
+
+   ```
+
+   - a）进程占用的总的内存
+   - b）进程当前时刻占用的物理内存
+   - c）同其它进程共享的内存
+   - d）进程的代码段
+   - e）共享库(从 2.6 版本起，这个值为 0)
+   - f）进程的堆栈
+   - g）dirty pages(从 2.6 版本起，这个值为 0)
+
+9. `/proc/[pid]/status` 包含进程的状态信息。
+
+   ```shell
+   $ cat /proc/2406/status
+   Name:   frps
+   State:  S (sleeping)
+   Tgid:   2406
+   Ngid:   0
+   Pid:    2406
+   PPid:   2130
+   TracerPid:  0
+   Uid:    0   0   0   0
+   Gid:    0   0   0   0
+   FDSize: 128
+   Groups: 0
+   NStgid: 2406
+   NSpid:  2406
+   NSpgid: 2406
+   NSsid:  2130
+   VmPeak:    54880 kB
+   VmSize:    54880 kB
+   VmLck:         0 kB
+   VmPin:         0 kB
+   VmHWM:     34872 kB
+   VmRSS:     10468 kB
+   VmData:    47896 kB
+   VmStk:       132 kB
+   VmExe:      2984 kB
+   VmLib:         0 kB
+   VmPTE:        68 kB
+   VmPMD:        20 kB
+   VmSwap:        0 kB
+   HugetlbPages:          0 kB
+   Threads:    11
+   SigQ:   0/31834
+   SigPnd: 0000000000000000
+   ShdPnd: 0000000000000000
+   SigBlk: 0000000000000000
+   SigIgn: 0000000000000000
+   SigCgt: fffffffe7fc1feff
+   CapInh: 0000000000000000
+   CapPrm: 0000003fffffffff
+   CapEff: 0000003fffffffff
+   CapBnd: 0000003fffffffff
+   CapAmb: 0000000000000000
+   Seccomp:    0
+   Cpus_allowed:   f
+   Cpus_allowed_list:  0-3
+   Mems_allowed:   00000000,00000001
+   Mems_allowed_list:  0
+   voluntary_ctxt_switches:    2251028
+   nonvoluntary_ctxt_switches: 18031
+   ```
+
 ## inode
 
 数据是保存在磁盘中的，磁盘上最小存储数据的是扇区，每个扇区一般都可以存放512字节的数据。
@@ -136,3 +242,40 @@ linux 使用虚拟目录来管理硬盘，第一个被加载的硬盘被视为 r
 
 `sudo !-1`
 ```
+
+### root 用户无法加载 bash_profile
+
+在尝试通过使用 `su root` 登录到 root 用户， `/var/root/.bash_profile` 的环境变量始终无法加载。
+通过查看 `su` 的文档
+`su` 会以当前登录用户的 session 去切换用户，而 `su -` 会重新登录
+
+```
+The su command is used to become another user during a login session. Invoked without a username, su defaults to becoming the superuser. The optional argument - may be used to provide an environment similar to what the user would expect had the user logged in directly.
+```
+
+同时
+
+```
+-, -l, --login
+Provide an environment similar to what the user would expect had the user logged in directly.
+```
+
+使用 `su - root` 则可正常加载环境配置
+
+下述问题也是这样的原因，可以通过上述方式去解决
+
+> autojump_add_to_database command not found
+
+## `./`执行脚本头文件不存在
+
+> !#/usr/bin/python3: No such file or directory
+
+因为复制粘贴 `!#/usr/bin/python3` 时带上了不可见的换行或其他字符
+
+通过命令`$ head -1 yourscript | od -c` 文件的头文件的
+
+- `0000000 # ! / b i n / b a s h \r \n`
+- `0000000 357 273 277 # ! / b i n / b a s h \n`
+- `0000000 # ! / b i n / b a s h \n`（这样的才是正确的输出）
+
+> od 指令会读取所给予的文件的内容，并将其内容以八进制字码呈现出来

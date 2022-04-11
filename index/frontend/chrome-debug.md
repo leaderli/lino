@@ -1,6 +1,6 @@
 ---
 tags:
-  - 前端/chrome
+  - frontend/chrome
 date updated: 2022-03-28 14:54
 ---
 

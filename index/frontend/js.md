@@ -1,6 +1,6 @@
 ---
 tags:
-  - 前端/js
+  - frontend/js
 date updated: 2022-04-05 17:36
 ---
 

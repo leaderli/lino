@@ -1,6 +1,6 @@
 ---
 tags:
-  - 前端/highlightjs
+  - frontend/packageshighlightjs
 date updated: 2022-04-05 16:18
 ---
 

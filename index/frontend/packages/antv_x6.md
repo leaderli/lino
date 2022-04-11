@@ -1,6 +1,6 @@
 ---
 tags:
-  - 前端/antv_x6
+  - frontend/packages/antv_x6
 date updated: 2022-03-28 15:01
 ---
 

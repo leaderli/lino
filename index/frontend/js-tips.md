@@ -1,7 +1,7 @@
 ---
 aliases: js示例代码
 tags:
-  - 前端/js-tips
+  - frontend/js-tips
 date updated: 2022-04-05 17:39
 ---
 

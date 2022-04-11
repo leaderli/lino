@@ -1,7 +1,7 @@
 ---
 aliases: 样式
 tags:
-  - 前端/css
+  - frontend/css
 date updated: 2022-03-28 15:01
 ---
 

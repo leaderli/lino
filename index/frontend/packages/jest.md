@@ -1,7 +1,7 @@
 ---
 aliases: 前端测试
 tags:
-  - 前端/jest
+  - frontend/packages/jest
 date updated: 2022-04-05 17:29
 ---
 

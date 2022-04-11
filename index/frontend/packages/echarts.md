@@ -1,7 +1,7 @@
 ---
 aliases: 图表
 tags:
-  - 前端/echart
+  - frontend/packages/echart
 date updated: 2022-03-28 15:30
 ---
 

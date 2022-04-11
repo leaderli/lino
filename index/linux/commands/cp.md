@@ -1,8 +1,12 @@
 ---
 tags:
   - linux/commands/cp
-date updated: 2022-04-07 14:21
+date updated: 2022-04-11 10:10
 ---
+
+复制文件
+
+- `-v` 显示复制的详情
 
 ### 快速备份
 

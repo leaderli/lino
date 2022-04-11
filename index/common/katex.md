@@ -1,5 +1,5 @@
 ---
-aliases: java面试题
+
 tags:
   - 常用/katex
   - markdown

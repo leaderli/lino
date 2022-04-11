@@ -1,6 +1,6 @@
 ---
 tags:
-  - 前端/jquery
+  - frontend/packages/jquery
 date updated: 2022-04-05 17:35
 ---
 

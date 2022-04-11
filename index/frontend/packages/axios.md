@@ -1,6 +1,6 @@
 ---
 tags:
-  - 前端/axios
+  - frontend/packages/axios
   - ajax
 date updated: 2022-03-28 14:59
 ---
