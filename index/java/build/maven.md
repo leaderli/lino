@@ -2,7 +2,7 @@
 aliases: maven
 tags:
   - catagory
-date updated: 2022-04-11 10:54
+date updated: 2022-04-11 19:59
 ---
 
 Maven – Download Apache Mavenpache Mavenorial
@@ -12,12 +12,12 @@ Maven – Download Apache Mavenpache Mavenorial
 ## 安装
 
 [下载](https://maven.apache.org/download.cgi)
+
 [安装](https://maven.apache.org/install.html)
 
 ## 配置
 
-maven 默认目录在`${user.home}/.m2/`
-`settings.xml`配置文件为 maven 的全局配置
+maven的全局配置文件在安装目录下的 `conf/settings.xml`总，maven 默认用户配置目录在`${user.home}/.m2/`。可以通过修改全局配置文件的`localRepository`的值来更改默认配置文件的路径
 
 ### 镜像
 
@@ -1164,3 +1164,7 @@ jar包指定 `META-INF`的内容
 ```shell
 mvn package -DskipTests=true
 ```
+
+## 参考文档
+
+[settings.xml](https://maven.apache.org/settings.html)
