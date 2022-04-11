@@ -82,7 +82,7 @@ date updated: 2022-04-11 23:31
    	<server>
    		<id>github</id>
    		<username>429243408@qq.com</username>
-   		<password>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</password>
+   		<password>xxx</password>
    	</server>
    </servers>
    ```
