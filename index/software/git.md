@@ -575,3 +575,31 @@ git clone li@centos7:~/temp/sample.git
 ```
 
 使用`git clone`需要配置[[ssh|ssh免密]]
+
+
+## 常用命令
+
+### 统计每个人每天的代码量
+
+```shell
+
+cal(){
+   git log --all --shortstat   --author "$1" --after ''\
+    | grep "files\? changed" \
+    | awk '{files+=$1; inserted+=$4; deleted+=$6} END \
+           {print "'$1' --> lines inserted:", inserted, "lines deleted:", deleted}'  
+}
+
+
+
+
+
+cal leaderli
+cal dengqiankun
+```
+
+## 参考文档
+
+[git log命令](https://www.yiibai.com/git/git_log.html)
+
+
