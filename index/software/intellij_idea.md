@@ -2,7 +2,7 @@
 aliases: idea
 tags:
   - 软件/intellij_idea
-date updated: 2022-03-31 15:30
+date updated: 2022-04-12 15:19
 ---
 
 ## 设置
@@ -177,6 +177,8 @@ code style|enable formatter markers in comments
 项目右键点 Modules，然后点 + 号看是否无 spring 选项
 
 ## junit test 一直 build
+
+junit 跑的比较慢的时候
 
 关闭maven的 delegate IDE build/run action to maven
 
