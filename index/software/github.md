@@ -2,7 +2,7 @@
 tags:
   - linux
   - 软件/github
-date updated: 2022-04-11 23:31
+date updated: 2022-04-12 14:24
 ---
 
 ## action
@@ -87,22 +87,21 @@ date updated: 2022-04-11 23:31
    </servers>
    ```
 
-	其中password为github的 [token](https://catalyst.zoho.com/help/tutorials/githubbot/generate-access-token.html)
+   其中password为github的 [token](https://catalyst.zoho.com/help/tutorials/githubbot/generate-access-token.html)
 
-	同时也需要将github package的 repository 地址 添加到 repositories 中，可以作为最后一个
+   同时也需要将github package的 repository 地址 添加到 repositories 中，可以作为最后一个， `maven_repository` 是 token的名字
 
-	```xml
-	<repositories>
-		<repository>
-			<id>github</id>
-			<url>https://maven.pkg.github.com/leaderli/maven_repository</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
-	```
-
+   ```xml
+   <repositories>
+   	<repository>
+   		<id>github</id>
+   		<url>https://maven.pkg.github.com/leaderli/maven_repository</url>
+   		<snapshots>
+   			<enabled>true</enabled>
+   		</snapshots>
+   	</repository>
+   </repositories>
+   ```
 
 ## 参考文档
 
