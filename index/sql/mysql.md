@@ -131,7 +131,7 @@ alter database db_name CHARACTER SET utf8;
 ## 查看数据库信息
 
 ```sql
-show variables;
+show variables;![[eclipse.lnk]]
 show variables like 'character%';
 ```
 
