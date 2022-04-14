@@ -19,3 +19,5 @@ date updated: 2022-04-10 12:36
 ### [[katex]]
 
 ### [[math|常用数学符号]]
+
+### [[mermaid]]

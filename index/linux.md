@@ -2,7 +2,7 @@
 tags:
   - catagory
   - linux
-date updated: 2022-04-10 12:35
+date updated: 2022-04-14 12:11
 ---
 
 ### [[apt-get]]
@@ -19,8 +19,12 @@ date updated: 2022-04-10 12:35
 
 ### [[linux basic|linux基础知识]]
 
+### [[make]]
+
 ### [[rpm]]
 
 ### [[systemd]]
+
+### [[yum]]
 
 #todo

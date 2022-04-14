@@ -2,7 +2,7 @@
 aliases: linux基础知识
 tags:
   - linux/basic
-date updated: 2022-04-11 10:18
+date updated: 2022-04-14 11:30
 ---
 
 ## 用户
@@ -266,7 +266,7 @@ Provide an environment similar to what the user would expect had the user logged
 
 > autojump_add_to_database command not found
 
-## `./`执行脚本头文件不存在
+### `./`执行脚本头文件不存在
 
 > !#/usr/bin/python3: No such file or directory
 
@@ -279,3 +279,21 @@ Provide an environment similar to what the user would expect had the user logged
 - `0000000 # ! / b i n / b a s h \n`（这样的才是正确的输出）
 
 > od 指令会读取所给予的文件的内容，并将其内容以八进制字码呈现出来
+
+### 判断当前是否为 root 用户执行
+
+```shell
+#!/bin/bash
+if [[ $EUID -eq 0 ]]; then
+   echo "this is root"
+   exit 1
+fi
+```
+
+
+### 睡眠
+
+```shell
+sleep 3 #暂停3秒
+echo 'ok'
+```

@@ -2,7 +2,7 @@
 aliases: 设置
 tags:
   - linux/configuration
-date updated: 2022-04-10 12:14
+date updated: 2022-04-14 11:18
 ---
 
 ## 配置文件的加载
@@ -123,4 +123,38 @@ done
 
 ```
 set completion-ignore-case on
+```
+
+## history
+
+设置历史记录不重复
+
+```bash
+export HISTIGNORE='ls:bg:fg:history'
+shopt -s histappend # append new history items to .bash_history
+export HISTCONTROL=ignoreboth:erasedups
+export HISTFILESIZE=10000       # increase history file size (default is 500)
+export HISTSIZE=${HISTFILESIZE} # increase history size (default is 500)
+# ensure synchronization between Bash memory and history file
+#export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"
+shopt -s cmdhist
+# Append new history lines, clear the history list, re-read the history list, print prompt.
+export PROMPT_COMMAND="history -n; history -w; history -c; history -r;history -a; $PROMPT_COMMAND"
+```
+
+同时我们可以设置 `~/.bashrc` ，使得可以使用上下箭头补全历史命令
+
+```shell
+if [[ $- == *i* ]]
+then
+        bind '"\e[A": history-search-backward'
+        bind '"\e[B": history-search-forward'
+fi
+```
+
+需要确保 `/etc/inputrc` 的两个配置打开了
+
+```shell
+"\e[5~": history-search-backward
+"\e[6~": history-search-forward
 ```

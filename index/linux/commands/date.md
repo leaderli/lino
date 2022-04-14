@@ -48,3 +48,27 @@ $ date +'%Y-%m-%d'
 | %x | 直接显示日期 (mm/dd/yy)                      |
 | %y | 年份的最后两位数字 (00.99)                      |
 | %Y | 完整年份 (0000..9999)                      |
+
+
+获取时间戳
+
+使用`date --help`查看具体语法
+
+节选部分
+
+```shell
+  %p   locale's equivalent of either AM or PM; blank if not known
+  %P   like %p, but lower case
+  %r   locale's 12-hour clock time (e.g., 11:11:04 PM)
+  %R   24-hour hour and minute; same as %H:%M
+  %s   seconds since 1970-01-01 00:00:00 UTC
+  %S   second (00..60)
+
+```
+
+```shell
+timestamp() {
+  date +"%s" # seconds since 1970-01-01 00:00:00 UTC
+
+}
+```

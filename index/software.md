@@ -2,7 +2,7 @@
 tags:
   - catagory
   - 软件
-date updated: 2022-04-07 09:15
+date updated: 2022-04-14 12:05
 ---
 
 ### [[chrome]]
@@ -26,6 +26,10 @@ date updated: 2022-04-07 09:15
 ### [[jenkins]]
 
 ### [[kafka]]
+
+### [[obsidian]]
+
+### [[office]]
 
 ### [[software list|常用软件清单]]
 

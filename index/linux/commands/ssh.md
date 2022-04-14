@@ -61,3 +61,20 @@ $ ssh-add  ~/.ssh/id_rsa
 ```shell
 cat ~/.ssh/id_rsa.pub |ssh user@example.com 'cat >> ~/.ssh/authorized_keys'
 ```
+
+
+## 向远程服务器文件写入
+
+使用管道符基本用法如
+
+```shell
+<command> | ssh user@remote-server "cat > output.txt"
+```
+
+例如
+
+```shell
+echo "qwerty" | ssh user@Server-2 "cat > output.txt"
+ssh user@Server-1 "<command>" | ssh user@Server-2 "cat > output.txt"
+```
+

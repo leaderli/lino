@@ -14,3 +14,5 @@ ls *.jar|xargs -i  echo {}
 #或
 ls *.jar|xargs -I {} echo {}
 ```
+
+

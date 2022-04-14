@@ -1,10 +1,11 @@
 ---
 tags:
   - linux/commands/echo
-date updated: 2022-04-07 15:00
+date updated: 2022-04-14 11:30
 ---
 
 - `-e` 对输出内容进行格式调整，命令格式 `echo -e "\033[字背景颜色;文字颜色m字符串\033[0m"`
+- `-n` 不换行输出
 
 示例
 
