@@ -211,3 +211,9 @@ SLF4J: See <http://www.slf4j.org/codes.html#StaticLoggerBinder> for further deta
 激活 破解
 
 [Jetbrains 试用期重置 - 今日 | 有悟 | 有物](https://youwu.today/blog/jetbrains-evaluate-reset/)
+
+长时间未登陆解决办法
+
+删除相关文件
+-   windows：`%userprofile%/AppData/Roaming/JetBrains/产品名版本号`
+-   macos: `~/Library/ApplicationSupport/JetBrains/产品名版本号`
