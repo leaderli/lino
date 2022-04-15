@@ -5,7 +5,7 @@ tags:
 date updated: 2022-04-05 16:37
 ---
 
-### 1. 加载资源文件
+### 加载资源文件
 
 一般加载资源文件可以使用如下方法
 
@@ -16,7 +16,7 @@ SomeClass.class.getResourceAsStream("xxx.properties")
 
 但是注意，第一种方法是有缺陷的，因为不同的类加载器会造成读取不到文件的情况，典型的就是`tomcat`的类加载读取不到应用路径下的文件
 
-### 2. 查看 java 启动变量
+### 查看 java 启动变量
 
 ```java
 System.getenv();//系统级别环境变量，可以在~/.bash_profile中配置
@@ -24,7 +24,7 @@ System.getProperties();//java环境变量，一般可以用-Dkey=value来指定
 System.setProperty(key,value) //临时指定java环境变量
 ```
 
-### 3. InetAddress.getLocalHost() java.net.UnknownHostException 异常
+### InetAddress.getLocalHost() java.net.UnknownHostException 异常
 
 问题原因是在系统的 /etc/Hostname 中配置了“zw_65_43” 作为主机名，而在/etc/hosts 文件中没有 相应的“zw_65_43”。简单的解决办法是
 
@@ -39,7 +39,7 @@ System.setProperty(key,value) //临时指定java环境变量
 
 也可以在`shell`中执行`echo $HOSTNAME`查看主机名，通过`ping $HOSTNAME`查看是否问题已经解决了
 
-### 5. `tomcat`使用`java`启动变量作为端口
+### tomcat使用java启动变量作为端口
 
 tomcat 默认会加载`bin`目录下新建`setenv.sh`作为启动环境，若无则新建即可
 
@@ -59,6 +59,6 @@ JAVA_OPTS="$JAVA_OPTS -Dtomcat.port=9999"
     ...
 ```
 
-### 6. 控制台`console`乱码
+### 控制台console乱码
 
 `java`启动参数添加 `-Dfile.encoding=utf-8`

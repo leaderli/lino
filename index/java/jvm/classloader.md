@@ -1,7 +1,8 @@
 ---
-aliases:  类加载,类加载机制,类加载器
+aliases: 类加载,类加载机制,类加载器
 tags:
-- java/jvm/类加载
+  - java/jvm/类加载
+date updated: 2022-04-15 15:20
 ---
 
 ## Java 类加载器
@@ -82,7 +83,7 @@ public class Son extends Father{
 
 ```
 
-`Son` 类我们没有显示的写构造器，但是 java 会给我生成一个默认的构造器。我们可以得出，`Son` 的构造器一开始就会调用 `Father` 的构造器方法，而此时成员变量 `name` 还没有完成初始化过程，因此在 `Father` 类中 `name` 的值为零值，即 `null` 。在父类构造器完成后，则会开始对成员变量的值进行赋值。
+`Son` 类我们没有显示的写构造器，但是 java 会给我生成一个默认的构造器。我们可以得出，`Son` 的构造器一开始就会调用 `Father` 的构造器方法，而此时成员变量 `name` 还没有完成初始化过程，因此在 `Father` 类中 `name` 的值为 [[basic data type#基本类型零值|零值]] ，即 `null` 。在父类构造器完成后，则会开始对成员变量的值进行赋值。
 
 ### 启动类加载器(Bootstrap)
 
@@ -137,44 +138,44 @@ private static File[] getExtDirs() {
 
 从图可以看出顶层的类加载器时 ClassLoader 类，它是一个抽象类，其后所有的类加载器都继承自 ClassLoader(不包括启动类加载器)，这里我们主要介绍 ClassLoader 中几个比较重要的方法。
 
--  `loadClass(String)`
+- `loadClass(String)`
 
-  该方法加载指定名称(包括包名)的二进制类型，该方法载 JDK 1.2 之后不再建议用户重写但用户可以直接调用该方法， `loadClass()` 方法是 `ClassLoader` 类自己实现的，该方法中的逻辑就是双亲委派模式的实现，其源码如下，`loadClass(String name, boolean resolve)` 是一个重载方法，resolve 参数代表是否生存 class 对象的同时解析相关操作。
+该方法加载指定名称(包括包名)的二进制类型，该方法载 JDK 1.2 之后不再建议用户重写但用户可以直接调用该方法， `loadClass()` 方法是 `ClassLoader` 类自己实现的，该方法中的逻辑就是双亲委派模式的实现，其源码如下，`loadClass(String name, boolean resolve)` 是一个重载方法，resolve 参数代表是否生存 class 对象的同时解析相关操作。
 
-  ```java
-  protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException{
-    synchronized (getClassLoadingLock(name)){
-      //先从缓存查找该class对象，找到就不用重新加载
-      Class<?> c = findLoadedClass(name);
-      if(c == null){
-        long t0 = System.nanoTime();
-        try{
-          if(parent !=null){
-            //如果找不到，则委托给父类加载器加载
-            c = parent.loadClass(name,false);
-          }else{
-            //如果没有父类，则委托给启动加载器去加载
-            c = findBootstrapClassOrNull(name);
-          }catch(ClassNotFoundException e){
-            ...
-          }
-
-          if(c == null){
-            //如果没有找到，则通过自定义实现的findClass去查找并加载
-            c  = findClass(name);
-          }
+```java
+protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException{
+  synchronized (getClassLoadingLock(name)){
+    //先从缓存查找该class对象，找到就不用重新加载
+    Class<?> c = findLoadedClass(name);
+    if(c == null){
+      long t0 = System.nanoTime();
+      try{
+        if(parent !=null){
+          //如果找不到，则委托给父类加载器加载
+          c = parent.loadClass(name,false);
+        }else{
+          //如果没有父类，则委托给启动加载器去加载
+          c = findBootstrapClassOrNull(name);
+        }catch(ClassNotFoundException e){
+          ...
         }
 
-        if(resolve){//是否需要载加载时进行解析
-          resolveClass(c);
+        if(c == null){
+          //如果没有找到，则通过自定义实现的findClass去查找并加载
+          c  = findClass(name);
         }
-        return c;
       }
+
+      if(resolve){//是否需要载加载时进行解析
+        resolveClass(c);
+      }
+      return c;
     }
   }
-  ```
+}
+```
 
-  正如 `loadClass` 方法所展示的，当类加载请求到来时，先从缓存中查找该类对象，如果存在直接返回，如果不存在则交给该类加载器的父类加载器，若没有父类加载器则交给顶层启动类加载器去加载，若最后没有找到，则使用 `findClass()` 方法去加载。从 `loadClass` 实现也可以知道如果不想重新定义加载类的规则，也没有复杂的逻辑，只想在运行时加载自定指定的类，那么我们可以直接使用 `this.getClass().getClassLoder.loadClass("className")`, 这样就可以调用 `ClassLoader` 的 loadClass 方法获取到 class 对象。
+正如 `loadClass` 方法所展示的，当类加载请求到来时，先从缓存中查找该类对象，如果存在直接返回，如果不存在则交给该类加载器的父类加载器，若没有父类加载器则交给顶层启动类加载器去加载，若最后没有找到，则使用 `findClass()` 方法去加载。从 `loadClass` 实现也可以知道如果不想重新定义加载类的规则，也没有复杂的逻辑，只想在运行时加载自定指定的类，那么我们可以直接使用 `this.getClass().getClassLoder.loadClass("className")`, 这样就可以调用 `ClassLoader` 的 loadClass 方法获取到 class 对象。
 
 - `findCLass(String)`
 
@@ -212,8 +213,6 @@ private static File[] getExtDirs() {
 
   上述 4 个方法是 `ClassLoader` 类中的比较重要的方法，也是我们可能会经常用到的方法。接着看 `SercureClassLoader` 扩展了 `ClassLoader` ，新增了几个与使用相关的代码源(对代码源的位置及证书的验证)和权限定义类验证(主要是指对 class 源码的访问权限)的方法，一般我们不会直接跟这个类打交道，更多是与它的子类 `URLClassLoader` 有所关联，前面说过， `ClassLoader` 是一个抽象类，很多方法是空的没有实现，并新增了 `URLClassPath` 类协助取得 Class 字节码流等功能，在编写自定义类加载器时，如果没有太过于复杂的需求，可以直接集成 `URLClassLoader` 类，这样就可以避免自己去编写 `findClass()` 方法及获取字节码流的方式，使自定义类加载器编写更加简洁，下面是 `URLClassLoader` 的类图
   ![[java类加载机制_2020-04-23-10-54-38.png]]
-
-
 
 ## 自定义类加载器
 

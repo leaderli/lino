@@ -2,20 +2,18 @@
 tags:
   - catagory
   - 软件
-date updated: 2022-04-14 12:05
+date updated: 2022-04-15 14:38
 ---
-
-### [[chrome]]
 
 ### [[docker]]
 
 ### [[elasticsearch]]
 
-### [[excel]]
-
 ### [[flink]]
 
 ### [[git]]
+
+### [[github]]
 
 ### [[gitlab]]
 
@@ -24,6 +22,8 @@ date updated: 2022-04-14 12:05
 ### [[intellij_idea]]
 
 ### [[jenkins]]
+
+### [[mac]]
 
 ### [[kafka]]
 
@@ -35,6 +35,10 @@ date updated: 2022-04-14 12:05
 
 ### [[vim]]
 
+### [[vmware]]
+
 ### [[vscode]]
 
 ### [[win10]]
+
+### [[wireshark]]

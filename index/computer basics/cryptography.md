@@ -1,7 +1,11 @@
 ---
-aliases: 加密
-tags: 
-- 计算机基础/加密
+aliases: 加密,解密,SM2,DES
+tags:
+  - encrypt
+  - decrypt
+  - base64
+  - 计算机基础/加密
+date updated: 2022-04-15 15:02
 ---
 
 ### 加密算法的分类
@@ -22,7 +26,6 @@ tags:
 
 需要自己保管的密钥。用于解密，[[#签名]]。
 
-
 #### 签名
 
 使用 [[#私钥]] 对数据内容计算一个签名，将签名和数据内容一起传输。签名不是用来保证数据的机密性，而是用于验证数据来源。一般情况下，为了节省时间，我们仅对数据进行hash运算后再进行数字签名运算。
@@ -30,7 +33,6 @@ tags:
 #### 验签
 
 使用 [[#公钥]] 对 [[#签名]] 进行验证。
-
 
 ### java中使用
 
@@ -45,7 +47,6 @@ tags:
   <version>1.65</version>
 </dependency>
 ```
-
 
 ```java
 
@@ -259,6 +260,90 @@ public class SM2Util {
 }
 
 ```
+
+#### des
+
+使用秘钥加密解密
+
+```java
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.DESKeySpec;
+
+public class DesUtil {
+
+
+    private static SecretKey getSecretKey(String key) throws Exception {
+        DESKeySpec dks = new DESKeySpec(key.getBytes());
+        SecretKeyFactory skf = SecretKeyFactory.getInstance("DES");
+        return skf.generateSecret(dks);
+    }
+
+    public static String encrypt(String input, String key) throws Exception {
+        Cipher ecipher = Cipher.getInstance("DES");
+        ecipher.init(Cipher.ENCRYPT_MODE, getSecretKey(key));
+        byte[] utf8 = input.getBytes(Base64Utils.DEFAULT_CHARSET);
+        byte[] enc = ecipher.doFinal(utf8);
+        return Base64Utils.encodeToString(enc);
+
+    }
+
+    public static String decrypt(String input, String key) throws Exception {
+        Cipher dcipher = Cipher.getInstance("DES");
+        dcipher.init(Cipher.DECRYPT_MODE, getSecretKey(key));
+        byte[] dec = Base64Utils.decodeFromString(input);
+        byte[] utf8 = dcipher.doFinal(dec);
+        return new String(utf8, Base64Utils.DEFAULT_CHARSET);
+
+    }
+
+}
+```
+
+#### Base64
+
+`Base64` 的工具类，参考spring的 `Base64Utils`
+
+```java
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+
+public class Base64Utils {
+
+    public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
+
+    public static byte[] encode(byte[] src) {
+        if (src.length == 0) {
+            return src;
+        }
+        return Base64.getEncoder().encode(src);
+    }
+
+    public static byte[] decode(byte[] src) {
+        if (src.length == 0) {
+            return src;
+        }
+        return Base64.getDecoder().decode(src);
+    }
+
+    public static String encodeToString(byte[] src) {
+        if (src.length == 0) {
+            return "";
+        }
+        return new String(encode(src), DEFAULT_CHARSET);
+    }
+
+    public static byte[] decodeFromString(String src) {
+        if (src.isEmpty()) {
+            return new byte[0];
+        }
+        return decode(src.getBytes(DEFAULT_CHARSET));
+    }
+}
+```
+
 ### 参考文档
 
 [一文彻底搞懂加密、数字签名和数字证书！ - SegmentFault 思否](https://segmentfault.com/a/1190000024523772)

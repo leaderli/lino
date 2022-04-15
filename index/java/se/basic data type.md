@@ -1,22 +1,33 @@
 ---
 aliases: 基础数据类型
-tags: 
-- java/se/基础数据类型
+tags:
+  - java/se/基础数据类型
+date updated: 2022-04-15 15:20
 ---
 
 ## 八个基本类型
 
-| 类型     | 占用字节 |
-| :------ | :------- |
-| boolean | 1        |
-| byte    | 1        |
-| char    | 2        |
-| short   | 2        |
-| int     | 4        |
-| float   | 4        |
-| long    | 8        |
-| double  | 8        |
+| 类型      | 占用字节 |
+| :------ | :--- |
+| boolean | 1    |
+| byte    | 1    |
+| char    | 2    |
+| short   | 2    |
+| int     | 4    |
+| float   | 4    |
+| long    | 8    |
+| double  | 8    |
 
+### 基本类型零值
+
+对基本数据类型来说，对于类变量`static`和全局变量，如果不显式地对其赋值而直接使用，则系统会为其赋予默认的零值，可以根据这个特性，直接用静态类常量来获取基本变量的初始值
+
+```java
+public class Primitive {
+  public static int i; //默认值0
+  public static char c; //默认值'\u0000'
+}
+```
 
 ### 自动装箱与拆箱
 
@@ -36,6 +47,7 @@ public class IntegerTest {
 
 }
 ```
+
 通过查看其字节码，我们可以发现，JVM为我们添加了装箱与拆箱的功能。
 
 ```java
@@ -128,13 +140,12 @@ public final class String
     private int hash; // Default to 0
 }
 ```
+
 **不可变的好处** :
 
-1. 可以缓存 hash 值 因为 String 的 hash 值经常被使用，例如 String 用做 HashMap 的 key。不可变的特性可以使得 hash 值也不可变，因此只需要进行一次计算。 
-2.  String Pool 的需要 如果一个 String 对象已经被创建过了，那么就会从 String Pool 中取得引用。只有 String 是不可变的，才可能使用 String Pool
+1. 可以缓存 hash 值 因为 String 的 hash 值经常被使用，例如 String 用做 HashMap 的 key。不可变的特性可以使得 hash 值也不可变，因此只需要进行一次计算。
+2. String Pool 的需要 如果一个 String 对象已经被创建过了，那么就会从 String Pool 中取得引用。只有 String 是不可变的，才可能使用 String Pool
 3. 线程安全
-
-
 
 我们查看一段字节码
 
@@ -200,5 +211,34 @@ System.out.println(s1 == s3);  // false
 System.out.println(s0 == s3);  // true
 ```
 
+## 示例
+
+### 基本类型转换包装类型
+
+```java
+Object a = 1;
+//此时a自动转换为Integer类型
+
+public <T> void fun(T t){
+  System.out.println(t.getClass());
+}
+
+//fun方法会自动将1转换为Integer包装类
+fun(1);
+``
+```
+
+### 查看类是否为基本类型或包装类型
+
+[[common-lang3#查看类是否为基本类型或包装类型]]
 
 
+### 进制
+
+```java
+int x = 0b11;// 二进制
+int x = 0B11;// 二进制
+int x = 0x11;// 十六进制
+int x = 0X11;// 十六进制
+int x = 011; //  八进制
+```
