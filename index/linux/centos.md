@@ -1,6 +1,5 @@
 ---
 tags:
-  - catagory
   - linux/centos
 date updated: 2022-03-28 14:51
 ---

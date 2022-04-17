@@ -8,7 +8,7 @@ date updated: 2022-04-13 11:09
 
 使用 [[docker#mysql|docker]] 安装
 
-使用 [[python_basic#pip|pip]] 安装一个方便mycli，方便操作数据库
+使用 [[python tutorial#pip|pip]] 安装一个方便mycli，方便操作数据库
 
 ```shell
 pip3 install mycli

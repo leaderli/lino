@@ -1,6 +1,6 @@
 ---
 tags:
-  - python/python-thread
+  - python/thread
 date updated: 2022-04-14 11:59
 ---
 

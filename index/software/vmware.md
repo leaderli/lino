@@ -1,8 +1,7 @@
 ---
-aliases: vi
 tags:
   - 软件/vmware
-date updated: 2022-04-14 10:44
+date updated: 2022-04-17 03:04
 ---
 
 centos7共享目录

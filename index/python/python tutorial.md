@@ -1,7 +1,7 @@
 ---
 tags:
-  - python/python_basic
-  - catagory
+  - python/tutorial
+
 date updated: 2022-04-13 11:17
 ---
 

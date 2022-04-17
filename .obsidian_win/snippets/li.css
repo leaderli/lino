@@ -11,13 +11,11 @@
 
 .markdown-preview-view em {
 
-  background-color: #43b983;
-  color: #fff;
+color: #ff82b2;
   font-style:normal;
   /* vertical-align: top; */
-  border-radius: 3px;
-  padding: 1px 6px;
-  font-size: 12px;
+  padding: 1px 0px;
+  font-size: 14px;
   height: 14px;
   line-height: 14px;
   /* font-weight: bold; */

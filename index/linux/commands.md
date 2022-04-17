@@ -3,7 +3,7 @@ aliases: 常用命令
 tags:
   - catagory
   - linux/commands
-date updated: 2022-04-15 14:34
+date updated: 2022-04-17 10:41
 ---
 
 ### [[awk]]
@@ -27,6 +27,8 @@ date updated: 2022-04-15 14:34
 ### [[diff]]
 
 ### [[dig]]
+
+### [[du]]
 
 ### [[echo]]
 

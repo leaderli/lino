@@ -71,5 +71,5 @@ ll -rt
 ### 按文件大小顺序显示
 
 ```shell
-ls -LS
+ll -LS
 ```

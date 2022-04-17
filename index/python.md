@@ -5,10 +5,10 @@ tags:
 date updated: 2022-04-14 12:04
 ---
 
-### [[python_basic]]
+### [[python tutorial]]
 
-### [[python-decorator]]
+### [[python decorator]]
 
-### [[python-queue]]
+### [[python queue]]
 
-### [[python-thread]]
+### [[python thread]]

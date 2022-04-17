@@ -1,6 +1,6 @@
 ---
 tags:
-  - python/python-decorator
+  - python/decorator
 date updated: 2022-04-14 12:02
 ---
 
