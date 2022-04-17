@@ -1,11 +1,11 @@
 ---
-aliases: 加密,解密,SM2,DES
+aliases: 加密,解密,SM2,DES,encrypt,decrypt
 tags:
   - encrypt
   - decrypt
   - base64
   - 计算机基础/加密
-date updated: 2022-04-15 15:02
+date updated: 2022-04-17 14:46
 ---
 
 ### 加密算法的分类

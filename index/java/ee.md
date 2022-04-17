@@ -3,7 +3,7 @@ aliases: javaEE,java常用框架,java高级
 tags:
   - catagory
   - java/ee
-date updated: 2022-04-15 15:10
+date updated: 2022-04-17 14:45
 ---
 
 ### [[aop]]
@@ -11,6 +11,8 @@ date updated: 2022-04-15 15:10
 ### [[config|环境变量]]
 
 ### [[constants]]
+
+### [[invoke_shell]]
 
 ### [[ScriptEngine|java中使用js]]
 
