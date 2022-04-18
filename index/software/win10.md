@@ -72,5 +72,11 @@ Qwer1234
 0070595165
 
 
-telecomadminn
-E7jA%5m
+telecomadmin
+
+nE7jA%5m
+
+KD1149597450
+88147873
+
+解绑设备码、添加设备码
