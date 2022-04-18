@@ -56,3 +56,15 @@ netsh winsock reset
 关机时候有应用弹出来禁止关机，需要在Windows 10中设置关机弹出结束程序的窗口以确认关机
 
 [解决办法](https://www.cnblogs.com/lumc5/p/15264886.html)
+
+
+## 路由器
+
+ChinaNet-P74c
+
+bfynvcfn
+
+
+Qwer1234
+
+0070595165
