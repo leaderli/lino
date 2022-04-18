@@ -1,7 +1,7 @@
 ---
 tags:
-  - java/java-tips
-date updated: 2022-04-15 15:26
+  - java/tips
+date updated: 2022-04-17 19:57
 ---
 
 ### 读取 properties 中文乱码解决

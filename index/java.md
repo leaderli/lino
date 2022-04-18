@@ -3,21 +3,23 @@ aliases: java
 tags:
   - java
   - catagory
-date updated: 2022-04-15 15:17
+date updated: 2022-04-17 19:56
 ---
-
-### [[jdk|安装 源码]]
 
 ### [[command|命令行]]
 
-### [[maven|maven]]
+### [[ee]]
 
-### [[java-tips]]
+### [[framework]]
+
+### [[java tips]]
+
+### [[jdk|安装 源码]]
 
 ### [[jvm|JVM]]
 
-### [[se|java基础]]
+### [[maven|maven]]
 
-### [[ee|javaEE]]
+### [[se]]
 
-### [[framework|库]]
+### [[spring]]
