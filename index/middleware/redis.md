@@ -2,10 +2,12 @@
 tags:
   - catagory
   - middleware/redis
-date updated: 2022-04-17 21:23
+date updated: 2022-04-18 10:36
 ---
 
 ### [[redis cluster]]
+
+### [[redis data type]]
 
 ### [[redis expire]]
 
@@ -24,5 +26,3 @@ date updated: 2022-04-17 21:23
 ### [[redis transaction]]
 
 ### [[redis tutorial]]
-
-
