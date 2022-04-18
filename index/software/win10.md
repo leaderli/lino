@@ -70,3 +70,7 @@ pcfdn
 Qwer1234
 
 0070595165
+
+
+telecomadminn
+E7jA%5m
