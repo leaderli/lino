@@ -2,7 +2,7 @@
 aliases: linux基础知识
 tags:
   - linux/basic
-date updated: 2022-04-14 11:30
+date updated: 2022-04-20 15:36
 ---
 
 ## 用户
@@ -21,6 +21,17 @@ linux 的用户分为以下几类
 在 linux 系统下创建的用户的信息都被写在 `/etc/passwd` 这个文件中永久性保存，用户的密码经过 MD5 加密后存放在称为影子文件的 `/etc/shadow` 中
 
 ![[w]]
+
+### 密码过期时间
+
+`/etc/login.defs`  它主要用于用户账号限制
+
+```conf
+PASS_MAX_DAYS 60        #密码最大有效期，此处参数PASS_MAX_DAYS为60，表示60天后，密码会过期，99999表示永不过期
+PASS_MIN_DAYS 0         #两次修改密码的最小间隔时间，0表示可以随时修改账号密码
+PASS_MIN_LEN  8         #密码最小长度，对于root无效
+PASS_WARN_AGE 7         #密码过期前多少天开始提示
+```
 
 ## 文件描述符
 
@@ -290,10 +301,14 @@ if [[ $EUID -eq 0 ]]; then
 fi
 ```
 
-
 ### 睡眠
 
 ```shell
 sleep 3 #暂停3秒
 echo 'ok'
 ```
+
+### Your password has expired
+
+修改密码
+[[#密码过期时间]]
