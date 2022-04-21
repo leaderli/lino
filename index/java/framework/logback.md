@@ -1,7 +1,7 @@
 ---
 tags:
   - java/框架/logback
-date updated: 2022-04-21 19:35
+date updated: 2022-04-21 21:18
 ---
 
 ## 安装
@@ -114,7 +114,7 @@ public class LiPropertyDefiner extends PropertyDefinerBase {
 
 ### conversionRule
 
-注册对layout在各个占位符的转换的处理器
+注册对 `PatternLayoutBase`  在各个占位符的转换 ，**该处理器会对所有的 `PatternLayoutBase` 都生效**
 
 ```xml
 <conversionRule conversionWord="msg" converterClass="com.leaderli.demo.log.LiMessageConvert" />
@@ -124,10 +124,84 @@ public class LiPropertyDefiner extends PropertyDefinerBase {
 public class LiMesseageConvert extends MessageConverter{
 	@Override
 	public String convert(ILoggingEvent event){
-		String msg = event.getFormattedMesseage();
-		// 脱敏
-		return  msg;
+	
+		String sensitive_regex = getContext().getProperty("sensitive_regex");  
+  
+		return event.getMessage().replaceAll(sensitive_regex,"***");
 	}
+}
+```
+
+^a37c36
+
+我们可以通过注册一个新的占位符来实现对个别  [[#appender]] 的消息进行脱敏
+
+
+```xml
+<configuration debug="false">  
+  
+    <property scope="context" name="sensitive_regex" value="(\\d{3,20})"/>  
+  
+    <conversionRule conversionWord="sensitive_msg" converterClass="com.leaderli.demo.log.LiMessageConvert"/>  
+  
+  
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">  
+  
+        <encoder>  
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>  
+        </encoder>  
+    </appender>  
+    
+    <appender name="sensitive" class="ch.qos.logback.core.ConsoleAppender">  
+  
+        <encoder>  
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %sensitive_msg%n</pattern>  
+        </encoder>  
+    </appender>  
+    <root level="error">  
+        <appender-ref ref="STDOUT"/>  
+    </root>  
+  
+  
+    <logger name="sensitive" level="error" additivity="false">  
+        <appender-ref ref="sensitive"/>  
+    </logger>  
+</configuration>
+```
+
+
+
+### property
+
+设定配置项
+
+```xml
+<property scope="context" name="sensitive_regex" value="(\\d{3,20})"/>
+```
+
+当 [[#scope]]  为 `context` 时，可以从 `context` 中取出配置项
+
+![[#^a37c36]]
+
+#### scope
+
+配置文件通过 [[#配置文件的解析|PropertyAction]] 将配置项加载到不同的 上下文中。
+
+```java
+
+// ActionUtil
+static public void setProperties(InterpretationContext ic, Properties props, Scope scope) {  
+    switch (scope) {  
+    case LOCAL:  
+        ic.addSubstitutionProperties(props);  
+        break;  
+    case CONTEXT:  
+        ContextUtil cu = new ContextUtil(ic.getContext());  
+        cu.addProperties(props);  
+        break;  
+    case SYSTEM:  
+        OptionHelper.setSystemProperties(ic, props);  
+    }  
 }
 ```
 
@@ -135,7 +209,7 @@ public class LiMesseageConvert extends MessageConverter{
 
 略
 
-## 自定义实现类
+### 自定义类属性的加载
 
 配置文件中涉及到的class，可以自定义实现，可通过配置对自定义的类的属性进行赋值
 
@@ -171,10 +245,44 @@ public class LiFileAppender<E> extends FileAppender<E> {
 - 如果该标签指向一个字符串类型的class成员变量，则查找其set或者add方法。对于简单的变量，可以直接定义set方法，对于集合变量可以使用add方法，add方法的优先级要高于set方法。
 - 如果该标签指向的是一个类，则递归生成该类。
 
-#todo 源码解析
 
-配置文件的加载
 
+
+
+### 配置文件的解析
+
+
+`logback.xml` 的标签都注册了对应的 `Action` 进行解析。其中比较特别的是 `configuration/newRule` ，他可以注册新的解析动作。
+
+
+解析的动作抽象为三个方法。其中 `InterpretationContext` 中可以使用 `scope=local` 即默认的  [[#property]] 属性
+
+```java
+
+/**
+ * Called when the parser encounters an element matching a
+ * {@link ch.qos.logback.core.joran.spi.ElementSelector Pattern}.
+ */
+public abstract void begin(InterpretationContext ic, String name, Attributes attributes) throws ActionException;
+
+/**
+ * Called to pass the body (as text) contained within an element.
+ * @param ic
+ * @param body
+ * @throws ActionException
+ */
+public void body(InterpretationContext ic, String body) throws ActionException {
+	// NOP
+}
+
+/*
+ * Called when the parser encounters an endElement event matching a {@link ch.qos.logback.core.joran.spi.Pattern
+ * Pattern}.
+ */
+public abstract void end(InterpretationContext ic, String name) throws ActionException;
+```
+
+#### 主要的Action
 JoranConfiguratorBase
 
 ```java
@@ -250,3 +358,11 @@ public void addInstanceRules(RuleStore rs) {
   
 }
 ```
+
+
+
+## 参考文档
+
+[maven Setup](https://logback.qos.ch/setup.html)
+
+[configuration](https://logback.qos.ch/manual/configuration.html)

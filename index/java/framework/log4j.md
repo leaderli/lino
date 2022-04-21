@@ -6,12 +6,14 @@ date updated: 2022-04-05 23:17
 
 ## DEBUG 模式运行
 
-`log4j`的配置文件中配置`log4j.debug=true`即可开启
+`log4j` 的配置文件中配置 `log4j.debug=true` 即可开启
 
 ## 概述
 
-`log4j`的`looger`是层级结构的，例如`com.li`是`com.li.springboot`的父类`logger`\
-可使用如下方式取出`logger`
+`log4j` 的 `looger` 是层级结构的，例如 `com.li` 是 `com.li.springboot` 的父类 `logger`
+
+
+可使用如下方式取出 `logger`
 
 ```java
 package com.li.springboot.advice.log4j;
@@ -26,19 +28,19 @@ public class LevelTest {
 
 ```
 
-`getLogger`根据参数`name`，在任意处取出的`logger`都是同一个
-`root logger`是所有`logger`的父类，一定存在但是它不能直接使用`getLogger`通过`name`取出。可使用如下方式取出
+`getLogger` 根据参数 `name` ，在任意处取出的 `logger` 都是同一个
+`root logger` 是所有 `logger` 的父类，一定存在但是它不能直接使用 `getLogger` 通过 `name` 取出。可使用如下方式取出
 
 ```java
 Logger.getRootLogger()
 ```
 
-可使用的日志级别`org.apache.log4j.Level`
+可使用的日志级别 `org.apache.log4j.Level`
 
 > `TRACE`,`DEBUG`,`INFO`,`WARN`,`ERROR` and `FATAL`
 
-当指定`name`的`logger`日志请求时，同时会将该请求转发至父类`logger`
-当`logger`没有对应的配置时，会找最近的父类配置，默认情况下`logger`配置会继承父类的配置，可通过设置`log4j.additivity.xxx=false`使其不继承(xxx 是 logger 的 name)
+当指定 `name` 的 `logger` 日志请求时，同时会将该请求转发至父类 `logger`
+当 `logger` 没有对应的配置时，会找最近的父类配置，默认情况下 `logger` 配置会继承父类的配置，可通过设置 `log4j.additivity.xxx=false` 使其不继承(xxx 是 logger 的 name)
 
 ## 配置
 
@@ -56,13 +58,13 @@ Logger.getRootLogger()
 
 ### 扩展配置
 
-可使用`BasicConfigurator.resetConfiguration()`重置配置
-可使用`PropertyConfigurator.configure`指定其他配置文件
+可使用  `BasicConfigurator.resetConfiguration()` 重置配置
+可使用  `PropertyConfigurator.configure`  指定其他配置文件
 
-### `tomcat`下的`log4j`
+### tomcat下的log4j
 
-当`log4j`的`jar`包在`tomcat`目录下的时候，使用`BasicConfigurator.resetConfiguration()`重置配置时，会修改`tomcat`下所有应用的日志打印，一般情况下
-我们在主应用里做配置，忽略其他应用的配置即可。但是当你发布其他应用时，触发`log4j`的初始化配置，则会影响到主应用，可能造成主应用日志不打印。这个时候我们通过`HierarchyEventListener`来监听`log4j`的配置是否被修改，来在其他应用重置配置时，重新触发主应用的配置加载过程即可。
+当 `log4j` 的 `jar` 包在 `tomcat` 目录下的时候，使用 `BasicConfigurator.resetConfiguration()` 重置配置时，会修改 `tomcat` 下所有应用的日志打印，一般情况下
+我们在主应用里做配置，忽略其他应用的配置即可。但是当你发布其他应用时，触发 `log4j` 的初始化配置，则会影响到主应用，可能造成主应用日志不打印。这个时候我们通过 `HierarchyEventListener` 来监听 `log4j` 的配置是否被修改，来在其他应用重置配置时，重新触发主应用的配置加载过程即可。
 
 ```java
 static {
@@ -103,9 +105,9 @@ for (int i = 0; i < cycle; i++) {
 }
 ```
 
-### `MDC`
+### MDC
 
-打造日志链路，`MDC`类似`ThreadLocal`类，根据线程存入一些数据，以供打印日志的时候输出(`%X{name}`)
+打造日志链路，`MDC` 类似  `ThreadLocal` 类，根据线程存入一些数据，以供打印日志的时候输出(`%X{name}`)
 
 ```java
 MDC.clear();
@@ -147,7 +149,7 @@ log4j.appender.fuck2.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}
 
 ```
 
-测试代码我使用`Spring`的`Scheduled`
+测试代码我使用 `Spring` 的 `Scheduled`
 
 ```java
 package com.li.springboot.util;
@@ -173,13 +175,13 @@ public class ScheduledTask {
 
 ```
 
-`*/1 * * * * *`表示每秒执行一次
+`*/1 * * * * *` 表示每秒执行一次
 
-`log4j.appender.fuck1.DatePattern='.'-yyyy-MM-dd-HH-mm`表示每分钟分割一次文件
+`log4j.appender.fuck1.DatePattern='.'-yyyy-MM-dd-HH-mm` 表示每分钟分割一次文件
 
 在执行定时任务到底切割点时，我们可以观察到日志输出
 
-`log4j`自身的日志一定输出在`System.out`中
+`log4j` 自身的日志一定输出在 `System.out` 中
 
 ```log
 2019-09-05 21:16:59 DEBUG l2:22 - --------------------44
