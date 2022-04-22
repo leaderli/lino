@@ -1,44 +1,93 @@
 {
   "collapse-filter": false,
   "search": "",
-  "showTags": true,
+  "showTags": false,
   "showAttachments": false,
   "hideUnresolved": false,
-  "showOrphans": false,
+  "showOrphans": true,
   "collapse-color-groups": true,
   "colorGroups": [
     {
-      "query": "tag:#spring",
+      "query": "path:index/linux",
       "color": {
         "a": 1,
-        "rgb": 6084231
+        "rgb": 3383551
       }
     },
     {
-      "query": "tag:#linux",
+      "query": "path:index/java",
       "color": {
         "a": 1,
-        "rgb": 15090959
+        "rgb": 12981516
       }
     },
     {
-      "query": "tag:#java",
+      "query": "path:index/frontend",
       "color": {
         "a": 1,
-        "rgb": 15208918
+        "rgb": 1608457
+      }
+    },
+    {
+      "query": "path:index/protocol",
+      "color": {
+        "a": 1,
+        "rgb": 12344534
+      }
+    },
+    {
+      "query": "tag:#catagory",
+      "color": {
+        "a": 1,
+        "rgb": 16500750
+      }
+    },
+    {
+      "query": "path:\"index/data structure\"",
+      "color": {
+        "a": 1,
+        "rgb": 6053078
+      }
+    },
+    {
+      "query": "path:\"index/reading note\"",
+      "color": {
+        "a": 1,
+        "rgb": 6070742
+      }
+    },
+    {
+      "query": "path:index/common",
+      "color": {
+        "a": 1,
+        "rgb": 13555292
+      }
+    },
+    {
+      "query": "path:index/compilers",
+      "color": {
+        "a": 1,
+        "rgb": 6062550
+      }
+    },
+    {
+      "query": "path:index/software",
+      "color": {
+        "a": 1,
+        "rgb": 6084263
       }
     }
   ],
   "collapse-display": false,
   "showArrow": true,
-  "textFadeMultiplier": 0,
-  "nodeSizeMultiplier": 1,
-  "lineSizeMultiplier": 1,
+  "textFadeMultiplier": -1.5,
+  "nodeSizeMultiplier": 0.891538461538462,
+  "lineSizeMultiplier": 2.07615384615385,
   "collapse-forces": false,
-  "centerStrength": 0.518713248970312,
-  "repelStrength": 9.95604395604396,
+  "centerStrength": 1,
+  "repelStrength": 17.3406593406593,
   "linkStrength": 1,
-  "linkDistance": 250,
-  "scale": 0.04231590268975917,
+  "linkDistance": 30,
+  "scale": 0.5334257528756736,
   "close": true
 }

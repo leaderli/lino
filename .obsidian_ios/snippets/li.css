@@ -8,24 +8,14 @@
 
 } */
 
-.markdown-preview-view h2,
-.HyperMD-header-2,
-.cm-header-2 {
-
-  color:#197300;
-  font-style: italic;
-
-}
 
 .markdown-preview-view em {
 
-  background-color: #43b983;
-  color: #fff;
+color: #ff82b2;
   font-style:normal;
   /* vertical-align: top; */
-  border-radius: 3px;
-  padding: 1px 6px;
-  font-size: 12px;
+  padding: 1px 0px;
+  font-size: 14px;
   height: 14px;
   line-height: 14px;
   /* font-weight: bold; */
@@ -61,18 +51,19 @@ a[href^="#htext/red"]{
   color: cornflowerblue;
 }
 
-span.external-link{
+/* span.external-link{
   background: unset;
-  /* background-color:cornflowerblue; */
+   background-color:cornflowerblue; 
   color: cornflowerblue;
   padding: 0px;
-}
-a.external-link{
+} */
+
+/* a.external-link{
   background: unset;
   background-color:cornflowerblue;
   color: #fff;
   padding: 1px 5px 1px 3px;
-}
+} */
 a.internal-link{
   /* color: #fff; */
   /* background-color:sandybrown; */

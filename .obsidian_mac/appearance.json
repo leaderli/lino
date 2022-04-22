@@ -1,12 +1,17 @@
 {
-  "baseFontSize": 16,
+  "baseFontSize": 14,
   "theme": "moonstone",
   "translucency": false,
   "enabledCssSnippets": [
     "obsidian",
     "tableStyles",
-    "li"
+    "highlight colors",
+    "iconfont",
+    "image-grid",
+    "obsidian_orange",
+    "li",
+    "supercharged-links-gen"
   ],
-  "cssTheme": "obsidian-minimal",
-  "baseFontSizeAction": false
+  "cssTheme": "Things",
+  "baseFontSizeAction": true
 }

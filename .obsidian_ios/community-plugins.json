@@ -1,13 +1,17 @@
 [
   "obsidian-git",
-  "cm-editor-syntax-highlight-obsidian",
   "obsidian-admonition",
-  "code-block-copy",
-  "obsidian-icons-plugin",
   "recent-files-obsidian",
   "table-editor-obsidian",
   "obsidian-day-planner",
-  "obsidian-timeline",
-  "obsidian-kanban",
-  "obsidian-embedded-code-title"
+  "obsidian-embedded-code-title",
+  "find-unlinked-files",
+  "darlal-switcher-plus",
+  "obsidian-auto-link-title",
+  "supercharged-links-obsidian",
+  "obsidian-hider",
+  "obsidian-style-settings",
+  "ProxyGithub",
+  "obsidian-outliner",
+  "markdown-prettifier"
 ]
