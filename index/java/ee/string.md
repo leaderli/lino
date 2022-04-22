@@ -95,3 +95,16 @@ String text = IOUtils.toString(inputStream, StandardCharsets.UTF_8.name());
 ```java
   InputStream stream = new ByteArrayInputStream("".getBytes());
 ```
+
+
+### split
+
+切割字符串
+
+```java
+String a = "123456 aa bb cc";
+a.split("\\s+", 2)
+// [123456, aa bb cc]
+a.split("\\s+")
+// [123456, aa, bb, cc]
+```
