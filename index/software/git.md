@@ -132,7 +132,7 @@ git config --global color.ui auto
 
 ### 查看状态
 
-`git show`默认查看当前`<commit>`提交的内容，可使用`git show <commit>`查看具体某个提交的信息
+`git show` 默认查看当前`<commit>`提交的内容，可使用`git show <commit>`查看具体某个提交的信息
 
 `git status`查看当前工作区与暂存区状态，可使用`git status -s`简化输出信息。类似如下的信息
 
@@ -181,6 +181,12 @@ gitk --all
 
 ```shell
 git log -p <file>
+```
+
+
+显示某个提交的详细信息
+```shell
+git show commit
 ```
 
 ### 比较差异
