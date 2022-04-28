@@ -1,7 +1,7 @@
 ---
 tags:
   - java/框架/logback
-date updated: 2022-04-21 21:18
+date updated: 2022-04-28 11:57
 ---
 
 ## 安装
@@ -134,8 +134,7 @@ public class LiMesseageConvert extends MessageConverter{
 
 ^a37c36
 
-我们可以通过注册一个新的占位符来实现对个别  [[#appender]] 的消息进行脱敏
-
+我们可以通过注册一个新的占位符来实现对个别  [[#appender]] 的消息进行 [[regex#脱敏|脱敏]]
 
 ```xml
 <configuration debug="false">  
@@ -168,8 +167,6 @@ public class LiMesseageConvert extends MessageConverter{
     </logger>  
 </configuration>
 ```
-
-
 
 ### property
 
@@ -245,15 +242,9 @@ public class LiFileAppender<E> extends FileAppender<E> {
 - 如果该标签指向一个字符串类型的class成员变量，则查找其set或者add方法。对于简单的变量，可以直接定义set方法，对于集合变量可以使用add方法，add方法的优先级要高于set方法。
 - 如果该标签指向的是一个类，则递归生成该类。
 
-
-
-
-
 ### 配置文件的解析
 
-
 `logback.xml` 的标签都注册了对应的 `Action` 进行解析。其中比较特别的是 `configuration/newRule` ，他可以注册新的解析动作。
-
 
 解析的动作抽象为三个方法。其中 `InterpretationContext` 中可以使用 `scope=local` 即默认的  [[#property]] 属性
 
@@ -283,6 +274,7 @@ public abstract void end(InterpretationContext ic, String name) throws ActionExc
 ```
 
 #### 主要的Action
+
 JoranConfiguratorBase
 
 ```java
@@ -358,8 +350,6 @@ public void addInstanceRules(RuleStore rs) {
   
 }
 ```
-
-
 
 ## 参考文档
 
