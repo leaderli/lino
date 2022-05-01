@@ -27,6 +27,8 @@ date updated: 2022-04-17 21:23
 
 ### [[PropertySource]]
 
+### [[resource]]
+
 ### [[ResourceHandlers]]
 
 ### [[returnValueHandlers]]

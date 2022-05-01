@@ -138,7 +138,7 @@ For help and/or CSS snippets, thanks to:
   --bold-weight: 700; /* Switch to 700 if you want thicker bold text */
   --icon-muted: 0.4;
   --line-width: 45rem; /* Maximum characters per line */
-  --line-height: 1.5;
+  --line-height: 2;
   --border-width: 1px;
   --border-width-alt: 1px;
   --max-width: 85%; /* Amount of padding around the text, use 90% for narrower padding */

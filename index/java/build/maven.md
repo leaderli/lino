@@ -2,7 +2,7 @@
 aliases: maven
 tags:
   - catagory
-date updated: 2022-04-11 19:59
+date updated: 2022-05-01 23:20
 ---
 
 Maven – Download Apache Mavenpache Mavenorial
@@ -17,7 +17,7 @@ Maven – Download Apache Mavenpache Mavenorial
 
 ## 配置
 
-maven的全局配置文件在安装目录下的 `conf/settings.xml`总，maven 默认用户配置目录在`${user.home}/.m2/`。可以通过修改全局配置文件的`localRepository`的值来更改默认配置文件的路径
+maven的全局配置文件在安装目录下的 `conf/settings.xml` ，maven 默认用户配置目录在 `${user.home}/.m2/` 。可以通过修改全局配置文件的`localRepository` 的值来更改默认配置文件的路径
 
 ### 镜像
 
@@ -49,7 +49,7 @@ maven 默认中央仓库访问速度较慢，可通过配置阿里云的镜像�
 2. `<mirrorOf>*</mirrorOf>`
    匹配所有仓库
 3. `<mirrorOf>external:*</mirrorOf>`
-   匹配所有远程仓库，使用`localhost`的除外，使用`file://`协议的除外。也就是说，匹配所有不在本机上的远程仓库。
+   匹配所有远程仓库，使用`localhost`的除外，使用`file://` 协议的除外。也就是说，匹配所有不在本机上的远程仓库。
 4. `<mirrorOf>repo1,repo2</mirrorOf>`
    匹配仓库 repo1 和 repo2，使用逗号分隔多个远程仓库。
 5. `<mirrorOf>*,!repo1</miiroOf>`
@@ -1168,3 +1168,5 @@ mvn package -DskipTests=true
 ## 参考文档
 
 [settings.xml](https://maven.apache.org/settings.html)
+
+[maven镜像-maven下载地址-maven安装教程-阿里巴巴开源镜像站](https://developer.aliyun.com/mirror/maven)
