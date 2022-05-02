@@ -83,3 +83,7 @@ public interface Resource extends InputStreamSource {
 - `UrlResource`  封装了 `java.net.URL` 它是用户能够在访问任何通过 [[URL]] 表示的资源。
 
 - `PathResource`  封装了 `java.net.URL`  、`java.nio.file.Path` 、`FileSystemResource`。
+
+
+
+[Java-利用Spring提供的Resource/ResourceLoader接口操作资源文件 - 云+社区 - 腾讯云](https://cloud.tencent.com/developer/article/1862136)
