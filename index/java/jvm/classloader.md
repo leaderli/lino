@@ -425,6 +425,10 @@ hello parentclass java.lang.System
 
 #### 数组
 
+
+对于 [[array|数组]] 实例来说，其类型是 JVM 在运行时动态生成的，一般表示为 `[Lcom.xxx.xxx` ，这种形式是动态生成的类型，其父类型就是 Object 。
+
+数组实例不会触发类的 [[#初始化]] 
 ```java
 public class Hello {  
     public static void main(String[] args) {  
@@ -441,3 +445,50 @@ class Parent {
     }  
 }
 ```
+
+
+#### 接口
+
+当一个类 [[#初始化]] 时，并不要求其父接口完成 [[#初始化]]。只有在真正使用到接口的时候（如引用接口中定义的常量时），父类才会被 [[#初始化]]。
+
+```java
+import java.util.function.Supplier;
+
+public class Hello {
+    public static void main(String[] args) {
+        System.out.println(Parent.class);
+        System.out.println(Parent.b);
+    }
+
+}
+
+class Parent implements Loader {
+
+    static {
+        System.out.println("parent static block");
+    }
+}
+
+
+interface Loader {
+    int a = new Supplier<Integer>() {
+        @Override
+        public Integer get() {
+            System.out.println("123123");
+            return 1;
+        }
+    }.get();
+    long b = System.currentTimeMillis();
+}
+
+```
+
+输出
+
+```log
+class Parent
+123123
+1651652699048
+```
+
+根据上述示例，我们可以看到 parent 在 [[#初始化]] 时并没有[[#初始化]] 接口
