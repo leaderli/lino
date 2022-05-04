@@ -2,25 +2,40 @@
 aliases: 类加载,类加载机制,类加载器
 tags:
   - java/jvm/类加载
-date updated: 2022-04-15 15:20
+date updated: 2022-05-04 15:32
 ---
 
 ## Java 类加载器
 
 每个 Java 文件都存储着需要执行的程序逻辑，这些 java 文件经过 Java 编译器编译成 class 文件，class 文件中保存着 JVM 虚拟机指令，当需要某个类时，虚拟机将会加载它的 class 文件，并创建对应的 class 对象，将 class 文件加载到虚拟机的内存，这个过程称为类加载。这里我们需要了解一下类加载的过程，如下：
+
 ![[java类加载机制_2020-04-23-10-53-16.png]]
 
-1. 加载：类加载过程的一个阶段：通过一个类的全限定名查找此类字节文件，并利用字节码文件创建一个 Class 对象
-
-2. 验证：目的在于确保 Class 文件的字节流中包含信息符合当前虚拟机要求，不会危害虚拟机自身安全。主要包括四种验证，文件格式验证、元数据验证、字节码验证、符号引用验证。
-
-3. 准备：为类变量(即 static 修饰的字段变量)分配内存并且设置该类变量的初始值(如 static int i ＝ 5;这里只讲 i 初始化为 0，至于 5 的值将在初始化时赋值)，这里不包含使用 final 修饰的 static，因为 final 在编译的时候就会分配了，注意这里不会为视力变量分配初始化值，类变量会分配在方法区中，而实例变量是会随着对象一起分配到 Java 堆中。
-
-4. 解析：主要讲常量池中的符号引用替换为直接引用的过程。符号引用就是一组符号来描述目标，可以是任何字面量，而直接引用就是直接指向目标的指针、相对便移量或者一个间接定位到目标的句柄。有类或者接口的解析，字段解析，类方法解析，接口方法解析(这里设计到字节码变量的引用，如需详细了解，可参考《深入 Java 虚拟机》)
-
-5. 初始化：类加载最后阶段，若该类具有超类，则对其进行初始化，执行静态初始化器和静态初始化成员变量(如前面只初始化了默认值的 static 变量将会在这个阶段赋值，成员变量也将被初始化)
-
 这便是类加载的 5 个过程，而类加载的任务是根据一个类的全限定名来读取此类的二进制字节流到 JVM 中，然后转换为一个与目标类对应的 java.lang.Class 对象实例，在虚拟机中提供了 3 种类加载器，启动类加载器(Bootstrap)、扩展类加载器(Extension)、系统类加载器(System 也称应用类加载器)
+
+### 类加载的五个过程
+
+#### 加载
+
+类加载过程的一个阶段：通过一个类的全限定名查找此类字节文件，并利用 [[bytecode|字节码]] 文件创建一个 Class 对象
+
+#### 验证
+
+目的在于确保 Class 文件的字节流中包含信息符合当前虚拟机要求，不会危害虚拟机自身安全。主要包括四种验证，文件格式验证、元数据验证、字节码验证、符号引用验证。
+
+#### 准备
+
+为类变量（即 static 修饰的字段变量）分配内存并且设置该类变量的初始值（如 static int i ＝ 5;这里只讲 i 初始化为 0，至于 5 的值将在初始化时赋值），这里不包含使用 final 修饰的 static，因为 final 在编译的时候就会分配了，注意这里不会为实例变量分配初始化值，类变量会分配在方法区中，而实例变量是会随着对象一起分配到 Java 堆中。
+
+#### 解析
+
+主要讲常量池中的符号引用替换为直接引用的过程。符号引用就是一组符号来描述目标，可以是任何字面量，而直接引用就是直接指向目标的指针、相对便移量或者一个间接定位到目标的句柄。有类或者接口的解析，字段解析，类方法解析，接口方法解析(这里设计到字节码变量的引用，如需详细了解，可参考《深入 Java 虚拟机》)
+
+#### 初始化
+
+类加载最后阶段，就是执行类构造器方法 `<cinit>()` 的过程，若该类具有超类，则对其进行初始化，`<cinit>` 执行静态初始化器和静态初始化成员变量（如前面只初始化了默认值的 static 变量将会在这个阶段赋值，成员变量也将被初始化）。
+
+### 类加载示例
 
 通过一段示例代码，我们可以看出来 java 初始化的一些过程
 
@@ -57,10 +72,12 @@ public class Son extends Father{
 
 其执行结果如下
 
-> name = null \
-> name = son
+```log
+name = null 
+name = son
+```
 
-我们通过分析`Son`的字节码中关于构造器的片段
+我们通过分析 `Son` 的字节码中关于构造器的片段
 
 ```java
   public com.leaderli.algrohtms.Son();
@@ -114,9 +131,9 @@ private static File[] getExtDirs() {
 }
 ```
 
-### 系统(System)类加载器
+### 系统类加载器
 
-也称应用程序加载器是指 Sun 公司实现的 `sun.misc.Launcher$AppClassLoader` 。它负责加载系统类路径 `java -classpath` 或 `-D java.class.path` 指定路径下的类库，也就是我们经常用到的 classpath 路径，开发者可以直接使用系统类加载器，一般情况下该该类加载是程序中默认的类加载器，通过 `ClassLoader#getSystemClassLoader()` 方法可以获取到该类加载器。
+也称应用程序加载器（AppClassLoader）是指 Sun 公司实现的 `sun.misc.Launcher$AppClassLoader` 。它负责加载系统类路径 `java -classpath` 或 `-D java.class.path` 指定路径下的类库，也就是我们经常用到的 classpath 路径，开发者可以直接使用系统类加载器，一般情况下该该类加载是程序中默认的类加载器，通过 `ClassLoader#getSystemClassLoader()` 方法可以获取到该类加载器。
 
 在 Java 的日常应用程序开发中，类的加载几乎是由上述 3 种类加载器相互配合执行的，在必要时，我们还可以自定义类加载器，需要注意的是，Java 虚拟机对 class 文件采用的是按需加载的方式，也就是说当需要使用该类时才会将它的 class 文件加载到内存生成 class 对象，而且加载某个类的 class 文件时，Java 虚拟机采用的是双亲委派模式即把请求交由父类处理，它是一种任务委派模式，下面我们进一步了解它。
 
@@ -254,3 +271,173 @@ Box b = (Box)obj;    // this always throws ClassCastException.
 ```
 
 Box类由两个类加载器加载。变量b的类型是当前线程的上下文类加载器加载，而myloader也加载了Box class（除非它委托给上下文类加载进行加载的）。对象obj是由myLoader加载的Box类的一个实例。因此最后一个语句总是抛出ClassCastException，因为obj的类是一个不同的类加载器加载的Box类。
+
+## 类何时加载
+
+java 程序怼类的使用方式分为
+
+### 主动使用
+
+- 创建类的实例，即通过 `new` 创建
+- 访问某个类或接口的静态变量，或者怼这个静态变量赋值。即 [[bytecode#getstatic|getstatic]] ， [[bytecode#putstatic|putstatic]]
+- 调用类的静态方法，即 [[bytecode|字节码]] `invokestatic`
+- 反射，`Class.forName("com.xxx.xxx")`
+- 初始化一个类的子类
+- Java虚拟机启动的时候被标明未启动类的类，例如 `main` 方法的类
+- JDK7开始提供的动态语言的支持，`java.lang.invoke.MethodHandle`
+
+### 被动使用
+
+除了主动使用的7种情况，其他使用Java类的方式，都可以看做类的被动使用。都不会导致类的 [[#初始化]] ， 但是依然会对类进行 [[#加载]] 和 `链接`
+
+
+#### 静态字段
+
+```java
+
+class Parent {
+
+    public static String str = "hello parent";
+
+    static {
+        System.out.println("parent static block");
+    }
+}
+
+class child extends  Parent{
+
+    public static String str2 = "hello child";
+
+    static {
+        System.out.println("child static block");
+    }
+}
+
+
+public static void main(String[] args) {  
+    System.out.println(child.str);  
+}
+```
+
+输出
+
+```log
+parent static block
+hello parent
+```
+
+可以看出 child 类并没有被 [[#初始化]] 。对于静态字段来说，只有直接定义了该字段的类才会被 [[#初始化]] 。
+
+
+#### 常量
+
+```java
+public class Hello {
+    public static void main(String[] args) {
+        System.out.println(Parent.str);
+    }
+
+}
+
+class Parent {
+
+    public static final String  str = "hello";
+
+  
+}
+```
+
+输出
+
+```log
+hello
+```
+
+可以看出 final 修饰的常量，在编译阶段就会被放在调用和这个常量的方法所在的类的 [[constant pool|常量池]] ，本质上，调用类并没有直接引用到定义常量的类，因此不会触发定义常量的类的 [[#初始化]] 。
+
+我们可以查看其 [[bytecode|字节码]] ，可以看到 常量值是通过 [[bytecode#ldc|ldc]] 去直接读取的，而不是通过  [[bytecode#getstatic|getstatic]]
+
+```java
+public static void main(java.lang.String[]);
+descriptor: ([Ljava/lang/String;)V
+flags: ACC_PUBLIC, ACC_STATIC
+Code:
+  stack=2, locals=1, args_size=1
+	 0: getstatic     #2                  // Field java/lang/System.out:Ljava/io/PrintStream;
+	 3: ldc           #4                  // String hello parent
+	 5: invokevirtual #5                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+	 8: return
+  LineNumberTable:
+	line 5: 0
+	line 6: 8
+```
+
+
+````ad-error
+
+需要注意的是，当常量值在编译阶段不确定的时候，这个值就不会被放到常量池中
+
+
+```java
+public class Hello {
+    public static void main(String[] args) {
+        System.out.println(Parent.str);
+    }
+
+}
+
+class Parent {
+
+    public static final String str = "hello parent"+ System.class;
+
+    static {
+        System.out.println("parent static block");
+    }
+}
+```
+
+输出
+
+```log
+parent static block
+hello parentclass java.lang.System
+```
+
+查看其 [[bytecode|字节码]] 可以发现使用的是 [[bytecode#getstatic|getstatic]]
+
+```java
+  public static void main(java.lang.String[]);
+    descriptor: ([Ljava/lang/String;)V
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: getstatic     #2                  // Field java/lang/System.out:Ljava/io/PrintStream;
+         3: getstatic     #3                  // Field Parent.str:Ljava/lang/String;
+         6: invokevirtual #4                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+         9: return
+      LineNumberTable:
+        line 5: 0
+        line 6: 9
+
+```
+
+````
+
+#### 数组
+
+```java
+public class Hello {  
+    public static void main(String[] args) {  
+        Parent[] parents = new Parent[1];  
+        System.out.println(parents.length);  
+    }  
+  
+}  
+  
+class Parent {  
+  
+    static {  
+        System.out.println("parent static block");  
+    }  
+}
+```
