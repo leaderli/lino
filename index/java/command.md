@@ -32,7 +32,7 @@ public class Hello {
 }
 ```
 
-在编译后使用`javap -v Hello`后
+在编译后使用 `javap -v Hello` 后
 
 ```java
 Classfile /D:/download/Hello.class

@@ -12,4 +12,4 @@ date updated: 2022-04-14 12:06
 
 ### [[postgress]]
 
-### [[sql_basic]]]
+### [[sql_basic]]
