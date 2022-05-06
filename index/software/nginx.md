@@ -1,42 +1,42 @@
 ---
 tags:
   - 软件/nginx
-date updated: 2022-05-06 14:39
+date updated: 2022-05-06 21:03
 ---
 
 ## 安装
 
 基于 centos
 
-1. 安装依赖工具
-   ` sudo yum install -y yum-utils  `
+安装依赖工具
+` sudo yum install -y yum-utils  `
 
-2. 配置 yum 的源
-   新建文件`/etc/yum.repos.d/nginx.repo`，并写入以下内容
+配置 yum 的源
+新建文件`/etc/yum.repos.d/nginx.repo`，并写入以下内容
 
-   ```properties
-   [nginx-stable]
-   name=nginx stable repo
-   baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
-   gpgcheck=1
-   enabled=1
-   gpgkey=https://nginx.org/keys/nginx_signing.key
-   module_hotfixes=true
+```properties
+[nginx-stable]
+name=nginx stable repo
+baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
+gpgcheck=1
+enabled=1
+gpgkey=https://nginx.org/keys/nginx_signing.key
+module_hotfixes=true
 
-   [nginx-mainline]
-   name=nginx mainline repo
-   baseurl=http://nginx.org/packages/mainline/centos/$releasever/$basearch/
-   gpgcheck=1
-   enabled=0
-   gpgkey=https://nginx.org/keys/nginx_signing.key
-   module_hotfixes=true
-   ```
+[nginx-mainline]
+name=nginx mainline repo
+baseurl=http://nginx.org/packages/mainline/centos/$releasever/$basearch/
+gpgcheck=1
+enabled=0
+gpgkey=https://nginx.org/keys/nginx_signing.key
+module_hotfixes=true
+```
 
-3. 若需要安装最新版，而非调试版本
-   `sudo yum-config-manager --enable nginx-mainline`
+若需要安装最新版，而非调试版本
+`sudo yum-config-manager --enable nginx-mainline`
 
-4. 安装 nginx
-   `sudo yum install nginx`
+安装 nginx
+`sudo yum install nginx`
 
 ## 启动
 
@@ -48,7 +48,9 @@ worker_processes 1;
 
 使用`nginx`即可启动,一旦 nginx 启动，就可以使用如下命令去控制 nginx
 
-> nginx -s signal
+```shell
+nginx -s signal
+```
 
 - stop — fast shutdown
 - quit — graceful shutdown
@@ -133,16 +135,19 @@ server {
 其中 `port` 表示监听的端口号，`server_name` 表示监听的 `host`（即 IP 地址或域名地址），server_name 与 host 匹配的优先级关系如下
 
 1. 完全匹配
+
 2. 通配符在前的，如 `*.test.com`
+
 3. 在后的，如 `www.test.*`
-4. 正则匹配，如`~^.[[www.test.com](http://www.test.com)$](http://www.test.com$)
+
+4. 正则匹配，如 `~^www.test.com$`
 
 如果都不匹配
 
 1. 优先选择 listen 配置项后有 default 或 default_server 的
 2. 找到匹配 listen 端口的第一个 server 块
 
-通过 `curl -v`，我们可以看到 host
+可以通过 [[curl]]  进行测试
 
 ## 处理请求
 
@@ -160,19 +165,50 @@ server {
 
 6. `location /` 　　　　　通用匹配，任何未匹配到其它 location 的请求都会匹配到，相当于 switch 中的 default。
 
+示例
+
 ```nginx
 server {
-    listen 8080;
-    server_name website.com;
+    listen 10005;
+    server_name  test_location
 
     location = / {
         return 701;
     }
 
-    location ~ ^/docu[a-z]+ {
+    location ^~ /123 {
         return 702;
     }
+    location ~ /\d {
+        return 703;
+    }
+    location /456 {
+        return 704;
+    }
+    location / {
+        return 705;
+    }
 }
+
+
+
+$ curl -i localhost:10005
+HTTP/1.1 701 
+
+
+$ curl -i localhost:10005/123
+HTTP/1.1 702 
+
+
+$ curl -i localhost:10005/4566
+HTTP/1.1 703 
+
+$ curl -i localhost:10005/aaa
+HTTP/1.1 705 
+Server: nginx/1.20.2
+
+
+
 ```
 
 ### 映射静态资源
@@ -332,7 +368,6 @@ done
 通过观察 http 服务端的日志输出，我们可以发现所有请求都指向了同一个服务器
 
 当请求 url 不带参数`a`时，可以观察到所有请求均衡的分配在每台服务器上
-
 
 ```log
 18082 f5 /hello
