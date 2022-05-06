@@ -30,6 +30,12 @@ cat /dev/null > big.log
 :> big.log
 ```
 
+也可以使用 
+
+
+```
+truncate -s 0 big.log
+```
 ### 查看内存信息
 
 ```shell

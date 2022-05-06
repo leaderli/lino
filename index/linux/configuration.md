@@ -127,19 +127,15 @@ set completion-ignore-case on
 
 ## history
 
-设置历史记录不重复
+通过修改 [[#login shell|配置文件]] 设置历史记录不重复
 
 ```bash
-export HISTIGNORE='ls:bg:fg:history'
-shopt -s histappend # append new history items to .bash_history
+# 忽略记录一些命令
+export HISTIGNORE='ls:ll:ls *:ll *bg:fg:history'
+# 忽略重复命令，仅有空格区别的命令视为同一个命令
 export HISTCONTROL=ignoreboth:erasedups
-export HISTFILESIZE=10000       # increase history file size (default is 500)
-export HISTSIZE=${HISTFILESIZE} # increase history size (default is 500)
-# ensure synchronization between Bash memory and history file
-#export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"
-shopt -s cmdhist
-# Append new history lines, clear the history list, re-read the history list, print prompt.
-export PROMPT_COMMAND="history -n; history -w; history -c; history -r;history -a; $PROMPT_COMMAND"
+# history 带上命令执行时间
+export HISTTIMEFORMAT="%Y-%m-%d %T"
 ```
 
 同时我们可以设置 `~/.bashrc` ，使得可以使用上下箭头补全历史命令
@@ -157,4 +153,22 @@ fi
 ```shell
 "\e[5~": history-search-backward
 "\e[6~": history-search-forward
+```
+
+
+history的命令也可以直接用 `!n`  执行，例如
+
+```shell
+ 1249  cat hosts
+ 1250  cat yum.conf 
+ 1251  :q
+ 1252  cat tcsd.conf
+ 1253  sudo cat tcsd.conf
+ 1254  ll
+ 1255  history 
+$ !1249
+cat hosts
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
 ```

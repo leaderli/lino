@@ -3,7 +3,7 @@ aliases: 常用命令
 tags:
   - catagory
   - linux/commands
-date updated: 2022-04-20 15:37
+date updated: 2022-05-05 22:58
 ---
 
 ### [[awk]]
@@ -12,6 +12,7 @@ date updated: 2022-04-20 15:37
 
 ### [[chown]]
 
+### [[column]]
 ### [[cp]]
 
 ### [[crontab]]
@@ -35,6 +36,8 @@ date updated: 2022-04-20 15:37
 ### [[expr]]
 
 ### [[ffmpeg]]
+
+### [[fg]]
 
 ### [[file]]
 
