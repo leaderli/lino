@@ -2,14 +2,14 @@
 aliases: java面试题
 tags:
   - 常用/java面试题
-date updated: 2022-04-02 23:40
+date updated: 2022-05-07 14:55
 ---
 
 #java #面试题 #link
 
 ## 面试题网站
 
-<https://pdai.tech/>
+https://pdai.tech/
 
 <https://github.com/Snailclimb/JavaGuide>
 
@@ -18,8 +18,8 @@ date updated: 2022-04-02 23:40
 共同点：
 
 1. 底层使用拉链式数组
-2. 为了避免`hash`冲突，当当数组元素已用槽数量超过(容量*容载因子)就会扩容
-3. `put`时，对`key`进行`hash`计算槽，若槽没有元素则赋值，否则插入链表的结尾
+2. 为了避免`hash`冲突，当当数组元素已用槽数量超过 (`容量*容载因子`) 就会扩容
+3. `put`时，对`key`进行`hash`计算槽，若槽没有元素则赋值，否则插入链表的结尾
 4. `get`时，对`key`进行`hash`计算槽，若槽没有元素或者仅有一个元素，则直接返回，
    否则，通过`equals`方法比较`key`，返回指定的元素
 
