@@ -1,5 +1,4 @@
 [
-  "obsidian-git",
   "obsidian-admonition",
   "recent-files-obsidian",
   "table-editor-obsidian",
@@ -12,6 +11,5 @@
   "obsidian-hider",
   "obsidian-style-settings",
   "ProxyGithub",
-  "obsidian-outliner",
-  "markdown-prettifier"
+  "obsidian-minimal-settings"
 ]

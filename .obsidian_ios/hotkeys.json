@@ -1,13 +1,6 @@
 {
   "table-editor-obsidian:table-control-bar": [],
-  "workspace:close": [
-    {
-      "modifiers": [
-        "Alt"
-      ],
-      "key": "W"
-    }
-  ],
+  "workspace:close": [],
   "file-explorer:new-file": [],
   "file-explorer:new-file-in-new-pane": [],
   "editor:delete-paragraph": [],
@@ -47,14 +40,7 @@
     }
   ],
   "editor:toggle-italics": [],
-  "editor:unfold-all": [
-    {
-      "modifiers": [
-        "Alt"
-      ],
-      "key": "ArrowDown"
-    }
-  ],
+  "editor:unfold-all": [],
   "app:toggle-left-sidebar": [
     {
       "modifiers": [
@@ -119,14 +105,7 @@
       "key": "O"
     }
   ],
-  "command-palette:open": [
-    {
-      "modifiers": [
-        "Alt"
-      ],
-      "key": "P"
-    }
-  ],
+  "command-palette:open": [],
   "supercharged-links-obsidian:field_options": [],
   "supercharged-links-obsidian:fileClassAttr_options": [],
   "editor:toggle-source": [
@@ -168,5 +147,7 @@
       ],
       "key": "2"
     }
-  ]
+  ],
+  "obsidian-auto-link-title:enhance-url-with-title": [],
+  "workspace:undo-close-pane": []
 }
