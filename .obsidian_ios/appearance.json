@@ -12,6 +12,6 @@
     "li",
     "supercharged-links-gen"
   ],
-  "cssTheme": "",
-  "baseFontSizeAction": true
+  "cssTheme": "Things",
+  "baseFontSizeAction": false
 }
