@@ -143,6 +143,12 @@
         "Alt"
       ],
       "key": "F"
+    },
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "F"
     }
   ],
   "graph:open-local": [

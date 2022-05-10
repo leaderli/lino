@@ -1,7 +1,7 @@
 ---
 tags:
   - linux/commands/curl
-date updated: 2022-04-14 10:54
+date updated: 2022-05-06 15:06
 ---
 
 参数
@@ -10,40 +10,53 @@ date updated: 2022-04-14 10:54
 - `-d` 请求报文 `-d '{"name":"li"}'`
 - `-H` 请求头 `-H "Content-type:application/json"`
 - `-m` 设置最大处理的时间（秒钟），超时则直接结束
+- `-v` 显示请求的详细信息
+- `-i` 显示返回报文详细信息
 
-### 显示请求详情
+### 示例
 
-```shell
-curl -v http://example.com
+```nginx
+ server {
+           listen 10005;
+           server_name "test_location";
+           location = / {
+                        return 701;
+           }
+           location / {
+                        return 702;
+           }
+        }
+
 ```
 
-示例
-
 ```shell
-~$ curl -v http://centos7:8888
-* Rebuilt URL to: http://centos7:8888/
-*   Trying 10.211.55.5...
-* Connected to centos7 (10.211.55.5) port 8888 (#0)
+
+$ curl -v localhost:10005
+* About to connect() to localhost port 10005 (#0)
+*   Trying ::1...
+* Connection refused
+*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 10005 (#0)
 > GET / HTTP/1.1
-> Host: centos7:8888
-> User-Agent: curl/7.43.0
+> User-Agent: curl/7.29.0
+> Host: localhost:10005
 > Accept: */*
->
-< HTTP/1.1 502 Bad Gateway
-< Server: nginx/1.19.0
-< Date: Fri, 19 Jun 2020 13:33:46 GMT
-< Content-Type: text/html
-< Content-Length: 157
+> 
+< HTTP/1.1 701 
+< Server: nginx/1.20.2
+< Date: Wed, 04 May 2022 01:47:48 GMT
+< Content-Length: 0
 < Connection: keep-alive
-<
-<html>
-<head><title>502 Bad Gateway</title></head>
-<body>
-<center><h1>502 Bad Gateway</h1></center>
-<hr><center>nginx/1.19.0</center>
-</body>
-</html>
-* Connection #0 to host centos7 left intact
+< 
+* Connection #0 to host localhost left intact
+
+$ curl -i localhost:10005
+HTTP/1.1 701 
+Server: nginx/1.20.2
+Date: Wed, 04 May 2022 01:52:35 GMT
+Content-Length: 0
+Connection: keep-alive
+
 
 ```
 

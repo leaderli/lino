@@ -7,4 +7,4 @@ date updated: 2022-04-11 10:51
 
 ### [[maven]]
 
-### [[grade]]
+### [[gradle]]

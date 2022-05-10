@@ -41,6 +41,7 @@ echo $UID
 ### 显示当前 IP 的 hostname
 
 ```shell
+# 主机名
 echo $HOSTNAME
 
 #显示当前ip
