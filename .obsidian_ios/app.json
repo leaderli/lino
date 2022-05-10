@@ -26,5 +26,7 @@
   "livePreview": false,
   "spellcheck": false,
   "legacyEditor": false,
-  "communityPluginSortOrder": "download"
+  "communityPluginSortOrder": "download",
+  "mobileToolbarCommands": [],
+  "mobilePullAction": "darlal-switcher-plus:switcher-plus:open"
 }
