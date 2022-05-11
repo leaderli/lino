@@ -103,6 +103,59 @@ date updated: 2022-04-12 14:24
    </repositories>
    ```
 
+
+###  delete-package-versions
+
+ 默认情况下，使用action打包jar包时，无法打包相同版本的jar，我们可以通过该 action 进行 clean 操作
+
+```yml
+# This workflow will build a package using Maven and then publish it to GitHub packages when a release is created  
+# For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#apache-maven-with-a-settings-path  
+  
+name: Maven Package  
+  
+on:  
+  
+  push:  
+    branches: [ master ]  
+  pull_request:  
+    branches: [ master ]  
+  
+jobs:  
+  
+  build:  
+  
+    runs-on: ubuntu-latest  
+    permissions:  
+      contents: read  
+      packages: write  
+  
+    steps:  
+    - uses: actions/delete-package-versions@v3  
+      with:  
+        package-name: 'io.leaderli.litil'  # 项目package的全限定名
+        ignore-versions: '^\\d+\\.\\d+\\.0$'  # 忽略的版本
+        min-versions-to-keep: 0    # 设定为0，表示删除所有检测到的版本
+    - uses: actions/checkout@v3  
+    - name: Set up JDK 8  
+      uses: actions/setup-java@v3  
+      with:  
+        java-version: '8'  
+        distribution: 'temurin'  
+        server-id: github # Value of the distributionManagement/repository/id field of the pom.xml  
+        settings-path: ${{ github.workspace }} # location for the settings.xml file  
+  
+    - name: Build with Maven  
+      run: mvn -B package --file pom.xml  
+  
+    - name: Publish to GitHub Packages Apache Maven  
+      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml  
+      env:  
+        GITHUB_TOKEN: ${{ github.token }}
+
+```
 ## 参考文档
 
 [配置token](https://catalyst.zoho.com/help/tutorials/githubbot/generate-access-token.html)
+
+[GitHub - actions/delete-package-versions](https://github.com/actions/delete-package-versions)
