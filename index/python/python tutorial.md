@@ -1,8 +1,7 @@
 ---
 tags:
   - python/tutorial
-
-date updated: 2022-04-13 11:17
+date updated: 2022-05-12 15:53
 ---
 
 ## 安装
@@ -224,26 +223,6 @@ func(1,2)
 
 ```
 
-## 字符串格式化
-
-`python`可以使用`''' str '''`,来进行纯字符串赋值，而不需要考虑转译字符。
-`python`字符串可定义占位符，通过`format`函数进行格式化
-
-```python
-print('{}1{}'.format(0,3))
-print('{a}1{b}'.format(** {"a":1,"b":3,}))
-
-```
-
-`json`格式化输出
-
-```python
-import json
-str = '{"foo":"bar","name":"he"}'
-parsed = json.loads(str)
-print(json.dumps(parsed,indent=4,sort_keys=True))
-```
-
 ## 常用函数
 
 ### zip
@@ -285,11 +264,7 @@ x,y = multi()
 
 实际上 python 返回的是一个`tulpe`，在语法上，返回一个 tuple 可以省略括号，而多个变量可以同时接收一个 tuple，按位置赋给对应的值，所以，Python 的函数返回多值其实就是返回一个 tuple，但写起来更方便.
 
-## 获取方法文档注释
 
-```python
-my_func.__doc__
-```
 
 ## 枚举
 
