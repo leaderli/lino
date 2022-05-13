@@ -481,90 +481,10 @@ fi
 
 #### shift n
 
-向左移动 n 个参数
-
-```shell
-~$ cat 1.sh
-echo $@
-shift
-echo $@
-~$ sh 1.sh 1 2 3
-1 2 3
-2 3
-```
+![[shift]]
 
 ### getopts 获取参数
-
-getopts(shell 内置命令)，不能直接处理长命令（如：--prefix=/home 等，如有需要可以使用 getopt）
-
-- getopts 有两个参数，第一个参数是一个字符串，包括字符和 `:` ，每一个字符都是一个有效的选项，getopts 从命令中获取这些参数，并且删去了 `-`
-- 字符后面带有`:`，表示这个字符有自己的参数（有自己参数的选项，不能和别的选项写在一起）。
-- `$OPTARG` 总是存储有参数的选项的参数值
-- `$OPTIND`总是存储原始参数`$*`下一个要处理的元素位置
-- 第一个冒号表示忽略错误
-
-```shell
-#!/bin/bash
-
-echo original parameters=[$*]
-echo original OPTIND=[$OPTIND]
-while getopts ":a:bc" opt
-do
-    case $opt in
-        a)
-            echo "this is -a option. OPTARG=[$OPTARG] OPTIND=[$OPTIND]"
-            ;;
-        b)
-            echo "this is -b option. OPTARG=[$OPTARG] OPTIND=[$OPTIND]"
-            ;;
-        c)
-            echo "this is -c option. OPTARG=[$OPTARG] OPTIND=[$OPTIND]"
-            ;;
-        ?)
-            echo "there is unrecognized parameter."
-            exit 1
-            ;;
-    esac
-done
-#通过shift $(($OPTIND - 1))的处理，$*中就只保留了除去选项内容的参数，
-#可以在后面的shell程序中进行处理
-shift $(($OPTIND - 1))
-
-echo remaining parameters=[$*]
-echo \$1=[$1]
-echo \$2=[$2]
-
-# 执行脚本
-$ bash getopts.sh -a 12 -b -c file1 file2
-original parameters=[-a 12 -b -c file1 file2]
-original OPTIND=[1]
-this is -a option. OPTARG=[12] OPTIND=[3]
-this is -b option. OPTARG=[] OPTIND=[4]
-this is -c option. OPTARG=[] OPTIND=[5]
-remaining parameters=[file1 file2]
-$1=[file1]
-$2=[file2]
-
-
-#可以z这样缩写
-$ bash getopts.sh  -bca 12 file1 file2
-original parameters=[-bca 12 file1 file2]
-original OPTIND=[1]
-this is -b option. OPTARG=[] OPTIND=[1]
-this is -c option. OPTARG=[] OPTIND=[1]
-this is -a option. OPTARG=[12] OPTIND=[3]
-remaining parameters=[file1 file2]
-
-#如果这样写就不对
-$ bash getopts.sh  -abc 12  file1 file2
-original parameters=[-abc 12 file1 file2]
-original OPTIND=[1]
-this is -a option. OPTARG=[bc] OPTIND=[2]
-remaining parameters=[12 file1 file2]
-$1=[12]
-$2=[file1]
-```
-
+![[getopts]]
 ### 标准的参数选项
 
 linux 有一些标准的参数选项，通过该选项我们大概可以知道该参数的含义

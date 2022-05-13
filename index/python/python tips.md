@@ -9,6 +9,13 @@ date updated: 2022-05-12 15:57
 ### 获取方法文档注释
 
 ```python
+def my_func():
+	'''
+		the doc 
+	'''
+	pass
+
+
 my_func.__doc__
 ```
 
