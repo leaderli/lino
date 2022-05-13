@@ -5,7 +5,7 @@ date updated: 2022-04-14 11:59
 ---
 
 
-C 风格的命令行选项解析器，参考 [[getopt]] 此模块可以用来协助脚本解析 `sys.argv` 中的命令行参数。
+C 风格的命令行选项解析器，参考 [[getopts]] 此模块可以用来协助脚本解析 `sys.argv` 中的命令行参数。
 
 `getopt.getopt(args, shortopts, longopts=[])`
 
