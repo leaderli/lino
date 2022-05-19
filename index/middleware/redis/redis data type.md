@@ -6,15 +6,16 @@ date updated: 2022-04-19 18:41
 
 ## 基本的数据类型
 
-- string
+### string
 
-- hash
+### hash
 
-- list
+### list
 
-- set
+### set
 
-- zset 有序集合
+### zset
+有序集合
 
 ## 类型和编码
 
