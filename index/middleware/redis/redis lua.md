@@ -41,7 +41,7 @@ $ eval "return redis.call('set','foo','bar')" 0
 ok
 ```
 
-lua 中所有关于 redis 命令的操作在执行前需要分析哪个 key 会被操作，所以明确指定哪些 key 会被操作,确定 lua 将会被发送到哪个节点去执行。lua 操作的 keys 需要确保在同一个节点上，可以通过[[redis scaling#hash tag|hash tag]] 的方式确保其在同一个节点上。
+lua 中所有关于 redis 命令的操作在执行前需要分析哪个 key 会被操作，所以明确指定哪些 key 会被操作,确定 lua 将会被发送到哪个节点去执行。lua 操作的 keys 需要确保在同一个节点上，可以通过 [[redis scaling#hash tag|hash tag]] 的方式确保其在同一个节点上。
 
 ## 原子性
 
@@ -101,14 +101,14 @@ lua脚本仅支持操作同一个 [[redis scaling|分区]] 的 `keys`
 
 ```lua
 -- print输出在redis-server服务器的日志上
--- 删除大于hello1的key
-print('--------------->')
-local l=redis.call("keys","*")
-for i=1,#l,1 do
-    if('hello1'< l[i]) then
-        redis.call('del',l[i])
-    end
 
-end
-return l
+print('--------------->')
+return {KEYS[1],KEYS[2],ARGV[1],ARGV[2]}
+```
+
+```shell
+# 参数只需要用,隔开即可
+redis-cli  --eval  ./demo.lua  key1,key2,v1,v2
+# ldb 开启debug模式
+redis-cli  --ldb --eval   ./demo.lua  key1,key2,v1,v2
 ```
