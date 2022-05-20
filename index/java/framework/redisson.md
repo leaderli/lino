@@ -3,7 +3,7 @@ tags:
   - java/框架/redisson
 date updated: 2022-05-20 06:01
 ---
-
+## 示例
 ```xml
 <dependency>  
     <groupId>org.redisson</groupId>  
@@ -68,6 +68,8 @@ public class RedissionTest {
 
 ```
 
+
+## 获取锁
 redission 继承了标准的 `lock` 接口 ，其实现类似 `ReentrantLock`
 
 通过 debug 我们可以观察到调用栈
@@ -121,6 +123,135 @@ private <T> RFuture<Long> tryAcquireAsync(long waitTime, long leaseTime, TimeUni
 }
 ```
 
+
+
+```java
+protected void scheduleExpirationRenewal(long threadId) {  
+    ExpirationEntry entry = new ExpirationEntry();  
+    ExpirationEntry oldEntry = EXPIRATION_RENEWAL_MAP.putIfAbsent(getEntryName(), entry);  
+    if (oldEntry != null) {  
+        oldEntry.addThreadId(threadId);  
+    } else {  
+        entry.addThreadId(threadId);  
+        try {  
+            renewExpiration();  
+        } finally {  
+            if (Thread.currentThread().isInterrupted()) {  
+                cancelExpirationRenewal(threadId);  
+            }  
+        }  
+    }  
+}
+
+```
+
+实际执行续期逻辑的代码，由一个 netty 的定时任务去执行，此处只需要创建对应的任务对象即可。通过我们可以看出，执行续期操作的时间为锁的持续时间的 `1/3` ，这就避免了执行定时任务时锁已经过期了，同时也不至于太频繁。
+```java
+private void renewExpiration() {  
+    ExpirationEntry ee = EXPIRATION_RENEWAL_MAP.get(getEntryName());  
+    if (ee == null) {  
+        return;  
+    }  
+      
+    Timeout task = commandExecutor.getConnectionManager().newTimeout(new TimerTask() {  
+        @Override  
+        public void run(Timeout timeout) throws Exception {  
+            ExpirationEntry ent = EXPIRATION_RENEWAL_MAP.get(getEntryName());  
+            if (ent == null) {  
+                return;  
+            }  
+            Long threadId = ent.getFirstThreadId();  
+            if (threadId == null) {  
+                return;  
+            }  
+              
+            RFuture<Boolean> future = renewExpirationAsync(threadId);  
+            future.whenComplete((res, e) -> {  
+                if (e != null) {  
+                    log.error("Can't update lock " + getRawName() + " expiration", e);  
+                    EXPIRATION_RENEWAL_MAP.remove(getEntryName());  
+                    return;  
+                }  
+                  
+                if (res) {  
+                    // reschedule itself  
+                    renewExpiration();  
+                } else {  
+                    cancelExpirationRenewal(null);  
+                }  
+            });  
+        }  
+    }, internalLockLeaseTime / 3, TimeUnit.MILLISECONDS);  
+      
+    ee.setTimeout(task);  
+}
+```
+
+我们可以看到，延期持续时间主要也是通过 [[redis lua]] 来实现的 
+```java
+protected RFuture<Boolean> renewExpirationAsync(long threadId) {  
+    return evalWriteAsync(getRawName(), LongCodec.INSTANCE, RedisCommands.EVAL_BOOLEAN,  
+            "if (redis.call('hexists', KEYS[1], ARGV[2]) == 1) then " +  
+                    "redis.call('pexpire', KEYS[1], ARGV[1]); " +  
+                    "return 1; " +  
+                    "end; " +  
+                    "return 0;",  
+            Collections.singletonList(getRawName()),  
+            internalLockLeaseTime, getLockName(threadId));  
+}
+```
+
+
+## 锁的自旋重试
+
+```java
+private void lock(long leaseTime, TimeUnit unit, boolean interruptibly) throws InterruptedException {  
+    long threadId = Thread.currentThread().getId();  
+    Long ttl = tryAcquire(-1, leaseTime, unit, threadId);  
+    // lock acquired  
+    if (ttl == null) {  
+        return;  
+    }  
+  
+    CompletableFuture<RedissonLockEntry> future = subscribe(threadId);  
+    RedissonLockEntry entry;  
+    if (interruptibly) {  
+        entry = commandExecutor.getInterrupted(future);  
+    } else {  
+        entry = commandExecutor.get(future);  
+    }  
+  
+    try {  
+        while (true) {  
+            ttl = tryAcquire(-1, leaseTime, unit, threadId);  
+            // lock acquired  
+            if (ttl == null) {  
+                break;  
+            }  
+  
+            // waiting for message  
+            if (ttl >= 0) {  
+                try {  
+                    entry.getLatch().tryAcquire(ttl, TimeUnit.MILLISECONDS);  
+                } catch (InterruptedException e) {  
+                    if (interruptibly) {  
+                        throw e;  
+                    }  
+                    entry.getLatch().tryAcquire(ttl, TimeUnit.MILLISECONDS);  
+                }  
+            } else {  
+                if (interruptibly) {  
+                    entry.getLatch().acquire();  
+                } else {  
+                    entry.getLatch().acquireUninterruptibly();  
+                }  
+            }  
+        }  
+    } finally {  
+        unsubscribe(entry, threadId);  
+    }
+}
+```
 ## 参考文档
 
 [redisson 掘金](https://juejin.cn/post/7093149727260147749)
