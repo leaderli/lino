@@ -20,4 +20,4 @@ date updated: 2022-04-17 19:53
 
 ### [[SPI|SPI]]
 
-#todo
+

@@ -70,6 +70,7 @@ public class RedissionTest {
 
 
 ## 获取锁
+
 redission 继承了标准的 `lock` 接口 ，其实现类似 `ReentrantLock`
 
 通过 debug 我们可以观察到调用栈
@@ -202,8 +203,9 @@ protected RFuture<Boolean> renewExpirationAsync(long threadId) {
 ```
 
 
-## 锁的自旋重试
+### 锁的自旋重试
 
+在获取锁失败后，会进入重试流程，等待上次获得锁过期的时间。
 ```java
 private void lock(long leaseTime, TimeUnit unit, boolean interruptibly) throws InterruptedException {  
     long threadId = Thread.currentThread().getId();  
@@ -212,7 +214,7 @@ private void lock(long leaseTime, TimeUnit unit, boolean interruptibly) throws I
     if (ttl == null) {  
         return;  
     }  
-  
+	// 获取不到锁时会注册一个监听器，用以监听是锁是否提前被释放了。
     CompletableFuture<RedissonLockEntry> future = subscribe(threadId);  
     RedissonLockEntry entry;  
     if (interruptibly) {  
@@ -232,6 +234,7 @@ private void lock(long leaseTime, TimeUnit unit, boolean interruptibly) throws I
             // waiting for message  
             if (ttl >= 0) {  
                 try {  
+	                // 使用 semaphore 为0 的实现暂停效果，当有其他线程release时，会提前结束等待
                     entry.getLatch().tryAcquire(ttl, TimeUnit.MILLISECONDS);  
                 } catch (InterruptedException e) {  
                     if (interruptibly) {  
@@ -250,6 +253,165 @@ private void lock(long leaseTime, TimeUnit unit, boolean interruptibly) throws I
     } finally {  
         unsubscribe(entry, threadId);  
     }
+}
+```
+
+`CompletableFuture<RedissonLockEntry> future = subscribe(threadId);`
+
+这里订阅了一个监听器
+
+```java
+public CompletableFuture<E> subscribe(String entryName, String channelName) {  
+    AsyncSemaphore semaphore = service.getSemaphore(new ChannelName(channelName));  
+    CompletableFuture<E> newPromise = new CompletableFuture<>();  
+  
+    int timeout = service.getConnectionManager().getConfig().getTimeout();  
+    Timeout lockTimeout = service.getConnectionManager().newTimeout(t -> {  
+        newPromise.completeExceptionally(new RedisTimeoutException(  
+                "Unable to acquire subscription lock after " + timeout + "ms. " +  
+                        "Increase 'subscriptionsPerConnection' and/or 'subscriptionConnectionPoolSize' parameters."));  
+    }, timeout, TimeUnit.MILLISECONDS);  
+  
+    semaphore.acquire(() -> {  
+        if (!lockTimeout.cancel()) {  
+            semaphore.release();  
+            return;  
+        }  
+  
+        E entry = entries.get(entryName);  
+        if (entry != null) {  
+            entry.acquire();  
+            semaphore.release();  
+            entry.getPromise().whenComplete((r, e) -> {  
+                if (e != null) {  
+                    newPromise.completeExceptionally(e);  
+                    return;  
+                }  
+                newPromise.complete(r);  
+            });  
+            return;  
+        }  
+  
+        E value = createEntry(newPromise);  
+        value.acquire();  
+  
+        E oldValue = entries.putIfAbsent(entryName, value);  
+        if (oldValue != null) {  
+            oldValue.acquire();  
+            semaphore.release();  
+            oldValue.getPromise().whenComplete((r, e) -> {  
+                if (e != null) {  
+                    newPromise.completeExceptionally(e);  
+                    return;  
+                }  
+                newPromise.complete(r);  
+            });  
+            return;  
+        }  
+  
+        RedisPubSubListener<Object> listener = createListener(channelName, value);  
+        CompletableFuture<PubSubConnectionEntry> s = service.subscribe(LongCodec.INSTANCE, channelName, semaphore, listener);  
+        s.whenComplete((r, e) -> {  
+            if (e != null) {  
+                value.getPromise().completeExceptionally(e);  
+                return;  
+            }  
+            value.getPromise().complete(value);  
+        });  
+  
+    });  
+  
+    return newPromise;  
+}
+```
+
+该监听器在释放锁时，会释放一个permit给上面 semaphore中暂停等待的线程，从而唤醒线程
+```java
+private RedisPubSubListener<Object> createListener(String channelName, E value) {  
+    RedisPubSubListener<Object> listener = new BaseRedisPubSubListener() {  
+  
+        @Override  
+        public void onMessage(CharSequence channel, Object message) {  
+            if (!channelName.equals(channel.toString())) {  
+                return;  
+            }  
+  
+            PublishSubscribe.this.onMessage(value, (Long) message);  
+        }  
+    };  
+    return listener;  
+}
+
+
+@Override  
+protected void onMessage(RedissonLockEntry value, Long message) {  
+    if (message.equals(UNLOCK_MESSAGE)) {  
+        Runnable runnableToExecute = value.getListeners().poll();  
+        if (runnableToExecute != null) {  
+            runnableToExecute.run();  
+        }  
+		// 通过给semaphore 释放permit来唤醒等待的线程
+        value.getLatch().release();  
+    } else if (message.equals(READ_UNLOCK_MESSAGE)) {  
+        while (true) {  
+            Runnable runnableToExecute = value.getListeners().poll();  
+            if (runnableToExecute == null) {  
+                break;  
+            }  
+            runnableToExecute.run();  
+        }  
+  
+        value.getLatch().release(value.getLatch().getQueueLength());  
+    }  
+}
+```
+
+### 释放锁
+
+通过debug查看调用栈
+![[Pasted image 20220522063114.png]]
+
+其核心方法也是通过 [[redis lua]] 来解锁
+
+
+```lua
+if (redis.call('hexists', KEYS[1], ARGV[3]) == 0) then 
+    return nil;
+end;
+
+local counter = redis.call('hincrby', KEYS[1], ARGV[3], -1);
+
+if (counter > 0) then 
+    redis.call('pexpire', KEYS[1], ARGV[2]); 
+    return 0;
+else 
+    redis.call('del', KEYS[1]); redis.call('publish', KEYS[2], ARGV[1]); 
+    return 1; 
+end;
+return nil;
+```
+
+解锁时同时会取消锁续期的定时任务。
+```java
+public RFuture<Void> unlockAsync(long threadId) {  
+    RFuture<Boolean> future = unlockInnerAsync(threadId);  
+  
+    CompletionStage<Void> f = future.handle((opStatus, e) -> {  
+        cancelExpirationRenewal(threadId);  
+  
+        if (e != null) {  
+            throw new CompletionException(e);  
+        }  
+        if (opStatus == null) {  
+            IllegalMonitorStateException cause = new IllegalMonitorStateException("attempt to unlock lock, not locked by current thread by node id: "  
+                    + id + " thread-id: " + threadId);  
+            throw new CompletionException(cause);  
+        }  
+  
+        return null;  
+    });  
+  
+    return new CompletableFutureWrapper<>(f);  
 }
 ```
 ## 参考文档

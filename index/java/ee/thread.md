@@ -124,7 +124,7 @@ class NumberPrint implements Runnable{
                     res.wait();//释放CPU控制权，释放res的锁，本线程阻塞，等待被唤醒。
                     System.out.println("------线程"+Thread.currentThread().getName()+"获得锁，wait()后的代码继续运行："+number);
                 } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
+
                     e.printStackTrace();
                 }
             }//end of while
