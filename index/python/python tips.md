@@ -1,7 +1,7 @@
 ---
 tags:
   - python/tips
-date updated: 2022-05-23 17:11
+date updated: 2022-05-23 23:31
 ---
 
 ## 注释
@@ -74,7 +74,7 @@ txt3 = "My name is {}, I'm {}".format("John",36)
 "my name is 123       ,i'm        123"
 ```
 
-格式化字符串运算符
+格式化字符串运算符，其接受一个tuple，tuple的长度需要和模板的占位符数量一致。
 
 ```python
 print("%s %s" % ( 1.2))
@@ -83,12 +83,30 @@ print("%s %s" % ( 1.2))
 - `%s`  字符串占位
 - `%d`  数字占位
 - `%f` 浮点数占位
--  `%x/%X` 十六进制表示
-`json`格式化输出
+- `%x/%X` 十六进制表示
+
+`json` 格式化输出
 
 ```python
 import json
 str = '{"foo":"bar","name":"he"}'
 parsed = json.loads(str)
 print(json.dumps(parsed,indent=4,sort_keys=True))
+```
+
+## arr
+
+定长数组
+
+```python
+[0, ] * len
+
+# tuple
+(0,) * 10
+```
+
+扩展数组
+
+```python
+[0,1] + [3,4]
 ```
