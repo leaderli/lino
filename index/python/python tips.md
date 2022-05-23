@@ -1,7 +1,7 @@
 ---
 tags:
   - python/tips
-date updated: 2022-05-23 23:31
+date updated: 2022-05-23 23:41
 ---
 
 ## 注释
@@ -109,4 +109,14 @@ print(json.dumps(parsed,indent=4,sort_keys=True))
 
 ```python
 [0,1] + [3,4]
+```
+
+筛选数组
+
+```python
+[x for x in range(10) if x % 2 == 0 ]
+
+list(filter(lambda x: x % 2 == 0, range(10)))
+[0, 2, 4, 6, 8]
+
 ```

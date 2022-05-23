@@ -238,7 +238,7 @@ zip(*zipped)           # 与 zip 相反，*zipped 可理解为解压，返回二
 
 ### list
 
-很多常用函数函数的不是直接的数组，比如 `map`,`filter` 等，需要在使用 `list` 直接转换为数组
+很多常用函数函数的不是直接的数组，比如 `map` , `filter` 等，需要再使用 `list` 直接转换为数组
 
 ### enumerate
 
