@@ -1,7 +1,7 @@
 ---
 tags:
   - python/tutorial
-date updated: 2022-05-12 15:53
+date updated: 2022-05-24 15:29
 ---
 
 ## 安装
@@ -11,15 +11,59 @@ date updated: 2022-05-12 15:53
 yum install -y python3
 ```
 
-## class 实例的方法，第一个参数自动转换为实例的索引
+## pip
 
-第一个参数不一定非要是`self`
+python3现在内置pip
 
-## 类方法
+```shell
+python3 -m pip 
 
-直接使用`Class.method(instance)`，参数需要显式的传递实例对象
+# 常用命令
+python3 -m pip install packageName
+python3 -m pip uninstall packageName
+python3 -m pip search packageName
 
-## python 对重载运算符
+
+# 临时指定镜像
+pip3 install xxx -i https://mirrors.163.com/pypi/simple/
+```
+
+## 类
+
+### class 属性
+
+定义在 `class` 方法外的属性, `method` 本身也属于 `class` 属性
+
+### class 实例的方法，第一个参数自动转换为实例的索引
+
+第一个参数不一定非要命名为 `self`
+
+### 类方法
+
+直接使用 `Class.method(instance)`，参数需要显式的传递实例对象
+
+### 父类构造器
+
+`python`不会自动调用父类构造器,需要显式的调用
+
+```python
+class SongBird(Bird):
+
+    def __init__(self):
+
+        Bird.__init__(self)
+
+        self.sound = 'Squawk'
+
+    def sing(self):
+
+        print self.sound
+
+```
+
+## 运算符
+
+### 重载运算符
 
 什么是运算符重载
 让自定义的类生成的对象(实例)能够使用运算符进行操作
@@ -28,7 +72,7 @@ yum install -y python3
 让程序简洁易读
 对自定义对象将运算符赋予新的规则
 
-### 算术运算符的重载
+#### 算术运算符的重载
 
 方法名                   运算符和表达式       说明
 
@@ -72,23 +116,23 @@ print(n3)   #Mynumber(300)
 n4 = n3 - n2 #等同于n4 = n3.__sub__(n2)
 ```
 
-### 反向运算符的重载
+#### 反向运算符的重载
 
 当运算符的左侧为内建类型时,右侧为自定义类型进行算术匀算符运算时会出现 TypeError 错误,因为无法修改内建类型的代码          实现运算符重载,此时需要使用反向运算符的重载
 
 方法名                   运算符和表达式       说明
 
 ```python
-**radd**(self,lhs)       lhs + self       加法
-**rsub**(self,lhs)       lhs - self       减法
-**rmul**(self,lhs)       lhs \* self       乘法
-**rtruediv**(self,lhs)   lhs / self       除法
-**rfloordiv**(self,lhs)  lhs // self       地板除
-**rmod**(self,lhs)       lhs % self       取模(求余)
-**rpow**(self,lhs)       lhs \*\* self       幂运算
+__radd__(self,lhs)       lhs + self       加法
+__rsub__(self,lhs)       lhs - self       减法
+__rmul__(self,lhs)       lhs * self       乘法
+__rtruediv__(self,lhs)   lhs / self       除法
+__rfloordiv__(self,lhs)  lhs // self       地板除
+__rmod__(self,lhs)       lhs % self       取模(求余)
+__rpow__(self,lhs)       lhs ** self       幂运算
 ```
 
-### 比较算术运算符的重载
+#### 比较算术运算符的重载
 
 方法名                   运算符和表达式       说明
 
@@ -101,7 +145,7 @@ __eq__(self,rhs)       self == rhs       等于
 __ne__(self,rhs)       self != rhs       不等于
 ```
 
-### 位运算符重载
+#### 位运算符重载
 
 方法名               运算符和表达式         说明
 
@@ -113,39 +157,16 @@ __lshift__(self,rhs)    self <<rhs            左移
 __rshift__(self,rhs)    self >>rhs            右移
 ```
 
-### 其他运算符重载
+#### 其他运算符重载
 
-in/not in 运算符重载
-注: in / not in 返回布尔值 True / False
-当重载了__contains__后,in 和 not in 运算符都可用
-not in 运算符的返回值与 in 相反
+`in`  `not in` 运算符重载
+注: `in`   `not in` 返回布尔值 `True` `False`
+当重载了 `__contains__` 后,`in` 和 `not in` 运算符都可用
+`not in`  运算符的返回值与 `in`  相反
 
 ```python
 __contains__(self,e):
 ```
-
-## 父类构造器
-
-`python`不会自动调用父类构造器,需要显式的调用
-
-```python
-class SongBird(Bird):
-
-    def __init__(self):
-
-        Bird.__init__(self)
-
-        self.sound = 'Squawk'
-
-    def sing(self):
-
-        print self.sound
-
-```
-
-## class 属性
-
-定义在`class`方法外的属性,`method`本身也属于`class`属性
 
 ## 断言
 
@@ -155,42 +176,11 @@ class SongBird(Bird):
 assert x >= 0, 'x is less than zero'
 ```
 
-## pip
+## 方法
 
-python3现在内置pip
+### 模块
 
-```shell
-python3 -m pip 
-
-# 常用命令
-python3 -m pip install packageName
-python3 -m pip uninstall packageName
-python3 -m pip search packageName
-
-
-# 临时指定镜像
-pip3 install xxx -i https://mirrors.163.com/pypi/simple/
-```
-
-## XML解析
-
-```python
-import xml.etree.ElementTree as ET
-
-tree = ET.parse("country.xml")
-root = tree.getroot()
-root.tag
-root.attrlib
-
-find(match)    # 查找第一个匹配的子元素， match可以时tag或是xpaht路径
-findall(match  # 返回所有匹配的子元素列表
-findtext(match, default=None)
-iter(tag=None) # 以当前元素为根节点 创建树迭代器,如果tag不为None,则以tag进行过滤
-iterfind(match)
-
-```
-
-## 调用其他 py 文件方法
+调用其他 py 文件方法
 
 ```python
 import other
@@ -199,7 +189,7 @@ other.m()
 
 ```
 
-## 动态调用方法
+### 动态调用方法
 
 在`py`文件中，可以使用
 
@@ -223,36 +213,7 @@ func(1,2)
 
 ```
 
-## 常用函数
-
-### zip
-
-将多个数组打包成元组
-
-```python
-a = [1,2,3]
-b = [4,5,6,7,8]
-zipped =zip(a,b)       # 元素个数与最短的列表一致
-zip(*zipped)           # 与 zip 相反，*zipped 可理解为解压，返回二维矩阵式
-```
-
-### list
-
-很多常用函数函数的不是直接的数组，比如 `map` , `filter` 等，需要再使用 `list` 直接转换为数组
-
-### enumerate
-
-函数用于将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出数据和数据下标
-
-```python
-enumerate(sequence, [start=0])
-
-seasons = ['Spring', 'Summer', 'Fall', 'Winter']
-list(enumerate(seasons))
-#[(0, 'Spring'), (1, 'Summer'), (2, 'Fall'), (3, 'Winter')]
-```
-
-## 返回多个值
+### 返回多个值
 
 ```python
 def multi():
@@ -264,7 +225,18 @@ x,y = multi()
 
 实际上 python 返回的是一个`tulpe`，在语法上，返回一个 tuple 可以省略括号，而多个变量可以同时接收一个 tuple，按位置赋给对应的值，所以，Python 的函数返回多值其实就是返回一个 tuple，但写起来更方便.
 
+### 获取所有方法
 
+```python
+print([func for func in dir(Func) if callable(getattr(Func,func))])
+```
+
+### 打印方法的所有参数
+
+```python
+import inspect
+print(inspect.getfullargspec(a_method))
+```
 
 ## 枚举
 
@@ -294,19 +266,6 @@ move("right")#TypeError: direction must be an instance of Direction Enum
 print({d.name: d.value for d in Direction})
 print(Direction('up').name)#UP
 
-```
-
-## 获取所有方法
-
-```python
-print([func for func in dir(Func) if callable(getattr(Func,func))])
-```
-
-## 打印方法的所有参数
-
-```python
-import inspect
-print(inspect.getfullargspec(a_method))
 ```
 
 ## 参数
@@ -413,110 +372,27 @@ None
 bar
 ```
 
-## 开启一个简单的 http 服务
+## 类型
 
-python2 或者低版本，直接敲
-
-```shell
-python -m SimpleHTTPServer <port>
-```
-
-python3
-
-```shell
-python -m http.server <port>
-```
-
-## 示例
-
-### 截取字符串或数组
-
-w = '1'
-当使用 w[1:],会得到一个空串，而不会报错
-
-### python dict 根据 value 找对应的 key
+python中可以声明类型，运行时不对类型做强制性校验，类型声明仅用于第三方工具进行类型校验，以及方便阅读使用
 
 ```python
-dicxx = {'a':'001', 'b':'002'}
-list(dicxx.keys())[list(dicxx.values()).index("001")]
-#'a'
+a:int = 1
 ```
 
-### 使用守护进程的方式后台启动
-
-```shell
-# 后台启动
-$ python background_test.py >log.txt 2>&1 &
-```
-
-### 监听文件是否有变动
+声明数组，元祖的元素类型
 
 ```python
-# --coding:utf-8--
-import os
-import time
+from typing import List  
 
-filename = '.'  # 当前路径
-last = time.localtime(os.stat(filename).st_mtime)
-while True:
-    new_filemt = time.localtime(os.stat(filename).st_mtime)
-    if last != new_filemt:
-        last = new_filemt
-        print('change')
-        #os.system('nginx -s reload')
-    time.sleep(1)
-
+Vector = List[int]  
+v: Vector = [1]
 ```
 
-### 替换字符串
-
-类似 java 的 replace
+组合类型
 
 ```python
-import re
-
-origin='/1/2'
-re.sub('^/','',origin)
-# 1/2
-```
-
-### 调用shell
-
-```python
-import subprocess
-
-try:
-  subprocess.call(['/bin/bash','xxx.sh','arg1','arg2'])
-except:
-  #可以忽略所有错误，比如ctrl c，终止sh运行的错误
-  pass
-```
-
-获取命令行参数
-[Python 命令行参数 | 菜鸟教程](https://www.runoob.com/python/python-command-line-arguments.html)
-
-```python
-#!/usr/bin/python  
-# -*- coding: UTF-8 -*-  
+from typing import Union  
   
-import sys  
-  
-print '参数个数为:', len(sys.argv), '个参数。'  
-print '参数列表:', str(sys.argv)  
-```
-
-执行以上代码，输出结果为：
-
-```shell
-$ python test.py arg1 arg2 arg3 
-参数个数为: 4 个参数。 
-参数列表: ['test.py', 'arg1', 'arg2', 'arg3']
-```
-
-### 获取 python 版本
-
-```python
-import sys
-if sys.version_info[0] < 3:
-    raise Exception("Must be using Python 3")
+v: Union[int, str] = 1.00
 ```

@@ -143,6 +143,10 @@ def __init__(self, args, bufsize=-1, executable=None,
 ```
 
 -  shell 是否将命令视为一个 shell
+	```python
+	 import subprocess
+	```
+
 
 ## 参考文档
 
