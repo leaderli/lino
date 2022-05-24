@@ -1,7 +1,7 @@
 ---
 tags:
   - python/tutorial
-date updated: 2022-05-24 15:29
+date updated: 2022-05-25 00:25
 ---
 
 ## 安装
@@ -346,6 +346,19 @@ log(level='info')
 debug
 hello
 info
+```
+
+#### 示例
+
+仅允许使用关键字参数
+
+```python
+def hello(*, k1='k1'):
+	pass
+
+hello(k1=1)
+# 下面这种用法会直接报错
+hello(1)
 ```
 
 ## 全局变量

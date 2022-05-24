@@ -1,7 +1,7 @@
 ---
 tags:
   - python/bash
-date updated: 2022-05-24 17:13
+date updated: 2022-05-24 23:30
 ---
 
 python 调用 shell
@@ -143,7 +143,7 @@ def __init__(self, args, bufsize=-1, executable=None,
              pass_fds=(), *, encoding=None, errors=None):
 ```
 
-- shell 是否将参数视为一个 shell语句
+- `shell` 是否将参数视为一个 shell语句
   ```python
   import subprocess  
 
@@ -157,12 +157,39 @@ def __init__(self, args, bufsize=-1, executable=None,
 
 - `stdin`, `stdout`, `stder` 指定标准输入、标准输出、标注错误的 [[linux basic#文件描述符|文件描述符]]
 
+  ```python
+  import subprocess  
+  # 输出到文件中
+  f = open('test.log', 'w')  
+  r = subprocess.Popen(['ls', '-l'], stdout=f)
+  # 使用变量接收
+
+  r = subprocess.Popen(['ls', '-l'], stdout=subprocess.PIPE, universal_newlines=True)  
+  r = r.stdout.read()
+  ```
+
+- `universal_newlines`  是否返回字符串，而不是默认的 byte
 	```python
 	import subprocess  
-    # 输出到文件中
-	f = open('test.log', 'w')  
-	r = subprocess.Popen(['ls', '-l'], stdout=f)
-    # 使用变量接收
+	  
+	r = subprocess.Popen(['echo', 'hello'], stdout=subprocess.PIPE, universal_newlines=True)  
+	  
+	print('-' * 100)  
+	print(r.stdout.read())  
+	print('-' * 100)  
+	  
+	r = subprocess.Popen(['echo', 'hello'], stdout=subprocess.PIPE)  
+	print(r.stdout.read())  
+	print('-' * 100)
+	```
+	
+- ```log
+	----------------------------------------------------------------------------------------------------
+	hello
+	
+	----------------------------------------------------------------------------------------------------
+	b'hello\n'
+	----------------------------------------------------------------------------------------------------
 	```
 
 ## 参考文档

@@ -1,7 +1,7 @@
 ---
 tags:
   - python/tips
-date updated: 2022-05-24 14:44
+date updated: 2022-05-24 23:41
 ---
 
 ## 注释
@@ -58,6 +58,27 @@ list(filter(lambda x: x % 2 == 0, range(10)))
 
 ```
 
+## dict
+
+### 安全的取值
+
+```python
+d = {}  
+# 对于不存在的key这里会报错
+d['a']  
+# 对于不存在的key这里返回None
+d.get('a')
+```
+
+### 判断key是否存在
+
+```python
+d = {'b': 1}  
+  
+print('a' in d)  # False
+print('b' in d)  # true
+```
+
 ## enumerate
 
 函数用于将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出数据和数据下标
@@ -73,6 +94,19 @@ list(enumerate(seasons))
 ## list
 
 很多常用函数函数的不是直接的数组，比如 `map` , `filter` 等，需要再使用 `list` 直接转换为数组
+
+## os
+
+### 取环境变量
+
+```python
+
+import os  
+  
+print(os.environ.get('user'))  
+print(os.environ.get('APPDATA'))
+
+```
 
 ## str
 
@@ -179,7 +213,6 @@ iter(tag=None) # 以当前元素为根节点 创建树迭代器,如果tag不为N
 iterfind(match)
 
 ```
-
 
 ### 开启一个简单的 http 服务
 

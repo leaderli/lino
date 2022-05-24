@@ -1,7 +1,7 @@
 ---
 tags:
   - python/decorator
-date updated: 2022-04-14 12:02
+date updated: 2022-05-25 01:13
 ---
 
 ## 基础
@@ -59,7 +59,7 @@ def log(func):
     return wrapper
 ```
 
-这个时候`print(hello)`
+这个时候 `print(hello)`
 
 ```log
 <function hello at 0x10ef94c80>
@@ -103,6 +103,49 @@ print(hello)
  hello li  
  -----------after----------- 
  <function hello at 0x102690c80>
+```
+
+### 装饰器使用参数
+
+```python
+import functools
+
+def log(name=''):  
+    def decorator(func):  
+        @functools.wraps(func)  
+        def wrapper(*args, **kwargs):  
+            print('-----------before----------- ' + name)  
+            return func(*args, **kwargs)  
+  
+        return wrapper  
+  
+    return decorator
+    
+
+@log('li')
+def hello(name):
+    return 'hello '+name
+
+```
+
+### 可选参数
+
+需要注意的是，此种写法，注解的参数只能使用 `k=v` 这种。
+
+```python
+def log(_func=None, *, name=''):  
+    def decorator(func):  
+        @functools.wraps(func)  
+        def wrapper(*args, **kwargs):  
+            print('-----------before----------- ' + name)  
+            return func(*args, **kwargs)  
+  
+        return wrapper  
+  
+    if _func is None:  
+        return decorator  
+    else:  
+        return decorator(_func)
 ```
 
 ## 类装饰器
@@ -152,39 +195,6 @@ hello li
 <**main**.Log object at 0x1048ff668>
 ```
 
-## 装饰器使用参数
-
-```python
-import functools
-
-
-def log(* args, **kwargs):
-    print(args)
-    print(kwargs)
-
-    def decoractor(func):
-        def wrapper(*args, **kwargs):
-            print(func(*args, **kwargs))
-        return wrapper
-
-    return decoractor
-
-
-@log('hello', 100)
-def hello(name):
-    return 'hello '+name
-
-
-@log(filter=200)
-def default(name):
-    return 'hello '+name
-
-
-hello('hello')
-default('default')
-
-```
-
 ### 类装饰器使用参数
 
 参数需要指定默认值，
@@ -219,6 +229,44 @@ def default(name):
 hello('hello')
 default('default')
 
+```
+
+### 类装饰圈可选参数
+
+主要参考 [[#可选参数]] 来实现的
+
+```python
+class Log(object):  
+  
+    def __init__(self, _func=None, *, name='default'):  
+        self.name = name  
+        self._func = _func  
+  
+    def __call__(self, *_args, **_kwargs):  
+        def wrapper(*args, **kwargs):  
+            print('before ' + self.name)  
+            return _args[0](*args, **kwargs)  
+  
+        # if self._func:  
+        #     return self._func        if not callable(self._func):  
+            return wrapper  
+  
+        print('-- before not parameter -- ')  
+        return self._func(*_args, **_kwargs)  
+  
+  
+@Log  
+def hello(name):  
+    return 'hello ' + name  
+  
+  
+@Log(name='li')  
+def hello2(name):  
+    return 'hello ' + name  
+  
+  
+print(hello('one'))  
+print(hello2('two'))
 ```
 
 参数与位置息息相关
