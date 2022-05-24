@@ -1,7 +1,7 @@
 ---
 tags:
   - python/bash
-date updated: 2022-05-24 10:39
+date updated: 2022-05-24 17:13
 ---
 
 python 调用 shell
@@ -77,7 +77,6 @@ exit 1
 'hello python\nhello li\n'
 ```
 
-
 #### 注意事项
 
 popen 打开的是一个文件流，使用完需要关闭，推荐的写法是：
@@ -91,18 +90,19 @@ popen 不会阻塞等待命令执行结束，仅在使用 `read` 或 `readlines`
 
 另外如果命令执行无法退出或者进入交互模式，则程序会完全阻塞。
 
-例如 
+例如
 
 ```python
 import os
 os.popen('ping 127.0.0.1 -t').readlines()
 ```
-该命令会一直执行，除非使用 `ctrl + c` 中断执行，因此 readlines 读取命令输出时会卡住
 
+该命令会一直执行，除非使用 `ctrl + c` 中断执行，因此 readlines 读取命令输出时会卡住
 
 ### subprocess.run
 
 查看其源码，实际也是调用 [[#subprocess Popen]] ，这里不做过多介绍。
+
 ```python
 def run(*popenargs, input=None, timeout=None, check=False, **kwargs):  
   if input is not None:  
@@ -132,7 +132,8 @@ def run(*popenargs, input=None, timeout=None, check=False, **kwargs):
 ### subprocess.Popen
 
 Popen的参数如下：
-```
+
+```python
 def __init__(self, args, bufsize=-1, executable=None,  
              stdin=None, stdout=None, stderr=None,  
              preexec_fn=None, close_fds=_PLATFORM_DEFAULT_CLOSE_FDS,  
@@ -142,11 +143,27 @@ def __init__(self, args, bufsize=-1, executable=None,
              pass_fds=(), *, encoding=None, errors=None):
 ```
 
--  shell 是否将命令视为一个 shell
-	```python
-	 import subprocess
-	```
+- shell 是否将参数视为一个 shell语句
+  ```python
+  import subprocess  
 
+  r = subprocess.Popen('ls -l', shell=True)  
+    
+  print(r.wait())  
+    
+  r = subprocess.Popen(['ls', '-l'])  
+  print(r.wait())
+  ```
+
+- `stdin`, `stdout`, `stder` 指定标准输入、标准输出、标注错误的 [[linux basic#文件描述符|文件描述符]]
+
+	```python
+	import subprocess  
+    # 输出到文件中
+	f = open('test.log', 'w')  
+	r = subprocess.Popen(['ls', '-l'], stdout=f)
+    # 使用变量接收
+	```
 
 ## 参考文档
 
