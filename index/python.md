@@ -2,8 +2,10 @@
 tags:
   - python
   - catagory
-date updated: 2022-05-12 16:49
+date updated: 2022-05-24 09:26
 ---
+
+### [[python bash]]
 
 ### [[python cmd]]
 
