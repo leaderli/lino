@@ -136,3 +136,10 @@ $ curl localhost:8083 -m 5
 curl: (28) Operation timed out after 5002 milliseconds with 0 out of -1 bytes received
 
 ```
+
+
+## 发送JSON请求
+
+```shell
+curl -H "Content-Type: application/json" -X POST -d  '{'a':1}'  http://127.0.0.1/xxx
+```

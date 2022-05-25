@@ -3,7 +3,7 @@ aliases: 常用命令
 tags:
   - catagory
   - linux/commands
-date updated: 2022-05-13 11:17
+date updated: 2022-05-25 10:34
 ---
 
 ### [[awk]]
@@ -99,6 +99,7 @@ date updated: 2022-05-13 11:17
 ### [[sed]]
 
 ### [[shift]]
+
 ### [[sort]]
 
 ### [[ss]]
@@ -149,92 +150,6 @@ date updated: 2022-05-13 11:17
 
 ### [[zip]]
 
-### [[awk]]
-
-### [[cat]]
-
-### [[chown]]
-
-### [[cp]]
-
-### [[crontab]]
-
-### [[curl]]
-
-### [[cut]]
-
-### [[date]]
-
-### [[df]]
-
-### [[diff]]
-
-### [[dig]]
-
-### [[echo]]
-
-### [[expr]]
-
-### [[ffmpeg]]
-
-### [[file]]
-
-### [[free]]
-
-### [[grep]]
-
-### [[head]]
-
-### [[iconv]]
-
-### [[ifconfig]]
-
-### [[index/linux/commands/ip|ip]]
-
-### [[info]]
-
-### [[last]]
-
-### [[locate]]
-
-### [[ls]]
-
-### [[lsof]]
-
-### [[man]]
-
-### [[mdls]]
-
-### [[mktemp]]
-
-### [[netstat]]
-
-### [[nl]]
-
-### [[nohup]]
-
-### [[od]]
-
-### [[passwd]]
-
-### [[paste]]
-
-### [[ping]]
-
-### [[printenv]]
-
-### [[printf]]
-
-### [[read]]
-
-### [[rm]]
-
-### [[rsync]]
-
-### [[sed]]
-
-### [[sort]]
-
 ### [[ss]]
 
 ### [[ssh]]
@@ -245,7 +160,7 @@ date updated: 2022-05-13 11:17
 
 ### [[tar]]
 
-### [[tcpdump]]]
+### [[tcpdump]]
 
 ### [[tee]]
 
