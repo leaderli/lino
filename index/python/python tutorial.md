@@ -28,6 +28,12 @@ python3 -m pip search packageName
 pip3 install xxx -i https://mirrors.163.com/pypi/simple/
 ```
 
+配置 
+
+```python
+python3 -m pip config
+```
+
 ## 类
 
 ### class 属性
@@ -177,6 +183,16 @@ assert x >= 0, 'x is less than zero'
 ```
 
 ## 方法
+
+### main
+
+```python
+def main():
+    print("Hello World!")
+
+if __name__ == "__main__":
+    main()
+```
 
 ### 模块
 
