@@ -1,7 +1,7 @@
 ---
 tags:
   - python/tips
-date updated: 2022-05-27 11:16
+date updated: 2022-05-27 17:03
 ---
 
 ## 注释
@@ -83,24 +83,24 @@ print('b' in d)  # true
 
 3.9.0版本之后
 
-  ```python
-  z = x | y
-  ```
+```python
+z = x | y
+```
 
 3.5版本之后
 
-  ```python
-  z = {**x, **y}
-  ```
+```python
+z = {**x, **y}
+```
 
- python2或者3.4版本及3.4版本之前
+python2或者3.4版本及3.4版本之前
 
-  ```python
-  def merge_two_dicts(x, y):
-      z = x.copy()   
-      z.update(y)   
-      return z
-  ```
+```python
+def merge_two_dicts(x, y):
+    z = x.copy()   
+    z.update(y)   
+    return z
+```
 
 ## enumerate
 
@@ -117,6 +117,23 @@ list(enumerate(seasons))
 ## list
 
 很多常用函数函数的不是直接的数组，比如 `map` , `filter` 等，需要再使用 `list` 直接转换为数组
+
+## inspect
+
+提供关于各种python元数据的内容
+
+获取方法源码，可以用来截取装饰属性
+
+```python
+@li.li_annotation.run_on_uat  
+def hello(a: int):  
+    pass  
+  
+  
+  
+for line in inspect.getsourcelines(hello)[0]:  
+    print(line)
+```
 
 ## os
 
