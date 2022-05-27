@@ -26,6 +26,14 @@ python3 -m pip search packageName
 
 # 临时指定镜像
 pip3 install xxx -i https://mirrors.163.com/pypi/simple/
+
+
+# 按照到指定目录
+python3  -m pip install PyYAML  --target  myapp
+# 依赖比较多的，可以用文件来申明依赖
+python3  -m pip install -r requirements.txt  --target  myapp
+
+
 ```
 
 配置 
@@ -33,6 +41,18 @@ pip3 install xxx -i https://mirrors.163.com/pypi/simple/
 ```python
 python3 -m pip config
 ```
+
+## 打包
+
+使用zipapp来实现打包
+- `-o`  打包后的文件名
+-  `-m` 指定main方法，即可执行文件的入口
+-  `-p` 指定python的解释器，类似 bash 脚本的 头申明，类似 `#!/bin/python` 
+
+```python
+python3  -m zipapp python-tips/ -m 'test:main'  -o 'test.zip'
+```
+
 
 ## 类
 
@@ -243,8 +263,9 @@ x,y = multi()
 
 ### 获取所有方法
 
+对于类 `Func` 
 ```python
-print([func for func in dir(Func) if callable(getattr(Func,func))])
+print([funcName for funcName in dir(Func) if callable(getattr(Func,funcName))])
 ```
 
 ### 打印方法的所有参数
