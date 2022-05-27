@@ -1,7 +1,7 @@
 ---
 tags:
   - python/tips
-date updated: 2022-05-24 23:41
+date updated: 2022-05-27 11:16
 ---
 
 ## 注释
@@ -78,6 +78,29 @@ d = {'b': 1}
 print('a' in d)  # False
 print('b' in d)  # true
 ```
+
+### 合并两个dict
+
+3.9.0版本之后
+
+  ```python
+  z = x | y
+  ```
+
+3.5版本之后
+
+  ```python
+  z = {**x, **y}
+  ```
+
+ python2或者3.4版本及3.4版本之前
+
+  ```python
+  def merge_two_dicts(x, y):
+      z = x.copy()   
+      z.update(y)   
+      return z
+  ```
 
 ## enumerate
 
