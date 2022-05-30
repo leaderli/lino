@@ -139,6 +139,8 @@ for line in inspect.getsourcelines(hello)[0]:
 
 ### 取环境变量
 
+等同于 [[printenv]]
+
 ```python
 
 import os  
