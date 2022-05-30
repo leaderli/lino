@@ -189,6 +189,13 @@ git log -p <file>
 git show commit
 ```
 
+显示当前的 commit 的 sha1
+
+```shell
+git rev-parse --short HEAD
+```
+
+
 ### 比较差异
 
 `git diff` 比较工作区和缓存区，当修改工作区内容时且未 `add` ,缓存区的内容则与工作区有差异，此时缓存区与仓库同样是没有变动，所以使用 `git diff --cached` ,发现没有差异，当使用 `add` 后，缓存区则和工作区相同了。单因为没有 `commit` ,所以使用 `git diff --cached` ，可以看到差异的内容。当使用 `commit` 后，则变成一致的状态\
