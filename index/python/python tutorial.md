@@ -1,7 +1,7 @@
 ---
 tags:
   - python/tutorial
-date updated: 2022-05-25 00:25
+date updated: 2022-05-30 14:08
 ---
 
 ## 安装
@@ -36,7 +36,7 @@ python3  -m pip install -r requirements.txt  --target  myapp
 
 ```
 
-配置 
+配置
 
 ```python
 python3 -m pip config
@@ -45,14 +45,14 @@ python3 -m pip config
 ## 打包
 
 使用zipapp来实现打包
+
 - `-o`  打包后的文件名
--  `-m` 指定main方法，即可执行文件的入口
--  `-p` 指定python的解释器，类似 bash 脚本的 头申明，类似 `#!/bin/python` 
+- `-m` 指定main方法，即可执行文件的入口
+- `-p` 指定python的解释器，类似 bash 脚本的 头申明，类似 `#!/bin/python`
 
 ```python
 python3  -m zipapp python-tips/ -m 'test:main'  -o 'test.zip'
 ```
-
 
 ## 类
 
@@ -84,6 +84,21 @@ class SongBird(Bird):
     def sing(self):
 
         print self.sound
+
+```
+
+### 示例
+
+获取实例的类名
+
+```python
+
+class Li(Object):
+	pass
+
+li = Li()
+
+print(li.__class__.__name__)
 
 ```
 
@@ -263,7 +278,8 @@ x,y = multi()
 
 ### 获取所有方法
 
-对于类 `Func` 
+对于类 `Func`
+
 ```python
 print([funcName for funcName in dir(Func) if callable(getattr(Func,funcName))])
 ```

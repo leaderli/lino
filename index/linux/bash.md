@@ -489,6 +489,8 @@ fi
 
 ### getopts 获取参数
 
+[[configuration#IFS|分隔符IFS]]
+
 ![[getopts]]
 
 ### 标准的参数选项
