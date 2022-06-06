@@ -3,7 +3,7 @@ aliases: 常用命令
 tags:
   - catagory
   - linux/commands
-date updated: 2022-05-25 10:34
+date updated: 2022-06-06 10:42
 ---
 
 ### [[awk]]
@@ -151,49 +151,3 @@ date updated: 2022-05-25 10:34
 ### [[zip]]
 
 ### [[ss]]
-
-### [[ssh]]
-
-### [[svn]]
-
-### [[tail]]
-
-### [[tar]]
-
-### [[tcpdump]]
-
-### [[tee]]
-
-### [[telnet]]
-
-### [[time]]
-
-### [[tmux]]
-
-### [[top]]
-
-### [[tty]]
-
-### [[type]]
-
-### [[uname]]
-
-### [[w]]
-
-### [[wall]]
-
-### [[watch]]
-
-### [[wc]]
-
-### [[wget]]
-
-### [[whatis]]
-
-### [[which]]
-
-### [[write]]
-
-### [[xargs]]
-
-### [[zip]]
