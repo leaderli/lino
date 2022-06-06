@@ -57,6 +57,30 @@ list(filter(lambda x: x % 2 == 0, range(10)))
 [0, 2, 4, 6, 8]
 
 ```
+## datetime
+
+### strftime
+当天日期
+
+```python
+from datetime import  datetime  
+  
+  
+  print(datetime.strftime(datetime.now(),'%Y-%m-%d'))
+```
+
+
+| 指令 | 解释     |
+| ---- | -------- |
+| `%Y` | 四位年份 |
+| `%m` | 两位月份 |
+| `%d` | 两位日   |
+|     `%H` |    两位小时      |
+| `%M` | 两位分钟 |
+| `%S` | 两位秒         |
+
+
+[datetime — Basic date and time types — Python 3.10.4 documentation](https://docs.python.org/3/library/datetime.html#strftime-strptime-behavior)
 
 ## dict
 
@@ -235,6 +259,8 @@ b = [4,5,6,7,8]
 zipped =zip(a,b)       # 元素个数与最短的列表一致
 zip(*zipped)           # 与 zip 相反，*zipped 可理解为解压，返回二维矩阵式
 ```
+
+
 
 ## 示例
 
