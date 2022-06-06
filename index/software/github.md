@@ -5,6 +5,8 @@ tags:
 date updated: 2022-04-12 14:24
 ---
 
+
+
 ## action
 
 我们可以使用github提供的action，实现自动打包 jar 包应用，以及使用github作为maven的仓库使用
@@ -154,8 +156,14 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
 
 ```
+
+##  无法访问
+
+[Github windows修改hosts文件访问_zhangbei59的技术博客_51CTO博客](https://blog.51cto.com/u_10112066/3282216)
 ## 参考文档
 
 [配置token](https://catalyst.zoho.com/help/tutorials/githubbot/generate-access-token.html)
 
 [GitHub - actions/delete-package-versions](https://github.com/actions/delete-package-versions)
+
+

@@ -63,6 +63,10 @@ cat ~/.ssh/id_rsa.pub |ssh user@example.com 'cat >> ~/.ssh/authorized_keys'
 ```
 
 
+```shell
+ssh -q  user@ip  'cd dir && ls < /dev/null'
+```
+
 ## 向远程服务器文件写入
 
 使用管道符基本用法如
