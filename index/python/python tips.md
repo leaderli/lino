@@ -174,6 +174,15 @@ print(os.environ.get('APPDATA'))
 
 ```
 
+##  shutil
+
+压缩文件
+
+```python
+import shutil
+shutil.make_archive('/home/code/test_dicoms', 'zip', '/home/code/test_dicoms')
+```
+
 ## str
 
 `python`可以使用`''' str '''`,来进行纯字符串赋值，而不需要考虑转译字符。
