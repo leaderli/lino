@@ -94,6 +94,17 @@ public class TestStudent{
 }
 ```
 
+#test5
+```java
+RuntimeException thrown = Assertions.assertThrows(RuntimeException.class, () -> {
+
+
+		throw new RuntimeException("hello");
+
+});
+Assertions.assertEquals("hello", thrown.getLocalizedMessage());
+
+```
 ### 参考文档
 
 [📒 JUnit 5 User Guide](https://junit.org/junit5/docs/current/user-guide/#overview)
