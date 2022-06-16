@@ -45,13 +45,13 @@ for (int i = 0; i < 32; i++) {
 }
 ```
 
-## 示例
+##  状态位
 
 在下面的一个例子中，会用到位掩码`BitMask`，其中包含大量的位运算。不只是在`Java`中，其他编写语言中也是可以使用的。
 
 例如，在一个系统中，用户一般有查询`Select`、新增`Insert`、修改`Update`、删除`Delete`四种权限，四种权限有多种组合方式，也就是有`16`中不同的权限状态（2 的 4 次方）。
 
-## `Permission`
+
 
 一般情况下会想到用四个`boolean`类型变量来保存：
 
@@ -70,7 +70,7 @@ public class Permission {
 
 上面用四个 boolean 类型变量来保存每种权限状态。
 
-## `NewPermission`
+
 
 下面是另外一种方式，使用位掩码的话，用一个二进制数即可，每一位来表示一种权限，`0`表示无权限，`1`表示有权限。
 
@@ -165,7 +165,7 @@ public void enable(int permission) {
 permission.enable(NewPermission.ALLOW_UPDATE);
 ```
 
-假设现有权限只有`Select`，也就是`flag`是`0001`。执行以上代码，`flag = 0001 | 0100`，也就是`0101`，便拥有了`Select`和`Update`两项权限。
+假设现有权限只有 `Select` ，也就是 `flag` 是`0001` 。执行以上代码，`flag = 0001 | 0100`，也就是 `0101`，便拥有了 `Select` 和 `Update` 两项权限。
 
 添加`Insert`、`Update`、`Delete`三项权限：
 
@@ -175,9 +175,9 @@ permission.enable(NewPermission.ALLOW_INSERT
 
 ```
 
-`NewPermission.ALLOW_INSERT | NewPermission.ALLOW_UPDATE | NewPermission.ALLOW_DELETE`运算结果是`1110`。假设现有权限只有`Select`，也就是`flag`是`0001`。`flag = 0001 | 1110，也就是1111`，便拥有了这四项权限，相当于添加了三项权限。
+`NewPermission.ALLOW_INSERT | NewPermission.ALLOW_UPDATE | NewPermission.ALLOW_DELETE` 运算结果是 `1110` 。假设现有权限只有 `Select` ，也就是 `flag` 是 `0001`。`flag = 0001 | 1110，也就是1111` ，便拥有了这四项权限，相当于添加了三项权限。
 
-上面的设置如果使用最初的`Permission`类的话，就需要下面三行代码：
+上面的设置如果使用最初的 `Permission` 类的话，就需要下面三行代码：
 
 ```java
 permission.setAllowInsert(true);
@@ -185,11 +185,11 @@ permission.setAllowUpdate(true);
 permission.setAllowDelete(true);
 ```
 
-## 二者对比
+### 二者对比
 
-### 设置仅允许 Select 和 Insert 权限
+设置仅允许 Select 和 Insert 权限
 
-Permission
+
 
 ```java
 permission.setAllowSelect(true);
@@ -198,40 +198,40 @@ permission.setAllowUpdate(false);
 permission.setAllowDelete(false);
 ```
 
-NewPermission
+
 
 ```java
 permission.setPermission(NewPermission.ALLOW_SELECT | NewPermission.ALLOW_INSERT);
 ```
 
-### 判断是否允许 Select 和 Insert、Update 权限
+判断是否允许 Select 和 Insert、Update 权限
 
-`Permission`
+
 
 ```java
 if (permission.isAllowSelect() && permission.isAllowInsert() && permission.isAllowUpdate())
 ```
 
-`NewPermission`
+
 
 ```java
 if (permission. isAllow (NewPermission.ALLOW_SELECT
     | NewPermission.ALLOW_INSERT | NewPermission.ALLOW_UPDATE))
 ```
 
-### 判断是只否允许 Select 和 Insert 权限
+ 判断是只否允许 Select 和 Insert 权限
 
-`Permission`
+
 
 ```java
 if (permission.isAllowSelect() && permission.isAllowInsert()
     && !permission.isAllowUpdate() && !permission.isAllowDelete())
 ```
 
-`NewPermission`
+
 
 ```java
 if (permission. isOnlyAllow (NewPermission.ALLOW_SELECT | NewPermission.ALLOW_INSERT))
 ```
 
-二者对比可以感受到`MyPermission`位掩码方式相对于`Permission`的优势，可以节省很多代码量，位运算是底层运算，效率也非常高，而且理解起来也很简单。
+二者对比可以感受到 `MyPermission` 位掩码方式相对于 `Permission` 的优势，可以节省很多代码量，位运算是底层运算，效率也非常高，而且理解起来也很简单。
