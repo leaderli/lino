@@ -37,7 +37,8 @@ import com.sun.org.apache.xerces.internal.impl.Constants;
 public static SAXReader getSAXReader(){
     SAXReader saxReader = new SAXReader(DOMDocumentFactory.getInstance(),false);
      try {
-         saxReader.setFeature(Constants.XERCES_FEATURE_PREFIX + Constants.LOAD_EXTERNAL_DTD_FEATURE, false);  //设置不需要校验头文件
+         // saxReader.setFeature(Constants.XERCES_FEATURE_PREFIX + Constants.LOAD_EXTERNAL_DTD_FEATURE, false);  //设置不需要校验头文件
+         saxReader.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
      } catch (Exception e) {
          e.printStackTrace();
      }
