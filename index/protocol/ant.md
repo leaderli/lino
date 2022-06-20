@@ -19,3 +19,7 @@ Ant风格支持三种匹配符
 - `com/**/test.jsp`  匹配所有在com目录及其子目录下的 test.jsp 文件
 
 - `com/**/*.jsp` 匹配所有在com目录及其子目录下的 .jsp 文件
+
+## 参考文档
+
+[ant-style-path-matcherl](https://github.com/azagniotov/ant-style-path-matcher)
