@@ -2,7 +2,7 @@
 aliases: 响应式
 tags:
   - java/框架/reactor
-date updated: 2022-04-05 16:43
+date updated: 2022-06-22 01:56
 ---
 
 ## Reactive Stream 规范
@@ -18,6 +18,410 @@ JVM上的响应流规范
 4. Processor	处理者
 
 所谓的响应式编程其实就是有一个发布者出发一个事情，有一个或多个订阅者角色来响应式处理这件事，订阅者需要先订阅发布者的事件，一个发布者可以支持多个订阅者，发布者通过onSubsribe事件通知到订阅者，订阅者通过 request(n) 方法，告诉发布者自己需要多少请求（称为 [[#背压]] 或者控流），发布者根据请求通过 onNext 不停的给订阅者发送事件，直到最后出现 onError 或 onComplete 终止事件。各种 reactive 框架都要遵循这个规范，其中 [reactor](https://projectreactor.io/)  就是其中一个实现。
+
+### 自定义实现
+
+自己编写一个特别简单的，用于理解响应式规范的示例
+
+```java
+/**  
+ * 发布者  
+ */  
+public interface Publisher<T> {  
+    /**  
+     * 订阅者在发布者上进行订阅操作, 发布者在得到订阅信息后，一般会依次将向前进行订阅，  
+     * 最终达到首个节点，则会去调用{@link Subscriber#onSubscribe(Subscription)}  
+     *     * @see Subscriber#onSubscribe(Subscription)  
+     */    void subscribe(Subscriber<? super T> subscriber);  
+}
+
+
+
+  
+/**  
+ * 订阅者  
+ */  
+public interface Subscriber<T> {  
+  
+    /**  
+     * 当订阅动作发起时调用，通常情况下 onSubscribe 是通知链上的下一个节点 onSubscribe ，最终到链的尾  
+     * 部，链式调用最尾端的订阅者订阅时，将向前一个节点发送一个{@link Subscription#request()}请  
+     * 求，一直向前传递，直到数据来源的发布者接收到来自链上的数据请求，然后调用 {@link #next(Object)}，  
+     * 链上的每个节点一般依次调用 {@link #next(Object)} 最终会调用订阅者的 {@link #next(Object)}  
+     */    void onSubscribe(Subscription subscription);  
+  
+    /**  
+     * 发布者推送了一个消息  
+     */  
+    void next(T t);  
+  
+    /**  
+     * 发布者提交了一个错误事件  
+     */  
+    void onError(Throwable t);  
+  
+    /**  
+     * 发布者提交一个完成事件  
+     */  
+    void onComplete();  
+}
+
+
+  
+public interface Subscription {  
+  
+    /**  
+     * 请求数据  
+     */  
+    void request();  
+  
+    /**  
+     * 取消操作  
+     */  
+    void cancel();  
+}
+```
+
+一个定义API的接口类
+
+```java
+public interface Flux<T> extends Publisher<T> {  
+  
+    @SafeVarargs  
+    static <T> Flux<T> just(T... array) {  
+        return new FluxArray<T>(array);  
+    }  
+  
+    static FluxArray<Integer> range(int range) {  
+        Integer[] arr = new Integer[range];  
+        for (int i = 0; i < range; i++) {  
+            arr[i] = i;  
+        }  
+        return new FluxArray<>(arr);  
+    }  
+  
+  
+    default <R> Flux<R> map(Function<T, R> mapper) {  
+  
+        return new FluxMap<>(this, mapper);  
+    }  
+  
+  
+    default void subscribe(Consumer<? super T> consumer) {  
+        this.subscribe(new ConsumerSubscriber<>(consumer));  
+    }  
+}
+```
+
+一个快捷的订阅者类，仅需传递一个消费者即可
+
+```java
+class ConsumerSubscriber<T> implements Subscriber<T> {  
+  
+    private final Consumer<? super T> consumer;  
+  
+    public ConsumerSubscriber(Consumer<? super T> consumer) {  
+        this.consumer = consumer;  
+    }  
+  
+    @Override  
+    public void onSubscribe(Subscription subscription) {  
+        subscription.request();  
+    }  
+  
+    @Override  
+    public void next(T t) {  
+        consumer.accept(t);  
+    }  
+  
+  
+    @Override  
+    public void onError(Throwable t) {  
+  
+        t.printStackTrace();  
+    }  
+  
+    @Override  
+    public void onComplete() {  
+        System.out.println("onComplete");  
+  
+    }  
+}
+```
+
+```java
+class FluxArray<T> implements Flux<T> {  
+    private T[] array;  
+  
+    public FluxArray(T[] array) {  
+        this.array = array;  
+    }  
+  
+    @Override  
+    public void subscribe(Subscriber<? super T> actualSubscriber) {  
+        // 让实际的订阅者去相应订阅时的动作，对于 ConsumerSubscriber 来说 就是请求数据源，对于 MapSubscriber来说，就是去找他的订阅者  
+        actualSubscriber.onSubscribe(new ArraySubscription<>(actualSubscriber, array));  
+    }  
+}
+  
+
+  
+class ArraySubscription<T> implements Subscription {  
+  
+    private final T[] arr;  
+    private final Subscriber<? super T> actualSubscriber;  
+  
+  
+    private boolean canceled;  
+  
+    public ArraySubscription(Subscriber<? super T> actualSubscriber, T[] arr) {  
+        this.actualSubscriber = actualSubscriber;  
+        this.arr = arr;  
+    }  
+  
+    @Override  
+    public void request() {  
+        if (canceled) {  
+            return;  
+        }  
+  
+        for (T t : arr) {  
+  
+            try {  
+  
+                actualSubscriber.next(t);  
+                // 通过 onSubscribe 将 Subscription 传递给订阅者，由订阅者来调用 cancel方法从而实现提前结束循环  
+                if (canceled) {  
+                    return;  
+                }  
+            } catch (Throwable throwable) {  
+                actualSubscriber.onError(throwable);  
+                return;  
+            }  
+        }  
+  
+        actualSubscriber.onComplete();  
+  
+    }  
+  
+    @Override  
+    public void cancel() {  
+        canceled = true;  
+    }  
+}```
+
+```java
+class FluxMap<T, R> implements Flux<R> {  
+  
+    private Function<? super T, ? extends R> mapper;  
+  
+    private Flux<? extends T> prevPublisher;  
+  
+    public FluxMap(Flux<? extends T> prevPublisher, Function<T, R> mapper) {  
+        this.prevPublisher = prevPublisher;  
+        this.mapper = mapper;  
+    }  
+  
+    @Override  
+    public void subscribe(Subscriber<? super R> actualSubscriber) {  
+        // 作为一个中间节点，订阅者订阅到自己时，则需要将 mapper 函数 作为订阅者订阅到上一个 发布者  
+        prevPublisher.subscribe(new MapSubscriber<T, R>(mapper, actualSubscriber));  
+  
+    }  
+  
+}
+
+/**  
+ * 作为中间层节点，其大部分方法都是通用的，唯一需要修改的就是 next 方法的实际逻辑  
+ */  
+  
+  
+final class MapSubscriber<T, R> implements Subscriber<T>, Subscription {  
+  
+    private Function<? super T, ? extends R> mapper;  
+    private Subscriber<? super R> actualSubscriber;  
+  
+    private Subscription prevSubscription;  
+  
+    public MapSubscriber(Function<? super T, ? extends R> mapper, Subscriber<? super R> actualSubscriber) {  
+        this.mapper = mapper;  
+        this.actualSubscriber = actualSubscriber;  
+    }  
+  
+    @Override  
+    public void onSubscribe(Subscription prevSubscription) {  
+        this.prevSubscription = prevSubscription;  
+        actualSubscriber.onSubscribe(this);  
+    }  
+  
+    @Override  
+    public void next(T t) {  
+  
+        R apply = mapper.apply(t);  
+        this.actualSubscriber.next(apply);  
+    }  
+  
+  
+    @Override  
+    public void onError(Throwable t) {  
+  
+        this.actualSubscriber.onError(t);  
+    }  
+  
+    @Override  
+    public void onComplete() {  
+  
+        this.actualSubscriber.onComplete();  
+  
+    }  
+  
+    @Override  
+    public void request() {  
+        this.prevSubscription.request();  
+  
+    }  
+  
+    @Override  
+    public void cancel() {  
+        this.prevSubscription.cancel();  
+    }  
+}
+
+```
+
+测试类
+
+```java
+@Test  
+public void testArray() {  
+    boolean a = true;  
+    FluxArray<Integer> flux = Flux.range(10);  
+    flux.map(i -> i * i).subscribe((num, s) -> {  
+        System.out.println(num);  
+        if (num > 5) {  
+            s.cancel();  
+        }  
+    });  
+}
+```
+
+我们尝试将  `MapSubscriber` 一部分抽出来
+
+```java
+public abstract class MiddleSubscriber<T, R> implements Subscriber<T>, Subscription {  
+    protected final Subscriber<? super R> actualSubscriber;  
+    private Subscription prevSubscription;  
+  
+    public MiddleSubscriber(Subscriber<? super R> actualSubscriber) {  
+        this.actualSubscriber = actualSubscriber;  
+    }  
+  
+    @Override  
+    public void onSubscribe(Subscription prevSubscription) {  
+        this.prevSubscription = prevSubscription;  
+        actualSubscriber.onSubscribe(this);  
+    }  
+  
+    @Override  
+    public void onError(Throwable t) {  
+  
+        this.actualSubscriber.onError(t);  
+    }  
+  
+    @Override  
+    public void onComplete() {  
+  
+        this.actualSubscriber.onComplete();  
+  
+    }  
+  
+    @Override  
+    public void request() {  
+        this.prevSubscription.request();  
+  
+    }  
+  
+    @Override  
+    public void cancel() {  
+        this.prevSubscription.cancel();  
+    }  
+}
+```
+
+```java
+final class LogSubscriber<T> extends MiddleSubscriber<T, T> {  
+  
+  
+    public LogSubscriber(Subscriber<? super T> actualSubscriber) {  
+        super(actualSubscriber);  
+    }  
+  
+    @Override  
+    public void next(T t) {  
+  
+        System.out.println("li:" + t);  
+        this.actualSubscriber.next(t);  
+    }  
+}
+```
+
+```java
+
+class FluxLog<T> implements Flux<T> {  
+  
+  
+    private Publisher<? extends T> prevPublisher;  
+  
+    public FluxLog(Publisher<? extends T> prevPublisher) {  
+        this.prevPublisher = prevPublisher;  
+    }  
+  
+    @Override  
+    public void subscribe(Subscriber<? super T> actualSubscriber) {  
+        prevPublisher.subscribe(new LogSubscriber<T>(actualSubscriber));  
+  
+    }  
+  
+}
+```
+
+在 Flux中添加 API
+
+```java
+default Flux<T> log() {  
+  
+    return new FluxLog<>(this);  
+}
+```
+
+测试
+
+```java
+@Test  
+public void testArray() {  
+    boolean a = true;  
+    FluxArray<Integer> flux = Flux.range(10);  
+    flux.map(i -> i * i).log().subscribe((num, s) -> {  
+        System.out.println(num);  
+        if (num > 5) {  
+            s.cancel();  
+        }  
+    });  
+}
+```
+
+输出内容如下:
+
+```log
+li:0
+0
+li:1
+1
+li:4
+4
+li:9
+9
+```
 
 ## 使用
 
@@ -418,4 +822,5 @@ public final void onNext(T x) {
     ```
 
 ## 参考文档
+
 [Project Reactor 深度解析 - 2. 响应式编程调试，FLow的概念设计以及实现 - 知乎](https://zhuanlan.zhihu.com/p/166401562)
