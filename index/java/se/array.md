@@ -166,6 +166,21 @@ public class com/leaderli/demo/TheClassTest {
 }
 ```
 
+
+##  带泛型的数组元素
+
+当申明一个带泛型的数组元素时，其实际存储内容并不会对元素泛型进行校验
+
+```java
+String[] ss =  new String[1];  
+Object[] oo = ss;  
+oo[0] = 22; //此处会直接报错
+
+
+Lino<String>[] linos = new Lino[]{Lino.of("1")};  
+Lino[] hello = linos;  
+hello[0] = Lino.of(1); // 这里不会报错
+```
 ## 数组常用API
 
 ### 数组的class

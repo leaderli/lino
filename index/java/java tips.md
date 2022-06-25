@@ -303,3 +303,14 @@ int[256]:		1040
 int[2][128]:	1080
 int[128][2]:	3600
 ```
+
+
+### 两个参数的 lambda
+
+```java
+@FunctionalInterface  
+public interface BiConsumer<T, U> {  
+  
+  void accept(T t, U u);
+}
+```

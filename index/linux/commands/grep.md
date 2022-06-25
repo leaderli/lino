@@ -53,4 +53,8 @@ b1234aaeef
 
 ~$ grep -P '\d{6}' 1.log
 a123456bcd
+
+
+# 查找含有tab的行
+~$ grep -P '\t' 1.log 
 ```
