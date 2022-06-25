@@ -47,6 +47,17 @@ group by
     thecode
 ```
 
+##  insert使用默认值
+
+使用关键字 `DEFAULT`
+
+```sql
+insert into table1 (field1, field3)  values (5,10)
+
+insert into table1 values (5, DEFAULT, 10, DEFAULT)
+
+```
+
 ## 常用 SQL 1
 
 建表语句
