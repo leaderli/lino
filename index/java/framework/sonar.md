@@ -31,3 +31,7 @@ tags:
 	# 默认大小为512m
 	sonar.ce.javaOpts=Xmx2048m -Xms512m -XX:+HeadDumpOnOutOfMemeroyError
 	```
+
+
+
+

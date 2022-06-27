@@ -1,5 +1,5 @@
 ---
-aliases: sonar
+aliases: spoon
 tags:
   - java/框架/spoon
 date updated: 2022-04-05 23:14
