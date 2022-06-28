@@ -2,32 +2,53 @@
 aliases: 泛型
 tags:
   - java/se/泛型
-date updated: 2022-06-27 02:04
+date updated: 2022-06-29 04:50
 ---
 
 ## 泛型 通配符
 
 ```ad-li
 不管是extends或是super，只能使用在变量声明上，实际赋值的时候，一定是指定具体实现类的，这就是extend和super的方法会有所限制的原因
+
+
+### PECS
+
+Remember _PECS_: **"Producer Extends, Consumer Super"**.
 ```
 
 ### `<? extends T>`
 
 ```java
-List<Apple> apples = new ArrayList<Apple>();
-List<? extends Fruit> fruits = apples;
+List<? extends Number> foo1 = new ArrayList<Number>();  // Number "extends" Number (in this context)
+List<? extends Number> foo2 = new ArrayList<Integer>(); // Integer extends Number
+List<? extends Number> foo3 = new ArrayList<Double>();  // Double extends Number
 ```
 
-那么对于 `<? extends T>` 来说，具体的实现类的泛型A只是变量声明的泛型T的子类，如果以T进行插入时，是无法保证插入的class类型，一定是A，所以extends禁用插入动作。这个时候，从fruits取出的，其实是Apple泛型的元素，因此一定是Fruit类，但如果像fruits插入一个Banana泛型的元素，则与实际的泛型类Apple冲突，所以禁止使用fruits这个变量去进行插入动作
+#### 读
+
+`<? extends Number>` 其具体实现类的泛型，Number，Integer，Double 都是 Number 的子类，其集合中的元素都为其声明的泛型，因此当我们从集合中取值，一定也是其声明的泛型，是可以向上转型为 Number 类型的。
+
+#### 写
+
+`<? extends Number>` 其具体实现类的泛型，Number，Integer，Double 都是 Number 的子类，如果以 Number 进行插入时，例如在 foo2 插入一个 Double 泛型的元素，则与实际的泛型 Integer 冲突，所以 `extends` 禁用插入动作。
 
 ### `<? super T>`
 
 ```java
-List<Fruit> fruits = new ArrayList<Fruit>();
-List<? super Apple> apples = fruits;
+List<? super Integer> foo1 = new ArrayList<Integer>();  // Integer is a "superclass" of Integer (in this context)
+List<? super Integer> foo2 = new ArrayList<Number>();   // Number is a superclass of Integer
+List<? super Integer> foo3 = new ArrayList<Object>();   // Object is a superclass of Integer
 ```
 
-对于 `<? super T>` 来说，具体的实现类的泛型A一定是变量声明的泛型T的父类，如果以T类型进入取值操作，无法保证取出的值一定是T类型，因为A一定是T的父类，所以插入的所有实例一定也是A的多态。这个时候，若apples中插入一个Apple泛型的元素，因为Apple是继承自Fruit泛型的子类，所以是可以插入到fruits中的，但是如果从apples取一个元素，因为fruits中可能有Banana泛型的元素，其余apples的实际泛型是冲突的，所以禁止使用取值操作。
+#### 读
+
+`<? super Integer>` 其具体实现类的泛型，Integer，Number，Object 都是 Integer 的父类，当我从集合中取值时，只能保证其值是具体声明的泛型，而 Number，Object 是不能保证可以向下转型为 Integer 的。所以 `super` 禁止读取操作
+
+#### 写
+
+`<? super Integer>` 其具体实现类的泛型，Integer，Number，Object 都是 Integer 的父类，当我以  Interger  进行插入时，都是可以向上转型为  Integer，Number，Object 的
+
+具体解释参考 [difference-between-super-t-and-extends-t-in-java](https://stackoverflow.com/questions/4343202/difference-between-super-t-and-extends-t-in-java/4343547#4343547)
 
 ### 方法参数的泛型通配符
 
