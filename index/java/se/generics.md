@@ -1,9 +1,9 @@
 ---
-aliases:  泛型
+aliases: 泛型
 tags:
-- java/se/泛型
+  - java/se/泛型
+date updated: 2022-06-27 02:04
 ---
-
 
 ## 泛型 通配符
 
@@ -11,14 +11,17 @@ tags:
 不管是extends或是super，只能使用在变量声明上，实际赋值的时候，一定是指定具体实现类的，这就是extend和super的方法会有所限制的原因
 ```
 
-###  `<? extends T>` 
+### `<? extends T>`
+
 ```java
 List<Apple> apples = new ArrayList<Apple>();
 List<? extends Fruit> fruits = apples;
 ```
 
 那么对于 `<? extends T>` 来说，具体的实现类的泛型A只是变量声明的泛型T的子类，如果以T进行插入时，是无法保证插入的class类型，一定是A，所以extends禁用插入动作。这个时候，从fruits取出的，其实是Apple泛型的元素，因此一定是Fruit类，但如果像fruits插入一个Banana泛型的元素，则与实际的泛型类Apple冲突，所以禁止使用fruits这个变量去进行插入动作
-### `<? super T>` 
+
+### `<? super T>`
+
 ```java
 List<Fruit> fruits = new ArrayList<Fruit>();
 List<? super Apple> apples = fruits;
@@ -38,11 +41,12 @@ R apply(T t);
 ```
 
 当传递mapper时，我们需要指定具体的泛型
--  apply 方法内部，当我调用 T 类型的父类方法是可以接受的，我实际传递 mapper 时，可以直接使用泛型为 T 的父类的形参。
--  apply 方法的返回值，我返回 R 类型的子类也是可以接受的，所以传递 mapper 时也可以直接使用泛型为 R 的子类的返回类型
 
+- apply 方法内部，当我调用 T 类型的父类方法是可以接受的，我实际传递 mapper 时，可以直接使用泛型为 T 的父类的形参。
+- apply 方法的返回值，我返回 R 类型的子类也是可以接受的，所以传递 mapper 时也可以直接使用泛型为 R 的子类的返回类型
 
 ## 泛型的应用
+
 ```java
 class Node<T extends Node<? extends Node<?>>> {
 
@@ -75,7 +79,9 @@ class C2 extends B<Node1,RootNode>{
 
 }
 ```
-##  当使用通配符不能直接使用时，可使用强转来实现
+
+## 当使用通配符不能直接使用时，可使用强转来实现
+
 ```java
    @SuppressWarnings("unchecked")
     public <T extends EventObject> List<ILiEventListener<T>> get(Class<T> cls) {
@@ -85,7 +91,9 @@ class C2 extends B<Node1,RootNode>{
         return (List<ILiEventListener<T>>) iLiEventListeners;
     }
 ```
+
 ## 获取泛型的类型
+
 可以通过增加一个返回class的泛型方法交由子类去显式声明。
 
 ```java
@@ -96,7 +104,9 @@ public interface ILiEventListener<T> {
     Class<T> listenType();
 }
 ```
+
 ## 泛型在map中的一些使用
+
 ```java
 //可以保证存储在cache中的key和value一定是同一个泛型的
 Map<Class<?>,Object> cache = new HashMap<>();
@@ -111,9 +121,11 @@ public <T>T get(Class<T> type){
 ```
 
 ## 创建泛型数组
+
 ```java
 java.lang.reflect.Array.newInstance(Class<T> componentType, int length)
 ```
+
 ## 获取类声明的泛型
 
 当继承一个泛型类时指定了具体的泛型，通过反射获取该泛型的具体类型
@@ -129,8 +141,23 @@ paramterizedType.getActualTypeArguments()
 ```java
 ParameterizedTypeImpl[] types = (ParameterizedTypeImpl[]) MyNode.class.getGenericInterfaces();
 ```
-##  强转异常捕获
+
+## 获取泛型声明的名字
+
+```java
+LiPrintUtil.print((Object[]) Consumer.class.getTypeParameters());  
+LiPrintUtil.print((Object[]) Function.class.getTypeParameters());
+
+// T
+// T R
+```
+
+`getTypeParameters` 返回的是一个 TypeVariable 类型的数组，TypeVariable 继承自 Type，它不是实际的 class 类型
+
+## 强转异常捕获
+
 `java`运行时无法捕获`ClassCastException`的解决办法
+
 ```java
  private static <T> T get(Object o, T def) {
    try {
@@ -143,8 +170,8 @@ ParameterizedTypeImpl[] types = (ParameterizedTypeImpl[]) MyNode.class.getGeneri
 
 通过查看字节码就可以了解,直接  `return (T) value` 是在方法外检测 `cast`
 
-
 ## 任意泛型
+
 当一个类不包含任何泛型的成员变量时，其可以安全的转换为任意泛型
 
 ```java
@@ -197,7 +224,7 @@ Node node = new MyNode(5);
 n.setData("Hello");
 ```
 
-当子类重写了 `setData` 方法时其参数为 `Integer` ，我们的子类中实际是没有  `setData(Object.class)` 的方法的， `java` 编译器在进行类型擦除的时候会自动生成一个 `synthetic` 方法，也叫 `bridge` 方法,我们通过生成的字节码可以看到实际 `bridge` 方法，首先校验类型是否为 `Integer` ，然后在调用 `setData(Integer.class)` 。因此，上述代码会抛出 `ClassCastException` 
+当子类重写了 `setData` 方法时其参数为 `Integer` ，我们的子类中实际是没有  `setData(Object.class)` 的方法的， `java` 编译器在进行类型擦除的时候会自动生成一个 `synthetic` 方法，也叫 `bridge` 方法,我们通过生成的字节码可以看到实际 `bridge` 方法，首先校验类型是否为 `Integer` ，然后在调用 `setData(Integer.class)` 。因此，上述代码会抛出 `ClassCastException`
 
 ```java
 //通过javap -c 的方法可以显示桥接方法
@@ -246,7 +273,6 @@ public void setData(java.lang.Object);
         integer                        synthetic
 ```
 
-
 ### Spring 注入桥接子类注意
 
 ```java
@@ -270,4 +296,3 @@ List<Generic<Object, ? extends Collection>> generics; //G1 G2 G3
 @Autowired
 List<Generic<Object, Collection>> generics; //G1 G2
 ```
-
