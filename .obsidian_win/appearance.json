@@ -9,9 +9,10 @@
     "iconfont",
     "image-grid",
     "obsidian_orange",
-    "li",
     "supercharged-links-gen"
   ],
-  "cssTheme": "Things",
-  "baseFontSizeAction": true
+  "cssTheme": "Blue Topaz",
+  "baseFontSizeAction": true,
+  "interfaceFontFamily": "Consolas,Sarasa Mono HC,Arial,Sarasa Mono TC",
+  "textFontFamily": "Sarasa Mono TC"
 }

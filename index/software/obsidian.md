@@ -16,7 +16,7 @@ date updated: 2022-04-14 10:31
 
 ## 快捷键
 
-![[cheatsheet_快捷键#obsidian]]
+![[cheatsheet#obsidian]]
 
 ## 搜索
 

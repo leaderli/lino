@@ -112,7 +112,7 @@ javassist是一个生成或修改java字节码的框架，他相对与[[ASM]]来
 
 ### CtClass
 
-java[[java字节码|字节码]]以二进制的形式存储在class文件中，在javassist中，类`CtClass`表示class的字节码对象，一个CtClass对象可以处理一个class字节码对象。
+java[[bytecode|字节码]]以二进制的形式存储在class文件中，在javassist中，类`CtClass`表示class的字节码对象，一个CtClass对象可以处理一个class字节码对象。
 
 ```java
 ClassPool pool = ClassPool.getDefault();
