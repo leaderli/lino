@@ -1,0 +1,23 @@
+{
+  "searchFromHeaders": false,
+  "searchByLinks": false,
+  "searchDelayMilliSeconds": 0,
+  "showDirectory": true,
+  "showFullPathOfDirectory": false,
+  "showAliasesOnTop": true,
+  "showExistingFilesOnly": false,
+  "maxNumberOfSuggestions": 125,
+  "normalizeAccentsAndDiacritics": false,
+  "hideGutterIcons": false,
+  "userAltInsteadOfModForQuickResultSelection": false,
+  "ignoreNormalPathPrefixPatterns": "",
+  "ignoreRecentPathPrefixPatterns": "",
+  "ignoreFilenameRecentPathPrefixPatterns": "",
+  "ignoreBackLinkPathPrefixPatterns": "",
+  "headerSearchKeyBindArrowUpDown": "navigate",
+  "headerSearchKeyBindTab": "move to next/previous hit",
+  "headerSearchKeyBindVim": "navigate",
+  "headerSearchKeyBindEmacs": "navigate",
+  "ignoreMoveFileToAnotherFolderPrefixPatterns": "",
+  "showLogAboutPerformanceInConsole": false
+}

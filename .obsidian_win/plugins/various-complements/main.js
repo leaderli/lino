@@ -2090,11 +2090,11 @@ function createTokenizer(strategy, app) {
             case "japanese":
                 return new JapaneseTokenizer();
             case "chinese":
-                const hasCedict = yield app.vault.adapter.exists("./cedict_ts.u8");
+                const hasCedict = yield app.vault.adapter.exists("./.cedict_ts.u8");
                 if (!hasCedict) {
-                    return Promise.reject(new Error("cedict_ts.U8 doesn't exist in your vault root."));
+                    return Promise.reject(new Error(".cedict_ts.u8 doesn't exist in your vault root."));
                 }
-                const dict = yield app.vault.adapter.read("./cedict_ts.u8");
+                const dict = yield app.vault.adapter.read("./.cedict_ts.u8");
                 return ChineseTokenizer.create(dict);
         }
     });
@@ -3925,7 +3925,7 @@ class VariousComplementsSettingTab extends obsidian.PluginSettingTab {
                 cls: "various-complements__settings__warning",
             });
             el.createSpan({
-                text: "⚠ You need to download `cedict_ts.u8` from",
+                text: "⚠ You need to download `.cedict_ts.u8` from",
             });
             el.createEl("a", {
                 href: "https://www.mdbg.net/chinese/dictionary?page=cc-cedict",

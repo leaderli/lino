@@ -187,6 +187,11 @@ title:
 
 查找未被引用的笔记，文件，可用来删除无用的图片等
 
+###   obsidian-vim-im-switch-plugin
+
+vim 模式自动切换输入法的插件
+
+[GitHub - yuanotes/obsidian-vim-im-switch-plugin](https://github.com/yuanotes/obsidian-vim-im-switch-plugin)
 ### 自定义插件
 
 参考官方插件和其他插件编写的
