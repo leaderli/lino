@@ -33,7 +33,6 @@
   ],
   "app:open-help": [],
   "app:open-settings": [],
-  "switcher:open": [],
   "editor:save-file": [],
   "editor:open-search-replace": [],
   "editor:toggle-bold": [],
@@ -180,5 +179,13 @@
   "obsidian-outliner:move-list-item-down": [],
   "obsidian-outliner:move-list-item-up": [],
   "obsidian-outliner:fold": [],
-  "editor:toggle-comments": []
+  "editor:toggle-comments": [],
+  "switcher:open": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "O"
+    }
+  ]
 }
