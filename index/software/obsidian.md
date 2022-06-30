@@ -1,7 +1,7 @@
 ---
 tags:
   - 软件/obsidian
-date updated: 2022-04-14 10:31
+date updated: 2022-07-01 06:10
 ---
 
 ## 常用设置
@@ -187,11 +187,16 @@ title:
 
 查找未被引用的笔记，文件，可用来删除无用的图片等
 
-###   obsidian-vim-im-switch-plugin
+### obsidian-vim-im-switch-plugin
 
 vim 模式自动切换输入法的插件
 
 [GitHub - yuanotes/obsidian-vim-im-switch-plugin](https://github.com/yuanotes/obsidian-vim-im-switch-plugin)
+
+### various-complements
+
+自动补全的插件
+
 ### 自定义插件
 
 参考官方插件和其他插件编写的
