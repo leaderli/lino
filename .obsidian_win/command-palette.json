@@ -1,6 +1,7 @@
 {
   "pinned": [
     "obsidian-git:push",
-    "obsidian-git:pull"
+    "obsidian-git:pull",
+    "app:open-settings"
   ]
 }
