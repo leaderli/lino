@@ -32,7 +32,7 @@ date updated: 2022-05-23 16:53
 
 ### [[gson]]
 
-### [[javaassist]]
+### [[javassist]]
 
 ### [[javaparser]]
 

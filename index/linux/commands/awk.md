@@ -6,6 +6,7 @@ date updated: 2022-04-07 14:34
 
 [[perl#类似awk的用法]]
 
+
 awk的基本语法为
 
 > pattern { action }

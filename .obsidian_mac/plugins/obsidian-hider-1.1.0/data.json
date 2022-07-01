@@ -1,9 +1,9 @@
 {
   "frameless": true,
   "hideRibbon": true,
-  "hideStatus": false,
+  "hideStatus": true,
   "hideScroll": false,
-  "hideTooltips": false,
+  "hideTooltips": true,
   "hideSearchSuggestions": false,
   "hideInstructions": true,
   "hideMeta": true,

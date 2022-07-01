@@ -1,7 +1,7 @@
 {
-  "defaultIM": "",
-  "obtainCmd": "",
-  "switchCmd": "",
+  "defaultIM": "com.apple.keylayout.ABC",
+  "obtainCmd": "/usr/local/bin/im-select",
+  "switchCmd": "/usr/local/bin/im-select {im}",
   "windowsDefaultIM": "1033",
   "windowsObtainCmd": "D:\\ProgramFiles\\bin\\im-select.exe",
   "windowsSwitchCmd": "D:\\ProgramFiles\\bin\\im-select.exe {im}"
