@@ -47,7 +47,7 @@ https://pdai.tech/
 
 ### `Spring`的`init-method`，`destroy-metdho`的实现方式
 
-根据[[spring-initMethod执行过程 ]]的分析，我们可以知道`Spring`在扫描`bean`的配置信息时，将
+根据 [[initMethod|spring-initMethod]] 的分析，我们可以知道`Spring`在扫描`bean`的配置信息时，将
 `init-method`，`destroy-metdhod`的信息存储在`BeanDefinition`中，在`bean`的生命周期的一开始即实例化`bean`，以及对`bean`的属性进行初始化赋值后，会查找当前`BeanDefinition`,是否有`init-method`方法，有则通过反射去执行。在`bean`的生命周期的最后，会查找当前`BeanDefinition`,是否有`destroy-metdhod`方法，有则通过反射去执行。
 
 [[v4.0-JavaGuide面试突击版.pdf]]

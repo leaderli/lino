@@ -7,6 +7,7 @@ date updated: 2022-04-07 14:43
 
 ### linux上查看java安装目录
 
+
 ```shell
 han@ubuntu:/etc$ whereis java
 java: /usr/bin/java /usr/share/java /usr/lib/jvm/java-8-openjdk-amd64/bin/java /usr/share/man/man1/java.1.gz
@@ -18,11 +19,15 @@ lrwxrwxrwx 1 root root 46 4月   2 15:54 /etc/alternatives/java -> /usr/lib/jvm/
 
 ### javap
 
+
+
+
 `javap [option] class`
 
 - `- v`  输出堆栈大小、各方法的 locals 及 args 数,以及class文件的 [[major_version|编译版本]]
 
 例如
+
 
 ```java
 public class Hello {

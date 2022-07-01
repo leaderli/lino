@@ -33,7 +33,6 @@
   ],
   "app:open-help": [],
   "app:open-settings": [],
-  "switcher:open": [],
   "editor:save-file": [],
   "editor:open-search-replace": [],
   "editor:toggle-bold": [],
@@ -173,6 +172,41 @@
         "Alt"
       ],
       "key": "2"
+    }
+  ],
+  "obsidian-auto-link-title:enhance-url-with-title": [],
+  "obsidian-outliner:unfold": [],
+  "obsidian-outliner:move-list-item-down": [],
+  "obsidian-outliner:move-list-item-up": [],
+  "obsidian-outliner:fold": [],
+  "editor:toggle-comments": [],
+  "switcher:open": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "O"
+    }
+  ],
+  "obsidian-another-quick-switcher:filename-recent-search": [],
+  "obsidian-another-quick-switcher:backlink-search": [],
+  "obsidian-another-quick-switcher:move": [],
+  "obsidian-another-quick-switcher:normal-search": [],
+  "obsidian-another-quick-switcher:recent-search": [],
+  "obsidian-another-quick-switcher:recommended-recent-search": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "O"
+    }
+  ],
+  "omnisearch:show-modal": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "A"
     }
   ]
 }

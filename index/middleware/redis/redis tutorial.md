@@ -33,6 +33,8 @@ redis-server redis.conf
 
 **_可通过查看 redis 日志来查看启动过程或者运行过程中的各种问题_**
 
+
+
 日志开启需要在 `redis.conf` 配置
 
 ```conf
