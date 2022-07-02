@@ -10,7 +10,7 @@
   "disableSuggestionsDuringImeOn": false,
   "insertAfterCompletion": false,
   "firstCharactersDisableSuggestions": ":/^",
-  "showMatchStrategy": true,
+  "showMatchStrategy": false,
   "showComplementAutomatically": true,
   "showIndexingStatus": true,
   "descriptionOnSuggestion": "Short",
@@ -96,6 +96,30 @@
         "internalLink": {
           "count": 1,
           "lastUpdated": 1656623262877
+        }
+      }
+    },
+    "systemctl": {
+      "systemctl": {
+        "currentVault": {
+          "count": 1,
+          "lastUpdated": 1656627503334
+        }
+      }
+    },
+    "aaaaa啊啊aaa啊啊啊啊啊啊啊": {
+      "aaaaa啊啊aaa啊啊啊啊啊啊啊": {
+        "currentVault": {
+          "count": 1,
+          "lastUpdated": 1656627674322
+        }
+      }
+    },
+    "参考文档\r": {
+      "参考文档\r": {
+        "currentVault": {
+          "count": 1,
+          "lastUpdated": 1656693658943
         }
       }
     }

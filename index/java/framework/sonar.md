@@ -35,3 +35,39 @@ tags:
 
 
 
+
+## maven集成
+
+
+项目中配置
+
+```xml
+<build>
+
+    <plugins>
+      <plugin>
+        <groupId>org.sonarsource.scanner.maven</groupId>
+        <artifactId>sonar-maven-plugin</artifactId>
+        <version>3.7.0.1746</version>
+      </plugin>
+    </plugins>
+
+</build>
+```
+
+默认情况下会连接到  `localhost:9000` 的 sonarqube 服务器，可通过修改 `setting.xml` 修改sonarqube 服务器
+
+```xml
+ <profile>
+            <id>sonar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <!-- Optional URL to server. Default value is http://localhost:9000 -->
+                <sonar.host.url>
+                  http://myserver:9000
+                </sonar.host.url>
+            </properties>
+</profile>
+```

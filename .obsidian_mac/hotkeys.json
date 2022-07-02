@@ -38,14 +38,6 @@
   "editor:open-search-replace": [],
   "editor:toggle-bold": [],
   "editor:toggle-checklist-status": [],
-  "markdown:toggle-preview": [
-    {
-      "modifiers": [
-        "Alt"
-      ],
-      "key": "R"
-    }
-  ],
   "editor:toggle-italics": [],
   "editor:unfold-all": [
     {
@@ -111,40 +103,8 @@
       "key": "B"
     }
   ],
-  "darlal-switcher-plus:switcher-plus:open": [
-    {
-      "modifiers": [
-        "Alt"
-      ],
-      "key": "O"
-    }
-  ],
-  "command-palette:open": [
-    {
-      "modifiers": [
-        "Alt"
-      ],
-      "key": "P"
-    }
-  ],
   "supercharged-links-obsidian:field_options": [],
   "supercharged-links-obsidian:fileClassAttr_options": [],
-  "editor:toggle-source": [
-    {
-      "modifiers": [
-        "Alt"
-      ],
-      "key": "E"
-    }
-  ],
-  "editor:open-search": [
-    {
-      "modifiers": [
-        "Alt"
-      ],
-      "key": "F"
-    }
-  ],
   "graph:open-local": [
     {
       "modifiers": [
@@ -167,6 +127,22 @@
         "Alt"
       ],
       "key": "2"
+    }
+  ],
+  "editor:toggle-source": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "R"
+    }
+  ],
+  "darlal-switcher-plus:switcher-plus:open": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "O"
     }
   ]
 }
