@@ -4,6 +4,11 @@ tags:
 date updated: 2022-03-28 15:41
 ---
 
+### 如何DEBUG插件
+1. 安装 [[eclipse-plugin#反编译插件]]
+2. 在 `plugin.xml` 文件中 的 `Dependencies` 中 Add 需要添加需要进行断点的依赖
+3. 找到需要断点的类，添加上断点
+
 ### 打开文件
 
 ```java

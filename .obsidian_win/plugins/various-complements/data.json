@@ -122,6 +122,22 @@
           "lastUpdated": 1656693658943
         }
       }
+    },
+    "plugin": {
+      "plugin": {
+        "currentVault": {
+          "count": 1,
+          "lastUpdated": 1656831999529
+        }
+      }
+    },
+    "Dependencies": {
+      "Dependencies": {
+        "currentVault": {
+          "count": 2,
+          "lastUpdated": 1656832067306
+        }
+      }
     }
   }
 }
