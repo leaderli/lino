@@ -146,6 +146,22 @@
           "lastUpdated": 1656843787689
         }
       }
+    },
+    "operation": {
+      "operation": {
+        "currentVault": {
+          "count": 1,
+          "lastUpdated": 1656878147631
+        }
+      }
+    },
+    "participants": {
+      "participants": {
+        "currentVault": {
+          "count": 2,
+          "lastUpdated": 1656884338190
+        }
+      }
     }
   }
 }
