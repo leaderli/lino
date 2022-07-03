@@ -259,3 +259,25 @@ String log4jConfPathBase = Platform
 String log4jConfPath = log4jConfPathBase + "/log4j.properties";
 PropertyConfigurator.configure(log4jConfPath);
 ```
+
+
+```properties
+log4j.debug=true
+
+# For the general syntax of property based configuration files see the
+# documentation of org.apache.log4j.PropertyConfigurator.
+log4j.rootLogger=debug, console
+
+log4j.logger.com.avaya.sce=debug, console
+log4j.additivity.com.avaya.sce=false
+
+
+# Appender console is set to be a ConsoleAppender which outputs to System.out.
+log4j.appender.console=org.apache.log4j.ConsoleAppender
+log4j.appender.console.layout=org.apache.log4j.PatternLayout
+# 可以直接点击到源码的打印格式
+log4j.appender.console.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %-5p %c.%M(%c{1}.java:%L) - %m%n
+
+
+
+```
