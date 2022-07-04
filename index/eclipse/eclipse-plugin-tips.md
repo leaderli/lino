@@ -295,6 +295,18 @@ eclipse 插件 依赖其他插件时，可以引入其源码包
 
 当找不到相关插件时，需要安装
 
-| extension | plugin |
-| --------- | ------ |
-| `org.eclipse.gef`          |    `GEF (MVC) SDK`     |
+| extension         | plugin          | site | 
+| ----------------- | --------------- | ---- |
+| `org.eclipse.gef` | `GEF (MVC) SDK` |      `2020-06 - http://download.eclipse.org/releases/2020-06`|
+
+
+
+### 常见错误
+
+
+`plugin.xml` 中配置了 `Bundle-ActivationPolicy: lazy` ，会影响 引入 `*.source.jar` ，造成无法启动插件 
+
+```log
+org.osgi.framework.BundleException: Could not resolve module: io.leaderli.visual.editor [491]
+  Unresolved requirement: Require-Bundle: org.eclipse.ltk.core.refactoring.source; 
+```
