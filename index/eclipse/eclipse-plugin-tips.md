@@ -4,6 +4,11 @@ tags:
 date updated: 2022-03-28 15:41
 ---
 
+### 如何DEBUG插件
+1. 安装 [[eclipse-plugin#反编译插件]]
+2. 在 `plugin.xml` 文件中 的 `Dependencies` 中 Add 需要添加需要进行断点的依赖
+3. 找到需要断点的类，添加上断点
+
 ### 打开文件
 
 ```java
@@ -253,4 +258,26 @@ String log4jConfPathBase = Platform
 						.length() - 1);
 String log4jConfPath = log4jConfPathBase + "/log4j.properties";
 PropertyConfigurator.configure(log4jConfPath);
+```
+
+
+```properties
+log4j.debug=true
+
+# For the general syntax of property based configuration files see the
+# documentation of org.apache.log4j.PropertyConfigurator.
+log4j.rootLogger=debug, console
+
+log4j.logger.com.avaya.sce=debug, console
+log4j.additivity.com.avaya.sce=false
+
+
+# Appender console is set to be a ConsoleAppender which outputs to System.out.
+log4j.appender.console=org.apache.log4j.ConsoleAppender
+log4j.appender.console.layout=org.apache.log4j.PatternLayout
+# 可以直接点击到源码的打印格式
+log4j.appender.console.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %-5p %c.%M(%c{1}.java:%L) - %m%n
+
+
+
 ```
