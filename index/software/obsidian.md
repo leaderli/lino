@@ -31,6 +31,22 @@ date updated: 2022-07-01 06:10
 [file](file:///D:\download\obsidian-kanban-1.0.21.zip)
 ```
 
+
+
+## 图片布局
+
+
+```markdown
+![[Pasted image 20220704211640.png]]
+![[Pasted image 20220704211640.png|100]]
+![[Pasted image 20220704211640.png|left|100]]
+![[Pasted image 20220704211640.png|right|100]]
+```
+
+![[Pasted image 20220704211640.png]]
+![[Pasted image 20220704211640.png|100]]
+![[Pasted image 20220704211640.png|left|100]]
+![[Pasted image 20220704211640.png|right|100]]
 ## 代办
 
 可点击完成

@@ -281,3 +281,20 @@ log4j.appender.console.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %-5p %c.
 
 
 ```
+
+
+### 源码对应的插件
+
+
+eclipse 插件 依赖其他插件时，可以引入其源码包
+
+例如 
+
+![[Pasted image 20220704211213.png|left|400]]
+
+
+当找不到相关插件时，需要安装
+
+| extension | plugin |
+| --------- | ------ |
+| `org.eclipse.gef`          |    `GEF (MVC) SDK`     |
