@@ -51,6 +51,14 @@ title:设置选中变量高亮
 Windows-> Preferences->Java->Editor->Mark Occurrences
 ```
 
+```ad-info
+title: 给 jar 包 指定源码
+
+右键选择 properties 
+
+![[Pasted image 20220705201149.png|left|400]]
+```
+
 ## idea
 
 mac 上使用 command 键替代 alt
