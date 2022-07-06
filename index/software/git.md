@@ -515,6 +515,7 @@ git merge --no-ff -m 'msg' <branch> --strategy-option=theirs
 ```shell
 git init
 git remote add origin <uri>
+git remote set-url origin <uri>
 git remote rename origin old-origin #重命名
 git add .
 git commit -m 'init '
