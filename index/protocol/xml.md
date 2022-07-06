@@ -4,7 +4,7 @@ tags:
   - protocol/xml
   - java
   - linux
-date updated: 2022-07-07 06:35
+date updated: 2022-07-07 06:37
 ---
 
 ## dom4j
@@ -159,6 +159,7 @@ doc.getAttribute("id"); //不存在时值为空字符串
 
 1. 标签和属性的值不能以 `$` 开头
 2. 标签和属性的值不能以 `@` 开头
+3. 标签和属性的值不能以 `#` 开头
 
 ### 注意事项
 
