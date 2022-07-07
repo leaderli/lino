@@ -4,7 +4,7 @@ tags:
   - protocol/xml
   - java
   - linux
-date updated: 2022-03-28 15:12
+date updated: 2022-07-07 06:43
 ---
 
 ## dom4j
@@ -154,6 +154,15 @@ doc.attributeValue("id"); //不存在时值为null
 doc.attributeValue("id","1"); //不存在时使用默认值1
 doc.getAttribute("id"); //不存在时值为空字符串
 ```
+
+### 命名规范
+
+XML 元素必须遵循以下命名规则：
+
+- 名称可以包含字母、数字、下划线以及其他的字符
+- 名称不能以数字或者标点符号开始
+- 名称不能以字母 xml（或者 XML、Xml 等等）开始
+- 名称不能包含空格
 
 ### 注意事项
 

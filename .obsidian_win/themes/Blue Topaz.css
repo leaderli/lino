@@ -4215,7 +4215,7 @@ body.all-dark .print.theme-light,
 
   --h1-color: var(--print-h1-color,#08367c);
   --h2-color: var(--print-h2-color,#004faa);
-  --h3-color: var(--print-h3-color,#0e64bb);
+  --h3-color: var(--print-h3-color,#0e43ef);
   --h4-color: var(--print-h4-color,#3481c5);
   --h5-color: var(--print-h5-color,#59a0e2);
   --h6-color: var(--print-h6-color,#88b8e6);
