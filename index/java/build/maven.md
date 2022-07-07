@@ -664,6 +664,33 @@ $ mvn failsafe:verify
 
 插件的`pom`会指定默认`phase`，`goal`:[插件的官方文档](https://maven.apache.org/plugins/index.html)
 
+### antrun
+
+执行脚本
+
+```xml
+ <plugin>
+        <artifactId>maven-antrun-plugin</artifactId> <!-- 拷贝插件 -->
+        <executions>
+          <execution>
+            <id>copy</id>
+            <phase>package</phase> <!-- maven生命周期 -->
+            <configuration>
+              <tasks> <!-- 其他语法自行百度maven-antrun-plugin插件的相关用法-->
+                <echo message="${project.build.directory}"/>
+                <echo message="${output.jar.director}"/>
+              </tasks>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+</plugin>
+```
+
+`tasks`具体语法[参考 ant 官方文档](https://ant.apache.org/manual/index.html)
+
 ### clean
 
 ```xml
@@ -682,6 +709,33 @@ clean 插件主要清理编译生成的文件，默认的编译目录配置在�
 > `project.build.directory` > `project.build.outputDirectory` > `project.build.testOutputDirectory` > `project.reporting.outputDirectory`
 
 ### compiler
+### dependency
+
+解决打包依赖的 jar 包
+
+```xml
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-dependency-plugin</artifactId>
+    <version>2.10</version>
+    <executions>
+        <execution>
+            <id>copy-dependencies</id>
+            <phase>package</phase>
+            <goals>
+                <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+                <outputDirectory>${project.build.directory}/lib</outputDirectory>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
+```
+
+`outputDirectory`表示依赖 jar 默认输出目录，默认是`${basedir}`\
+`goal`:`copy-dependencies` [相关配置详细](https://maven.apache.org/plugins/maven-dependency-plugin/copy-dependencies-mojo.html)
+
 
 ```xml
  <plugin>
@@ -802,103 +856,6 @@ protected List<? extends InterpolationPostProcessor> createPostProcessors( final
 ...
 ```
 
-### resources
-
-编译时拷贝资源文件,不需要显式的调用插件
-
-```xml
-<build>
-  <finalName>${project.artifactId}</finalName>
-  <resources>
-    <resource>
-      <targetPath>${project.build.directory}/META-INF</targetPath>
-      <directory>${basedir}/resources</directory>
-    </resource>
-  </resources>
-</build>
-```
-
-`targetPath`编译后目录,默认是以`${project.build.outputDirectory}`为前缀的\
-`directory` 源资源目录,默认是以`${basedir}`为前缀的\
-`finalName` 打包后的项目名,默认为`${project.artifactId}-${project.version}`
-
-### dependency
-
-解决打包依赖的 jar 包
-
-```xml
-  <plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-dependency-plugin</artifactId>
-    <version>2.10</version>
-    <executions>
-        <execution>
-            <id>copy-dependencies</id>
-            <phase>package</phase>
-            <goals>
-                <goal>copy-dependencies</goal>
-            </goals>
-            <configuration>
-                <outputDirectory>${project.build.directory}/lib</outputDirectory>
-            </configuration>
-        </execution>
-    </executions>
-</plugin>
-```
-
-`outputDirectory`表示依赖 jar 默认输出目录，默认是`${basedir}`\
-`goal`:`copy-dependencies` [相关配置详细](https://maven.apache.org/plugins/maven-dependency-plugin/copy-dependencies-mojo.html)
-
-### antrun
-
-执行脚本
-
-```xml
- <plugin>
-        <artifactId>maven-antrun-plugin</artifactId> <!-- 拷贝插件 -->
-        <executions>
-          <execution>
-            <id>copy</id>
-            <phase>package</phase> <!-- maven生命周期 -->
-            <configuration>
-              <tasks> <!-- 其他语法自行百度maven-antrun-plugin插件的相关用法-->
-                <echo message="${project.build.directory}"/>
-                <echo message="${output.jar.director}"/>
-              </tasks>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-        </executions>
-</plugin>
-```
-
-`tasks`具体语法[参考 ant 官方文档](https://ant.apache.org/manual/index.html)
-
-### 依赖冲突
-
-Maven 采用“最近获胜策略（nearest wins strategy）”的方式处理依赖冲突，即如果一个项目最终依赖于相同 artifact 的多个版本，在依赖树中离项目最近的那个版本将被使用
-
-1.当前模块直接引入合适版本的依赖
-
-2.使用 `dependency:tree -Dverbose"`查看是否有冲突的依赖,根据输出的依赖关系图查看是否包含`conflict`，然后根据需要排除不需要引入的版本
-通过依赖排除
-
-```xml
-<dependency>
-      <groupId>jaxen</groupId>
-      <artifactId>jaxen</artifactId>
-      <version>1.2.0</version>
-      <exclusions>
-        <exclusion>
-          <groupId>xml-apis</groupId>
-          <artifactId>xml-apis</artifactId>
-        </exclusion>
-      </exclusions>
-</dependency>
-```
-
 ### dependencyManagement
 
 示例说明，
@@ -936,6 +893,33 @@ Maven 采用“最近获胜策略（nearest wins strategy）”的方式处理�
 
 1. Dependencies 相对于 dependencyManagement，所有生命在 dependencies 里的依赖都会自动引入，并默认被所有的子项目继承。
 2. dependencyManagement 里只是声明依赖，并不自动实现引入，因此子项目需要显示的声明需要用的依赖。如果不在子项目中声明依赖，是不会从父项目中继承下来的；只有在子项目中写了该依赖项，并且没有指定具体版本，才会从父项目中继承该项，并且 version 和 scope 都读取自父 pom;另外如果子项目中指定了版本号，那么会使用子项目中指定的 jar 版本。
+
+### resources
+
+编译时拷贝资源文件,不需要显式的调用插件
+
+```xml
+<build>
+  <finalName>${project.artifactId}</finalName>
+  <resources>
+    <resource>
+      <targetPath>${project.build.directory}/META-INF</targetPath>
+      <directory>${basedir}/resources</directory>
+    </resource>
+  </resources>
+</build>
+```
+
+`targetPath`编译后目录,默认是以`${project.build.outputDirectory}`为前缀的\
+`directory` 源资源目录,默认是以`${basedir}`为前缀的\
+`finalName` 打包后的项目名,默认为`${project.artifactId}-${project.version}`
+
+
+### versions
+
+修改mvn的版本号，可以统一修改同一项目不同模块的所有版本号
+
+`mvn versions:set -DnewVersion=1.1`
 
 ## 模块
 
@@ -1163,6 +1147,29 @@ jar包指定 `META-INF`的内容
 
 ```shell
 mvn package -DskipTests=true
+```
+
+### 依赖冲突
+
+Maven 采用“最近获胜策略（nearest wins strategy）”的方式处理依赖冲突，即如果一个项目最终依赖于相同 artifact 的多个版本，在依赖树中离项目最近的那个版本将被使用
+
+1.当前模块直接引入合适版本的依赖
+
+2.使用 `dependency:tree -Dverbose"`查看是否有冲突的依赖,根据输出的依赖关系图查看是否包含`conflict`，然后根据需要排除不需要引入的版本
+通过依赖排除
+
+```xml
+<dependency>
+      <groupId>jaxen</groupId>
+      <artifactId>jaxen</artifactId>
+      <version>1.2.0</version>
+      <exclusions>
+        <exclusion>
+          <groupId>xml-apis</groupId>
+          <artifactId>xml-apis</artifactId>
+        </exclusion>
+      </exclusions>
+</dependency>
 ```
 
 ## 参考文档
