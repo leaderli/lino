@@ -57,4 +57,5 @@ a123456bcd
 
 # 查找含有tab的行
 ~$ grep -P '\t' 1.log 
+~$ grep -rnP '\t'  .   --include='*.yml'
 ```

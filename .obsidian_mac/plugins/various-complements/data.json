@@ -106,6 +106,14 @@
           "lastUpdated": 1656909285611
         }
       }
+    },
+    "table": {
+      "table": {
+        "currentVault": {
+          "count": 1,
+          "lastUpdated": 1657376590402
+        }
+      }
     }
   }
 }

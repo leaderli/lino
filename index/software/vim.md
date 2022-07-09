@@ -235,6 +235,8 @@ vim -b XXX.class
 
 但是不会显示 dos 中的特殊符号`^M`,我们可使用`dos2unix`命令快速转换为 unix 格式，会自动移除掉`^M`
 
+`^I` tab 键
+
 ## 显示编码
 
 ```shell
