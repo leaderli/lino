@@ -35,7 +35,10 @@ System.setProperty(key,value) //临时指定java环境变量
 
 1. 设置本机名称：hostname mName xxx 最好不是写 IP 地址的形式，若写则必须是本机的完全 IP 形式(不要只写一半)
 2. 在/etc/hosts 里加一行 本机 IP mName
-3. 用 InetAddress.getLocalHost().getHostAddress()测试一下结果是否是与本机 IP 一致
+	```http
+	127.0.0.1 zw_65_43
+	```
+1. 用 InetAddress.getLocalHost().getHostAddress()测试一下结果是否是与本机 IP 一致
 
 也可以在`shell`中执行`echo $HOSTNAME`查看主机名，通过`ping $HOSTNAME`查看是否问题已经解决了
 
