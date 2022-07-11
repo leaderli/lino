@@ -1,7 +1,7 @@
 ---
 tags:
   - 软件/nginx
-date updated: 2022-05-06 21:03
+date updated: 2022-07-12 06:05
 ---
 
 ## 安装
@@ -98,13 +98,21 @@ WantedBy=multi-user.target
 
 ### 配置文件结构
 
-nginx 的配置文件名为 nginx.conf,一般位于目录/usr/local/nginx/conf, /etc/nginx, 或 /usr/local/etc/nginx.下
-nginx 的组件由配置文件中的指令构成，指令的基本格式有两种
+nginx 的配置文件名为 nginx.conf,，nginx 的组件由配置文件中的指令构成，指令的基本格式有两种
 
 1. 简单的命令：由 name 和 parameters 以及`；`结尾
 2. 块命令： 由 name 和一个由大括号 `{}包裹的命令的集合，同时也被称为 context
 3. `#` 后面的视为注释
 4. 不在任何 context 内的命令则被视为在 [main context](http://nginx.org/en/docs/ngx_core_module.html)中
+
+#### 配置文件路径
+
+一般位于目录
+
+1. /usr/local/nginx/conf
+2. /etc/nginx
+3. /usr/local/etc/nginx
+4. 通过 [[ps]] 命令 查询 nginx 启动时指定的配置文件目录
 
 ## 监听请求
 
@@ -385,7 +393,7 @@ done
 
 ## 日志
 
-我们可配置`http|log_format`来控制 nginx 的 access_log 日志的输出内容,你可以打印所有 nginx 中有关的变量值
+我们可配置`http|log_format`来控制 nginx 的 access_log 日志的输出内容,你可以打印所有 nginx 中有关的 [[#可用变量]]
 
 ```nginx
 http {
