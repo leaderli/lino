@@ -116,6 +116,23 @@ Specify the default value of a mapping.
 
 Keys for encoding YAML in YAML.
 
+##  对应java类型
+
+|YAML tag          |Java type                                        |
+|------------------|-------------------------------------------------|
+|Standard YAML tags|                                                 |
+|!!null            |null                                             |
+|!!bool            |Boolean                                          |
+|!!int             |Integer, Long, BigInteger                        |
+|!!float           |Double                                           |
+|!!binary          |byte[], String                                   |
+|!!timestamp       |java.util.Date, java.sql.Date, java.sql.Timestamp|
+|!!omap, !!pairs   |List of Object[]                                 |
+|!!set             |Set                                              |
+|!!str             |String                                           |
+|!!seq             |List                                             |
+|!!map             |Map                                              |
+
 ## 注意事项
 
 当配置值以0开头时，会被视为八进制数字，字符串需要显示的声明，一些默认字符会有特殊含义
