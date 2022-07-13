@@ -108,7 +108,7 @@ date updated: 2022-04-12 14:24
 
 ###  delete-package-versions
 
- 默认情况下，使用action打包jar包时，无法打包相同版本的jar，我们可以通过该 action 进行 clean 操作
+ 默认情况下，使用action打包jar包时，无法打包相同版本的jar，我们可以通过该 action 进行 clean 操作， 对于多模块的项目需要依次删除每个模块。
 
 ```yml
 # This workflow will build a package using Maven and then publish it to GitHub packages when a release is created  
