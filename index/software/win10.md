@@ -88,5 +88,5 @@ KD1149597450
 将 Caps Lock 修改为 esc
 ```c
  [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout]
- "Scancode Map"=hex:00,00,00,00,00,00,00,00,03,00,00,00,3a,00,01,00,01,00,3a,00,00,00,00,00
+ "Scancode Map"=
 ```
