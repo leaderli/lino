@@ -86,7 +86,12 @@ KD1149597450
 ###  修改键盘按键
 
 将 Caps Lock 修改为 esc
-```c
- [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout]
- "Scancode Map"=
-```
+
+![[Pasted image 20220716090737.png|left|400]]
+
+新增 Scancode Map， 其值为
+
+![[Pasted image 20220716090828.png|left|400]]
+
+需要手动依次输入十六进制数字
+
