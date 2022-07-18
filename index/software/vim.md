@@ -310,3 +310,7 @@ call plug#end()
 ### eclipse
 
 [Vrapper](http://vrapper.sourceforge.net/update-site/stable)
+
+
+###  intellij
+

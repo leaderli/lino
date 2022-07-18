@@ -3,7 +3,7 @@ date created: 2022-03-22 17:22
 tags:
   - 话务/avaya
   - ivr
-date updated: 2022-03-24 14:58
+date updated: 2022-07-14 23:11
 ---
 
 ## 一通会话的进线过程
@@ -20,6 +20,7 @@ date updated: 2022-03-24 14:58
 10. 座席
 
 [[awk]]
+
 ```mermaid
 graph LR
     1[客户]-->2[运营商]
@@ -290,4 +291,12 @@ info:
 name: name.connection.connected
 protocol: sip
 
+```
+
+## 常见问题
+
+```ad-error
+title: 按键无效，播音卡顿
+
+一般是由于中继线的问题
 ```

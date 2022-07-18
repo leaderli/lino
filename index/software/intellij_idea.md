@@ -138,6 +138,8 @@ public void test$START$() {
 
 ![[Pasted image 20210921012204.png|600]]
 
+
+[Live template variables | IntelliJ IDEA](https://www.jetbrains.com/help/idea/template-variables.html#example_live_template_variables)
 ## 使用 favorite
 
 ## custome live template

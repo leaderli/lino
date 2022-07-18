@@ -18,6 +18,7 @@ Remember _PECS_: **"Producer Extends, Consumer Super"**.
 
 ### `<? extends T>`
 
+
 ```java
 List<? extends Number> foo1 = new ArrayList<Number>();  // Number "extends" Number (in this context)
 List<? extends Number> foo2 = new ArrayList<Integer>(); // Integer extends Number
