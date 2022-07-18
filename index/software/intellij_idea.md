@@ -9,6 +9,9 @@ date updated: 2022-04-12 15:19
 
 ![[settings.zip]]
 
+## 快捷键
+
+![[cheatsheet#idea]]
 ## 调试
 
 IDEA 开发 web 项目时，建议使用 `debug` 启动模式，这样可以随时打断点调试项目

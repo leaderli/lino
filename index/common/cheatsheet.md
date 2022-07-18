@@ -83,6 +83,7 @@ mac 上使用 command 键替代 alt
 | ALT d     | goto to declration     |
 | ALT i     | goto to implemetation  |
 | ALT e     | recent files           |
+| ALT o     | go to class|
 | ALT n     | generate ,new file     |
 | ALT w     | close active tab       |
 | ALT up    | jump to navigation bar |
@@ -90,8 +91,9 @@ mac 上使用 command 键替代 alt
 | ALT left  | goto previous splitter |
 | ALT right | goto next splitter     |
 | SHIFT F6  | rename                 |
-| `ALT [`   | BACK                   |
+| ALT [   | BACK                   |
 | ALT ]     | FORWARD                |
+
 
 其他快捷方式
 
