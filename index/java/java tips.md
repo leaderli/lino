@@ -1,7 +1,7 @@
 ---
 tags:
   - java/tips
-date updated: 2022-04-17 19:57
+date updated: 2022-07-18 21:27
 ---
 
 ### 读取 properties 中文乱码解决
@@ -40,11 +40,6 @@ Comparator<Player> byAge = Comparator
 ls *.jar|xargs -I {} jadx {} -d src
 ```
 
-
-
-
-
-
 ### 读取文件
 
 ```java
@@ -66,12 +61,48 @@ return Collections.emptyList();
 ### getResource
 
 ```java
-// getResource最终调用的是ClassLoader的方法
+// getResource最终调用的是ClassLoader的方法，对于 '/' 开头的路径表明是 classpath 路径，实际 Classloader 中会将 '/' 截掉
 
 //返回类加载器加载的当前类的路径
 Test.class.getResource(".");
 // 返回类加载的根目录
 Test.class.getResource("/");
+```
+
+下面是具体 [[classloader]] 的源码，可以看出不是以 `/` 开头的，会去找当前类的路径下文件，否则找 classpath 路径
+
+```java
+public java.net.URL getResource(String name) {  
+    name = resolveName(name);  
+    ClassLoader cl = getClassLoader0();  
+    if (cl==null) {  
+        // A system class.  
+        return ClassLoader.getSystemResource(name);  
+    }  
+    return cl.getResource(name);  
+}
+
+
+private String resolveName(String name) {  
+    if (name == null) {  
+        return name;  
+    }  
+    if (!name.startsWith("/")) {  
+        Class<?> c = this;  
+        while (c.isArray()) {  
+            c = c.getComponentType();  
+        }  
+        String baseName = c.getName();  
+        int index = baseName.lastIndexOf('.');  
+        if (index != -1) {  
+            name = baseName.substring(0, index).replace('.', '/')  
+                +"/"+name;  
+        }  
+    } else {  
+        name = name.substring(1);  
+    }  
+    return name;  
+}
 ```
 
 ### classpath
@@ -308,7 +339,6 @@ int[256]:		1040
 int[2][128]:	1080
 int[128][2]:	3600
 ```
-
 
 ### 两个参数的 lambda
 
