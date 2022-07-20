@@ -2,7 +2,7 @@
 aliases: idea
 tags:
   - 软件/intellij_idea
-date updated: 2022-04-12 15:19
+date updated: 2022-07-21 06:22
 ---
 
 ## 设置
@@ -12,6 +12,7 @@ date updated: 2022-04-12 15:19
 ## 快捷键
 
 ![[cheatsheet#idea]]
+
 ## 调试
 
 IDEA 开发 web 项目时，建议使用 `debug` 启动模式，这样可以随时打断点调试项目
@@ -111,6 +112,18 @@ IDEA 开发 web 项目时，建议使用 `debug` 启动模式，这样可以随�
 
 选中代码后，使用可以查看到选中代码所使用的格式选项，可以去调整它，`⌥⏎`
 
+## coverage
+
+测试覆盖率
+
+可以针对所有类运行 coverage，会出一个报告，显示测试的覆盖范围
+
+![[Pasted image 20220721062019.png|left|600]]
+
+我们可以看到测试覆盖类和函数是 100% ，但是line 没有，我们找到具体类，可以看左边的颜色提示，红色部分即表示 junit 中测试范围未执行到此行
+
+![[Pasted image 20220721062139.png|left|400]]
+
 ## 为报错文件设置提醒色
 
 `File Color`
@@ -138,8 +151,8 @@ public void test$START$() {
 
 ![[Pasted image 20210921012204.png|600]]
 
-
 [Live template variables | IntelliJ IDEA](https://www.jetbrains.com/help/idea/template-variables.html#example_live_template_variables)
+
 ## 使用 favorite
 
 ## custome live template
@@ -220,5 +233,6 @@ SLF4J: See <http://www.slf4j.org/codes.html#StaticLoggerBinder> for further deta
 长时间未登陆解决办法
 
 删除相关文件
--   windows：`%userprofile%/AppData/Roaming/JetBrains/产品名版本号`
--   macos: `~/Library/ApplicationSupport/JetBrains/产品名版本号`
+
+- windows：`%userprofile%/AppData/Roaming/JetBrains/产品名版本号`
+- macos: `~/Library/ApplicationSupport/JetBrains/产品名版本号`
