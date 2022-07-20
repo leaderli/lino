@@ -55,6 +55,7 @@ unset hello     # 移除变量，当你尝试移除一个全局变量时，仅�
 | PATH | shell 用来查找命令的目录，不同的目录用 `:` 分割 |
 | PS1  | 原始的 shell 提示字符串               |
 | PS2  | 提示继续进行输入的提示符                  |
+| PS4  | debug脚本的提示符，默认为`+`|
 | PWD  | 当前目录                          |
 
 ## 常见配置
@@ -75,6 +76,22 @@ export TIME_STYLE="+%Y-%m-%d %H:%M:%S"
 ```shell
 # 一个高亮紫色的$符号
 PS1='\[\e[1m\]\[\e[35m\]\$ \[\e[0m\]'
+```
+
+### 命令行debug模式提示符
+
+```shell
+# 一个显示脚本名，方法名，脚本行数的提示符
+export PS4='+\e[01;32m[${BASH_SOURCE}:${FUNCNAME[0]}:${LINENO}]\e[00m'
+```
+
+效果如下：
+
+```shell
+sh -x test.sh
+
++[test.sh::1]echo 123
+123
 ```
 
 ### 更新系统时间

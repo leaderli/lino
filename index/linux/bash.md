@@ -913,6 +913,55 @@ clear
 li ALL=(root) NOPASSWD: /root/dhclient.sh
 ```
 
+
+## debug
+
+对某一个脚本开启debug模式 
+
+```shell
+$ cat test.sh
+
+echo 123123
+
+$ sh -x test.sh
+
++ echo 123
+123
+```
+
+也可以在脚本头申明
+
+```shell
+#!/bin/bash -x
+echo 123
+```
+也可以指定一段范围内使用debug
+
+```shell
+
+echo 1
+# 开启debug
+set -x
+echo 2
+
+# 关闭 debug
+set +x
+echo 3
+```
+
+实际执行效果
+
+```shell
+1
++[1.sh::3]echo 2
+2
++[1.sh::4]set +x
+3
+```
+
+![[configuration#命令行debug模式提示符]]
+
+
 ## 错误问题
 
 执行 sh 脚本时报错
