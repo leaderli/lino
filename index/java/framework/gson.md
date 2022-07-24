@@ -1,7 +1,7 @@
 ---
 tags:
   - java/框架/gson
-date updated: 2022-04-05 16:17
+date updated: 2022-07-24 14:31
 ---
 
 ## 基本类型
@@ -93,6 +93,9 @@ Gson gson = new Gson();
 
 Foo<Bar> foo = new Foo<Bar>();
 Type fooType = new TypeToken<Foo<Bar>>() {}.getType();
+// 也可以使用如下方法
+Type fooType = TypeToken.getParameterized(Foo.class, Bar.class).getType();
+
 gson.toJson(foo, fooType);
 
 gson.fromJson(json, fooType);
