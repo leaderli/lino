@@ -349,3 +349,23 @@ public interface BiConsumer<T, U> {
   void accept(T t, U u);
 }
 ```
+
+
+
+### lambda
+
+当使用方法引用时，若 obj 为 null ，则会直接抛出异常，不管表达式是否执行
+
+```java
+void then() {  
+  
+    Object obj = null;  
+    te(() -> obj.getClass()); // 不会抛出异常
+    te(obj::getClass);        // 抛出空指针
+  
+}  
+  
+void te(Supplier supplier) {  
+  
+}
+```

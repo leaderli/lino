@@ -35,19 +35,19 @@ tags:
 用于标记该注解是否可重复使用，它需要指定另一个注解用以存放多个重复注解的值
 
 ```java
-@Documented
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.PARAMETER, ElementType.TYPE})
-@Repeatable(NotNull.NotNulls.class)
-public @interface NotNull {
-
-  String value();
-  @Retention(RetentionPolicy.RUNTIME)
-  @Target({ElementType.PARAMETER, ElementType.TYPE}
-  @interface NotNulls {
-    NotNull[] value();
-  }
+@Retention(RetentionPolicy.RUNTIME)  
+@Target({ElementType.PARAMETER, ElementType.TYPE})  
+@Repeatable(NotNulls.class)  
+@interface NotNull {  
+  
+    String value();  
+  
 }
+@Retention(RetentionPolicy.RUNTIME)  
+@Target({ElementType.PARAMETER, ElementType.TYPE})  
+@interface NotNulls {  
+	NotNull[] value();  
+}  
 ```
 
 ## 自定义注解

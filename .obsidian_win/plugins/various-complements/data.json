@@ -234,6 +234,14 @@
           "lastUpdated": 1658354249613
         }
       }
+    },
+    "lambda": {
+      "lambda": {
+        "currentVault": {
+          "count": 1,
+          "lastUpdated": 1658763404086
+        }
+      }
     }
   }
 }
