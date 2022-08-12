@@ -210,6 +210,23 @@ public class Some<T>{
 }
 ```
 
+##  多继承
+
+可以使用 `&` 来表示继承多个接口
+
+```java
+public static class And<T extends Runnable & Supplier<T>> {  
+  
+  
+    private final T and;  
+  
+  
+    public And(T and) {  
+        this.and = and;  
+    }  
+}
+```
+
 ## 桥接
 
 ### 桥接方法
