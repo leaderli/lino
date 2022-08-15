@@ -90,7 +90,7 @@ public class NewPermission {
     // 是否允许删除，二进制第4位，0表示否，1表示是
     public static final int ALLOW_DELETE = 1 << 3; // 1000
     // 存储目前的权限状态
-    private int flag；
+    private int flag;
     /**
         *  重新设置权限
         */
