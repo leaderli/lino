@@ -67,6 +67,11 @@ void myCartesianTestMethod(
 
 ![[Pasted image 20220221003545.png]]
 
+
+### 自定义junit工具类
+
+#TODO
+
 ### junit断言异常
 
 #junit4
