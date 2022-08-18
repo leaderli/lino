@@ -78,11 +78,14 @@ mac 上使用 command 键替代 alt
 | ALT 4     | run view               |
 | ALT 5     | debug view             |
 | ALT 6     | favorites view         |
+| ALT F1    | select in |
+| ALT F2    | Hide All Tool Window|
 | ALT F3    | show bookmark          |
 | ALT b     | Find usage             |
 | ALT d     | goto to declration     |
 | ALT i     | goto to implemetation  |
 | ALT e     | recent files           |
+| ALT l     | recent location|
 | ALT o     | go to class            |
 | ALT t     | go to test             |
 | ALT n     | generate ,new file     |
@@ -92,8 +95,8 @@ mac 上使用 command 键替代 alt
 | ALT left  | goto previous splitter |
 | ALT right | goto next splitter     |
 | SHIFT F6  | rename                 |
-| ALT [     | BACK                   |
-| ALT ]     | FORWARD                |
+| ALT `[`     | BACK                   |
+| ALT `]`     | FORWARD                |
 
 其他快捷方式
 
