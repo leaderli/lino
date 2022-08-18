@@ -167,5 +167,13 @@
   "workspace:undo-close-pane": [],
   "various-complements:add-word-custom-dictionary": [],
   "various-complements:reload-custom-dictionaries": [],
-  "various-complements:show-suggestions": []
+  "various-complements:show-suggestions": [],
+  "obsidian-another-quick-switcher:search-command_Recommended search": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "O"
+    }
+  ]
 }
