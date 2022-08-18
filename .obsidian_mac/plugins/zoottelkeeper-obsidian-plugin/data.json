@@ -1,8 +1,8 @@
 {
-  "indexPrefix": "_Index_of_",
+  "indexPrefix": "_",
   "indexItemStyle": "list",
   "indexTagValue": "MOC",
-  "indexTagBoolean": true,
+  "indexTagBoolean": false,
   "indexTagSeparator": ", ",
   "indexTagLabel": "tags",
   "cleanPathBoolean": true,
@@ -12,7 +12,7 @@
   "foldersExcluded": "resource\n",
   "foldersIncluded": "",
   "sortOrder": "asc",
-  "addSquareBrackets": true,
+  "addSquareBrackets": false,
   "embedSubIndex": false,
   "templateFile": "",
   "frontMatterSeparator": "---"
