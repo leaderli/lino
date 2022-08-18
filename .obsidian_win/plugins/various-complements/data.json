@@ -10,7 +10,7 @@
   "disableSuggestionsDuringImeOn": false,
   "insertAfterCompletion": false,
   "firstCharactersDisableSuggestions": ":/^",
-  "showMatchStrategy": false,
+  "showMatchStrategy": true,
   "showComplementAutomatically": true,
   "showIndexingStatus": true,
   "descriptionOnSuggestion": "Short",
@@ -46,8 +46,8 @@
     "123123": {
       "123123": {
         "currentVault": {
-          "count": 4,
-          "lastUpdated": 1658354075868
+          "count": 3,
+          "lastUpdated": 1656625563598
         }
       }
     },
@@ -99,147 +99,27 @@
         }
       }
     },
-    "systemctl": {
-      "systemctl": {
+    "jar包指定": {
+      "jar包指定": {
         "currentVault": {
           "count": 1,
-          "lastUpdated": 1656627503334
+          "lastUpdated": 1656909285611
         }
       }
     },
-    "aaaaa啊啊aaa啊啊啊啊啊啊啊": {
-      "aaaaa啊啊aaa啊啊啊啊啊啊啊": {
+    "table": {
+      "table": {
         "currentVault": {
           "count": 1,
-          "lastUpdated": 1656627674322
+          "lastUpdated": 1657376590402
         }
       }
     },
-    "参考文档\r": {
-      "参考文档\r": {
-        "currentVault": {
-          "count": 1,
-          "lastUpdated": 1656693658943
-        }
-      }
-    },
-    "plugin": {
-      "plugin": {
-        "currentVault": {
-          "count": 1,
-          "lastUpdated": 1656831999529
-        }
-      }
-    },
-    "Dependencies": {
-      "Dependencies": {
-        "currentVault": {
-          "count": 2,
-          "lastUpdated": 1656832067306
-        }
-      }
-    },
-    "Decompiler": {
-      "Decompiler": {
-        "currentVault": {
-          "count": 1,
-          "lastUpdated": 1656843787689
-        }
-      }
-    },
-    "operation": {
-      "operation": {
-        "currentVault": {
-          "count": 1,
-          "lastUpdated": 1656878147631
-        }
-      }
-    },
-    "participants": {
-      "participants": {
-        "currentVault": {
-          "count": 2,
-          "lastUpdated": 1656884338190
-        }
-      }
-    },
-    "eclipse": {
-      "eclipse": {
+    "快捷键": {
+      "cheatsheet": {
         "internalLink": {
           "count": 1,
-          "lastUpdated": 1656940745843
-        }
-      }
-    },
-    "常见错误\r": {
-      "常见错误\r": {
-        "currentVault": {
-          "count": 1,
-          "lastUpdated": 1656950861833
-        }
-      }
-    },
-    "java": {
-      "java": {
-        "internalLink": {
-          "count": 1,
-          "lastUpdated": 1657460512479
-        }
-      }
-    },
-    "classloader": {
-      "classloader": {
-        "internalLink": {
-          "count": 3,
-          "lastUpdated": 1658150760652
-        }
-      }
-    },
-    "的源码我们可以发现，默认的JDK不会带上": {
-      "的源码我们可以发现，默认的JDK不会带上": {
-        "currentVault": {
-          "count": 1,
-          "lastUpdated": 1658150764455
-        }
-      }
-    },
-    "classpath": {
-      "classpath": {
-        "currentVault": {
-          "count": 1,
-          "lastUpdated": 1658150827353
-        }
-      }
-    },
-    "classpath\r": {
-      "classpath\r": {
-        "currentVault": {
-          "count": 1,
-          "lastUpdated": 1658150833702
-        }
-      }
-    },
-    "debug": {
-      "debug": {
-        "currentVault": {
-          "count": 1,
-          "lastUpdated": 1658353984757
-        }
-      }
-    },
-    "效果如下：": {
-      "效果如下：": {
-        "currentVault": {
-          "count": 1,
-          "lastUpdated": 1658354249613
-        }
-      }
-    },
-    "lambda": {
-      "lambda": {
-        "currentVault": {
-          "count": 1,
-          "lastUpdated": 1658763404086
+          "lastUpdated": 1658102700562
         }
       }
     }
