@@ -196,3 +196,16 @@ Resource resource = resourceResolver.getResource("https://www.baidu.com/");
   
 System.out.println(StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8));
 ```
+
+###  加载其他配置
+
+```java
+public class SpringEnvironmentAware implements EnvironmentAware {  
+    @Override  
+    public void setEnvironment(org.springframework.core.env.Environment environment) {  
+  
+        MutablePropertySources mutablePropertySources = ((ConfigurableEnvironment) environment).getPropertySources();  
+        mutablePropertySources.addLast(new PropertiesPropertySource("new", new Properties()));  
+    }  
+}
+```
