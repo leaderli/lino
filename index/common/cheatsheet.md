@@ -95,6 +95,7 @@ mac 上使用 command 键替代 alt
 | ALT left  | goto previous splitter |
 | ALT right | goto next splitter     |
 | SHIFT F6  | rename                 |
+| SHIFT r  | refactor|
 | ALT `[`     | BACK                   |
 | ALT `]`     | FORWARD                |
 | SHIFT  ALT `→`   | Split Right|
