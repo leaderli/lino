@@ -97,6 +97,11 @@ mac 上使用 command 键替代 alt
 | SHIFT F6  | rename                 |
 | ALT `[`     | BACK                   |
 | ALT `]`     | FORWARD                |
+| SHIFT  ALT `→`   | Split Right|
+| SHIFT ALT `↓`   | Split Down|
+| ALT `→`   | Goto Next Splitter|
+| ALT `←`     |Goto Previous Splitter |
+| ALT `↑`     |Jump to Navigation Bar|
 
 其他快捷方式
 
