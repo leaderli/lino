@@ -22,6 +22,7 @@
 - 📄 [[index/linux/commands/getopts|getopts]]
 - 📄 [[index/linux/commands/grep|grep]]
 - 📄 [[index/linux/commands/head|head]]
+- 📄 [[index/linux/commands/hostnamectl|hostnamectl]]
 - 📄 [[index/linux/commands/iconv|iconv]]
 - 📄 [[index/linux/commands/ifconfig|ifconfig]]
 - 📄 [[index/linux/commands/info|info]]
