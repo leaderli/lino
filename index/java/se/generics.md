@@ -102,6 +102,18 @@ class C2 extends B<Node1,RootNode>{
 }
 ```
 
+
+## 任意数组泛型
+
+```java
+@Retention(RetentionPolicy.RUNTIME)  
+@Target(ElementType.ANNOTATION_TYPE)  
+public @interface Valuable {  
+  
+    Class<? extends Function<? extends Annotation,? extends Object[]>>  value();  
+}
+```
+
 ## 当使用通配符不能直接使用时，可使用强转来实现
 
 ```java

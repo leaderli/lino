@@ -12,7 +12,7 @@
     "supercharged-links-gen"
   ],
   "cssTheme": "Blue Topaz",
-  "baseFontSizeAction": true,
+  "baseFontSizeAction": false,
   "interfaceFontFamily": "Consolas,Sarasa Mono HC,Arial,Sarasa Mono TC",
   "textFontFamily": "Sarasa Mono TC"
 }
