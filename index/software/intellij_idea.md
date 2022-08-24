@@ -232,7 +232,7 @@ SLF4J: See <http://www.slf4j.org/codes.html#StaticLoggerBinder> for further deta
 
 长时间未登陆解决办法
 
-删除相关文件
+删除 `eval` 文件
 
 - windows：`%userprofile%/AppData/Roaming/JetBrains/产品名版本号`
 - macos: `~/Library/ApplicationSupport/JetBrains/产品名版本号`
