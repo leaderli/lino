@@ -2,7 +2,7 @@
 aliases: 快捷键
 tags:
   - 常用/快捷键
-date updated: 2022-07-21 06:11
+date updated: 2022-08-24 23:05
 ---
 
 ## 常用特殊符号
@@ -65,44 +65,45 @@ mac 上使用 command 键替代 alt
 
 可以自定义一组快捷命令，`Quick List`
 
-| 快捷键       | 解释                     |
-| :-------- | :--------------------- |
-| F1        | quick list             |
-| F2        | next highlight error   |
-| F3        | toggle bookmark        |
-| F4        | run                    |
-| F5        | debug                  |
-| ALT 1     | project view           |
-| ALT 2     | structure view         |
-| ALT 3     | find view              |
-| ALT 4     | run view               |
-| ALT 5     | debug view             |
-| ALT 6     | favorites view         |
-| ALT F1    | select in |
-| ALT F2    | Hide All Tool Window|
-| ALT F3    | show bookmark          |
-| ALT b     | Find usage             |
-| ALT d     | goto to declration     |
-| ALT i     | goto to implemetation  |
-| ALT e     | recent files           |
-| ALT l     | recent location|
-| ALT o     | go to class            |
-| ALT t     | go to test             |
-| ALT n     | generate ,new file     |
-| ALT w     | close active tab       |
-| ALT up    | jump to navigation bar |
-| ALT down  | jump to source         |
-| ALT left  | goto previous splitter |
-| ALT right | goto next splitter     |
-| SHIFT F6  | rename                 |
-| SHIFT r  | refactor|
-| ALT `[`     | BACK                   |
-| ALT `]`     | FORWARD                |
-| SHIFT  ALT `→`   | Split Right|
-| SHIFT ALT `↓`   | Split Down|
-| ALT `→`   | Goto Next Splitter|
-| ALT `←`     |Goto Previous Splitter |
-| ALT `↑`     |Jump to Navigation Bar|
+| 快捷键            | 解释                     |
+| :------------- | :--------------------- |
+| F1             | quick list             |
+| F2             | next highlight error   |
+| F3             | toggle bookmark        |
+| F4             | run                    |
+| F5             | debug                  |
+| F12            | vim emulator           |
+| ALT 1          | project view           |
+| ALT 2          | structure view         |
+| ALT 3          | find view              |
+| ALT 4          | run view               |
+| ALT 5          | debug view             |
+| ALT 6          | favorites view         |
+| ALT F1         | select in              |
+| ALT F2         | Hide All Tool Window   |
+| ALT F3         | show bookmark          |
+| ALT b          | Find usage             |
+| ALT d          | goto to declration     |
+| ALT i          | goto to implemetation  |
+| ALT e          | recent files           |
+| ALT l          | recent location        |
+| ALT o          | go to class            |
+| alt r          | refactor               |
+| ALT t          | go to test             |
+| ALT n          | generate ,new file     |
+| ALT w          | close active tab       |
+| ALT up         | jump to navigation bar |
+| ALT down       | jump to source         |
+| ALT left       | goto previous splitter |
+| ALT right      | goto next splitter     |
+| SHIFT F6       | rename                 |
+| ALT `[`        | BACK                   |
+| ALT `]`        | FORWARD                |
+| SHIFT  ALT `→` | Split Right            |
+| SHIFT ALT `↓`  | Split Down             |
+| ALT `→`        | Goto Next Splitter     |
+| ALT `←`        | Goto Previous Splitter |
+| ALT `↑`        | Jump to Navigation Bar |
 
 其他快捷方式
 
