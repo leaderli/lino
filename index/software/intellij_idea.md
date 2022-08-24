@@ -230,6 +230,8 @@ SLF4J: See <http://www.slf4j.org/codes.html#StaticLoggerBinder> for further deta
 
 [Jetbrains 试用期重置 - 今日 | 有悟 | 有物](https://youwu.today/blog/jetbrains-evaluate-reset/)
 
+[临时激活码](https://3.jetbra.in)
+
 长时间未登陆解决办法
 
 删除 `eval` 文件
