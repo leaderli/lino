@@ -88,22 +88,18 @@ mac 上使用 command 键替代 alt
 | ALT e          | recent files           |
 | ALT l          | recent location        |
 | ALT o          | go to class            |
-| alt r          | refactor               |
 | ALT t          | go to test             |
 | ALT n          | generate ,new file     |
 | ALT w          | close active tab       |
-| ALT up         | jump to navigation bar |
-| ALT down       | jump to source         |
-| ALT left       | goto previous splitter |
-| ALT right      | goto next splitter     |
-| SHIFT F6       | rename                 |
-| ALT `[`        | BACK                   |
-| ALT `]`        | FORWARD                |
-| SHIFT  ALT `→` | Split Right            |
-| SHIFT ALT `↓`  | Split Down             |
 | ALT `→`        | Goto Next Splitter     |
 | ALT `←`        | Goto Previous Splitter |
 | ALT `↑`        | Jump to Navigation Bar |
+| ALT `[`        | BACK                   |
+| ALT `]`        | FORWARD                |
+| SHIFT F6       | rename                 |
+| SHIFT  ALT `→` | Split Right            |
+| SHIFT ALT `↓`  | Split Down             |
+| ctril r          | refactor               |
 
 其他快捷方式
 
