@@ -13,6 +13,7 @@
 - 📄 [[index/linux/commands/dig|dig]]
 - 📄 [[index/linux/commands/du|du]]
 - 📄 [[index/linux/commands/echo|echo]]
+- 📄 [[index/linux/commands/expect|expect]]
 - 📄 [[index/linux/commands/expr|expr]]
 - 📄 [[index/linux/commands/ffmpeg|ffmpeg]]
 - 📄 [[index/linux/commands/fg|fg]]
