@@ -43,83 +43,11 @@
   "insertCommaAfterFrontMatterCompletion": false,
   "showLogAboutPerformanceInConsole": false,
   "selectionHistoryTree": {
-    "123123": {
-      "123123": {
-        "currentVault": {
-          "count": 3,
-          "lastUpdated": 1656625563598
-        }
-      }
-    },
-    "system": {
-      "system": {
-        "currentFile": {
-          "count": 1,
-          "lastUpdated": 1656622898809
-        }
-      }
-    },
-    "方法的1": {
-      "方法的1": {
-        "currentFile": {
-          "count": 1,
-          "lastUpdated": 1656623045432
-        }
-      }
-    },
-    "输出应用程序主类完整": {
-      "输出应用程序主类完整": {
-        "currentFile": {
-          "count": 1,
-          "lastUpdated": 1656623057275
-        }
-      }
-    },
-    "\\begin{align}": {
-      "\\begin{align}": {
-        "currentFile": {
-          "count": 1,
-          "lastUpdated": 1656623179431
-        }
-      }
-    },
-    "grep": {
-      "grep": {
+    "shell": {
+      "bash": {
         "internalLink": {
           "count": 1,
-          "lastUpdated": 1656623241218
-        }
-      }
-    },
-    "framework": {
-      "framework": {
-        "internalLink": {
-          "count": 1,
-          "lastUpdated": 1656623262877
-        }
-      }
-    },
-    "jar包指定": {
-      "jar包指定": {
-        "currentVault": {
-          "count": 1,
-          "lastUpdated": 1656909285611
-        }
-      }
-    },
-    "table": {
-      "table": {
-        "currentVault": {
-          "count": 1,
-          "lastUpdated": 1657376590402
-        }
-      }
-    },
-    "快捷键": {
-      "cheatsheet": {
-        "internalLink": {
-          "count": 1,
-          "lastUpdated": 1658102700562
+          "lastUpdated": 1661620753846
         }
       }
     }

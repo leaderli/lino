@@ -3,7 +3,7 @@ aliases: git
 tags:
   - linux
   - 软件/git
-date updated: 2022-04-07 14:42
+date updated: 2022-08-28 01:19
 ---
 
 ## 安装 git
@@ -183,8 +183,14 @@ gitk --all
 git log -p <file>
 ```
 
+显示提交行数
+
+```shell
+git log --shortstat
+```
 
 显示某个提交的详细信息
+
 ```shell
 git show commit
 ```
@@ -194,7 +200,6 @@ git show commit
 ```shell
 git rev-parse --short HEAD
 ```
-
 
 ### 比较差异
 
@@ -590,7 +595,6 @@ git clone li@centos7:~/temp/sample.git
 
 使用`git clone`需要配置[[ssh|ssh免密]]
 
-
 ## 常用命令
 
 ### 统计每个人每天的代码量
@@ -615,5 +619,3 @@ cal dengqiankun
 ## 参考文档
 
 [git log命令](https://www.yiibai.com/git/git_log.html)
-
-
