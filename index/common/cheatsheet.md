@@ -74,7 +74,7 @@ mac 上使用 command 键替代 alt
 | F5             | debug                  |
 | F12            | vim emulator           |
 | ALT 1          | project view           |
-| ALT 2          | structure view         |
+| ALT 2          | file structure view         |
 | ALT 3          | find view              |
 | ALT 4          | run view               |
 | ALT 5          | debug view             |
