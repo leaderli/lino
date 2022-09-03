@@ -88,6 +88,7 @@ mac 上使用 command 键替代 alt
 | ALT e          | recent files           |
 | ALT l          | recent location        |
 | ALT o          | go to class            |
+| alt r          | refactor               |
 | ALT t          | go to test             |
 | ALT n          | generate ,new file     |
 | ALT w          | close active tab       |
@@ -97,9 +98,10 @@ mac 上使用 command 键替代 alt
 | ALT `[`        | BACK                   |
 | ALT `]`        | FORWARD                |
 | SHIFT F6       | rename                 |
-| SHIFT  ALT `→` | Split Right            |
-| SHIFT ALT `↓`  | Split Down             |
-| ctril r          | refactor               |
+| SHIFT  ALT `→` | Split And Move Right            |
+| SHIFT ALT `↓`  | Split And Move Down             |
+| CTRL SHIFT  `→` | Split Right            |
+| CTRL SHIFT `↓`  | Split Down             |
 
 其他快捷方式
 
