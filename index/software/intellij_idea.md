@@ -227,7 +227,8 @@ SLF4J: See <http://www.slf4j.org/codes.html#StaticLoggerBinder> for further deta
 ## commit 时自动执行格式化等操作
 
 ![[Pasted image 20220829085559.png]]
-![[Pasted image 20220829085651.png]]
+
+![[Pasted image 20220902205333.png]]
 ## 参考文档
 
 激活 破解
