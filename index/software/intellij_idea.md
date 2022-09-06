@@ -9,9 +9,13 @@ date updated: 2022-07-21 06:22
 
 ![[settings.zip]]
 
+## 插件
+
+`editorconfig` 提供代码规范的一些配置，可以多个ide公用
 ## 快捷键
 
 ![[cheatsheet#idea]]
+
 
 ## 调试
 
