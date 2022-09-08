@@ -1,0 +1,8 @@
+<templateSet group="li">
+  <template name="test" value="@org.junit.Test&#10;public void test$START$() throws Throwable{&#10;    $END$&#10;}" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="START" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_DECLARATION" value="true" />
+    </context>
+  </template>
+</templateSet>
