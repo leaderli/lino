@@ -26,3 +26,7 @@ GET /api/search/artifact?name=lib&repos=libs-release-local
 ]
 }
 ```
+
+## 参考文档
+
+[Artifactory REST API](https://www.jfrog.com/confluence/display/JFROG/Artifactory+REST+API)
