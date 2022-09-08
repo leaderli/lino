@@ -240,6 +240,20 @@ RestTemplate rest = new RestTemplateBuilder().rootUri("http://localhost:8080").b
 rest.postForObject("/test", "", String.class, variables);
 ```
 
+
+## 请求头带上token
+
+```java
+String username = "li";  
+String password = "li";  
+String auth = username + ":" + password;  
+byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(StandardCharsets.US_ASCII));  
+String authHeader = "Basic " + new String(encodedAuth);  
+HttpHeaders headers = new HttpHeaders();  
+headers.set("Authorization", authHeader);  
+HttpEntity<?> entity = new HttpEntity<>(headers);  
+Map body = restTemplate.exchange("http://example", HttpMethod.GET, entity, Map.class).getBody();
+```
 ## POST 请求参数
 
 上传文件的请求模拟
