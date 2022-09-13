@@ -19,19 +19,8 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "ca3b2543c84999f6",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "0.16.2"
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -156,7 +145,7 @@
     "width": 179,
     "collapsed": true
   },
-  "active": "ca3b2543c84999f6",
+  "active": "92a7324bd4ab02cd",
   "lastOpenFiles": [
     "index/protocol/ant.md",
     "index/software/artifactory.md",
