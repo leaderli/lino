@@ -1,0 +1,172 @@
+{
+  "main": {
+    "id": "c0f38dced320ee98",
+    "type": "split",
+    "children": [
+      {
+        "id": "e8d9d3c79138a912",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "92a7324bd4ab02cd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "index/software/artifactory.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "ca3b2543c84999f6",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "0.16.2"
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "5da3e35858cf4dab",
+    "type": "split",
+    "children": [
+      {
+        "id": "7d1e3416d9f60be4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b3eff9ae9cbf2d41",
+            "type": "leaf",
+            "state": {
+              "type": "recent-files",
+              "state": {}
+            }
+          },
+          {
+            "id": "eb37b7a808ead707",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "92d5a84f4018e5e4",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "&gt;",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "79571830a79d6ad5",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 275
+  },
+  "right": {
+    "id": "aed7281feaa57107",
+    "type": "split",
+    "children": [
+      {
+        "id": "a3cefe7b29450703",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0ff43ba1cc6f6cb4",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "index/sql/sql_basic.md",
+                "collapseAll": true,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "60e8feff607d3c80",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "index/sql/sql_basic.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "4b18f8cf02414870",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "000027cf624d49b4",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "index/software/artifactory.md"
+              }
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 179,
+    "collapsed": true
+  },
+  "active": "ca3b2543c84999f6",
+  "lastOpenFiles": [
+    "index/protocol/ant.md",
+    "index/software/artifactory.md",
+    "index/software/intellij_idea.md",
+    "index/java/framework/restTemplate.md",
+    "index/linux/commands/curl.md",
+    "index/software/docker.md",
+    "index/software/elasticsearch.md",
+    "index/software/kafka.md",
+    "index/software/_software.md",
+    "index/linux/process.md"
+  ]
+}

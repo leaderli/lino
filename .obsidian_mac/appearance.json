@@ -13,5 +13,6 @@
     "supercharged-links-gen"
   ],
   "cssTheme": "Blue Topaz",
-  "baseFontSizeAction": true
+  "baseFontSizeAction": true,
+  "accentColor": ""
 }
