@@ -14,6 +14,7 @@ date updated: 2022-05-06 15:06
 - `-i` 显示返回报文详细信息
 - `-s`  不显示信息
 - `-o`  另存为文件
+- `-u` 使用token
 
 ### 示例
 
@@ -144,4 +145,10 @@ curl: (28) Operation timed out after 5002 milliseconds with 0 out of -1 bytes re
 
 ```shell
 curl -H "Content-Type: application/json" -X POST -d  '{'a':1}'  http://127.0.0.1/xxx
+```
+
+## 使用token
+
+```shell
+curl -u glb:abc123xxxa  http://127.0.0.1/xxx
 ```
