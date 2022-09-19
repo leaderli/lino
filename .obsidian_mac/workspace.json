@@ -55,7 +55,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "大小",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
