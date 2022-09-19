@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/commands/curl.md",
+                "file": "index/linux/commands/expect.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -55,7 +55,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "section:(linux except)",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -133,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/commands/curl.md"
+                "file": "index/linux/commands/expect.md"
               }
             }
           }
