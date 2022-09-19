@@ -20,6 +20,29 @@ yes:
 {False: 17, True: [2, 255, False]}
 ```
 
+### 多行
+-   `>`, `|`: "clip": keep the line feed, remove the trailing blank lines.
+-   `>-`, `|-`: "strip": remove the line feed, remove the trailing blank lines.
+-   `>+`, `|+`: "keep": keep the line feed, keep trailing blank lines.
+
+```yml
+a: >
+1
+2
+3
+```
+`1 2 3`
+```yml
+a: |
+1
+2
+3
+```
+`1`
+`2`
+`3`
+
+
 ## 类型
 
 ### 集合类型
