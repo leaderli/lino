@@ -154,3 +154,9 @@ do
    sleep 1s
 done
 ```
+
+## 关闭更新
+
+```shell
+sudo softwareupdate --ignore "macOS Catalina"
+```

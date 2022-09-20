@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/protocol/yml.md",
+                "file": "index/software/mac.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -133,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/protocol/yml.md"
+                "file": "index/software/mac.md"
               }
             }
           }
@@ -147,6 +147,7 @@
   },
   "active": "d63d98cd98f0ed3a",
   "lastOpenFiles": [
+    "index/protocol/yml.md",
     "index/linux/commands/expect.md",
     "index/linux/commands/curl.md",
     "index/software/artifactory.md",
@@ -155,7 +156,6 @@
     "index/java/framework/sonar.md",
     "index/protocol/ant.md",
     "index/software/intellij_idea.md",
-    "index/java/framework/restTemplate.md",
-    "index/software/docker.md"
+    "index/java/framework/restTemplate.md"
   ]
 }
