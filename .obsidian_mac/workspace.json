@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/software/mac.md",
+                "file": "index/java/se/generics.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -133,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/software/mac.md"
+                "file": "index/java/se/generics.md"
               }
             }
           }
@@ -142,20 +142,19 @@
       }
     ],
     "direction": "horizontal",
-    "width": 179,
-    "collapsed": true
+    "width": 179
   },
   "active": "d63d98cd98f0ed3a",
   "lastOpenFiles": [
+    "index/java/jvm/bytecode.md",
+    "index/java/se/generics.md",
+    "index/java/framework/fastjson.md",
+    "index/software/mac.md",
     "index/protocol/yml.md",
     "index/linux/commands/expect.md",
     "index/linux/commands/curl.md",
     "index/software/artifactory.md",
     "index/java/java tips.md",
-    "index/java/se/array.md",
-    "index/java/framework/sonar.md",
-    "index/protocol/ant.md",
-    "index/software/intellij_idea.md",
-    "index/java/framework/restTemplate.md"
+    "index/java/se/array.md"
   ]
 }

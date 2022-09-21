@@ -67,6 +67,17 @@ R apply(T t);
 - apply 方法内部，当我调用 T 类型的父类方法是可以接受的，我实际传递 mapper 时，可以直接使用泛型为 T 的父类的形参。
 - apply 方法的返回值，我返回 R 类型的子类也是可以接受的，所以传递 mapper 时也可以直接使用泛型为 R 的子类的返回类型
 
+##  泛型类型
+
+`java.lang.reflect.Type` 有多个实现类
+- `Class` 
+- `TypeVariable` 泛型声明，例如 `List<T>`中的`T`
+- `WildcardType` 通配符泛型声明，例如`List<? extends T>` 中的 `? extends T`
+- `GenericArrayType` 数组泛型 ，例如 `T[]` 中的 `T`
+- `ParameterizedType` 参数化泛型声明，例如 `List<List<Integet>>` 中的 `List<Intger>`
+
+
+我们需要明确的是，泛型类型仅使用于声明时使用，实际赋值时泛型肯定是已经确定好了的。那么针对于声明泛型的
 ## 泛型的应用
 
 ```java
