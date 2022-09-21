@@ -594,3 +594,84 @@ public class ParticipantDescriptor {
 	}
 }
 ```
+
+
+##  自定义一个重命名动作
+
+
+配置 [[eclipse-plugin-develop-tutorial-setup#extension|extension]] 
+
+```xml
+<extension point="org.eclipse.ltk.core.refactoring.renameParticipants">
+	<renameParticipant class="io.leaderli.visual.editor.refactor.FlowRenameParticipant" id="io.leaderli.visual.editor.refactor.FlowRenameParticipant" name="FlowRenameParticipant">
+		<enablement>
+	   
+			<with variable="affectedNatures">
+				<iterate operator="or">
+					<equals value="io.leaderli.visual.editor.LiVisualEditorNature" />
+				</iterate>
+			</with>
+		</enablement>
+	</renameParticipant>
+</extension>
+```
+
+```java
+package io.leaderli.visual.editor.refactor;
+
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.ltk.core.refactoring.Change;
+import org.eclipse.ltk.core.refactoring.RefactoringStatus;
+import org.eclipse.ltk.core.refactoring.participants.CheckConditionsContext;
+import org.eclipse.ltk.core.refactoring.participants.IRenameResourceProcessor;
+import org.eclipse.ltk.core.refactoring.participants.RefactoringProcessor;
+import org.eclipse.ltk.core.refactoring.participants.RenameParticipant;
+
+import io.leaderli.litool.core.text.StringUtils;
+import io.leaderli.litool.core.util.ConsoleUtil;
+import io.leaderli.visual.editor.constant.Leaderli;
+import io.leaderli.visual.editor.util.NameUtil;
+
+//TODO 重命名文件的规则校验
+public class FlowRenameParticipant extends RenameParticipant {
+
+    @Override
+    protected boolean initialize(Object element) {
+        return true;
+    }
+
+    @Override
+    public String getName() {
+        return "Rename Flow";
+    }
+
+    @Override
+    public RefactoringStatus checkConditions(IProgressMonitor pm, CheckConditionsContext context)
+            throws OperationCanceledException {
+
+		//进行校验
+        if(!newName.endsWith(Leaderli.EXTENSION_OF_LI_WITH_DOT)) {
+            return RefactoringStatus.createFatalErrorStatus("flow file must be .li extension");
+
+        }
+        return new RefactoringStatus();
+    }
+
+    @Override
+    public Change createPreChange(IProgressMonitor pm) throws CoreException, OperationCanceledException {
+		// 预览，即 preview
+        return super.createPreChange(pm);
+    }
+
+    @Override
+    public Change createChange(IProgressMonitor pm) throws CoreException, OperationCanceledException {
+		// 执行重命名操作
+        return super.createPreChange(pm);
+    }
+
+}
+
+```
