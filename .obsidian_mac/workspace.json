@@ -69,7 +69,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "ProcessBuilder",
+                "query": "InputStream",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -87,7 +87,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -158,7 +158,7 @@
     "direction": "horizontal",
     "width": 179
   },
-  "active": "f803fea4fee222cb",
+  "active": "92d5a84f4018e5e4",
   "lastOpenFiles": [
     "index/eclipse/eclipse.md",
     "index/eclipse/visual_editor.md",
