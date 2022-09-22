@@ -48,3 +48,10 @@ builder.environment().put("some_variable","uat")
 // source
 builder.command("source","~/.bash_profile")	
 ```
+
+
+默认情况下，执行shell不支持变量替换，可使用如下方式
+
+```java
+builder.command("sh","-c","echo $PWD")
+```
