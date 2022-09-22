@@ -669,7 +669,7 @@ public class LiFlowProjectNature implements IProjectNature {
 
 ## wizard
 
-![[eclipse-wizard]]
+![[eclipse-plugin-wizard]]
 
 ## 启动后加载插件
 

@@ -132,6 +132,11 @@ IDEA 开发 web 项目时，建议使用 `debug` 启动模式，这样可以随�
 
 `File Color`
 
+## postfix complete
+
+![[Pasted image 20220922105948.png]]
+
+![[Pasted image 20220922110014.png]]
 ## live templates
 
 `ifn`快速判断当前行数变量是否为 null
