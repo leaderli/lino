@@ -72,6 +72,7 @@ mac 上使用 command 键替代 alt
 | F3             | toggle bookmark        |
 | F4             | run                    |
 | F5             | debug                  |
+| F9            | close all but pin|
 | F12            | vim emulator           |
 | ALT 1          | project view           |
 | ALT 2          | file structure view         |
@@ -100,6 +101,7 @@ mac 上使用 command 键替代 alt
 | SHIFT F6       | rename                 |
 | SHIFT  ALT `→` | Split And Move Right            |
 | SHIFT ALT `↓`  | Split And Move Down             |
+| CTRL SHIFT `↓`  | Split Down             |
 | CTRL SHIFT  `→` | Split Right            |
 | CTRL SHIFT `↓`  | Split Down             |
 
