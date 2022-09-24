@@ -26,15 +26,25 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
+                "file": "index/frontend/packages/vite.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
               }
             }
+          },
+          {
+            "id": "bfa638af18c75281",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "0.16.3"
+              }
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -60,7 +70,9 @@
             "type": "leaf",
             "state": {
               "type": "file-explorer",
-              "state": {}
+              "state": {
+                "sortOrder": "alphabetical"
+              }
             }
           },
           {
@@ -69,7 +81,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "InputStream",
+                "query": "内存占用",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -91,7 +103,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 275
+    "width": 275,
+    "collapsed": true
   },
   "right": {
     "id": "aed7281feaa57107",
@@ -147,7 +160,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/eclipse/eclipse-plugin-develop-tutorial-setup.md"
+                "file": "index/frontend/packages/vite.md"
               }
             }
           }
@@ -158,17 +171,17 @@
     "direction": "horizontal",
     "width": 179
   },
-  "active": "92d5a84f4018e5e4",
+  "active": "bfa638af18c75281",
   "lastOpenFiles": [
-    "index/eclipse/eclipse.md",
-    "index/eclipse/visual_editor.md",
-    "index/eclipse/gef-event.md",
-    "index/eclipse/eclipse-plugin-editpart.md",
-    "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
-    "index/eclipse/eclipse-plugin.md",
-    "index/eclipse/swt_constant.md",
-    "index/eclipse/_eclipse.md",
-    "index/eclipse/eclipse-plugin-wizard.md",
-    "index/software/intellij_idea.md"
+    "index/frontend/node.md",
+    "index/java/jvm/jvm-gc.md",
+    "index/java/java tips.md",
+    "index/linux/commands/ps.md",
+    "index/computer basics/distributed locks.md",
+    "index/java/ee/string.md",
+    "index/java/spring/tips.md",
+    "index/java/spring/scanner.md",
+    "index/java/framework/javassist.md",
+    "index/eclipse/eclipse-plugin-develop-tutorial-setup.md"
   ]
 }
