@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "c037806d6c626649",
+        "id": "9ad56a5ba0b4c24b",
         "type": "tabs",
         "children": [
           {
-            "id": "2a21772e3f82d213",
+            "id": "933f421ec947b154",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/eclipse/swt_constant.md",
+                "file": "index/software/vim.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
@@ -136,7 +136,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/eclipse/swt_constant.md"
+                "file": "index/software/vim.md"
               }
             }
           }
@@ -147,17 +147,17 @@
     "direction": "horizontal",
     "width": 179
   },
-  "active": "2a21772e3f82d213",
+  "active": "933f421ec947b154",
   "lastOpenFiles": [
+    "index/software/vim.md",
+    "index/computer basics/regex.md",
+    "index/eclipse/swt_constant.md",
     "index/frontend/packages/vite.md",
     "index/frontend/node.md",
     "index/java/jvm/jvm-gc.md",
     "index/java/java tips.md",
     "index/linux/commands/ps.md",
     "index/computer basics/distributed locks.md",
-    "index/java/ee/string.md",
-    "index/java/spring/tips.md",
-    "index/java/spring/scanner.md",
-    "index/java/framework/javassist.md"
+    "index/java/ee/string.md"
   ]
 }
