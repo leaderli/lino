@@ -100,3 +100,9 @@ a[href^="#htext/red"] + mark{
     font-size: var(--code-size);
     padding: 0.1em 0.25em;
 }
+.cm-s-obsidian span.cm-inline-code {
+    color: #c50647;
+    font-size: var(--code-size);
+    background-color: var(--code-background);
+    vertical-align: baseline;
+}

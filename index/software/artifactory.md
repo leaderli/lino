@@ -7,6 +7,11 @@ date updated: 2022-03-28 15:08
 ---
 
 
+## remote
+
+默认情况下，关联的remote仓库会在本地缓存一份，当相同版本的jar包在远程更新了，本地不会更新。关闭
+
+remote 的 advanced 中的 `Store Artifacts Locallly`
 ## maven
 
 可通过 admin 菜单，导入一个新的仓库，也可以按照别的仓库的jar的完整路径批量导入一些jar，pom

@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/software/obsidian.md",
-                "mode": "preview",
+                "file": "index/software/artifactory.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": true
               }
@@ -135,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/software/obsidian.md"
+                "file": "index/software/artifactory.md"
               }
             }
           }
@@ -149,10 +149,10 @@
   },
   "active": "46a64a2e89ec3a82",
   "lastOpenFiles": [
+    "index/software/obsidian.md",
     "index/protocol/ant.md",
     "index/java/se/generics.md",
     "_lino.md",
-    "index/software/obsidian.md",
     "index/java/se/reflect.md",
     "index/java/spring/resource.md",
     "index/frontend/packages/vue-element-admin.md",
