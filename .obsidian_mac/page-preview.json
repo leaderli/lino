@@ -1,4 +1,5 @@
 {
   "preview": true,
-  "file-explorer": false
+  "file-explorer": false,
+  "git-view": false
 }

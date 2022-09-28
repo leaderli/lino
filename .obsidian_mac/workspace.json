@@ -57,7 +57,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "zook",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -75,12 +75,11 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
-    "width": 275,
-    "collapsed": true
+    "width": 275
   },
   "right": {
     "id": "aed7281feaa57107",
@@ -147,7 +146,7 @@
     "direction": "horizontal",
     "width": 179
   },
-  "active": "f6622eae1c61df08",
+  "active": "92d5a84f4018e5e4",
   "lastOpenFiles": [
     "index/java/se/generics.md",
     "_lino.md",
