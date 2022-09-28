@@ -9,6 +9,11 @@ date updated: 2022-07-21 06:22
 
 ![[settings.zip]]
 
+
+通过插件在git上共享配置，本地的git仓库在
+
+`~/Library/Application Support/JetBrains/IntelliJIdea2022.2/settingsRepository/repository`
+
 ## 插件
 
 `editorconfig` 提供代码规范的一些配置，可以多个ide公用

@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "index/software/intellij_idea.md",
-                "mode": "preview",
+                "mode": "source",
                 "backlinks": false,
                 "source": true
               }
@@ -79,7 +79,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 275
+    "width": 275,
+    "collapsed": true
   },
   "right": {
     "id": "aed7281feaa57107",
