@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "3e61b7d89b2c706b",
+        "id": "988ca8c2278b8d17",
         "type": "tabs",
         "children": [
           {
-            "id": "fa654d1a2fbbe241",
+            "id": "f6622eae1c61df08",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -57,7 +57,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "ad-",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -146,12 +146,12 @@
     "direction": "horizontal",
     "width": 179
   },
-  "active": "fa654d1a2fbbe241",
+  "active": "f6622eae1c61df08",
   "lastOpenFiles": [
+    "index/software/obsidian.md",
     "index/java/se/reflect.md",
     "index/java/spring/resource.md",
     "index/frontend/packages/vue-element-admin.md",
-    "index/software/obsidian.md",
     "index/compilers/grammar.md",
     "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
     "index/linux/centos.md",

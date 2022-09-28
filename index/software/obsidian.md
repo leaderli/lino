@@ -93,22 +93,24 @@ date updated: 2022-07-01 06:10
 
 [📒 obsidian-admonition](https://github.com/valentine195/obsidian-admonition)
 
-```ad-note
+`````ad-note
 title: Nested Admonitions
 collapse: open
 
 Hello!
 
-!!! ad-note
-    title: This admonition is nested.
-    This is a nested admonition!
-    !!! ad-warning
-        title: This admonition is closed.
-        collapse: close
-
+````ad-note
+title: This admonition is nested.
+This is a nested admonition!
+```ad-warning
+title: This admonition is closed.
+collapse: close
+this is a nested nested 
+```
+````
 
 This is in the original admonition.
-```
+`````
 
 支持的类型有
 
