@@ -92,3 +92,11 @@ a[href^="#htext/red"] + mark{
 :not(.cm-hmd-internal-link)[data-link-icon$="test" i]::before{
   content: "📗 "
 }
+.markdown-rendered code {
+    color: #c50647;
+    font-family: var(--font-monospace);
+    background-color: var(--code-background);
+    border-radius: var(--radius-s);
+    font-size: var(--code-size);
+    padding: 0.1em 0.25em;
+}

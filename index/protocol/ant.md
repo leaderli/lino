@@ -22,4 +22,4 @@ Ant风格支持三种匹配符
 
 ## 参考文档
 
-[ant-style-path-matcherl](https://github.com/azagniotov/ant-style-path-matcher)
+[ant-style-path-matcher](https://github.com/azagniotov/ant-style-path-matcher)

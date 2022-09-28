@@ -15,7 +15,7 @@
   "autoPairBrackets": true,
   "defaultViewMode": "preview",
   "useMarkdownLinks": false,
-  "autoPairMarkdown": false,
+  "autoPairMarkdown": true,
   "pdfExportSettings": {
     "pageSize": "Letter",
     "landscape": false,
