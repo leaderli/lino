@@ -80,7 +80,7 @@
   "insert-template": [
     {
       "modifiers": [
-        "Alt"
+        "Mod"
       ],
       "key": "T"
     }
@@ -175,5 +175,14 @@
       ],
       "key": "O"
     }
-  ]
+  ],
+  "obsidian-another-quick-switcher:search-command_recent-search": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "O"
+    }
+  ],
+  "workspace:new-tab": []
 }

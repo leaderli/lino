@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "59ad2647a687990d",
+        "id": "3e61b7d89b2c706b",
         "type": "tabs",
         "children": [
           {
-            "id": "7802f3d8370d59d9",
+            "id": "fa654d1a2fbbe241",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -74,7 +74,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 275
+    "width": 275,
+    "collapsed": true
   },
   "right": {
     "id": "aed7281feaa57107",
@@ -139,9 +140,10 @@
     "direction": "horizontal",
     "width": 179
   },
-  "active": "7802f3d8370d59d9",
+  "active": "fa654d1a2fbbe241",
   "lastOpenFiles": [
     "Untitled.md",
+    "template/em.md",
     "index/java/se/generics.md",
     "index/software/git.md",
     "index/software/vim.md",
@@ -149,7 +151,6 @@
     "index/eclipse/swt_constant.md",
     "index/frontend/packages/vite.md",
     "index/frontend/node.md",
-    "index/java/jvm/jvm-gc.md",
-    "index/java/java tips.md"
+    "index/java/jvm/jvm-gc.md"
   ]
 }
