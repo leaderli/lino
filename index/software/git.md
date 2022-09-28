@@ -404,6 +404,8 @@ git branch -D tmp
 git tag v1.0
 git tag -a v0.1 -m "version 0.1 released"
 
+git push tag v1.0 
+
 ```
 
 默认标签是打在最新提交的 `commit` 上的。有时候，如果忘了打标签，比如，现在已经是周五了，但应该在周一打的标签没有打，怎么办？\

@@ -4,19 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "14c26c52e1a199a9",
+        "id": "c9de9972a0b9640d",
         "type": "tabs",
         "children": [
           {
-            "id": "46a64a2e89ec3a82",
+            "id": "3cd85a7fbc2d723e",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/software/artifactory.md",
-                "mode": "source",
+                "file": "index/software/intellij_idea.md",
+                "mode": "preview",
                 "backlinks": false,
-                "source": false
+                "source": true
               }
             }
           }
@@ -135,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/software/artifactory.md"
+                "file": "index/software/intellij_idea.md"
               }
             }
           }
@@ -147,8 +147,10 @@
     "width": 179,
     "collapsed": true
   },
-  "active": "46a64a2e89ec3a82",
+  "active": "3cd85a7fbc2d723e",
   "lastOpenFiles": [
+    "index/software/git.md",
+    "index/software/artifactory.md",
     "index/software/obsidian.md",
     "index/protocol/ant.md",
     "index/java/se/generics.md",
@@ -156,8 +158,6 @@
     "index/java/se/reflect.md",
     "index/java/spring/resource.md",
     "index/frontend/packages/vue-element-admin.md",
-    "index/compilers/grammar.md",
-    "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
-    "index/linux/centos.md"
+    "index/compilers/grammar.md"
   ]
 }
