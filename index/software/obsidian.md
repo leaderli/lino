@@ -89,6 +89,13 @@ date updated: 2022-07-01 06:10
 
 [ 📒 recent-files-obsidian](https://github.com/tgrosinger/recent-files-obsidian)
 
+### Embed Code File 
+
+链接代码文件
+
+### zoottelkeeper
+
+自动窗口文件导航目录
 ### obsidian-admonition
 
 [📒 obsidian-admonition](https://github.com/valentine195/obsidian-admonition)

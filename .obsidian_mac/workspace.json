@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/protocol/ant.md",
+                "file": "index/software/obsidian.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
@@ -75,12 +75,11 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 275,
-    "collapsed": true
+    "width": 275
   },
   "right": {
     "id": "aed7281feaa57107",
@@ -136,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/protocol/ant.md"
+                "file": "index/software/obsidian.md"
               }
             }
           }
