@@ -69,12 +69,30 @@ R apply(T t);
 
 ##  泛型类型
 
-`java.lang.reflect.Type` 有多个实现类
-- `Class` 
-- `TypeVariable` 泛型声明，例如 `List<T>`中的`T`
-- `WildcardType` 通配符泛型声明，例如`List<? extends T>` 中的 `? extends T`
-- `GenericArrayType` 数组泛型 ，例如 `T[]` 中的 `T`
-- `ParameterizedType` 参数化泛型声明，例如 `List<List<Integet>>` 中的 `List<Intger>`
+### java.lang.reflect.Type 
+有多个实现类
+### Class 
+类
+### TypeVariable
+泛型声明，例如 `List<T>`中的`T`， 其可以通过`getGenericDeclaration`方法找到泛型声明的类
+
+```java
+private static class Li<T> {  
+    public T t;  
+}
+
+Type t = Li.class.getField("t").getGenericType();
+((TypeVariable)t).getGenericDeclaration(); // class Li
+
+```
+
+
+### WildcardType 
+通配符泛型声明，例如`List<? extends T>` 中的 `? extends T`
+### GenericArrayType
+数组泛型 ，例如 `T[]` 中的 `T`
+### ParameterizedType
+参数化泛型声明，例如 `List<List<Integet>>` 中的 `List<Intger>`
 
 
 我们需要明确的是，泛型类型仅使用于声明时使用，实际赋值时泛型肯定是已经确定好了的。那么针对于声明泛型的
@@ -358,3 +376,5 @@ List<Generic<Object, ? extends Collection>> generics; //G1 G2 G3
 @Autowired
 List<Generic<Object, Collection>> generics; //G1 G2
 ```
+
+

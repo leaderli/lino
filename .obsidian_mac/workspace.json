@@ -13,14 +13,28 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/software/vim.md",
+                "file": "index/java/se/generics.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": true
+              }
+            }
+          },
+          {
+            "id": "1e367c1825b92573",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Untitled.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -136,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/software/vim.md"
+                "file": "Untitled.md"
               }
             }
           }
@@ -147,8 +161,10 @@
     "direction": "horizontal",
     "width": 179
   },
-  "active": "933f421ec947b154",
+  "active": "1e367c1825b92573",
   "lastOpenFiles": [
+    "index/java/se/generics.md",
+    "index/software/git.md",
     "index/software/vim.md",
     "index/computer basics/regex.md",
     "index/eclipse/swt_constant.md",
@@ -156,8 +172,6 @@
     "index/frontend/node.md",
     "index/java/jvm/jvm-gc.md",
     "index/java/java tips.md",
-    "index/linux/commands/ps.md",
-    "index/computer basics/distributed locks.md",
-    "index/java/ee/string.md"
+    "index/linux/commands/ps.md"
   ]
 }
