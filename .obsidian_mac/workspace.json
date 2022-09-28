@@ -11,8 +11,13 @@
             "id": "fa654d1a2fbbe241",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "index/software/obsidian.md",
+                "mode": "preview",
+                "backlinks": false,
+                "source": true
+              }
             }
           }
         ]
@@ -52,7 +57,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "内存占用",
+                "query": "ad-",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -70,12 +75,11 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
-    "width": 275,
-    "collapsed": true
+    "width": 275
   },
   "right": {
     "id": "aed7281feaa57107",
@@ -130,7 +134,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "index/software/obsidian.md"
+              }
             }
           }
         ],
@@ -142,15 +148,15 @@
   },
   "active": "fa654d1a2fbbe241",
   "lastOpenFiles": [
-    "Untitled.md",
-    "template/em.md",
-    "index/java/se/generics.md",
-    "index/software/git.md",
-    "index/software/vim.md",
-    "index/computer basics/regex.md",
-    "index/eclipse/swt_constant.md",
-    "index/frontend/packages/vite.md",
-    "index/frontend/node.md",
-    "index/java/jvm/jvm-gc.md"
+    "index/java/se/reflect.md",
+    "index/java/spring/resource.md",
+    "index/frontend/packages/vue-element-admin.md",
+    "index/software/obsidian.md",
+    "index/compilers/grammar.md",
+    "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
+    "index/linux/centos.md",
+    "index/common/cheatsheet.md",
+    "index/compilers/automation.md",
+    "index/call system/avaya.md"
   ]
 }
