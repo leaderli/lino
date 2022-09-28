@@ -4,24 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "9ad56a5ba0b4c24b",
+        "id": "6a5129263f5730a0",
         "type": "tabs",
         "children": [
           {
-            "id": "933f421ec947b154",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "index/java/se/generics.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": true
-              }
-            }
-          },
-          {
-            "id": "1e367c1825b92573",
+            "id": "9d319a7010b503e0",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -33,8 +20,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -89,12 +75,11 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 275,
-    "collapsed": true
+    "width": 275
   },
   "right": {
     "id": "aed7281feaa57107",
@@ -161,9 +146,10 @@
     "direction": "horizontal",
     "width": 179
   },
-  "active": "1e367c1825b92573",
+  "active": "9d319a7010b503e0",
   "lastOpenFiles": [
     "index/java/se/generics.md",
+    "Untitled.md",
     "index/software/git.md",
     "index/software/vim.md",
     "index/computer basics/regex.md",
@@ -171,7 +157,6 @@
     "index/frontend/packages/vite.md",
     "index/frontend/node.md",
     "index/java/jvm/jvm-gc.md",
-    "index/java/java tips.md",
-    "index/linux/commands/ps.md"
+    "index/java/java tips.md"
   ]
 }
