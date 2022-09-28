@@ -13,10 +13,10 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/software/obsidian.md",
-                "mode": "preview",
+                "file": "index/java/se/generics.md",
+                "mode": "source",
                 "backlinks": false,
-                "source": true
+                "source": false
               }
             }
           }
@@ -75,11 +75,12 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 275
+    "width": 275,
+    "collapsed": true
   },
   "right": {
     "id": "aed7281feaa57107",
@@ -135,7 +136,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/software/obsidian.md"
+                "file": "index/java/se/generics.md"
               }
             }
           }
@@ -148,6 +149,8 @@
   },
   "active": "f6622eae1c61df08",
   "lastOpenFiles": [
+    "index/java/se/generics.md",
+    "_lino.md",
     "index/software/obsidian.md",
     "index/java/se/reflect.md",
     "index/java/spring/resource.md",
@@ -155,8 +158,6 @@
     "index/compilers/grammar.md",
     "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
     "index/linux/centos.md",
-    "index/common/cheatsheet.md",
-    "index/compilers/automation.md",
-    "index/call system/avaya.md"
+    "index/common/cheatsheet.md"
   ]
 }
