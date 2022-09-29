@@ -93,6 +93,17 @@ date updated: 2022-07-01 06:10
 
 链接代码文件
 
+[GitHub - almariah/embed-code-file](https://github.com/almariah/embed-code-file)
+
+````markdown
+
+```embed-<some-language>
+PATH: "vault://<some-path-to-code-file>" or "http[s]://<some-path-to-remote-file>"
+LINES: "<some-line-number>,<other-number>,...,<some-range>"
+TITLE: "<some-title>"
+```
+````
+
 ### zoottelkeeper
 
 自动窗口文件导航目录

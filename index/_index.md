@@ -9,6 +9,7 @@
 - 🗂️ [[index/eclipse/_eclipse|_eclipse]]
 - 🗂️ [[index/frontend/_frontend|_frontend]]
 - 🗂️ [[index/java/_java|_java]]
+- 🗂️ [[index/javadoc/_javadoc|_javadoc]]
 - 🗂️ [[index/linux/_linux|_linux]]
 - 🗂️ [[index/middleware/_middleware|_middleware]]
 - 🗂️ [[index/protocol/_protocol|_protocol]]
