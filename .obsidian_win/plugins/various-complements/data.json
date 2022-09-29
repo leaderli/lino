@@ -41,15 +41,10 @@
   "enableFrontMatterComplement": true,
   "frontMatterComplementMatchStrategy": "inherit",
   "insertCommaAfterFrontMatterCompletion": false,
+  "intelligentSuggestionPrioritization": {
+    "maxDaysToKeepHistory": 30,
+    "maxNumberOfHistoryToKeep": 0
+  },
   "showLogAboutPerformanceInConsole": false,
-  "selectionHistoryTree": {
-    "shell": {
-      "bash": {
-        "internalLink": {
-          "count": 1,
-          "lastUpdated": 1661620753846
-        }
-      }
-    }
-  }
+  "selectionHistoryTree": {}
 }

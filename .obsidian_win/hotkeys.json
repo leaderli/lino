@@ -208,5 +208,13 @@
       ],
       "key": "A"
     }
+  ],
+  "obsidian-another-quick-switcher:search-command_recent-search": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "O"
+    }
   ]
 }

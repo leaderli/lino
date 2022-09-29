@@ -26,5 +26,6 @@
   "livePreview": false,
   "spellcheck": false,
   "legacyEditor": false,
-  "communityPluginSortOrder": "download"
+  "communityPluginSortOrder": "download",
+  "showInlineTitle": true
 }

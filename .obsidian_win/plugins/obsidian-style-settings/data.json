@@ -5,5 +5,8 @@
   "things-style@@h2-color": "#0B8E58",
   "things-style@@links-int-on": false,
   "things-style@@links-ext-on": false,
-  "things-style@@minimal-icons-off": false
+  "things-style@@minimal-icons-off": false,
+  "quick-explorer@@qe-hide-breadcrumbs": false,
+  "quick-explorer@@qe-obsidian-title": "qe-title-hide",
+  "minimal-advanced@@styled-scrollbars": false
 }

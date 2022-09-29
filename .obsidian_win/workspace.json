@@ -1,0 +1,134 @@
+{
+  "main": {
+    "id": "9bce5f77835281c4",
+    "type": "split",
+    "children": [
+      {
+        "id": "bdaef4cacdaacae2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2a71f0b3a4902e48",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "index/linux/commands/man.md",
+                "mode": "preview",
+                "backlinks": false,
+                "source": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "6aef424ec9fb2be8",
+    "type": "split",
+    "children": [
+      {
+        "id": "adf9b7233a946914",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "af01c39738594ab8",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "51f7c28400713fd9",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "ascii",
+                "matchingCase": false,
+                "explainSearch": true,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "cb087599afad4542",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          },
+          {
+            "id": "a8b5e0261c702627",
+            "type": "leaf",
+            "state": {
+              "type": "recent-files",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 372,
+    "collapsed": true
+  },
+  "right": {
+    "id": "4b761e4e5ad66709",
+    "type": "split",
+    "children": [
+      {
+        "id": "80c9229a973b90d6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c496201ed7acf5a1",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "index/linux/commands/man.md"
+              }
+            }
+          },
+          {
+            "id": "26841ac19989f3e1",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 178,
+    "collapsed": true
+  },
+  "active": "2a71f0b3a4902e48",
+  "lastOpenFiles": [
+    "index/linux/commands/man.md",
+    "index/software/obsidian.md",
+    "index/java/framework/_framework.md",
+    "index/compilers/grammar.md",
+    "index/java/framework/asciitable.md",
+    "index/linux/linux basic.md",
+    "index/linux/bash.md",
+    "index/linux/configuration.md",
+    "index/eclipse/eclipse.md",
+    "index/common/cheatsheet.md"
+  ]
+}

@@ -96,6 +96,11 @@ date updated: 2022-07-01 06:10
 ### zoottelkeeper
 
 自动窗口文件导航目录
+
+###  quick-explorer
+
+显示层级目录 `obsidian://show-plugin?id=quick-explorer`
+
 ### obsidian-admonition
 
 [📒 obsidian-admonition](https://github.com/valentine195/obsidian-admonition)

@@ -9,10 +9,14 @@
     "iconfont",
     "image-grid",
     "obsidian_orange",
-    "supercharged-links-gen"
+    "supercharged-links-gen",
+    "li"
   ],
-  "cssTheme": "Blue Topaz",
+  "cssTheme": "Minimal",
   "baseFontSizeAction": false,
   "interfaceFontFamily": "Consolas,Sarasa Mono HC,Arial,Sarasa Mono TC",
-  "textFontFamily": "Sarasa Mono TC"
+  "textFontFamily": "Sarasa Mono TC",
+  "accentColor": "#0675b1",
+  "nativeMenus": false,
+  "showViewHeader": false
 }
