@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/commands/man.md",
+                "file": "index/software/git.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
@@ -96,7 +96,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/commands/man.md"
+                "file": "index/software/git.md"
               }
             }
           },
@@ -120,6 +120,7 @@
   },
   "active": "2a71f0b3a4902e48",
   "lastOpenFiles": [
+    "index/software/intellij_idea.md",
     "index/linux/commands/man.md",
     "index/software/obsidian.md",
     "index/java/framework/_framework.md",
@@ -128,7 +129,6 @@
     "index/linux/linux basic.md",
     "index/linux/bash.md",
     "index/linux/configuration.md",
-    "index/eclipse/eclipse.md",
-    "index/common/cheatsheet.md"
+    "index/eclipse/eclipse.md"
   ]
 }
