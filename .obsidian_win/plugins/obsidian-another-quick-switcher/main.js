@@ -745,13 +745,13 @@ function normalize(str, isNormalizeAccentsDiacritics) {
 }
 function smartIncludes(text, query, isNormalizeAccentsDiacritics) {
   return excludeSpace(normalize(text, isNormalizeAccentsDiacritics)).includes(
-    normalize(query, isNormalizeAccentsDiacritics)
+    excludeSpace(normalize(query, isNormalizeAccentsDiacritics))
   );
 }
 function smartStartsWith(text, query, isNormalizeAccentsDiacritics) {
   return excludeSpace(
     excludeEmoji(normalize(text, isNormalizeAccentsDiacritics))
-  ).startsWith(normalize(query, isNormalizeAccentsDiacritics));
+  ).startsWith(excludeSpace(normalize(query, isNormalizeAccentsDiacritics)));
 }
 function smartEquals(text, query, isNormalizeAccentsDiacritics) {
   return excludeSpace(
@@ -763,6 +763,31 @@ function excludeFormat(text) {
 }
 function smartLineBreakSplit(text) {
   return text.split("\n").filter((x) => x);
+}
+function smartWhitespaceSplit(text) {
+  const strs = [];
+  let str = "";
+  let hasQuote = false;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    switch (ch) {
+      case `"`:
+        hasQuote = !hasQuote;
+        break;
+      case ` `:
+        if (hasQuote) {
+          str += ch;
+        } else {
+          strs.push(str);
+          str = "";
+        }
+        break;
+      default:
+        str += ch;
+    }
+  }
+  strs.push(str);
+  return strs.filter((x) => x);
 }
 
 // src/matcher.ts
@@ -1472,7 +1497,7 @@ var AnotherQuickSwitcherModal = class extends import_obsidian3.SuggestModal {
       this.searchQuery = `${this.command.defaultInput}${this.searchQuery}`;
     }
     this.renderInputComponent();
-    const qs = this.searchQuery.split(" ").filter((x) => x);
+    const qs = smartWhitespaceSplit(this.searchQuery);
     if (this.command.searchTarget === "backlink" && !((_a = this.app.workspace.getActiveFile()) == null ? void 0 : _a.path)) {
       return [];
     }
@@ -1575,7 +1600,7 @@ var AnotherQuickSwitcherModal = class extends import_obsidian3.SuggestModal {
     div.appendChild(searchInGoogleButton);
     this.resultContainerEl.appendChild(div);
   }
-  async chooseCurrentSuggestion(leaf) {
+  async chooseCurrentSuggestion(leaf, option = {}) {
     var _a;
     const item = (_a = this.chooser.values) == null ? void 0 : _a[this.chooser.selectedItem];
     if (!item) {
@@ -1589,7 +1614,9 @@ var AnotherQuickSwitcherModal = class extends import_obsidian3.SuggestModal {
       item.file,
       this.app.workspace.getActiveFile()
     ) : void 0;
-    this.close();
+    if (!option.keepOpen) {
+      this.close();
+    }
     this.appHelper.openMarkdownFile(fileToOpened, { leaf, offset });
   }
   async onChooseSuggestion(item, evt) {
@@ -1656,6 +1683,9 @@ var AnotherQuickSwitcherModal = class extends import_obsidian3.SuggestModal {
     });
     this.registerKeys("open in popup", () => {
       this.chooseCurrentSuggestion("popup");
+    });
+    this.registerKeys("open in new tab in background", () => {
+      this.chooseCurrentSuggestion("new-tab-background", { keepOpen: true });
     });
     this.registerKeys("open all in new tabs", () => {
       this.close();
@@ -1962,7 +1992,7 @@ var HeaderModal = class extends import_obsidian5.SuggestModal {
     }
   }
   getSuggestions(query) {
-    const qs = query.split(" ").filter((x) => x);
+    const qs = smartWhitespaceSplit(query);
     const suggestions = this.items.map((x) => {
       const hit = qs.length > 0 && qs.every(
         (q) => smartIncludes(x.value, q, this.settings.normalizeAccentsAndDiacritics)
@@ -2091,9 +2121,9 @@ var import_obsidian6 = require("obsidian");
 
 // src/utils/ripgrep.ts
 var import_child_process = require("child_process");
-async function existsRg() {
+async function existsRg(cmd) {
   return new Promise((resolve, _) => {
-    (0, import_child_process.execFile)("rg", ["--version"], (error, _stdout, _stderr) => {
+    (0, import_child_process.execFile)(cmd, ["--version"], (error, _stdout, _stderr) => {
       if (error) {
         console.dir(error);
       }
@@ -2101,10 +2131,10 @@ async function existsRg() {
     });
   });
 }
-async function rg(...args) {
+async function rg(cmd, ...args) {
   return new Promise((resolve, _) => {
     (0, import_child_process.execFile)(
-      "rg",
+      cmd,
       ["--json", ...args],
       { maxBuffer: 100 * 1024 * 1024 },
       (_2, stdout, _stderr) => {
@@ -2166,6 +2196,7 @@ var GrepModal = class extends import_obsidian6.SuggestModal {
     const hasCapitalLetter = query.toLowerCase() !== query;
     const basePath = this.app.vault.adapter.basePath;
     const rgResults = await rg(
+      this.settings.ripgrepCommand,
       ...[
         "-t",
         "md",
@@ -2390,9 +2421,9 @@ async function showGrepDialog(app2, settings) {
     new import_obsidian7.Notice("Grep is not supported on mobile.");
     return;
   }
-  if (!await existsRg()) {
+  if (!await existsRg(settings.ripgrepCommand)) {
     new import_obsidian7.Notice(
-      "You need to install ripgrep and enable it to call from anywhere."
+      `"${settings.ripgrepCommand}" was not working as a ripgrep command. If you have not installed ripgrep yet, please install it.`
     );
     return;
   }
@@ -2477,6 +2508,7 @@ var createDefaultHotkeys = () => ({
     "open in new pane (vertical)": [{ modifiers: ["Mod"], key: "i" }],
     "open in new window": [{ modifiers: ["Mod"], key: "o" }],
     "open in popup": [],
+    "open in new tab in background": [{ modifiers: ["Alt"], key: "o" }],
     "open all in new tabs": [{ modifiers: ["Mod", "Shift", "Alt"], key: "o" }],
     create: [{ modifiers: ["Shift"], key: "Enter" }],
     "create in new tab": [{ modifiers: ["Mod", "Shift"], key: "Enter" }],
@@ -2630,6 +2662,7 @@ var DEFAULT_SETTINGS = {
   userAltInsteadOfModForQuickResultSelection: false,
   hotkeys: createDefaultHotkeys(),
   searchCommands: createPreSettingSearchCommands(),
+  ripgrepCommand: "rg",
   moveFileExcludePrefixPathPatterns: [],
   showLogAboutPerformanceInConsole: false
 };
@@ -2653,6 +2686,7 @@ var AnotherQuickSwitcherSettingTab = class extends import_obsidian8.PluginSettin
     this.addAppearanceSettings(containerEl);
     this.addHotKeysInDialogSettings(containerEl);
     this.addSearchSettings(containerEl);
+    this.addGrepSettings(containerEl);
     this.addMoveSettings(containerEl);
     this.addDebugSettings(containerEl);
   }
@@ -3012,6 +3046,15 @@ ${invalidValues.map((x) => `- ${x}`).join("\n")}
       el.inputEl.className = "another-quick-switcher__settings__exclude_path_patterns";
       return el;
     });
+  }
+  addGrepSettings(containerEl) {
+    containerEl.createEl("h3", { text: "\u{1F50D} Grep" });
+    new import_obsidian8.Setting(containerEl).setName("Ripgrep command").setDesc("A command that can execute ripgrep").addText(
+      (tc) => tc.setValue(this.plugin.settings.ripgrepCommand).onChange(async (value) => {
+        this.plugin.settings.ripgrepCommand = value;
+        await this.plugin.saveSettings();
+      })
+    );
   }
   addMoveSettings(containerEl) {
     containerEl.createEl("h3", { text: "\u{1F4C1} Move file to another folder" });

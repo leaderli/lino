@@ -103,7 +103,7 @@ mac 上使用 command 键替代 alt
 | SHIFT ALT `↓`  | Split And Move Down             |
 | CTRL SHIFT `↓`  | Split Down             |
 | CTRL SHIFT  `→` | Split Right            |
-| CTRL SHIFT `↓`  | Split Down             |
+| CTRL SHIFT  `←` | unsplit            |
 
 其他快捷方式
 

@@ -17,11 +17,9 @@ public class javassist_1 {
         return value[i++];
     }
 
-    public static void main(String args[]) throws Exception {
+    public static void main(String[] args) throws Exception {
 
         ClassPool classPool = ClassPool.getDefault();
-
-
         CtClass ctClass = classPool.get("Welcome");
         CtMethod ctMethod = ctClass.getDeclaredMethod("sayHello");
         ctMethod.setBody("{ return javassist_1.value(); }");
@@ -37,10 +35,7 @@ public class javassist_1 {
 
 }
 class Welcome {
-
-
     public static String sayHello() {
         return "Hello!!!!";
     }
-
 }
