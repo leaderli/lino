@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/javadoc/litool.md",
-                "mode": "preview",
+                "file": "index/common/cheatsheet.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": false
               }
@@ -62,7 +62,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "ascii",
+                "query": "ssh",
                 "matchingCase": false,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -87,7 +87,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -108,7 +109,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/javadoc/litool.md"
+                "file": "index/common/cheatsheet.md"
               }
             }
           },
@@ -127,20 +128,19 @@
       }
     ],
     "direction": "horizontal",
-    "width": 178,
-    "collapsed": true
+    "width": 178
   },
   "active": "a10cc988530b4496",
   "lastOpenFiles": [
-    "index/software/obsidian.md",
-    "index/javadoc/litool.md",
-    "index/software/git.md",
-    "template/em.md",
-    "index/linux/commands/awk.md",
+    "index/linux/commands/clip.md",
+    "index/linux/fork.md",
+    "index/linux/apt-get.md",
+    "index/linux/commands/ssh.md",
+    "index/software/docker.md",
+    "index/linux/commands/_commands.md",
     "index/software/intellij_idea.md",
-    "index/linux/commands/man.md",
-    "index/java/framework/_framework.md",
-    "index/compilers/grammar.md",
-    "index/java/framework/asciitable.md"
+    "index/java/framework/javassist.md",
+    "index/javadoc/litool.md",
+    "index/software/obsidian.md"
   ]
 }

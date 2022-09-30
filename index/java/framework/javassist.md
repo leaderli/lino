@@ -10,7 +10,7 @@ date updated: 2022-04-05 17:26
 <dependency>
     <groupId>org.javassist</groupId>
     <artifactId>javassist</artifactId>
-    <version>3.21.0-GA</version>
+	<version>3.29.2-GA</version>
 </dependency>
 ```
 
@@ -128,7 +128,7 @@ Class clazz = cc.toClass();
 
 在上面的例子中，修改了类的字节码对象，这项修改通过writeFile()将CtClass对象转换为[[bytecode|字节码]]文件并写到磁盘中。
 
-#htext/red ==需要注意的是，CtClass做的修改是不会同步到已经被类加载器加载的类对象上的==
+==需要注意的是，CtClass做的修改是不会同步到已经被类加载器加载的类对象上的==
 
 CtClass对象代表的class的文件中涉及到的其他class的引用，也需要在[[#ClassPool]]的[[#classpath]]中，
 
@@ -150,7 +150,7 @@ ClassPool是一个存储CtClass的Hash表，ClassPool的get()函数用于从Hash
 
 如果程序在web应用服务器上运行，则可能需要创建多个ClassPool实例。正确的做法应该为每一个ClassLoader创建一个ClassPool实例，ClassPool应当通过构造函数来生成，而不是调用getDefault()来创建。
 
-#htext/red ==ClassPool的层级关系应当保持和ClassLoader一致==
+==ClassPool的层级关系应当保持和ClassLoader一致==
 
 ```java
 //parent classloader

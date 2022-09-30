@@ -2,6 +2,7 @@
 - 📄 [[index/linux/commands/awk|awk]]
 - 📄 [[index/linux/commands/cat|cat]]
 - 📄 [[index/linux/commands/chown|chown]]
+- 📄 [[index/linux/commands/clip|clip]]
 - 📄 [[index/linux/commands/column|column]]
 - 📄 [[index/linux/commands/cp|cp]]
 - 📄 [[index/linux/commands/crontab|crontab]]
