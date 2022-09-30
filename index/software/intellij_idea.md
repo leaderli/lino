@@ -7,9 +7,6 @@ date updated: 2022-07-21 06:22
 
 ## 设置
 
-![[settings.zip]]
-
-
 通过插件在git上共享配置，本地的git仓库在
 
 `~/Library/Application Support/JetBrains/IntelliJIdea2022.2/settingsRepository/repository`

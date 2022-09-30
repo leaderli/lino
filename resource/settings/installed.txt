@@ -1,6 +1,0 @@
-IdeaVIM
-IdeaVimExtension
-com.dubreuia
-io.zhile.research.ide-eval-resetter
-mobi.hsz.idea.gitignore
-org.jetbrains.plugins.vue
