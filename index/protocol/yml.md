@@ -1,5 +1,7 @@
 ---
-aliases: yml
+aliases: 
+- yml
+- yaml
 tags:
   - protocol/yml
   - java
