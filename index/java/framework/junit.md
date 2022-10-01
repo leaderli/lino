@@ -167,6 +167,14 @@ class MyCartesianProductResolver implements ParameterResolver {
 }
 ```
 
+
+### junit 自定义test的实例
+
+
+```embed-java
+PATH: "vault://snippet/java/src/main/java/junit_1.java"
+```
+
 ### junit断言异常
 
 #junit4
