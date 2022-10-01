@@ -1,3 +1,4 @@
+import io.leaderli.litool.core.test.StringValues;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtMethod;
@@ -24,8 +25,12 @@ public class javassist_1 {
         CtMethod ctMethod = ctClass.getDeclaredMethod("sayHello");
         ctMethod.setBody("{ return javassist_1.value(); }");
 
-        ctClass.toClass();
+        Class<?> aClass = ctClass.toClass();
+        ctClass.defrost();
 
+        System.out.println(Welcome.sayHello());
+        ctMethod.setBody("{ return \"1\"; }");
+        aClass = ctClass.toClass();
         System.out.println(Welcome.sayHello());
         System.out.println(Welcome.sayHello());
         System.out.println(Welcome.sayHello());

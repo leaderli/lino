@@ -79,7 +79,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 357.5
+    "width": 357.5,
+    "collapsed": true
   },
   "right": {
     "id": "4b761e4e5ad66709",
@@ -116,17 +117,17 @@
     "direction": "horizontal",
     "width": 178
   },
-  "active": "a8b5e0261c702627",
+  "active": "c7d626dd61e1fa70",
   "lastOpenFiles": [
+    "index/java/jvm/classloader.md",
     "index/java/framework/javassist.md",
+    "index/java/framework/ast.md",
     "index/linux/commands/clip.md",
     "index/software/obsidian.md",
     "index/common/cheatsheet.md",
     "index/linux/fork.md",
     "index/linux/apt-get.md",
     "index/linux/commands/ssh.md",
-    "index/software/docker.md",
-    "index/linux/commands/_commands.md",
-    "index/software/intellij_idea.md"
+    "index/software/docker.md"
   ]
 }
