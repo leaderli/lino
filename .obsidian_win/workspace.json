@@ -26,7 +26,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/software/intellij_idea.md",
+                "file": "index/java/jvm/classloader.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -110,7 +110,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/software/intellij_idea.md"
+                "file": "index/java/jvm/classloader.md"
               }
             }
           },
@@ -133,6 +133,7 @@
   },
   "active": "933e9a417fa08623",
   "lastOpenFiles": [
+    "index/software/intellij_idea.md",
     "index/java/framework/junit.md",
     "index/java/framework/javassist.md",
     "index/java/jvm/classloader.md",
@@ -141,7 +142,6 @@
     "index/software/obsidian.md",
     "index/common/cheatsheet.md",
     "index/linux/fork.md",
-    "index/linux/apt-get.md",
-    "index/linux/commands/ssh.md"
+    "index/linux/apt-get.md"
   ]
 }
