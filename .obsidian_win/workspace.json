@@ -26,8 +26,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/framework/junit.md",
-                "mode": "preview",
+                "file": "index/software/intellij_idea.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": true
               }
@@ -110,7 +110,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/framework/junit.md"
+                "file": "index/software/intellij_idea.md"
               }
             }
           },

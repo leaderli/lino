@@ -2,7 +2,7 @@
 aliases: idea
 tags:
   - 软件/intellij_idea
-date updated: 2022-07-21 06:22
+date updated: 2022-10-07 13:54
 ---
 
 ## 设置
@@ -14,14 +14,22 @@ date updated: 2022-07-21 06:22
 ## 插件
 
 `editorconfig` 提供代码规范的一些配置，可以多个ide公用
+
 ## 快捷键
 
 ![[cheatsheet#idea]]
 
-
-## 调试
+## 调试debug
 
 IDEA 开发 web 项目时，建议使用 `debug` 启动模式，这样可以随时打断点调试项目
+
+### 断点类型
+
+1. 行断点
+2. 方法断点，可直接断点到接口上，会自动找到其实现类，断点标记为一个菱形![[Pasted image 20221007135132.png]]
+3. 属性断点，小眼睛标记，可设置断点的触发类型：修改或访问
+
+### 断点设置
 
 1. 使用异常类型断点，在抛出异常时快速进入报错点
 
@@ -29,17 +37,23 @@ IDEA 开发 web 项目时，建议使用 `debug` 启动模式，这样可以随�
 
 3. 断点可设置依赖关系，仅在前置断点触发后再触发
 
-4. `evaluate Expression` 可编写代码进行测试
+4. 使用 `watches` 监听属性的变化
 
-5. 使用 `watches` 监听属性的变化
+5. `variables` 直接修改属性值，进行调试
 
-6. `variables` 直接修改属性值，进行调试
+6. 指定线程下触发断点
 
-7. 指定线程下触发断点
+### 一下断点操作
 
-8. 移动到下个断点
+1. `evaluate Expression` 可编写代码进行测试
 
-9. option + 左键 查看变量
+2. 移动到下个断点
+
+3. 移动到光标位置
+
+4. option + 左键 查看变量
+
+[测试左移-快速玩转Debug - 掘金](https://juejin.cn/post/7143932872854863902)
 
 ## 输入
 
@@ -139,6 +153,7 @@ IDEA 开发 web 项目时，建议使用 `debug` 启动模式，这样可以随�
 ![[Pasted image 20220922105948.png]]
 
 ![[Pasted image 20220922110014.png]]
+
 ## live templates
 
 `ifn`快速判断当前行数变量是否为 null
@@ -240,6 +255,7 @@ SLF4J: See <http://www.slf4j.org/codes.html#StaticLoggerBinder> for further deta
 ![[Pasted image 20220829085559.png]]
 
 ![[Pasted image 20220902205333.png]]
+
 ## 参考文档
 
 激活 破解
