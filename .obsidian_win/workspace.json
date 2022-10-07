@@ -32,9 +32,35 @@
                 "source": true
               }
             }
+          },
+          {
+            "id": "3603e4300a50100e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "index/java/framework/bytebuddy.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": true
+              }
+            }
+          },
+          {
+            "id": "11db8ec28e079678",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "index/java/framework/mockito.md",
+                "mode": "preview",
+                "backlinks": false,
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -63,7 +89,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "ssh",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -88,13 +114,11 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 357.5,
-    "collapsed": true
+    "width": 357.5
   },
   "right": {
     "id": "4b761e4e5ad66709",
@@ -110,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/framework/javassist.md"
+                "file": "index/java/framework/mockito.md"
               }
             }
           },
@@ -131,17 +155,17 @@
     "direction": "horizontal",
     "width": 178
   },
-  "active": "933e9a417fa08623",
+  "active": "11db8ec28e079678",
   "lastOpenFiles": [
-    "index/java/jvm/classloader.md",
-    "index/software/intellij_idea.md",
+    "index/java/framework/bytebuddy.md",
+    "index/java/jvm/java agent.md",
+    "index/java/jvm/jvm-gc.md",
+    "index/java/framework/logback.md",
     "index/java/framework/junit.md",
-    "index/java/framework/javassist.md",
+    "index/java/framework/EnumMap.md",
     "index/java/framework/ast.md",
-    "index/linux/commands/clip.md",
-    "index/software/obsidian.md",
-    "index/common/cheatsheet.md",
-    "index/linux/fork.md",
-    "index/linux/apt-get.md"
+    "index/java/framework/javassist.md",
+    "index/java/jvm/classloader.md",
+    "index/software/intellij_idea.md"
   ]
 }

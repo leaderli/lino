@@ -4,6 +4,7 @@
 - 📄 [[index/java/framework/asm|asm]]
 - 📄 [[index/java/framework/assertj|assertj]]
 - 📄 [[index/java/framework/ast|ast]]
+- 📄 [[index/java/framework/bytebuddy|bytebuddy]]
 - 📄 [[index/java/framework/common-configuration|common-configuration]]
 - 📄 [[index/java/framework/common-lang3|common-lang3]]
 - 📄 [[index/java/framework/EnumMap|EnumMap]]

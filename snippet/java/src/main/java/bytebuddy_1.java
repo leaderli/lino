@@ -1,30 +1,46 @@
 import net.bytebuddy.ByteBuddy;
-import net.bytebuddy.implementation.FixedValue;
-import net.bytebuddy.matcher.ElementMatchers;
-import org.junit.jupiter.api.Test;
+import net.bytebuddy.agent.ByteBuddyAgent;
+import net.bytebuddy.dynamic.loading.ClassReloadingStrategy;
+import net.bytebuddy.implementation.MethodDelegation;
+
+import static net.bytebuddy.matcher.ElementMatchers.named;
 
 public class bytebuddy_1 {
 
-    public static class Foo {
-        public String say() {
-            return "foo";
+
+    public static class Source {
+        public String hello(String name) {
+            return null;
+        }
+
+    }
+
+    public static class Target {
+
+        public static String hello(String name) {
+            return "Hello " + name + "!";
         }
     }
 
-    @Test
-    void test() throws InstantiationException, IllegalAccessException {
+    public static void main(String[] args) {
 
-        Class<?> dynamicType = new ByteBuddy()
-                .subclass(Foo.class)
-                .method(ElementMatchers.named("say"))
-                .intercept(FixedValue.value("Hello World!"))
+        ByteBuddyAgent.install();
+
+        ByteBuddy byteBuddy = new ByteBuddy();
+
+        byteBuddy.redefine(Source.class)
+                .method(named("hello")).intercept(MethodDelegation.to(Target.class))
                 .make()
-                .load(getClass().getClassLoader())
-                .getLoaded();
+                .load(Source.class.getClassLoader(), ClassReloadingStrategy.fromInstalledAgent());
+        System.out.println(new Source().hello("world")); // Hello world!
 
-        Foo x = (Foo) dynamicType.newInstance();
-        System.out.println(x.say());
+        byteBuddy.rebase(Source.class)
+                .make()
+                .load(Source.class.getClassLoader(), ClassReloadingStrategy.fromInstalledAgent());
+        System.out.println(new Source().hello("world"));// null
+
 
     }
 }
+
 
