@@ -215,7 +215,7 @@ System.out.println(Arrays.toString(AssistDemo.class.getDeclaredFields()));
 2. 修改CtClass
 3. 调用CtClass对象的writeFile()或者toBytecode()获取修改过的类
 
-==如果在加载时，可以确定是否需要修改某个类，用户必须使jvassist和类加载器协作，以便在类加载过程中先修改字节码。用户可以定义自己的类加载器，也可以使用javassist提供的类加载器==
+==如果在加载时，可以确定是否需要修改某个类，用户必须使javassist和类加载器协作，以便在类加载过程中先修改字节码。用户可以定义自己的类加载器，也可以使用javassist提供的类加载器==
 
 [[#类加载器]]
 

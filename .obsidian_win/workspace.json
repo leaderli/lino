@@ -26,7 +26,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/jvm/classloader.md",
+                "file": "index/java/framework/javassist.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -110,7 +110,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/jvm/classloader.md"
+                "file": "index/java/framework/javassist.md"
               }
             }
           },
@@ -133,10 +133,10 @@
   },
   "active": "933e9a417fa08623",
   "lastOpenFiles": [
+    "index/java/jvm/classloader.md",
     "index/software/intellij_idea.md",
     "index/java/framework/junit.md",
     "index/java/framework/javassist.md",
-    "index/java/jvm/classloader.md",
     "index/java/framework/ast.md",
     "index/linux/commands/clip.md",
     "index/software/obsidian.md",
