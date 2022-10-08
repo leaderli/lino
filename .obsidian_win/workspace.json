@@ -89,7 +89,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "mockito",
                 "matchingCase": false,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -114,7 +114,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -155,7 +156,7 @@
     "direction": "horizontal",
     "width": 178
   },
-  "active": "11db8ec28e079678",
+  "active": "51f7c28400713fd9",
   "lastOpenFiles": [
     "index/java/framework/mockito.md",
     "index/java/framework/bytebuddy.md",

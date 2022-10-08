@@ -1,4 +1,5 @@
 import io.leaderli.litool.core.type.PrimitiveEnum;
+import io.leaderli.litool.core.util.ConsoleUtil;
 import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.agent.ByteBuddyAgent;
 import net.bytebuddy.asm.Advice;
@@ -6,7 +7,6 @@ import net.bytebuddy.dynamic.loading.ClassReloadingStrategy;
 import net.bytebuddy.implementation.bytecode.assign.Assigner;
 import net.bytebuddy.matcher.ElementMatchers;
 
-import java.lang.instrument.Instrumentation;
 import java.lang.reflect.Method;
 
 import static io.leaderli.litool.core.util.ConsoleUtil.print0;
@@ -16,7 +16,12 @@ public class bytebuddy_2 {
 
     public static class Source {
         public static int hello(String name) {
-            System.out.println("------------" + name);
+            System.out.println("------hello------" + name);
+            return name.length();
+        }
+
+        public int hello2(String name) {
+            System.out.println("------hello2------" + name);
             return name.length();
         }
 
@@ -25,14 +30,25 @@ public class bytebuddy_2 {
 
     public static void main(String[] args) {
 
-        Instrumentation instrumentation = ByteBuddyAgent.install();
+        ByteBuddyAgent.install();
         ByteBuddy byteBuddy = new ByteBuddy();
 
         System.out.println(Source.hello("123"));
+        Source source = new Source();
+        System.out.println(source.hello2("123"));
 
         new ByteBuddy()
                 .redefine(Source.class)
                 .visit(Advice.to(MockMethodAdvice.class).on(ElementMatchers.named("hello")))
+                .visit(Advice.to(MockMethodAdvice.class).on(ElementMatchers.named("hello2")))
+                .make()
+                .load(Source.class.getClassLoader(), ClassReloadingStrategy.fromInstalledAgent());
+        System.out.println(Source.hello("123"));
+        System.out.println(source.hello2("123"));
+
+        ConsoleUtil.line();
+
+        new ByteBuddy().rebase(Source.class)
                 .make()
                 .load(Source.class.getClassLoader(), ClassReloadingStrategy.fromInstalledAgent());
         System.out.println(Source.hello("123"));
