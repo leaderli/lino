@@ -53,9 +53,9 @@
               "type": "markdown",
               "state": {
                 "file": "index/java/framework/bytebuddy.md",
-                "mode": "preview",
+                "mode": "source",
                 "backlinks": false,
-                "source": true
+                "source": false
               }
             }
           }

@@ -1,7 +1,7 @@
 ---
 tags:
   - java/框架/bytebuddy
-date updated: 2022-10-07 22:04
+date updated: 2022-10-08 16:09
 ---
 
 ```xml
@@ -21,11 +21,11 @@ date updated: 2022-10-07 22:04
 
 需要 [[java agent]] 支持
 
+### 使用MethodDelegation
+
 ```embed-java
 PATH: "vault://snippet/java/src/main/java/bytebuddy_1.java"
 ```
-
-### MethodDelegation
 
 用来替换现有方法，代理类中的方法不一定需要和原始类方法名相同。
 
@@ -45,6 +45,12 @@ Class<? extends java.util.function.Function> dynamicType = new ByteBuddy()
   .getLoaded();
 assertThat((String) dynamicType.newInstance().apply("Byte Buddy"), is("Hello from Byte Buddy"));
 
+```
+
+### 使用Advice
+
+```embed-java
+PATH: "vault://snippet/java/src/main/java/bytebuddy_2.java"
 ```
 
 ## 参考文档

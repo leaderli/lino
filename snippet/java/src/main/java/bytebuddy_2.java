@@ -16,6 +16,7 @@ public class bytebuddy_2 {
 
     public static class Source {
         public static int hello(String name) {
+            System.out.println("------------" + name);
             return name.length();
         }
 
@@ -40,6 +41,7 @@ public class bytebuddy_2 {
 
 
     public static class MockMethodAdvice {
+        //        @Advice.OnMethodEnter(skipOn = Advice.OnNonDefaultValue.class) 跳过执行原方法
         @Advice.OnMethodEnter
         public static Object enter(
 //                @Advice.This Object mock,   // 静态方法无this
