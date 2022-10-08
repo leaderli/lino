@@ -52,10 +52,10 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/framework/mockito.md",
+                "file": "index/java/framework/bytebuddy.md",
                 "mode": "preview",
                 "backlinks": false,
-                "source": false
+                "source": true
               }
             }
           }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/framework/mockito.md"
+                "file": "index/java/framework/bytebuddy.md"
               }
             }
           },
@@ -157,6 +157,7 @@
   },
   "active": "11db8ec28e079678",
   "lastOpenFiles": [
+    "index/java/framework/mockito.md",
     "index/java/framework/bytebuddy.md",
     "index/java/jvm/java agent.md",
     "index/java/jvm/jvm-gc.md",
@@ -165,7 +166,6 @@
     "index/java/framework/EnumMap.md",
     "index/java/framework/ast.md",
     "index/java/framework/javassist.md",
-    "index/java/jvm/classloader.md",
-    "index/software/intellij_idea.md"
+    "index/java/jvm/classloader.md"
   ]
 }

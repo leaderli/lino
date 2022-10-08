@@ -8,6 +8,7 @@
     </JAVADOC>
     <SOURCES>
       <root url="jar://$PROJECT_DIR$/../../../resource/java/maven/repository/org/mockito/mockito-core/4.8.0/mockito-core-4.8.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../resource/java/maven/repository/org/mockito/mockito-core/4.8.0/mockito-core-4.8.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
