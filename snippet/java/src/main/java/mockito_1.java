@@ -24,6 +24,7 @@ public class mockito_1 {
                 return "anwser2";
             }
         });
+
         System.out.println(Foo.method());
         System.out.println(mock.m1());
     }
