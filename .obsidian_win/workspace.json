@@ -52,7 +52,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/framework/mockito.md",
+                "file": "index/java/framework/bytebuddy.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -135,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/framework/mockito.md"
+                "file": "index/java/framework/bytebuddy.md"
               }
             }
           },
@@ -158,8 +158,8 @@
   },
   "active": "11db8ec28e079678",
   "lastOpenFiles": [
-    "index/java/framework/bytebuddy.md",
     "index/java/framework/mockito.md",
+    "index/java/framework/bytebuddy.md",
     "index/java/jvm/java agent.md",
     "index/java/jvm/jvm-gc.md",
     "index/java/framework/logback.md",

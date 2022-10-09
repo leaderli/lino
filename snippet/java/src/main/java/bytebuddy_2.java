@@ -9,8 +9,6 @@ import net.bytebuddy.matcher.ElementMatchers;
 
 import java.lang.reflect.Method;
 
-import static io.leaderli.litool.core.util.ConsoleUtil.print0;
-
 public class bytebuddy_2 {
 
 
@@ -33,31 +31,32 @@ public class bytebuddy_2 {
         ByteBuddyAgent.install();
         ByteBuddy byteBuddy = new ByteBuddy();
 
-        System.out.println(Source.hello("123"));
+        System.out.println("before:" + Source.hello("123"));
         Source source = new Source();
-        System.out.println(source.hello2("123"));
+        System.out.println("before:" + source.hello2("123"));
 
+        ConsoleUtil.line();
         new ByteBuddy()
                 .redefine(Source.class)
                 .visit(Advice.to(MockMethodAdvice.class).on(ElementMatchers.named("hello")))
                 .visit(Advice.to(MockMethodAdvice.class).on(ElementMatchers.named("hello2")))
                 .make()
                 .load(Source.class.getClassLoader(), ClassReloadingStrategy.fromInstalledAgent());
-        System.out.println(Source.hello("123"));
-        System.out.println(source.hello2("123"));
+        System.out.println("redefine:" + Source.hello("123"));
+        System.out.println("redefine:" + source.hello2("123"));
 
         ConsoleUtil.line();
 
-        new ByteBuddy().rebase(Source.class)
+        new ByteBuddy().redefine(Source.class)
                 .make()
                 .load(Source.class.getClassLoader(), ClassReloadingStrategy.fromInstalledAgent());
-        System.out.println(Source.hello("123"));
+        System.out.println("reset" + Source.hello("123"));
 
     }
 
 
     public static class MockMethodAdvice {
-        //        @Advice.OnMethodEnter(skipOn = Advice.OnNonDefaultValue.class) 跳过执行原方法
+        //        @Advice.OnMethodEnter(skipOn = Advice.OnNonDefaultValue.class) //跳过执行原方法，需要当前方法返回值不为void
         @Advice.OnMethodEnter
         public static Object enter(
 //                @Advice.This Object mock,   // 静态方法无this
@@ -75,7 +74,7 @@ public class bytebuddy_2 {
                 , @Advice.Origin Method method // 原始方法
         )
                 throws Throwable {
-            print0(",", method, "real", returned, "mock", mocked);
+//            print0(",", method, "real", returned, "mock", mocked);
             returned = mocked; // 修改方法的返回值
 
         }
