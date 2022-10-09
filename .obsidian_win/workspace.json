@@ -52,8 +52,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/framework/bytebuddy.md",
-                "mode": "source",
+                "file": "index/common/bookmark.md",
+                "mode": "preview",
                 "backlinks": false,
                 "source": false
               }
@@ -89,7 +89,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "mockito",
+                "query": "ccxml",
                 "matchingCase": false,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -135,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/framework/bytebuddy.md"
+                "file": "index/common/bookmark.md"
               }
             }
           },
@@ -158,15 +158,15 @@
   },
   "active": "11db8ec28e079678",
   "lastOpenFiles": [
-    "index/java/framework/mockito.md",
+    "index/call system/avaya.md",
     "index/java/framework/bytebuddy.md",
+    "index/java/framework/mockito.md",
     "index/java/jvm/java agent.md",
     "index/java/jvm/jvm-gc.md",
     "index/java/framework/logback.md",
     "index/java/framework/junit.md",
     "index/java/framework/EnumMap.md",
     "index/java/framework/ast.md",
-    "index/java/framework/javassist.md",
-    "index/java/jvm/classloader.md"
+    "index/java/framework/javassist.md"
   ]
 }
