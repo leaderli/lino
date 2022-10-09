@@ -221,7 +221,6 @@ function extractprops(parent, obj, skip) {
 指定AAI
 
 AAI必须严格按照格式，必须为类型加16进制的表现形式
-#hints
 
 ```xml
 <var name="dialog_values" expr="parseJson('{}')"/>  

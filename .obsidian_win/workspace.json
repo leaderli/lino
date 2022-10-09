@@ -52,8 +52,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/common/bookmark.md",
-                "mode": "preview",
+                "file": "index/call system/avaya.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": false
               }
@@ -89,7 +89,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "ccxml",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -119,7 +119,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 357.5
+    "width": 357.5,
+    "collapsed": true
   },
   "right": {
     "id": "4b761e4e5ad66709",
@@ -135,7 +136,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/common/bookmark.md"
+                "file": "index/call system/avaya.md"
               }
             }
           },
@@ -158,6 +159,7 @@
   },
   "active": "11db8ec28e079678",
   "lastOpenFiles": [
+    "index/common/bookmark.md",
     "index/call system/avaya.md",
     "index/java/framework/bytebuddy.md",
     "index/java/framework/mockito.md",
@@ -166,7 +168,6 @@
     "index/java/framework/logback.md",
     "index/java/framework/junit.md",
     "index/java/framework/EnumMap.md",
-    "index/java/framework/ast.md",
-    "index/java/framework/javassist.md"
+    "index/java/framework/ast.md"
   ]
 }
