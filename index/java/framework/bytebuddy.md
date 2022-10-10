@@ -1,7 +1,7 @@
 ---
 tags:
   - java/框架/bytebuddy
-date updated: 2022-10-08 16:09
+date updated: 2022-10-10 19:47
 ---
 
 ```xml
@@ -16,6 +16,20 @@ date updated: 2022-10-08 16:09
     <version>1.12.16</version>  
 </dependency>
 ```
+
+## 动态生成子类
+
+```embed-java
+PATH: "vault://snippet/java/src/main/java/bytebuddy_3.java"
+```
+
+### MethodDelegation
+
+`@RuntimeType` 告诉 Byte Buddy 不要进行严格的参数类型检测，在参数匹配失败时，尝试使用类型转换方式（runtime type casting）进行类型转换，匹配相应方法
+@AllArguments 注解：注入目标方法的全部参数，是不是感觉与 Java 反射的那套 API 有点类似了？
+@Origin 注解：注入目标方法对应的 Method 对象。如果拦截的是字段的话，该注解应该标注到 Field 类型参数。
+@Super 注解：注入目标对象。通过该对象可以调用目标对象的所有方法。
+@This 注解：注入目标对象。不可以通过该对象可以调用目标对象的方法，会造成死循环
 
 ## 修改已加载类
 

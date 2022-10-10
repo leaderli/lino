@@ -52,7 +52,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/call system/avaya.md",
+                "file": "index/java/ee/aop.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -136,7 +136,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/call system/avaya.md"
+                "file": "index/java/ee/aop.md"
               }
             }
           },
@@ -159,15 +159,15 @@
   },
   "active": "11db8ec28e079678",
   "lastOpenFiles": [
-    "index/common/bookmark.md",
-    "index/call system/avaya.md",
+    "index/data structure/dynamic programming.md",
     "index/java/framework/bytebuddy.md",
+    "index/call system/avaya.md",
+    "index/java/ee/aop.md",
+    "index/common/bookmark.md",
     "index/java/framework/mockito.md",
     "index/java/jvm/java agent.md",
     "index/java/jvm/jvm-gc.md",
     "index/java/framework/logback.md",
-    "index/java/framework/junit.md",
-    "index/java/framework/EnumMap.md",
-    "index/java/framework/ast.md"
+    "index/java/framework/junit.md"
   ]
 }
