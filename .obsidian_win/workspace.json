@@ -89,7 +89,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": " --source-path",
                 "matchingCase": false,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -119,8 +119,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 357.5,
-    "collapsed": true
+    "width": 357.5
   },
   "right": {
     "id": "4b761e4e5ad66709",
@@ -157,7 +156,7 @@
     "direction": "horizontal",
     "width": 178
   },
-  "active": "11db8ec28e079678",
+  "active": "51f7c28400713fd9",
   "lastOpenFiles": [
     "index/data structure/dynamic programming.md",
     "index/java/framework/bytebuddy.md",
