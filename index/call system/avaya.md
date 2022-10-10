@@ -292,6 +292,14 @@ protocol: sip
 
 ```
 
+### 打印所有事件
+
+```xml
+<transition event="">
+	<log expr="'------missed : ' + event$.name">
+	<log expr="' eventData\n ' + objectToString(event$)">
+</transition>
+```
 ## 常见问题
 
 ```ad-error

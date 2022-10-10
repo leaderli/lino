@@ -13,10 +13,10 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/protocol/yml.md",
-                "mode": "preview",
+                "file": "index/call system/avaya.md",
+                "mode": "source",
                 "backlinks": false,
-                "source": true
+                "source": false
               }
             }
           }
@@ -136,7 +136,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/protocol/yml.md"
+                "file": "index/call system/avaya.md"
               }
             }
           }
@@ -145,8 +145,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 179,
-    "collapsed": true
+    "width": 179
   },
   "active": "17eeeed25703a920",
   "lastOpenFiles": [
