@@ -1,13 +1,9 @@
 import io.leaderli.litool.core.meta.Lira;
 import io.leaderli.litool.core.type.ReflectUtil;
 import net.bytebuddy.ByteBuddy;
-import net.bytebuddy.asm.Advice;
-import net.bytebuddy.implementation.MethodCall;
-import net.bytebuddy.implementation.MethodDelegation;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.lang.Nullable;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
@@ -15,7 +11,6 @@ import java.lang.reflect.Field;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
-import static net.bytebuddy.matcher.ElementMatchers.named;
 
 /**
  * @author leaderli
@@ -47,7 +42,6 @@ public class custom_autowired_bean_post_processor_2 {
 
     static class CustomBeanPost implements BeanPostProcessor {
 
-        @Nullable
         public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
 
             Lira<Field> fieldsWithAnnotation = ReflectUtil.getFields(bean.getClass())

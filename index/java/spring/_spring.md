@@ -5,6 +5,7 @@
 - 📄 [[index/java/spring/circular dependency|circular dependency]]
 - 📄 [[index/java/spring/ControllerAdvice|ControllerAdvice]]
 - 📄 [[index/java/spring/encryptableProperties|encryptableProperties]]
+- 📄 [[index/java/spring/import|import]]
 - 📄 [[index/java/spring/initMethod|initMethod]]
 - 📄 [[index/java/spring/ioc|ioc]]
 - 📄 [[index/java/spring/jpa|jpa]]

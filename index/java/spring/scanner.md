@@ -1,9 +1,10 @@
 ---
-aliases: 自定义扫描器
+aliases: 自定义扫描器, 自定义enable
 tags:
   - java/spring/scanner
 date updated: 2022-04-17 20:14
 ---
+
 
 实现自定义注解扫描器，将被 `JsonBean` 注解的类，注入到 `spring` 容器中，当由 `spring` 生成时，自动根据对应的 `json` 文件自动生成。
 
