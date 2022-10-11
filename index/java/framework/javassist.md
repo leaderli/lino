@@ -454,9 +454,50 @@ ctClass.toClass().newInstance();
 
 ### 修改方法
 
-```embed-java
-PATH: "vault://snippet/java/src/main/java/javassist_1.java"
-LINES: 10-42
+```java
+import io.leaderli.litool.core.test.StringValues;  
+import javassist.ClassPool;  
+import javassist.CtClass;  
+import javassist.CtMethod;  
+  
+/**  
+ * @author leaderli * @since 2022/9/30 */  
+public class javassist_1 {  
+  
+    public static final String[] value = new String[]{"Hello form javassist", "fuck", "fuck2"};  
+  
+    static int i = 0;  
+  
+    public static String value() {  
+        return value[i++];  
+    }  
+  
+    public static void main(String[] args) throws Exception {  
+  
+        ClassPool classPool = ClassPool.getDefault();  
+        CtClass ctClass = classPool.get("Welcome");  
+        CtMethod ctMethod = ctClass.getDeclaredMethod("sayHello");  
+        ctMethod.setBody("{ return javassist_1.value(); }");  
+  
+        Class<?> aClass = ctClass.toClass();  
+        ctClass.defrost();  
+  
+        System.out.println(Welcome.sayHello());  
+        ctMethod.setBody("{ return \"1\"; }");  
+        aClass = ctClass.toClass();  
+        System.out.println(Welcome.sayHello());  
+        System.out.println(Welcome.sayHello());  
+        System.out.println(Welcome.sayHello());  
+  
+    }  
+  
+  
+}  
+class Welcome {  
+    public static String sayHello() {  
+        return "Hello!!!!";  
+    }  
+}
 ```
 
 ## 参考文档
