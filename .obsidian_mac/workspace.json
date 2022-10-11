@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/framework/bytebuddy.md",
-                "mode": "source",
+                "file": "index/java/spring/import.md",
+                "mode": "preview",
                 "backlinks": false,
                 "source": true
               }
@@ -70,7 +70,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "embed-java",
+                "query": "@import",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -92,7 +92,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 275
+    "width": 275,
+    "collapsed": true
   },
   "right": {
     "id": "aed7281feaa57107",
@@ -148,7 +149,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/framework/bytebuddy.md"
+                "file": "index/java/spring/import.md"
               }
             }
           }
@@ -157,14 +158,15 @@
       }
     ],
     "direction": "horizontal",
-    "width": 179,
-    "collapsed": true
+    "width": 179
   },
   "ribbon": {
     "mostRecentAction": ""
   },
   "active": "17eeeed25703a920",
   "lastOpenFiles": [
+    "index/java/spring/scanner.md",
+    "index/java/framework/bytebuddy.md",
     "index/java/spring/beanPostProcessor.md",
     "template/em.md",
     "index/java/framework/javassist.md",
@@ -172,8 +174,6 @@
     "index/java/spring/annotation.md",
     "index/javadoc/litool.md",
     "index/java/spring/import.md",
-    "index/java/spring/initMethod.md",
-    "index/java/spring/scanner.md",
-    "index/java/spring/_spring.md"
+    "index/java/spring/initMethod.md"
   ]
 }
