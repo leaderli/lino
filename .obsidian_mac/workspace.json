@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/spring/import.md",
-                "mode": "preview",
+                "file": "index/java/java tips.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": true
               }
@@ -149,7 +149,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/spring/import.md"
+                "file": "index/java/java tips.md"
               }
             }
           }
@@ -165,6 +165,7 @@
   },
   "active": "17eeeed25703a920",
   "lastOpenFiles": [
+    "index/java/spring/import.md",
     "index/java/spring/scanner.md",
     "index/java/framework/bytebuddy.md",
     "index/java/spring/beanPostProcessor.md",
@@ -173,7 +174,6 @@
     "index/java/framework/junit.md",
     "index/java/spring/annotation.md",
     "index/javadoc/litool.md",
-    "index/java/spring/import.md",
     "index/java/spring/initMethod.md"
   ]
 }
