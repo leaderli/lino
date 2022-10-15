@@ -20,6 +20,8 @@ tags:
 10. Calibre Portable 电子书格式转换
 11.  [chrome翻译插件](https://chrome.google.com/webstore/detail/google-dictionary-by-goog/mgijmajocgfcbeboacabfgobmjgjcoja/related?hl=en)
 12. [ 哔哩下载姬](https://github.com/leiurayer/downkyi)
+13. [sumatra pdf reader](https://www.sumatrapdfreader.org/free-pdf-reader)
+
 
 #### IOS
 
