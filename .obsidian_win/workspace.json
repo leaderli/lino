@@ -52,8 +52,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/ee/aop.md",
-                "mode": "source",
+                "file": "index/software/software list.md",
+                "mode": "preview",
                 "backlinks": false,
                 "source": false
               }
@@ -89,7 +89,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": " --source-path",
+                "query": "user.language",
                 "matchingCase": false,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -135,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/ee/aop.md"
+                "file": "index/software/software list.md"
               }
             }
           },
@@ -156,17 +156,17 @@
     "direction": "horizontal",
     "width": 178
   },
-  "active": "51f7c28400713fd9",
+  "active": "11db8ec28e079678",
   "lastOpenFiles": [
+    "index/software/intellij_idea.md",
+    "index/java/ee/aop.md",
     "index/data structure/dynamic programming.md",
     "index/java/framework/bytebuddy.md",
     "index/call system/avaya.md",
-    "index/java/ee/aop.md",
     "index/common/bookmark.md",
     "index/java/framework/mockito.md",
     "index/java/jvm/java agent.md",
     "index/java/jvm/jvm-gc.md",
-    "index/java/framework/logback.md",
-    "index/java/framework/junit.md"
+    "index/java/framework/logback.md"
   ]
 }

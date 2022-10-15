@@ -11,6 +11,14 @@ date updated: 2022-10-07 13:54
 
 `~/Library/Application Support/JetBrains/IntelliJIdea2022.2/settingsRepository/repository`
 
+
+### 配置全英文界面
+
+
+```properties
+
+-Duser.language=en
+```
 ## 插件
 
 `editorconfig` 提供代码规范的一些配置，可以多个ide公用
