@@ -13,10 +13,10 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/framework/junit.md",
+                "file": "index/work.md",
                 "mode": "preview",
                 "backlinks": false,
-                "source": true
+                "source": false
               }
             }
           }
@@ -74,8 +74,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -96,7 +95,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/framework/junit.md"
+                "file": "index/work.md"
               }
             }
           },
@@ -123,15 +122,15 @@
   },
   "active": "a934c940c37c44e0",
   "lastOpenFiles": [
+    "index/_index.md",
+    "_lino.md",
+    "Home.md",
+    "template/_template.md",
     "index/java/framework/junit.md",
     "index/java/framework/javassist.md",
     "index/java/framework/bytebuddy.md",
     "index/software/intellij_idea.md",
     "index/software/software list.md",
-    "index/java/ee/aop.md",
-    "index/data structure/dynamic programming.md",
-    "index/call system/avaya.md",
-    "index/common/bookmark.md",
-    "index/java/framework/mockito.md"
+    "index/java/ee/aop.md"
   ]
 }
