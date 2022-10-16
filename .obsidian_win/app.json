@@ -15,7 +15,7 @@
   "autoPairBrackets": true,
   "defaultViewMode": "preview",
   "useMarkdownLinks": false,
-  "autoPairMarkdown": false,
+  "autoPairMarkdown": true,
   "pdfExportSettings": {
     "pageSize": "A3",
     "landscape": false,
@@ -27,5 +27,5 @@
   "spellcheck": false,
   "legacyEditor": false,
   "communityPluginSortOrder": "download",
-  "showInlineTitle": true
+  "showInlineTitle": false
 }

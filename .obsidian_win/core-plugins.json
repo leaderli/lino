@@ -4,13 +4,10 @@
   "graph",
   "tag-pane",
   "page-preview",
-  "templates",
   "command-palette",
   "editor-status",
   "starred",
   "markdown-importer",
   "outline",
-  "word-count",
-  "slides",
-  "workspaces"
+  "word-count"
 ]

@@ -28,7 +28,7 @@ date updated: 2022-08-19 05:45
 </dependency>
 <dependency>
 	<groupId>org.junit.platform</groupId>
-	<artifactId>junit-platform-commons</artifactId>
+	- [ ] <artifactId>junit-platform-commons</artifactId>
 	<version>1.8.1</version>
 	<scope>test</scope>
 </dependency>
