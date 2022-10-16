@@ -242,6 +242,26 @@ public class bytebuddy_2 {
 }
 ```
 
+
+## Advice.OnMethodEnter
+
+
+`skipOn` 表示什么时候忽略实际方法调用，为了跳过 void 方法调用，可以实际返回一个无意义的 `0`
+
+```java
+public static class MockMethodAdvice {  
+    /**  
+     * this is a delegate for all method of mockindg class, will ignore actual inovation of all methods.     * to prevent call actual method on the void-method, return a meaningless 0     *     * @param origin the origin method of mocking class  
+     * @return return a meaningless 0     */    @SuppressWarnings("all")  
+    @Advice.OnMethodEnter(skipOn = Advice.OnNonDefaultValue.class)  
+    public static Object enter(@Advice.Origin Method origin) {  
+        if (mockProgress) {  
+            mockMethod = origin;  
+        }  
+        return 0;  
+    }  
+}
+```
 ## 参考文档
 
 [Byte Buddy - runtime code generation for the Java virtual machine](http://bytebuddy.net/#/)

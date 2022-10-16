@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/work.md",
-                "mode": "preview",
+                "file": "index/java/framework/bytebuddy.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": false
               }
@@ -49,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "user.language",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -74,7 +74,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -95,7 +96,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/work.md"
+                "file": "index/java/framework/bytebuddy.md"
               }
             }
           },
@@ -114,14 +115,15 @@
       }
     ],
     "direction": "horizontal",
-    "width": 178,
-    "collapsed": true
+    "width": 178
   },
   "ribbon": {
     "mostRecentAction": ""
   },
   "active": "a934c940c37c44e0",
   "lastOpenFiles": [
+    "index/java/java tips.md",
+    "index/work.md",
     "index/_index.md",
     "_lino.md",
     "Home.md",
@@ -129,8 +131,6 @@
     "index/java/framework/junit.md",
     "index/java/framework/javassist.md",
     "index/java/framework/bytebuddy.md",
-    "index/software/intellij_idea.md",
-    "index/software/software list.md",
-    "index/java/ee/aop.md"
+    "index/software/intellij_idea.md"
   ]
 }
