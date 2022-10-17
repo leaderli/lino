@@ -1534,7 +1534,7 @@ var AnotherQuickSwitcherModal = class extends import_obsidian3.SuggestModal {
     return items.slice(0, this.settings.maxNumberOfSuggestions).map((x, order) => ({ ...x, order }));
   }
   renderInputComponent() {
-    var _a, _b, _c;
+    var _a, _b, _c, _d;
     (_a = this.searchCommandEl) == null ? void 0 : _a.remove();
     (_b = this.defaultInputEl) == null ? void 0 : _b.remove();
     (_c = this.countInputEl) == null ? void 0 : _c.remove();
@@ -1552,6 +1552,7 @@ var AnotherQuickSwitcherModal = class extends import_obsidian3.SuggestModal {
     if (this.command.searchBy.link) {
       this.searchCommandEl.insertAdjacentHTML("beforeend", LINK);
     }
+    (_d = this.inputEl.parentElement) == null ? void 0 : _d.setAttr("style", "display: initial");
     this.inputEl.before(this.searchCommandEl);
     if (this.command.defaultInput) {
       this.defaultInputEl = createDiv({
@@ -2953,7 +2954,7 @@ ${invalidValues.map((x) => `- ${x}`).join("\n")}
     const buttonClass = "another-quick-switcher__settings__search-command__search-by-button";
     const buttonEnabledClass = "another-quick-switcher__settings__search-command__search-by-button_enabled";
     const buttonDisabledClass = "another-quick-switcher__settings__search-command__search-by-button_disabled";
-    new import_obsidian8.Setting(div).setName("Search by").addButton((bc) => {
+    new import_obsidian8.Setting(div).setName("Search by").setDesc("Click the button to enable/disable the search target").addButton((bc) => {
       const coloring = () => {
         bc.buttonEl.removeClass(buttonEnabledClass, buttonDisabledClass);
         bc.buttonEl.addClass(
