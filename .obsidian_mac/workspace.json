@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/java tips.md",
+                "file": "index/java/framework/bytebuddy.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -88,12 +88,11 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 275,
-    "collapsed": true
+    "width": 275
   },
   "right": {
     "id": "aed7281feaa57107",
@@ -149,7 +148,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/java tips.md"
+                "file": "index/java/framework/bytebuddy.md"
               }
             }
           }
@@ -163,8 +162,9 @@
   "ribbon": {
     "mostRecentAction": ""
   },
-  "active": "17eeeed25703a920",
+  "active": "eb37b7a808ead707",
   "lastOpenFiles": [
+    "index/java/java tips.md",
     "index/java/spring/import.md",
     "index/java/spring/scanner.md",
     "index/java/framework/bytebuddy.md",
@@ -173,7 +173,6 @@
     "index/java/framework/javassist.md",
     "index/java/framework/junit.md",
     "index/java/spring/annotation.md",
-    "index/javadoc/litool.md",
-    "index/java/spring/initMethod.md"
+    "index/javadoc/litool.md"
   ]
 }

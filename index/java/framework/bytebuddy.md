@@ -75,7 +75,7 @@ public class bytebuddy_3 {
 
 ### MethodDelegation
 
-`@RuntimeType` 告诉 Byte Buddy 不要进行严格的参数类型检测，在参数匹配失败时，尝试使用类型转换方式（runtime type casting）进行类型转换，匹配相应方法
+@RuntimeType 告诉 Byte Buddy 不要进行严格的参数类型检测，在参数匹配失败时，尝试使用类型转换方式（runtime type casting）进行类型转换，匹配相应方法
 @AllArguments 注解：注入目标方法的全部参数，是不是感觉与 Java 反射的那套 API 有点类似了？
 @Origin 注解：注入目标方法对应的 Method 对象。如果拦截的是字段的话，该注解应该标注到 Field 类型参数。
 @Super 注解：注入目标对象。通过该对象可以调用目标对象的所有方法。
@@ -155,6 +155,8 @@ assertThat((String) dynamicType.newInstance().apply("Byte Buddy"), is("Hello fro
 ```
 
 ### 使用Advice
+
+@Advice.Return  `readOnly = false`是否允许修改返回值, `typing = Assigner.Typing.DYNAMIC` 动态返回类型
 
 ```java
 import io.leaderli.litool.core.type.PrimitiveEnum;  
