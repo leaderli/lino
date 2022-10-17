@@ -120,7 +120,7 @@ private String decodeHex(String hex) {
 ## TTS ASR
 
 - `/opt/Tomcat/apache-tomcat-6.0.41/lib/config/languages.properties`
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - `/opt/Tomcat/apache-tomcat-6.0.41/lib/messeages/languages.properties`
+- `/opt/Tomcat/apache-tomcat-6.0.41/lib/messeages/languages.properties`
 
 配置文件大小写敏感
 
