@@ -13,10 +13,20 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/framework/bytebuddy.md",
+                "file": "Home.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
+              }
+            }
+          },
+          {
+            "id": "24819ddc4a8a16eb",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.0.0"
               }
             }
           },
@@ -33,7 +43,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -148,7 +159,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/framework/bytebuddy.md"
+                "file": "Home.md"
               }
             }
           }
@@ -162,12 +173,12 @@
   "ribbon": {
     "mostRecentAction": ""
   },
-  "active": "eb37b7a808ead707",
+  "active": "24819ddc4a8a16eb",
   "lastOpenFiles": [
+    "index/java/framework/bytebuddy.md",
     "index/java/java tips.md",
     "index/java/spring/import.md",
     "index/java/spring/scanner.md",
-    "index/java/framework/bytebuddy.md",
     "index/java/spring/beanPostProcessor.md",
     "template/em.md",
     "index/java/framework/javassist.md",
