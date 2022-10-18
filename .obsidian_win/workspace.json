@@ -71,8 +71,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -112,22 +111,23 @@
       }
     ],
     "direction": "horizontal",
-    "width": 178
+    "width": 178,
+    "collapsed": true
   },
   "ribbon": {
     "mostRecentAction": ""
   },
   "active": "41c5548e0f63df96",
   "lastOpenFiles": [
-    "index/java/java tips.md",
-    "index/work.md",
+    "index/sql/db2.md",
+    "index/sql/sql_basic.md",
+    "index/sql/_sql.md",
     "index/_index.md",
     "_lino.md",
     "Home.md",
-    "template/_template.md",
-    "index/java/framework/junit.md",
-    "index/java/framework/javassist.md",
-    "index/java/framework/bytebuddy.md",
-    "index/software/intellij_idea.md"
+    "index/java/ee/aop.md",
+    "index/java/ee/_ee.md",
+    "index/java/ee/ScriptEngine.md",
+    "resource/_resource.md"
   ]
 }
