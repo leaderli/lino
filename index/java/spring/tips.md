@@ -239,3 +239,34 @@ public class ContextWebListener implements ServletContextListener {
 ```shell
 spring.profiles.active=dev,hsqldb
 ```
+
+
+### ImportBeanDefinitionRegistrar
+
+可以获取到所有被Spring加载的注解，可以取到类似`@Enable`系列的注解值， 该接口实现类可以通过`@import`引入，但是该类不会被加载到 Spring 容器中
+
+```java
+class AspectJAutoProxyRegistrar implements ImportBeanDefinitionRegistrar {  
+  
+    /**  
+     * Register, escalate, and configure the AspectJ auto proxy creator based on the value     * of the @{@link EnableAspectJAutoProxy#proxyTargetClass()} attribute on the importing  
+     * {@code @Configuration} class.     */    @Override  
+    public void registerBeanDefinitions(  
+            AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {  
+  
+        AopConfigUtils.registerAspectJAnnotationAutoProxyCreatorIfNecessary(registry);  
+  
+        AnnotationAttributes enableAspectJAutoProxy =  
+                AnnotationConfigUtils.attributesFor(importingClassMetadata, EnableAspectJAutoProxy.class);  
+        if (enableAspectJAutoProxy != null) {  
+            if (enableAspectJAutoProxy.getBoolean("proxyTargetClass")) {  
+                AopConfigUtils.forceAutoProxyCreatorToUseClassProxying(registry);  
+            }  
+            if (enableAspectJAutoProxy.getBoolean("exposeProxy")) {  
+                AopConfigUtils.forceAutoProxyCreatorToExposeProxy(registry);  
+            }  
+        }  
+    }  
+  
+}
+```

@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/call system/avaya.md",
-                "mode": "preview",
+                "file": "index/java/spring/tips.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": true
               }
@@ -58,7 +58,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "@import",
+                "query": "beandefinition",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -76,7 +76,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -137,7 +137,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/call system/avaya.md"
+                "file": "index/java/spring/tips.md"
               }
             }
           }
@@ -154,15 +154,15 @@
   },
   "active": "29d2437fd0e013ca",
   "lastOpenFiles": [
+    "index/java/spring/scanner.md",
+    "index/java/spring/ioc.md",
+    "index/java/spring/tips.md",
+    "index/java/spring/autowired.md",
+    "index/call system/avaya.md",
     "Home.md",
     "index/java/java tips.md",
     "index/common/_common.md",
     "index/common/math.md",
-    "index/_index.md",
-    "_lino.md",
-    "index/java/framework/bytebuddy.md",
-    "index/java/spring/import.md",
-    "index/java/spring/scanner.md",
-    "index/java/spring/beanPostProcessor.md"
+    "index/_index.md"
   ]
 }
