@@ -4,19 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "026efbc598ccda07",
+        "id": "f41a2fef35189e15",
         "type": "tabs",
         "children": [
           {
-            "id": "a934c940c37c44e0",
+            "id": "41c5548e0f63df96",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "kanban",
               "state": {
-                "file": "index/java/framework/bytebuddy.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
+                "file": "Home.md"
               }
             }
           }
@@ -74,8 +71,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -96,7 +92,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/framework/bytebuddy.md"
+                "file": "Home.md"
               }
             }
           },
@@ -115,22 +111,23 @@
       }
     ],
     "direction": "horizontal",
-    "width": 178
+    "width": 178,
+    "collapsed": true
   },
   "ribbon": {
     "mostRecentAction": ""
   },
-  "active": "a934c940c37c44e0",
+  "active": "41c5548e0f63df96",
   "lastOpenFiles": [
-    "index/java/java tips.md",
-    "index/work.md",
+    "index/sql/db2.md",
+    "index/sql/sql_basic.md",
+    "index/sql/_sql.md",
     "index/_index.md",
     "_lino.md",
     "Home.md",
-    "template/_template.md",
-    "index/java/framework/junit.md",
-    "index/java/framework/javassist.md",
-    "index/java/framework/bytebuddy.md",
-    "index/software/intellij_idea.md"
+    "index/java/ee/aop.md",
+    "index/java/ee/_ee.md",
+    "index/java/ee/ScriptEngine.md",
+    "resource/_resource.md"
   ]
 }

@@ -17,8 +17,8 @@
   "vim-im-select",
   "zoottelkeeper-obsidian-plugin",
   "obsidian-minimal-settings",
-  "quick-explorer",
   "obsidian-style-settings",
   "obsidian-kanban",
-  "homepage"
+  "homepage",
+  "quick-explorer"
 ]
