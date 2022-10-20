@@ -8,13 +8,13 @@
         "type": "tabs",
         "children": [
           {
-            "id": "29d2437fd0e013ca",
+            "id": "82fdd4d1f10b32af",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
                 "file": "index/business knowledge/credit card/card status.md",
-                "mode": "source",
+                "mode": "preview",
                 "backlinks": false,
                 "source": true
               }
@@ -58,7 +58,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "beandefinition",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -149,26 +149,27 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 179
+    "width": 179,
+    "collapsed": true
   },
   "ribbon": {
     "mostRecentAction": ""
   },
-  "active": "3d7a47dd1f95d134",
+  "active": "82fdd4d1f10b32af",
   "lastOpenFiles": [
+    "index/business knowledge/credit card/basic.md",
+    "index/business knowledge/credit card/card status.md",
+    "index/computer basics/cryptography.md",
+    "index/java/java tips.md",
     "index/work.md",
     "index/sql/db2.md",
-    "index/business knowledge/credit card/card status.md",
     "index/java/spring/tips.md",
     "index/java/spring/scanner.md",
     "index/java/spring/ioc.md",
-    "index/java/spring/autowired.md",
-    "index/call system/avaya.md",
-    "Home.md",
-    "index/java/java tips.md"
+    "index/java/spring/autowired.md"
   ]
 }
