@@ -12,8 +12,15 @@ kanban-plugin: basic
 - [ ] 
 
 
-
 ## flow插件
+
+
+
+## 其他
+
+- [ ] beaninfo
+
+
 
 
 %% kanban:settings
