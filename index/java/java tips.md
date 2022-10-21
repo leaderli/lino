@@ -378,7 +378,7 @@ void te(Supplier supplier) {
   
 BeanInfo beanInfo = Introspector.getBeanInfo(Person.class);  
 for (PropertyDescriptor propertyDescriptor : beanInfo.getPropertyDescriptors()) {  
-  
+    // PropertyDescriptor 不是关于成员变量的，仅仅是set、get、is的方法的统一描述
     Method readMethod = propertyDescriptor.getReadMethod();       // get
     Method writeMethod = propertyDescriptor.getWriteMethod();     // set
     Class<?> propertyType = propertyDescriptor.getPropertyType(); 

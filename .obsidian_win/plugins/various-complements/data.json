@@ -78,6 +78,14 @@
           "lastUpdated": 1665923420701
         }
       }
+    },
+    "PropertyDescriptor": {
+      "PropertyDescriptor": {
+        "currentVault": {
+          "count": 1,
+          "lastUpdated": 1666368751557
+        }
+      }
     }
   }
 }
