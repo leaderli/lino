@@ -375,3 +375,10 @@ void te(Supplier supplier) {
 ### access$000
 
 当外部类方法类的私有属性时会报的错
+
+
+### 获取所有get、set方法
+
+```java
+
+```
