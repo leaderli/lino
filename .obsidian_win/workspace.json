@@ -21,9 +21,12 @@
             "id": "003959477944e3d7",
             "type": "leaf",
             "state": {
-              "type": "kanban",
+              "type": "markdown",
               "state": {
-                "file": "Home.md"
+                "file": "index/java/java tips.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": true
               }
             }
           }
@@ -103,7 +106,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "index/java/java tips.md"
               }
             }
           },
@@ -122,17 +125,16 @@
       }
     ],
     "direction": "horizontal",
-    "width": 178,
-    "collapsed": true
+    "width": 178
   },
   "active": "003959477944e3d7",
   "lastOpenFiles": [
+    "Home.md",
     "index/sql/db2.md",
     "index/sql/sql_basic.md",
     "index/sql/_sql.md",
     "index/_index.md",
     "_lino.md",
-    "Home.md",
     "index/java/ee/aop.md",
     "index/java/ee/_ee.md",
     "index/java/ee/ScriptEngine.md",
