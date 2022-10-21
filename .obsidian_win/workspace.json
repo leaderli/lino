@@ -16,8 +16,19 @@
                 "file": "Home.md"
               }
             }
+          },
+          {
+            "id": "003959477944e3d7",
+            "type": "leaf",
+            "state": {
+              "type": "kanban",
+              "state": {
+                "file": "Home.md"
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -114,10 +125,7 @@
     "width": 178,
     "collapsed": true
   },
-  "ribbon": {
-    "mostRecentAction": ""
-  },
-  "active": "41c5548e0f63df96",
+  "active": "003959477944e3d7",
   "lastOpenFiles": [
     "index/sql/db2.md",
     "index/sql/sql_basic.md",
