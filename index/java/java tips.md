@@ -1,7 +1,7 @@
 ---
 tags:
   - java/tips
-date updated: 2022-07-18 21:27
+date updated: 2022-10-21 23:30
 ---
 
 ### 读取 properties 中文乱码解决
@@ -350,8 +350,6 @@ public interface BiConsumer<T, U> {
 }
 ```
 
-
-
 ### lambda
 
 当使用方法引用时，若 obj 为 null ，则会直接抛出异常，不管表达式是否执行
@@ -370,15 +368,27 @@ void te(Supplier supplier) {
 }
 ```
 
-
-
 ### access$000
 
 当外部类方法类的私有属性时会报的错
 
-
 ### 获取所有get、set方法
 
 ```java
+  
+BeanInfo beanInfo = Introspector.getBeanInfo(Person.class);  
+for (PropertyDescriptor propertyDescriptor : beanInfo.getPropertyDescriptors()) {  
+    // PropertyDescriptor 不是关于成员变量的，仅仅是set、get、is的方法的统一描述
+    Method readMethod = propertyDescriptor.getReadMethod();       // get
+    Method writeMethod = propertyDescriptor.getWriteMethod();     // set
+    Class<?> propertyType = propertyDescriptor.getPropertyType(); 
+    String name = propertyDescriptor.getName();  
+  
+}  
 
+// 所有方法，包括父类的
+for (MethodDescriptor methodDescriptor : beanInfo.getMethodDescriptors()) {  
+  
+    methodDescriptor.getMethod();  
+}  
 ```
