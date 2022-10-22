@@ -18,7 +18,7 @@ kanban-plugin: basic
 
 ## 其他
 
-- [ ] beaninfo
+- [x] beaninfo
 
 
 
