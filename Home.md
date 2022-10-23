@@ -14,6 +14,7 @@ kanban-plugin: basic
 
 ## flow插件
 
+- [ ] delete action
 
 
 ## 其他
