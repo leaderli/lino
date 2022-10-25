@@ -4,26 +4,29 @@
     "type": "split",
     "children": [
       {
-        "id": "f41a2fef35189e15",
+        "id": "8671d328eeb348f8",
         "type": "tabs",
         "children": [
           {
-            "id": "41c5548e0f63df96",
-            "type": "leaf",
-            "state": {
-              "type": "kanban",
-              "state": {
-                "file": "Home.md"
-              }
-            }
-          },
-          {
-            "id": "003959477944e3d7",
+            "id": "88c62b35acc50814",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/java tips.md",
+                "file": "index/eclipse/_eclipse.md",
+                "mode": "preview",
+                "backlinks": false,
+                "source": true
+              }
+            }
+          },
+          {
+            "id": "a61bfb2f875a8deb",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "index/eclipse/eclipse-plugin-context-menu.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -89,8 +92,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 357.5,
-    "collapsed": true
+    "width": 357.5
   },
   "right": {
     "id": "4b761e4e5ad66709",
@@ -106,7 +108,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/java tips.md"
+                "file": "index/eclipse/eclipse-plugin-context-menu.md"
               }
             }
           },
@@ -127,17 +129,17 @@
     "direction": "horizontal",
     "width": 178
   },
-  "active": "003959477944e3d7",
+  "active": "a61bfb2f875a8deb",
   "lastOpenFiles": [
+    "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
+    "index/eclipse/eclipse-plugin-context-menu.md",
+    "index/eclipse/_eclipse.md",
     "Home.md",
+    "index/common/cheatsheet.md",
     "index/sql/db2.md",
     "index/sql/sql_basic.md",
     "index/sql/_sql.md",
     "index/_index.md",
-    "_lino.md",
-    "index/java/ee/aop.md",
-    "index/java/ee/_ee.md",
-    "index/java/ee/ScriptEngine.md",
-    "resource/_resource.md"
+    "_lino.md"
   ]
 }

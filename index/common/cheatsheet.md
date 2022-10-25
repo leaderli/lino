@@ -35,8 +35,8 @@ date updated: 2022-08-24 23:05
 [eclipse下载地址](https://archive.eclipse.org/eclipse/downloads/)
 win中使用`alt`
 
-1. `command + 1` quick fix 快速修复
-2. `F2` next 查找下一个错误
+1. `command + enter` quick fix 快速修复
+2. `alt + 1` next annotaion 查找下一个错误
 3. `command + e` 选择打开的文件
 4. `command + o`  quick outline 快速outline
 5. `command + r`  open resource 打开资源
@@ -56,7 +56,6 @@ title: 给 jar 包 指定源码
 
 右键选择 properties 
 
-![[Pasted image 20220705201149.png|left|400]]
 ```
 
 ## idea
