@@ -154,15 +154,15 @@
   },
   "active": "6bc99d41c5838eec",
   "lastOpenFiles": [
+    "index/common/java_interview.md",
+    "index/java/build/maven.md",
+    "Home.md",
     "index/java/java tips.md",
     "index/business knowledge/credit card/basic.md",
     "index/business knowledge/credit card/card status.md",
     "index/computer basics/cryptography.md",
     "index/work.md",
     "index/sql/db2.md",
-    "index/java/spring/tips.md",
-    "index/java/spring/scanner.md",
-    "index/java/spring/ioc.md",
-    "index/java/spring/autowired.md"
+    "index/java/spring/tips.md"
   ]
 }
