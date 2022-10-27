@@ -241,6 +241,120 @@ Assertions.assertEquals("hello", thrown.getLocalizedMessage());
 
 ```
 
+
+
+### jacoco
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>  
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">  
+    <modelVersion>4.0.0</modelVersion>  
+  
+    <groupId>com.howtoprogram</groupId>  
+    <artifactId>test_jacoco</artifactId>  
+    <version>1.0-SNAPSHOT</version>  
+    <packaging>jar</packaging>  
+    <name>junit-maven-jacoco-example</name>  
+  
+    <properties>  
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  
+        <java.version>1.8</java.version>  
+        <junit.jupiter.version>5.0.0</junit.jupiter.version>  
+        <junit.platform.version>1.0.0</junit.platform.version>  
+        <jacoco.version>0.8.8</jacoco.version>  
+    </properties>  
+  
+  
+    <build>  
+        <plugins>  
+  
+            <plugin>  
+                <groupId>org.apache.maven.plugins</groupId>  
+                <artifactId>maven-surefire-plugin</artifactId>  
+                <version>2.22.2</version>  
+                <configuration>  
+                    <argLine>  
+                        --illegal-access=permit  
+                    </argLine>  
+                    <testFailureIgnore>true</testFailureIgnore>  
+                    <forkCount>2</forkCount>  
+                    <reuseForks>true</reuseForks>  
+                    <argLine>${surefireArgLine}</argLine>  
+                </configuration>  
+            </plugin>  
+  
+            <plugin>  
+                <groupId>org.jacoco</groupId>  
+                <artifactId>jacoco-maven-plugin</artifactId>  
+                <version>0.8.8</version>  
+                <executions>  
+                    <execution>  
+                        <id>default-prepare-agent</id>  
+                        <goals>  
+                            <goal>prepare-agent</goal>  
+                        </goals>  
+                        <configuration>  
+                            <destFile>${project.build.directory}/coverage-reports/jacoco.exec</destFile>  
+                            <propertyName>surefireArgLine</propertyName>  
+                        </configuration>  
+                    </execution>  
+                    <execution>  
+                        <id>default-report</id>  
+                        <phase>test</phase>  
+                        <goals>  
+                            <goal>report</goal>  
+                        </goals>  
+                        <configuration>  
+                            <dataFile>${project.build.directory}/coverage-reports/jacoco.exec</dataFile>  
+                            <outputDirectory>${project.reporting.outputDirectory}/jacoco</outputDirectory>  
+                        </configuration>  
+                    </execution>  
+                    <execution>  
+                        <id>default-check</id>  
+                        <goals>  
+                            <goal>check</goal>  
+                        </goals>  
+                        <configuration>  
+                            <rules>  
+                                <rule>  
+                                    <element>BUNDLE</element>  
+                                    <limits>  
+                                        <limit>  
+                                            <counter>COMPLEXITY</counter>  
+                                            <value>COVEREDRATIO</value>  
+                                            <minimum>0.70</minimum>  
+                                        </limit>  
+                                    </limits>  
+                                </rule>  
+                            </rules>  
+                        </configuration>  
+                    </execution>  
+                </executions>  
+            </plugin>  
+            <plugin>  
+                <groupId>org.apache.maven.plugins</groupId>  
+                <artifactId>maven-compiler-plugin</artifactId>  
+                <configuration>  
+                    <source>8</source>  
+                    <target>8</target>  
+                </configuration>  
+            </plugin>  
+  
+        </plugins>  
+    </build>  
+  
+    <dependencies>  
+  
+        <dependency>  
+            <groupId>io.leaderli.litool</groupId>  
+            <artifactId>litool-test</artifactId>  
+            <version>1.2.4</version>  
+        </dependency>  
+    </dependencies>  
+  
+</project>
+```
 ### 参考文档
 
 [📒 JUnit 5 User Guide](https://junit.org/junit5/docs/current/user-guide/#overview)
@@ -248,3 +362,6 @@ Assertions.assertEquals("hello", thrown.getLocalizedMessage());
 一个用于生成笛卡尔积参数的框架
 
 [📒 junit-pioneer](https://github.com/junit-pioneer/junit-pioneer)
+
+
+[单元测试框架和覆盖率统计原理简析？](http://www.uml.org.cn/Test/202204081.asp?artid=25066)
