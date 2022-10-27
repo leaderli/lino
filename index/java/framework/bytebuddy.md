@@ -264,6 +264,35 @@ public static class MockMethodAdvice {
     }  
 }
 ```
+## Advice.OnMethodExit
+
+忽略类加载`clinit`抛出的异常导致类无法加载的问题
+
+`@Advice.Thrown`  方法抛出的异常，可以将其赋值为null，忽略异常
+
+```java
+if (skipTypeInitError) {  
+    byteBuddy.redefine(mockingClass)  
+            .visit(Advice.to(MockInitAdvice.class).on(MethodDescription::isMethod))  
+            .visit(Advice.to(MockStaticBlock.class).on(MethodDescription::isTypeInitializer))  
+            .make()  
+            .load(mockingClass.getClassLoader(), ClassReloadingStrategy.fromInstalledAgent());  
+    try {  
+        Class.forName(mockingClass.getName());  
+    } catch (ClassNotFoundException e) {  
+        throw new RuntimeException(e);  
+    }  
+}
+```
+
+```java
+public static class MockStaticBlock {  
+    @Advice.OnMethodExit(onThrowable = Throwable.class)  
+    public static void enter(@Advice.Thrown(readOnly = false) Throwable th) {  
+        th = null;  
+    }  
+}
+```
 ## 参考文档
 
 [Byte Buddy - runtime code generation for the Java virtual machine](http://bytebuddy.net/#/)
