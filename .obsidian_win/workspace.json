@@ -4,37 +4,23 @@
     "type": "split",
     "children": [
       {
-        "id": "8671d328eeb348f8",
+        "id": "438d2b46b49f044e",
         "type": "tabs",
         "children": [
           {
-            "id": "88c62b35acc50814",
+            "id": "cffdcc338d09df83",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/eclipse/_eclipse.md",
+                "file": "index/java/framework/junit.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
               }
             }
-          },
-          {
-            "id": "a61bfb2f875a8deb",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "index/eclipse/eclipse-plugin-context-menu.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": true
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -108,7 +94,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/eclipse/eclipse-plugin-context-menu.md"
+                "file": "index/java/framework/junit.md"
               }
             }
           },
@@ -129,12 +115,12 @@
     "direction": "horizontal",
     "width": 178
   },
-  "active": "a61bfb2f875a8deb",
+  "active": "cffdcc338d09df83",
   "lastOpenFiles": [
+    "Home.md",
     "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
     "index/eclipse/eclipse-plugin-context-menu.md",
     "index/eclipse/_eclipse.md",
-    "Home.md",
     "index/common/cheatsheet.md",
     "index/sql/db2.md",
     "index/sql/sql_basic.md",
