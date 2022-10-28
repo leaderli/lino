@@ -21,6 +21,7 @@ kanban-plugin: basic
 ## 其他
 
 - [x] beaninfo
+- [ ] java agent
 
 
 

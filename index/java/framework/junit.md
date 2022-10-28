@@ -274,9 +274,7 @@ Assertions.assertEquals("hello", thrown.getLocalizedMessage());
                 <artifactId>maven-surefire-plugin</artifactId>  
                 <version>2.22.2</version>  
                 <configuration>  
-                    <argLine>  
-                        --illegal-access=permit  
-                    </argLine>  
+                    <argLine> </argLine>  
                     <testFailureIgnore>true</testFailureIgnore>  
                     <forkCount>2</forkCount>  
                     <reuseForks>true</reuseForks>  
