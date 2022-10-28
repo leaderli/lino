@@ -13,10 +13,10 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/framework/bytebuddy.md",
-                "mode": "source",
+                "file": "index/java/framework/junit.md",
+                "mode": "preview",
                 "backlinks": false,
-                "source": true
+                "source": false
               }
             }
           }
@@ -58,7 +58,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "javap",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -76,12 +76,11 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
-    "width": 275,
-    "collapsed": true
+    "width": 275
   },
   "right": {
     "id": "aed7281feaa57107",
@@ -137,7 +136,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/framework/bytebuddy.md"
+                "file": "index/java/framework/junit.md"
               }
             }
           },
@@ -159,6 +158,8 @@
   },
   "active": "6bc99d41c5838eec",
   "lastOpenFiles": [
+    "index/java/command.md",
+    "index/java/framework/bytebuddy.md",
     "index/middleware/redis/redis tutorial.md",
     "Home.md",
     "index/common/java_interview.md",
@@ -166,8 +167,6 @@
     "index/java/java tips.md",
     "index/business knowledge/credit card/basic.md",
     "index/business knowledge/credit card/card status.md",
-    "index/computer basics/cryptography.md",
-    "index/work.md",
-    "index/sql/db2.md"
+    "index/computer basics/cryptography.md"
   ]
 }
