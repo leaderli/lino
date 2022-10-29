@@ -4,19 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "438d2b46b49f044e",
+        "id": "f2d768d0969b1389",
         "type": "tabs",
         "children": [
           {
-            "id": "cffdcc338d09df83",
+            "id": "fa03dd0f405ddd1f",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "kanban",
               "state": {
-                "file": "index/java/framework/junit.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": true
+                "file": "Home.md"
               }
             }
           }
@@ -94,7 +91,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/framework/junit.md"
+                "file": "Home.md"
               }
             }
           },
@@ -115,7 +112,7 @@
     "direction": "horizontal",
     "width": 178
   },
-  "active": "cffdcc338d09df83",
+  "active": "fa03dd0f405ddd1f",
   "lastOpenFiles": [
     "Home.md",
     "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
