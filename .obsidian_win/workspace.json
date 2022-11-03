@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "f2d768d0969b1389",
+        "id": "7155cf3e1763abd8",
         "type": "tabs",
         "children": [
           {
-            "id": "fa03dd0f405ddd1f",
+            "id": "fc85ac84ccbaf258",
             "type": "leaf",
             "state": {
               "type": "kanban",
@@ -112,7 +112,7 @@
     "direction": "horizontal",
     "width": 178
   },
-  "active": "fa03dd0f405ddd1f",
+  "active": "fc85ac84ccbaf258",
   "lastOpenFiles": [
     "Home.md",
     "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
