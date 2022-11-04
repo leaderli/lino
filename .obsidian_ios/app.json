@@ -29,7 +29,8 @@
   "communityPluginSortOrder": "download",
   "mobileToolbarCommands": [
     "app:go-back",
-    "app:go-forward"
+    "app:go-forward",
+    "graph:open"
   ],
-  "mobilePullAction": "switcher:open"
+  "mobilePullAction": "global-search:open"
 }

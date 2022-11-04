@@ -1,0 +1,148 @@
+{
+  "main": {
+    "id": "917740bdf1031889",
+    "type": "split",
+    "children": [
+      {
+        "id": "5482215c2ee2aee5",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "71b89d860637cca6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "template/_template.md",
+                "mode": "preview",
+                "backlinks": false,
+                "source": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "6092ed919de51545",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "2f9844e4ab78f405",
+        "type": "leaf",
+        "state": {
+          "type": "file-explorer",
+          "state": {
+            "sortOrder": "alphabetical"
+          }
+        }
+      },
+      {
+        "id": "8a86e0a0648a7653",
+        "type": "leaf",
+        "state": {
+          "type": "search",
+          "state": {
+            "query": "ls",
+            "matchingCase": false,
+            "explainSearch": false,
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical"
+          }
+        }
+      },
+      {
+        "id": "437f3ed76d94c1d3",
+        "type": "leaf",
+        "state": {
+          "type": "tag",
+          "state": {
+            "sortOrder": "frequency",
+            "useHierarchy": true
+          }
+        }
+      },
+      {
+        "id": "e68ad1db355873b3",
+        "type": "leaf",
+        "state": {
+          "type": "starred",
+          "state": {}
+        }
+      },
+      {
+        "id": "03c12eab1091773a",
+        "type": "leaf",
+        "state": {
+          "type": "recent-files",
+          "state": {}
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "right": {
+    "id": "d289502a870b353a",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "f6e839603b90c963",
+        "type": "leaf",
+        "state": {
+          "type": "outline",
+          "state": {
+            "file": "template/_template.md"
+          }
+        }
+      },
+      {
+        "id": "02625647c6a8d41a",
+        "type": "leaf",
+        "state": {
+          "type": "outgoing-link",
+          "state": {
+            "file": "template/_template.md",
+            "linksCollapsed": false,
+            "unlinkedCollapsed": true
+          }
+        }
+      },
+      {
+        "id": "989fade12d66bb41",
+        "type": "leaf",
+        "state": {
+          "type": "backlink",
+          "state": {
+            "file": "template/_template.md",
+            "collapseAll": true,
+            "extraContext": false,
+            "sortOrder": "alphabetical",
+            "showSearch": false,
+            "searchQuery": "",
+            "backlinkCollapsed": false,
+            "unlinkedCollapsed": false
+          }
+        }
+      }
+    ]
+  },
+  "ribbon": {
+    "mostRecentAction": "Open quick switcher"
+  },
+  "active": "71b89d860637cca6",
+  "lastOpenFiles": [
+    "_lino.md",
+    "index/linux/commands/lsof.md",
+    "index/linux/commands/find.md",
+    "index/linux/commands/ls.md",
+    "index/java/spring/autowired.md",
+    "index/java/framework/logback.md",
+    "index/java/spring/circular dependency.md",
+    "index/call system/avaya.md",
+    "index/java/framework/ast.md",
+    "index/frontend/packages/mockjs.md"
+  ]
+}
