@@ -54,7 +54,7 @@ epm一般使用postgres数据库
 一般情况下切换到postgres用户
 
 ```shell
-psql -U postgres -d VoiceProtal
+psql -U postgres -d VoicePortal
 
 # \dt 查找所有表
 VoiceProtal# \dt

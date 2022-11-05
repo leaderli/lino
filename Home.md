@@ -1,9 +1,3 @@
----
-
-kanban-plugin: basic
-
----
-
 ## 待看文档
 
 - [ ] [学了编译原理能否用 Java 写一个编译器或解释器？ - 知乎 (zhihu.com)](https://www.zhihu.com/question/39835953)
@@ -14,20 +8,14 @@ kanban-plugin: basic
 
 ## flow插件
 
-- [ ] delete action
-- [ ] rigth menu
+- [ ] delete action ⏫ 
+- [ ] rigth menu 🛫 📅 
 
 
-## 其他
 
-- [x] beaninfo
+- [x] beaninfo ✅ 2022-11-04
 - [ ] java agent
 
 
 
 
-%% kanban:settings
-```
-{"kanban-plugin":"basic"}
-```
-%%

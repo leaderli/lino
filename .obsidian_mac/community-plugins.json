@@ -1,7 +1,6 @@
 [
   "obsidian-git",
   "obsidian-admonition",
-  "recent-files-obsidian",
   "table-editor-obsidian",
   "obsidian-day-planner",
   "obsidian-embedded-code-title",
@@ -17,6 +16,8 @@
   "zoottelkeeper-obsidian-plugin",
   "obsidian-minimal-settings",
   "obsidian-style-settings",
-  "obsidian-kanban",
-  "homepage"
+  "homepage",
+  "obsidian-search-everywhere-plugin",
+  "obsidian-vimrc-support",
+  "obsidian-tasks-plugin"
 ]
