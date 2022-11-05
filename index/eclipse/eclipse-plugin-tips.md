@@ -243,6 +243,12 @@ LiMono<IProject> project = element
 .or(element.cast(IJavaElement.class).map(IJavaElement::getResource).map(IResource::getProject))
 ```
 
+### 在 packageExplorer 中显示指定文件
+
+```java
+PackageExplorerPart part = PackageExplorerPart.getFromActivePerspective();
+part.selectAndReveal(iFile)
+```
 ### log4j
 
 ```java

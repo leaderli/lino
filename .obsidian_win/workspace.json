@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/common/cheatsheet.md",
-                "mode": "preview",
+                "file": "index/eclipse/eclipse-plugin-tips.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": true
               }
@@ -94,7 +94,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/common/cheatsheet.md"
+                "file": "index/eclipse/eclipse-plugin-tips.md"
               }
             }
           },
@@ -115,13 +115,13 @@
     "direction": "horizontal",
     "width": 178
   },
-  "active": "c496201ed7acf5a1",
+  "active": "4b9a4abc880857ba",
   "lastOpenFiles": [
+    "index/common/cheatsheet.md",
     "Home.md",
     "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
     "index/eclipse/eclipse-plugin-context-menu.md",
     "index/eclipse/_eclipse.md",
-    "index/common/cheatsheet.md",
     "index/sql/db2.md",
     "index/sql/sql_basic.md",
     "index/sql/_sql.md",
