@@ -11,9 +11,12 @@
             "id": "4b9a4abc880857ba",
             "type": "leaf",
             "state": {
-              "type": "kanban",
+              "type": "markdown",
               "state": {
-                "file": "Home.md"
+                "file": "index/common/cheatsheet.md",
+                "mode": "preview",
+                "backlinks": false,
+                "source": true
               }
             }
           }
@@ -91,7 +94,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "index/common/cheatsheet.md"
               }
             }
           },
@@ -112,7 +115,7 @@
     "direction": "horizontal",
     "width": 178
   },
-  "active": "4b9a4abc880857ba",
+  "active": "c496201ed7acf5a1",
   "lastOpenFiles": [
     "Home.md",
     "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
