@@ -47,22 +47,6 @@
   },
   "showLogAboutPerformanceInConsole": false,
   "selectionHistoryTree": {
-    "LINES": {
-      "LINES": {
-        "currentVault": {
-          "count": 1,
-          "lastUpdated": 1664559783712
-        }
-      }
-    },
-    "参考文档\r": {
-      "参考文档\r": {
-        "currentVault": {
-          "count": 1,
-          "lastUpdated": 1665149024687
-        }
-      }
-    },
     "MethodDelegation": {
       "MethodDelegation": {
         "currentVault": {
@@ -84,6 +68,22 @@
         "currentVault": {
           "count": 1,
           "lastUpdated": 1666368751557
+        }
+      }
+    },
+    "getFolder": {
+      "getFolder": {
+        "currentVault": {
+          "count": 1,
+          "lastUpdated": 1667747445848
+        }
+      }
+    },
+    "IProject": {
+      "IProject": {
+        "currentVault": {
+          "count": 1,
+          "lastUpdated": 1667747477631
         }
       }
     }

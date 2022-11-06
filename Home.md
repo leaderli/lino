@@ -10,8 +10,13 @@
 
 - [ ] delete action ⏫ 
 - [ ] rigth menu 🛫 📅 
+- [ ] rename package 🛫 📅 
+- [ ] PropertyTester
 
 
+
+
+## 其他
 
 - [x] beaninfo ✅ 2022-11-04
 - [ ] java agent

@@ -4,11 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "a74656d4d62cf1be",
+        "id": "9feda68d44f7d694",
         "type": "tabs",
         "children": [
           {
-            "id": "dbc9db32c77455ba",
+            "id": "a8faad7732bef732",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          },
+          {
+            "id": "15dd3fa01778e1e7",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -20,7 +28,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -49,7 +58,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "JavaCore",
                 "matchingCase": false,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -65,16 +74,9 @@
               "type": "starred",
               "state": {}
             }
-          },
-          {
-            "id": "a8b5e0261c702627",
-            "type": "leaf",
-            "state": {
-              "type": "recent-files",
-              "state": {}
-            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -115,17 +117,17 @@
     "direction": "horizontal",
     "width": 178
   },
-  "active": "dbc9db32c77455ba",
+  "active": "15dd3fa01778e1e7",
   "lastOpenFiles": [
-    "index/linux/bash.md",
     "index/eclipse/eclipse-plugin-tips.md",
-    "index/common/cheatsheet.md",
+    "index/java/framework/ast.md",
     "Home.md",
+    "index/linux/bash.md",
+    "index/common/cheatsheet.md",
     "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
     "index/eclipse/eclipse-plugin-context-menu.md",
     "index/eclipse/_eclipse.md",
     "index/sql/db2.md",
-    "index/sql/sql_basic.md",
-    "index/sql/_sql.md"
+    "index/sql/sql_basic.md"
   ]
 }

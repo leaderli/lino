@@ -249,6 +249,32 @@ LiMono<IProject> project = element
 PackageExplorerPart part = PackageExplorerPart.getFromActivePerspective();
 part.selectAndReveal(iFile)
 ```
+
+
+###  定位 java 项目
+
+
+```java
+IProject project;
+
+PackageExplorerPart part = PackageExplorerPart.getFromActivePerspective();
+TreeViewer treeViewer = part.getTreeViewer();
+Control control = treeViewer.getControl();
+JavaModel javaModel = (JavaModel) control.getData();
+// 具体某个项目
+JavaProject javaProject = javaModel.getJavaProject(project.getName());
+
+IFolder folder = project.getFolder("src/java/main")
+// 源码根目录
+IPackageFragmentRoot sourceFolder = javaProject.getPackageFragmentRoot(folder);
+
+
+
+// 最简单的方式为
+JavaCore.create(project);
+JavaCore.create(javaProject.getPackageFragmentRoot(folder));
+
+```
 ### log4j
 
 ```java
