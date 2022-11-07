@@ -8,6 +8,9 @@ date updated: 2022-04-05 23:01
 
 [[eclipse-plugin-develop-tutorial-setup]]
 
+
+
+[eclipse迅雷云盘](https://pan.xunlei.com/s/VNGHPQcHh2eKQfAq-ZcE_zfkA1?pwd=sck8#)
 ## 设计思路
 
 使用xml作为底层数据支持
