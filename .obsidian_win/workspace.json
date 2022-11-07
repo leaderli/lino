@@ -26,7 +26,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/eclipse/eclipse-plugin-tips.md",
+                "file": "Home.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -100,7 +100,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/eclipse/eclipse-plugin-tips.md"
+                "file": "Home.md"
               }
             }
           },
@@ -123,15 +123,15 @@
   },
   "active": "9bb9851825790384",
   "lastOpenFiles": [
-    "index/eclipse/eclipse-plugin-extension.md",
     "index/eclipse/eclipse-plugin-rename.md",
+    "index/eclipse/eclipse-plugin-tips.md",
+    "index/eclipse/eclipse-plugin-extension.md",
     "index/eclipse/_eclipse.md",
     "Home.md",
     "index/eclipse/visual_editor.md",
     "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
     "index/eclipse/eclipse-plugin-editpart.md",
     "index/eclipse/eclipse-plugin-context-menu.md",
-    "index/eclipse/eclipse.md",
-    "index/eclipse/eclipse-plugin-tips.md"
+    "index/eclipse/eclipse.md"
   ]
 }
