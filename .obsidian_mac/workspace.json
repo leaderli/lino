@@ -9,10 +9,10 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Home.md",
-            "mode": "preview",
+            "file": "index/java/java tips.md",
+            "mode": "source",
             "backlinks": false,
-            "source": true
+            "source": false
           }
         }
       }
@@ -120,7 +120,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "index/java/java tips.md"
               }
             }
           },
@@ -137,20 +137,19 @@
       }
     ],
     "direction": "horizontal",
-    "width": 179,
-    "collapsed": true
+    "width": 179
   },
   "active": "bc20a46d5edf41d0",
   "lastOpenFiles": [
-    "index/java/spring/tips.md",
+    "index/business knowledge/credit card/basic.md",
     "Home.md",
+    "index/java/spring/tips.md",
     "index/middleware/redis/redis expire.md",
     "index/middleware/redis.md",
     "index/call system/freeswitch.md",
     "index/software/docker.md",
     "index/linux/commands/crontab.md",
     "index/java/se/array.md",
-    "index/call system/avaya.md",
-    "index/computer basics/c.md"
+    "index/call system/avaya.md"
   ]
 }

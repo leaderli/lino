@@ -392,3 +392,19 @@ for (MethodDescriptor methodDescriptor : beanInfo.getMethodDescriptors()) {
     methodDescriptor.getMethod();  
 }  
 ```
+
+
+### 获取当前运行的jvm进程
+
+```java
+String jvmName = ManagementFactory.getRuntimeMXBean().getName();
+String jvmPid = jvmName.substring(0, jvmName.indexOf('@'));
+
+VirtualMachine self = VirtualMachine.attach(jvmPid);
+```
+
+JDK 9 之后需要添加额外的运行环境
+
+```c
+-Djdk.attach.allowAttachSelf=true
+```
