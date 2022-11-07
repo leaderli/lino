@@ -11,25 +11,16 @@
             "id": "a8faad7732bef732",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
-            }
-          },
-          {
-            "id": "15dd3fa01778e1e7",
-            "type": "leaf",
-            "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
-                "mode": "source",
+                "file": "index/eclipse/eclipse.md",
+                "mode": "preview",
                 "backlinks": false,
                 "source": true
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -96,7 +87,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "index/eclipse/eclipse.md"
               }
             }
           },
@@ -117,11 +108,11 @@
     "direction": "horizontal",
     "width": 178
   },
-  "active": "15dd3fa01778e1e7",
+  "active": "a8faad7732bef732",
   "lastOpenFiles": [
+    "Home.md",
     "index/eclipse/eclipse-plugin-tips.md",
     "index/java/framework/ast.md",
-    "Home.md",
     "index/linux/bash.md",
     "index/common/cheatsheet.md",
     "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
