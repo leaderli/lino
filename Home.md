@@ -12,7 +12,7 @@
 - [ ] rigth menu 🛫 📅 
 - [x] rename package 🛫 📅 ✅ 2022-11-08
 - [x] PropertyTester ✅ 2022-11-08
-- [ ] locationValidator
+- [ ] locationValidator IRenameResourceProcessor#validateNewElementName(String)
 
 
 
