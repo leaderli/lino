@@ -9,10 +9,10 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "index/java/java tips.md",
+            "file": "Home.md",
             "mode": "source",
             "backlinks": false,
-            "source": false
+            "source": true
           }
         }
       }
@@ -120,7 +120,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/java tips.md"
+                "file": "Home.md"
               }
             }
           },
@@ -141,6 +141,7 @@
   },
   "active": "bc20a46d5edf41d0",
   "lastOpenFiles": [
+    "index/java/java tips.md",
     "index/business knowledge/credit card/basic.md",
     "Home.md",
     "index/java/spring/tips.md",
@@ -149,7 +150,6 @@
     "index/call system/freeswitch.md",
     "index/software/docker.md",
     "index/linux/commands/crontab.md",
-    "index/java/se/array.md",
-    "index/call system/avaya.md"
+    "index/java/se/array.md"
   ]
 }

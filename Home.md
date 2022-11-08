@@ -20,6 +20,7 @@
 
 - [x] beaninfo ✅ 2022-11-04
 - [ ] java agent
+- [ ] litool-agent
 
 
 
