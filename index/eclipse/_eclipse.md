@@ -2,6 +2,7 @@
 - 📄 [[index/eclipse/eclipse-plugin-context-menu|eclipse-plugin-context-menu]]
 - 📄 [[index/eclipse/eclipse-plugin-develop-tutorial-setup|eclipse-plugin-develop-tutorial-setup]]
 - 📄 [[index/eclipse/eclipse-plugin-editpart|eclipse-plugin-editpart]]
+- 📄 [[index/eclipse/eclipse-plugin-extension|eclipse-plugin-extension]]
 - 📄 [[index/eclipse/eclipse-plugin-rename|eclipse-plugin-rename]]
 - 📄 [[index/eclipse/eclipse-plugin-tips|eclipse-plugin-tips]]
 - 📄 [[index/eclipse/eclipse-plugin-wizard|eclipse-plugin-wizard]]

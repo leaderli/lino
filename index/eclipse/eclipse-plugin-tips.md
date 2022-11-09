@@ -234,10 +234,10 @@ import org.eclipse.core.resources.IResource
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 
-LiMono<Object> element = LiMono.of(selection).map(IStructuredSelection::getFirstElement);
+Lino<Object> element = Lino.of(selection).map(IStructuredSelection::getFirstElement);
 
 // 根据选中的元素不同，通过不同的方式去获取当前的project
-LiMono<IProject> project = element
+Lino<IProject> project = element
 .cast(IJavaProject.class).map(IJavaProject::getProject)
 .or(element.cast(IResource.class).map(IResource::getProject))
 .or(element.cast(IJavaElement.class).map(IJavaElement::getResource).map(IResource::getProject))
@@ -250,7 +250,16 @@ PackageExplorerPart part = PackageExplorerPart.getFromActivePerspective();
 part.selectAndReveal(iFile)
 ```
 
+### 查找指定视图
 
+```java
+//VIEW_ID org.eclipse.jdt.ui.PackageExplorer
+IWorkbenchWindow window= PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+window.getActivePage().findView(VIEW_ID);
+if (view instanceof PackageExplorerPart){
+
+}
+```
 ###  定位 java 项目
 
 

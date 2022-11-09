@@ -10,8 +10,10 @@
 
 - [ ] delete action ⏫ 
 - [ ] rigth menu 🛫 📅 
-- [ ] rename package 🛫 📅 
-- [ ] PropertyTester
+- [x] rename package 🛫 📅 ✅ 2022-11-08
+- [x] PropertyTester ✅ 2022-11-08
+- [x] locationValidator IRenameResourceProcessor#validateNewElementName(String) ✅ 2022-11-09
+
 
 
 
