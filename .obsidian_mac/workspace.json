@@ -10,9 +10,9 @@
           "type": "markdown",
           "state": {
             "file": "index/call system/avaya.md",
-            "mode": "preview",
+            "mode": "source",
             "backlinks": false,
-            "source": true
+            "source": false
           }
         }
       }

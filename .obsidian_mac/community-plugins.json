@@ -19,5 +19,6 @@
   "homepage",
   "obsidian-search-everywhere-plugin",
   "obsidian-vimrc-support",
-  "obsidian-tasks-plugin"
+  "obsidian-tasks-plugin",
+  "link-headers-directly"
 ]
