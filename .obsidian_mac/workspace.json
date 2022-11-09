@@ -9,8 +9,8 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Home.md",
-            "mode": "source",
+            "file": "index/call system/avaya.md",
+            "mode": "preview",
             "backlinks": false,
             "source": true
           }
@@ -120,7 +120,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "index/call system/avaya.md"
               }
             }
           },
@@ -141,9 +141,9 @@
   },
   "active": "bc20a46d5edf41d0",
   "lastOpenFiles": [
+    "Home.md",
     "index/java/java tips.md",
     "index/business knowledge/credit card/basic.md",
-    "Home.md",
     "index/java/spring/tips.md",
     "index/middleware/redis/redis expire.md",
     "index/middleware/redis.md",

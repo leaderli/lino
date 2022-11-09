@@ -122,6 +122,8 @@ private String decodeHex(String hex) {
 - `/opt/Tomcat/apache-tomcat-6.0.41/lib/config/languages.properties`
 - `/opt/Tomcat/apache-tomcat-6.0.41/lib/messeages/languages.properties`
 
+语音服务器中的配置音色需要全选所有音色
+
 配置文件大小写敏感
 
 ```ad-info
