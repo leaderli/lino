@@ -19,7 +19,6 @@ date updated: 2022-07-14 23:11
 9. ivr
 10. 座席
 
-[[awk]]
 
 ```mermaid
 graph LR

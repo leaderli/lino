@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "index/call system/avaya.md",
+            "file": "index/business knowledge/credit card/card status.md",
             "mode": "source",
             "backlinks": false,
             "source": false
@@ -120,7 +120,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/call system/avaya.md"
+                "file": "index/business knowledge/credit card/card status.md"
               }
             }
           },
@@ -141,15 +141,15 @@
   },
   "active": "bc20a46d5edf41d0",
   "lastOpenFiles": [
+    "index/business knowledge/credit card/basic.md",
+    "index/call system/avaya.md",
     "Home.md",
     "index/java/java tips.md",
-    "index/business knowledge/credit card/basic.md",
     "index/java/spring/tips.md",
     "index/middleware/redis/redis expire.md",
     "index/middleware/redis.md",
     "index/call system/freeswitch.md",
     "index/software/docker.md",
-    "index/linux/commands/crontab.md",
-    "index/java/se/array.md"
+    "index/linux/commands/crontab.md"
   ]
 }
