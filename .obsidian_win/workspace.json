@@ -4,19 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "eab6131057b6031b",
+        "id": "9a9c93ff56dc314e",
         "type": "tabs",
         "children": [
           {
-            "id": "88907b7d36e69c82",
+            "id": "63c27b7d31d6bbf4",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
                 "file": "Home.md",
-                "mode": "source",
+                "mode": "preview",
                 "backlinks": false,
-                "source": false
+                "source": true
               }
             }
           }
@@ -108,7 +108,7 @@
     "direction": "horizontal",
     "width": 178
   },
-  "active": "88907b7d36e69c82",
+  "active": "63c27b7d31d6bbf4",
   "lastOpenFiles": [
     "index/java/ee/aop.md",
     "index/java/framework/mockito.md",
