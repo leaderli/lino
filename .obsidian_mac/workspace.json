@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "index/business knowledge/credit card/card status.md",
+            "file": "index/software/gitlab.md",
             "mode": "preview",
             "backlinks": false,
             "source": true
@@ -60,7 +60,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -120,7 +121,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/business knowledge/credit card/card status.md"
+                "file": "index/software/gitlab.md"
               }
             }
           },
@@ -141,15 +142,15 @@
   },
   "active": "bc20a46d5edf41d0",
   "lastOpenFiles": [
+    "index/call system/mrcp.md",
+    "index/java/jvm/java agent.md",
+    "index/business knowledge/credit card/card status.md",
     "index/business knowledge/credit card/basic.md",
     "index/call system/avaya.md",
     "Home.md",
     "index/java/java tips.md",
     "index/java/spring/tips.md",
     "index/middleware/redis/redis expire.md",
-    "index/middleware/redis.md",
-    "index/call system/freeswitch.md",
-    "index/software/docker.md",
-    "index/linux/commands/crontab.md"
+    "index/middleware/redis.md"
   ]
 }

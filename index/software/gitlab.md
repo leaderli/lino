@@ -98,7 +98,8 @@ Status: 200 OK
 
    - owned 是否仅展示属于当前用户的项目，默认为 false
 
-2. 查看一个项目的所有 tag `GET /projects/:id/repository/tags`
+1. 查销户看一个项目的所有 tag `GET /projects/:id/repository/tags`
+2. 查询组下所有项目 `GET /groups/:group_id/projects`
 
 ## 参考文档
 
