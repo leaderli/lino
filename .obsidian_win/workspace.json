@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
-                "mode": "preview",
+                "file": "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": true
               }
@@ -49,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "enhance",
+                "query": "gef",
                 "matchingCase": false,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -87,7 +87,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "index/eclipse/eclipse-plugin-develop-tutorial-setup.md"
               }
             }
           },
@@ -110,15 +110,15 @@
   },
   "active": "c2ff80d221be9b54",
   "lastOpenFiles": [
-    "index/linux/bash.md",
+    "index/eclipse/eclipse-plugin-tips.md",
+    "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
     "Home.md",
+    "index/linux/bash.md",
     "index/java/ee/aop.md",
     "index/java/framework/mockito.md",
     "index/java/spring/annotation.md",
-    "index/eclipse/eclipse-plugin-tips.md",
     "index/eclipse/eclipse-plugin-rename.md",
     "index/eclipse/eclipse-plugin-extension.md",
-    "index/eclipse/_eclipse.md",
-    "index/eclipse/visual_editor.md"
+    "index/eclipse/_eclipse.md"
   ]
 }
