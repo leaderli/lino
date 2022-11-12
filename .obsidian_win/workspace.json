@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "9a9c93ff56dc314e",
+        "id": "95ee26ea3fa48776",
         "type": "tabs",
         "children": [
           {
-            "id": "63c27b7d31d6bbf4",
+            "id": "c2ff80d221be9b54",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -108,17 +108,17 @@
     "direction": "horizontal",
     "width": 178
   },
-  "active": "63c27b7d31d6bbf4",
+  "active": "c2ff80d221be9b54",
   "lastOpenFiles": [
+    "index/linux/bash.md",
+    "Home.md",
     "index/java/ee/aop.md",
     "index/java/framework/mockito.md",
     "index/java/spring/annotation.md",
     "index/eclipse/eclipse-plugin-tips.md",
-    "Home.md",
     "index/eclipse/eclipse-plugin-rename.md",
     "index/eclipse/eclipse-plugin-extension.md",
     "index/eclipse/_eclipse.md",
-    "index/eclipse/visual_editor.md",
-    "index/eclipse/eclipse-plugin-develop-tutorial-setup.md"
+    "index/eclipse/visual_editor.md"
   ]
 }
