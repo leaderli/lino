@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "91b10d8d5d6ee627",
+        "id": "d6d24efd180ef856",
         "type": "tabs",
         "children": [
           {
-            "id": "3e56a16696145e26",
+            "id": "5d8e4dcf4ad21f4d",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -19,22 +19,8 @@
                 "source": true
               }
             }
-          },
-          {
-            "id": "6a91d88f2aa0b7a3",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "index/eclipse/javafx.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": true
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -100,7 +86,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/eclipse/javafx.md"
+                "file": "Home.md"
               }
             }
           },
@@ -121,12 +107,12 @@
     "direction": "horizontal",
     "width": 178
   },
-  "active": "6a91d88f2aa0b7a3",
+  "active": "5d8e4dcf4ad21f4d",
   "lastOpenFiles": [
-    "index/eclipse/gef-event.md",
-    "index/eclipse/javafx.md",
-    "Home.md",
     "index/eclipse/eclipse-plugin-tips.md",
+    "index/eclipse/javafx.md",
+    "index/eclipse/gef-event.md",
+    "Home.md",
     "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
     "index/linux/bash.md",
     "index/java/ee/aop.md",

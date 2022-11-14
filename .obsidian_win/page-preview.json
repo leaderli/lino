@@ -1,5 +1,10 @@
 {
-  "preview": true,
   "file-explorer": false,
-  "git-view": false
+  "git-view": false,
+  "quick-explorer:folder-menu": false,
+  "graph": false,
+  "starred": false,
+  "editor": false,
+  "preview": true,
+  "search": false
 }
