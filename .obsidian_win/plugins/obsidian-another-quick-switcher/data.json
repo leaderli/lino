@@ -243,6 +243,22 @@
           "key": "d"
         }
       ],
+      "clear path": [
+        {
+          "modifiers": [
+            "Alt"
+          ],
+          "key": "d"
+        }
+      ],
+      "set ./ to path": [
+        {
+          "modifiers": [
+            "Alt"
+          ],
+          "key": "c"
+        }
+      ],
       "open in new tab": [
         {
           "modifiers": [

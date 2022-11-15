@@ -2,7 +2,7 @@
 aliases: 插件开发
 tags:
   - eclipse/eclipse-plugin-develop-tutorial-setup
-date updated: 2022-03-28 15:39
+date updated: 2022-11-14 12:35
 ---
 
 ## 安装软件
@@ -11,20 +11,18 @@ date updated: 2022-03-28 15:39
    在[官方链接](https://www.eclipse.org/downloads/packages/)下载合适的版本，我选择的版本为
    [oxygen 3a](https://www.eclipse.org/downloads/packages/release/oxygen/3a/eclipse-ide-eclipse-committers)
 
-1. 安装插件
+2. 安装插件
    [wiki](http://wiki.eclipse.org/Eclipse_Project_Update_Sites)上维护了最新的官方插件地址，选择你的 eclipse 对应版本的插件地址，例如[4.7](http://download.eclipse.org/eclipse/updates/4.7)
    在 eclipse 中点击`Help` -> `Install New Software`
    ![eclipse-plugin-develop-tutorial-setup_安装插件.png|800](eclipse-plugin-develop-tutorial-setup_安装插件.png)
-   
-2. [GEF Update-Site and SDK Archive Downloads | The Eclipse Foundation](https://www.eclipse.org/gef/downloads/) 可以下载离线包
-   
 
+3. [GEF Update-Site and SDK Archive Downloads | The Eclipse Foundation](https://www.eclipse.org/gef/downloads/) 可以下载离线包
 
-==百度云盘和阿里云盘上放了整合版本==
+   ==百度云盘和阿里云盘上放了整合版本==
 
-3. eclipse源码
+4. eclipse源码
 
-[Platform-releng/Platform Build - Eclipsepedia](https://wiki.eclipse.org/Platform-releng/Platform_Build#Building)
+   [Platform-releng/Platform Build - Eclipsepedia](https://wiki.eclipse.org/Platform-releng/Platform_Build#Building)
 
 ## 概念
 
@@ -47,7 +45,6 @@ eclipse 中工具区示例
 - `org.eclipse.ui.menus` - can associate with a command and place the command in the main menu, view dropdown menus, context menus, main toolbar, view toolbars, and various trim locations.
 - `org.eclipse.ui.handlers` - define handler for a command
 - `org.eclipse.ui.bindings` - bind shortcut key for a command
-
 
 ```ad-info
 

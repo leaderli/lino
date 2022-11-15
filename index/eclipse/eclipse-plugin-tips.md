@@ -334,11 +334,11 @@ eclipse 插件 依赖其他插件时，可以引入其源码包
 ![[Pasted image 20220704211213.png|left|400]]
 
 
-当找不到相关插件时，需要安装
+当找不到相关插件时，需要安装，安装时可以将其source也一同安装，这样就有了源码
 
 | extension         | plugin          | site | 
 | ----------------- | --------------- | ---- |
-| `org.eclipse.gef` | `GEF (MVC) SDK` |      `2020-06 - http://download.eclipse.org/releases/2020-06`|
+| `org.eclipse.gef` | `GEF (MVC) SDK` |      `https://download.eclipse.org/tools/gef/classic/releases/latest/plugins/`|
 
 
 
