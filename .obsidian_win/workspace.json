@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
-                "mode": "preview",
+                "file": "index/eclipse/eclipse-gef.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": true
               }
@@ -39,7 +39,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "contentPa",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -66,7 +66,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -86,7 +87,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "index/eclipse/eclipse-gef.md"
               }
             }
           },
@@ -107,14 +108,14 @@
     "direction": "horizontal",
     "width": 178
   },
-  "active": "51f7c28400713fd9",
+  "active": "06376b58eda1e8c0",
   "lastOpenFiles": [
+    "Home.md",
     "index/eclipse/eclipse-plugin-tips.md",
     "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
-    "index/eclipse/gef-event.md",
+    "index/eclipse/eclipse-gef.md",
     "index/eclipse/eclipse-plugin-context-menu.md",
     "index/eclipse/eclipse.md",
-    "Home.md",
     "index/eclipse/javafx.md",
     "index/linux/bash.md",
     "index/java/ee/aop.md",

@@ -7,7 +7,7 @@
 - 📄 [[index/eclipse/eclipse-plugin-tips|eclipse-plugin-tips]]
 - 📄 [[index/eclipse/eclipse-plugin-wizard|eclipse-plugin-wizard]]
 - 📄 [[index/eclipse/eclipse|eclipse]]
-- 📄 [[index/eclipse/gef-event|gef-event]]
+- 📄 [[eclipse-gef|gef-event]]
 - 📄 [[index/eclipse/javafx|javafx]]
 - 📄 [[index/eclipse/swt_constant|swt_constant]]
 - 📄 [[index/eclipse/visual_editor|visual_editor]]

@@ -1,10 +1,10 @@
 ---
 tags:
-  - eclipse/gef-event
+  - eclipse/gef
 date updated: 2022-04-05 16:08
 ---
 
-model 类，仅展示原理，省略部分代码\
+model 类，仅展示原理，省略部分代码
 
 
 
