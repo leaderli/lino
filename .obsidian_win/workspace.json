@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/eclipse/eclipse-gef.md",
+                "file": "Home.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -87,7 +87,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/eclipse/eclipse-gef.md"
+                "file": "Home.md"
               }
             }
           },
@@ -108,12 +108,12 @@
     "direction": "horizontal",
     "width": 178
   },
-  "active": "06376b58eda1e8c0",
+  "active": "9be215225d1df122",
   "lastOpenFiles": [
+    "index/eclipse/eclipse-gef.md",
     "Home.md",
     "index/eclipse/eclipse-plugin-tips.md",
     "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
-    "index/eclipse/eclipse-gef.md",
     "index/eclipse/eclipse-plugin-context-menu.md",
     "index/eclipse/eclipse.md",
     "index/eclipse/javafx.md",
