@@ -4,19 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "2c1d65e4dae1ad64",
+        "id": "539173b6e75c241d",
         "type": "tabs",
         "children": [
           {
-            "id": "854ae79a182b7989",
+            "id": "cbd582f21885965d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/software/nginx.md",
-                "mode": "source",
+                "file": "Home.md",
+                "mode": "preview",
                 "backlinks": false,
-                "source": false
+                "source": true
               }
             }
           }
@@ -87,7 +87,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/software/nginx.md"
+                "file": "Home.md"
               }
             }
           },
@@ -108,8 +108,9 @@
     "direction": "horizontal",
     "width": 178
   },
-  "active": "854ae79a182b7989",
+  "active": "cbd582f21885965d",
   "lastOpenFiles": [
+    "index/software/nginx.md",
     "Home.md",
     "index/eclipse/eclipse-gef.md",
     "index/eclipse/eclipse-plugin-tips.md",
@@ -118,7 +119,6 @@
     "index/eclipse/eclipse.md",
     "index/eclipse/javafx.md",
     "index/linux/bash.md",
-    "index/java/ee/aop.md",
-    "index/java/framework/mockito.md"
+    "index/java/ee/aop.md"
   ]
 }
