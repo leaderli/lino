@@ -1,7 +1,7 @@
 ---
 tags:
   - 软件/nginx
-date updated: 2022-07-12 06:05
+date updated: 2022-11-16 23:35
 ---
 
 ## 安装
@@ -391,6 +391,41 @@ done
 
 **_当负载服务器停止服务时，nginx 会自动重新计算 hash_**
 
+如果使用`tenginx` 可以基于cookie设置session保持
+
+[ngx_http_upstream_session_sticky_module - The Tengine Web Server](https://tengine.taobao.org/document_cn/http_upstream_session_sticky_cn.html)
+
+```nginx
+# 默认配置：cookie=route mode=insert fallback=on  
+upstream foo {  
+    server 192.168.0.1;  
+    server 192.168.0.2;  
+    session_sticky;  
+}  
+  
+server {  
+    location / {  
+        proxy_pass http://foo;  
+    }  
+}
+```
+
+```nginx
+#insert + indirect模式：  
+upstream test {  
+    session_sticky cookie=uid domain=www.xxx.com fallback=on path=/ mode=insert option=indirect;  
+    server  127.0.0.1:8080;  
+}  
+  
+server {  
+    location / {  
+        #在insert + indirect模式或者prefix模式下需要配置session_sticky_hide_cookie  
+        #这种模式不会将保持会话使用的cookie传给后端服务，让保持会话的cookie对后端透明  
+        session_sticky_hide_cookie upstream=test;  
+        proxy_pass http://test;  
+    }  
+}
+```
 ## 日志
 
 我们可配置`http|log_format`来控制 nginx 的 access_log 日志的输出内容,你可以打印所有 nginx 中有关的 [[#可用变量]]

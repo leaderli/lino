@@ -4,19 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "9693afae18258c12",
+        "id": "2c1d65e4dae1ad64",
         "type": "tabs",
         "children": [
           {
-            "id": "9be215225d1df122",
+            "id": "854ae79a182b7989",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
+                "file": "index/software/nginx.md",
                 "mode": "source",
                 "backlinks": false,
-                "source": true
+                "source": false
               }
             }
           }
@@ -87,7 +87,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "index/software/nginx.md"
               }
             }
           },
@@ -108,10 +108,10 @@
     "direction": "horizontal",
     "width": 178
   },
-  "active": "9be215225d1df122",
+  "active": "854ae79a182b7989",
   "lastOpenFiles": [
-    "index/eclipse/eclipse-gef.md",
     "Home.md",
+    "index/eclipse/eclipse-gef.md",
     "index/eclipse/eclipse-plugin-tips.md",
     "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
     "index/eclipse/eclipse-plugin-context-menu.md",
