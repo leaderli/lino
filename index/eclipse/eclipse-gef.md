@@ -1,12 +1,12 @@
 ---
 tags:
   - eclipse/gef
-date updated: 2022-04-05 16:08
+date updated: 2022-11-17 01:13
 ---
 
+## model
+
 model 类，仅展示原理，省略部分代码
-
-
 
 ```java
 
@@ -74,6 +74,8 @@ class GotoNodeEditPart extends AbstractGraphicalEditPart implements NodeEditPart
     }
 }
 ```
+
+## figure
 
 当 FlowNode 绘制自己时，会在其 getContentPane 的图形上，绘制自己的子 model，通过调用`org.eclipse.gef.editparts.AbstractEditPart.refreshChildren()`方法来绘制。
 
@@ -165,6 +167,8 @@ protected void register() {
     getViewer().getVisualPartMap().put(getFigure(), this);
  }
 ```
+
+## 鼠标位置的 editPart
 
 当我们触发一个鼠标移动事件时，它会查询当前位置的 figure 对应的 editPart，然后使用对应 editPart 的 policy 来处理相关事件。
 
