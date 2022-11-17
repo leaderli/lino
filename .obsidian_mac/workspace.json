@@ -9,8 +9,8 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "index/software/docker.md",
-            "mode": "preview",
+            "file": "index/call system/avaya.md",
+            "mode": "source",
             "backlinks": false,
             "source": true
           }
@@ -121,7 +121,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/software/docker.md"
+                "file": "index/call system/avaya.md"
               }
             }
           },
@@ -142,15 +142,15 @@
   },
   "active": "bc20a46d5edf41d0",
   "lastOpenFiles": [
+    "index/linux/commands/grep.md",
+    "index/software/docker.md",
     "index/linux/rpm.md",
     "index/linux/_linux.md",
-    "index/software/docker.md",
     "index/call system/sip.md",
     "index/linux/commands/tcpdump.md",
     "index/software/vim.md",
     "index/software/_software.md",
     "index/call system/avaya.md",
-    "index/call system/mrcp.md",
-    "index/software/gitlab.md"
+    "index/call system/mrcp.md"
   ]
 }

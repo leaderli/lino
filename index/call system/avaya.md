@@ -155,6 +155,13 @@ tts可以使用ssml的语法编写
 </form>
 ```
 
+
+avaya返回vxml时也会将sessionID放入到cookie中
+
+```c
+JESSIONID=03E80E97619B5627;Path=/Hello;HttpOnly
+__DDESSIONID=03E80E97619B5627;Path=/Hello;HttpOnly
+```
 ## ccxml
 
 一些方便使用的script脚本，因为ccxml中的js引擎版本较低，有些方法是不支持的
@@ -301,6 +308,7 @@ protocol: sip
 	<log expr="' eventData\n ' + objectToString(event$)">
 </transition>
 ```
+
 ## 常见问题
 
 ```ad-error
