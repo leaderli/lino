@@ -264,6 +264,21 @@ server {
 }
 ```
 
+#### 保留原始请求地址
+
+nginx代理无法获取真实ip地址
+
+```nginx
+server {
+   listen 18080;
+   location / {
+      proxy_pass http://f5;
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+   }
+}
+```
 ## 负载均衡
 
 ### 测试用脚本

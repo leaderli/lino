@@ -9,8 +9,8 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "index/call system/avaya.md",
-            "mode": "source",
+            "file": "index/software/office.md",
+            "mode": "preview",
             "backlinks": false,
             "source": true
           }
@@ -43,7 +43,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "rpm",
+                "query": "首字母",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -121,7 +121,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/call system/avaya.md"
+                "file": "index/software/office.md"
               }
             }
           },
@@ -142,15 +142,15 @@
   },
   "active": "bc20a46d5edf41d0",
   "lastOpenFiles": [
+    "index/linux/commands/lsof.md",
+    "index/linux/linux basic.md",
+    "index/linux/_linux.md",
+    "index/linux/commands/df.md",
+    "index/linux/commands/_commands.md",
+    "index/software/nginx.md",
+    "index/call system/avaya.md",
     "index/linux/commands/grep.md",
     "index/software/docker.md",
-    "index/linux/rpm.md",
-    "index/linux/_linux.md",
-    "index/call system/sip.md",
-    "index/linux/commands/tcpdump.md",
-    "index/software/vim.md",
-    "index/software/_software.md",
-    "index/call system/avaya.md",
-    "index/call system/mrcp.md"
+    "index/linux/rpm.md"
   ]
 }
