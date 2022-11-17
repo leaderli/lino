@@ -11,7 +11,7 @@
 - [ ] delete action ⏫
 - [ ] rigth menu 🛫 📅 
 - [ ] flowNode linkNode
-- [ ] flowNode delete action handle
+- [x] flowNode delete action handle ✅ 2022-11-17
 - [x] rename package 🛫 📅 ✅ 2022-11-08
 - [x] PropertyTester ✅ 2022-11-08
 - [x] locationValidator IRenameResourceProcessor#validateNewElementName(String) ✅ 2022-11-09

@@ -4,17 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "81951404fcd5a694",
+        "id": "56950e1dae0dd043",
         "type": "tabs",
         "children": [
           {
-            "id": "583cbbfe9539aaf9",
+            "id": "3accbeaf6dacb7bc",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
                 "file": "Home.md",
-                "mode": "source",
+                "mode": "preview",
                 "backlinks": false,
                 "source": true
               }
@@ -107,7 +107,7 @@
     "direction": "horizontal",
     "width": 178
   },
-  "active": "583cbbfe9539aaf9",
+  "active": "3accbeaf6dacb7bc",
   "lastOpenFiles": [
     "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
     "index/eclipse/eclipse-gef.md",
