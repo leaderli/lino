@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
+                "file": "index/eclipse/eclipse-plugin-tips.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
@@ -87,7 +87,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/eclipse/eclipse-plugin-develop-tutorial-setup.md"
+                "file": "index/eclipse/eclipse-plugin-tips.md"
               }
             }
           },
@@ -110,12 +110,12 @@
   },
   "active": "e8a6f850c6f8ceda",
   "lastOpenFiles": [
+    "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
     "Home.md",
     "index/computer basics/Fundamentals of Compiling.md",
     "index/computer basics/file lock.md",
     "index/computer basics/principles of computer composition.md",
     "index/computer basics/computer fundametation.md",
-    "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
     "index/eclipse/eclipse-gef.md",
     "index/software/nginx.md",
     "index/eclipse/eclipse-plugin-tips.md",
