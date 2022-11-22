@@ -9,8 +9,8 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "index/software/office.md",
-            "mode": "preview",
+            "file": "index/computer basics/Fundamentals of Compiling.md",
+            "mode": "source",
             "backlinks": false,
             "source": true
           }
@@ -43,7 +43,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "首字母",
+                "query": "后缀",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -60,8 +60,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -121,7 +120,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/software/office.md"
+                "file": "index/computer basics/Fundamentals of Compiling.md"
               }
             }
           },
@@ -142,15 +141,15 @@
   },
   "active": "bc20a46d5edf41d0",
   "lastOpenFiles": [
-    "index/linux/commands/lsof.md",
-    "index/linux/linux basic.md",
-    "index/linux/_linux.md",
-    "index/linux/commands/df.md",
-    "index/linux/commands/_commands.md",
-    "index/software/nginx.md",
-    "index/call system/avaya.md",
-    "index/linux/commands/grep.md",
-    "index/software/docker.md",
-    "index/linux/rpm.md"
+    "index/compilers/fundamentals of compiling.md",
+    "index/compilers/grammar.md",
+    "index/compilers/LL(1).md",
+    "index/compilers/automation.md",
+    "index/data structure/_data structure.md",
+    "index/design pattern/builder mode.md",
+    "index/design pattern/visitor.md",
+    "index/design pattern/subscribe publish mode.md",
+    "index/design pattern/finite-state machine mode.md",
+    "index/computer basics/principles of computer composition.md"
   ]
 }
