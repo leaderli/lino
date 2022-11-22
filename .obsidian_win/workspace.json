@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "d3b18d7b583f95f4",
+        "id": "76974077cea71586",
         "type": "tabs",
         "children": [
           {
-            "id": "f663094239a002d8",
+            "id": "e8a6f850c6f8ceda",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
+                "file": "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
@@ -87,7 +87,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "index/eclipse/eclipse-plugin-develop-tutorial-setup.md"
               }
             }
           },
@@ -108,7 +108,7 @@
     "direction": "horizontal",
     "width": 178
   },
-  "active": "f663094239a002d8",
+  "active": "e8a6f850c6f8ceda",
   "lastOpenFiles": [
     "Home.md",
     "index/computer basics/Fundamentals of Compiling.md",
