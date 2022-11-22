@@ -4,23 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "76974077cea71586",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "e8a6f850c6f8ceda",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "index/eclipse/eclipse-plugin-tips.md",
-                "mode": "preview",
-                "backlinks": false,
-                "source": true
-              }
-            }
+        "id": "78b2a0946cd089c6",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Home.md",
+            "mode": "source",
+            "backlinks": false,
+            "source": true
           }
-        ]
+        }
       }
     ],
     "direction": "vertical"
@@ -87,7 +81,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/eclipse/eclipse-plugin-tips.md"
+                "file": "Home.md"
               }
             }
           },
@@ -108,17 +102,17 @@
     "direction": "horizontal",
     "width": 178
   },
-  "active": "e8a6f850c6f8ceda",
+  "active": "78b2a0946cd089c6",
   "lastOpenFiles": [
     "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
+    "index/eclipse/eclipse-plugin-editpart.md",
+    "index/eclipse/eclipse-plugin-extension.md",
+    "index/eclipse/eclipse-plugin-rename.md",
+    "index/eclipse/eclipse-plugin-wizard.md",
+    "index/eclipse/eclipse-plugin-tips.md",
     "Home.md",
     "index/computer basics/Fundamentals of Compiling.md",
     "index/computer basics/file lock.md",
-    "index/computer basics/principles of computer composition.md",
-    "index/computer basics/computer fundametation.md",
-    "index/eclipse/eclipse-gef.md",
-    "index/software/nginx.md",
-    "index/eclipse/eclipse-plugin-tips.md",
-    "index/eclipse/eclipse-plugin-context-menu.md"
+    "index/computer basics/principles of computer composition.md"
   ]
 }
