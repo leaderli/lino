@@ -16,7 +16,8 @@ date updated: 2022-11-14 12:35
    在 eclipse 中点击`Help` -> `Install New Software`
    ![eclipse-plugin-develop-tutorial-setup_安装插件.png|800](eclipse-plugin-develop-tutorial-setup_安装插件.png)
 
-3. [GEF Update-Site and SDK Archive Downloads | The Eclipse Foundation](https://www.eclipse.org/gef/downloads/) 可以下载离线包
+1. [GEF Update-Site and SDK Archive Downloads | The Eclipse Foundation](https://www.eclipse.org/gef/downloads/) 可以下载离线包
+	    更新地址`http://download.eclipse.org/tools/gef/classic/releases/latest`
 
    ==百度云盘和阿里云盘上放了整合版本==
 

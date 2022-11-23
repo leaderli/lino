@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
-                "mode": "preview",
+                "file": "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": true
               }
@@ -49,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "后缀",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -66,7 +66,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -126,7 +127,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "index/eclipse/eclipse-plugin-develop-tutorial-setup.md"
               }
             }
           },
@@ -147,15 +148,15 @@
   },
   "active": "7aad06b5e0e9ce95",
   "lastOpenFiles": [
+    "index/eclipse/eclipse-plugin-wizard.md",
     "index/eclipse/eclipse-gef.md",
+    "index/computer basics/perl.md",
+    "Home.md",
     "index/computer basics/Fundamentals of Compiling.md",
     "index/compilers/fundamentals of compiling.md",
     "index/compilers/grammar.md",
     "index/compilers/LL(1).md",
     "index/compilers/automation.md",
-    "index/data structure/_data structure.md",
-    "index/design pattern/builder mode.md",
-    "index/design pattern/visitor.md",
-    "index/design pattern/subscribe publish mode.md"
+    "index/data structure/_data structure.md"
   ]
 }
