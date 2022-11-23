@@ -1,10 +1,11 @@
 ---
 tags:
   - eclipse/eclipse-plugin-tips
-date updated: 2022-03-28 15:41
+date updated: 2022-11-24 00:16
 ---
 
 ### 如何DEBUG插件
+
 1. 安装 [[eclipse-plugin#反编译插件]]
 2. 在 `plugin.xml` 文件中 的 `Dependencies` 中 Add 需要添加需要进行断点的jar，当 jar存在源码包时，也可以直接引入。一般为 `-source`结尾
 3. 找到需要断点的类，添加上断点
@@ -260,8 +261,8 @@ if (view instanceof PackageExplorerPart){
 
 }
 ```
-###  定位 java 项目
 
+### 定位 java 项目
 
 ```java
 IProject project;
@@ -284,6 +285,7 @@ JavaCore.create(project);
 JavaCore.create(javaProject.getPackageFragmentRoot(folder));
 
 ```
+
 ### log4j
 
 ```java
@@ -300,7 +302,6 @@ String log4jConfPathBase = Platform
 String log4jConfPath = log4jConfPathBase + "/log4j.properties";
 PropertyConfigurator.configure(log4jConfPath);
 ```
-
 
 ```properties
 log4j.debug=true
@@ -323,31 +324,34 @@ log4j.appender.console.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %-5p %c.
 
 ```
 
-
 ### 源码对应的插件
-
 
 eclipse 插件 依赖其他插件时，可以引入其源码包
 
-例如 
+例如
 
 ![[Pasted image 20220704211213.png|left|400]]
 
-
 当找不到相关插件时，需要安装，安装时可以将其source也一同安装，这样就有了源码
 
-| extension         | plugin          | site | 
-| ----------------- | --------------- | ---- |
-| `org.eclipse.gef` | `GEF (MVC) SDK` |      `https://download.eclipse.org/tools/gef/classic/releases/latest/plugins/`|
-
-
+| extension         | plugin          | site                                                                      |
+| ----------------- | --------------- | ------------------------------------------------------------------------- |
+| `org.eclipse.gef` | `GEF (MVC) SDK` | `https://download.eclipse.org/tools/gef/classic/releases/latest/plugins/` |
 
 ### 常见错误
 
-
-`plugin.xml` 中配置了 `Bundle-ActivationPolicy: lazy` ，会影响 引入 `*.source.jar` ，造成无法启动插件 
+`plugin.xml` 中配置了 `Bundle-ActivationPolicy: lazy` ，会影响 引入 `*.source.jar` ，造成无法启动插件
 
 ```log
 org.osgi.framework.BundleException: Could not resolve module: io.leaderli.visual.editor [491]
   Unresolved requirement: Require-Bundle: org.eclipse.ltk.core.refactoring.source; 
+```
+
+### 弹窗
+
+notifaction 错误信息
+
+```java
+                                MessageDialog.openError(LiFlowPlugin.getStandardDisplay().getActiveShell(), "fuck", "fuck");
+
 ```

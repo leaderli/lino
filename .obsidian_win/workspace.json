@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
-                "mode": "preview",
+                "file": "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": true
               }
@@ -87,7 +87,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "index/eclipse/eclipse-plugin-develop-tutorial-setup.md"
               }
             }
           },
@@ -106,17 +106,17 @@
       }
     ],
     "direction": "horizontal",
-    "width": 178
+    "width": 336.5
   },
   "active": "5a401518d5cbaffd",
   "lastOpenFiles": [
-    "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
     "index/eclipse/eclipse-plugin-editpart.md",
+    "index/eclipse/eclipse-plugin-tips.md",
+    "Home.md",
+    "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
     "index/eclipse/eclipse-plugin-extension.md",
     "index/eclipse/eclipse-plugin-rename.md",
     "index/eclipse/eclipse-plugin-wizard.md",
-    "index/eclipse/eclipse-plugin-tips.md",
-    "Home.md",
     "index/computer basics/Fundamentals of Compiling.md",
     "index/computer basics/file lock.md",
     "index/computer basics/principles of computer composition.md"
