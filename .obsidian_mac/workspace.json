@@ -4,17 +4,23 @@
     "type": "split",
     "children": [
       {
-        "id": "bc20a46d5edf41d0",
-        "type": "leaf",
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "index/computer basics/Fundamentals of Compiling.md",
-            "mode": "source",
-            "backlinks": false,
-            "source": true
+        "id": "17a8b998a767243d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7aad06b5e0e9ce95",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Home.md",
+                "mode": "preview",
+                "backlinks": false,
+                "source": true
+              }
+            }
           }
-        }
+        ]
       }
     ],
     "direction": "vertical"
@@ -120,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/computer basics/Fundamentals of Compiling.md"
+                "file": "Home.md"
               }
             }
           },
@@ -139,8 +145,10 @@
     "direction": "horizontal",
     "width": 179
   },
-  "active": "bc20a46d5edf41d0",
+  "active": "7aad06b5e0e9ce95",
   "lastOpenFiles": [
+    "index/eclipse/eclipse-gef.md",
+    "index/computer basics/Fundamentals of Compiling.md",
     "index/compilers/fundamentals of compiling.md",
     "index/compilers/grammar.md",
     "index/compilers/LL(1).md",
@@ -148,8 +156,6 @@
     "index/data structure/_data structure.md",
     "index/design pattern/builder mode.md",
     "index/design pattern/visitor.md",
-    "index/design pattern/subscribe publish mode.md",
-    "index/design pattern/finite-state machine mode.md",
-    "index/computer basics/principles of computer composition.md"
+    "index/design pattern/subscribe publish mode.md"
   ]
 }

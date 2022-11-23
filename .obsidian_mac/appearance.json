@@ -16,5 +16,5 @@
   "cssTheme": "Minimal",
   "baseFontSizeAction": true,
   "accentColor": "",
-  "showViewHeader": false
+  "showViewHeader": true
 }
