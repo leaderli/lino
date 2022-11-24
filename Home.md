@@ -10,7 +10,7 @@
 
 - [ ] delete action ⏫
 - [ ] rigth menu 🛫 📅 
-- [ ] flowEditor isDirty
+- [x] flowEditor isDirty ✅ 2022-11-25
 
 - [x] flowNode connection ✅ 2022-11-21
 - [x] flowNode delete action handle ✅ 2022-11-17
