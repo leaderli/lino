@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
+                "file": "index/protocol/xml.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -49,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "xpath",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -127,7 +127,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/eclipse/eclipse-plugin-develop-tutorial-setup.md"
+                "file": "index/protocol/xml.md"
               }
             }
           },
@@ -148,15 +148,15 @@
   },
   "active": "7aad06b5e0e9ce95",
   "lastOpenFiles": [
+    "index/eclipse/eclipse-plugin-tips.md",
+    "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
+    "index/eclipse/visual_editor.md",
+    "index/eclipse/swt_constant.md",
     "index/eclipse/eclipse-plugin-wizard.md",
+    "index/eclipse/eclipse-plugin-rename.md",
+    "index/eclipse/eclipse-plugin-extension.md",
     "index/eclipse/eclipse-gef.md",
-    "index/computer basics/perl.md",
-    "Home.md",
-    "index/computer basics/Fundamentals of Compiling.md",
-    "index/compilers/fundamentals of compiling.md",
-    "index/compilers/grammar.md",
-    "index/compilers/LL(1).md",
-    "index/compilers/automation.md",
-    "index/data structure/_data structure.md"
+    "index/eclipse/eclipse-plugin-context-menu.md",
+    "index/eclipse/eclipse-plugin-editpart.md"
   ]
 }
