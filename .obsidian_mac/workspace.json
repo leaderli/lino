@@ -13,10 +13,10 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/protocol/xml.md",
+                "file": "index/software/vim.md",
                 "mode": "source",
                 "backlinks": false,
-                "source": true
+                "source": false
               }
             }
           }
@@ -127,7 +127,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/protocol/xml.md"
+                "file": "index/software/vim.md"
               }
             }
           },
@@ -148,15 +148,15 @@
   },
   "active": "7aad06b5e0e9ce95",
   "lastOpenFiles": [
+    "index/linux/commands/sed.md",
+    "index/linux/commands/awk.md",
+    "index/linux/commands/paste.md",
+    "index/computer basics/perl.md",
+    "index/protocol/xml.md",
     "index/eclipse/eclipse-plugin-tips.md",
     "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
     "index/eclipse/visual_editor.md",
     "index/eclipse/swt_constant.md",
-    "index/eclipse/eclipse-plugin-wizard.md",
-    "index/eclipse/eclipse-plugin-rename.md",
-    "index/eclipse/eclipse-plugin-extension.md",
-    "index/eclipse/eclipse-gef.md",
-    "index/eclipse/eclipse-plugin-context-menu.md",
-    "index/eclipse/eclipse-plugin-editpart.md"
+    "index/eclipse/eclipse-plugin-wizard.md"
   ]
 }

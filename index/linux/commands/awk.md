@@ -90,8 +90,8 @@ $ awk  '$6~/55/ {print $0}' 1.txt
 
 ## 注意事项
 
-- awk脚本中不可以使用单引号 `'`
-
+- awk脚本中不可以使用单引号 `'`，可以使用`'\''`来转义
+ 
 - 一般情况下 awk 与 grep 无法配合使用，但当 grep 使用参数`--line-buffered` 时，则可以
 
 ## 示例：
@@ -111,7 +111,7 @@ awk '{print};/'"$ucid"' End/{exit}' < <(tail -n0 -f "$log"|grep --line-buffered 
 ### 截取除第一位之后的所有元素
 
 ```shell
-echo  1 2 3 4 5|awk '{first = $1; $1 = ""; print $0 }'
+echo  1 2 3 4 5|awk '{$1 = ""; print $0 }'
 ```
 
 ### 使用条件判断筛选数据
