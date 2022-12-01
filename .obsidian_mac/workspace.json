@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/software/vim.md",
+                "file": "index/common/cheatsheet.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -127,7 +127,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/software/vim.md"
+                "file": "index/common/cheatsheet.md"
               }
             }
           },
@@ -149,14 +149,14 @@
   "active": "7aad06b5e0e9ce95",
   "lastOpenFiles": [
     "index/linux/commands/sed.md",
+    "index/python/python tips.md",
+    "index/python/python cmd.md",
+    "index/python/python tutorial.md",
+    "index/software/vim.md",
     "index/linux/commands/awk.md",
     "index/linux/commands/paste.md",
     "index/computer basics/perl.md",
     "index/protocol/xml.md",
-    "index/eclipse/eclipse-plugin-tips.md",
-    "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
-    "index/eclipse/visual_editor.md",
-    "index/eclipse/swt_constant.md",
-    "index/eclipse/eclipse-plugin-wizard.md"
+    "index/eclipse/eclipse-plugin-tips.md"
   ]
 }
