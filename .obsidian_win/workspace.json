@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
+                "file": "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
@@ -39,7 +39,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "e",
+                "query": "IMarker",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -86,7 +86,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "index/eclipse/eclipse-plugin-develop-tutorial-setup.md"
               }
             }
           },
@@ -109,10 +109,10 @@
   },
   "active": "51f7c28400713fd9",
   "lastOpenFiles": [
-    "Home.md",
-    "index/eclipse/eclipse-plugin-editpart.md",
     "index/eclipse/eclipse-plugin-tips.md",
     "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
+    "Home.md",
+    "index/eclipse/eclipse-plugin-editpart.md",
     "index/eclipse/eclipse-plugin-extension.md",
     "index/eclipse/eclipse-plugin-rename.md",
     "index/eclipse/eclipse-plugin-wizard.md",
