@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "5b64f5a5ac73a5d2",
+        "id": "2994e92907782dc7",
         "type": "tabs",
         "children": [
           {
-            "id": "ce55c9061ce41bd9",
+            "id": "3e8a4e30e2243e5f",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -39,7 +39,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "e",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -66,8 +66,7 @@
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "horizontal",
@@ -108,11 +107,11 @@
     "direction": "horizontal",
     "width": 336.5
   },
-  "active": "ce55c9061ce41bd9",
+  "active": "51f7c28400713fd9",
   "lastOpenFiles": [
+    "Home.md",
     "index/eclipse/eclipse-plugin-editpart.md",
     "index/eclipse/eclipse-plugin-tips.md",
-    "Home.md",
     "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
     "index/eclipse/eclipse-plugin-extension.md",
     "index/eclipse/eclipse-plugin-rename.md",
