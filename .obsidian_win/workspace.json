@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "2994e92907782dc7",
+        "id": "e40422e6d7cc2131",
         "type": "tabs",
         "children": [
           {
-            "id": "3e8a4e30e2243e5f",
+            "id": "f104651a49d14d89",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
+                "file": "Home.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
@@ -86,7 +86,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/eclipse/eclipse-plugin-develop-tutorial-setup.md"
+                "file": "Home.md"
               }
             }
           },
@@ -107,7 +107,7 @@
     "direction": "horizontal",
     "width": 336.5
   },
-  "active": "51f7c28400713fd9",
+  "active": "f104651a49d14d89",
   "lastOpenFiles": [
     "index/eclipse/eclipse-plugin-tips.md",
     "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",

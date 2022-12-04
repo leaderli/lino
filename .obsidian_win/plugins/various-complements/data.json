@@ -47,30 +47,6 @@
   },
   "showLogAboutPerformanceInConsole": false,
   "selectionHistoryTree": {
-    "MethodDelegation": {
-      "MethodDelegation": {
-        "currentVault": {
-          "count": 1,
-          "lastUpdated": 1665402333658
-        }
-      }
-    },
-    "skipOn": {
-      "skipOn": {
-        "currentVault": {
-          "count": 1,
-          "lastUpdated": 1665923420701
-        }
-      }
-    },
-    "PropertyDescriptor": {
-      "PropertyDescriptor": {
-        "currentVault": {
-          "count": 1,
-          "lastUpdated": 1666368751557
-        }
-      }
-    },
     "getFolder": {
       "getFolder": {
         "currentVault": {
@@ -84,6 +60,14 @@
         "currentVault": {
           "count": 1,
           "lastUpdated": 1667747477631
+        }
+      }
+    },
+    "增加扩展点": {
+      "增加扩展点": {
+        "currentVault": {
+          "count": 1,
+          "lastUpdated": 1670138208376
         }
       }
     }

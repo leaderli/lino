@@ -355,3 +355,22 @@ notifaction 错误信息
                                 MessageDialog.openError(LiFlowPlugin.getStandardDisplay().getActiveShell(), "fuck", "fuck");
 
 ```
+
+
+### 在problem视图创建错误提醒
+
+[[eclipse-plugin-develop-tutorial-setup#新增扩展点]]
+
+```xml
+<extension
+	  id="li_flow_marker"
+	  name="li flow marker"
+	  point="org.eclipse.core.resources.markers">
+   <persistent
+		 value="true">
+   </persistent>
+   <super
+		 type="org.eclipse.core.resources.problemmarker">
+   </super>
+</extension>
+```
