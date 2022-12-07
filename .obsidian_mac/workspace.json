@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/work.md",
+                "file": "Home.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -127,7 +127,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/work.md"
+                "file": "Home.md"
               }
             }
           },
@@ -148,6 +148,7 @@
   },
   "active": "7aad06b5e0e9ce95",
   "lastOpenFiles": [
+    "index/work.md",
     "index/business knowledge/_business knowledge.md",
     "index/linux/bash.md",
     "index/common/cheatsheet.md",
@@ -156,7 +157,6 @@
     "index/python/python tips.md",
     "index/python/python cmd.md",
     "index/python/python tutorial.md",
-    "index/software/vim.md",
-    "index/linux/commands/awk.md"
+    "index/software/vim.md"
   ]
 }

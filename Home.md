@@ -8,15 +8,15 @@
 
 ## flow插件
 
-- [ ] delete action ⏫
-- [ ] rigth menu 🛫 📅 
+- [x] delete action ⏫ ✅ 2022-12-07
+- [x] rigth menu 🛫 📅 ✅ 2022-12-07
 - [x] flowEditor isDirty ✅ 2022-11-25
-
 - [x] flowNode connection ✅ 2022-11-21
 - [x] flowNode delete action handle ✅ 2022-11-17
 - [x] rename package 🛫 📅 ✅ 2022-11-08
 - [x] PropertyTester ✅ 2022-11-08
 - [x] locationValidator IRenameResourceProcessor#validateNewElementName(String) ✅ 2022-11-09
+- [ ] listener oldVal newVal
 
 
 
