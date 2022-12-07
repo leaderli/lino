@@ -19,5 +19,6 @@
   "obsidian-style-settings",
   "homepage",
   "quick-explorer",
-  "obsidian-tasks-plugin"
+  "obsidian-tasks-plugin",
+  "link-headers-directly"
 ]
