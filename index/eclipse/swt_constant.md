@@ -3,9 +3,6 @@ tags:
   - eclipse/swt_constant
 date updated: 2022-04-05 22:56
 ---
-
-### SWT
-
 ```java
 
 //org.eclipse.swt.SWT
