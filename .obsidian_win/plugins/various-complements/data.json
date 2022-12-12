@@ -47,27 +47,35 @@
   },
   "showLogAboutPerformanceInConsole": false,
   "selectionHistoryTree": {
-    "getFolder": {
-      "getFolder": {
-        "currentVault": {
-          "count": 1,
-          "lastUpdated": 1667747445848
-        }
-      }
-    },
-    "IProject": {
-      "IProject": {
-        "currentVault": {
-          "count": 1,
-          "lastUpdated": 1667747477631
-        }
-      }
-    },
     "增加扩展点": {
       "增加扩展点": {
         "currentVault": {
           "count": 1,
           "lastUpdated": 1670138208376
+        }
+      }
+    },
+    "参考文档\r": {
+      "参考文档\r": {
+        "currentVault": {
+          "count": 1,
+          "lastUpdated": 1670852607010
+        }
+      }
+    },
+    "scope": {
+      "scope": {
+        "currentVault": {
+          "count": 2,
+          "lastUpdated": 1670852701440
+        }
+      }
+    },
+    "compile": {
+      "compile": {
+        "currentVault": {
+          "count": 1,
+          "lastUpdated": 1670852708636
         }
       }
     }

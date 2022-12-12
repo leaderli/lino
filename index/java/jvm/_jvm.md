@@ -3,6 +3,7 @@
 - 📄 [[index/java/jvm/classloader|classloader]]
 - 📄 [[index/java/jvm/constant pool|constant pool]]
 - 📄 [[index/java/jvm/java agent|java agent]]
+- 📄 [[index/java/jvm/java processor|java processor]]
 - 📄 [[index/java/jvm/jvm-gc|jvm-gc]]
 - 📄 [[index/java/jvm/major_version|major_version]]
 - 📄 [[index/java/jvm/options|options]]
