@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "e40422e6d7cc2131",
+        "id": "c3df57c0a3e97bcf",
         "type": "tabs",
         "children": [
           {
-            "id": "f104651a49d14d89",
+            "id": "f593fc01851b75c2",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -107,17 +107,17 @@
     "direction": "horizontal",
     "width": 336.5
   },
-  "active": "f104651a49d14d89",
+  "active": "f593fc01851b75c2",
   "lastOpenFiles": [
+    "index/business knowledge/credit card/basic.md",
+    "index/business knowledge/credit card/_credit card.md",
+    "Home.md",
     "index/eclipse/eclipse-plugin-tips.md",
     "index/eclipse/eclipse-plugin-develop-tutorial-setup.md",
-    "Home.md",
     "index/eclipse/eclipse-plugin-editpart.md",
     "index/eclipse/eclipse-plugin-extension.md",
     "index/eclipse/eclipse-plugin-rename.md",
     "index/eclipse/eclipse-plugin-wizard.md",
-    "index/computer basics/Fundamentals of Compiling.md",
-    "index/computer basics/file lock.md",
-    "index/computer basics/principles of computer composition.md"
+    "index/computer basics/Fundamentals of Compiling.md"
   ]
 }
