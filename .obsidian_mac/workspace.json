@@ -26,7 +26,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/eclipse/swt.md",
+                "file": "index/call system/avaya.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -140,7 +140,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/eclipse/swt.md"
+                "file": "index/call system/avaya.md"
               }
             }
           },
@@ -161,15 +161,15 @@
   },
   "active": "b771a06ac556643b",
   "lastOpenFiles": [
-    "index/eclipse/swt_constant.md",
+    "index/linux/commands/grep.md",
     "index/eclipse/swt.md",
+    "index/eclipse/swt_constant.md",
     "index/call system/avaya.md",
     "Home.md",
     "index/work.md",
     "index/business knowledge/_business knowledge.md",
     "index/linux/bash.md",
     "index/common/cheatsheet.md",
-    "index/software/mac.md",
-    "index/linux/commands/sed.md"
+    "index/software/mac.md"
   ]
 }

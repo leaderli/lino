@@ -123,6 +123,8 @@ private String decodeHex(String hex) {
 
 语音服务器中的配置音色需要全选所有音色
 
+语音服务器中同一个引擎类型的，可以配置多个不同IP的语音服务器，这样可以实现负载的功能。
+
 配置文件大小写敏感
 
 ```ad-info
@@ -156,7 +158,7 @@ tts可以使用ssml的语法编写
 ```
 
 
-avaya返回vxml时也会将sessionID放入到cookie中
+avaya返回vxml时也会将sessionID放入到cookie中，从而F5等可以实现session保持。
 
 ```c
 JESSIONID=03E80E97619B5627;Path=/Hello;HttpOnly

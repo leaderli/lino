@@ -7,7 +7,8 @@ date updated: 2022-04-05 22:56
 ## 基础架构
 
 ![[Pasted image 20221208163302.png]]
-## shell
+## 基础概念
+### shell
 
 一个提供了最小化，最大化，关闭按钮的基本窗口
 
@@ -39,4 +40,7 @@ public class HelloSWT {
 ```
 
 ![[Pasted image 20221208163538.png]]
+
+### Display
+与操作系统进行交互，使用原生的组件和事件
 
