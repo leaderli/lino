@@ -4,37 +4,23 @@
     "type": "split",
     "children": [
       {
-        "id": "c3df57c0a3e97bcf",
+        "id": "996d996671328866",
         "type": "tabs",
         "children": [
           {
-            "id": "f593fc01851b75c2",
+            "id": "c35b551745b81068",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/jvm/java agent.md",
+                "file": "Home.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
               }
             }
-          },
-          {
-            "id": "dec706383678dbb1",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "index/java/jvm/java processor.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -85,7 +71,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 357.5
+    "width": 208.5
   },
   "right": {
     "id": "4b761e4e5ad66709",
@@ -101,7 +87,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/jvm/java processor.md"
+                "file": "Home.md"
               }
             }
           },
@@ -123,7 +109,7 @@
     "width": 336.5,
     "collapsed": true
   },
-  "active": "dec706383678dbb1",
+  "active": "c35b551745b81068",
   "lastOpenFiles": [
     "index/java/jvm/java agent.md",
     "index/java/jvm/java processor.md",
