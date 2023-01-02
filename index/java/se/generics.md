@@ -2,15 +2,64 @@
 aliases: 泛型
 tags:
   - java/se/泛型
-date updated: 2022-06-29 04:50
+date updated: 2023-01-02 22:44
 ---
-
 
 ## 概述
 
+泛型作为一个语法特性，提供了编译时类型安全。泛型的本质是将类型参数化，用于定义类，接口，方法。
+
+通常一个泛型类的定义如下：
+
+```java
+class name<T1, T2, ..., Tn> { /* ... */ }
+```
+
+泛型参数 `T1`, `T2` 仅限于在类中使用，不可用于子类。
+
+在调用或初始化泛型类时，可以申明具体使用的泛型。
+
+```java
+public class Box<T>{
+
+}
+
+Box<Integer> box;
+```
+
+泛型申明，仅用于编译期，实际运行时，其类型会被擦除。
 
 
-## 泛型 通配符
+## 继承关系
+
+`List<Number>` 和 `List<Integer>` 不是父子类，他们共同的父类是 `List<?>`。但是 [[#上边界]]
+[[#下边界]] 具有继承关系
+![[generics-wildcardSubtyping.gif|400]]
+
+## 有界类型
+
+默认情况下，泛型都是 `object` ， 当我们需要限制泛型的实际类型时，可以通过 `extends` 。
+
+```java
+public <U extends Number> void inspect(U u){
+}
+```
+
+### 多边界
+
+可以使用 `&` 来表示继承多个接口，仅允许继承一个非接口，且需要在第一个位置
+
+```java
+Class A { /* ... */ }
+interface B { /* ... */ }
+interface C { /* ... */ }
+
+class D <T extends A & B & C> { /* ... */ }
+```
+
+## 通配符
+
+泛型中使用 `?` 作为通配符，代表不确定类型。
 
 ```ad-li
 不管是extends或是super，只能使用在变量声明上，实际赋值的时候，一定是指定具体实现类的，这就是extend和super的方法会有所限制的原因
@@ -21,8 +70,7 @@ date updated: 2022-06-29 04:50
 Remember _PECS_: **"Producer Extends, Consumer Super"**.
 ```
 
-### `<? extends T>`
-
+### 上边界
 
 ```java
 List<? extends Number> foo1 = new ArrayList<Number>();  // Number "extends" Number (in this context)
@@ -30,15 +78,13 @@ List<? extends Number> foo2 = new ArrayList<Integer>(); // Integer extends Numbe
 List<? extends Number> foo3 = new ArrayList<Double>();  // Double extends Number
 ```
 
-#### 读
+**可读不可写**
 
-`<? extends Number>` 其具体实现类的泛型，Number，Integer，Double 都是 Number 的子类，其集合中的元素都为其声明的泛型，因此当我们从集合中取值，一定也是其声明的泛型，是可以向上转型为 Number 类型的。
+1. `<? extends Number>` 其具体实现类的泛型，Number，Integer，Double 都是 Number 的子类，其集合中的元素都为其声明的泛型，因此当我们从集合中取值，一定也是其声明的泛型，是可以向上转型为 Number 类型的。
 
-#### 写
+   2.`<? extends Number>` 其具体实现类的泛型，Number，Integer，Double 都是 Number 的子类，如果以 Number 进行插入时，例如在 foo2 插入一个 Double 泛型的元素，则与实际的泛型 Integer 冲突，所以 `extends` 禁用插入动作。
 
-`<? extends Number>` 其具体实现类的泛型，Number，Integer，Double 都是 Number 的子类，如果以 Number 进行插入时，例如在 foo2 插入一个 Double 泛型的元素，则与实际的泛型 Integer 冲突，所以 `extends` 禁用插入动作。
-
-### `<? super T>`
+### 下边界
 
 ```java
 List<? super Integer> foo1 = new ArrayList<Integer>();  // Integer is a "superclass" of Integer (in this context)
@@ -46,15 +92,27 @@ List<? super Integer> foo2 = new ArrayList<Number>();   // Number is a superclas
 List<? super Integer> foo3 = new ArrayList<Object>();   // Object is a superclass of Integer
 ```
 
-#### 读
+**不可读可写**
 
-`<? super Integer>` 其具体实现类的泛型，Integer，Number，Object 都是 Integer 的父类，当我从集合中取值时，只能保证其值是具体声明的泛型，而 Number，Object 是不能保证可以向下转型为 Integer 的。所以 `super` 禁止读取操作
+1. `<? super Integer>` 其具体实现类的泛型，Integer，Number，Object 都是 Integer 的父类，当我从集合中取值时，只能保证其值是具体声明的泛型，而 Number，Object 是不能保证可以向下转型为 Integer 的。所以 `super` 禁止读取操作
 
-#### 写
+   2.`<? super Integer>` 其具体实现类的泛型，Integer，Number，Object 都是 Integer 的父类，当我以  Interger  进行插入时，都是可以向上转型为  Integer，Number，Object 的
 
-`<? super Integer>` 其具体实现类的泛型，Integer，Number，Object 都是 Integer 的父类，当我以  Interger  进行插入时，都是可以向上转型为  Integer，Number，Object 的
+### 无限通配符
 
-具体解释参考 [difference-between-super-t-and-extends-t-in-java](https://stackoverflow.com/questions/4343202/difference-between-super-t-and-extends-t-in-java/4343547#4343547)
+可以把 `<?>` 看成 `<? extends object>` 的缩写， `List<?>` 可以接受 `List<String>` , `List<Integer>`。但是 `List<Object>` 是不可以接受 `List<String>` 的。
+
+```java
+public static void printList(List<?> list) {
+    for (Object elem: list)
+        System.out.print(elem + " ");
+    System.out.println();
+}
+```
+
+### 参考文档
+
+[difference-between-super-t-and-extends-t-in-java](https://stackoverflow.com/questions/4343202/difference-between-super-t-and-extends-t-in-java/4343547#4343547)
 
 ### 方法参数的泛型通配符
 
@@ -67,18 +125,23 @@ List<? super Integer> foo3 = new ArrayList<Object>();   // Object is a superclas
 R apply(T t);
 ```
 
-当传递mapper时，我们需要指定具体的泛型
+当传递mapper时，我们需要指定具体的泛型，此处mapper的实际类型 `<T1,R1>` , `T1` 为 `T` 的父类， `R1` 为 `R` 的子类。
 
-- apply 方法内部，当我调用 T 类型的父类方法是可以接受的，我实际传递 mapper 时，可以直接使用泛型为 T 的父类的形参。
-- apply 方法的返回值，我返回 R 类型的子类也是可以接受的，所以传递 mapper 时也可以直接使用泛型为 R 的子类的返回类型
+- apply 方法内部，实际传递的参数 `t` 是可以直接强转为 `T1`
+- apply 方法的返回值 `r1`，是可以直接强转为 `R`
 
-##  泛型类型
+## 泛型类型
 
-### java.lang.reflect.Type 
+### java.lang.reflect.Type
+
 有多个实现类
-### Class 
+
+### Class
+
 类
+
 ### TypeVariable
+
 泛型声明，例如 `List<T>`中的`T`， 其可以通过`getGenericDeclaration`方法找到泛型声明的类
 
 ```java
@@ -91,16 +154,20 @@ Type t = Li.class.getField("t").getGenericType();
 
 ```
 
+### WildcardType
 
-### WildcardType 
 通配符泛型声明，例如`List<? extends T>` 中的 `? extends T`
+
 ### GenericArrayType
+
 数组泛型 ，例如 `T[]` 中的 `T`
+
 ### ParameterizedType
+
 参数化泛型声明，例如 `List<List<Integet>>` 中的 `List<Intger>`
 
-
 我们需要明确的是，泛型类型仅使用于声明时使用，实际赋值时泛型肯定是已经确定好了的。那么针对于声明泛型的
+
 ## 泛型的应用
 
 ```java
@@ -136,8 +203,7 @@ class C2 extends B<Node1,RootNode>{
 }
 ```
 
-
-## 任意数组泛型
+### 任意数组泛型
 
 ```java
 @Retention(RetentionPolicy.RUNTIME)  
@@ -148,7 +214,7 @@ public @interface Valuable {
 }
 ```
 
-## 当使用通配符不能直接使用时，可使用强转来实现
+### 当使用通配符不能直接使用时，可使用强转来实现
 
 ```java
    @SuppressWarnings("unchecked")
@@ -160,7 +226,7 @@ public @interface Valuable {
     }
 ```
 
-## 获取泛型的类型
+### 获取泛型的类型
 
 可以通过增加一个返回class的泛型方法交由子类去显式声明。
 
@@ -173,7 +239,7 @@ public interface ILiEventListener<T> {
 }
 ```
 
-## 泛型在map中的一些使用
+### 泛型在map中的一些使用
 
 ```java
 //可以保证存储在cache中的key和value一定是同一个泛型的
@@ -188,13 +254,13 @@ public <T>T get(Class<T> type){
 }
 ```
 
-## 创建泛型数组
+### 创建泛型数组
 
 ```java
 java.lang.reflect.Array.newInstance(Class<T> componentType, int length)
 ```
 
-## 获取类声明的泛型
+### 获取类声明的泛型
 
 当继承一个泛型类时指定了具体的泛型，通过反射获取该泛型的具体类型
 
@@ -210,7 +276,7 @@ paramterizedType.getActualTypeArguments()
 ParameterizedTypeImpl[] types = (ParameterizedTypeImpl[]) MyNode.class.getGenericInterfaces();
 ```
 
-## 获取泛型声明的名字
+### 获取泛型声明的名字
 
 ```java
 Consumer.class.getTypeParameters();  
@@ -222,7 +288,7 @@ Function.class.getTypeParameters();
 
 `getTypeParameters` 返回的是一个 TypeVariable 类型的数组，TypeVariable 继承自 Type，它不是实际的 class 类型
 
-## 强转异常捕获
+### 强转异常捕获
 
 `java`运行时无法捕获`ClassCastException`的解决办法
 
@@ -238,7 +304,7 @@ Function.class.getTypeParameters();
 
 通过查看字节码就可以了解,直接  `return (T) value` 是在方法外检测 `cast`
 
-## 任意泛型
+### 任意泛型
 
 当一个类不包含任何泛型的成员变量时，其可以安全的转换为任意泛型
 
@@ -253,23 +319,6 @@ public class Some<T>{
 	public <R> Some<R> toSome() {  
 	 return (Some<R>) this;  
 	}
-}
-```
-
-##  多继承
-
-可以使用 `&` 来表示继承多个接口
-
-```java
-public static class And<T extends Runnable & Supplier<T>> {  
-  
-  
-    private final T and;  
-  
-  
-    public And(T and) {  
-        this.and = and;  
-    }  
 }
 ```
 
@@ -384,7 +433,6 @@ List<Generic<Object, ? extends Collection>> generics; //G1 G2 G3
 @Autowired
 List<Generic<Object, Collection>> generics; //G1 G2
 ```
-
 
 ## 参考文档
 

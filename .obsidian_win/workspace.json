@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "a275d97c4f043db6",
+        "id": "ec33fd72460f3783",
         "type": "tabs",
         "children": [
           {
-            "id": "cb8b3b39fd4b329c",
+            "id": "ce4cf163e7ae6b88",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -39,7 +39,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "类型",
+                "query": "signature",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -106,19 +106,20 @@
       }
     ],
     "direction": "horizontal",
-    "width": 336.5
+    "width": 336.5,
+    "collapsed": true
   },
-  "active": "cb8b3b39fd4b329c",
+  "active": "ce4cf163e7ae6b88",
   "lastOpenFiles": [
-    "index/protocol/yml.md",
+    "index/software/obsidian.md",
     "index/java/se/generics.md",
     "Home.md",
+    "index/protocol/yml.md",
     "index/common/java_interview.md",
     "index/java/jvm/java agent.md",
     "index/java/jvm/java processor.md",
     "index/java/jvm/constant pool.md",
     "index/business knowledge/credit card/basic.md",
-    "index/business knowledge/credit card/_credit card.md",
-    "index/eclipse/eclipse-plugin-tips.md"
+    "index/business knowledge/credit card/_credit card.md"
   ]
 }
