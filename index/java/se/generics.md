@@ -208,8 +208,8 @@ ParameterizedTypeImpl[] types = (ParameterizedTypeImpl[]) MyNode.class.getGeneri
 ## 获取泛型声明的名字
 
 ```java
-LiPrintUtil.print((Object[]) Consumer.class.getTypeParameters());  
-LiPrintUtil.print((Object[]) Function.class.getTypeParameters());
+Consumer.class.getTypeParameters();  
+Function.class.getTypeParameters();
 
 // T
 // T R
@@ -359,8 +359,11 @@ public void setData(java.lang.Object);
 public interface Generic<T,R> {}
 @Component
 public class G1 implements Generic<Object, Collection> {}
+@Component
 public class G2 implements Generic<Object, List> {}
+@Component
 public class G3<T> implements Generic<T, List> {}
+@Component
 public class G4 implements Generic<String, List> {}
 ```
 

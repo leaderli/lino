@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
-                "mode": "preview",
+                "file": "index/java/se/generics.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": true
               }
@@ -87,7 +87,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "index/java/se/generics.md"
               }
             }
           },
@@ -111,8 +111,8 @@
   },
   "active": "a5c3ab7ee6922089",
   "lastOpenFiles": [
-    "index/common/java_interview.md",
     "Home.md",
+    "index/common/java_interview.md",
     "index/java/jvm/java agent.md",
     "index/java/jvm/java processor.md",
     "index/java/jvm/constant pool.md",
