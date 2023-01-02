@@ -5,6 +5,11 @@ tags:
 date updated: 2022-06-29 04:50
 ---
 
+
+## 概述
+
+
+
 ## 泛型 通配符
 
 ```ad-li
@@ -381,3 +386,8 @@ List<Generic<Object, Collection>> generics; //G1 G2
 ```
 
 
+## 参考文档
+
+[Lesson: Generics (Updated) (The Java™ Tutorials > Learning the Java Language)](https://docs.oracle.com/javase/tutorial/java/generics/index.html)
+
+[Lesson: Generics (The Java™ Tutorials > Bonus)](https://docs.oracle.com/javase/tutorial/extra/generics/index.html)
