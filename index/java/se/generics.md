@@ -29,13 +29,19 @@ Box<Integer> box;
 
 泛型申明，仅用于编译期，实际运行时，其类型会被擦除。
 
-
 ## 继承关系
 
-`List<Number>` 和 `List<Integer>` 不是父子类，他们共同的父类是 `List<?>`。但是 [[#上边界]]
+`List<Number>` 和 `List<Integer>` 不是父子类，他们共同的父类是 `List<?>`。但是 [[#上边界]]，
 [[#下边界]] 具有继承关系
+
 ![[generics-wildcardSubtyping.gif|400]]
 
+
+下述代码是合法的
+```java
+List<? extends Integer> intList = new ArrayList<>();
+List<? extends Number>  numList = intList;
+```
 ## 有界类型
 
 默认情况下，泛型都是 `object` ， 当我们需要限制泛型的实际类型时，可以通过 `extends` 。
@@ -166,7 +172,121 @@ Type t = Li.class.getField("t").getGenericType();
 
 参数化泛型声明，例如 `List<List<Integet>>` 中的 `List<Intger>`
 
-我们需要明确的是，泛型类型仅使用于声明时使用，实际赋值时泛型肯定是已经确定好了的。那么针对于声明泛型的
+我们需要明确的是，泛型类型仅使用于声明时使用，实际赋值时泛型肯定是已经确定好了的。
+
+
+## 桥接
+
+### 桥接方法
+
+当类定义中的类型参数没有任何限制时，在类型擦除中直接被替换为Object，即形如 `<T>` 和 `<?>` 的类型参数都被替换为Object。
+
+```java
+public class Node<T> {
+
+    public T data;
+
+    public Node(T data) { this.data = data; }
+
+    public void setData(T data) {
+        System.out.println("Node.setData");
+        this.data = data;
+    }
+}
+
+public class MyNode extends Node<Integer> {
+    public MyNode(Integer data) { super(data); }
+
+    public void setData(Integer data) {
+        System.out.println("MyNode.setData");
+        super.setData(data);
+    }
+}
+```
+
+当做如下使用时
+
+```java
+Node node = new MyNode(5);
+n.setData("Hello");
+```
+
+当子类重写了 `setData` 方法时其参数为 `Integer` ，我们的子类中实际是没有  `setData(Object.class)` 的方法的， `java` 编译器在进行类型擦除的时候会自动生成一个 `synthetic` 方法，也叫 `bridge` 方法,我们通过生成的字节码可以看到实际 `bridge` 方法，首先校验类型是否为 `Integer` ，然后在调用 `setData(Integer.class)` 。因此，上述代码会抛出 `ClassCastException`
+
+```java
+//通过javap -c 的方法可以显示桥接方法
+public void setData(java.lang.Integer);
+    descriptor: (Ljava/lang/Integer;)V
+    flags: ACC_PUBLIC
+    Code:
+        stack=2, locals=2, args_size=2
+            0: getstatic     #2                  // Field java/lang/System.out:Ljava/io/PrintStream;
+            3: ldc           #3                  // String MyNode.setNode
+            5: invokevirtual #4                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+            8: aload_0
+            9: aload_1
+            10: invokespecial #5                  // Method com/li/springboot/bridge/Node.setData:(Ljava/lang/Object;)V
+            13: return
+        LineNumberTable:
+        line 11: 0
+        line 12: 8
+        line 13: 13
+        LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/li/springboot/bridge/MyNode;
+            0      14     1 integer   Ljava/lang/Integer;
+    MethodParameters:
+        Name                           Flags
+        integer
+
+
+public void setData(java.lang.Object);
+    descriptor: (Ljava/lang/Object;)V
+    flags: ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+        stack=2, locals=2, args_size=2
+            0: aload_0
+            1: aload_1
+            2: checkcast     #11                 // class java/lang/Integer
+            5: invokevirtual #12                 // Method setData:(Ljava/lang/Integer;)V
+            8: return
+        LineNumberTable:
+        line 3: 0
+        LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/li/springboot/bridge/MyNode;
+    MethodParameters:
+        Name                           Flags
+        integer                        synthetic
+```
+
+### Spring 注入桥接子类注意
+
+```java
+public interface Generic<T,R> {}
+@Component
+public class G1 implements Generic<Object, Collection> {}
+@Component
+public class G2 implements Generic<Object, List> {}
+@Component
+public class G3<T> implements Generic<T, List> {}
+@Component
+public class G4 implements Generic<String, List> {}
+```
+
+```java
+@Autowired
+List<Generic> generics; //G1 G2 G3 G4
+@Autowired
+List<Generic<?, ? extends Collection>> generics; //G1 G2 G3 G4
+@Autowired
+List<Generic<?, Collection>> generics;//G1
+@Autowired
+List<Generic<Object, ? extends Collection>> generics; //G1 G2 G3
+@Autowired
+List<Generic<Object, Collection>> generics; //G1 G2
+```
+
 
 ## 泛型的应用
 
@@ -320,118 +440,6 @@ public class Some<T>{
 	 return (Some<R>) this;  
 	}
 }
-```
-
-## 桥接
-
-### 桥接方法
-
-当类定义中的类型参数没有任何限制时，在类型擦除中直接被替换为Object，即形如 `<T>` 和 `<?>` 的类型参数都被替换为Object。
-
-```java
-public class Node<T> {
-
-    public T data;
-
-    public Node(T data) { this.data = data; }
-
-    public void setData(T data) {
-        System.out.println("Node.setData");
-        this.data = data;
-    }
-}
-
-public class MyNode extends Node<Integer> {
-    public MyNode(Integer data) { super(data); }
-
-    public void setData(Integer data) {
-        System.out.println("MyNode.setData");
-        super.setData(data);
-    }
-}
-```
-
-当做如下使用时
-
-```java
-Node node = new MyNode(5);
-n.setData("Hello");
-```
-
-当子类重写了 `setData` 方法时其参数为 `Integer` ，我们的子类中实际是没有  `setData(Object.class)` 的方法的， `java` 编译器在进行类型擦除的时候会自动生成一个 `synthetic` 方法，也叫 `bridge` 方法,我们通过生成的字节码可以看到实际 `bridge` 方法，首先校验类型是否为 `Integer` ，然后在调用 `setData(Integer.class)` 。因此，上述代码会抛出 `ClassCastException`
-
-```java
-//通过javap -c 的方法可以显示桥接方法
-public void setData(java.lang.Integer);
-    descriptor: (Ljava/lang/Integer;)V
-    flags: ACC_PUBLIC
-    Code:
-        stack=2, locals=2, args_size=2
-            0: getstatic     #2                  // Field java/lang/System.out:Ljava/io/PrintStream;
-            3: ldc           #3                  // String MyNode.setNode
-            5: invokevirtual #4                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
-            8: aload_0
-            9: aload_1
-            10: invokespecial #5                  // Method com/li/springboot/bridge/Node.setData:(Ljava/lang/Object;)V
-            13: return
-        LineNumberTable:
-        line 11: 0
-        line 12: 8
-        line 13: 13
-        LocalVariableTable:
-        Start  Length  Slot  Name   Signature
-            0      14     0  this   Lcom/li/springboot/bridge/MyNode;
-            0      14     1 integer   Ljava/lang/Integer;
-    MethodParameters:
-        Name                           Flags
-        integer
-
-
-public void setData(java.lang.Object);
-    descriptor: (Ljava/lang/Object;)V
-    flags: ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
-    Code:
-        stack=2, locals=2, args_size=2
-            0: aload_0
-            1: aload_1
-            2: checkcast     #11                 // class java/lang/Integer
-            5: invokevirtual #12                 // Method setData:(Ljava/lang/Integer;)V
-            8: return
-        LineNumberTable:
-        line 3: 0
-        LocalVariableTable:
-        Start  Length  Slot  Name   Signature
-            0       9     0  this   Lcom/li/springboot/bridge/MyNode;
-    MethodParameters:
-        Name                           Flags
-        integer                        synthetic
-```
-
-### Spring 注入桥接子类注意
-
-```java
-public interface Generic<T,R> {}
-@Component
-public class G1 implements Generic<Object, Collection> {}
-@Component
-public class G2 implements Generic<Object, List> {}
-@Component
-public class G3<T> implements Generic<T, List> {}
-@Component
-public class G4 implements Generic<String, List> {}
-```
-
-```java
-@Autowired
-List<Generic> generics; //G1 G2 G3 G4
-@Autowired
-List<Generic<?, ? extends Collection>> generics; //G1 G2 G3 G4
-@Autowired
-List<Generic<?, Collection>> generics;//G1
-@Autowired
-List<Generic<Object, ? extends Collection>> generics; //G1 G2 G3
-@Autowired
-List<Generic<Object, Collection>> generics; //G1 G2
 ```
 
 ## 参考文档
