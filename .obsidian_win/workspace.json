@@ -13,10 +13,10 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
-                "mode": "preview",
+                "file": "index/java/se/annotation.md",
+                "mode": "source",
                 "backlinks": false,
-                "source": true
+                "source": false
               }
             }
           }
@@ -87,7 +87,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "index/java/se/annotation.md"
               }
             }
           },
@@ -111,9 +111,9 @@
   },
   "active": "86ffd6f52c428834",
   "lastOpenFiles": [
+    "index/java/se/generics.md",
     "Home.md",
     "index/software/obsidian.md",
-    "index/java/se/generics.md",
     "index/protocol/yml.md",
     "index/common/java_interview.md",
     "index/java/jvm/java agent.md",

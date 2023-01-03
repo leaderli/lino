@@ -15,7 +15,7 @@ date updated: 2023-01-02 22:44
 class name<T1, T2, ..., Tn> { /* ... */ }
 ```
 
-泛型参数 `T1`, `T2` 仅限于在类中使用，不可用于子类。
+泛型参数 `T1`, `T2` 仅限于在当前类的作用范围内使用，不可用于子类。
 
 在调用或初始化泛型类时，可以申明具体使用的泛型。
 
@@ -148,7 +148,7 @@ R apply(T t);
 
 ### TypeVariable
 
-泛型声明，例如 `List<T>`中的`T`， 其可以通过`getGenericDeclaration`方法找到泛型声明的类
+泛型声明，例如 `List<T>` 中的 `T`， 其可以通过 `getGenericDeclaration` 方法找到泛型声明的类
 
 ```java
 private static class Li<T> {  
@@ -162,7 +162,7 @@ Type t = Li.class.getField("t").getGenericType();
 
 ### WildcardType
 
-通配符泛型声明，例如`List<? extends T>` 中的 `? extends T`
+通配符泛型声明，例如 `List<? extends T>` 中的 `? extends T`
 
 ### GenericArrayType
 
@@ -410,7 +410,7 @@ Function.class.getTypeParameters();
 
 ### 强转异常捕获
 
-`java`运行时无法捕获`ClassCastException`的解决办法
+`java` 运行时无法捕获 `ClassCastException` 的解决办法
 
 ```java
  private static <T> T get(Object o, T def) {

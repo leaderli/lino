@@ -70,8 +70,7 @@ public @interface NotNull {
 
 ## 注解的原理
 
-注解本质是一个继承了 `Annotation` 的特殊接口，其具体实现类是 Java 运行时生成的动态代理类。而我们通过反射获取注解时，返回的是 
- Java  运行时生成的动态代理对象 `$Proxy1`。通过代理对象调用自定义注解（接口）的方法，会最终调用 `AnnotationInvocationHandler` 的 `invoke` 方法。该方法会从 `memberValues` 这个 `Map` 中索引出对应的值。而 `memberValues` 的来源是 [[bytecode|字节码]]中的[[constant pool|常量池]] 
+注解本质是一个继承了 `Annotation` 的特殊接口，其具体实现类是 Java 运行时生成的动态代理类。而我们通过反射获取注解时，返回的是 Java 运行时生成的动态代理对象 `$Proxy1`。通过代理对象调用自定义注解（接口）的方法，会最终调用 `AnnotationInvocationHandler` 的 `invoke` 方法。该方法会从 `memberValues` 这个 `Map` 中索引出对应的值。而 `memberValues` 的来源是[[bytecode|字节码]]中的[[constant pool|常量池]] 
 
 ```java
 @Retention(RetentionPolicy.RUNTIME)
@@ -98,7 +97,7 @@ public class TestAnnotation {
 
 ```
 
-当运行`main`方法时，会在根目录上生成一个代理类文件，通过反编译查看其代码如下
+当运行 `main` 方法时，会在根目录上生成一个代理类文件，通过反编译查看其代码如下
 
 ```java
 //
@@ -289,7 +288,7 @@ public Object invoke(Object proxy, Method method, Object[] args) {
 
 ```
 
-所有 class 的 class，即 `Class` 类中，都有关于 annotation 的成员变量 `annotationData`,`annotationType` ，因所有 class 都是`Class`的实例，所以所有 class 都会包含这些有关 annotaion 的属性。这就是为什么所有的 class 都可以使用 `getAnnotations()` 等方法
+所有 class 的 class，即 `Class` 类中，都有关于 annotation 的成员变量 `annotationData` , `annotationType` ，因所有 class 都是 `Class` 的实例，所以所有 class 都会包含这些有关 annotaion 的属性。这就是为什么所有的 class 都可以使用 `getAnnotations()` 等方法
 
 
 ## 重复注解
