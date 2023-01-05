@@ -47,14 +47,6 @@
   },
   "showLogAboutPerformanceInConsole": false,
   "selectionHistoryTree": {
-    "增加扩展点": {
-      "增加扩展点": {
-        "currentVault": {
-          "count": 1,
-          "lastUpdated": 1670138208376
-        }
-      }
-    },
     "参考文档\r": {
       "参考文档\r": {
         "currentVault": {
@@ -108,6 +100,14 @@
         "currentVault": {
           "count": 2,
           "lastUpdated": 1672670736723
+        }
+      }
+    },
+    "alias": {
+      "alias": {
+        "currentVault": {
+          "count": 1,
+          "lastUpdated": 1672939395972
         }
       }
     }

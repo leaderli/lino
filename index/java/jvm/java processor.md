@@ -1,6 +1,8 @@
 ---
+alias: 预处理器
 tags:
   - java/jvm/java_processor
+  - annotation
 date updated: 2022-10-07 21:25
 ---
 
@@ -10,7 +12,7 @@ date updated: 2022-10-07 21:25
 
 实现一个自动添加get方法的注解
 
-pom文件，实现在编译阶段不使用预处理器，但是在打包的过程中需要将`processor`打包到jar中
+pom文件，实现在编译阶段不使用预处理器，但是在打包的过程中需要将 `processor` 打包到jar中
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>  
@@ -221,4 +223,4 @@ public class BasicSalaryCalculator {
 ```
 ## 参考文档
 
-[Lombok原理分析与功能实现](https://blog.mythsman.com/post/5d2c11c767f841464434a3bf/)  其中引入预处理器的依赖应该声明为`<scope>compile</scope>`javax.annotation.processing.Processor
+[lombok原理分析与功能实现](https://blog.mythsman.com/post/5d2c11c767f841464434a3bf/)  其中引入预处理器的依赖应该声明为`<scope>compile</scope>`javax.annotation.processing.Processor

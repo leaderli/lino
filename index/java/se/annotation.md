@@ -10,9 +10,10 @@ tags:
 ### `Retention` 
 定义该注解的生命周期
 
-1. `RetentionPolicy.SOURCE` : 在编译阶段丢弃。这些注解在编译结束之后就不再有任何意义，所以它们不会写入字节码。`@Override`, `@SuppressWarnings`都属于这类注解。
+1. `RetentionPolicy.SOURCE` : 在编译阶段丢弃。这些注解在编译结束之后就不再有任何意义，所以它们不会写入字节码。`@Override`, `@SuppressWarnings`都属于这类注解。例如 [[java processor|预处理器]]
 2. `RetentionPolicy.CLASS` : 在类加载的时候丢弃。在字节码文件的处理中有用。注解默认使用这种方式
 3. `RetentionPolicy.RUNTIME` : 始终不会丢弃，运行期也保留该注解，因此可以使用反射机制读取该注解的信息。我们自定义的注解通常使用这种方式。
+
 
 ### `Target` 
 表示该注解用于什么地方。默认值为任何元素，表示该注解用于什么地方。可用的 `ElementType` 参数包括
@@ -69,6 +70,50 @@ public @interface NotNull {
 ```
 
 ## 注解的原理
+
+
+对于如下代码
+
+```java
+@MyAnnotation  
+public class AnnotationDemo {  
+  
+  
+    public static void main(String[] args) {  
+        MyAnnotation myAnnotation = AnnotationDemo.class.getAnnotation(MyAnnotation.class);  
+        myAnnotation.value();  
+    }  
+  
+}
+```
+
+其main方法的字节码如下,我们可以看到调用注解的 `value` 方法用的是 `INVOKEINTERFACE` 指令，该指令表示调用的是接口方法。其接口的实例对象则是通过 `Class#getAnnotation` 返回的。
+
+```java
+  public static main([Ljava/lang/String;)V
+    // parameter  args
+   L0
+    LINENUMBER 9 L0
+    LDC Lio/leaderli/demo/demo/AnnotationDemo;.class
+    LDC Lio/leaderli/demo/demo/MyAnnotation;.class
+    INVOKEVIRTUAL java/lang/Class.getAnnotation (Ljava/lang/Class;)Ljava/lang/annotation/Annotation;
+    CHECKCAST io/leaderli/demo/demo/MyAnnotation
+    ASTORE 1
+   L1
+    LINENUMBER 10 L1
+    ALOAD 1
+    INVOKEINTERFACE io/leaderli/demo/demo/MyAnnotation.value ()Ljava/lang/String; (itf)
+    POP
+   L2
+    LINENUMBER 11 L2
+    RETURN
+   L3
+    LOCALVARIABLE args [Ljava/lang/String; L0 L3 0
+    LOCALVARIABLE myAnnotation Lio/leaderli/demo/demo/MyAnnotation; L1 L3 1
+    MAXSTACK = 2
+    MAXLOCALS = 2
+}
+```
 
 注解本质是一个继承了 `Annotation` 的特殊接口，其具体实现类是 Java 运行时生成的动态代理类。而我们通过反射获取注解时，返回的是 Java 运行时生成的动态代理对象 `$Proxy1`。通过代理对象调用自定义注解（接口）的方法，会最终调用 `AnnotationInvocationHandler` 的 `invoke` 方法。该方法会从 `memberValues` 这个 `Map` 中索引出对应的值。而 `memberValues` 的来源是[[bytecode|字节码]]中的[[constant pool|常量池]] 
 
@@ -197,36 +242,119 @@ main执行后的输出结果
 >annotationType = interface com.leaderli.liutil.MyAnnotation
 >123
 
-通过查看 `Class.getAnnotation` 的源码我们可以发现，默认的JDK不会带上 `sun` 包下面的源码
+通过查看 `Class.getAnnotation` 的源码我们可以发现，`class` 的注解信息都是通过类的字节码中相关位置的值生产了一个代理的注解接口的实现类来获取的。
 
+1. 获取注解的数据
+	```java
+	public <A extends Annotation> A getAnnotation(Class<A> annotationClass) {  
+	    Objects.requireNonNull(annotationClass);  
+	  
+	    return (A) annotationData().annotations.get(annotationClass);  
+	}
+	```
+
+2. 构建注解的数据
+	```java
+	private AnnotationData annotationData() {  
+	    while (true) { // retry loop  
+	        AnnotationData annotationData = this.annotationData;  
+	        int classRedefinedCount = this.classRedefinedCount;  
+	        if (annotationData != null &&  
+	            annotationData.redefinedCount == classRedefinedCount) {  
+	            return annotationData;  
+	        }  
+	        // null or stale annotationData -> optimistically create new instance  
+	        AnnotationData newAnnotationData = createAnnotationData(classRedefinedCount);  
+	        // try to install it  
+	        if (Atomic.casAnnotationData(this, annotationData, newAnnotationData)) {  
+	            // successfully installed new AnnotationData  
+	            return newAnnotationData;  
+	        }  
+	    }  
+	}
+	```
+
+3. 已经是sun包下的类，默认情况下无法看到源码，这个方法用于解析注解，这一步使用到字节码中常量池的索引解析，常量解析完毕会生成一个成员属性键值对作为下一个环节的入参
+	```java
+	private AnnotationData createAnnotationData(int classRedefinedCount) {  
+		Map<Class<? extends Annotation>, Annotation> declaredAnnotations =  
+			AnnotationParser.parseAnnotations(getRawAnnotations(), getConstantPool(), this);  
+		Class<?> superClass = getSuperclass();  
+		Map<Class<? extends Annotation>, Annotation> annotations = null;  
+		if (superClass != null) {  
+			Map<Class<? extends Annotation>, Annotation> superAnnotations =  
+				superClass.annotationData().annotations;  
+			for (Map.Entry<Class<? extends Annotation>, Annotation> e : superAnnotations.entrySet()) {  
+				Class<? extends Annotation> annotationClass = e.getKey();  
+				if (AnnotationType.getInstance(annotationClass).isInherited()) {  
+					if (annotations == null) { // lazy construction  
+						annotations = new LinkedHashMap<>((Math.max(  
+								declaredAnnotations.size(),  
+								Math.min(12, declaredAnnotations.size() + superAnnotations.size())  
+							) * 4 + 2) / 3  
+						);  
+					}  
+					annotations.put(annotationClass, e.getValue());  
+				}  
+			}  
+		}  
+		if (annotations == null) {  
+			// no inherited annotations -> share the Map with declaredAnnotations  
+			annotations = declaredAnnotations;  
+		} else {  
+			// at least one inherited annotation -> declared may override inherited  
+			annotations.putAll(declaredAnnotations);  
+		}  
+		return new AnnotationData(annotations, declaredAnnotations, classRedefinedCount);
+	 }
+	```
+4. AnnotationParser中常量解析的部分代码片段，根据方法名，将方法的值缓存
+	```java
+	public static Map<Class<? extends Annotation>, Annotation> parseAnnotations(  
+	            byte[] rawAnnotations,  
+	            ConstantPool constPool,  
+	            Class<?> container) {  
+	    if (rawAnnotations == null)  
+	        return Collections.emptyMap();  
+	  
+	    try {  
+	        return parseAnnotations2(rawAnnotations, constPool, container, null);  
+	    } catch(BufferUnderflowException e) {  
+	        throw new AnnotationFormatError("Unexpected end of annotations.");  
+	    } catch(IllegalArgumentException e) {  
+	        // Type mismatch in constant pool  
+	        throw new AnnotationFormatError(e);  
+	    }  
+	}
+	
+	
+	private static Annotation parseAnnotation2(ByteBuffer buf,  
+	                                          ConstantPool constPool,  
+	                                          Class<?> container,  
+	                                          boolean exceptionOnMissingAnnotationClass,  
+	                                          Class<? extends Annotation>[] selectAnnotationClasses) {
+	    // 省略部分代码...
+		for (int i = 0; i < numMembers; i++) {
+		    int memberNameIndex = buf.getShort() & 0xFFFF;
+		    String memberName = constPool.getUTF8At(memberNameIndex);
+		    Class<?> memberType = memberTypes.get(memberName);
+		
+		    if (memberType == null) {
+		        // Member is no longer present in annotation type; ignore it
+		        skipMemberValue(buf);
+		    } else {
+		        Object value = parseMemberValue(memberType, buf, constPool, container);
+		        if (value instanceof AnnotationTypeMismatchExceptionProxy)
+		            ((AnnotationTypeMismatchExceptionProxy) value).
+		                setMember(type.members().get(memberName));
+		        memberValues.put(memberName, value);
+		    }
+		}
+		return annotationForMap(annotationClass, memberValues);
+	}
+	```
+	5.一个标准的[[aop#JDK动态代理]]，而InvocationHandler的实例是AnnotationInvocationHandler，可以看它的成员变量、构造方法和实现InvocationHandler接口的invoke方法：
 ```java
-//1 获取注解的数据
-annotationData().annotations.get(annotationClass);
-//2 构建注解的数据
-AnnotationData newAnnotationData = createAnnotationData(classRedefinedCount);
-//3 已经是sun包下的类，无法看到源码，这个方法用于解析注解，这一步使用到字节码中常量池的索引解析，常量解析完毕会生成一个成员属性键值对作为下一个环节的入参
-Map<Class<? extends Annotation>, Annotation> declaredAnnotations = AnnotationParser.parseAnnotations(getRawAnnotations(), getConstantPool(), this);
-
-# //4 常量解析的部分代码片段，根据方法名，将方法的值缓存
-for (int i = 0; i < numMembers; i++) {
-    int memberNameIndex = buf.getShort() & 0xFFFF;
-    String memberName = constPool.getUTF8At(memberNameIndex);
-    Class<?> memberType = memberTypes.get(memberName);
-
-    if (memberType == null) {
-        // Member is no longer present in annotation type; ignore it
-        skipMemberValue(buf);
-    } else {
-        Object value = parseMemberValue(memberType, buf, constPool, container);
-        if (value instanceof AnnotationTypeMismatchExceptionProxy)
-            ((AnnotationTypeMismatchExceptionProxy) value).
-                setMember(type.members().get(memberName));
-        memberValues.put(memberName, value);
-    }
-}
-return annotationForMap(annotationClass, memberValues);
-
-//5一个标准的JDK动态代理，而InvocationHandler的实例是AnnotationInvocationHandler，可以看它的成员变量、构造方法和实现InvocationHandler接口的invoke方法：
 public static Annotation annotationForMap(final Class<? extends Annotation> type,
                                             final Map<String, Object> memberValues)
 {
@@ -343,3 +471,4 @@ for(Anootation[] annotations:method.getParameterAnnotations()){
 
 }
 ```
+
