@@ -4,37 +4,23 @@
     "type": "split",
     "children": [
       {
-        "id": "bc97a4b5cac5b05f",
+        "id": "df93a6604e97962c",
         "type": "tabs",
         "children": [
           {
-            "id": "9672ec5afb03a7d6",
+            "id": "fd2868ce389b9254",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/se/annotation.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "e3258fbc5faf35db",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "index/java/se/annotation.md",
+                "file": "Home.md",
                 "mode": "preview",
                 "backlinks": false,
-                "source": false
+                "source": true
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -100,7 +86,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/se/annotation.md"
+                "file": "Home.md"
               }
             }
           },
@@ -122,7 +108,7 @@
     "width": 336.5,
     "collapsed": true
   },
-  "active": "e3258fbc5faf35db",
+  "active": "fd2868ce389b9254",
   "lastOpenFiles": [
     "index/java/jvm/java processor.md",
     "index/java/se/annotation.md",
