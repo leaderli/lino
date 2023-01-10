@@ -145,11 +145,6 @@ public class TestAnnotation {
 当运行 `main` 方法时，会在根目录上生成一个代理类文件，通过反编译查看其代码如下
 
 ```java
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
-
 package com.sun.proxy;
 
 import com.leaderli.liutil.MyAnnotation;
@@ -354,68 +349,68 @@ main执行后的输出结果
 	}
 	```
 	5.一个标准的[[aop#JDK动态代理]]，而InvocationHandler的实例是AnnotationInvocationHandler，可以看它的成员变量、构造方法和实现InvocationHandler接口的invoke方法：
-```java
-public static Annotation annotationForMap(final Class<? extends Annotation> type,
-                                            final Map<String, Object> memberValues)
-{
-    return AccessController.doPrivileged(new PrivilegedAction<Annotation>() {
-        public Annotation run() {
-            return (Annotation) Proxy.newProxyInstance(
-                type.getClassLoader(), new Class<?>[] { type },
-                new AnnotationInvocationHandler(type, memberValues));
-        }});
-}
-
-
-//节选AnnotationInvocationHandler代码
-
-AnnotationInvocationHandler(Class<? extends Annotation> type, Map<String, Object> memberValues) {
-    Class<?>[] superInterfaces = type.getInterfaces();
-    if (!type.isAnnotation() ||
-        superInterfaces.length != 1 ||
-        superInterfaces[0] != java.lang.annotation.Annotation.class)
-        throw new AnnotationFormatError("Attempt to create proxy for a non-annotation type.");
-    this.type = type;
-    this.memberValues = memberValues;
-}
-//可以看到除了默认的object方法外，属于自定义注解的方法的值，都是通过memberValues这个map来缓存结果的，结合生成的proxy动态类，可以发现
-public Object invoke(Object proxy, Method method, Object[] args) {
-    String member = method.getName();
-    Class<?>[] paramTypes = method.getParameterTypes();
-
-    // Handle Object and Annotation methods
-    if (member.equals("equals") && paramTypes.length == 1 &&
-        paramTypes[0] == Object.class)
-        return equalsImpl(args[0]);
-    if (paramTypes.length != 0)
-        throw new AssertionError("Too many parameters for an annotation method");
-
-    switch(member) {
-    case "toString":
-        return toStringImpl();
-    case "hashCode":
-        return hashCodeImpl();
-    case "annotationType":
-        return type;
-    }
-
-    // Handle annotation member accessors
-    Object result = memberValues.get(member);
-
-    if (result == null)
-        throw new IncompleteAnnotationException(type, member);
-
-    if (result instanceof ExceptionProxy)
-        throw ((ExceptionProxy) result).generateException();
-
-    if (result.getClass().isArray() && Array.getLength(result) != 0)
-        result = cloneArray(result);
-
-    return result;
-}
-
-```
-
+	```java
+	public static Annotation annotationForMap(final Class<? extends Annotation> type,
+	                                            final Map<String, Object> memberValues)
+	{
+	    return AccessController.doPrivileged(new PrivilegedAction<Annotation>() {
+	        public Annotation run() {
+	            return (Annotation) Proxy.newProxyInstance(
+	                type.getClassLoader(), new Class<?>[] { type },
+	                new AnnotationInvocationHandler(type, memberValues));
+	        }});
+	}
+	
+	
+	//节选AnnotationInvocationHandler代码
+	
+	AnnotationInvocationHandler(Class<? extends Annotation> type, Map<String, Object> memberValues) {
+	    Class<?>[] superInterfaces = type.getInterfaces();
+	    if (!type.isAnnotation() ||
+	        superInterfaces.length != 1 ||
+	        superInterfaces[0] != java.lang.annotation.Annotation.class)
+	        throw new AnnotationFormatError("Attempt to create proxy for a non-annotation type.");
+	    this.type = type;
+	    this.memberValues = memberValues;
+	}
+	//可以看到除了默认的object方法外，属于自定义注解的方法的值，都是通过memberValues这个map来缓存结果的，结合生成的proxy动态类，可以发现
+	public Object invoke(Object proxy, Method method, Object[] args) {
+	    String member = method.getName();
+	    Class<?>[] paramTypes = method.getParameterTypes();
+	
+	    // Handle Object and Annotation methods
+	    if (member.equals("equals") && paramTypes.length == 1 &&
+	        paramTypes[0] == Object.class)
+	        return equalsImpl(args[0]);
+	    if (paramTypes.length != 0)
+	        throw new AssertionError("Too many parameters for an annotation method");
+	
+	    switch(member) {
+	    case "toString":
+	        return toStringImpl();
+	    case "hashCode":
+	        return hashCodeImpl();
+	    case "annotationType":
+	        return type;
+	    }
+	
+	    // Handle annotation member accessors
+	    Object result = memberValues.get(member);
+	
+	    if (result == null)
+	        throw new IncompleteAnnotationException(type, member);
+	
+	    if (result instanceof ExceptionProxy)
+	        throw ((ExceptionProxy) result).generateException();
+	
+	    if (result.getClass().isArray() && Array.getLength(result) != 0)
+	        result = cloneArray(result);
+	
+	    return result;
+	}
+	
+	```
+	
 所有 class 的 class，即 `Class` 类中，都有关于 annotation 的成员变量 `annotationData` , `annotationType` ，因所有 class 都是 `Class` 的实例，所以所有 class 都会包含这些有关 annotaion 的属性。这就是为什么所有的 class 都可以使用 `getAnnotations()` 等方法
 
 

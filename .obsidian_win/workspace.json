@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
+                "file": "index/java/se/exception.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
@@ -86,7 +86,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "index/java/se/exception.md"
               }
             }
           },
@@ -105,20 +105,19 @@
       }
     ],
     "direction": "horizontal",
-    "width": 336.5,
-    "collapsed": true
+    "width": 336.5
   },
   "active": "fd2868ce389b9254",
   "lastOpenFiles": [
-    "index/java/jvm/java processor.md",
+    "index/common/java_interview.md",
+    "index/java/se/exception.md",
     "index/java/se/annotation.md",
+    "Home.md",
+    "index/java/jvm/java processor.md",
     "index/java/spring/jpa.md",
     "index/compilers/_compilers.md",
     "index/java/spring/annotation.md",
-    "Home.md",
     "index/java/se/generics.md",
-    "index/software/obsidian.md",
-    "index/protocol/yml.md",
-    "index/common/java_interview.md"
+    "index/software/obsidian.md"
   ]
 }
