@@ -47,27 +47,67 @@
   },
   "showLogAboutPerformanceInConsole": false,
   "selectionHistoryTree": {
-    "getFolder": {
-      "getFolder": {
+    "参考文档\r": {
+      "参考文档\r": {
         "currentVault": {
-          "count": 1,
-          "lastUpdated": 1667747445848
+          "count": 2,
+          "lastUpdated": 1672664329180
         }
       }
     },
-    "IProject": {
-      "IProject": {
+    "scope": {
+      "scope": {
         "currentVault": {
-          "count": 1,
-          "lastUpdated": 1667747477631
+          "count": 2,
+          "lastUpdated": 1670852701440
         }
       }
     },
-    "增加扩展点": {
-      "增加扩展点": {
+    "compile": {
+      "compile": {
         "currentVault": {
           "count": 1,
-          "lastUpdated": 1670138208376
+          "lastUpdated": 1670852708636
+        }
+      }
+    },
+    "快速入门\r": {
+      "快速入门\r": {
+        "currentVault": {
+          "count": 1,
+          "lastUpdated": 1670859101492
+        }
+      }
+    },
+    "新建资源文件的示例\r": {
+      "新建资源文件的示例\r": {
+        "currentVault": {
+          "count": 1,
+          "lastUpdated": 1670859169850
+        }
+      }
+    },
+    "META-INF": {
+      "META-INF": {
+        "currentVault": {
+          "count": 1,
+          "lastUpdated": 1670859177954
+        }
+      }
+    },
+    "Integer": {
+      "Integer": {
+        "currentVault": {
+          "count": 2,
+          "lastUpdated": 1672670736723
+        }
+      }
+    },
+    "alias": {
+      "alias": {
+        "currentVault": {
+          "count": 1,
+          "lastUpdated": 1672939395972
         }
       }
     }

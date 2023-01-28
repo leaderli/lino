@@ -359,7 +359,8 @@ notifaction 错误信息
 
 ### 在problem视图创建错误提醒
 
-[[eclipse-plugin-develop-tutorial-setup#新增扩展点]]
+[[eclipse-plugin-develop-tutorial-setup#新增扩展点]] ， 其中id会加上插件的唯一编号前缀
+
 
 ```xml
 <extension
@@ -374,3 +375,61 @@ notifaction 错误信息
    </super>
 </extension>
 ```
+
+
+新增提示
+
+```java
+public static IMarker createMarker(IResource resource, int severity, String message, String location) {
+	try {
+		final IMarker marker = resource.createMarker(Leaderli.FLOW_MARKER);
+		marker.setAttribute("location", location);
+		marker.setAttribute("message", message);
+		marker.setAttribute("severity", severity);
+		return marker;
+	} catch (CoreException e) {
+		LogUtil.logError(e);
+
+	}
+	return null;
+
+}
+```
+
+
+提示中定位节点，需要继承`IGotoMarker`， 省略大部分代码
+
+```java
+public class FlowEditor extends BaseGraphicalEditorWithFlyoutPalette implements IGotoMarker {
+
+	/**
+	 * 
+	 * 根据错误标记定位节点
+	 * 
+	 * @see
+	 */
+	@Override
+	public void gotoMarker(IMarker marker) {
+		String name = marker.getAttribute("location", null);
+		selectFlowObject(name);
+	}
+	
+	/**
+	 * 选择节点
+	 * 
+	 */
+	public EditPart selectFlowObject(String name) {
+		FlowDiagram flowDiagram = (FlowDiagram) getGraphicalViewer().getContents().getModel();
+	
+		return Lino.of(flowDiagram.getFlowNodeByName(name))
+				.map(FlowNode::getEditPart)
+				.ifPresent(editPart -> {
+					GraphicalViewer viewer = getGraphicalViewer();
+					viewer.setSelection(new StructuredSelection(editPart));
+					viewer.reveal(editPart);
+				})
+				.get();
+	}
+}
+```
+
