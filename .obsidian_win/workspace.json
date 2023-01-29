@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "df93a6604e97962c",
+        "id": "97e081008b34a9cb",
         "type": "tabs",
         "children": [
           {
-            "id": "fd2868ce389b9254",
+            "id": "1d7630f9abb8526b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/se/exception.md",
+                "file": "index/computer basics/go.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
@@ -86,7 +86,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/se/exception.md"
+                "file": "index/computer basics/go.md"
               }
             }
           },
@@ -107,12 +107,12 @@
     "direction": "horizontal",
     "width": 336.5
   },
-  "active": "fd2868ce389b9254",
+  "active": "1d7630f9abb8526b",
   "lastOpenFiles": [
+    "Home.md",
     "index/common/java_interview.md",
     "index/java/se/exception.md",
     "index/java/se/annotation.md",
-    "Home.md",
     "index/java/jvm/java processor.md",
     "index/java/spring/jpa.md",
     "index/compilers/_compilers.md",
