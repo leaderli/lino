@@ -152,3 +152,8 @@ setx GOPATH E:\Gopath
 ```shell
 $ export GOPATH="/d/resource/gopath"
 ```
+
+
+## 参考文档
+
+[Go语言入门教程，Golang入门教程（非常详细）](http://c.biancheng.net/golang/)
