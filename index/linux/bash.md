@@ -765,7 +765,7 @@ set -x
 c 风格的 for 循环
 
 ```shell
-for (( a=1;a<10;a++))
+for (( a=1;a<10;a++ ))
 do
    echo $a;
 done

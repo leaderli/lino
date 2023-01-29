@@ -21,10 +21,10 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/bash.md",
-                "mode": "preview",
+                "file": "index/frontend/packages/echarts.md",
+                "mode": "source",
                 "backlinks": false,
-                "source": true
+                "source": false
               }
             }
           }
@@ -79,7 +79,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 275
+    "width": 275,
+    "collapsed": true
   },
   "right": {
     "id": "aed7281feaa57107",
@@ -135,7 +136,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/bash.md"
+                "file": "index/frontend/packages/echarts.md"
               }
             }
           },
@@ -165,6 +166,8 @@
   },
   "active": "c42f725ead79c1e7",
   "lastOpenFiles": [
+    "index/frontend/vue.md",
+    "index/linux/bash.md",
     "Home.md",
     "index/eclipse/swt.md",
     "index/call system/avaya.md",
@@ -172,8 +175,6 @@
     "index/eclipse/swt_constant.md",
     "index/work.md",
     "index/business knowledge/_business knowledge.md",
-    "index/linux/bash.md",
-    "index/common/cheatsheet.md",
-    "index/software/mac.md"
+    "index/common/cheatsheet.md"
   ]
 }
