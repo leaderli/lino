@@ -21,7 +21,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/frontend/packages/echarts.md",
+                "file": "index/computer basics/go.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -136,7 +136,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/frontend/packages/echarts.md"
+                "file": "index/computer basics/go.md"
               }
             }
           },
@@ -166,6 +166,7 @@
   },
   "active": "c42f725ead79c1e7",
   "lastOpenFiles": [
+    "index/frontend/packages/echarts.md",
     "index/frontend/vue.md",
     "index/linux/bash.md",
     "Home.md",
@@ -174,7 +175,6 @@
     "index/linux/commands/grep.md",
     "index/eclipse/swt_constant.md",
     "index/work.md",
-    "index/business knowledge/_business knowledge.md",
-    "index/common/cheatsheet.md"
+    "index/business knowledge/_business knowledge.md"
   ]
 }
