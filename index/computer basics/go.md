@@ -215,6 +215,44 @@ $ export GOPATH="/d/resource/gopath"
 ### Pointer
 - `%p` 带0x的指针
 - `%#p` 不带0x的指针
+
+## 指针
+
+[Go语言指针详解](http://c.biancheng.net/view/21.html)
+
+每个变量在运行时都拥有一个地址，这个地址代表在内存中位置，指针存储的就是该变量的内存地址。指针作为一个变量，它本身也有内存地址，其本身也可以被另外一个指针来访问。
+
+对于下面的 `swap` 函数，`a`,`b` 是指针变量，类型为`*ptr`，其交换的是存储的内存地址，即 `&a`,`&b`的指针变量（类型为 `**ptr` ）的值。
+
+```go
+package main  
+  
+import "fmt"  
+  
+func main() {  
+   a, b := 1, 2  
+  
+   ptrA := &a  
+   ptrB := &b  
+   fmt.Println(&ptrA, &ptrB, ptrA, ptrB, a, b)  
+   swap(ptrA, ptrB)  
+   fmt.Println(&ptrA, &ptrB, ptrA, ptrB, a, b)  
+}  
+  
+func swap(a, b *int) {  
+  
+   fmt.Println(&a, &b, a, b, *a, *b)  
+   b, a = a, b  
+   fmt.Println(&a, &b, a, b, *a, *b)  
+}
+```
+
+```log
+0xc00008e010 0xc00008e018 0xc000094000 0xc000094008 1 2
+0xc00008e028 0xc00008e030 0xc000094000 0xc000094008 1 2
+0xc00008e028 0xc00008e030 0xc000094008 0xc000094000 2 1
+0xc00008e010 0xc00008e018 0xc000094000 0xc000094008 1 2
+```
 ## 参考文档
 
 [Go语言入门教程，Golang入门教程（非常详细）](http://c.biancheng.net/golang/)
