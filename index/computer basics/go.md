@@ -253,6 +253,15 @@ func swap(a, b *int) {
 0xc00008e028 0xc00008e030 0xc000094008 0xc000094000 2 1
 0xc00008e010 0xc00008e018 0xc000094000 0xc000094008 1 2
 ```
+## 常用示例
+
+随机sleep一段时间
+```go
+rand.Seed(time.Now().UnixNano())  
+r := rand.Intn(60)
+d= time.Duration(i) * time.Second  
+time.Sleep(d)
+```
 ## 参考文档
 
 [Go语言入门教程，Golang入门教程（非常详细）](http://c.biancheng.net/golang/)

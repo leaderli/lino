@@ -21,7 +21,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/computer basics/go.md",
+                "file": "index/linux/commands/ssh.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -58,7 +58,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "2>",
+                "query": "免密",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -75,12 +75,12 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 275,
-    "collapsed": true
+    "width": 275
   },
   "right": {
     "id": "aed7281feaa57107",
@@ -136,7 +136,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/computer basics/go.md"
+                "file": "index/linux/commands/ssh.md"
               }
             }
           },
@@ -166,6 +166,7 @@
   },
   "active": "c42f725ead79c1e7",
   "lastOpenFiles": [
+    "index/computer basics/go.md",
     "index/frontend/packages/echarts.md",
     "index/frontend/vue.md",
     "index/linux/bash.md",
@@ -174,7 +175,6 @@
     "index/call system/avaya.md",
     "index/linux/commands/grep.md",
     "index/eclipse/swt_constant.md",
-    "index/work.md",
-    "index/business knowledge/_business knowledge.md"
+    "index/work.md"
   ]
 }
