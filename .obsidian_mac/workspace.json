@@ -21,7 +21,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/commands/ssh.md",
+                "file": "index/linux/commands/tcpdump.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -58,7 +58,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "免密",
+                "query": "pyenv",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -136,7 +136,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/commands/ssh.md"
+                "file": "index/linux/commands/tcpdump.md"
               }
             }
           },
@@ -166,15 +166,15 @@
   },
   "active": "c42f725ead79c1e7",
   "lastOpenFiles": [
-    "index/computer basics/go.md",
-    "index/frontend/packages/echarts.md",
-    "index/frontend/vue.md",
-    "index/linux/bash.md",
-    "Home.md",
-    "index/eclipse/swt.md",
-    "index/call system/avaya.md",
-    "index/linux/commands/grep.md",
-    "index/eclipse/swt_constant.md",
-    "index/work.md"
+    "index/linux/commands/ln.md",
+    "index/software/mac.md",
+    "index/linux/configuration.md",
+    "index/linux/commands/tcpdump.md",
+    "index/python/python cmd.md",
+    "index/python/python tutorial.md",
+    "index/software/obsidian.md",
+    "index/python/python decorator.md",
+    "index/python/python tips.md",
+    "index/sql/mysql.md"
   ]
 }
