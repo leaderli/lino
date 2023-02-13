@@ -64,8 +64,8 @@ public class Hello {
 
 根据数据结构的定义，前4位是magic，固定为 `CAFEBABE`，用于JVM认定该文件为一个合法的class字节码，通过第8位也可以看到其编译的 [[major_version|java 版本信息]]
 
-一般为了方便我们都使用  [[command#javap|javap]] 查看class字节码，查看
-[[command#^e7cce6|示例]] 我们可以方便的看到其 [[major_version|java 版本信息]]
+一般为了方便我们都使用  [[index/java/command#javap|javap]] 查看class字节码，查看
+[[index/java/command#^e7cce6|示例]] 我们可以方便的看到其 [[major_version|java 版本信息]]
 
 ## 描述符
 
@@ -88,7 +88,7 @@ public class Hello {
 
 方法的描述符，先参数列表后返回值的顺序来描述，参数列表按参数顺序放在 `()` 之间。
 
-通过查看  [[command#^e7cce6|示例]] ，我们观察到 [[constant pool| 常量池]] 中字段的描述符，也可以看到方法的描述符。例如最常见的main方法的描述符，`descriptor: ([Ljava/lang/String;)V`
+通过查看  [[index/java/command#^e7cce6|示例]] ，我们观察到 [[constant pool| 常量池]] 中字段的描述符，也可以看到方法的描述符。例如最常见的main方法的描述符，`descriptor: ([Ljava/lang/String;)V`
 
 描述符示例：
 

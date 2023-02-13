@@ -63,7 +63,7 @@ public class SimpleClass {
 }
 ```
 
-如果你用 [[command#javap|javap]] 进行反编译，这个被添加到了[[bytecode#类文件的数据结构|field_info]]数组里的字段就会多了一段描述：
+如果你用 [[index/java/command#javap|javap]] 进行反编译，这个被添加到了[[bytecode#类文件的数据结构|field_info]]数组里的字段就会多了一段描述：
 
 ```java
 //javap -v SimpleClass

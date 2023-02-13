@@ -21,15 +21,28 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/commands/tcpdump.md",
+                "file": "index/linux/commands/_commands.md",
                 "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "4327e4da43bb793d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "index/linux/bash.md",
+                "mode": "preview",
                 "backlinks": false,
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -58,7 +71,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "pyenv",
+                "query": "test bash",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -136,7 +149,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/commands/tcpdump.md"
+                "file": "index/linux/bash.md"
               }
             }
           },
@@ -164,17 +177,17 @@
       "workspaces:Manage workspace layouts": false
     }
   },
-  "active": "c42f725ead79c1e7",
+  "active": "4327e4da43bb793d",
   "lastOpenFiles": [
+    "index/linux/commands/command.md",
+    "index/linux/commands/column.md",
+    "index/linux/commands/_commands.md",
+    "index/linux/_linux.md",
+    "index/linux/bash.md",
+    "index/linux/linux basic.md",
+    "index/linux/commands/tcpdump.md",
     "index/linux/commands/ln.md",
     "index/software/mac.md",
-    "index/linux/configuration.md",
-    "index/linux/commands/tcpdump.md",
-    "index/python/python cmd.md",
-    "index/python/python tutorial.md",
-    "index/software/obsidian.md",
-    "index/python/python decorator.md",
-    "index/python/python tips.md",
-    "index/sql/mysql.md"
+    "index/linux/configuration.md"
   ]
 }
