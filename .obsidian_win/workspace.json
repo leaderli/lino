@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "229adcec8503f99c",
+        "id": "4547d6c76d0bcc51",
         "type": "tabs",
         "children": [
           {
-            "id": "97ab2871f1846855",
+            "id": "8feae540fcf410b5",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
+                "file": "index/java/se/_se.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
@@ -39,7 +39,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "动态代理",
+                "query": "",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -86,7 +86,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "index/java/se/_se.md"
               }
             }
           },
@@ -107,8 +107,10 @@
     "direction": "horizontal",
     "width": 336.5
   },
-  "active": "97ab2871f1846855",
+  "active": "8feae540fcf410b5",
   "lastOpenFiles": [
+    "index/java/_java.md",
+    "index/java/java tips.md",
     "Home.md",
     "index/common/java_interview.md",
     "index/java/se/exception.md",
@@ -116,8 +118,6 @@
     "index/java/jvm/java processor.md",
     "index/java/spring/jpa.md",
     "index/compilers/_compilers.md",
-    "index/java/spring/annotation.md",
-    "index/java/se/generics.md",
-    "index/software/obsidian.md"
+    "index/java/spring/annotation.md"
   ]
 }
