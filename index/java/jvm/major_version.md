@@ -11,7 +11,7 @@ CAFE BABE 0000 0034
 ```
 
 ### 查看版本
-1. [[command#javap| javap]]
+1. [[index/java/command#javap| javap]]
 2.  [[file#^dc4f9b|linux file]]
 
 ### java版本清单

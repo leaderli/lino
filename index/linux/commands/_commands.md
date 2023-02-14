@@ -4,6 +4,7 @@
 - 📄 [[index/linux/commands/chown|chown]]
 - 📄 [[index/linux/commands/clip|clip]]
 - 📄 [[index/linux/commands/column|column]]
+- 📄 [[index/linux/commands/command|command]]
 - 📄 [[index/linux/commands/cp|cp]]
 - 📄 [[index/linux/commands/crontab|crontab]]
 - 📄 [[index/linux/commands/curl|curl]]

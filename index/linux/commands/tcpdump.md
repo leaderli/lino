@@ -97,6 +97,8 @@ tcpdump 能够抓取并解码多种协议类型的数据报文，如 TCP、UDP�
 
    ```shell
    sudo tcpdump -i any -c5 -nn port 80
+   sudo tcpdump -i any -c5 -nn src port 80
+   sudo tcpdump -i any -c5 -nn dst port 80
 
    ```
 
