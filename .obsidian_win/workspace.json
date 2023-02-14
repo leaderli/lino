@@ -4,37 +4,45 @@
     "type": "split",
     "children": [
       {
-        "id": "9770113da73328ac",
+        "id": "09f98f59461e4d9b",
         "type": "tabs",
         "children": [
           {
-            "id": "85eba9f3e32d82f8",
+            "id": "d9654d1a63b75161",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          },
+          {
+            "id": "9bf361701df6a72f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/jvm/constant pool.md",
-                "mode": "source",
+                "file": "_lino.md",
+                "mode": "preview",
                 "backlinks": false,
-                "source": false
+                "source": true
               }
             }
           },
           {
-            "id": "e6ad499cf0998f24",
+            "id": "cb7a5f50206c8995",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/se/SPI.md",
-                "mode": "source",
+                "file": "Home.md",
+                "mode": "preview",
                 "backlinks": false,
-                "source": false
+                "source": true
               }
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -53,7 +61,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "snippet",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -80,12 +88,12 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
-    "width": 442.5,
-    "collapsed": true
+    "width": 442.5
   },
   "right": {
     "id": "4b761e4e5ad66709",
@@ -101,7 +109,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/se/SPI.md"
+                "file": "Home.md"
               }
             }
           },
@@ -123,8 +131,23 @@
     "width": 243.5,
     "collapsed": true
   },
-  "active": "e6ad499cf0998f24",
+  "left-ribbon": {
+    "hiddenItems": {
+      "homepage:Open homepage": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": true,
+      "command-palette:Open command palette": true,
+      "markdown-importer:Open format converter": true
+    }
+  },
+  "active": "06376b58eda1e8c0",
   "lastOpenFiles": [
+    "_lino.md",
+    "Home.md",
+    "Untitled 1.canvas",
+    "Untitled.canvas",
+    "index/java/_java.md",
+    "test.canvas",
     "index/java/se/generics.md",
     "index/java/se/reflect.md",
     "index/java/jvm/stack.md",
@@ -133,7 +156,6 @@
     "index/java/jvm/constant pool.md",
     "index/java/jvm/classloader.md",
     "index/java/se/basic data type.md",
-    "index/java/jvm/_jvm.md",
-    "Home.md"
+    "index/java/jvm/_jvm.md"
   ]
 }
