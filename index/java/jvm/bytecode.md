@@ -2,7 +2,7 @@
 aliases: 字节码,class
 tags:
   - java/jvm/字节码
-date updated: 2022-05-04 15:36
+date updated: 2023-02-14 21:38
 ---
 
 class字节码文件是java跨平台的基础，其本质是一个满足JVM规范的二进制文件。class文件以一个个8位字节位基础单位，每个数据严格按照指定的数据结构排列在class文件之中。
@@ -100,7 +100,7 @@ public class Hello {
 
 ### ldc
 
-int、float或String型常量从常量池推送至栈顶
+`int`, `float` 或 `String` 型常量从常量池推送至栈顶
 
 ### getstatic
 

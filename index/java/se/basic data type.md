@@ -2,7 +2,7 @@
 aliases: 基础数据类型
 tags:
   - java/se/基础数据类型
-date updated: 2022-04-15 15:20
+date updated: 2023-02-14 21:32
 ---
 
 ## 八个基本类型
@@ -31,7 +31,7 @@ public class Primitive {
 
 ### 自动装箱与拆箱
 
-基本类型都有对应的包装类型，基本类型与其对应的包装类型之间的赋值使用自动装箱与拆箱完成。自动装箱与拆箱是JVM编译阶段去实现的
+基本类型都有对应的包装类型，基本类型与其对应的包装类型之间的赋值使用自动装箱与拆箱完成。自动装箱与拆箱属于语法糖，自动装箱与拆箱是JVM编译阶段去实现的
 
 ```java
 public class IntegerTest {
@@ -82,7 +82,7 @@ public static main([Ljava/lang/String;)V
     MAXLOCALS = 1
 ```
 
-我们可以发现装箱使用了方法`Integer.valueOf(I)`，java为其做了一部分的缓存（`-128~127`），我们可通过调整参数`java.lang.Integer.IntegerCache.high`来加大缓存。
+我们可以发现装箱使用了方法 `Integer.valueOf(I)`，java为其做了一部分的缓存（`-128~127`），我们可通过调整参数 `java.lang.Integer.IntegerCache.high` 来加大缓存。
 
 ```java
 static final int low = -128;
@@ -165,9 +165,10 @@ L1
     ASTORE 2
 ```
 
-> `ldc` 常量池中的常量值（int, float, string reference, object reference）入栈。
 
-我们可以看到String从常量池中引入到JVM中。
+![[bytecode#ldc]]
+
+我们可以看到String从[[constant pool|常量池]]中引入到JVM中。
 
 ```java
 public String(String original) {
@@ -176,7 +177,7 @@ public String(String original) {
 }
 ```
 
-String的构造器实际也是引用常量池的String内部的`char[]`数组，当我们尝试修改`char[]`，会影响所有字符串名称一样的String，包括以后新建的变量，通过构造器创建的String不会被放入到字符串常量池中，可通过`intern()`返回其在字符串常量池的引用
+String的构造器实际也是引用[[constant pool|常量池]]的String内部的 `char[]` 数组，当我们尝试修改 `char[]` ，会影响所有字符串名称一样的String，包括以后新建的变量，通过构造器创建的String不会被放入到字符串[[constant pool|常量池]]中，可通过 `intern()` 返回其在字符串[[constant pool|常量池]]的引用
 
 ```java
 String s1 = "123";
@@ -230,8 +231,7 @@ fun(1);
 
 ### 查看类是否为基本类型或包装类型
 
-[[common-lang3#查看类是否为基本类型或包装类型]]
-
+![[common-lang3#查看类是否为基本类型或包装类型]]
 
 ### 进制
 
