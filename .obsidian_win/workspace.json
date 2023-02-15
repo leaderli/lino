@@ -4,23 +4,32 @@
     "type": "split",
     "children": [
       {
-        "id": "4547d6c76d0bcc51",
+        "id": "09f98f59461e4d9b",
         "type": "tabs",
         "children": [
           {
-            "id": "8feae540fcf410b5",
+            "id": "d9654d1a63b75161",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          },
+          {
+            "id": "9bf361701df6a72f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/se/_se.md",
+                "file": "_lino.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -39,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "snippet",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -66,11 +75,12 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
-    "width": 429.5
+    "width": 442.5
   },
   "right": {
     "id": "4b761e4e5ad66709",
@@ -86,7 +96,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/se/_se.md"
+                "file": "index/java/_java.md"
               }
             }
           },
@@ -105,19 +115,34 @@
       }
     ],
     "direction": "horizontal",
-    "width": 336.5
+    "width": 243.5,
+    "collapsed": true
   },
-  "active": "8feae540fcf410b5",
+  "left-ribbon": {
+    "hiddenItems": {
+      "homepage:Open homepage": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": true,
+      "command-palette:Open command palette": true,
+      "markdown-importer:Open format converter": true
+    }
+  },
+  "active": "06376b58eda1e8c0",
   "lastOpenFiles": [
-    "index/java/_java.md",
-    "index/java/java tips.md",
     "Home.md",
-    "index/common/java_interview.md",
+    "java.canvas",
+    "_lino.md",
+    "Untitled 1.canvas",
+    "index/java/_java.md",
+    "test.canvas",
+    "index/java/se/generics.md",
+    "index/java/se/reflect.md",
+    "index/java/jvm/stack.md",
+    "index/java/jvm/bytecode.md",
     "index/java/se/exception.md",
-    "index/java/se/annotation.md",
-    "index/java/jvm/java processor.md",
-    "index/java/spring/jpa.md",
-    "index/compilers/_compilers.md",
-    "index/java/spring/annotation.md"
+    "index/java/jvm/constant pool.md",
+    "index/java/jvm/classloader.md",
+    "index/java/se/basic data type.md",
+    "index/java/jvm/_jvm.md"
   ]
 }
