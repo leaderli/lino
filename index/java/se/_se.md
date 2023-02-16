@@ -2,6 +2,7 @@
 - 📄 [[index/java/se/annotation|annotation]]
 - 📄 [[index/java/se/array|array]]
 - 📄 [[index/java/se/basic data type|basic data type]]
+- 📄 [[index/java/se/collection|collection]]
 - 📄 [[index/java/se/exception|exception]]
 - 📄 [[index/java/se/generics|generics]]
 - 📄 [[index/java/se/reflect|reflect]]

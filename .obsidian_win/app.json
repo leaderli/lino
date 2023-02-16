@@ -27,5 +27,6 @@
   "spellcheck": false,
   "legacyEditor": false,
   "communityPluginSortOrder": "download",
-  "showInlineTitle": false
+  "showInlineTitle": false,
+  "rightToLeft": false
 }
