@@ -21,7 +21,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/commands/awk.md",
+                "file": "index/sql/mysql.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
@@ -136,7 +136,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/commands/awk.md"
+                "file": "index/sql/mysql.md"
               }
             }
           },
@@ -165,6 +165,7 @@
   },
   "active": "5a50db77916c97b7",
   "lastOpenFiles": [
+    "index/linux/commands/awk.md",
     "resource/Pasted image 20230217042445.png",
     "index/java/se/collection.md",
     "index/linux/bash.md",
