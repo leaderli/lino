@@ -4,27 +4,32 @@
     "type": "split",
     "children": [
       {
-        "id": "09f98f59461e4d9b",
+        "id": "a4bc4144cf8b3e47",
         "type": "tabs",
         "children": [
           {
-            "id": "d9654d1a63b75161",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {}
-            }
-          },
-          {
-            "id": "9bf361701df6a72f",
+            "id": "4a950e94ca9920ab",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_lino.md",
+                "file": "index/java/se/array.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
+              }
+            }
+          },
+          {
+            "id": "a9a99885f15fe6d4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "index/java/se/collection.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
               }
             }
           }
@@ -48,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "snippet",
+                "query": "",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -75,12 +80,12 @@
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 442.5
+    "width": 464,
+    "collapsed": true
   },
   "right": {
     "id": "4b761e4e5ad66709",
@@ -96,7 +101,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/_java.md"
+                "file": "index/java/se/collection.md"
               }
             }
           },
@@ -115,21 +120,28 @@
       }
     ],
     "direction": "horizontal",
-    "width": 243.5,
-    "collapsed": true
+    "width": 243.5
   },
   "left-ribbon": {
     "hiddenItems": {
       "homepage:Open homepage": false,
       "graph:Open graph view": false,
-      "canvas:Create new canvas": true,
       "command-palette:Open command palette": true,
       "markdown-importer:Open format converter": true
     }
   },
-  "active": "06376b58eda1e8c0",
+  "active": "a9a99885f15fe6d4",
   "lastOpenFiles": [
+    "resource/Pasted image 20230217042445.png",
+    "index/java/java tips.md",
+    "index/java/se/collection.md",
+    "index/common/java_interview.md",
+    "index/java/se/exception.md",
+    "index/java/se/array.md",
+    "index/java/ee/string.md",
     "Home.md",
+    "index/java/se/SPI.md",
+    "2023-02-17.md",
     "java.canvas",
     "_lino.md",
     "Untitled 1.canvas",
@@ -139,7 +151,6 @@
     "index/java/se/reflect.md",
     "index/java/jvm/stack.md",
     "index/java/jvm/bytecode.md",
-    "index/java/se/exception.md",
     "index/java/jvm/constant pool.md",
     "index/java/jvm/classloader.md",
     "index/java/se/basic data type.md",

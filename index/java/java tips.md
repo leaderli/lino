@@ -1,7 +1,7 @@
 ---
 tags:
   - java/tips
-date updated: 2022-10-21 23:30
+date updated: 2023-02-17 04:18
 ---
 
 ### 读取 properties 中文乱码解决
@@ -393,7 +393,6 @@ for (MethodDescriptor methodDescriptor : beanInfo.getMethodDescriptors()) {
 }  
 ```
 
-
 ### 获取当前运行的jvm进程
 
 ```java
@@ -407,4 +406,11 @@ JDK 9 之后需要添加额外的运行环境
 
 ```c
 -Djdk.attach.allowAttachSelf=true
+```
+
+### 使集合支持多线程操作
+
+```java
+List<Integer> list = new LinkedList<>();  
+List<Integer> sync = Collections.synchronizedList(list);
 ```
