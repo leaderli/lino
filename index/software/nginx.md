@@ -50,6 +50,8 @@ worker_processes 1;
 
 ```shell
 nginx -s signal
+
+nginx -t # 测试配置文件是否正确
 ```
 
 - stop — fast shutdown
