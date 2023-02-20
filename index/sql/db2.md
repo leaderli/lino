@@ -40,3 +40,10 @@ alter table <table> alter column <column> restart with <num>
 ```sql
 select * from sysibm.systables where owner = 'SCHEMA' and name like '%CUR%' and type = 'T';
 ```
+
+
+查询表的表空间
+
+```sql
+SELECT * FROM SYSCAT.DATAPARTITIONS WHERE TABSCHEMA = ? AND TABNAME = ? ORDER BY SEQNO
+```
