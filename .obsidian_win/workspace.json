@@ -13,14 +13,28 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
-                "mode": "preview",
+                "file": "index/java/se/collection.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": true
               }
             }
+          },
+          {
+            "id": "36905ad847f6c9f6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "index/data structure/heap.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -66,11 +80,12 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
-    "width": 464,
+    "width": 315.5,
     "collapsed": true
   },
   "right": {
@@ -87,7 +102,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "index/data structure/heap.md"
               }
             }
           },
@@ -106,7 +121,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 243.5
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -116,18 +131,26 @@
       "markdown-importer:Open format converter": true
     }
   },
-  "active": "3d3e7bc68bd64da5",
+  "active": "36905ad847f6c9f6",
   "lastOpenFiles": [
+    "resource/Pasted image 20230221225356.png",
+    "resource/Pasted image 20230221225348.png",
+    "resource/Pasted image 20230221225336.png",
+    "resource/Pasted image 20230221222136.png",
+    "index/java/se/collection.md",
+    "index/data structure/heap.md",
+    "index/data structure/knapsack problem.md",
+    "index/data structure/dynamic programming.md",
+    "index/data structure/_data structure.md",
+    "Home.md",
     "snippet/_snippet.md",
     "snippet",
     "resource/Pasted image 20230217042445.png",
     "index/java/java tips.md",
-    "index/java/se/collection.md",
     "index/common/java_interview.md",
     "index/java/se/exception.md",
     "index/java/se/array.md",
     "index/java/ee/string.md",
-    "Home.md",
     "index/java/se/SPI.md",
     "2023-02-17.md",
     "java.canvas",
