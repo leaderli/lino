@@ -4,37 +4,23 @@
     "type": "split",
     "children": [
       {
-        "id": "a4bc4144cf8b3e47",
+        "id": "ca14baadbaf443f6",
         "type": "tabs",
         "children": [
           {
-            "id": "4a950e94ca9920ab",
+            "id": "3d3e7bc68bd64da5",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/se/array.md",
+                "file": "Home.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
               }
             }
-          },
-          {
-            "id": "a9a99885f15fe6d4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "index/java/se/collection.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -101,7 +87,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/se/collection.md"
+                "file": "Home.md"
               }
             }
           },
@@ -130,8 +116,10 @@
       "markdown-importer:Open format converter": true
     }
   },
-  "active": "a9a99885f15fe6d4",
+  "active": "3d3e7bc68bd64da5",
   "lastOpenFiles": [
+    "snippet/_snippet.md",
+    "snippet",
     "resource/Pasted image 20230217042445.png",
     "index/java/java tips.md",
     "index/java/se/collection.md",
