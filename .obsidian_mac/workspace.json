@@ -16,13 +16,13 @@
             }
           },
           {
-            "id": "5a50db77916c97b7",
+            "id": "a9ddddf2dd757d46",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/software/nginx.md",
-                "mode": "source",
+                "file": "index/sql/db2.md",
+                "mode": "preview",
                 "backlinks": false,
                 "source": true
               }
@@ -58,10 +58,10 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "$$",
+                "query": "is AND too",
                 "matchingCase": false,
                 "explainSearch": false,
-                "collapseAll": false,
+                "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
               }
@@ -80,7 +80,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 275
+    "width": 275,
+    "collapsed": true
   },
   "right": {
     "id": "aed7281feaa57107",
@@ -136,7 +137,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/software/nginx.md"
+                "file": "index/sql/db2.md"
               }
             }
           },
@@ -153,7 +154,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 179
+    "width": 179,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -163,18 +165,24 @@
       "workspaces:Manage workspace layouts": false
     }
   },
-  "active": "5a50db77916c97b7",
+  "active": "a9ddddf2dd757d46",
   "lastOpenFiles": [
+    "index/linux/bash.md",
     "index/sql/db2.md",
+    "index/java/command.md",
+    "index/java/_java.md",
+    "index/java/jvm/jvm-gc.md",
+    "index/software/nginx.md",
+    "index/java/framework/mybatis.md",
+    "index/linux/commands/chown.md",
+    "Home.md",
     "index/sql/mysql.md",
     "index/linux/commands/awk.md",
     "resource/Pasted image 20230217042445.png",
     "index/java/se/collection.md",
-    "index/linux/bash.md",
     "index/middleware/redis/redis data type.md",
     "index/middleware/redis/redis tutorial.md",
     "snippet/_snippet.md",
-    "Home.md",
     "index/python/_python.md",
     "index/python/python getopt.md",
     "index/linux/commands/getopts.md",
