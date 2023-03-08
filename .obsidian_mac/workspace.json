@@ -21,8 +21,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/sql/db2.md",
-                "mode": "preview",
+                "file": "index/software/mac.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": true
               }
@@ -75,13 +75,11 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 275,
-    "collapsed": true
+    "width": 275
   },
   "right": {
     "id": "aed7281feaa57107",
@@ -137,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/sql/db2.md"
+                "file": "index/software/mac.md"
               }
             }
           },
@@ -154,8 +152,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 179,
-    "collapsed": true
+    "width": 179
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -167,8 +164,11 @@
   },
   "active": "a9ddddf2dd757d46",
   "lastOpenFiles": [
-    "index/linux/bash.md",
+    "index/sql/oceanbase.md",
     "index/sql/db2.md",
+    "resource/OB应用开发实践培训教材.pdf",
+    "Untitled.md",
+    "index/linux/bash.md",
     "index/java/command.md",
     "index/java/_java.md",
     "index/java/jvm/jvm-gc.md",
