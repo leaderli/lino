@@ -12,3 +12,12 @@ zip -r  test.zip   test_folder1/  test_foler2/
 ```
 
 
+
+
+分卷压缩
+```shell
+zip -s 1g -r archivename.zip directory_name
+
+cat archivename.z* > archivename.zip
+unzip archivename.zip
+```

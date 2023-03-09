@@ -6,6 +6,7 @@ date updated: 2022-03-28 15:05
 ---
 
 
+## java
 ```yml
 url: jdbc:oceanbase://ip:端口/scheme名 
 username: 用户名@租户名#集群名
@@ -13,6 +14,13 @@ password: 密码
 driver-class-name: com.alipay.oceanbase.jdbc.Driver
 ```
 
+## 常用sql
+
+### 查询版本号
+
+```sql
+show variables like 'version';
+```
 
 ## 注意事项
 

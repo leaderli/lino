@@ -16,12 +16,12 @@
             }
           },
           {
-            "id": "a9ddddf2dd757d46",
+            "id": "c94d57c761768ffd",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/software/mac.md",
+                "file": "index/sql/oceanbase.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -135,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/software/mac.md"
+                "file": "index/sql/oceanbase.md"
               }
             }
           },
@@ -162,8 +162,10 @@
       "workspaces:Manage workspace layouts": false
     }
   },
-  "active": "a9ddddf2dd757d46",
+  "active": "c94d57c761768ffd",
   "lastOpenFiles": [
+    "index/linux/commands/zip.md",
+    "Home.md",
     "index/sql/oceanbase.md",
     "index/sql/db2.md",
     "resource/OB应用开发实践培训教材.pdf",
@@ -175,7 +177,6 @@
     "index/software/nginx.md",
     "index/java/framework/mybatis.md",
     "index/linux/commands/chown.md",
-    "Home.md",
     "index/sql/mysql.md",
     "index/linux/commands/awk.md",
     "resource/Pasted image 20230217042445.png",
