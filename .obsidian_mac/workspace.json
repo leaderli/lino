@@ -11,8 +11,13 @@
             "id": "e07ae12d9655f1ec",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "index/software/vim.md",
+                "mode": "preview",
+                "backlinks": false,
+                "source": false
+              }
             }
           },
           {
@@ -28,8 +33,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -75,12 +79,12 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 275
+    "width": 275,
+    "collapsed": true
   },
   "right": {
     "id": "aed7281feaa57107",
@@ -136,7 +140,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/sql/oceanbase.md"
+                "file": "index/software/vim.md"
               }
             }
           },
@@ -153,7 +157,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 179
+    "width": 179,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -163,12 +168,13 @@
       "workspaces:Manage workspace layouts": false
     }
   },
-  "active": "c94d57c761768ffd",
+  "active": "e07ae12d9655f1ec",
   "lastOpenFiles": [
+    "index/computer basics/Fundamentals of Compiling.md",
+    "index/compilers/fundamentals of compiling.md",
+    "index/sql/oceanbase.md",
     "index/compilers/grammar.md",
     "index/compilers/_compilers.md",
-    "index/compilers/fundamentals of compiling.md",
-    "index/computer basics/Fundamentals of Compiling.md",
     "index/eclipse/eclipse-plugin-extension.md",
     "index/common/math.md",
     "index/design pattern/finite-state machine mode.md",
@@ -176,7 +182,6 @@
     "index/compilers/automation.md",
     "index/java/_java.md",
     "index/sql/mysql.md",
-    "index/sql/oceanbase.md",
     "index/linux/commands/zip.md",
     "Home.md",
     "index/sql/db2.md",
