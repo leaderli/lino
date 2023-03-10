@@ -21,7 +21,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/sql/oceanbase.md",
+                "file": "index/sql/mysql.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -135,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/sql/oceanbase.md"
+                "file": "index/sql/mysql.md"
               }
             }
           },
@@ -164,9 +164,9 @@
   },
   "active": "c94d57c761768ffd",
   "lastOpenFiles": [
+    "index/sql/oceanbase.md",
     "index/linux/commands/zip.md",
     "Home.md",
-    "index/sql/oceanbase.md",
     "index/sql/db2.md",
     "resource/OB应用开发实践培训教材.pdf",
     "Untitled.md",

@@ -158,3 +158,8 @@ select substring(job,1,3) from emp;
 > Access denied for user 'root'@'localhost' (using password: YES)
 
 [参考](https://stackoverflow.com/questions/10299148/mysql-error-1045-28000-access-denied-for-user-billlocalhost-using-passw)
+
+
+
+## 参考文档
+[MySQL 表分区？涨知识了！ - 腾讯云开发者社区-腾讯云](https://cloud.tencent.com/developer/article/1963167)
