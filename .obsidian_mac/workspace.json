@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/software/vim.md",
+                "file": "index/sql/oceanbase.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": false
@@ -140,7 +140,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/software/vim.md"
+                "file": "index/sql/oceanbase.md"
               }
             }
           },
@@ -170,6 +170,7 @@
   },
   "active": "e07ae12d9655f1ec",
   "lastOpenFiles": [
+    "index/software/vim.md",
     "index/computer basics/Fundamentals of Compiling.md",
     "index/compilers/fundamentals of compiling.md",
     "index/sql/oceanbase.md",
@@ -196,7 +197,6 @@
     "index/linux/commands/awk.md",
     "resource/Pasted image 20230217042445.png",
     "index/java/se/collection.md",
-    "index/middleware/redis/redis data type.md",
-    "index/middleware/redis/redis tutorial.md"
+    "index/middleware/redis/redis data type.md"
   ]
 }
