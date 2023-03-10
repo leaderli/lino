@@ -21,10 +21,10 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/sql/mysql.md",
+                "file": "index/sql/oceanbase.md",
                 "mode": "source",
                 "backlinks": false,
-                "source": true
+                "source": false
               }
             }
           }
@@ -58,10 +58,10 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "is AND too",
+                "query": "expression",
                 "matchingCase": false,
                 "explainSearch": false,
-                "collapseAll": true,
+                "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
               }
@@ -75,7 +75,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -135,7 +136,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/sql/mysql.md"
+                "file": "index/sql/oceanbase.md"
               }
             }
           },
@@ -164,6 +165,17 @@
   },
   "active": "c94d57c761768ffd",
   "lastOpenFiles": [
+    "index/compilers/grammar.md",
+    "index/compilers/_compilers.md",
+    "index/compilers/fundamentals of compiling.md",
+    "index/computer basics/Fundamentals of Compiling.md",
+    "index/eclipse/eclipse-plugin-extension.md",
+    "index/common/math.md",
+    "index/design pattern/finite-state machine mode.md",
+    "index/data structure/knapsack problem.md",
+    "index/compilers/automation.md",
+    "index/java/_java.md",
+    "index/sql/mysql.md",
     "index/sql/oceanbase.md",
     "index/linux/commands/zip.md",
     "Home.md",
@@ -172,25 +184,14 @@
     "Untitled.md",
     "index/linux/bash.md",
     "index/java/command.md",
-    "index/java/_java.md",
     "index/java/jvm/jvm-gc.md",
     "index/software/nginx.md",
     "index/java/framework/mybatis.md",
     "index/linux/commands/chown.md",
-    "index/sql/mysql.md",
     "index/linux/commands/awk.md",
     "resource/Pasted image 20230217042445.png",
     "index/java/se/collection.md",
     "index/middleware/redis/redis data type.md",
-    "index/middleware/redis/redis tutorial.md",
-    "snippet/_snippet.md",
-    "index/python/_python.md",
-    "index/python/python getopt.md",
-    "index/linux/commands/getopts.md",
-    "index/linux/commands/command.md",
-    "index/linux/commands/column.md",
-    "index/linux/commands/_commands.md",
-    "index/linux/_linux.md",
-    "index/linux/linux basic.md"
+    "index/middleware/redis/redis tutorial.md"
   ]
 }

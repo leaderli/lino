@@ -22,6 +22,18 @@ driver-class-name: com.alipay.oceanbase.jdbc.Driver
 show variables like 'version';
 ```
 
+
+## 弱读
+
+从只读副本上执行查询操作
+
+```sql
+dbc.url=jdbc:oceanbase:oracle://xxx.xxx.xxx.xxx:2883/dbName?sessionVariables=ob_read_consistency=WEAK  
+
+
+Select /*+read_consistency(weak)*/ * from test where c1=1;
+
+```
 ## 注意事项
 
 
