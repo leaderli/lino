@@ -2,7 +2,7 @@
 aliases: 集合
 tags:
   - java/se/collection
-date updated: 2023-02-21 22:20
+date updated: 2023-03-12 13:44
 ---
 
 ## ArrayList
@@ -27,4 +27,12 @@ ArrayDeque 底层通过数组实现，为了满足同时在数组两端插入或
 
 ## PriorityQueue
 
-优先队列使用 [[heap#小顶堆]]实现，保证每次取出的元素都是队列中权值最小的元素。
+优先队列使用 [[heap#小顶堆]] 实现，保证每次取出的元素都是队列中权值最小的元素。
+
+## LinkedHashMap
+
+继承于HashMap，相对于HashMap来说，LinkedHashMap多维护了一个链表来维护插入的顺序。
+
+## WeakHashMap
+
+继承于HashMap，相对于HashMap来说，它的 entry 是 [[reference#弱引用]] ，可能被GC自动删除，适用于需要做缓存的场景。
