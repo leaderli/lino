@@ -66,3 +66,11 @@ do
    echo $line
 done < file
 ```
+
+```shell
+# 去除每行的换行符
+cat $FILE | tr -d '\r' | while read line
+do
+   echo $line
+done 
+```
