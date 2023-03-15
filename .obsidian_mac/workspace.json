@@ -26,7 +26,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/sql/db2.md",
+                "file": "index/sql/oceanbase.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -85,7 +85,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 275
+    "width": 275,
+    "collapsed": true
   },
   "right": {
     "id": "aed7281feaa57107",
@@ -141,7 +142,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/sql/db2.md"
+                "file": "index/sql/oceanbase.md"
               }
             }
           },
@@ -158,7 +159,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 179
+    "width": 179,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -170,6 +172,7 @@
   },
   "active": "c94d57c761768ffd",
   "lastOpenFiles": [
+    "index/sql/db2.md",
     "index/software/office.md",
     "index/linux/commands/read.md",
     "resource/Pasted image 20230221225356.png",
@@ -194,7 +197,6 @@
     "index/sql/mysql.md",
     "index/linux/commands/zip.md",
     "Home.md",
-    "index/sql/db2.md",
     "resource/OB应用开发实践培训教材.pdf",
     "Untitled.md",
     "index/java/command.md",

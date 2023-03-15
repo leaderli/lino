@@ -38,7 +38,22 @@ select * from  oceanbase.gv$table
 select * from  oceanbase.gv$partition
 ```
 
+### 建表
 
+#### 默认值
+
+```sql
+-- 时间戳
+create table test (update_time timestamp not null default current_timestamp)
+-- 自增
+create table test (id bigint not null auto_increment)
+```
+
+### 注释
+
+```sql
+alter table test comment "测试表"
+```
 ## 弱读
 
 从只读副本上执行查询操作
