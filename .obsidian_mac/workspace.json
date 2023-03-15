@@ -26,10 +26,10 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/commands/read.md",
+                "file": "index/sql/db2.md",
                 "mode": "source",
                 "backlinks": false,
-                "source": true
+                "source": false
               }
             }
           }
@@ -141,7 +141,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/commands/read.md"
+                "file": "index/sql/db2.md"
               }
             }
           },
@@ -170,6 +170,8 @@
   },
   "active": "c94d57c761768ffd",
   "lastOpenFiles": [
+    "index/software/office.md",
+    "index/linux/commands/read.md",
     "resource/Pasted image 20230221225356.png",
     "resource/Pasted image 20230221225348.png",
     "resource/Pasted image 20230221225336.png",
@@ -177,7 +179,6 @@
     "index/data structure/heap.md",
     "index/sql/oceanbase.md",
     "index/linux/bash.md",
-    "index/linux/commands/read.md",
     "index/linux/commands/grep.md",
     "index/software/vim.md",
     "index/computer basics/Fundamentals of Compiling.md",
