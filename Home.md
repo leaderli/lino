@@ -28,7 +28,7 @@
 - [ ] java agent
 - [ ] litool-agent
 - [ ] 编译原理
-- 
+- [] SQL 21天自学通
 
 
 
