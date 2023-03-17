@@ -4,37 +4,23 @@
     "type": "split",
     "children": [
       {
-        "id": "9612d39faccb277e",
+        "id": "783e24cdd4bbbaea",
         "type": "tabs",
         "children": [
           {
-            "id": "e07ae12d9655f1ec",
+            "id": "a7fe290e78caf28f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/bash.md",
+                "file": "Home.md",
                 "mode": "preview",
                 "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "c94d57c761768ffd",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "index/sql/oceanbase.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
+                "source": true
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -142,7 +128,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/sql/oceanbase.md"
+                "file": "Home.md"
               }
             }
           },
@@ -170,7 +156,7 @@
       "workspaces:Manage workspace layouts": false
     }
   },
-  "active": "c94d57c761768ffd",
+  "active": "a7fe290e78caf28f",
   "lastOpenFiles": [
     "index/sql/db2.md",
     "index/software/office.md",
