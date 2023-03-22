@@ -158,6 +158,7 @@
   },
   "active": "7e86f4712331aee6",
   "lastOpenFiles": [
+    "index/java/jvm/reference.md",
     "Home.md",
     "index/sql/db2.md",
     "index/software/office.md",
@@ -188,7 +189,6 @@
     "index/java/command.md",
     "index/java/jvm/jvm-gc.md",
     "index/software/nginx.md",
-    "index/java/framework/mybatis.md",
     "resource/Pasted image 20230217042445.png"
   ]
 }
