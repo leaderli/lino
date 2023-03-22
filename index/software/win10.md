@@ -21,6 +21,7 @@ C:\Windows\System32\drivers\etc
 192.168.111.133 centos7
 ```
 
+有时候域名不起作用，需要重新刷新一下
 ### 清空dns缓存
 
 ```shell
