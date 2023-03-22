@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "783e24cdd4bbbaea",
+        "id": "5a02f4c05491335b",
         "type": "tabs",
         "children": [
           {
-            "id": "a7fe290e78caf28f",
+            "id": "7e86f4712331aee6",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
+                "file": "index/software/git.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
@@ -128,7 +128,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "index/software/git.md"
               }
             }
           },
@@ -156,8 +156,9 @@
       "workspaces:Manage workspace layouts": false
     }
   },
-  "active": "a7fe290e78caf28f",
+  "active": "7e86f4712331aee6",
   "lastOpenFiles": [
+    "Home.md",
     "index/sql/db2.md",
     "index/software/office.md",
     "index/linux/commands/read.md",
@@ -182,7 +183,6 @@
     "index/java/_java.md",
     "index/sql/mysql.md",
     "index/linux/commands/zip.md",
-    "Home.md",
     "resource/OB应用开发实践培训教材.pdf",
     "Untitled.md",
     "index/java/command.md",
