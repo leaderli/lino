@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "6ba14235cbdcdb3b",
+        "id": "b51459a69babeb77",
         "type": "tabs",
         "children": [
           {
-            "id": "e27a6623ee9a71ca",
+            "id": "a19d84207b5c41fb",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -117,7 +117,7 @@
       "markdown-importer:Open format converter": true
     }
   },
-  "active": "e27a6623ee9a71ca",
+  "active": "a19d84207b5c41fb",
   "lastOpenFiles": [
     "index/work.md",
     "snippet/_snippet.md",
