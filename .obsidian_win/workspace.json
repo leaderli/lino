@@ -4,11 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "b51459a69babeb77",
+        "id": "965b4c7b5d08ec3f",
         "type": "tabs",
         "children": [
           {
-            "id": "a19d84207b5c41fb",
+            "id": "f0a153135071cfdc",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          },
+          {
+            "id": "b05b55f6acf76b18",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -20,7 +28,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -117,7 +126,7 @@
       "markdown-importer:Open format converter": true
     }
   },
-  "active": "a19d84207b5c41fb",
+  "active": "b05b55f6acf76b18",
   "lastOpenFiles": [
     "index/work.md",
     "snippet/_snippet.md",
