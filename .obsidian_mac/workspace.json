@@ -4,23 +4,32 @@
     "type": "split",
     "children": [
       {
-        "id": "5a02f4c05491335b",
+        "id": "c7139626ca342a3d",
         "type": "tabs",
         "children": [
           {
-            "id": "7e86f4712331aee6",
+            "id": "b446ea8316fa9e26",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          },
+          {
+            "id": "c06db923e8f296b8",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/software/git.md",
+                "file": "index/java/ee/aop.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -49,7 +58,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "content: too long",
+                "query": "tmout",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -65,14 +74,21 @@
               "type": "starred",
               "state": {}
             }
+          },
+          {
+            "id": "381d2fc0a799dbe4",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
           }
         ],
         "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 275,
-    "collapsed": true
+    "width": 275
   },
   "right": {
     "id": "aed7281feaa57107",
@@ -128,7 +144,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/software/git.md"
+                "file": "index/java/ee/aop.md"
               }
             }
           },
@@ -145,8 +161,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 179,
-    "collapsed": true
+    "width": 179
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -156,10 +171,14 @@
       "workspaces:Manage workspace layouts": false
     }
   },
-  "active": "7e86f4712331aee6",
+  "active": "c06db923e8f296b8",
   "lastOpenFiles": [
-    "index/java/jvm/reference.md",
     "Home.md",
+    "index/linux/linux basic.md",
+    "index/linux/commands/find.md",
+    "index/linux/commands/tcpdump.md",
+    "index/software/git.md",
+    "index/java/jvm/reference.md",
     "index/sql/db2.md",
     "index/software/office.md",
     "index/linux/commands/read.md",
@@ -185,10 +204,6 @@
     "index/sql/mysql.md",
     "index/linux/commands/zip.md",
     "resource/OB应用开发实践培训教材.pdf",
-    "Untitled.md",
-    "index/java/command.md",
-    "index/java/jvm/jvm-gc.md",
-    "index/software/nginx.md",
     "resource/Pasted image 20230217042445.png"
   ]
 }

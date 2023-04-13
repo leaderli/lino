@@ -6,10 +6,11 @@
   "page-preview",
   "command-palette",
   "editor-status",
-  "starred",
+  "bookmarks",
   "markdown-importer",
   "outline",
   "word-count",
   "slides",
+  "starred",
   "workspaces"
 ]
