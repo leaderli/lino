@@ -251,6 +251,32 @@ server {
 
 通过 `rewite` 将请求 `localhost:18080/api/xxx` 的请求转发到 `localhost:12345/xxx` 上
 
+### map转发
+
+根据参数分发到固定的ip和端口上
+
+
+```nginx
+# arg_node 中的 node是实际请求的url上的参数的key，例如 http://ip:8081/aaa?node=1281
+# my_uri 是变量
+map $arg_node $my_uri{
+	default  127.0.0.1:8081 # default必须有，端口必须有
+	1281     127.0.0.1:8081
+	1282     127.0.0.1:8082
+	1382     127.0.0.2:8081
+	1382     127.0.0.2:8082
+}
+
+server {
+	listen 8000
+	server_name test
+	location /test {
+		rewrite ^/test(.*)$ $1 break
+		proxy_pass http://$my_uri
+	}
+}
+```
+
 ### 增加请求头
 
 配置，这样在服务器端的 headers 中就可以看到名为 name 的指定 header，需要注意的是，当值为空时，nginx 不会发送该请求头

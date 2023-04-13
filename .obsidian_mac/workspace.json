@@ -21,15 +21,36 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/ee/aop.md",
+                "file": "index/java/ee/thread.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
               }
             }
+          },
+          {
+            "id": "ca10bf43e6478b99",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          },
+          {
+            "id": "9ef9788c9f2b58a2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "index/software/nginx.md",
+                "mode": "preview",
+                "backlinks": false,
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -58,7 +79,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tmout",
+                "query": "executor",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -83,8 +104,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -144,7 +164,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/ee/aop.md"
+                "file": "index/software/nginx.md"
               }
             }
           },
@@ -171,8 +191,12 @@
       "workspaces:Manage workspace layouts": false
     }
   },
-  "active": "c06db923e8f296b8",
+  "active": "9ef9788c9f2b58a2",
   "lastOpenFiles": [
+    "index/java/ee/thread.md",
+    "index/java/spring/annotation.md",
+    "index/frontend/packages/async-validator.md",
+    "index/java/ee/aop.md",
     "Home.md",
     "index/linux/linux basic.md",
     "index/linux/commands/find.md",
@@ -199,10 +223,6 @@
     "index/common/math.md",
     "index/design pattern/finite-state machine mode.md",
     "index/data structure/knapsack problem.md",
-    "index/compilers/automation.md",
-    "index/java/_java.md",
-    "index/sql/mysql.md",
-    "index/linux/commands/zip.md",
     "resource/OB应用开发实践培训教材.pdf",
     "resource/Pasted image 20230217042445.png"
   ]
