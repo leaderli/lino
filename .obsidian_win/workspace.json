@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "6ba14235cbdcdb3b",
+        "id": "c18df201cf9ebf70",
         "type": "tabs",
         "children": [
           {
-            "id": "e27a6623ee9a71ca",
+            "id": "44e3caac3830c648",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -39,7 +39,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "引用",
+                "query": "sipp",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -66,8 +66,7 @@
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "horizontal",
@@ -106,8 +105,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -117,11 +115,11 @@
       "markdown-importer:Open format converter": true
     }
   },
-  "active": "e27a6623ee9a71ca",
+  "active": "44e3caac3830c648",
   "lastOpenFiles": [
+    "Home.md",
     "index/work.md",
     "snippet/_snippet.md",
-    "Home.md",
     "index/java/se/collection.md",
     "index/java/jvm/reference.md",
     "index/java/jvm/options.md",
