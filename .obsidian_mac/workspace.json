@@ -13,14 +13,28 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
+                "file": "index/reading note/_reading note.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
               }
             }
+          },
+          {
+            "id": "072f2b91fd4730a4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "index/reading note/The Checklist ManifestoUntitled.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": true
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -134,7 +148,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "index/reading note/The Checklist ManifestoUntitled.md"
               }
             }
           },
@@ -161,11 +175,14 @@
       "workspaces:Manage workspace layouts": false
     }
   },
-  "active": "eb37b7a808ead707",
+  "active": "072f2b91fd4730a4",
   "lastOpenFiles": [
+    "index/reading note/motivation science.md",
+    "index/reading note/The Checklist ManifestoUntitled.md",
+    "index/reading note/_reading note.md",
+    "Home.md",
     "li.pub",
     "li",
-    "Home.md",
     "index/software/nginx.md",
     "index/java/ee/thread.md",
     "index/java/spring/annotation.md",
@@ -192,8 +209,6 @@
     "index/compilers/fundamentals of compiling.md",
     "index/compilers/grammar.md",
     "index/compilers/_compilers.md",
-    "index/eclipse/eclipse-plugin-extension.md",
-    "index/common/math.md",
     "resource/OB应用开发实践培训教材.pdf",
     "resource/Pasted image 20230217042445.png"
   ]
