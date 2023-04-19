@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "c18df201cf9ebf70",
+        "id": "f8c244dc1ffaae50",
         "type": "tabs",
         "children": [
           {
-            "id": "44e3caac3830c648",
+            "id": "a33e32eee671cc2b",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -66,7 +66,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -115,8 +116,9 @@
       "markdown-importer:Open format converter": true
     }
   },
-  "active": "44e3caac3830c648",
+  "active": "a33e32eee671cc2b",
   "lastOpenFiles": [
+    "index/reading note/being logical.md",
     "Home.md",
     "index/work.md",
     "snippet/_snippet.md",
@@ -148,7 +150,6 @@
     "index/common/java_interview.md",
     "index/java/se/exception.md",
     "index/java/se/array.md",
-    "index/java/ee/string.md",
     "java.canvas",
     "Untitled 1.canvas",
     "test.canvas"
