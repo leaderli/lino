@@ -14,9 +14,9 @@
               "type": "markdown",
               "state": {
                 "file": "Home.md",
-                "mode": "preview",
+                "mode": "source",
                 "backlinks": false,
-                "source": true
+                "source": false
               }
             }
           }
@@ -71,7 +71,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 265.5
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "4b761e4e5ad66709",
@@ -118,8 +119,9 @@
   },
   "active": "a33e32eee671cc2b",
   "lastOpenFiles": [
-    "index/reading note/being logical.md",
+    "index/reading note/The Checklist ManifestoUntitled.md",
     "Home.md",
+    "index/reading note/being logical.md",
     "index/work.md",
     "snippet/_snippet.md",
     "index/java/se/collection.md",
@@ -149,7 +151,6 @@
     "index/java/java tips.md",
     "index/common/java_interview.md",
     "index/java/se/exception.md",
-    "index/java/se/array.md",
     "java.canvas",
     "Untitled 1.canvas",
     "test.canvas"
