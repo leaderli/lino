@@ -161,14 +161,16 @@
       "workspaces:Manage workspace layouts": false
     }
   },
-  "active": "b446ea8316fa9e26",
+  "active": "eb37b7a808ead707",
   "lastOpenFiles": [
+    "li.pub",
+    "li",
+    "Home.md",
     "index/software/nginx.md",
     "index/java/ee/thread.md",
     "index/java/spring/annotation.md",
     "index/frontend/packages/async-validator.md",
     "index/java/ee/aop.md",
-    "Home.md",
     "index/linux/linux basic.md",
     "index/linux/commands/find.md",
     "index/linux/commands/tcpdump.md",
@@ -192,7 +194,6 @@
     "index/compilers/_compilers.md",
     "index/eclipse/eclipse-plugin-extension.md",
     "index/common/math.md",
-    "index/design pattern/finite-state machine mode.md",
     "resource/OB应用开发实践培训教材.pdf",
     "resource/Pasted image 20230217042445.png"
   ]
