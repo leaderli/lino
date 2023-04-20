@@ -4,19 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "f8c244dc1ffaae50",
+        "id": "3592172183c5d721",
         "type": "tabs",
         "children": [
           {
-            "id": "a33e32eee671cc2b",
+            "id": "8b1f115351b0ba5c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
                 "file": "Home.md",
-                "mode": "source",
+                "mode": "preview",
                 "backlinks": false,
-                "source": false
+                "source": true
               }
             }
           }
@@ -117,7 +117,7 @@
       "markdown-importer:Open format converter": true
     }
   },
-  "active": "a33e32eee671cc2b",
+  "active": "8b1f115351b0ba5c",
   "lastOpenFiles": [
     "index/reading note/The Checklist ManifestoUntitled.md",
     "Home.md",
