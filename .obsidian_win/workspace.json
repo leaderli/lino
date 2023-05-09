@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "5d3ba7b05470d4ee",
+        "id": "120c84eb3606f12b",
         "type": "tabs",
         "children": [
           {
-            "id": "2117b74414b1b00f",
+            "id": "6d1b3e6f45ca8242",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/sql/mysql.md",
+                "file": "Home.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
@@ -88,7 +88,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/sql/mysql.md"
+                "file": "Home.md"
               }
             }
           },
@@ -117,8 +117,10 @@
       "markdown-importer:Open format converter": true
     }
   },
-  "active": "2117b74414b1b00f",
+  "active": "6d1b3e6f45ca8242",
   "lastOpenFiles": [
+    "index/software/vim.md",
+    "index/sql/mysql.md",
     "Home.md",
     "resource/Pasted image 20230420235120.png",
     "index/reading note/The Checklist ManifestoUntitled.md",
@@ -150,7 +152,6 @@
     "snippet",
     "resource/Pasted image 20230217042445.png",
     "index/java/java tips.md",
-    "index/common/java_interview.md",
     "java.canvas",
     "Untitled 1.canvas",
     "test.canvas"
