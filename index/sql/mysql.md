@@ -73,6 +73,18 @@ mysql -h 127.0.01 -u root -p
 show databases;
 
 show tables
+
+-- 使用`group_concat`函数，可以轻松的把分组后，name 相同的数据拼接到一起，组成一个字符串，用`逗号`分隔。
+select name,group_concat(code) from user  group by name;
+
+
+-- INSERT ignore INTO 忽略异常，返回的执行结果影响行数为 0，它不会重复插入数据。 
+-- 当brand中没有 苏三 才会插入成功
+INSERT ignore INTO `brand`(`id`, `code`, `name`, `edit_date`)  VALUES (123, '108', '苏三', now(3));
+
+-- on duplicate key update 该语法会在插入数据之前判断，如果主键或唯一索引不存在，则插入数据。如果主键或唯一索引存在，则执行更新操作。
+
+INSERT  INTO `brand`(`id`, `code`, `name`, `edit_date`)  VALUES (123, '108', '苏三', now(3))  on duplicate key update name='苏三',edit_date=now(3);
 ```
 
 ## 设定字段为一个枚举
@@ -143,6 +155,9 @@ select length(job) from emp;
 
 -- 截取字符串 字段 起始位(第一位是1) 长度(默认为最大)
 select substring(job,1,3) from emp;
+
+-- 查找A在在某个字符串中的位置
+select locate('A', "1A")
 
 
 ```
