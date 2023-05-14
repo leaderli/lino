@@ -47,27 +47,27 @@
   },
   "showLogAboutPerformanceInConsole": false,
   "selectionHistoryTree": {
-    "META-INF": {
-      "META-INF": {
+    "select_type": {
+      "select_type": {
         "currentVault": {
           "count": 1,
-          "lastUpdated": 1676577016348
+          "lastUpdated": 1684047267645
         }
       }
     },
-    "LinkedList": {
-      "LinkedList": {
+    "table": {
+      "table": {
         "currentVault": {
           "count": 1,
-          "lastUpdated": 1676578446977
+          "lastUpdated": 1684047279056
         }
       }
     },
-    "ArrayList": {
-      "ArrayList": {
-        "currentVault": {
+    "type": {
+      "type": {
+        "internalLink": {
           "count": 1,
-          "lastUpdated": 1676578684826
+          "lastUpdated": 1684047293829
         }
       }
     }
