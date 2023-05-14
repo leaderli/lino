@@ -13,10 +13,10 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
-                "mode": "preview",
+                "file": "index/sql/mysql.md",
+                "mode": "source",
                 "backlinks": false,
-                "source": true
+                "source": false
               }
             }
           }
@@ -88,7 +88,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "index/sql/mysql.md"
               }
             }
           },
@@ -119,9 +119,10 @@
   },
   "active": "b48d19f422511c60",
   "lastOpenFiles": [
+    "resource/Pasted image 20230515052444.png",
+    "Home.md",
     "resource/Pasted image 20230514171016.png",
     "resource/1684051067472.jpg",
-    "Home.md",
     "resource/Pasted image 20230514123154.png",
     "resource/Pasted image 20230514123037.png",
     "resource/Pasted image 20230514123005.png",
@@ -151,7 +152,6 @@
     "resource/Pasted image 20230221225356.png",
     "resource/Pasted image 20230221225348.png",
     "resource/Pasted image 20230221225336.png",
-    "resource/Pasted image 20230221222136.png",
     "index/data structure/knapsack problem.md",
     "index/data structure/dynamic programming.md",
     "index/data structure/_data structure.md",

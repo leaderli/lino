@@ -1,7 +1,7 @@
 ---
 tags:
   - sql/mysql
-date updated: 2023-05-14 17:38
+date updated: 2023-05-15 06:02
 ---
 
 ## 安装
@@ -269,6 +269,146 @@ mysql >  select date_format(payment_date, '%Y-%m'), staff_id,sum(amount) from pa
 +------------------------------------+----------+-------------+
 16 rows in set
 Time: 0.039s
+
+```
+
+### 查看引擎状态
+
+```mysql
+-- 开启标准监控
+set GLOBAL innodb_status_output=ON;
+ 
+-- 关闭标准监控
+set GLOBAL innodb_status_output=OFF;
+ 
+-- 开启锁监控
+set GLOBAL innodb_status_output_locks=ON;
+ 
+-- 关闭锁监控
+set GLOBAL innodb_status_output_locks=OFF;
+```
+
+我们提前触发一个死锁
+
+在两个连接的session中分别执行如下命令
+
+```mysql
+mysql > set autocommit=0;
+Query OK, 0 rows affected
+Time: 0.001s
+mysql > select * from actor limit 1 lock in share mode;
++----------+------------+-----------+---------------------+
+| actor_id | first_name | last_name | last_update         |
++----------+------------+-----------+---------------------+
+| 1        | PENELOPE   | GUINESS   | 2006-02-15 04:34:33 |
++----------+------------+-----------+---------------------+
+
+1 row in set
+Time: 0.013s
+mysql > update actor set last_name='GUINESS' where actor_id = 1;
+
+```
+
+```mysql
+mysql > set autocommit=0;
+Query OK, 0 rows affected
+Time: 0.001s
+mysql > select * from actor limit 1 lock in share mode;
++----------+------------+-----------+---------------------+
+| actor_id | first_name | last_name | last_update         |
++----------+------------+-----------+---------------------+
+| 1        | PENELOPE   | GUINESS   | 2006-02-15 04:34:33 |
++----------+------------+-----------+---------------------+
+
+1 row in set
+Time: 0.013s
+mysql > update actor set last_name='GUINESS' where actor_id = 1;
+(1213, 'Deadlock found when trying to get lock; try restarting transaction')
+```
+
+此时去查看引擎状态
+
+```mysql
+mysql > show engine innodb status\G
+***************************[ 1. row ]***************************
+Type   | InnoDB
+Name   | 
+Status | 
+=====================================
+2023-05-15 05:34:31 0x7f20e07f8700 INNODB MONITOR OUTPUT
+=====================================
+Per second averages calculated from the last 8 seconds
+-----------------
+BACKGROUND THREAD
+-----------------
+srv_master_thread loops: 12 srv_active, 0 srv_shutdown, 4544 srv_idle
+srv_master_thread log flush and writes: 4556
+----------
+SEMAPHORES
+----------
+OS WAIT ARRAY INFO: reservation count 3
+OS WAIT ARRAY INFO: signal count 3
+RW-shared spins 0, rounds 2, OS waits 1
+RW-excl spins 0, rounds 0, OS waits 0
+RW-sx spins 0, rounds 0, OS waits 0
+Spin rounds per wait: 2.00 RW-shared, 0.00 RW-excl, 0.00 RW-sx
+------------------------
+LATEST DETECTED DEADLOCK
+------------------------
+2023-05-15 05:34:12 0x7f20e07f8700
+*** (1) TRANSACTION:
+TRANSACTION 214802, ACTIVE 65 sec starting index read
+mysql tables in use 1, locked 1
+LOCK WAIT 4 lock struct(s), heap size 1136, 2 row lock(s)
+MySQL thread id 9, OS thread handle 139779308476160, query id 241 localhost 127.0.0.1 li updating
+update actor set last_name='GUINESS' where actor_id = 1
+*** (1) WAITING FOR THIS LOCK TO BE GRANTED:
+RECORD LOCKS space id 772 page no 3 n bits 272 index PRIMARY of table `sakila`.`actor` trx id 214802 lock_mode X locks rec but not gap waiting
+Record lock, heap no 2 PHYSICAL RECORD: n_fields 6; compact format; info bits 0
+ 0: len 2; hex 0001; asc   ;;
+ 1: len 6; hex 00000002b63f; asc      ?;;
+ 2: len 7; hex a9000001500110; asc     P  ;;
+ 3: len 8; hex 50454e454c4f5045; asc PENELOPE;;
+ 4: len 7; hex 4755494e455353; asc GUINESS;;
+ 5: len 4; hex 43f23ed9; asc C > ;;
+
+*** (2) TRANSACTION:
+TRANSACTION 214803, ACTIVE 62 sec starting index read
+mysql tables in use 1, locked 1
+4 lock struct(s), heap size 1136, 6 row lock(s)
+MySQL thread id 22, OS thread handle 139779182135040, query id 242 localhost 127.0.0.1 root updating
+update actor set last_name='GUINESS' where actor_id = 1
+*** (2) HOLDS THE LOCK(S):
+RECORD LOCKS space id 772 page no 3 n bits 272 index PRIMARY of table `sakila`.`actor` trx id 214803 lock mode S
+Record lock, heap no 2 PHYSICAL RECORD: n_fields 6; compact format; info bits 0
+ 0: len 2; hex 0001; asc   ;;
+ 1: len 6; hex 00000002b63f; asc      ?;;
+ 2: len 7; hex a9000001500110; asc     P  ;;
+ 3: len 8; hex 50454e454c4f5045; asc PENELOPE;;
+ 4: len 7; hex 4755494e455353; asc GUINESS;;
+ 5: len 4; hex 43f23ed9; asc C > ;;
+
+Record lock, heap no 3 PHYSICAL RECORD: n_fields 6; compact format; info bits 0
+ 0: len 2; hex 0002; asc   ;;
+ 1: len 6; hex 00000002b63f; asc      ?;;
+ 2: len 7; hex a900000150011b; asc     P  ;;
+ 3: len 4; hex 4e49434b; asc NICK;;
+ 4: len 8; hex 5741484c42455247; asc WAHLBERG;;
+ 5: len 4; hex 43f23ed9; asc C > ;;
+
+Record lock, heap no 4 PHYSICAL RECORD: n_fields 6; compact format; info bits 0
+ 0: len 2; hex 0003; asc   ;;
+ 1: len 6; hex 00000002b63f; asc      ?;;
+ 2: len 7; hex a9000001500126; asc     P &;;
+ 3: len 2; hex 4544; asc ED;;
+ 4: len 5; hex 4348415345; asc CHASE;;
+ 5: len 4; hex 43f23ed9; asc C > ;;
+
+Record lock, heap no 5 PHYSICAL RECORD: n_fields 6; compact format; info bits 0
+ 0: len 2; hex 0004; asc   ;;
+ 1: len 6; hex 00000002b63f; asc      ?;;
+1 row in set
+Time: 0.003s
 
 ```
 
@@ -955,9 +1095,39 @@ Time: 0.026s
 
 MySQL这3种锁的特性可大致归纳如下。
 
-- 表级锁：开销小，加锁快；不会出现死锁；锁定粒度大，发生锁冲突的概率最高,并发度最低。
-- 行级锁：开销大，加锁慢；会出现死锁；锁定粒度最小，发生锁冲突的概率最低,并发度也最高。
-- 页面锁：开销和加锁时间界于表锁和行锁之间；会出现死锁；锁定粒度界于表锁和行锁之间，并发度一般
+#### 表级锁
+
+开销小，加锁快；不会出现死锁；锁定粒度大，发生锁冲突的概率最高开销小，加锁快；不会出现死锁；锁定粒度大，发生锁冲突的概率最高开销小，加锁快；不会出现死锁；锁定粒度大，发生锁冲突的概率最高,并发度最低。
+
+使用表级锁的场景
+
+- 第一种情况是：事务需要更新大部分或全部数据，表又比较大，如果使用默认的行锁，不仅这个事务执行效率低，而且可能造成其他事务长时间锁等待和锁冲突，这种情况下可以考虑使用表锁来提高该事务的执行速度。
+
+- 第二种情况是：事务涉及多个表，比较复杂，很可能引起死锁，造成大量事务回滚。这种情况也可以考虑一次性锁定事务涉及的表，从而避免死锁，减少数据库因事务回滚带来的开销
+
+使用表锁要注意以下两点。
+
+1. 使用 LOCK TABLES虽然可以给 InnoDB加表级锁，但必须说明的是，表锁不是由 InnoDB 存储引擎层管理的，而是由其上一层 MySQL Server 负责的，仅当`autocommit=0、innodb_table_locks=1`（默认设置）时，InnoDB层才能知道MySQL加的表锁，MySQL Server也才能感知 InnoDB加的行锁，这种情况下，InnoDB才能自动识别涉及表级锁的死锁；否则，InnoDB将无法自动检测并处理这种死锁。有关死锁，下一小节还会继续讨论。
+
+2. 在用LOCK TABLES对 InnoDB表加锁时要注意，要将AUTOCOMMIT设为 0，否则MySQL不会给表加锁；事务结束前，不要用 UNLOCK TABLES释放表锁，因为 UNLOCK TABLES会隐含地提交事务；COMMIT或ROLLBACK并不能释放用LOCK TABLES加的表级锁，必须用UNLOCK TABLES释放表锁。
+
+正确使用的示例
+
+```
+SET AUTOCOMMIT=0;
+LOCK TABLES t1 WRITE, t2 READ, ...;
+[do something with tables t1 and t2 here];
+COMMIT;
+UNLOCK TABLES;
+```
+
+#### 行级锁
+
+开销大，加锁慢；会出现死锁；锁定粒度最小，发生锁冲突的概率最低,并发度也最高。
+
+#### 页面锁
+
+开销和加锁时间界于表锁和行锁之间；会出现死锁；锁定粒度界于表锁和行锁之间，并发度一般
 
 ### 事物的隔离级别
 
@@ -977,7 +1147,71 @@ MySQL这3种锁的特性可大致归纳如下。
 
 ![[Pasted image 20230514171016.png]]
 
-### 获取 InnoDB行锁争用情况
+### 锁的模式
+
+- 共享锁（S）：允许一个事务去读一行，阻止其他事务获得相同数据集的排他锁。
+
+- 排他锁（X）：允许获得排他锁的事务更新数据，阻止其他事务取得相同数据集的共享读锁和排他写锁。
+
+另外，为了允许行锁和表锁共存，实现多粒度锁机制，InnoDB 还有两种内部使用的意向锁（Intention Locks），这两种意向锁都是表锁。
+
+- 意向共享锁（IS）：事务打算给数据行加行共享锁，事务在给一个数据行加共享锁前必须先取得该表的IS锁。
+
+- 意向排他锁（IX）：事务打算给数据行加行排他锁，事务在给一个数据行加排他锁前必须先取得该表的IX锁。
+
+![[Pasted image 20230515052444.png]]
+
+如果一个事务请求的锁模式与当前的锁兼容，InnoDB 就将请求的锁授予该事务；反之，如果两者不兼容，该事务就要等待锁释放。
+
+意向锁是InnoDB自动加的，不需用户干预。对于UPDATE、DELETE和INSERT语句， InnoDB会自动给涉及数据集加排他锁（X）；对于普通SELECT语句，InnoDB不会加任何锁；事务可以通过以下语句显示给记录集加共享锁或排他锁。
+
+用SELECT ... LOCK IN SHARE MODE获得共享锁，主要用在需要数据依存关系时来确认某行记录是否存在，并确保没有人对这个记录进行UPDATE或者DELETE操作。但是如果当前事务也需要对该记录进行更新操作，则很有可能造成死锁，对于锁定行记录后需要进行更新操作的应用，应该使用SELECT... FOR UPDATE方式获得排他锁。
+
+### 加锁方式
+
+InnoDB行锁是通过给索引上的索引项加锁来实现的，如果没有索引，InnoDB将通过隐藏的聚簇索引来对记录加锁。InnoDB行锁分为3种情形。
+
+#### record locks
+
+对索引项加锁。
+InnoDB这种行锁实现特点意味着：如果不通过索引条件检索数据，那么InnoDB将对表中的所有记录加锁，实际效果跟表锁一样！
+
+- 在不通过索引条件查询时，InnoDB会锁定表中的所有记录
+- 由于 MySQL 的行锁是针对索引加的锁，不是针对记录加的锁，所以虽然是访问不同行的记录，但是如果是使用相同的索引键，是会出现锁冲突的，即会等待行锁释放
+- 当表有多个索引的时候，不同的事务可以使用不同的索引锁定不同的行，不论是使用主键索引、唯一索引或普通索引，InnoDB都会使用行锁来对数据加锁
+- 即便在条件中使用了索引字段，但是否使用索引来检索数据是由MySQL通过判断不同执行计划的代价来决定的，如果MySQL认为全表扫描效率更高，比如对一些很小的表，它就不会使用索引，这种情况下InnoDB也会对所有记录加锁。
+
+#### gap locks
+
+对索引项之间的“间隙”、第一条记录前的“间隙”或最后一条记录后的“间隙”加锁。
+
+当我们用范围条件而不是相等条件检索数据，并请求共享或排他锁时，InnoDB 会给符合条件的已有数据记录的索引项加锁；对于键值在条件范围内但并不存在的记录，叫做“间隙（GAP）”，InnoDB也会对这个“间隙”加锁，这种锁机制就是所谓的Next-Key锁。
+
+```mysql
+select * from emp where empid > 100 for update;
+```
+
+是一个范围条件的检索，InnoDB不仅会对符合条件的empid值为101的记录加锁，也会对empid大于101（这些记录并不存在）的“间隙”加锁。
+
+InnoDB使用Next-Key锁的目的，一方面是为了防止幻读，以满足相关隔离级别的要求，对于上面的例子，要是不使用间隙锁，如果其他事务插入了empid大于100的任何记录，那么本事务如果再次执行上述语句，就会发生幻读；
+
+InnoDB除了通过范围条件加锁时使用Next-Key锁外，如果使用相等条件请求给一个不存在的记录加锁，InnoDB也会使用Next-Key锁！
+
+#### next-key locks
+
+前两种的组合，对记录及其前面的间隙加锁
+
+### 降低死锁
+
+通常来说，死锁都是应用设计的问题，通过调整业务流程、数据库对象设计、事务大小，以及访问数据库的 SQL 语句，绝大部分死锁都可以避免
+
+1. 在应用中，如果不同的程序会并发存取多个表，应尽量约定以相同的顺序来访问表，这样可以大大降低产生死锁的机会。
+2. 在程序以批量方式处理数据的时候，如果事先对数据排序，保证每个线程按固定的顺序来处理记录，也可以大大降低出现死锁的可能。
+3. 在事务中，如果要更新记录，应该直接申请足够级别的锁，即排他锁，而不应先申请共享锁，更新时再申请排他锁，因为当用户申请排他锁时，其他事务可能又已经获得了相同记录的共享锁，从而造成锁冲突，甚至死锁
+4. 在REPEATABLE-READ隔离级别下，如果两个线程同时对相同条件记录用SELECT...FOR UPDATE加排他锁，在没有符合该条件记录情况下，两个线程都会加锁成功。程序发现记录尚不存在，就试图插入一条新记录，如果两个线程都这么做，就会出现死锁。这种情况下，将隔离级别改成READ COMMITTED，就可避免问题
+5. 当隔离级别为 READ COMMITTED 时，如果两个线程都先执行 SELECT...FOR UPDATE，判断是否存在符合条件的记录，如果没有，就插入记录。此时，只有一个线程能插入成功，另一个线程会出现锁等待，当第1个线程提交后，第2个线程会因主键重出错，但虽然这个线程出错了，却会获得一个排他锁！这时如果有第3个线程又来申请排他锁，也会出现死锁。对于这种情况，可以直接做插入操作，然后再捕获主键重异常，或者在遇到主键重错误时，总是执行ROLLBACK释放获得的排他锁
+
+### 获取 InnoDB行锁争用情况==
 
 ```shell
 mysql >  show status like 'Innodb_row_lock%';
@@ -998,6 +1232,87 @@ Time: 0.014s
 
 ```shell
 select * from information_schema.innodb_locks \G
+```
+
+### 一个锁排查的案例
+
+通过 [[#查看引擎状态]] 命令，我们看到有表被锁定了 (使用命令 `lock table actor write`)
+
+```mysql
+TRANSACTIONS
+------------
+Trx id counter 214800
+Purge done for trx's n:o < 0 undo n:o < 0 state: running but idle
+History list length 0
+LIST OF TRANSACTIONS FOR EACH SESSION:
+---TRANSACTION 421254597204704, not started
+0 lock struct(s), heap size 1136, 0 row lock(s)
+---TRANSACTION 421254597203792, not started
+mysql tables in use 1, locked 1
+0 lock struct(s), heap size 1136, 0 row lock(s)
+```
+
+查询一下那些表在被使用
+
+```mysql
+mysql > SHOW OPEN TABLES WHERE In_use > 0;
++----------+-------+--------+-------------+
+| Database | Table | In_use | Name_locked |
++----------+-------+--------+-------------+
+| sakila   | actor | 1      | 0           |
++----------+-------+--------+-------------+
+
+1 row in set
+Time: 0.018s
+
+```
+
+这个命令的结果表示 `sakila.actor` 的表在被使用，可能被某个事物锁定。`Name_locked`表示表可以被重命名
+
+我们也可以用 `show processlist`查看那些线程状态
+
+```mysql
+mysql > show processlist\G
+***************************[ 1. row ]***************************
+Id      | 2
+User    | li
+Host    | localhost:40000
+db      | information_schema
+Command | Sleep
+Time    | 3307
+State   | 
+Info    | <null>
+***************************[ 2. row ]***************************
+Id      | 9
+User    | li
+Host    | localhost:40028
+db      | sakila
+Command | Sleep
+Time    | 76
+State   | 
+Info    | <null>
+***************************[ 3. row ]***************************
+Id      | 19
+User    | li
+Host    | localhost:40068
+db      | sakila
+Command | Query
+Time    | 167
+State   | Waiting for table metadata lock
+Info    | select * from actor limit 5
+***************************[ 4. row ]***************************
+Id      | 20
+User    | root
+Host    | localhost:40072
+db      | sakila
+Command | Query
+Time    | 0
+State   | starting
+Info    | show processlist
+
+4 rows in set
+Time: 0.002s
+
 ```
 
 ## 常见问题
