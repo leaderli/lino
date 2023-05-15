@@ -4,37 +4,23 @@
     "type": "split",
     "children": [
       {
-        "id": "c7139626ca342a3d",
+        "id": "c366cfa2d77af028",
         "type": "tabs",
         "children": [
           {
-            "id": "b446ea8316fa9e26",
+            "id": "6a454df578be9339",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/reading note/_reading note.md",
+                "file": "Home.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
               }
             }
-          },
-          {
-            "id": "072f2b91fd4730a4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "index/reading note/The Checklist ManifestoUntitled.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": true
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -63,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "executor",
+                "query": "mainClass",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -88,7 +74,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -148,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/reading note/The Checklist ManifestoUntitled.md"
+                "file": "Home.md"
               }
             }
           },
@@ -175,7 +162,7 @@
       "workspaces:Manage workspace layouts": false
     }
   },
-  "active": "072f2b91fd4730a4",
+  "active": "92d5a84f4018e5e4",
   "lastOpenFiles": [
     "index/reading note/motivation science.md",
     "index/reading note/The Checklist ManifestoUntitled.md",
