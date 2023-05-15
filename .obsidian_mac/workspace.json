@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
+                "file": "index/java/build/maven.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
@@ -49,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "mainClass",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -135,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "index/java/build/maven.md"
               }
             }
           },
@@ -162,12 +162,17 @@
       "workspaces:Manage workspace layouts": false
     }
   },
-  "active": "92d5a84f4018e5e4",
+  "active": "6a454df578be9339",
   "lastOpenFiles": [
+    "Home.md",
+    "resource/Pasted image 20230514171016.png",
+    "resource/Pasted image 20230514123154.png",
+    "resource/Pasted image 20230514113229.png",
+    "resource/Pasted image 20230420235120.png",
+    "resource/1684051067472.jpg",
     "index/reading note/motivation science.md",
     "index/reading note/The Checklist ManifestoUntitled.md",
     "index/reading note/_reading note.md",
-    "Home.md",
     "li.pub",
     "li",
     "index/software/nginx.md",
@@ -195,7 +200,6 @@
     "index/computer basics/Fundamentals of Compiling.md",
     "index/compilers/fundamentals of compiling.md",
     "index/compilers/grammar.md",
-    "index/compilers/_compilers.md",
     "resource/OB应用开发实践培训教材.pdf",
     "resource/Pasted image 20230217042445.png"
   ]
