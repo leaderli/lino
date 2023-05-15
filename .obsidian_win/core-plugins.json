@@ -2,11 +2,12 @@
   "file-explorer",
   "global-search",
   "graph",
+  "outgoing-link",
   "tag-pane",
   "page-preview",
   "command-palette",
   "editor-status",
-  "starred",
+  "bookmarks",
   "markdown-importer",
   "outline",
   "word-count"
