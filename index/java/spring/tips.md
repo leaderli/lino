@@ -122,7 +122,6 @@ list.node=123,456
 ```
 
 ```java
-
 @Value("${list.node}")
 private String[] nodes
 ```
