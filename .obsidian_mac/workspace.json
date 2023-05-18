@@ -4,17 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "53eda134653e98e0",
+        "id": "472308cfe55e33e5",
         "type": "tabs",
         "children": [
           {
-            "id": "fb6d47022c6129ac",
+            "id": "4caede1f8eff1c78",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/spring/tips.md",
-                "mode": "source",
+                "file": "Home.md",
+                "mode": "preview",
                 "backlinks": false,
                 "source": true
               }
@@ -135,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/spring/tips.md"
+                "file": "Home.md"
               }
             }
           },
@@ -162,7 +162,7 @@
       "workspaces:Manage workspace layouts": false
     }
   },
-  "active": "fb6d47022c6129ac",
+  "active": "4caede1f8eff1c78",
   "lastOpenFiles": [
     "Home.md",
     "resource/Pasted image 20230515052444.png",
