@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/middleware/redis/redis data type.md",
+                "file": "index/common/chatgpt.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
@@ -135,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/middleware/redis/redis data type.md"
+                "file": "index/common/chatgpt.md"
               }
             }
           },
@@ -164,6 +164,8 @@
   },
   "active": "4caede1f8eff1c78",
   "lastOpenFiles": [
+    "index/middleware/redis/redis data type.md",
+    "index/common/chatgpt.md",
     "index/middleware/redis/_redis.md",
     "index/middleware/redis/redis tutorial.md",
     "Home.md",
@@ -200,8 +202,6 @@
     "index/data structure/heap.md",
     "index/sql/oceanbase.md",
     "index/linux/bash.md",
-    "index/linux/commands/grep.md",
-    "index/software/vim.md",
     "resource/OB应用开发实践培训教材.pdf"
   ]
 }
