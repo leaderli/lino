@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
+                "file": "index/middleware/redis/redis data type.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
@@ -49,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "@value",
+                "query": "redis",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -135,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "index/middleware/redis/redis data type.md"
               }
             }
           },
@@ -164,6 +164,8 @@
   },
   "active": "4caede1f8eff1c78",
   "lastOpenFiles": [
+    "index/middleware/redis/_redis.md",
+    "index/middleware/redis/redis tutorial.md",
     "Home.md",
     "resource/Pasted image 20230515052444.png",
     "index/computer basics/regex.md",
@@ -200,7 +202,6 @@
     "index/linux/bash.md",
     "index/linux/commands/grep.md",
     "index/software/vim.md",
-    "index/computer basics/Fundamentals of Compiling.md",
     "resource/OB应用开发实践培训教材.pdf"
   ]
 }

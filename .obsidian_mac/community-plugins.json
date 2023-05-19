@@ -10,7 +10,6 @@
   "obsidian-hider",
   "obsidian-outliner",
   "markdown-prettifier",
-  "obsidian-another-quick-switcher",
   "obsidian-image-toolkit",
   "vim-im-select",
   "zoottelkeeper-obsidian-plugin",
@@ -21,5 +20,6 @@
   "obsidian-vimrc-support",
   "obsidian-tasks-plugin",
   "link-headers-directly",
-  "quick-explorer"
+  "quick-explorer",
+  "obsidian-another-quick-switcher"
 ]
