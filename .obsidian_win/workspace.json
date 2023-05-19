@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/command.md",
-                "mode": "source",
+                "file": "index/common/chatgpt.md",
+                "mode": "preview",
                 "backlinks": false,
                 "source": true
               }
@@ -95,7 +95,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/command.md"
+                "file": "index/common/chatgpt.md"
               }
             }
           },
@@ -116,7 +116,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index/java/command.md",
+                "file": "index/common/chatgpt.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,6 +137,15 @@
   },
   "active": "7d3860ae0331ddf6",
   "lastOpenFiles": [
+    "index/common/emoj.md",
+    "index/common/chatgpt.md",
+    "index/common/english - 副本.md",
+    "index/common/english.md",
+    "index/common/java_interview.md",
+    "index/common/katex.md",
+    "index/common/mermaid.md",
+    "index/common/math.md",
+    "index/java/command.md",
     "index/java/_java.md",
     "Home.md",
     "index/sql/mysql.md",
@@ -162,15 +171,6 @@
     "index/java/jvm/options.md",
     "index/java/jvm/stack.md",
     "index/java/jvm/_jvm.md",
-    "index/java/build/_build.md",
-    "index/java/jdk.md",
-    "index/java/command.md",
-    "index/java/jvm/classloader.md",
-    "index/software/win10.md",
-    "index/java/ee/config.md",
-    "index/linux/bash.md",
-    "index/data structure/heap.md",
-    "index/sql/oceanbase.md",
     "resource/Pasted image 20230221225356.png",
     "resource/Pasted image 20230221225348.png",
     "snippet",
