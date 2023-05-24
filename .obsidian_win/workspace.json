@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/build/maven.md",
+                "file": "index/common/chatgpt.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
@@ -95,7 +95,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/build/maven.md"
+                "file": "index/common/chatgpt.md"
               }
             }
           },
@@ -116,7 +116,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index/java/build/maven.md",
+                "file": "index/common/chatgpt.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,6 +137,7 @@
   },
   "active": "7d3860ae0331ddf6",
   "lastOpenFiles": [
+    "index/java/build/maven.md",
     "index/common/chatgpt.md",
     "index/common/emoj.md",
     "index/common/english - 副本.md",
@@ -170,7 +171,6 @@
     "index/java/jvm/reference.md",
     "index/java/jvm/options.md",
     "index/java/jvm/stack.md",
-    "index/java/jvm/_jvm.md",
     "resource/Pasted image 20230221225356.png",
     "resource/Pasted image 20230221225348.png",
     "snippet",
