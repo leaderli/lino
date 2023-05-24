@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/common/chatgpt.md",
-                "mode": "preview",
+                "file": "index/sql/mysql.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": true
               }
@@ -49,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "redis",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -135,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/common/chatgpt.md"
+                "file": "index/sql/mysql.md"
               }
             }
           },
@@ -164,8 +164,14 @@
   },
   "active": "4caede1f8eff1c78",
   "lastOpenFiles": [
-    "index/middleware/redis/redis data type.md",
+    "index/protocol/xml.md",
+    "index/java/framework/asciitable.md",
+    "index/java/ee/string.md",
+    "index/java/java tips.md",
     "index/common/chatgpt.md",
+    "index/sql/mysql.md",
+    "index/java/ee/config.md",
+    "index/middleware/redis/redis data type.md",
     "index/middleware/redis/_redis.md",
     "index/middleware/redis/redis tutorial.md",
     "Home.md",
@@ -192,16 +198,10 @@
     "index/linux/commands/tcpdump.md",
     "index/software/git.md",
     "index/java/jvm/reference.md",
-    "index/sql/db2.md",
-    "index/software/office.md",
-    "index/linux/commands/read.md",
     "resource/Pasted image 20230221225356.png",
     "resource/Pasted image 20230221225348.png",
     "resource/Pasted image 20230221225336.png",
     "resource/Pasted image 20230221222136.png",
-    "index/data structure/heap.md",
-    "index/sql/oceanbase.md",
-    "index/linux/bash.md",
     "resource/OB应用开发实践培训教材.pdf"
   ]
 }
