@@ -13,10 +13,10 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/sql/mysql.md",
+                "file": "Home.md",
                 "mode": "source",
                 "backlinks": false,
-                "source": true
+                "source": false
               }
             }
           }
@@ -135,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/sql/mysql.md"
+                "file": "Home.md"
               }
             }
           },
@@ -164,12 +164,14 @@
   },
   "active": "4caede1f8eff1c78",
   "lastOpenFiles": [
+    "index/software/git.md",
+    "index/software/vim.md",
+    "index/sql/mysql.md",
     "index/protocol/xml.md",
     "index/java/framework/asciitable.md",
     "index/java/ee/string.md",
     "index/java/java tips.md",
     "index/common/chatgpt.md",
-    "index/sql/mysql.md",
     "index/java/ee/config.md",
     "index/middleware/redis/redis data type.md",
     "index/middleware/redis/_redis.md",
@@ -196,8 +198,6 @@
     "index/linux/linux basic.md",
     "index/linux/commands/find.md",
     "index/linux/commands/tcpdump.md",
-    "index/software/git.md",
-    "index/java/jvm/reference.md",
     "resource/Pasted image 20230221225356.png",
     "resource/Pasted image 20230221225348.png",
     "resource/Pasted image 20230221225336.png",
