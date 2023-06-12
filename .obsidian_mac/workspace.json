@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
+                "file": "index/java/spring/tips.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -135,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "index/java/spring/tips.md"
               }
             }
           },
@@ -164,6 +164,7 @@
   },
   "active": "4caede1f8eff1c78",
   "lastOpenFiles": [
+    "Home.md",
     "index/software/git.md",
     "index/software/vim.md",
     "index/sql/mysql.md",
@@ -176,7 +177,6 @@
     "index/middleware/redis/redis data type.md",
     "index/middleware/redis/_redis.md",
     "index/middleware/redis/redis tutorial.md",
-    "Home.md",
     "resource/Pasted image 20230515052444.png",
     "index/computer basics/regex.md",
     "index/java/build/maven.md",
