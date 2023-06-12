@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
-                "mode": "preview",
+                "file": "index/java/build/maven.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": true
               }
@@ -39,7 +39,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "gfyhtytghffghbvbvvv`",
+                "query": "",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -94,7 +94,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "index/java/build/maven.md"
               }
             }
           },
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Home.md",
+                "file": "index/java/build/maven.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -136,6 +136,7 @@
   },
   "active": "7d3860ae0331ddf6",
   "lastOpenFiles": [
+    "Home.md",
     "index/common/chatgpt.md",
     "index/python/python tips.md",
     "index/java/framework/zjsonpath.md",
@@ -149,7 +150,6 @@
     "index/common/math.md",
     "index/java/command.md",
     "index/java/_java.md",
-    "Home.md",
     "index/sql/mysql.md",
     "index/linux/linux basic.md",
     "index/linux/make.md",
