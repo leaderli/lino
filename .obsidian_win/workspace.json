@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/common/chatgpt.md",
+                "file": "Home.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": true
@@ -94,7 +94,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/common/chatgpt.md"
+                "file": "Home.md"
               }
             }
           },
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index/common/chatgpt.md",
+                "file": "Home.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -136,8 +136,8 @@
   },
   "active": "7d3860ae0331ddf6",
   "lastOpenFiles": [
-    "index/python/python tips.md",
     "index/common/chatgpt.md",
+    "index/python/python tips.md",
     "index/java/framework/zjsonpath.md",
     "index/java/build/maven.md",
     "index/common/emoj.md",
