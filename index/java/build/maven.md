@@ -2,7 +2,7 @@
 aliases: maven
 tags:
   - catagory
-date updated: 2022-05-01 23:20
+date updated: 2023-06-12 22:48
 ---
 
 Maven – Download Apache Mavenpache Mavenorial
@@ -709,6 +709,7 @@ clean 插件主要清理编译生成的文件，默认的编译目录配置在�
 > `project.build.directory` > `project.build.outputDirectory` > `project.build.testOutputDirectory` > `project.reporting.outputDirectory`
 
 ### compiler
+
 ### dependency
 
 解决打包依赖的 jar 包
@@ -735,7 +736,6 @@ clean 插件主要清理编译生成的文件，默认的编译目录配置在�
 
 `outputDirectory`表示依赖 jar 默认输出目录，默认是`${basedir}`\
 `goal`:`copy-dependencies` [相关配置详细](https://maven.apache.org/plugins/maven-dependency-plugin/copy-dependencies-mojo.html)
-
 
 ```xml
  <plugin>
@@ -913,7 +913,6 @@ protected List<? extends InterpolationPostProcessor> createPostProcessors( final
 `targetPath`编译后目录,默认是以`${project.build.outputDirectory}`为前缀的\
 `directory` 源资源目录,默认是以`${basedir}`为前缀的\
 `finalName` 打包后的项目名,默认为`${project.artifactId}-${project.version}`
-
 
 ### versions
 
@@ -1232,6 +1231,14 @@ Maven 采用“最近获胜策略（nearest wins strategy）”的方式处理�
         </exclusion>
       </exclusions>
 </dependency>
+```
+
+## javadoc中文乱码
+
+idea 中 设置 `maven|runner |VM Options` 添加
+
+```shell
+-Dfile.encoding=GBK
 ```
 
 ## 参考文档
