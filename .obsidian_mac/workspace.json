@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/spring/tips.md",
+                "file": "index/software/git.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -135,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/spring/tips.md"
+                "file": "index/software/git.md"
               }
             }
           },
@@ -164,6 +164,7 @@
   },
   "active": "4caede1f8eff1c78",
   "lastOpenFiles": [
+    "index/java/spring/tips.md",
     "Home.md",
     "index/software/git.md",
     "index/software/vim.md",
@@ -197,7 +198,6 @@
     "index/java/ee/aop.md",
     "index/linux/linux basic.md",
     "index/linux/commands/find.md",
-    "index/linux/commands/tcpdump.md",
     "resource/Pasted image 20230221225356.png",
     "resource/Pasted image 20230221225348.png",
     "resource/Pasted image 20230221225336.png",
