@@ -921,6 +921,68 @@ protected List<? extends InterpolationPostProcessor> createPostProcessors( final
 
 `mvn versions:set -DnewVersion=1.1`
 
+### templating-maven-plugin
+
+实现在源码中使用pom的环境变量，编译时直接替换为实际值
+
+不支持在标准目录中添加
+
+我们新建一个非标准源码目录
+
+```java
+// src/main/java-templates/io/leaderli/litest
+
+package io.leaderli.litest;
+public class Version {
+    public static String VERSION =  "${project.version}";
+}
+
+
+// src/main/java/io/leaderli/litest
+package io.leaderli.litest;
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(Version.VERSION);
+    }
+}
+```
+
+pom中添加插件 
+
+```xml
+<plugin>
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>templating-maven-plugin</artifactId>
+	<version>1.0.0</version>
+	<executions>
+		<execution>
+			<id>filter-src</id>
+			<goals>
+				<goal>filter-sources</goal>
+			</goals>
+			<configuration>
+				<!--
+				  Note the two following parameters are the default one.
+				  These are specified here just as a reminder.
+				  But as the Maven philosophy is strongly about conventions,
+				  it's better to just not specify them.
+				-->
+				<sourceDirectory>${basedir}/src/main/java-templates</sourceDirectory>
+				<outputDirectory>${project.build.directory}/generated-sources/java-templates
+				</outputDirectory>
+			</configuration>
+		</execution>
+	</executions>
+</plugin>
+```
+
+执行打包 `mvn clean package`
+
+```shell
+$ java -cp target/LiTest-1.0.jar  io.leaderli.litest.Main
+1.0
+```
+
 ## 模块
 
 maven 的模块是在父类 pom 中定义聚合关系，其本质仅仅是一次性批量按顺序执行所有子模块的 mvn 命令而已

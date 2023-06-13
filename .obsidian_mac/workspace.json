@@ -79,7 +79,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 275
+    "width": 275,
+    "collapsed": true
   },
   "right": {
     "id": "aed7281feaa57107",
@@ -152,7 +153,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 179
+    "width": 179,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -164,9 +166,10 @@
   },
   "active": "4caede1f8eff1c78",
   "lastOpenFiles": [
+    "index/java/build/maven.md",
+    "index/software/git.md",
     "index/java/spring/tips.md",
     "Home.md",
-    "index/software/git.md",
     "index/software/vim.md",
     "index/sql/mysql.md",
     "index/protocol/xml.md",
@@ -180,7 +183,6 @@
     "index/middleware/redis/redis tutorial.md",
     "resource/Pasted image 20230515052444.png",
     "index/computer basics/regex.md",
-    "index/java/build/maven.md",
     "resource/Pasted image 20230514171016.png",
     "resource/Pasted image 20230514123154.png",
     "resource/Pasted image 20230514113229.png",
