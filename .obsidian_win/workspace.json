@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/build/maven.md",
-                "mode": "preview",
+                "file": "index/rust/rust.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": true
               }
@@ -74,11 +74,13 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "4b761e4e5ad66709",
@@ -94,7 +96,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/build/maven.md"
+                "file": "index/rust/rust.md"
               }
             }
           },
@@ -115,7 +117,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index/java/build/maven.md",
+                "file": "index/rust/rust.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +127,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -136,11 +139,16 @@
   },
   "active": "7d3860ae0331ddf6",
   "lastOpenFiles": [
+    "index/java/jvm/bytecode.md",
+    "index/java/_java.md",
+    "index/rust/rust.md",
+    "index/rust/_rust.md",
+    "index/java/build/maven.md",
+    "index/rust",
     "Home.md",
     "index/common/chatgpt.md",
     "index/python/python tips.md",
     "index/java/framework/zjsonpath.md",
-    "index/java/build/maven.md",
     "index/common/emoj.md",
     "index/common/english - 副本.md",
     "index/common/english.md",
@@ -149,7 +157,6 @@
     "index/common/mermaid.md",
     "index/common/math.md",
     "index/java/command.md",
-    "index/java/_java.md",
     "index/sql/mysql.md",
     "index/linux/linux basic.md",
     "index/linux/make.md",
@@ -167,9 +174,6 @@
     "index/reading note/The Checklist ManifestoUntitled.md",
     "index/reading note/being logical.md",
     "index/work.md",
-    "snippet/_snippet.md",
-    "index/java/se/collection.md",
-    "index/java/jvm/reference.md",
     "resource/Pasted image 20230221225356.png",
     "resource/Pasted image 20230221225348.png",
     "snippet",
