@@ -2,7 +2,7 @@
 aliases: maven
 tags:
   - catagory
-date updated: 2023-06-12 22:48
+date updated: 2023-06-13 22:17
 ---
 
 Maven – Download Apache Mavenpache Mavenorial
@@ -946,7 +946,7 @@ public class Main {
 }
 ```
 
-pom中添加插件 
+pom中添加插件
 
 ```xml
 <plugin>
@@ -960,28 +960,56 @@ pom中添加插件
 				<goal>filter-sources</goal>
 			</goals>
 			<configuration>
-				<!--
-				  Note the two following parameters are the default one.
-				  These are specified here just as a reminder.
-				  But as the Maven philosophy is strongly about conventions,
-				  it's better to just not specify them.
-				-->
-				<sourceDirectory>${basedir}/src/main/java-templates</sourceDirectory>
-				<outputDirectory>${project.build.directory}/generated-sources/java-templates
-				</outputDirectory>
 			</configuration>
 		</execution>
 	</executions>
 </plugin>
 ```
 
-执行打包 `mvn clean package`
+执行打包 `mvn clean package`，其会将占位符替换后的源码放到`target/generated-sources/java-templates`。为了避免idea提示代码重复存在，将target忽略即可。
 
 ```shell
 $ java -cp target/LiTest-1.0.jar  io.leaderli.litest.Main
 1.0
 ```
 
+其大致的原理如下：
+
+1. 让maven将文件中的token替换
+   ```xml
+   <resources>
+       <resource>
+           <directory>src/main/templates</directory>
+           <includes>
+               <include>*.java</include>
+           </includes>
+           <filtering>true</filtering>
+           <targetPath>${project.build.directory}/generated-sources/java-templates</targetPath>
+       </resource>
+   </resources>
+   ```
+2. 将`generated-sources/java-templates`标记为编译的目录
+	```xml
+	<plugin>
+	    <groupId>org.codehaus.mojo</groupId>
+	    <artifactId>build-helper-maven-plugin</artifactId>
+	    <version>1.8</version>
+	    <executions>
+	        <execution>
+	             <id>add-source</id>
+	            <phase>generate-sources</phase>
+	            <goals>
+	                <goal>add-source</goal>
+	            </goals>
+	            <configuration>
+	                <sources>
+	                    <source>${project.build.directory}/generated-sources/java-templates/</source>
+	                </sources>
+	            </configuration>
+	        </execution>
+	    </executions>
+	</plugin>
+	```
 ## 模块
 
 maven 的模块是在父类 pom 中定义聚合关系，其本质仅仅是一次性批量按顺序执行所有子模块的 mvn 命令而已
