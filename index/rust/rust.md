@@ -1,7 +1,7 @@
 ---
 tags:
   - rust/rust
-date updated: 2023-06-18 18:32
+date updated: 2023-06-18 19:56
 ---
 
 ## 安装
@@ -67,4 +67,60 @@ git-fetch-with-cli = true
 let v = vec![1,2,3];   // 初始化Vec
 println!("{:?}", v);
 println!("{:#?}", v);
+```
+
+```rust
+use std::error::Error;
+
+Box<dyn Error> //如何可能的错误类型
+```
+
+## 向上抛出异常
+
+使用 `?` 结果
+
+```rust
+use std::error::Error;
+use std::fs::File;
+use std::io;
+use std::io::Read;
+
+fn read_username(path: &str) -> Result<String, io::Error> {
+    let mut s = String::new();
+    let mut f = File::open(path)?;
+    f.read_to_string(&mut s)?;
+    Ok(s)
+}
+
+fn main() {
+    println!("{:?}", read_username("notfound.txt"));
+    println!("{:?}", read_username("Cargo.toml"));
+}
+```
+
+也可以这样写
+
+```rust
+fn read_username(path: &str) -> Result<String, io::Error> {
+    let mut s = String::new();
+    File::open(path)?.read_to_string(&mut s)?;
+    Ok(s)
+}
+```
+
+其等同于
+
+```rust
+fn read_username(path: &str) -> Result<String, io::Error> {
+    let mut s = String::new();
+    let mut f = match File::open(path) {
+        Ok(file) => file,
+        Err(err) => return Err(err),
+    };
+
+    match f.read_to_string(&mut s) {
+        Ok(fc) => Ok(s),
+        Err(err) => Err(err)
+    }
+}
 ```
