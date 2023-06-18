@@ -1,7 +1,7 @@
 ---
 tags:
   - rust/rust
-date updated: 2023-06-18 19:56
+date updated: 2023-06-18 21:25
 ---
 
 ## 安装
@@ -77,7 +77,7 @@ Box<dyn Error> //如何可能的错误类型
 
 ## 向上抛出异常
 
-使用 `?` 结果
+使用 `?` 运算符，只能用于返回类型为 `Result` 类型的
 
 ```rust
 use std::error::Error;
