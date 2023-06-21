@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "index/rust/rust.md",
-                "mode": "preview",
+                "mode": "source",
                 "backlinks": false,
                 "source": false
               }
@@ -49,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "xargs",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -164,12 +164,13 @@
   },
   "active": "4caede1f8eff1c78",
   "lastOpenFiles": [
-    "index/java/java tips.md",
+    "index/linux/bash.md",
+    "index/software/vim.md",
     "index/rust/rust.md",
+    "index/java/java tips.md",
     "index/rust/_rust.md",
     "index/rust",
     "index/software/git.md",
-    "index/linux/bash.md",
     "index/linux/commands/clip.md",
     "index/linux/commands/hostnamectl.md",
     "index/linux/linux basic.md",
@@ -178,7 +179,6 @@
     "index/java/jvm/java processor.md",
     "index/java/spring/tips.md",
     "Home.md",
-    "index/software/vim.md",
     "index/sql/mysql.md",
     "index/protocol/xml.md",
     "index/java/framework/asciitable.md",
