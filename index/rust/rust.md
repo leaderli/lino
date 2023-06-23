@@ -1,7 +1,7 @@
 ---
 tags:
   - rust/rust
-date updated: 2023-06-18 21:25
+date updated: 2023-06-18 22:34
 ---
 
 ## 安装
@@ -122,5 +122,37 @@ fn read_username(path: &str) -> Result<String, io::Error> {
         Ok(fc) => Ok(s),
         Err(err) => Err(err)
     }
+}
+```
+
+## trait
+
+T、U 泛型继承
+
+```rust
+use std::error::Error;
+use std::fs::File;
+use std::io;
+use std::io::Read;
+
+fn largest<T>(list: &[T]) -> T
+    where T: std::cmp::PartialOrd + Copy
+{
+    let mut largest = list[0];
+
+    for &x in list {
+        if x > largest {
+            largest = x;
+        }
+    }
+    largest
+}
+
+
+fn main() {
+    let list = [1, 2, 3];
+    println!("{:?}", largest(&list));
+    println!("{:?}", largest(&[4, 5, 6]));
+    println!("{:?}", largest(&['4', '5', 'a']));
 }
 ```
