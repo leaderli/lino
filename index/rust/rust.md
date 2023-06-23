@@ -65,8 +65,14 @@ git-fetch-with-cli = true
 
 ```rust
 let v = vec![1,2,3];   // 初始化Vec
+
+// 打印详细信息
 println!("{:?}", v);
 println!("{:#?}", v);
+
+//占位符
+let s = 1;
+println!("num:{s}");
 ```
 
 ```rust
