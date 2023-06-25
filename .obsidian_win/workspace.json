@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/rust/rust.md",
+                "file": "index/software/win10.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -96,7 +96,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/rust/rust.md"
+                "file": "index/software/win10.md"
               }
             }
           },
@@ -117,7 +117,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index/rust/rust.md",
+                "file": "index/software/win10.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -139,8 +139,8 @@
   },
   "active": "7d3860ae0331ddf6",
   "lastOpenFiles": [
-    "index/rust/_rust.md",
     "index/rust/rust.md",
+    "index/rust/_rust.md",
     "index/java/jvm/bytecode.md",
     "index/java/_java.md",
     "index/java/build/maven.md",

@@ -1,7 +1,7 @@
 ---
 tags:
   - rust/rust
-date updated: 2023-06-23 21:50
+date updated: 2023-06-24 20:29
 ---
 
 ## 安装
@@ -50,6 +50,10 @@ git-fetch-with-cli = true
 - `cargo build` 打包
 - `cargo run` 编译并运行
 - `cargo check` 检测，运行速度快
+- `cargo search` 搜索包
+  ```shell
+   cargo search rand --registry crates-io
+  ```
 
 ## 所有权与作用域
 
@@ -74,6 +78,18 @@ println!("{:#?}", v);
 //占位符
 let s = 1;
 println!("num:{s}");
+
+
+// match的单分支匹配的语法糖
+let a = Some(10);  
+let x = if let Some(x) = a { x } else { 0 };
+
+
+// 导入同目录下的多个包， self表示包本身
+use std::{cmp::Ordering, io};
+use std::io::{self, Write};
+// 导入所有io下的定义的
+use std::io::*
 ```
 
 ```rust
