@@ -13,10 +13,10 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/software/win10.md",
+                "file": "index/linux/commands/_commands.md",
                 "mode": "source",
                 "backlinks": false,
-                "source": true
+                "source": false
               }
             }
           }
@@ -39,7 +39,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "du",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -74,13 +74,11 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "4b761e4e5ad66709",
@@ -96,7 +94,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/software/win10.md"
+                "file": "index/linux/commands/_commands.md"
               }
             }
           },
@@ -117,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index/software/win10.md",
+                "file": "index/linux/commands/_commands.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -139,6 +137,7 @@
   },
   "active": "7d3860ae0331ddf6",
   "lastOpenFiles": [
+    "index/software/win10.md",
     "index/rust/rust.md",
     "index/rust/_rust.md",
     "index/java/jvm/bytecode.md",
@@ -173,7 +172,6 @@
     "resource/Pasted image 20230420235120.png",
     "index/reading note/The Checklist ManifestoUntitled.md",
     "index/reading note/being logical.md",
-    "index/work.md",
     "resource/Pasted image 20230221225356.png",
     "resource/Pasted image 20230221225348.png",
     "snippet",
