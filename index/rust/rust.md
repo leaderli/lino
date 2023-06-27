@@ -1,7 +1,7 @@
 ---
 tags:
   - rust/rust
-date updated: 2023-06-18 21:25
+date updated: 2023-06-24 20:29
 ---
 
 ## 安装
@@ -50,6 +50,10 @@ git-fetch-with-cli = true
 - `cargo build` 打包
 - `cargo run` 编译并运行
 - `cargo check` 检测，运行速度快
+- `cargo search` 搜索包
+  ```shell
+   cargo search rand --registry crates-io
+  ```
 
 ## 所有权与作用域
 
@@ -58,8 +62,9 @@ git-fetch-with-cli = true
 3. 当所有者超出作用域（scope）时，该值将被删除（通过drop函数）
 4. 函数在返回值的过程中同样也会发生所有权的转移
 5. 一个变量的所有权总是遵循以下规则：
-   1. 把一个值赋给其他变量时总会发生移动
+   1. 把一个值赋给其他变量时总会发生移动，作为方法的参数时也会发生移动
    2. 当一个包含heap数据的变量离开作用域时，它的值就会被drop函数清理，除非所有权移动到另外一个变量上
+6. 当使用`&`引用变量时，不会去占据其所有权，对于可变变量，同时最多只能持有一个引用。不能同时申明可变引用和不可变引用
 
 ## 常用方法
 
@@ -73,6 +78,18 @@ println!("{:#?}", v);
 //占位符
 let s = 1;
 println!("num:{s}");
+
+
+// match的单分支匹配的语法糖
+let a = Some(10);  
+let x = if let Some(x) = a { x } else { 0 };
+
+
+// 导入同目录下的多个包， self表示包本身
+use std::{cmp::Ordering, io};
+use std::io::{self, Write};
+// 导入所有io下的定义的
+use std::io::*
 ```
 
 ```rust
@@ -128,5 +145,37 @@ fn read_username(path: &str) -> Result<String, io::Error> {
         Ok(fc) => Ok(s),
         Err(err) => Err(err)
     }
+}
+```
+
+## trait
+
+T、U 泛型继承
+
+```rust
+use std::error::Error;
+use std::fs::File;
+use std::io;
+use std::io::Read;
+
+fn largest<T>(list: &[T]) -> T
+    where T: std::cmp::PartialOrd + Copy
+{
+    let mut largest = list[0];
+
+    for &x in list {
+        if x > largest {
+            largest = x;
+        }
+    }
+    largest
+}
+
+
+fn main() {
+    let list = [1, 2, 3];
+    println!("{:?}", largest(&list));
+    println!("{:?}", largest(&[4, 5, 6]));
+    println!("{:?}", largest(&['4', '5', 'a']));
 }
 ```
