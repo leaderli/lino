@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/rust/rust.md",
+                "file": "index/linux/commands/cat.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -135,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/rust/rust.md"
+                "file": "index/linux/commands/cat.md"
               }
             }
           },
@@ -164,9 +164,10 @@
   },
   "active": "4caede1f8eff1c78",
   "lastOpenFiles": [
+    "index/linux/commands/xargs.md",
+    "index/rust/rust.md",
     "index/linux/bash.md",
     "index/software/vim.md",
-    "index/rust/rust.md",
     "index/java/java tips.md",
     "index/rust/_rust.md",
     "index/rust",
@@ -196,7 +197,6 @@
     "resource/Pasted image 20230420235120.png",
     "resource/1684051067472.jpg",
     "index/reading note/motivation science.md",
-    "index/reading note/The Checklist ManifestoUntitled.md",
     "li.pub",
     "li",
     "resource/Pasted image 20230221225356.png",
