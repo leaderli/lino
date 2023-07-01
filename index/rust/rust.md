@@ -1,7 +1,7 @@
 ---
 tags:
   - rust/rust
-date updated: 2023-06-24 20:29
+date updated: 2023-06-26 23:43
 ---
 
 ## 安装
@@ -43,6 +43,18 @@ index = "https://rsproxy.cn/crates.io-index"
 
 [net]
 git-fetch-with-cli = true
+```
+
+## 算术符重载
+
+支持算术符重载，例如 字符串的 `+`
+
+```rust
+let s1 = String::from("Hello, ");
+let s2 = String::from("world!");
+let s3 = s1 + &s2; // note s1 has been moved here and can no longer be used
+
+fn add(self, s: &str) -> String
 ```
 
 ## 常用命令
@@ -178,4 +190,12 @@ fn main() {
     println!("{:?}", largest(&[4, 5, 6]));
     println!("{:?}", largest(&['4', '5', 'a']));
 }
+```
+
+## 常见宏
+
+```rust
+fomrat!  //格式化字符串，用法类似println!
+dbg!     //输出debug信息
+vec!     //新建数组
 ```
