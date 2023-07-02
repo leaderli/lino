@@ -1,7 +1,7 @@
 ---
 tags:
   - java/tips
-date updated: 2023-02-17 04:18
+date updated: 2023-07-02 15:51
 ---
 
 ### 读取 properties 中文乱码解决
@@ -413,4 +413,10 @@ JDK 9 之后需要添加额外的运行环境
 ```java
 List<Integer> list = new LinkedList<>();  
 List<Integer> sync = Collections.synchronizedList(list);
+```
+
+### 获取项目根目录
+
+```java
+System.getProperty("user.dir");
 ```

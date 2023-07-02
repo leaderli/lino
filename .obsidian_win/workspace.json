@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/framework/javaparser.md",
-                "mode": "preview",
+                "file": "index/java/java tips.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": true
               }
@@ -39,7 +39,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "DotPrinter",
+                "query": "user.dir",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -95,7 +95,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/framework/javaparser.md"
+                "file": "index/java/java tips.md"
               }
             }
           },
@@ -116,7 +116,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index/java/framework/javaparser.md",
+                "file": "index/java/java tips.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,8 +126,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -138,12 +137,12 @@
   },
   "active": "7d3860ae0331ddf6",
   "lastOpenFiles": [
+    "index/java/framework/javaparser.md",
     "index/java/framework/spoon.md",
     "index/java/framework/ast.md",
     "index/java/framework/sonar.md",
     "index/java/framework/jmh.md",
     "index/java/framework/joor.md",
-    "index/java/framework/javaparser.md",
     "index/java/framework/bytebuddy.md",
     "index/java/framework/common-configuration.md",
     "index/java/framework/asm.md",
