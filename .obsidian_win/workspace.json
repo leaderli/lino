@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/java tips.md",
+                "file": "index/java/framework/javassist.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -95,7 +95,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/java tips.md"
+                "file": "index/java/framework/javassist.md"
               }
             }
           },
@@ -116,7 +116,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index/java/java tips.md",
+                "file": "index/java/framework/javassist.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,6 +137,7 @@
   },
   "active": "7d3860ae0331ddf6",
   "lastOpenFiles": [
+    "index/java/java tips.md",
     "index/java/framework/javaparser.md",
     "index/java/framework/spoon.md",
     "index/java/framework/ast.md",
@@ -163,7 +164,6 @@
     "index/java/_java.md",
     "index/java/build/maven.md",
     "index/rust",
-    "Home.md",
     "resource/Pasted image 20230515052444.png",
     "resource/Pasted image 20230514171016.png",
     "resource/1684051067472.jpg",
