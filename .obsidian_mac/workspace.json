@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/bash.md",
+                "file": "index/software/git.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -135,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/bash.md"
+                "file": "index/software/git.md"
               }
             }
           },
@@ -164,11 +164,11 @@
   },
   "active": "4caede1f8eff1c78",
   "lastOpenFiles": [
+    "index/linux/bash.md",
     "index/software/git.md",
     "index/linux/commands/cat.md",
     "index/linux/commands/xargs.md",
     "index/rust/rust.md",
-    "index/linux/bash.md",
     "index/software/vim.md",
     "index/java/java tips.md",
     "index/rust/_rust.md",

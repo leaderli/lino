@@ -288,6 +288,12 @@ git commit --amend
 > `git revert <commit>`，撤销提交。不同于 `reset` ，`revert` 不是回退版本，而是通过一个新的反向的提交来实现。会进入交互模式，需要填写新的 `commit` 信息
 > `git revert -n <commit>` ,撤销提交，需要手动`commit`
 
+### patch 
+
+打包一个从 commit1 到 commit2 的补丁
+```shell
+git format-patch --stdout <commit1>..<commit2> > changes.patch
+```
 ### apply
 
 补丁
