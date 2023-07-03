@@ -59,6 +59,7 @@ root(Type=CompilationUnit):
  FileWriter fileWriter = new FileWriter("ast.dot");  
  PrintWriter printWriter = new PrintWriter(fileWriter);  
  printWriter.print(printer.output(cu));
+ printWriter.flush();
 ```
 
 生成的文件，可通过[在线预览](https://dreampuf.github.io/GraphvizOnline/#digraph)dot文件，生成的图像如下
