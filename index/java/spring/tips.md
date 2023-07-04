@@ -282,3 +282,29 @@ class AspectJAutoProxyRegistrar implements ImportBeanDefinitionRegistrar {
   
 }
 ```
+
+
+### 给bean添加默认属性
+
+当spring注入person时，会给hello赋值123
+```java
+RootBeanDefinition rootBeanDefinition = new RootBeanDefinition(Person.class);
+rootBeanDefinition.getPropertyValues().add("hello","123");
+//BeanDefinitionRegistry
+beanDefinitionRegistry.registerBeanDefinition("person",rootBeanDefinition);
+
+```
+
+```java
+ class Person{
+        private String hello;
+
+        public String getHello() {
+            return hello;
+        }
+
+        public void setHello(String hello) {
+            this.hello = hello;
+        }
+    }
+```
