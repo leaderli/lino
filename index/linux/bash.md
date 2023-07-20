@@ -56,6 +56,14 @@ $ more 3.txt
   1. `cmd >a 2>a` ：`stdout` 和 `stderr` 都直接送往文件 `a` ，`a` 文件会被打开两遍，由此导致 `stdout` 和 `stderr` 互相覆盖。`cmd >a 2>a`  相当于使用了 `FD1`、`FD2` 两个互相竞争使用文件 `a` 的管道；
   2. `cmd >a 2>&1` ：`stdout` 直接送往文件 `a`，`stderr` 是继承了 `FD1` 的管道之后，再被送往文件 `a`  。`a` 文件只被打开一遍，就是 `FD1` 将其打开。`cmd >a 2>&1` 只使用了一个管道 `FD1`，但已经包括了 `stdout` 和 `stderr` 。从 `IO` 效率上来讲，`cmd >a 2>&1` 的效率更高。
 
+###  <<<
+
+将字符串转换为输入
+
+```shell
+string="Hello, world!"
+grep "world" <<< $string
+```
 ### 使错误日志重定向到正常输出
 
 ```shell
@@ -334,6 +342,11 @@ $1 $2 #直接执行
 
 ````
 
+### 多个变量赋值
+
+```shell
+read a b c <<<$(echo '1,2,3'|awk -F ','  '{print $1,$2,$3}
+```
 ### 变量引用
 
 一般情况下使用 `$variable`来引用变量值，它是`${variable}`的一种缩写
