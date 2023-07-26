@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/framework/javassist.md",
+                "file": "index/protocol/xml.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -95,7 +95,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/framework/javassist.md"
+                "file": "index/protocol/xml.md"
               }
             }
           },
@@ -116,7 +116,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index/java/framework/javassist.md",
+                "file": "index/protocol/xml.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,6 +137,8 @@
   },
   "active": "7d3860ae0331ddf6",
   "lastOpenFiles": [
+    "index/software/git.md",
+    "index/java/framework/javassist.md",
     "index/java/java tips.md",
     "index/java/framework/javaparser.md",
     "index/java/framework/spoon.md",
@@ -152,7 +154,6 @@
     "index/java/framework/zjsonpath.md",
     "index/java/framework/vavr.md",
     "index/java/framework/mock.java.md",
-    "index/java/framework/javassist.md",
     "index/java/framework/JavaPoet.md",
     "index/java/framework/_framework.md",
     "index/rust/rust.md",
@@ -162,7 +163,6 @@
     "index/rust/_rust.md",
     "index/java/jvm/bytecode.md",
     "index/java/_java.md",
-    "index/java/build/maven.md",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
     "resource/Pasted image 20230514171016.png",
