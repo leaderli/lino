@@ -34,6 +34,10 @@ List<CompilationUnit> compilationUnits = sourceRoot.getCompilationUnits();
 ```
 
 编译某个文件
+
+```java
+StaticJavaParser.parse(new File(javaFile));
+```
 ### 打印出语法树的结构
 
 #### 使用yaml结构
