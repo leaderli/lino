@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "index/java/framework/javaparser.md",
-                "mode": "preview",
+                "mode": "source",
                 "backlinks": false,
                 "source": true
               }
@@ -134,16 +134,16 @@
       "markdown-importer:Open format converter": true
     }
   },
-  "active": "51f7c28400713fd9",
+  "active": "9e5b363e5377a481",
   "lastOpenFiles": [
     "index/java/framework/ast.md",
+    "index/java/framework/javaparser.md",
     "resource/编译原理课件.pdf",
     "index/compilers/fundamentals of compiling.md",
     "index/protocol/xml.md",
     "index/software/git.md",
     "index/java/framework/javassist.md",
     "index/java/java tips.md",
-    "index/java/framework/javaparser.md",
     "index/java/framework/spoon.md",
     "index/java/framework/sonar.md",
     "index/java/framework/jmh.md",
