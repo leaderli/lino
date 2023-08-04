@@ -136,6 +136,9 @@
   },
   "active": "9e5b363e5377a481",
   "lastOpenFiles": [
+    "index/linux/disk.md",
+    "index/linux/commands/useradd.md",
+    "index/linux/commands/lsblk.md",
     "index/java/framework/javaparser.md",
     "index/java/framework/ast.md",
     "resource/编译原理课件.pdf",
@@ -160,8 +163,6 @@
     "index/java/framework/_framework.md",
     "index/rust/rust.md",
     "index/linux/commands/du.md",
-    "index/linux/commands/_commands.md",
-    "index/software/win10.md",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
     "resource/Pasted image 20230514171016.png",
