@@ -11,3 +11,5 @@ $ w
 USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
 li       pts/0    192.168.159.1    07:42    1.00s  0.01s  0.01s tmux
 ```
+
+可以使用 `pkill -t  pts/0` 来踢出登录用户
