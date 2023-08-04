@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/disk.md",
+                "file": "index/linux/commands/w.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -49,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "bashrc",
+                "query": "\"su\"",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -74,7 +74,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -134,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/disk.md"
+                "file": "index/linux/commands/w.md"
               }
             }
           },
@@ -164,15 +165,21 @@
   "active": "4caede1f8eff1c78",
   "lastOpenFiles": [
     "index/linux/configuration.md",
-    "index/linux/disk.md",
-    "index/linux/complete.md",
     "index/linux/linux basic.md",
+    "index/linux/commands/curl.md",
+    "index/linux/commands/useradd.md",
+    "index/linux/commands/tail.md",
+    "useradd.md",
+    "index/linux/commands/w.md",
+    "index/linux/commands/lsblk.md",
+    "index/linux/disk.md",
+    "index/linux/commands/chown.md",
+    "index/linux/complete.md",
     "index/linux/_linux.md",
     "index/linux/commands/xargs.md",
     "index/linux/commands/_commands.md",
     "index/linux/bash.md",
     "index/linux/commands/wget.md",
-    "index/linux/commands/curl.md",
     "index/linux/commands/watch.md",
     "index/sql/mysql.md",
     "index/protocol/xml.md",
@@ -183,12 +190,6 @@
     "index/software/intellij_idea.md",
     "index/linux/commands/ln.md",
     "index/software/win10.md",
-    "index/java/spring/tips.md",
-    "index/software/git.md",
-    "index/linux/commands/cat.md",
-    "index/rust/rust.md",
-    "index/java/java tips.md",
-    "index/rust/_rust.md",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
     "resource/Pasted image 20230514171016.png",

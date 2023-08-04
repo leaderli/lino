@@ -87,6 +87,14 @@ echo $response
 
 ```
 
+当返回码为 000 时，表示请求有问题，例如超时
+
+
+
+例如在不联网的机器上执行，其结果即为000
+```shell
+curl -o /dev/null -m 5 -s -w "%{http_code}" www.baidu.com 
+```
 ### 超时
 
 ```python
