@@ -13,10 +13,10 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/bash.md",
+                "file": "index/linux/disk.md",
                 "mode": "source",
                 "backlinks": false,
-                "source": false
+                "source": true
               }
             }
           }
@@ -49,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "<<",
+                "query": "bashrc",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -74,8 +74,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -135,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/bash.md"
+                "file": "index/linux/disk.md"
               }
             }
           },
@@ -164,8 +163,21 @@
   },
   "active": "4caede1f8eff1c78",
   "lastOpenFiles": [
-    "index/python/python bash.md",
+    "index/linux/configuration.md",
+    "index/linux/disk.md",
+    "index/linux/complete.md",
+    "index/linux/linux basic.md",
+    "index/linux/_linux.md",
+    "index/linux/commands/xargs.md",
+    "index/linux/commands/_commands.md",
     "index/linux/bash.md",
+    "index/linux/commands/wget.md",
+    "index/linux/commands/curl.md",
+    "index/linux/commands/watch.md",
+    "index/sql/mysql.md",
+    "index/protocol/xml.md",
+    "index/java/framework/junit.md",
+    "index/python/python bash.md",
     "index/linux/commands/ssh.md",
     "index/software/vim.md",
     "index/software/intellij_idea.md",
@@ -174,23 +186,10 @@
     "index/java/spring/tips.md",
     "index/software/git.md",
     "index/linux/commands/cat.md",
-    "index/linux/commands/xargs.md",
     "index/rust/rust.md",
     "index/java/java tips.md",
     "index/rust/_rust.md",
     "index/rust",
-    "index/linux/commands/clip.md",
-    "index/linux/commands/hostnamectl.md",
-    "index/linux/linux basic.md",
-    "index/java/build/maven.md",
-    "index/java/se/SPI.md",
-    "index/java/jvm/java processor.md",
-    "Home.md",
-    "index/sql/mysql.md",
-    "index/protocol/xml.md",
-    "index/java/framework/asciitable.md",
-    "index/java/ee/string.md",
-    "index/common/chatgpt.md",
     "resource/Pasted image 20230515052444.png",
     "resource/Pasted image 20230514171016.png",
     "resource/Pasted image 20230514123154.png",

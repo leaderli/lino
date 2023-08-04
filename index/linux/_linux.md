@@ -4,6 +4,7 @@
 - 📄 [[index/linux/centos|centos]]
 - 📄 [[index/linux/complete|complete]]
 - 📄 [[index/linux/configuration|configuration]]
+- 📄 [[index/linux/disk|disk]]
 - 📄 [[index/linux/fork|fork]]
 - 📄 [[index/linux/linux basic|linux basic]]
 - 📄 [[index/linux/make|make]]
