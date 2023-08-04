@@ -118,6 +118,7 @@ dom.selectNodes("child/name/text()")
 
 chapter[@title="one"]
 
+# dom4j不支持这种写法 需要一个个单独写 book/chapter/section|book/appendix/section
 book/(chapter|appendix)/section
 
 employee[@secretary and @assistant]
