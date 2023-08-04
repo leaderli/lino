@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/framework/javaparser.md",
+                "file": "index/linux/bash.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -39,7 +39,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "CompilationUnit",
+                "query": "-z",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -94,7 +94,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/framework/javaparser.md"
+                "file": "index/linux/bash.md"
               }
             }
           },
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index/java/framework/javaparser.md",
+                "file": "index/linux/bash.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -136,8 +136,8 @@
   },
   "active": "9e5b363e5377a481",
   "lastOpenFiles": [
-    "index/java/framework/ast.md",
     "index/java/framework/javaparser.md",
+    "index/java/framework/ast.md",
     "resource/编译原理课件.pdf",
     "index/compilers/fundamentals of compiling.md",
     "index/protocol/xml.md",
