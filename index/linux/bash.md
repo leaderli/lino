@@ -72,6 +72,12 @@ sh error.sh > messge.log 2>&1
 sh error.sh  1>$messge.log
 ```
 
+### 忽略错误信息
+
+```shell
+command 2>/dev/null
+```
+
 ### 当前脚本永久重定向
 
 ```shell
@@ -621,7 +627,21 @@ done
 
 2. 双引号`""`,被称做强引用，在`"`的字符串的变量引用会被直接替换为实际的值
 
-3. 反引号`` ` ``, 反引号括起来的字串被 Shell 解释为命令，在执行时，Shell 首先执行该命令，并以它的标准输出结果取代整个反引号（包括两个反引号）部分，也可以使用 `$()` 达到同样的效果，shell 会以子进程的方式去调用被替换的命令，其替换后的值为子进程命令的 stdout 输出，其文件描述符为`1`，
+3. 反引号`` ` ``, 反引号括起来的字串被 Shell 解释为命令，在执行时，Shell 首先执行该命令，并以它的标准输出结果取代整个反引号（包括两个反引号）部分，也可以使用 `$()` 达到同样的效果，shell 会以子进程的方式去调用被替换的命令，其替换后的值为子进程命令的 stdout 输出，其文件描述符为`1`。标准输出如果不使用双引号包含，则输出的结果可能会使用空格来替换行。例如
+
+	```shell
+	$ cat README.md 
+	# li_shell
+	shell
+	$ echo "`cat README.md `"
+	# li_shell
+	shell
+	$ echo `cat README.md `
+	# li_shell shell
+	$ echo "$(cat README.md )"
+	# li_shell
+	shell
+	```
 
 ### 容错断言
 

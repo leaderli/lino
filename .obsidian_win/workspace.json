@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "index/linux/bash.md",
-                "mode": "source",
+                "mode": "preview",
                 "backlinks": false,
                 "source": true
               }
@@ -39,7 +39,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "-z",
+                "query": "$(",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 218.5
   },
   "right": {
     "id": "4b761e4e5ad66709",
@@ -136,8 +136,9 @@
   },
   "active": "9e5b363e5377a481",
   "lastOpenFiles": [
-    "index/linux/commands/kill.md",
+    "index/software/vim.md",
     "index/linux/bash.md",
+    "index/linux/commands/kill.md",
     "index/linux/disk.md",
     "index/linux/commands/useradd.md",
     "index/linux/commands/lsblk.md",
@@ -162,7 +163,6 @@
     "index/java/framework/vavr.md",
     "index/java/framework/mock.java.md",
     "index/java/framework/JavaPoet.md",
-    "index/java/framework/_framework.md",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
     "resource/Pasted image 20230514171016.png",
