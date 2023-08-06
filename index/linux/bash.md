@@ -2,7 +2,7 @@
 aliases: shell
 tags:
   - linux/bash
-date updated: 2023-08-06 12:55
+date updated: 2023-08-06 20:52
 ---
 
 ## shell
@@ -824,6 +824,20 @@ set -x
 > -u: 试图使用未经定义的变量，立即退出
 > -o pipefail: 只要管道中的一个子命令失败，整个管道命令就失败。
 
+## export
+
+`export`命令用于设置环境变量。环境变量是在Shell会话期间可用的全局变量，可以被Shell及其子进程访问和使用
+
+```shell
+export VARIABLE_NAME="value"
+
+function a_func(){
+	echo 123
+}
+# 于将函数导出为环境变量
+export -f a_func
+```
+
 ## 循环
 
 c 风格的 for 循环
@@ -1028,6 +1042,7 @@ echo 3
 ## 测试框架
 
 [Bach Unit Testing Framework](https://bach.sh/)
+
 ## 错误问题
 
 执行 sh 脚本时报错
