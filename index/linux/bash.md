@@ -1025,6 +1025,9 @@ echo 3
 
 ![[configuration#命令行debug模式提示符]]
 
+## 测试框架
+
+[Bach Unit Testing Framework](https://bach.sh/)
 ## 错误问题
 
 执行 sh 脚本时报错
