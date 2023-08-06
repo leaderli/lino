@@ -2,7 +2,7 @@
 aliases: shell
 tags:
   - linux/bash
-date updated: 2022-05-24 09:52
+date updated: 2023-08-06 12:55
 ---
 
 ## shell
@@ -56,7 +56,7 @@ $ more 3.txt
   1. `cmd >a 2>a` ：`stdout` 和 `stderr` 都直接送往文件 `a` ，`a` 文件会被打开两遍，由此导致 `stdout` 和 `stderr` 互相覆盖。`cmd >a 2>a`  相当于使用了 `FD1`、`FD2` 两个互相竞争使用文件 `a` 的管道；
   2. `cmd >a 2>&1` ：`stdout` 直接送往文件 `a`，`stderr` 是继承了 `FD1` 的管道之后，再被送往文件 `a`  。`a` 文件只被打开一遍，就是 `FD1` 将其打开。`cmd >a 2>&1` 只使用了一个管道 `FD1`，但已经包括了 `stdout` 和 `stderr` 。从 `IO` 效率上来讲，`cmd >a 2>&1` 的效率更高。
 
-###  <<<
+### <<<
 
 将字符串转换为输入
 
@@ -64,6 +64,7 @@ $ more 3.txt
 string="Hello, world!"
 grep "world" <<< $string
 ```
+
 ### 使错误日志重定向到正常输出
 
 ```shell
@@ -335,6 +336,19 @@ case 值 in
 esac
 ```
 
+```shell
+function test(){
+	case $1 in
+		1)
+		 echo 'fuck'
+		;;
+		*)
+		echo $1
+		;;
+	esac
+}
+```
+
 ## 变量
 
 ````ad-info
@@ -353,6 +367,7 @@ $1 $2 #直接执行
 ```shell
 read a b c <<<$(echo '1,2,3'|awk -F ','  '{print $1,$2,$3}
 ```
+
 ### 变量引用
 
 一般情况下使用 `$variable`来引用变量值，它是`${variable}`的一种缩写
@@ -492,7 +507,23 @@ fi
 
 #### `$$`
 
-脚本运行的当前进程 ID 号
+脚本运行的当前进程 ID 号，即便是在异步函数内部，获取的也是当前进程
+
+```shell
+#!/bin/bash
+
+# 示例函数
+function my_function {
+    echo "异步函数内部的PID: $$"
+}
+
+echo "主程序开始执行"
+
+# 异步执行函数
+my_function &
+
+echo "主程序继续执行"
+```
 
 #### $!
 
@@ -629,19 +660,19 @@ done
 
 3. 反引号`` ` ``, 反引号括起来的字串被 Shell 解释为命令，在执行时，Shell 首先执行该命令，并以它的标准输出结果取代整个反引号（包括两个反引号）部分，也可以使用 `$()` 达到同样的效果，shell 会以子进程的方式去调用被替换的命令，其替换后的值为子进程命令的 stdout 输出，其文件描述符为`1`。标准输出如果不使用双引号包含，则输出的结果可能会使用空格来替换行。例如
 
-	```shell
-	$ cat README.md 
-	# li_shell
-	shell
-	$ echo "`cat README.md `"
-	# li_shell
-	shell
-	$ echo `cat README.md `
-	# li_shell shell
-	$ echo "$(cat README.md )"
-	# li_shell
-	shell
-	```
+   ```shell
+   $ cat README.md 
+   # li_shell
+   shell
+   $ echo "`cat README.md `"
+   # li_shell
+   shell
+   $ echo `cat README.md `
+   # li_shell shell
+   $ echo "$(cat README.md )"
+   # li_shell
+   shell
+   ```
 
 ### 容错断言
 
@@ -946,10 +977,9 @@ clear
 li ALL=(root) NOPASSWD: /root/dhclient.sh
 ```
 
-
 ## debug
 
-对某一个脚本开启debug模式 
+对某一个脚本开启debug模式
 
 ```shell
 $ cat test.sh
@@ -968,6 +998,7 @@ $ sh -x test.sh
 #!/bin/bash -x
 echo 123
 ```
+
 也可以指定一段范围内使用debug
 
 ```shell
@@ -993,7 +1024,6 @@ echo 3
 ```
 
 ![[configuration#命令行debug模式提示符]]
-
 
 ## 错误问题
 
