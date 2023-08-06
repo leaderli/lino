@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "index/linux/bash.md",
-                "mode": "source",
+                "mode": "preview",
                 "backlinks": false,
                 "source": true
               }
@@ -137,8 +137,8 @@
   "active": "9e5b363e5377a481",
   "lastOpenFiles": [
     "index/linux/commands/ps.md",
-    "index/linux/commands/_commands.md",
     "index/linux/bash.md",
+    "index/linux/commands/_commands.md",
     "index/sql/mysql.md",
     "index/software/vim.md",
     "index/linux/commands/kill.md",

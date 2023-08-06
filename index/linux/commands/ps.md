@@ -1,7 +1,7 @@
 ---
 tags:
   - linux/commands/ps
-date updated: 2023-08-06 15:23
+date updated: 2023-08-06 22:20
 ---
 
 当前正在运行的进程的快照信息
@@ -12,13 +12,17 @@ date updated: 2023-08-06 15:23
 - `-o <FORMAT>`：自定义输出格式，指定要显示的列。
 
   常用格式：
-  - `PID`：进程ID。
-  - `USER`：进程所属的用户名。
-  - `%CPU`：CPU使用率。
-  - `%MEM`：内存使用率。
-  - `START`：进程的启动时间。
-  - `TIME`：进程的累计运行时间。
-  - `CMD`：进程的命令名称及其参数。
+
+  - `pid`：进程ID。
+  - `ppid`：父进程ID。
+  - `args`： 带参数的命令
+  - `cmd`： 带参数的命令
+  - `command`： 带参数的命令
+  - `comm`： 命令名称
+  - `%cpu`：CPU使用率。
+  - `%mem`：内存使用率。
+  - `start`：进程的启动时间。
+  - `time`：进程的累计运行时间。
 - `--no-headers`：禁止显示列标题行
 
 ## 示例
@@ -60,3 +64,7 @@ ps -aux
 ```shell
 ps -aux --sort=-rss|head 10
 ```
+
+## 参考
+
+[ps(1) - Linux manual page](https://man7.org/linux/man-pages/man1/ps.1.html)
