@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/commands/w.md",
+                "file": "index/linux/bash.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -135,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/commands/w.md"
+                "file": "index/linux/bash.md"
               }
             }
           },
@@ -162,15 +162,15 @@
       "workspaces:Manage workspace layouts": false
     }
   },
-  "active": "4caede1f8eff1c78",
+  "active": "92d5a84f4018e5e4",
   "lastOpenFiles": [
+    "index/linux/commands/w.md",
     "index/linux/configuration.md",
     "index/linux/linux basic.md",
     "index/linux/commands/curl.md",
     "index/linux/commands/useradd.md",
     "index/linux/commands/tail.md",
     "useradd.md",
-    "index/linux/commands/w.md",
     "index/linux/commands/lsblk.md",
     "index/linux/disk.md",
     "index/linux/commands/chown.md",
