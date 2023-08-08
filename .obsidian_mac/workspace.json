@@ -13,10 +13,10 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/bash.md",
+                "file": "index/linux/commands/cat.md",
                 "mode": "source",
                 "backlinks": false,
-                "source": true
+                "source": false
               }
             }
           }
@@ -49,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "\"su\"",
+                "query": "printf",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -135,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/bash.md"
+                "file": "index/linux/commands/cat.md"
               }
             }
           },
@@ -162,8 +162,14 @@
       "workspaces:Manage workspace layouts": false
     }
   },
-  "active": "92d5a84f4018e5e4",
+  "active": "4caede1f8eff1c78",
   "lastOpenFiles": [
+    "index/software/vim.md",
+    "index/common/java_interview.md",
+    "index/linux/bash.md",
+    "index/computer basics/c.md",
+    "index/linux/commands/printf.md",
+    "index/linux/commands/_commands.md",
     "index/linux/commands/w.md",
     "index/linux/configuration.md",
     "index/linux/linux basic.md",
@@ -177,8 +183,6 @@
     "index/linux/complete.md",
     "index/linux/_linux.md",
     "index/linux/commands/xargs.md",
-    "index/linux/commands/_commands.md",
-    "index/linux/bash.md",
     "index/linux/commands/wget.md",
     "index/linux/commands/watch.md",
     "index/sql/mysql.md",
@@ -186,10 +190,6 @@
     "index/java/framework/junit.md",
     "index/python/python bash.md",
     "index/linux/commands/ssh.md",
-    "index/software/vim.md",
-    "index/software/intellij_idea.md",
-    "index/linux/commands/ln.md",
-    "index/software/win10.md",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
     "resource/Pasted image 20230514171016.png",
