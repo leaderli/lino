@@ -559,6 +559,21 @@ echo "主程序继续执行"
 
 后台运行的最后一个进程的 ID 号
 
+#### $PIPESTATUS
+
+表示最后一个管道的状态，他是一个数组，对应管道中每个位置的状态
+
+```shell
+command1 | command2 | command3
+
+# 获取整个管道的退出状态码
+echo "Exit status of the pipeline: $?"
+
+# 获取每个命令的退出状态码
+echo "Exit status of command1: ${PIPESTATUS[0]}"
+echo "Exit status of command2: ${PIPESTATUS[1]}"
+echo "Exit status of command3: ${PIPESTATUS[2]}"
+```
 #### *
 
 表示当前目录所有文件，相当于 ls
