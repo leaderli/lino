@@ -177,6 +177,7 @@ cd ~/Downloads/ && rm -rf temp`
 
 `||` ,与 `&&` 相反，当前一个命令的返回码大于 0 才执行第二条
 
+
 `[]` 也可以组合使用
 
 ```shell
@@ -184,6 +185,14 @@ cd ~/Downloads/ && rm -rf temp`
 [ condition1 ] || [ condition2 ]
 ```
 
+
+一个示例
+
+```shell
+# 当a为start或stop时执行，否则提示错误
+a=xxx
+[ 'start' = "$a" ] || [ 'stop' = "$a" ] && $a || echo 'only support start,stop'
+```
 ## `[` 和`[[`
 
 `[` 是 shell 的一个内置命令（和命令 test 是一样的），`[` 到 `]` 之间都被视为 `[` 的参数
@@ -231,7 +240,6 @@ not empty
    |  -G | 检查是否有相同的组 ID                |
    |  -k | 检查防删除位是否被置位                 |
    |  -L | 检查是否为符号链接[5]                |
-   |  -n | 判断字符串长度是否不为 0               |
    |  -O | 检查文件是否被当前进程的 user ID 拥有     |
    |  -p | 检查文件是否为 FIFO[6]特殊文件或命名管道[7] |
    |  -r | 检查文件是否可读                    |
@@ -242,6 +250,7 @@ not empty
    |  -w | 检查文件是否可写                    |
    |  -x | 检查文件是否可执行                   |
    |  -z | 判断字符串长度是否为 0                |
+   |  -n | 判断字符串长度是否不为 0               |
 
    示例
 
@@ -444,6 +453,27 @@ fi
 
 ```
 
+
+### 字符串
+
+```shell
+#!/bin/bash
+
+VAR1="Linuxize"
+VAR2="Linuxize"
+
+if [ "$VAR1" = "$VAR2" ]; then
+    echo "Strings are equal."
+else
+    echo "Strings are not equal."
+fi
+
+if [[ "$VAR1" == "$VAR2" ]]; then
+    echo "Strings are equal."
+else
+    echo "Strings are not equal."
+fi
+```
 ### 形参
 
 命令可以作为参数传入 shell 脚本中
@@ -529,6 +559,21 @@ echo "主程序继续执行"
 
 后台运行的最后一个进程的 ID 号
 
+#### $PIPESTATUS
+
+表示最后一个管道的状态，他是一个数组，对应管道中每个位置的状态
+
+```shell
+command1 | command2 | command3
+
+# 获取整个管道的退出状态码
+echo "Exit status of the pipeline: $?"
+
+# 获取每个命令的退出状态码
+echo "Exit status of command1: ${PIPESTATUS[0]}"
+echo "Exit status of command2: ${PIPESTATUS[1]}"
+echo "Exit status of command3: ${PIPESTATUS[2]}"
+```
 #### *
 
 表示当前目录所有文件，相当于 ls
