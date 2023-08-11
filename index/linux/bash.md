@@ -1039,6 +1039,33 @@ echo 3
 
 ![[configuration#命令行debug模式提示符]]
 
+
+## 调用java
+
+```java
+// 相当于标准输出
+System.out.println("123123")
+
+// 相当于标准错误
+System.err.println("error")
+
+
+// 相当于标准输入
+
+public void main(String [] args){
+
+}
+
+
+// 退出码，shell中使用 $?获取
+
+System.exit(1)
+
+```
+
+```shell
+java -jar  xxxx.jar  123123 > 1.log
+```
 ## 测试框架
 
 [Bach Unit Testing Framework](https://bach.sh/)
