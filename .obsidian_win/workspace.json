@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/bash.md",
-                "mode": "source",
+                "file": "index/linux/commands/echo.md",
+                "mode": "preview",
                 "backlinks": false,
                 "source": true
               }
@@ -39,7 +39,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "pwd",
+                "query": "getopts ",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -94,7 +94,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/bash.md"
+                "file": "index/linux/commands/echo.md"
               }
             }
           },
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index/linux/bash.md",
+                "file": "index/linux/commands/echo.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,10 +134,13 @@
       "markdown-importer:Open format converter": true
     }
   },
-  "active": "51f7c28400713fd9",
+  "active": "9e5b363e5377a481",
   "lastOpenFiles": [
-    "index/linux/commands/sed.md",
+    "index/linux/commands/getopts.md",
+    "index/linux/commands/shift.md",
     "index/linux/bash.md",
+    "index/linux/commands/wc.md",
+    "index/linux/commands/sed.md",
     "index/linux/commands/ps.md",
     "index/linux/commands/_commands.md",
     "index/sql/mysql.md",
@@ -160,9 +163,6 @@
     "index/java/framework/joor.md",
     "index/java/framework/bytebuddy.md",
     "index/java/framework/common-configuration.md",
-    "index/java/framework/asm.md",
-    "index/java/framework/arthas.md",
-    "index/java/framework/tomcat.md",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
     "resource/Pasted image 20230514171016.png",
