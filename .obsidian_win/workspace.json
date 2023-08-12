@@ -4,17 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "bc59a2c55062d772",
+        "id": "273679fc8b06e887",
         "type": "tabs",
         "children": [
           {
-            "id": "9e5b363e5377a481",
+            "id": "78fc1c63c763258b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/commands/echo.md",
-                "mode": "preview",
+                "file": "index/linux/commands/tr.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": true
               }
@@ -74,7 +74,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -94,7 +95,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/commands/echo.md"
+                "file": "index/linux/commands/tr.md"
               }
             }
           },
@@ -115,7 +116,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index/linux/commands/echo.md",
+                "file": "index/linux/commands/tr.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,12 +135,17 @@
       "markdown-importer:Open format converter": true
     }
   },
-  "active": "9e5b363e5377a481",
+  "active": "78fc1c63c763258b",
   "lastOpenFiles": [
+    "index/linux/commands/wc.md",
+    "index/linux/commands/tr.md",
+    "index/linux/commands/wget.md",
+    "index/linux/commands/which.md",
+    "index/linux/commands/watch.md",
     "index/linux/commands/getopts.md",
+    "index/linux/commands/echo.md",
     "index/linux/commands/shift.md",
     "index/linux/bash.md",
-    "index/linux/commands/wc.md",
     "index/linux/commands/sed.md",
     "index/linux/commands/ps.md",
     "index/linux/commands/_commands.md",
@@ -158,11 +164,6 @@
     "index/java/framework/javassist.md",
     "index/java/java tips.md",
     "index/java/framework/spoon.md",
-    "index/java/framework/sonar.md",
-    "index/java/framework/jmh.md",
-    "index/java/framework/joor.md",
-    "index/java/framework/bytebuddy.md",
-    "index/java/framework/common-configuration.md",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
     "resource/Pasted image 20230514171016.png",

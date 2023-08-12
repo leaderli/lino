@@ -68,6 +68,7 @@
 - 📄 [[index/linux/commands/time|time]]
 - 📄 [[index/linux/commands/tmux|tmux]]
 - 📄 [[index/linux/commands/top|top]]
+- 📄 [[index/linux/commands/tr|tr]]
 - 📄 [[index/linux/commands/tty|tty]]
 - 📄 [[index/linux/commands/type|type]]
 - 📄 [[index/linux/commands/uname|uname]]
