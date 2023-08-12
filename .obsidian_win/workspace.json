@@ -39,7 +39,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "ps",
+                "query": "pwd",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -134,10 +134,11 @@
       "markdown-importer:Open format converter": true
     }
   },
-  "active": "9e5b363e5377a481",
+  "active": "51f7c28400713fd9",
   "lastOpenFiles": [
-    "index/linux/commands/ps.md",
+    "index/linux/commands/sed.md",
     "index/linux/bash.md",
+    "index/linux/commands/ps.md",
     "index/linux/commands/_commands.md",
     "index/sql/mysql.md",
     "index/software/vim.md",
@@ -162,7 +163,6 @@
     "index/java/framework/asm.md",
     "index/java/framework/arthas.md",
     "index/java/framework/tomcat.md",
-    "index/java/framework/zjsonpath.md",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
     "resource/Pasted image 20230514171016.png",

@@ -2,7 +2,7 @@
 aliases: shell
 tags:
   - linux/bash
-date updated: 2023-08-06 20:52
+date updated: 2023-08-12 10:43
 ---
 
 ## shell
@@ -177,14 +177,12 @@ cd ~/Downloads/ && rm -rf temp`
 
 `||` ,与 `&&` 相反，当前一个命令的返回码大于 0 才执行第二条
 
-
 `[]` 也可以组合使用
 
 ```shell
 [ condition1 ] && [ condition2 ]
 [ condition1 ] || [ condition2 ]
 ```
-
 
 一个示例
 
@@ -193,6 +191,7 @@ cd ~/Downloads/ && rm -rf temp`
 a=xxx
 [ 'start' = "$a" ] || [ 'stop' = "$a" ] && $a || echo 'only support start,stop'
 ```
+
 ## `[` 和`[[`
 
 `[` 是 shell 的一个内置命令（和命令 test 是一样的），`[` 到 `]` 之间都被视为 `[` 的参数
@@ -371,6 +370,16 @@ $1 $2 #直接执行
 
 ````
 
+### 间接引用
+
+```shell
+
+a=1
+b='a'
+
+echo ${!b} # 1
+```
+
 ### 多个变量赋值
 
 ```shell
@@ -453,7 +462,6 @@ fi
 
 ```
 
-
 ### 字符串
 
 ```shell
@@ -474,6 +482,7 @@ else
     echo "Strings are not equal."
 fi
 ```
+
 ### 形参
 
 命令可以作为参数传入 shell 脚本中
@@ -574,6 +583,7 @@ echo "Exit status of command1: ${PIPESTATUS[0]}"
 echo "Exit status of command2: ${PIPESTATUS[1]}"
 echo "Exit status of command3: ${PIPESTATUS[2]}"
 ```
+
 #### *
 
 表示当前目录所有文件，相当于 ls
@@ -1084,7 +1094,6 @@ echo 3
 
 ![[configuration#命令行debug模式提示符]]
 
-
 ## 调用java
 
 ```java
@@ -1111,9 +1120,22 @@ System.exit(1)
 ```shell
 java -jar  xxxx.jar  123123 > 1.log
 ```
+
 ## 测试框架
 
 [Bach Unit Testing Framework](https://bach.sh/)
+
+## 常用命令
+
+### 获取当前路径
+
+pwd 获得的是当前 shell 的执行路径，而不是当前脚本的执行路径。
+
+应当使用
+
+```shell
+$(dirname $(readlink -f $0 ))
+```
 
 ## 错误问题
 
