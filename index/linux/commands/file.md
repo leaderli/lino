@@ -2,7 +2,7 @@
 aliases: 查看文件类型
 tags:
   - linux/commands/file
-date updated: 2022-04-07 15:22
+date updated: 2023-08-13 17:19
 ---
 
 用于识别文件类型，查看文件格式
@@ -30,3 +30,30 @@ file -i *
 1.txt:                           text/plain; charset=us-ascii
 2.txt:                           text/plain; charset=utf-8
 ```
+
+### 文件名通配符
+
+#### *
+
+匹配零个或多个任意字符。
+例如，`*.txt`将匹配所有以`.txt`结尾的文件名。
+
+#### ?
+
+匹配一个任意字符
+例如，`file?.txt`将匹配类似于`file1.txt`、`fileA.txt`等的文件名。
+
+#### []
+
+匹配指定范围内的任意字符
+例如，`file[123].txt`将匹配类似于`file1.txt`、`file2.txt`、`file3.txt`的日志流就的文件名被改名了。
+
+#### [^]
+
+匹配不在指定范围内的任意字符
+例如，`file[!abc].txt`将匹配除了`filea.txt`、`fileb.txt`、`filec.txt`之外的文件名。
+
+#### `{}`
+
+用于指定多个模式的选择
+例如，`file{11,22}.txt`将匹配`file11.txt`和`file22.txt`。

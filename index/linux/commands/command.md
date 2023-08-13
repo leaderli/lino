@@ -18,3 +18,13 @@ then
     exit
 fi
 ```
+
+
+命令的查找路径
+
+通过查找使用冒号分割的多个目录
+
+```shell
+$ echo $PATH
+/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/li/.local/bin:/home/li/bin
+```

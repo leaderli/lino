@@ -21,3 +21,10 @@ $
 
 name=`mktemp tmp.XXXX`
 ```
+
+
+也可以用当前进程来生成临时文件
+
+```shell
+file=xxx.$$
+```
