@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/bash.md",
+                "file": "index/linux/commands/ps.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -135,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/bash.md"
+                "file": "index/linux/commands/ps.md"
               }
             }
           },
@@ -164,12 +164,13 @@
   },
   "active": "4caede1f8eff1c78",
   "lastOpenFiles": [
+    "index/linux/bash.md",
+    "index/linux/commands/tr.md",
+    "index/software/vim.md",
     "index/linux/configuration.md",
     "index/linux/complete.md",
     "index/linux/commands/find.md",
-    "index/linux/bash.md",
     "index/linux/commands/cat.md",
-    "index/software/vim.md",
     "index/common/java_interview.md",
     "index/computer basics/c.md",
     "index/linux/commands/printf.md",
@@ -189,7 +190,6 @@
     "index/linux/commands/watch.md",
     "index/sql/mysql.md",
     "index/protocol/xml.md",
-    "index/java/framework/junit.md",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
     "resource/Pasted image 20230514171016.png",
