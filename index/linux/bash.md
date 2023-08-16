@@ -2,7 +2,7 @@
 aliases: shell
 tags:
   - linux/bash
-date updated: 2023-08-13 17:42
+date updated: 2023-08-13 20:59
 ---
 
 ## shell
@@ -638,6 +638,7 @@ echo $a        #取第一个元素
 echo ${a[1]}   #取角标为1的元素
 a[1]=100       #赋值
 echo ${a[*]}   #取所有元素
+echo ${a[@]}   #取所有元素
 unset a[1]     #移除角标1的元素
 echo ${a[*]}
 unset a        #移除整个array
@@ -887,6 +888,68 @@ echo $?
 
 ```
 
+### 匿名函数
+
+```shell
+{
+ read line1
+ read line2
+} < 1.txt
+
+echo $line1
+echo $line2
+```
+
+```shell
+{
+echo 123
+echo 456
+} > 1.txt
+
+```
+
+### :
+
+NOP 函数，不做任何操作，可用于while，if等用
+
+```shell
+if condition
+then : # Do nothing and branch ahead
+else
+ take?some?action
+fi
+
+
+while :
+do
+	sleep 1
+done
+```
+
+用于避免副作用
+
+```shell
+$ ${username=`whoami`}
+-bash: li: command not found
+$ : ${username=`whoami`}
+$ echo $username
+li
+```
+
+判断变量是否全部设置
+
+```shell
+$ : ${HOSTNAME?} ${USER?} ${MAIL?}
+$ : ${HOSTNAME?} ${USER?} ${MAIL1?}
+-bash: MAIL1: parameter null or not set
+```
+
+清理文件
+
+```shell
+: > xxx.log
+```
+
 ### 引入外部脚本
 
 格式
@@ -894,7 +957,9 @@ echo $?
 或
 `source filename`
 
-## 脚本运行时的调试参数
+## set
+
+脚本运行时的调试参数
 
 在写脚本的一开始加上`set -xeuo pipefail`，一般用于调试脚本
 
@@ -995,7 +1060,6 @@ while [ 1 ]
 do
       sleep 1s
 done
-
 ```
 
 ## 数据库相关

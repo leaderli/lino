@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/centos.md",
+                "file": "index/linux/commands/type.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -39,7 +39,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "mkt",
+                "query": "文件描述符",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -94,7 +94,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/centos.md"
+                "file": "index/linux/commands/type.md"
               }
             }
           },
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index/linux/centos.md",
+                "file": "index/linux/commands/type.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -136,8 +136,10 @@
   },
   "active": "6fae29c6bf9e7f43",
   "lastOpenFiles": [
-    "index/linux/commands/mktemp.md",
     "index/linux/bash.md",
+    "index/linux/linux basic.md",
+    "index/linux/centos.md",
+    "index/linux/commands/mktemp.md",
     "index/linux/commands/expr.md",
     "index/linux/commands/file.md",
     "index/linux/commands/ls.md",
@@ -146,7 +148,6 @@
     "index/linux/commands/sort.md",
     "index/linux/commands/cut.md",
     "index/linux/commands/grep.md",
-    "index/linux/linux basic.md",
     "index/linux/commands/command.md",
     "index/linux/commands/locate.md",
     "index/linux/commands/tmux.md",
@@ -161,7 +162,6 @@
     "index/linux/commands/ps.md",
     "index/linux/commands/_commands.md",
     "index/sql/mysql.md",
-    "index/software/vim.md",
     "resource/编译原理课件.pdf",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
