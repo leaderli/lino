@@ -5,7 +5,7 @@ tags:
   - decrypt
   - base64
   - 计算机基础/加密
-date updated: 2022-04-17 14:46
+date updated: 2023-08-16 22:07
 ---
 
 ### 加密算法的分类
@@ -344,6 +344,16 @@ public class Base64Utils {
 }
 ```
 
+### linux中使用
+
+#### base64
+
+```shell
+$ base64 <<< '123123'
+MTIzMTIzCg==
+$ base64 -d  <<< 'MTIzMTIzCg=='
+123123
+```
 ### 参考文档
 
 [一文彻底搞懂加密、数字签名和数字证书！ - SegmentFault 思否](https://segmentfault.com/a/1190000024523772)

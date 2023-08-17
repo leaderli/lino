@@ -1,7 +1,7 @@
 ---
 tags:
   - linux/commands/sed
-date updated: 2023-08-12 10:31
+date updated: 2023-08-16 23:32
 ---
 
 sed 命令是利用脚本来处理文本文件。sed 可依照脚本的指令来处理、编辑文本文件。
@@ -126,4 +126,11 @@ $ sed 'N;s/\n/ /' file.txt
 1 a
 2 b
 3 c
+```
+
+### 显示脚本的短名
+
+```shell
+$  sed "s/.*[/[:space:]]\([^/[:space:]]*\).sh.*/\1/g" <<< 'sh /aa/fuck1.sh -a '
+fuck1
 ```
