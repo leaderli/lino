@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/commands/ps.md",
+                "file": "index/linux/bash.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -135,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/commands/ps.md"
+                "file": "index/linux/bash.md"
               }
             }
           },
@@ -166,9 +166,9 @@
   "lastOpenFiles": [
     "index/linux/commands/sed.md",
     "index/linux/bash.md",
+    "index/linux/commands/ps.md",
     "index/linux/commands/tar.md",
     "index/linux/commands/zip.md",
-    "index/linux/commands/ps.md",
     "index/linux/commands/tr.md",
     "index/software/vim.md",
     "index/linux/configuration.md",
