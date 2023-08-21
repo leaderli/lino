@@ -2,7 +2,7 @@
 aliases: shell
 tags:
   - linux/bash
-date updated: 2023-08-16 23:37
+date updated: 2023-08-21 00:29
 ---
 
 ## shell
@@ -62,6 +62,13 @@ $ more 3.txt
   1. `cmd >a 2>a` ：`stdout` 和 `stderr` 都直接送往文件 `a` ，`a` 文件会被打开两遍，由此导致 `stdout` 和 `stderr` 互相覆盖。`cmd >a 2>a`  相当于使用了 `FD1`、`FD2` 两个互相竞争使用文件 `a` 的管道；
   2. `cmd >a 2>&1` ：`stdout` 直接送往文件 `a`，`stderr` 是继承了 `FD1` 的管道之后，再被送往文件 `a`  。`a` 文件只被打开一遍，就是 `FD1` 将其打开。`cmd >a 2>&1` 只使用了一个管道 `FD1`，但已经包括了 `stdout` 和 `stderr` 。从 `IO` 效率上来讲，`cmd >a 2>&1` 的效率更高。
 
+### 关闭文件描述符
+
+- `n<&?`  Close input file descriptor n.
+- `0<&?, <&?`  Close stdin.
+- `n>&?` Close output file descriptor n.
+- `1>&?, #>&?` Close stdout.
+
 ### <<<
 
 将字符串转换为输入
@@ -83,6 +90,7 @@ sh error.sh  1>$messge.log
 
 ```shell
 command 2>/dev/null
+command 2>&- 
 ```
 
 ### 当前脚本永久重定向

@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/commands/tty.md",
+                "file": "index/linux/bash.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -39,7 +39,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "inode",
+                "query": "g",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 218.5
+    "width": 200
   },
   "right": {
     "id": "4b761e4e5ad66709",
@@ -94,7 +94,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/commands/tty.md"
+                "file": "index/linux/bash.md"
               }
             }
           },
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index/linux/commands/tty.md",
+                "file": "index/linux/bash.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -136,6 +136,8 @@
   },
   "active": "6fae29c6bf9e7f43",
   "lastOpenFiles": [
+    "index/rust/rust.md",
+    "index/linux/commands/tty.md",
     "index/linux/commands/write.md",
     "index/linux/commands/cat.md",
     "index/linux/commands/ln.md",
@@ -160,8 +162,6 @@
     "index/linux/commands/locate.md",
     "index/linux/commands/tmux.md",
     "index/linux/commands/tr.md",
-    "index/linux/commands/wc.md",
-    "index/linux/commands/wget.md",
     "resource/编译原理课件.pdf",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
