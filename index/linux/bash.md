@@ -2,7 +2,7 @@
 aliases: shell
 tags:
   - linux/bash
-date updated: 2023-08-21 00:29
+date updated: 2023-08-21 21:42
 ---
 
 ## shell
@@ -204,6 +204,37 @@ cd ~/Downloads/ && rm -rf temp`
 # 当a为start或stop时执行，否则提示错误
 a=xxx
 [ 'start' = "$a" ] || [ 'stop' = "$a" ] && $a || echo 'only support start,stop'
+```
+
+## 子进程
+
+在括号中的命令将会有子进程来执行
+
+```shell
+(cat list1 list2 list3 | sort | uniq > list123) &
+ (cat list4 list5 list6 | sort | uniq > list456) &
+ # Merges and sorts both sets of lists simultaneously.
+ # Running in background ensures parallel execution.
+ #
+ # Same effect as
+ # cat list1 list2 list3 | sort | uniq > list123 &
+ # cat list4 list5 list6 | sort | uniq > list456 &
+ wait # Don't execute the next command until subshells finish.
+ diff list123 list456
+```
+
+使用重定向符来发送输出结果
+
+- `>(command)`
+- -`<(command)`
+
+```shell
+diff <(command1) <(command2) 
+
+
+while read des what mask iface; do
+# Some commands ...
+done < <(route -n) 
 ```
 
 ## `[` 和`[[`
