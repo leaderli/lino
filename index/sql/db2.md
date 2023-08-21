@@ -42,13 +42,19 @@ select * from sysibm.systables where owner = 'SCHEMA' and name like '%CUR%' and 
 ```
 
 
-### 查询表的表空间
+#### 查询数据库编码
+
+```shell
+db2 get db cfg for app_db|grep 'Database code set'|awk '{print $5}'
+
+```
+#### 查询表的表空间
 
 ```sql
 SELECT * FROM SYSCAT.DATAPARTITIONS WHERE TABSCHEMA = ? AND TABNAME = ? ORDER BY SEQNO
 ```
 
-### 查询表的占用大小
+#### 查询表的占用大小
 
 ```sql
 SELECT SUBSTR(TABSCHEMA,1,18) TABSCHEMA,SUBSTR(TABNAME,1,30) TABNAME,
