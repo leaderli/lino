@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/bash.md",
+                "file": "index/linux/commands/tty.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -39,7 +39,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "declare linux",
+                "query": "inode",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -94,7 +94,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/bash.md"
+                "file": "index/linux/commands/tty.md"
               }
             }
           },
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index/linux/bash.md",
+                "file": "index/linux/commands/tty.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -136,17 +136,22 @@
   },
   "active": "6fae29c6bf9e7f43",
   "lastOpenFiles": [
+    "index/linux/commands/write.md",
+    "index/linux/commands/cat.md",
+    "index/linux/commands/ln.md",
+    "index/linux/commands/ls.md",
+    "index/linux/commands/rm.md",
+    "index/linux/linux basic.md",
+    "index/linux/commands/file.md",
+    "index/linux/bash.md",
+    "index/python/python bash.md",
     "index/linux/commands/sed.md",
     "index/linux/commands/grep.md",
-    "index/linux/bash.md",
     "index/computer basics/cryptography.md",
     "index/linux/commands/type.md",
-    "index/linux/linux basic.md",
     "index/linux/centos.md",
     "index/linux/commands/mktemp.md",
     "index/linux/commands/expr.md",
-    "index/linux/commands/file.md",
-    "index/linux/commands/ls.md",
     "index/linux/commands/read.md",
     "index/linux/commands/shift.md",
     "index/linux/commands/sort.md",
@@ -157,11 +162,6 @@
     "index/linux/commands/tr.md",
     "index/linux/commands/wc.md",
     "index/linux/commands/wget.md",
-    "index/linux/commands/which.md",
-    "index/linux/commands/watch.md",
-    "index/linux/commands/getopts.md",
-    "index/linux/commands/echo.md",
-    "index/linux/commands/ps.md",
     "resource/编译原理课件.pdf",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
