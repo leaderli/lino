@@ -19,8 +19,19 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "747b8c0a812f2dd7",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.4.3"
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -200,7 +211,7 @@
       }
     ]
   },
-  "active": "4caede1f8eff1c78",
+  "active": "747b8c0a812f2dd7",
   "lastOpenFiles": [
     "index/linux/bash.md",
     "index/linux/commands/grep.md",
