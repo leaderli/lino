@@ -1,7 +1,7 @@
 ---
 tags:
   - rust/rust
-date updated: 2023-06-26 23:43
+date updated: 2023-08-24 21:16
 ---
 
 ## 安装
@@ -86,6 +86,8 @@ let v = vec![1,2,3];   // 初始化Vec
 // 打印详细信息
 println!("{:?}", v);
 println!("{:#?}", v);
+println!("{v:?}");
+println!("{v:#?}");
 
 //占位符
 let s = 1;
