@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/bash.md",
+                "file": "index/rust/rust.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -94,7 +94,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/bash.md"
+                "file": "index/rust/rust.md"
               }
             }
           },
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index/linux/bash.md",
+                "file": "index/rust/rust.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -136,6 +136,7 @@
   },
   "active": "6fae29c6bf9e7f43",
   "lastOpenFiles": [
+    "index/linux/bash.md",
     "index/rust/rust.md",
     "index/linux/commands/tty.md",
     "index/linux/commands/write.md",
@@ -145,7 +146,6 @@
     "index/linux/commands/rm.md",
     "index/linux/linux basic.md",
     "index/linux/commands/file.md",
-    "index/linux/bash.md",
     "index/python/python bash.md",
     "index/linux/commands/sed.md",
     "index/linux/commands/grep.md",
