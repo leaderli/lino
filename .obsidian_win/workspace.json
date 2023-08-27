@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/java tips.md",
-                "mode": "source",
+                "file": "index/linux/commands/man.md",
+                "mode": "preview",
                 "backlinks": false,
                 "source": true
               }
@@ -39,7 +39,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "g",
+                "query": "ascii",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -94,7 +94,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/java tips.md"
+                "file": "index/linux/commands/man.md"
               }
             }
           },
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index/java/java tips.md",
+                "file": "index/linux/commands/man.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -136,6 +136,8 @@
   },
   "active": "6fae29c6bf9e7f43",
   "lastOpenFiles": [
+    "index/java/framework/asciitable.md",
+    "index/java/java tips.md",
     "index/frontend/packages/mockjs.md",
     "index/java/framework/mock.java.md",
     "index/rust/rust.md",
@@ -160,8 +162,6 @@
     "index/linux/commands/shift.md",
     "index/linux/commands/sort.md",
     "index/linux/commands/cut.md",
-    "index/linux/commands/command.md",
-    "index/linux/commands/locate.md",
     "resource/编译原理课件.pdf",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
