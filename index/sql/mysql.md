@@ -93,6 +93,14 @@ mycli -u root -p 123456
 - `-v`, --verbose 显示更多信息
 - `--show-warnings` 显示警告信息
 
+
+## 会话变量
+
+超时时间，连接时间相关的参数，可通过`set SESSION connect_timeout = 100`来更改
+
+```mysql
+show variable like '%time%'
+```
 ## 常用sql语句
 
 ### 执行提示
