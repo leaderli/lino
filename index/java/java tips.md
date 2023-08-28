@@ -420,3 +420,34 @@ List<Integer> sync = Collections.synchronizedList(list);
 ```java
 System.getProperty("user.dir");
 ```
+
+### 判断是否在debug模式中执行
+
+```java
+import java.lang.management.ManagementFactory;
+import java.util.List;
+
+public class DebugModeExample {
+
+    public static void main(String[] args) {
+        if (isDebugMode()) {
+            // 在调试模式下执行的逻辑
+            System.out.println("执行调试模式下的代码");
+        } else {
+            // 在非调试模式下执行的逻辑
+            System.out.println("执行非调试模式下的代码");
+        }
+    }
+
+    private static boolean isDebugMode() {
+        RuntimeMXBean runtimeMXBean = ManagementFactory.getRuntimeMXBean();
+        List<String> inputArguments = runtimeMXBean.getInputArguments();
+        for (String argument : inputArguments) {
+            if (argument.contains("jdwp") || argument.contains("debug")) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+```

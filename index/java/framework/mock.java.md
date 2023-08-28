@@ -4,7 +4,7 @@ tags:
 date updated: 2022-04-15 14:57
 ---
 
-[mockjs的java实现](https://gitee.com/ForteScarlet/Mock.java)
+[mockjs的java实现](https://github.com/ForteScarlet/Mock.java)
 
 ```xml
 <dependency>
