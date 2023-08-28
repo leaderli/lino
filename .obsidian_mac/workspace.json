@@ -24,9 +24,12 @@
             "id": "747b8c0a812f2dd7",
             "type": "leaf",
             "state": {
-              "type": "release-notes",
+              "type": "markdown",
               "state": {
-                "currentVersion": "1.4.3"
+                "file": "index/sql/mysql.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": true
               }
             }
           }
@@ -146,7 +149,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/sql/db2.md"
+                "file": "index/sql/mysql.md"
               }
             }
           },
@@ -214,6 +217,8 @@
   "active": "747b8c0a812f2dd7",
   "lastOpenFiles": [
     "index/linux/bash.md",
+    "index/sql/mysql.md",
+    "index/computer basics/regex.md",
     "index/linux/commands/grep.md",
     "index/linux/commands/od.md",
     "index/sql/db2.md",
@@ -237,8 +242,6 @@
     "index/linux/linux basic.md",
     "index/linux/commands/curl.md",
     "index/linux/commands/useradd.md",
-    "index/linux/commands/tail.md",
-    "useradd.md",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
     "resource/Pasted image 20230514171016.png",

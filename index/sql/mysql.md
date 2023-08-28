@@ -95,6 +95,15 @@ mycli -u root -p 123456
 
 ## 常用sql语句
 
+### 执行提示
+
+您可以使用 `/*+ parallel(n) */` 注释来指示 MySQL 在执行查询时使用并行执行。其中，`n` 是并行度，表示要使用的并行线程数。
+
+```mysql
+SELECT /*+ parallel(32) */ COUNT(*)
+FROM xxx;
+```
+
 ### 查询结果按行打印
 
 在MySQL的sql语句后加上`\G`
