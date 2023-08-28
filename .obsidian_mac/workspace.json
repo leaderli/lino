@@ -26,10 +26,10 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/commands/tee.md",
+                "file": "index/linux/commands/date.md",
                 "mode": "source",
                 "backlinks": false,
-                "source": true
+                "source": false
               }
             }
           }
@@ -149,7 +149,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/commands/tee.md"
+                "file": "index/linux/commands/date.md"
               }
             }
           },
@@ -216,6 +216,7 @@
   },
   "active": "747b8c0a812f2dd7",
   "lastOpenFiles": [
+    "index/linux/commands/tee.md",
     "index/sql/mysql.md",
     "index/linux/bash.md",
     "index/computer basics/regex.md",
@@ -241,7 +242,6 @@
     "index/linux/commands/w.md",
     "index/linux/linux basic.md",
     "index/linux/commands/curl.md",
-    "index/linux/commands/useradd.md",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
     "resource/Pasted image 20230514171016.png",
