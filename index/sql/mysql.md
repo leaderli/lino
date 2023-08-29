@@ -526,7 +526,7 @@ explain select * from film a, film_text b where a.film_id = b.film_id
 - `const/system` 单表中最多有一个匹配行，查询起来非常迅速，所以这个匹配行中的其他列的值可以被优化器在当前查询中当作常量来处理
 
 ```sql
-explain select * from (select * from customer where email ='AARON.SELBY@sakilacustomer.org')a
+explain select * from (select * from customer where email ='AARON.SELBY@sakilacustomer.org')
 ```
 
 - `NULL` MySQL不用访问表或者索引，直接就能够得到结果

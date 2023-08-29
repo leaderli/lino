@@ -26,7 +26,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/commands/date.md",
+                "file": "index/sql/mysql.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -63,7 +63,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tar",
+                "query": "explain",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -149,7 +149,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/commands/date.md"
+                "file": "index/sql/mysql.md"
               }
             }
           },
@@ -216,6 +216,8 @@
   },
   "active": "747b8c0a812f2dd7",
   "lastOpenFiles": [
+    "index/linux/commands/date.md",
+    "index/compilers/ANTLR.md",
     "index/linux/commands/tee.md",
     "index/sql/mysql.md",
     "index/linux/bash.md",
@@ -240,8 +242,6 @@
     "index/linux/commands/printf.md",
     "index/linux/commands/_commands.md",
     "index/linux/commands/w.md",
-    "index/linux/linux basic.md",
-    "index/linux/commands/curl.md",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
     "resource/Pasted image 20230514171016.png",
