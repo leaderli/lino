@@ -26,7 +26,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/commands/traceroute.md",
+                "file": "index/linux/commands/tcpdump.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -149,7 +149,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/commands/traceroute.md"
+                "file": "index/linux/commands/tcpdump.md"
               }
             }
           },
@@ -216,8 +216,8 @@
   },
   "active": "747b8c0a812f2dd7",
   "lastOpenFiles": [
-    "index/linux/commands/ls.md",
     "index/linux/commands/traceroute.md",
+    "index/linux/commands/ls.md",
     "index/java/framework/arthas.md",
     "index/linux/commands/uname.md",
     "index/java/build/maven.md",
