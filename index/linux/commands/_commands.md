@@ -69,6 +69,7 @@
 - 📄 [[index/linux/commands/tmux|tmux]]
 - 📄 [[index/linux/commands/top|top]]
 - 📄 [[index/linux/commands/tr|tr]]
+- 📄 [[index/linux/commands/traceroute|traceroute]]
 - 📄 [[index/linux/commands/tty|tty]]
 - 📄 [[index/linux/commands/type|type]]
 - 📄 [[index/linux/commands/uname|uname]]

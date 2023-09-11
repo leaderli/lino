@@ -26,10 +26,10 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/jvm/jvm-gc.md",
+                "file": "index/linux/commands/traceroute.md",
                 "mode": "source",
                 "backlinks": false,
-                "source": true
+                "source": false
               }
             }
           }
@@ -63,7 +63,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "vlook",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -88,12 +88,12 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 275
+    "width": 275,
+    "collapsed": true
   },
   "right": {
     "id": "aed7281feaa57107",
@@ -149,7 +149,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/jvm/jvm-gc.md"
+                "file": "index/linux/commands/traceroute.md"
               }
             }
           },
@@ -166,8 +166,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 179,
-    "collapsed": true
+    "width": 179
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -217,9 +216,15 @@
   },
   "active": "747b8c0a812f2dd7",
   "lastOpenFiles": [
+    "index/linux/commands/ls.md",
+    "index/linux/commands/traceroute.md",
+    "index/java/framework/arthas.md",
+    "index/linux/commands/uname.md",
+    "index/java/build/maven.md",
+    "index/linux/commands/iconv.md",
     "index/software/office.md",
-    "index/linux/commands/zip.md",
     "index/java/jvm/jvm-gc.md",
+    "index/linux/commands/zip.md",
     "index/linux/commands/tar.md",
     "index/linux/commands/crontab.md",
     "index/sql/mysql.md",
@@ -231,18 +236,12 @@
     "index/linux/commands/grep.md",
     "index/linux/commands/od.md",
     "index/sql/db2.md",
-    "index/linux/commands/iconv.md",
     "index/linux/commands/file.md",
     "index/linux/commands/sed.md",
     "index/linux/commands/ps.md",
     "index/linux/commands/tr.md",
     "index/software/vim.md",
     "index/linux/configuration.md",
-    "index/linux/complete.md",
-    "index/linux/commands/find.md",
-    "index/linux/commands/cat.md",
-    "index/common/java_interview.md",
-    "index/computer basics/c.md",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
     "resource/Pasted image 20230514171016.png",
