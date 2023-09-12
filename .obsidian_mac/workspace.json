@@ -26,10 +26,10 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/commands/tcpdump.md",
+                "file": "index/linux/commands/nmap.md",
                 "mode": "source",
                 "backlinks": false,
-                "source": false
+                "source": true
               }
             }
           }
@@ -92,8 +92,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 275,
-    "collapsed": true
+    "width": 275
   },
   "right": {
     "id": "aed7281feaa57107",
@@ -149,7 +148,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/commands/tcpdump.md"
+                "file": "index/linux/commands/nmap.md"
               }
             }
           },
@@ -217,6 +216,10 @@
   "active": "747b8c0a812f2dd7",
   "lastOpenFiles": [
     "index/linux/commands/traceroute.md",
+    "index/linux/commands/nmap.md",
+    "index/linux/commands/getopts.md",
+    "index/linux/bash.md",
+    "index/linux/commands/tcpdump.md",
     "index/linux/commands/ls.md",
     "index/java/framework/arthas.md",
     "index/linux/commands/uname.md",
@@ -231,7 +234,6 @@
     "index/linux/commands/date.md",
     "index/compilers/ANTLR.md",
     "index/linux/commands/tee.md",
-    "index/linux/bash.md",
     "index/computer basics/regex.md",
     "index/linux/commands/grep.md",
     "index/linux/commands/od.md",
@@ -239,9 +241,6 @@
     "index/linux/commands/file.md",
     "index/linux/commands/sed.md",
     "index/linux/commands/ps.md",
-    "index/linux/commands/tr.md",
-    "index/software/vim.md",
-    "index/linux/configuration.md",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
     "resource/Pasted image 20230514171016.png",

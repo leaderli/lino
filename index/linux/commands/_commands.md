@@ -42,6 +42,7 @@
 - 📄 [[index/linux/commands/mktemp|mktemp]]
 - 📄 [[index/linux/commands/netstat|netstat]]
 - 📄 [[index/linux/commands/nl|nl]]
+- 📄 [[index/linux/commands/nmap|nmap]]
 - 📄 [[index/linux/commands/nohup|nohup]]
 - 📄 [[index/linux/commands/od|od]]
 - 📄 [[index/linux/commands/passwd|passwd]]
