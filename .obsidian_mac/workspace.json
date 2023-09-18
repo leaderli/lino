@@ -37,9 +37,12 @@
             "id": "a76f12c41df8d5b6",
             "type": "leaf",
             "state": {
-              "type": "release-notes",
+              "type": "markdown",
               "state": {
-                "currentVersion": "1.4.12"
+                "file": "index/java/spring/tips.md",
+                "mode": "preview",
+                "backlinks": false,
+                "source": true
               }
             }
           }
@@ -73,7 +76,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "future",
+                "query": "autowire",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -159,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/commands/nmap.md"
+                "file": "index/java/spring/tips.md"
               }
             }
           },
@@ -196,46 +199,11 @@
       "workspaces:Manage workspace layouts": false
     }
   },
-  "floating": {
-    "id": "8e505a93dff74934",
-    "type": "floating",
-    "children": [
-      {
-        "id": "474d9a261028c58e",
-        "type": "window",
-        "children": [
-          {
-            "id": "d3d729fa22b2b3b4",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "e9fda9a89bff34a4",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "index/linux/commands/iconv.md",
-                    "mode": "source",
-                    "backlinks": false,
-                    "source": false
-                  }
-                }
-              }
-            ]
-          }
-        ],
-        "direction": "vertical",
-        "x": 208,
-        "y": 23,
-        "width": 1024,
-        "height": 800,
-        "maximize": false,
-        "zoom": 0
-      }
-    ]
-  },
   "active": "a76f12c41df8d5b6",
   "lastOpenFiles": [
+    "index/java/spring/autowired.md",
+    "index/linux/commands/ssh.md",
+    "index/linux/commands/iconv.md",
     "index/linux/commands/traceroute.md",
     "index/linux/commands/nmap.md",
     "index/linux/commands/getopts.md",
@@ -245,7 +213,6 @@
     "index/java/framework/arthas.md",
     "index/linux/commands/uname.md",
     "index/java/build/maven.md",
-    "index/linux/commands/iconv.md",
     "index/software/office.md",
     "index/java/jvm/jvm-gc.md",
     "index/linux/commands/zip.md",
@@ -260,8 +227,6 @@
     "index/linux/commands/od.md",
     "index/sql/db2.md",
     "index/linux/commands/file.md",
-    "index/linux/commands/sed.md",
-    "index/linux/commands/ps.md",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
     "resource/Pasted image 20230514171016.png",
