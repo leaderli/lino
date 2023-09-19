@@ -39,8 +39,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/spring/tips.md",
-                "mode": "preview",
+                "file": "index/linux/commands/crontab.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": true
               }
@@ -162,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/spring/tips.md"
+                "file": "index/linux/commands/crontab.md"
               }
             }
           },
@@ -201,11 +201,17 @@
   },
   "active": "a76f12c41df8d5b6",
   "lastOpenFiles": [
+    "index/linux/commands/wget.md",
+    "index/linux/commands/traceroute.md",
+    "index/linux/commands/nmap.md",
+    "index/linux/commands/dig.md",
+    "index/middleware/redis/redis tutorial.md",
+    "index/linux/commands/telnet.md",
+    "index/middleware/redis.md",
+    "index/java/spring/tips.md",
     "index/java/spring/autowired.md",
     "index/linux/commands/ssh.md",
     "index/linux/commands/iconv.md",
-    "index/linux/commands/traceroute.md",
-    "index/linux/commands/nmap.md",
     "index/linux/commands/getopts.md",
     "index/linux/bash.md",
     "index/linux/commands/tcpdump.md",
@@ -221,12 +227,6 @@
     "index/sql/mysql.md",
     "index/linux/commands/date.md",
     "index/compilers/ANTLR.md",
-    "index/linux/commands/tee.md",
-    "index/computer basics/regex.md",
-    "index/linux/commands/grep.md",
-    "index/linux/commands/od.md",
-    "index/sql/db2.md",
-    "index/linux/commands/file.md",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
     "resource/Pasted image 20230514171016.png",
