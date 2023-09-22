@@ -26,7 +26,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/commands/nmap.md",
+                "file": "index/java/framework/okhttp.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -47,7 +47,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -76,7 +76,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "$PATH",
+                "query": "\"\"",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -162,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/rpm.md"
+                "file": "index/java/framework/okhttp.md"
               }
             }
           },
@@ -199,15 +199,17 @@
       "workspaces:Manage workspace layouts": false
     }
   },
-  "active": "a76f12c41df8d5b6",
+  "active": "747b8c0a812f2dd7",
   "lastOpenFiles": [
+    "index/linux/bash.md",
+    "index/linux/commands/nmap.md",
+    "index/linux/rpm.md",
     "index/computer basics/go.md",
     "index/java/java tips.md",
     "index/java/framework/arthas.md",
     "index/linux/commands/crontab.md",
     "index/linux/commands/wget.md",
     "index/linux/commands/traceroute.md",
-    "index/linux/commands/nmap.md",
     "index/linux/commands/dig.md",
     "index/middleware/redis/redis tutorial.md",
     "index/linux/commands/telnet.md",
@@ -217,7 +219,6 @@
     "index/linux/commands/ssh.md",
     "index/linux/commands/iconv.md",
     "index/linux/commands/getopts.md",
-    "index/linux/bash.md",
     "index/linux/commands/tcpdump.md",
     "index/linux/commands/ls.md",
     "index/linux/commands/uname.md",
@@ -226,7 +227,6 @@
     "index/java/jvm/jvm-gc.md",
     "index/linux/commands/zip.md",
     "index/linux/commands/tar.md",
-    "index/sql/mysql.md",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
     "resource/Pasted image 20230514171016.png",
