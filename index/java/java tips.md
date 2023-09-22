@@ -451,3 +451,11 @@ public class DebugModeExample {
     }
 }
 ```
+
+
+
+### 获取执行目录
+
+```shell
+System.getenv("PWD")
+```

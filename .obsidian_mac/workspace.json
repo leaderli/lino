@@ -39,7 +39,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/commands/crontab.md",
+                "file": "index/linux/rpm.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -76,7 +76,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "autowire",
+                "query": "$PATH",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -162,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/commands/crontab.md"
+                "file": "index/linux/rpm.md"
               }
             }
           },
@@ -201,6 +201,10 @@
   },
   "active": "a76f12c41df8d5b6",
   "lastOpenFiles": [
+    "index/computer basics/go.md",
+    "index/java/java tips.md",
+    "index/java/framework/arthas.md",
+    "index/linux/commands/crontab.md",
     "index/linux/commands/wget.md",
     "index/linux/commands/traceroute.md",
     "index/linux/commands/nmap.md",
@@ -216,17 +220,13 @@
     "index/linux/bash.md",
     "index/linux/commands/tcpdump.md",
     "index/linux/commands/ls.md",
-    "index/java/framework/arthas.md",
     "index/linux/commands/uname.md",
     "index/java/build/maven.md",
     "index/software/office.md",
     "index/java/jvm/jvm-gc.md",
     "index/linux/commands/zip.md",
     "index/linux/commands/tar.md",
-    "index/linux/commands/crontab.md",
     "index/sql/mysql.md",
-    "index/linux/commands/date.md",
-    "index/compilers/ANTLR.md",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
     "resource/Pasted image 20230514171016.png",
