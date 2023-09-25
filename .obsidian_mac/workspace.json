@@ -34,6 +34,19 @@
             }
           },
           {
+            "id": "79fe0947509823c6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "index/software/kafka.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": true
+              }
+            }
+          },
+          {
             "id": "a76f12c41df8d5b6",
             "type": "leaf",
             "state": {
@@ -47,7 +60,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -162,7 +175,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/framework/okhttp.md"
+                "file": "index/software/kafka.md"
               }
             }
           },
@@ -199,7 +212,7 @@
       "workspaces:Manage workspace layouts": false
     }
   },
-  "active": "747b8c0a812f2dd7",
+  "active": "79fe0947509823c6",
   "lastOpenFiles": [
     "index/linux/bash.md",
     "index/linux/commands/nmap.md",
