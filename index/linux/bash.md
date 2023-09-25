@@ -127,6 +127,15 @@ $ tr a-z A-Z <<END_TEXT
  Working dir /home/user
 ```
 
+输出到其他管道
+```shell
+ $ cat << EOF > 1.txt
+ > Working dir $PWD
+ > EOF
+```
+
+
+
 ### 管道符
 
 使用管道符，可以将一个命令的输出重定向到另一个命令的输入，默认情况下只会讲标准输出(fd 为 1)重定向到另一个命令
