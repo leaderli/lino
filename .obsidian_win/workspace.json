@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/compilers/ANTLR.md",
+                "file": "index/linux/bash.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -95,7 +95,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/compilers/ANTLR.md"
+                "file": "index/linux/bash.md"
               }
             }
           },
@@ -116,7 +116,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index/compilers/ANTLR.md",
+                "file": "index/linux/bash.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,8 +137,11 @@
   },
   "active": "6fae29c6bf9e7f43",
   "lastOpenFiles": [
-    "index/compilers/automation.md",
+    "index/software/git.md",
     "index/compilers/ANTLR.md",
+    "index/linux/commands/traceroute.md",
+    "index/linux/commands/nmap.md",
+    "index/compilers/automation.md",
     "index/common/math.md",
     "index/compilers/grammar.md",
     "index/compilers/fundamentals of compiling.md",
@@ -160,9 +163,6 @@
     "index/linux/commands/rm.md",
     "index/linux/linux basic.md",
     "index/linux/commands/file.md",
-    "index/python/python bash.md",
-    "index/linux/commands/sed.md",
-    "index/linux/commands/grep.md",
     "resource/编译原理课件.pdf",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
