@@ -39,7 +39,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "lexer",
+                "query": "RuntimeMXBean",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -74,8 +74,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "horizontal",
@@ -137,6 +136,8 @@
   },
   "active": "6fae29c6bf9e7f43",
   "lastOpenFiles": [
+    "index/java/java tips.md",
+    "index/linux/bash.md",
     "index/software/git.md",
     "index/compilers/ANTLR.md",
     "index/linux/commands/traceroute.md",
@@ -150,11 +151,9 @@
     "index/design pattern/finite-state machine mode.md",
     "index/linux/commands/man.md",
     "index/java/framework/asciitable.md",
-    "index/java/java tips.md",
     "index/frontend/packages/mockjs.md",
     "index/java/framework/mock.java.md",
     "index/rust/rust.md",
-    "index/linux/bash.md",
     "index/linux/commands/tty.md",
     "index/linux/commands/write.md",
     "index/linux/commands/cat.md",
