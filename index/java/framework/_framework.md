@@ -23,6 +23,7 @@
 - 📄 [[index/java/framework/mockito|mockito]]
 - 📄 [[index/java/framework/mybatis|mybatis]]
 - 📄 [[index/java/framework/okhttp|okhttp]]
+- 📄 [[index/java/framework/picocli|picocli]]
 - 📄 [[index/java/framework/poi|poi]]
 - 📄 [[index/java/framework/reactor|reactor]]
 - 📄 [[index/java/framework/redisson|redisson]]

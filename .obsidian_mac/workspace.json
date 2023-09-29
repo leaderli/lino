@@ -39,10 +39,10 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/software/kafka.md",
+                "file": "index/java/framework/picocli.md",
                 "mode": "source",
                 "backlinks": false,
-                "source": true
+                "source": false
               }
             }
           },
@@ -89,7 +89,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "\"\"",
+                "query": "命令行 cli",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -114,8 +114,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -175,7 +174,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/software/kafka.md"
+                "file": "index/java/framework/picocli.md"
               }
             }
           },
@@ -214,12 +213,19 @@
   },
   "active": "79fe0947509823c6",
   "lastOpenFiles": [
+    "index/java/framework/arthas.md",
+    "index/java/framework/picocli.md",
     "index/linux/bash.md",
+    "index/linux/commands/date.md",
+    "index/linux/commands/echo.md",
+    "index/linux/commands/nohup.md",
+    "index/linux/linux basic.md",
+    "index/linux/commands/ln.md",
+    "index/software/kafka.md",
     "index/linux/commands/nmap.md",
     "index/linux/rpm.md",
     "index/computer basics/go.md",
     "index/java/java tips.md",
-    "index/java/framework/arthas.md",
     "index/linux/commands/crontab.md",
     "index/linux/commands/wget.md",
     "index/linux/commands/traceroute.md",
@@ -233,13 +239,6 @@
     "index/linux/commands/iconv.md",
     "index/linux/commands/getopts.md",
     "index/linux/commands/tcpdump.md",
-    "index/linux/commands/ls.md",
-    "index/linux/commands/uname.md",
-    "index/java/build/maven.md",
-    "index/software/office.md",
-    "index/java/jvm/jvm-gc.md",
-    "index/linux/commands/zip.md",
-    "index/linux/commands/tar.md",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
     "resource/Pasted image 20230514171016.png",
