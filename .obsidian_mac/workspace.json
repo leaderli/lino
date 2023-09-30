@@ -40,7 +40,7 @@
               "type": "markdown",
               "state": {
                 "file": "index/java/framework/picocli.md",
-                "mode": "source",
+                "mode": "preview",
                 "backlinks": false,
                 "source": false
               }
@@ -118,7 +118,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 275
+    "width": 275,
+    "collapsed": true
   },
   "right": {
     "id": "aed7281feaa57107",
@@ -201,7 +202,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 179
+    "width": 179,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
