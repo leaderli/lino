@@ -167,3 +167,22 @@ partition 是一个有序日志，在 partition 上每个 consumer 有唯一 off
 
 例如
 ![kafka简述_2020-06-03-22-49-47.png|400](kafka简述_2020-06-03-22-49-47.png)
+
+
+## 问题
+
+```log
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".  
+SLF4J: Defaulting to no-operation (NOP) logger implementation  
+SLF4J: See [http://www.slf4j.org/codes.html#StaticLoggerBinder](http://www.slf4j.org/codes.html#StaticLoggerBinder) for further details.
+```
+
+添加jar包
+
+```xml
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-nop</artifactId>
+    <version>2.0.9</version>
+</dependency>
+```
