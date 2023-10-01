@@ -39,7 +39,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "shad",
+                "query": "maven-ja",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -136,6 +136,7 @@
   },
   "active": "51f7c28400713fd9",
   "lastOpenFiles": [
+    "index/java/framework/picocli.md",
     "index/java/java tips.md",
     "index/linux/bash.md",
     "index/software/git.md",
@@ -161,7 +162,6 @@
     "index/linux/commands/ls.md",
     "index/linux/commands/rm.md",
     "index/linux/linux basic.md",
-    "index/linux/commands/file.md",
     "resource/编译原理课件.pdf",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
