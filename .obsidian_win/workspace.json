@@ -39,7 +39,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "RuntimeMXBean",
+                "query": "shad",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -134,7 +134,7 @@
       "markdown-importer:Open format converter": true
     }
   },
-  "active": "6fae29c6bf9e7f43",
+  "active": "51f7c28400713fd9",
   "lastOpenFiles": [
     "index/java/java tips.md",
     "index/linux/bash.md",
