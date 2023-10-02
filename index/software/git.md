@@ -410,7 +410,9 @@ git branch -D tmp
 git tag v1.0
 git tag -a v0.1 -m "version 0.1 released"
 
-git push tag v1.0 
+git push origin <tag_name>
+# 推送全部注解
+git push  --tags 
 
 ```
 

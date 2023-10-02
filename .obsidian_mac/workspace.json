@@ -39,8 +39,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/framework/picocli.md",
-                "mode": "preview",
+                "file": "index/java/build/maven.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": false
               }
@@ -175,7 +175,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/framework/picocli.md"
+                "file": "index/java/build/maven.md"
               }
             }
           },
@@ -202,8 +202,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 179,
-    "collapsed": true
+    "width": 179
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -215,8 +214,11 @@
   },
   "active": "79fe0947509823c6",
   "lastOpenFiles": [
-    "index/java/framework/arthas.md",
+    "index/software/git.md",
+    "index/software/mac.md",
+    "index/linux/commands/paste.md",
     "index/java/framework/picocli.md",
+    "index/java/framework/arthas.md",
     "index/linux/bash.md",
     "index/linux/commands/date.md",
     "index/linux/commands/echo.md",
@@ -238,9 +240,6 @@
     "index/java/spring/tips.md",
     "index/java/spring/autowired.md",
     "index/linux/commands/ssh.md",
-    "index/linux/commands/iconv.md",
-    "index/linux/commands/getopts.md",
-    "index/linux/commands/tcpdump.md",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
     "resource/Pasted image 20230514171016.png",

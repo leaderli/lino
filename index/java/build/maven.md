@@ -1010,6 +1010,42 @@ $ java -cp target/LiTest-1.0.jar  io.leaderli.litest.Main
 	    </executions>
 	</plugin>
 	```
+ 
+### maven-shade-plugin
+
+用于创建可执行的、包含所有依赖的独立 JAR 文件
+
+```xml
+<project>
+  <!-- 省略其他配置 -->
+  
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.3.0</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <!-- 配置 Shade 插件 -->
+              <transformers>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <mainClass>com.example.MainClass</mainClass>
+                </transformer>
+              </transformers>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+```
 ## 模块
 
 maven 的模块是在父类 pom 中定义聚合关系，其本质仅仅是一次性批量按顺序执行所有子模块的 mvn 命令而已
