@@ -39,10 +39,10 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/build/maven.md",
+                "file": "index/linux/bash.md",
                 "mode": "source",
                 "backlinks": false,
-                "source": false
+                "source": true
               }
             }
           },
@@ -89,7 +89,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "命令行 cli",
+                "query": "$line",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -114,12 +114,12 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 275,
-    "collapsed": true
+    "width": 275
   },
   "right": {
     "id": "aed7281feaa57107",
@@ -175,7 +175,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/build/maven.md"
+                "file": "index/linux/bash.md"
               }
             }
           },
@@ -214,6 +214,8 @@
   },
   "active": "79fe0947509823c6",
   "lastOpenFiles": [
+    "index/linux/commands/getopts.md",
+    "index/java/build/maven.md",
     "index/software/git.md",
     "index/software/mac.md",
     "index/linux/commands/paste.md",
@@ -238,8 +240,6 @@
     "index/linux/commands/telnet.md",
     "index/middleware/redis.md",
     "index/java/spring/tips.md",
-    "index/java/spring/autowired.md",
-    "index/linux/commands/ssh.md",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
     "resource/Pasted image 20230514171016.png",
