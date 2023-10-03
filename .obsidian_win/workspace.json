@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/bash.md",
+                "file": "index/call system/freeswitch.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -94,7 +94,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/bash.md"
+                "file": "index/call system/freeswitch.md"
               }
             }
           },
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index/linux/bash.md",
+                "file": "index/call system/freeswitch.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,11 +134,11 @@
       "markdown-importer:Open format converter": true
     }
   },
-  "active": "51f7c28400713fd9",
+  "active": "6fae29c6bf9e7f43",
   "lastOpenFiles": [
+    "index/linux/bash.md",
     "index/java/framework/picocli.md",
     "index/java/java tips.md",
-    "index/linux/bash.md",
     "index/software/git.md",
     "index/compilers/ANTLR.md",
     "index/linux/commands/traceroute.md",
