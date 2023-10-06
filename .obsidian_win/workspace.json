@@ -19,8 +19,19 @@
                 "source": true
               }
             }
+          },
+          {
+            "id": "1372ae6b3381e517",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.4.14"
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -120,6 +131,16 @@
                 "unlinkedCollapsed": true
               }
             }
+          },
+          {
+            "id": "2f399134c80351a0",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency"
+              }
+            }
           }
         ]
       }
@@ -134,7 +155,7 @@
       "markdown-importer:Open format converter": true
     }
   },
-  "active": "6fae29c6bf9e7f43",
+  "active": "1372ae6b3381e517",
   "lastOpenFiles": [
     "index/call system/freeswitch.md",
     "index/linux/bash.md",
