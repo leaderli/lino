@@ -4,34 +4,23 @@
     "type": "split",
     "children": [
       {
-        "id": "67666121b398d87d",
+        "id": "5a0696d5364e0016",
         "type": "tabs",
         "children": [
           {
-            "id": "6fae29c6bf9e7f43",
+            "id": "f6608d2c4d07b9fb",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/java tips.md",
+                "file": "index/java/swing/swing basic.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
               }
             }
-          },
-          {
-            "id": "1372ae6b3381e517",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.4.14"
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -85,7 +74,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -105,7 +95,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/java tips.md"
+                "file": "index/java/swing/swing basic.md"
               }
             }
           },
@@ -126,7 +116,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index/java/java tips.md",
+                "file": "index/java/swing/swing basic.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -141,8 +131,19 @@
                 "sortOrder": "frequency"
               }
             }
+          },
+          {
+            "id": "6dc07ea19f1c7486",
+            "type": "leaf",
+            "state": {
+              "type": "file-properties",
+              "state": {
+                "file": "index/java/swing/swing basic.md"
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -155,12 +156,18 @@
       "markdown-importer:Open format converter": true
     }
   },
-  "active": "1372ae6b3381e517",
+  "active": "f6608d2c4d07b9fb",
   "lastOpenFiles": [
+    "index/computer basics/bit.md",
+    "index/computer basics/c.md",
+    "index/computer basics/c++.md",
+    "index/java/swing/swing basic.md",
+    "index/java/java tips.md",
+    "index/java/swing/_swing.md",
+    "index/java/swing",
     "index/call system/freeswitch.md",
     "index/linux/bash.md",
     "index/java/framework/picocli.md",
-    "index/java/java tips.md",
     "index/software/git.md",
     "index/compilers/ANTLR.md",
     "index/linux/commands/traceroute.md",
@@ -178,11 +185,6 @@
     "index/java/framework/mock.java.md",
     "index/rust/rust.md",
     "index/linux/commands/tty.md",
-    "index/linux/commands/write.md",
-    "index/linux/commands/cat.md",
-    "index/linux/commands/ln.md",
-    "index/linux/commands/ls.md",
-    "index/linux/commands/rm.md",
     "resource/编译原理课件.pdf",
     "index/rust",
     "resource/Pasted image 20230515052444.png",

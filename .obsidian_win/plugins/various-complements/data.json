@@ -1,6 +1,11 @@
 {
   "strategy": "default",
+  "cedictPath": "./cedict_ts.u8",
   "matchStrategy": "prefix",
+  "fuzzyMatch": true,
+  "minFuzzyMatchScore": 0.5,
+  "matchingWithoutEmoji": true,
+  "treatAccentDiacriticsAsAlphabeticCharacters": false,
   "maxNumberOfSuggestions": 5,
   "maxNumberOfWordsAsPhrase": 3,
   "minNumberOfCharactersTriggered": 0,
@@ -10,14 +15,47 @@
   "disableSuggestionsDuringImeOn": false,
   "insertAfterCompletion": false,
   "firstCharactersDisableSuggestions": ":/^",
+  "patternsToSuppressTrigger": [
+    "^~~~.*",
+    "^```.*"
+  ],
+  "noAutoFocusUntilCycle": false,
   "showMatchStrategy": true,
   "showComplementAutomatically": true,
   "showIndexingStatus": true,
   "descriptionOnSuggestion": "Short",
-  "selectSuggestionKeys": "Enter",
-  "additionalCycleThroughSuggestionsKeys": "None",
-  "disableUpDownKeysForCycleThroughSuggestionsKeys": false,
-  "openSourceFileKey": "None",
+  "hotkeys": {
+    "select": [
+      {
+        "modifiers": [],
+        "key": "Enter"
+      }
+    ],
+    "up": [
+      {
+        "modifiers": [],
+        "key": "ArrowUp"
+      }
+    ],
+    "down": [
+      {
+        "modifiers": [],
+        "key": "ArrowDown"
+      }
+    ],
+    "select 1st": [],
+    "select 2nd": [],
+    "select 3rd": [],
+    "select 4th": [],
+    "select 5th": [],
+    "select 6th": [],
+    "select 7th": [],
+    "select 8th": [],
+    "select 9th": [],
+    "open": [],
+    "completion": [],
+    "insert as text": []
+  },
   "propagateEsc": true,
   "enableCurrentFileComplement": false,
   "currentFileMinNumberOfCharacters": 0,
@@ -38,54 +76,27 @@
   "enableInternalLinkComplement": true,
   "suggestInternalLinkWithAlias": false,
   "excludeInternalLinkPathPrefixPatterns": "",
+  "updateInternalLinksOnSave": true,
+  "insertAliasTransformedFromDisplayedInternalLink": {
+    "enabled": false,
+    "beforeRegExp": "",
+    "after": ""
+  },
+  "frontMatterKeyForExclusionInternalLink": "",
   "enableFrontMatterComplement": true,
   "frontMatterComplementMatchStrategy": "inherit",
   "insertCommaAfterFrontMatterCompletion": false,
   "intelligentSuggestionPrioritization": {
+    "enabled": true,
+    "historyFilePath": "",
     "maxDaysToKeepHistory": 30,
     "maxNumberOfHistoryToKeep": 0
   },
+  "disableOnMobile": false,
   "showLogAboutPerformanceInConsole": false,
-  "selectionHistoryTree": {
-    "select_type": {
-      "select_type": {
-        "currentVault": {
-          "count": 1,
-          "lastUpdated": 1684047267645
-        }
-      }
-    },
-    "table": {
-      "table": {
-        "currentVault": {
-          "count": 1,
-          "lastUpdated": 1684047279056
-        }
-      }
-    },
-    "type": {
-      "type": {
-        "internalLink": {
-          "count": 1,
-          "lastUpdated": 1684047293829
-        }
-      }
-    },
-    "locks": {
-      "locks": {
-        "currentVault": {
-          "count": 4,
-          "lastUpdated": 1684100993517
-        }
-      }
-    },
-    "表级锁：开销小，加锁快；不会出现死锁；锁定粒度大，发生锁冲突的概率最高": {
-      "表级锁：开销小，加锁快；不会出现死锁；锁定粒度大，发生锁冲突的概率最高": {
-        "currentVault": {
-          "count": 2,
-          "lastUpdated": 1684101333709
-        }
-      }
-    }
-  }
+  "selectionHistoryTree": {},
+  "selectSuggestionKeys": "Enter",
+  "additionalCycleThroughSuggestionsKeys": "None",
+  "disableUpDownKeysForCycleThroughSuggestionsKeys": false,
+  "openSourceFileKey": "None"
 }
