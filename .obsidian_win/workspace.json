@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/call system/freeswitch.md",
+                "file": "index/java/java tips.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -94,7 +94,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/call system/freeswitch.md"
+                "file": "index/java/java tips.md"
               }
             }
           },
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index/call system/freeswitch.md",
+                "file": "index/java/java tips.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -136,6 +136,7 @@
   },
   "active": "6fae29c6bf9e7f43",
   "lastOpenFiles": [
+    "index/call system/freeswitch.md",
     "index/linux/bash.md",
     "index/java/framework/picocli.md",
     "index/java/java tips.md",
@@ -161,7 +162,6 @@
     "index/linux/commands/ln.md",
     "index/linux/commands/ls.md",
     "index/linux/commands/rm.md",
-    "index/linux/linux basic.md",
     "resource/编译原理课件.pdf",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
