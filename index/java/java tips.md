@@ -1,7 +1,7 @@
 ---
 tags:
   - java/tips
-date updated: 2023-07-02 15:51
+date updated: 2023-10-06 16:34
 ---
 
 ### 读取 properties 中文乱码解决
@@ -452,10 +452,14 @@ public class DebugModeExample {
 }
 ```
 
-
-
 ### 获取执行目录
 
 ```shell
 System.getenv("PWD")
+```
+
+### 获取java对象在内存中的索引
+
+```java
+System.identityHashCode(obj)
 ```
