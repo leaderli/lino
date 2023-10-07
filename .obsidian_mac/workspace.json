@@ -39,7 +39,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/bash.md",
+                "file": "index/linux/commands/crontab.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -89,7 +89,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "$line",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -175,7 +175,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/bash.md"
+                "file": "index/linux/commands/crontab.md"
               }
             }
           },
@@ -214,17 +214,17 @@
   },
   "active": "79fe0947509823c6",
   "lastOpenFiles": [
-    "index/linux/commands/getopts.md",
+    "index/linux/bash.md",
     "index/java/build/maven.md",
+    "index/linux/commands/nohup.md",
+    "index/linux/commands/getopts.md",
     "index/software/git.md",
     "index/software/mac.md",
     "index/linux/commands/paste.md",
     "index/java/framework/picocli.md",
     "index/java/framework/arthas.md",
-    "index/linux/bash.md",
     "index/linux/commands/date.md",
     "index/linux/commands/echo.md",
-    "index/linux/commands/nohup.md",
     "index/linux/linux basic.md",
     "index/linux/commands/ln.md",
     "index/software/kafka.md",
