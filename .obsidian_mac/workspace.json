@@ -39,7 +39,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/commands/crontab.md",
+                "file": "index/linux/commands/grep.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -175,7 +175,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/commands/crontab.md"
+                "file": "index/linux/commands/grep.md"
               }
             }
           },
@@ -214,6 +214,10 @@
   },
   "active": "79fe0947509823c6",
   "lastOpenFiles": [
+    "index/linux/commands/crontab.md",
+    "index/java/swing/swing basic.md",
+    "index/java/swing/_swing.md",
+    "index/java/swing",
     "index/linux/bash.md",
     "index/java/build/maven.md",
     "index/linux/commands/nohup.md",
@@ -232,14 +236,11 @@
     "index/linux/rpm.md",
     "index/computer basics/go.md",
     "index/java/java tips.md",
-    "index/linux/commands/crontab.md",
     "index/linux/commands/wget.md",
     "index/linux/commands/traceroute.md",
     "index/linux/commands/dig.md",
     "index/middleware/redis/redis tutorial.md",
     "index/linux/commands/telnet.md",
-    "index/middleware/redis.md",
-    "index/java/spring/tips.md",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
     "resource/Pasted image 20230514171016.png",
