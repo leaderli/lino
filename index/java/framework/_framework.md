@@ -16,6 +16,7 @@
 - 📄 [[index/java/framework/javassist|javassist]]
 - 📄 [[index/java/framework/jmh|jmh]]
 - 📄 [[index/java/framework/joor|joor]]
+- 📄 [[index/java/framework/jsch|jsch]]
 - 📄 [[index/java/framework/junit|junit]]
 - 📄 [[index/java/framework/log4j|log4j]]
 - 📄 [[index/java/framework/logback|logback]]
