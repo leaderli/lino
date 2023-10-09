@@ -17,7 +17,11 @@ date updated: 2022-03-28 14:59
 </dependencies>
 ```
 
-读取错误输出
+
+同时读取标准错误和标准输出，需要注意的是先获取两个流，然后在进行读取
+
+
+
 ```java
 JSch jsch = new JSch();
 Session session = jsch.getSession(username, host, port);
@@ -28,7 +32,6 @@ session.connect();
 
 ChannelExec channelExec = (ChannelExec) session.openChannel("exec");
 channelExec.setCommand(command);
-channelExec.setErrStream(System.err); // 将错误输出重定向到标准错误流
 channelExec.connect();
 
 InputStream in = channelExec.getInputStream(); // 获取标准输出流

@@ -26,10 +26,10 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/framework/jsch.md",
+                "file": "index/software/git.md",
                 "mode": "source",
                 "backlinks": false,
-                "source": true
+                "source": false
               }
             }
           },
@@ -175,7 +175,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/framework/jsch.md"
+                "file": "index/software/git.md"
               }
             }
           },
@@ -212,10 +212,10 @@
       "workspaces:Manage workspace layouts": false
     }
   },
-  "active": "92d5a84f4018e5e4",
+  "active": "747b8c0a812f2dd7",
   "lastOpenFiles": [
-    "index/java/framework/picocli.md",
     "index/java/framework/jsch.md",
+    "index/java/framework/picocli.md",
     "index/java/framework/okhttp.md",
     "index/linux/commands/zip.md",
     "index/linux/commands/grep.md",
