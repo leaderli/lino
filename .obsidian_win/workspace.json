@@ -74,8 +74,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "horizontal",
@@ -156,7 +155,7 @@
       "markdown-importer:Open format converter": true
     }
   },
-  "active": "f6608d2c4d07b9fb",
+  "active": "51f7c28400713fd9",
   "lastOpenFiles": [
     "index/computer basics/bit.md",
     "index/computer basics/c.md",
