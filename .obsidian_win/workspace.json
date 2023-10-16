@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/swing/swing basic.md",
+                "file": "index/software/win10.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -39,7 +39,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "maven-ja",
+                "query": "host",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -94,7 +94,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/java/swing/swing basic.md"
+                "file": "index/software/win10.md"
               }
             }
           },
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index/java/swing/swing basic.md",
+                "file": "index/software/win10.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,7 +137,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "index/java/swing/swing basic.md"
+                "file": "index/software/win10.md"
               }
             }
           }
@@ -155,12 +155,12 @@
       "markdown-importer:Open format converter": true
     }
   },
-  "active": "51f7c28400713fd9",
+  "active": "f6608d2c4d07b9fb",
   "lastOpenFiles": [
+    "index/java/swing/swing basic.md",
     "index/computer basics/bit.md",
     "index/computer basics/c.md",
     "index/computer basics/c++.md",
-    "index/java/swing/swing basic.md",
     "index/java/java tips.md",
     "index/java/swing/_swing.md",
     "index/java/swing",
