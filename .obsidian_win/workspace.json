@@ -157,6 +157,7 @@
   },
   "active": "f6608d2c4d07b9fb",
   "lastOpenFiles": [
+    "index/java/framework/jsch.md",
     "index/java/swing/swing basic.md",
     "index/computer basics/bit.md",
     "index/computer basics/c.md",
@@ -183,7 +184,6 @@
     "index/frontend/packages/mockjs.md",
     "index/java/framework/mock.java.md",
     "index/rust/rust.md",
-    "index/linux/commands/tty.md",
     "resource/编译原理课件.pdf",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
