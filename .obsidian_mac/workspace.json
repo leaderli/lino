@@ -26,7 +26,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/framework/okhttp.md",
+                "file": "index/java/framework/jsch.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -39,7 +39,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/linux/bash.md",
+                "file": "index/linux/commands/zip.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": true
@@ -60,7 +60,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -89,7 +89,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "$line",
+                "query": "a",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -175,7 +175,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/linux/bash.md"
+                "file": "index/java/framework/jsch.md"
               }
             }
           },
@@ -212,19 +212,27 @@
       "workspaces:Manage workspace layouts": false
     }
   },
-  "active": "79fe0947509823c6",
+  "active": "92d5a84f4018e5e4",
   "lastOpenFiles": [
-    "index/linux/commands/getopts.md",
+    "index/java/framework/picocli.md",
+    "index/java/framework/jsch.md",
+    "index/java/framework/okhttp.md",
+    "index/linux/commands/zip.md",
+    "index/linux/commands/grep.md",
+    "index/linux/commands/crontab.md",
+    "index/java/swing/swing basic.md",
+    "index/java/swing/_swing.md",
+    "index/java/swing",
+    "index/linux/bash.md",
     "index/java/build/maven.md",
+    "index/linux/commands/nohup.md",
+    "index/linux/commands/getopts.md",
     "index/software/git.md",
     "index/software/mac.md",
     "index/linux/commands/paste.md",
-    "index/java/framework/picocli.md",
     "index/java/framework/arthas.md",
-    "index/linux/bash.md",
     "index/linux/commands/date.md",
     "index/linux/commands/echo.md",
-    "index/linux/commands/nohup.md",
     "index/linux/linux basic.md",
     "index/linux/commands/ln.md",
     "index/software/kafka.md",
@@ -232,14 +240,7 @@
     "index/linux/rpm.md",
     "index/computer basics/go.md",
     "index/java/java tips.md",
-    "index/linux/commands/crontab.md",
     "index/linux/commands/wget.md",
-    "index/linux/commands/traceroute.md",
-    "index/linux/commands/dig.md",
-    "index/middleware/redis/redis tutorial.md",
-    "index/linux/commands/telnet.md",
-    "index/middleware/redis.md",
-    "index/java/spring/tips.md",
     "index/rust",
     "resource/Pasted image 20230515052444.png",
     "resource/Pasted image 20230514171016.png",
