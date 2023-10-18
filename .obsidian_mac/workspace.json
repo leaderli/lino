@@ -26,7 +26,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/software/git.md",
+                "file": "index/linux/bash.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -175,7 +175,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index/software/git.md"
+                "file": "index/linux/bash.md"
               }
             }
           },
@@ -214,12 +214,13 @@
   },
   "active": "747b8c0a812f2dd7",
   "lastOpenFiles": [
+    "index/linux/commands/crontab.md",
+    "index/software/git.md",
     "index/java/framework/jsch.md",
     "index/java/framework/picocli.md",
     "index/java/framework/okhttp.md",
     "index/linux/commands/zip.md",
     "index/linux/commands/grep.md",
-    "index/linux/commands/crontab.md",
     "index/java/swing/swing basic.md",
     "index/java/swing/_swing.md",
     "index/java/swing",
@@ -227,7 +228,6 @@
     "index/java/build/maven.md",
     "index/linux/commands/nohup.md",
     "index/linux/commands/getopts.md",
-    "index/software/git.md",
     "index/software/mac.md",
     "index/linux/commands/paste.md",
     "index/java/framework/arthas.md",
