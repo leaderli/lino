@@ -189,7 +189,7 @@ watch org.apache.commons.io.input.Tailer getRun
 
 查看某个方法执行细节
 ```shell
-watch org.apache.commons.io.input.Tailer getRun
+trace org.apache.commons.io.input.Tailer getRun
 ```
 ### jvm
 
