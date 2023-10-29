@@ -1,7 +1,7 @@
 ---
 tags:
   - linux/commands/find
-date updated: 2022-04-10 14:28
+date updated: 2023-10-30 04:04
 ---
 
 `find` 实时查找命令
@@ -65,3 +65,11 @@ date updated: 2022-04-10 14:28
   find . -type f -regex '.*\.(jpg|png)'
   find . -type f|egrep  '.*\.(jpg|png)'
   ```
+
+## 示例
+
+移动目录下所有文件到
+
+```shell
+find /path/to/source/directory -type f -iname "*.gif" -exec mv {} /path/to/destination/directory \;
+```
