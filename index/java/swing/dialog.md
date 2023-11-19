@@ -1,7 +1,7 @@
 ---
 tags:
   - swing/dialog
-date updated: 2023-11-19 22:18
+date updated: 2023-11-19 22:30
 ---
 
 ## date updated: 2023-11-12 22:39
@@ -111,3 +111,24 @@ class FilterDialog extends JDialog {
     }  
 }
 ```
+
+## 快速构建选择框，输入框
+
+方法的返回值即为交互的输入结果
+
+```java
+JOptionPane.showInputDialog(null, "Please enter your name", "Example 2",
+JOptionPane.QUESTION_MESSAGE, null, null, "Shannon");
+```
+
+![[Pasted image 20231119222454.png]]
+
+```java
+JOptionPane.showInputDialog(null, "Please choose a name", "Example 1",
+JOptionPane.QUESTION_MESSAGE, null, new Object[] {
+"Amanda", "Colin", "Don", "Fred", "Gordon", "Janet", "Jay", "Joe",
+"Judie", "Kerstin", "Lotus", "Maciek", "Mark", "Mike", "Mulhern",
+"Oliver", "Peter", "Quaxo", "Rita", "Sandro", "Tim", "Will"}, "Joe");
+```
+
+![[Pasted image 20231119222448.png]]
