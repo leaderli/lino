@@ -2,10 +2,10 @@
   "searchDelayMilliSeconds": 0,
   "maxNumberOfSuggestions": 125,
   "normalizeAccentsAndDiacritics": false,
-  "showDirectory": false,
+  "showDirectory": true,
   "showDirectoryAtNewLine": false,
   "showFullPathOfDirectory": false,
-  "showAliasesOnTop": false,
+  "showAliasesOnTop": true,
   "showExistingFilesOnly": false,
   "hideGutterIcons": false,
   "hideHotkeyGuides": false,
@@ -40,6 +40,12 @@
         {
           "modifiers": [],
           "key": "Tab"
+        }
+      ],
+      "open": [
+        {
+          "modifiers": [],
+          "key": "Enter"
         }
       ],
       "open in new tab": [
@@ -93,6 +99,14 @@
           "key": "o"
         }
       ],
+      "preview": [
+        {
+          "modifiers": [
+            "Mod"
+          ],
+          "key": ","
+        }
+      ],
       "create": [
         {
           "modifiers": [
@@ -120,6 +134,7 @@
         }
       ],
       "create in new popup": [],
+      "open in default app": [],
       "open in google": [
         {
           "modifiers": [
@@ -152,6 +167,44 @@
           ],
           "key": "Enter"
         }
+      ],
+      "show backlinks": [
+        {
+          "modifiers": [
+            "Mod"
+          ],
+          "key": "h"
+        }
+      ],
+      "show links": [
+        {
+          "modifiers": [
+            "Mod"
+          ],
+          "key": "l"
+        }
+      ],
+      "navigate forward": [
+        {
+          "modifiers": [
+            "Alt"
+          ],
+          "key": "ArrowRight"
+        }
+      ],
+      "navigate back": [
+        {
+          "modifiers": [
+            "Alt"
+          ],
+          "key": "ArrowLeft"
+        }
+      ],
+      "dismiss": [
+        {
+          "modifiers": [],
+          "key": "Escape"
+        }
       ]
     },
     "move": {
@@ -169,6 +222,13 @@
             "Mod"
           ],
           "key": "n"
+        }
+      ],
+      "open in default app": [],
+      "dismiss": [
+        {
+          "modifiers": [],
+          "key": "Escape"
         }
       ]
     },
@@ -210,6 +270,20 @@
           ],
           "key": "Tab"
         }
+      ],
+      "toggle auto preview": [
+        {
+          "modifiers": [
+            "Mod"
+          ],
+          "key": ","
+        }
+      ],
+      "dismiss": [
+        {
+          "modifiers": [],
+          "key": "Escape"
+        }
       ]
     },
     "grep": {
@@ -241,6 +315,28 @@
             "Mod"
           ],
           "key": "d"
+        }
+      ],
+      "clear path": [
+        {
+          "modifiers": [
+            "Alt"
+          ],
+          "key": "d"
+        }
+      ],
+      "set ./ to path": [
+        {
+          "modifiers": [
+            "Alt"
+          ],
+          "key": "c"
+        }
+      ],
+      "open": [
+        {
+          "modifiers": [],
+          "key": "Enter"
         }
       ],
       "open in new tab": [
@@ -276,12 +372,36 @@
         }
       ],
       "open in popup": [],
+      "open in new tab in background": [
+        {
+          "modifiers": [
+            "Alt"
+          ],
+          "key": "o"
+        }
+      ],
+      "open all in new tabs": [
+        {
+          "modifiers": [
+            "Mod",
+            "Shift",
+            "Alt"
+          ],
+          "key": "o"
+        }
+      ],
       "preview": [
         {
           "modifiers": [
             "Mod"
           ],
           "key": ","
+        }
+      ],
+      "dismiss": [
+        {
+          "modifiers": [],
+          "key": "Escape"
         }
       ]
     }
@@ -294,7 +414,18 @@
         "link": false,
         "header": false
       },
-      "searchTarget": "markdown",
+      "searchTarget": "file",
+      "targetExtensions": [],
+      "floating": false,
+      "showFrontMatter": false,
+      "excludeFrontMatterKeys": [
+        "aliases",
+        "alias",
+        "tag",
+        "tags",
+        "cssclass",
+        "publish"
+      ],
       "defaultInput": "",
       "commandPrefix": ":e ",
       "sortPriorities": [
@@ -313,7 +444,18 @@
         "link": false,
         "header": false
       },
-      "searchTarget": "markdown",
+      "searchTarget": "file",
+      "targetExtensions": [],
+      "floating": false,
+      "showFrontMatter": false,
+      "excludeFrontMatterKeys": [
+        "aliases",
+        "alias",
+        "tag",
+        "tags",
+        "cssclass",
+        "publish"
+      ],
       "defaultInput": "",
       "commandPrefix": ":f ",
       "sortPriorities": [
@@ -333,7 +475,18 @@
         "link": true,
         "header": true
       },
-      "searchTarget": "markdown",
+      "searchTarget": "file",
+      "targetExtensions": [],
+      "floating": false,
+      "showFrontMatter": false,
+      "excludeFrontMatterKeys": [
+        "aliases",
+        "alias",
+        "tag",
+        "tags",
+        "cssclass",
+        "publish"
+      ],
       "defaultInput": "",
       "commandPrefix": ":l ",
       "sortPriorities": [
@@ -356,7 +509,18 @@
         "link": false,
         "header": false
       },
-      "searchTarget": "markdown",
+      "searchTarget": "file",
+      "targetExtensions": [],
+      "floating": false,
+      "showFrontMatter": false,
+      "excludeFrontMatterKeys": [
+        "aliases",
+        "alias",
+        "tag",
+        "tags",
+        "cssclass",
+        "publish"
+      ],
       "defaultInput": "",
       "commandPrefix": ":s ",
       "sortPriorities": [
@@ -376,6 +540,17 @@
         "header": false
       },
       "searchTarget": "backlink",
+      "targetExtensions": [],
+      "floating": false,
+      "showFrontMatter": false,
+      "excludeFrontMatterKeys": [
+        "aliases",
+        "alias",
+        "tag",
+        "tags",
+        "cssclass",
+        "publish"
+      ],
       "defaultInput": "",
       "commandPrefix": "",
       "sortPriorities": [
@@ -387,6 +562,7 @@
       "expand": false
     }
   ],
+  "autoPreviewInFloatingHeaderSearch": true,
   "ripgrepCommand": "rg",
   "moveFileExcludePrefixPathPatterns": [],
   "showLogAboutPerformanceInConsole": false,

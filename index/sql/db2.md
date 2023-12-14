@@ -40,3 +40,26 @@ alter table <table> alter column <column> restart with <num>
 ```sql
 select * from sysibm.systables where owner = 'SCHEMA' and name like '%CUR%' and type = 'T';
 ```
+
+
+#### 查询数据库编码
+
+```shell
+db2 get db cfg for app_db|grep 'Database code set'|awk '{print $5}'
+
+```
+#### 查询表的表空间
+
+```sql
+SELECT * FROM SYSCAT.DATAPARTITIONS WHERE TABSCHEMA = ? AND TABNAME = ? ORDER BY SEQNO
+```
+
+#### 查询表的占用大小
+
+```sql
+SELECT SUBSTR(TABSCHEMA,1,18) TABSCHEMA,SUBSTR(TABNAME,1,30) TABNAME,
+(DATA_OBJECT_P_SIZE + INDEX_OBJECT_P_SIZE + LONG_OBJECT_P_SIZE + LOB_OBJECT_P_SIZE + XML_OBJECT_P_SIZE) AS TOTAL_SIZE_IN_KB,
+(DATA_OBJECT_P_SIZE + INDEX_OBJECT_P_SIZE + LONG_OBJECT_P_SIZE + LOB_OBJECT_P_SIZE + XML_OBJECT_P_SIZE)/1024 AS TOTAL_SIZE_IN_MB,
+(DATA_OBJECT_P_SIZE + INDEX_OBJECT_P_SIZE + LONG_OBJECT_P_SIZE + LOB_OBJECT_P_SIZE + XML_OBJECT_P_SIZE) / (1024*1024) AS TOTAL_SIZE_IN_GB 
+FROM SYSIBMADM.ADMINTABINFO WHERE TABSCHEMA NOT LIKE 'SYS%';
+```

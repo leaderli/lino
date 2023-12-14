@@ -45,7 +45,11 @@ done
 
 ### 内置变量
 
-- NR 当前处理的行
+- NR 当前处理的行 
+	```shell
+	# 打印第四行的第一个单词
+	awk 'NR==4 {print $1}' 1.log
+	```
 - NF field的总共个数，可以用 `$NF` 取最后一个field，`$(NF-1)` 倒数第二个
 
 ### 算术运算
@@ -90,8 +94,8 @@ $ awk  '$6~/55/ {print $0}' 1.txt
 
 ## 注意事项
 
-- awk脚本中不可以使用单引号 `'`
-
+- awk脚本中不可以使用单引号 `'`，可以使用`'\''`来转义
+ 
 - 一般情况下 awk 与 grep 无法配合使用，但当 grep 使用参数`--line-buffered` 时，则可以
 
 ## 示例：
@@ -111,7 +115,7 @@ awk '{print};/'"$ucid"' End/{exit}' < <(tail -n0 -f "$log"|grep --line-buffered 
 ### 截取除第一位之后的所有元素
 
 ```shell
-echo  1 2 3 4 5|awk '{first = $1; $1 = ""; print $0 }'
+echo  1 2 3 4 5|awk '{$1 = ""; print $0 }'
 ```
 
 ### 使用条件判断筛选数据

@@ -2,7 +2,7 @@
 aliases: shell
 tags:
   - linux/bash
-date updated: 2022-05-24 09:52
+date updated: 2023-08-21 21:42
 ---
 
 ## shell
@@ -28,6 +28,12 @@ chsh
 - `>>` 将输出追加到文件中
 - `<`   将文件内容作为输入源
 - `<<`  [[#here]]
+
+```shell
+echo 123 > 1.txt
+# 完整命令是
+echo 123 1> 1.txt
+```
 
 linux 中默认输入输出是指向 [[linux basic#文件描述符|文件描述符]]  `0` , `1` , `2` 的，对于 `2>&1` 的意思就是将标准错误也输出到标准输出当中。
 
@@ -56,12 +62,35 @@ $ more 3.txt
   1. `cmd >a 2>a` ：`stdout` 和 `stderr` 都直接送往文件 `a` ，`a` 文件会被打开两遍，由此导致 `stdout` 和 `stderr` 互相覆盖。`cmd >a 2>a`  相当于使用了 `FD1`、`FD2` 两个互相竞争使用文件 `a` 的管道；
   2. `cmd >a 2>&1` ：`stdout` 直接送往文件 `a`，`stderr` 是继承了 `FD1` 的管道之后，再被送往文件 `a`  。`a` 文件只被打开一遍，就是 `FD1` 将其打开。`cmd >a 2>&1` 只使用了一个管道 `FD1`，但已经包括了 `stdout` 和 `stderr` 。从 `IO` 效率上来讲，`cmd >a 2>&1` 的效率更高。
 
+### 关闭文件描述符
+
+- `n<&?`  Close input file descriptor n.
+- `0<&?, <&?`  Close stdin.
+- `n>&?` Close output file descriptor n.
+- `1>&?, #>&?` Close stdout.
+
+### <<<
+
+将字符串转换为输入
+
+```shell
+string="Hello, world!"
+grep "world" <<< $string
+```
+
 ### 使错误日志重定向到正常输出
 
 ```shell
 sh error.sh > messge.log 2>&1
 #也可以这样写
 sh error.sh  1>$messge.log
+```
+
+### 忽略错误信息
+
+```shell
+command 2>/dev/null
+command 2>&- 
 ```
 
 ### 当前脚本永久重定向
@@ -97,6 +126,15 @@ $ tr a-z A-Z <<END_TEXT
  > EOF
  Working dir /home/user
 ```
+
+输出到其他管道
+```shell
+ $ cat << EOF > 1.txt
+ > Working dir $PWD
+ > EOF
+```
+
+
 
 ### 管道符
 
@@ -169,6 +207,45 @@ cd ~/Downloads/ && rm -rf temp`
 [ condition1 ] || [ condition2 ]
 ```
 
+一个示例
+
+```shell
+# 当a为start或stop时执行，否则提示错误
+a=xxx
+[ 'start' = "$a" ] || [ 'stop' = "$a" ] && $a || echo 'only support start,stop'
+```
+
+## 子进程
+
+在括号中的命令将会有子进程来执行
+
+```shell
+(cat list1 list2 list3 | sort | uniq > list123) &
+ (cat list4 list5 list6 | sort | uniq > list456) &
+ # Merges and sorts both sets of lists simultaneously.
+ # Running in background ensures parallel execution.
+ #
+ # Same effect as
+ # cat list1 list2 list3 | sort | uniq > list123 &
+ # cat list4 list5 list6 | sort | uniq > list456 &
+ wait # Don't execute the next command until subshells finish.
+ diff list123 list456
+```
+
+使用重定向符来发送输出结果
+
+- `>(command)`
+- -`<(command)`
+
+```shell
+diff <(command1) <(command2) 
+
+
+while read des what mask iface; do
+# Some commands ...
+done < <(route -n) 
+```
+
 ## `[` 和`[[`
 
 `[` 是 shell 的一个内置命令（和命令 test 是一样的），`[` 到 `]` 之间都被视为 `[` 的参数
@@ -216,7 +293,6 @@ not empty
    |  -G | 检查是否有相同的组 ID                |
    |  -k | 检查防删除位是否被置位                 |
    |  -L | 检查是否为符号链接[5]                |
-   |  -n | 判断字符串长度是否不为 0               |
    |  -O | 检查文件是否被当前进程的 user ID 拥有     |
    |  -p | 检查文件是否为 FIFO[6]特殊文件或命名管道[7] |
    |  -r | 检查文件是否可读                    |
@@ -227,6 +303,7 @@ not empty
    |  -w | 检查文件是否可写                    |
    |  -x | 检查文件是否可执行                   |
    |  -z | 判断字符串长度是否为 0                |
+   |  -n | 判断字符串长度是否不为 0               |
 
    示例
 
@@ -321,6 +398,19 @@ case 值 in
 esac
 ```
 
+```shell
+function test(){
+	case $1 in
+		1)
+		 echo 'fuck'
+		;;
+		*)
+		echo $1
+		;;
+	esac
+}
+```
+
 ## 变量
 
 ````ad-info
@@ -333,6 +423,31 @@ $1 $2 #直接执行
 ```
 
 ````
+
+### 间接引用
+
+```shell
+
+a=1
+b='a'
+
+echo ${!b} # 1
+```
+
+### declare
+
+```shell
+declare -r  a=1        # 只读
+declare -i  a=1        # 声明为int
+declare -f  func_name  # 声明方法
+declare -a   arr       # 声明数组
+```
+
+### 多个变量赋值
+
+```shell
+read a b c <<<$(echo '1,2,3'|awk -F ','  '{print $1,$2,$3}
+```
 
 ### 变量引用
 
@@ -381,7 +496,7 @@ name='tom'
 name=${input:=name}
 ```
 
-固定位置截取
+固定位置截取，类似substr
 
 ````shell
 
@@ -408,6 +523,27 @@ then
 fi
 
 
+```
+
+### 字符串
+
+```shell
+#!/bin/bash
+
+VAR1="Linuxize"
+VAR2="Linuxize"
+
+if [ "$VAR1" = "$VAR2" ]; then
+    echo "Strings are equal."
+else
+    echo "Strings are not equal."
+fi
+
+if [[ "$VAR1" == "$VAR2" ]]; then
+    echo "Strings are equal."
+else
+    echo "Strings are not equal."
+fi
 ```
 
 ### 形参
@@ -473,11 +609,47 @@ fi
 
 #### `$$`
 
-脚本运行的当前进程 ID 号
+脚本运行的当前进程 ID 号，即便是在异步函数内部，获取的也是当前进程
+
+```shell
+#!/bin/bash
+
+# 示例函数
+function my_function {
+    echo "异步函数内部的PID: $$"
+}
+
+echo "主程序开始执行"
+
+# 异步执行函数
+my_function &
+
+echo "主程序继续执行"
+```
 
 #### $!
 
 后台运行的最后一个进程的 ID 号
+
+#### $-
+
+当前set的值
+
+#### $PIPESTATUS
+
+表示最后一个管道的状态，他是一个数组，对应管道中每个位置的状态
+
+```shell
+command1 | command2 | command3
+
+# 获取整个管道的退出状态码
+echo "Exit status of the pipeline: $?"
+
+# 获取每个命令的退出状态码
+echo "Exit status of command1: ${PIPESTATUS[0]}"
+echo "Exit status of command2: ${PIPESTATUS[1]}"
+echo "Exit status of command3: ${PIPESTATUS[2]}"
+```
 
 #### *
 
@@ -523,6 +695,7 @@ echo $a        #取第一个元素
 echo ${a[1]}   #取角标为1的元素
 a[1]=100       #赋值
 echo ${a[*]}   #取所有元素
+echo ${a[@]}   #取所有元素
 unset a[1]     #移除角标1的元素
 echo ${a[*]}
 unset a        #移除整个array
@@ -582,7 +755,7 @@ done
 
 ### 引号
 
-1. 单引号`''`,被称作弱引用，在 `'` 内的字符串会被直接使用，不会被替换。
+1. 单引号`''`,被称作弱引用，在 `'` 内的字符串会被直接使用，不会被替换。但是如果在双引号中的单引号中变量还是会被替换的。
 
    ```shell
    echo ''\'''
@@ -606,9 +779,23 @@ done
    4. " 第二个引用的结束，使用双引号
    5. ' 第三个引用的开始
 
-2. 双引号`""`,被称做强引用，在`"`的字符串的变量引用会被直接替换为实际的值
+2. 双引号`""`,被称做强引用，在`"`的字符串的变量引用会被直接替换为实际的值。双引号中可以使用`\$`来转义，但不支持其他转义例如`\n`
 
-3. 反引号`` ` ``, 反引号括起来的字串被 Shell 解释为命令，在执行时，Shell 首先执行该命令，并以它的标准输出结果取代整个反引号（包括两个反引号）部分，也可以使用 `$()` 达到同样的效果，shell 会以子进程的方式去调用被替换的命令，其替换后的值为子进程命令的 stdout 输出，其文件描述符为`1`，
+3. 反引号`` ` ``, 反引号括起来的字串被 Shell 解释为命令，在执行时，Shell 首先执行该命令，并以它的标准输出结果取代整个反引号（包括两个反引号）部分，也可以使用 `$()` 达到同样的效果，shell 会以子进程的方式去调用被替换的命令，其替换后的值为子进程命令的 stdout 输出，其文件描述符为`1`。标准输出如果不使用双引号包含，则输出的结果可能会使用空格来替换行。例如
+
+   ```shell
+   $ cat README.md 
+   # li_shell
+   shell
+   $ echo "`cat README.md `"
+   # li_shell
+   shell
+   $ echo `cat README.md `
+   # li_shell shell
+   $ echo "$(cat README.md )"
+   # li_shell
+   shell
+   ```
 
 ### 容错断言
 
@@ -650,6 +837,230 @@ anaconda-ks.cfg install.log install.log.syslog
 [root@vm_102 ~]# echo "$a"
 *
 ```
+
+### 打印当前使用变量
+
+```shell
+# 所有直接赋值的变量
+set
+# 所有申明export的变量
+export -p
+# 所有申明readonly的变量
+readonly -p
+```
+
+### 移除变量
+
+```shell
+$ a=1
+$ echo $a
+1
+$ unset a
+$ echo $a
+
+```
+
+### 内置变量
+
+####  `${BASH_LINENO[0]}`
+调用函数的行数
+#### `BASH`
+bash的完整路径
+
+#### `BASH_ENV`
+   bash非互动模式下,每次在执行shell脚本时会先检查BASH_ENV是否有指定文件,如果有先执行指定文件
+
+#### `BASH_VERSION`
+   bash的版本
+
+#### `CDPATH`
+   cd命令的搜索路径 cd file ，如果当前路径下不存在file目录,则由CDPATH中查找
+
+#### `ENV`
+   bash互动模式下或者POSIX模式下,会先检查ENV是否有指定文件.如果有先执行指定文件
+
+#### `EUID`
+   有效使用者id
+
+#### `FEDITOR`
+   fc命令默认使用的比较器
+
+#### `FIGNORE`
+   在文件名补齐时会排除FIGNORE指定的文件扩展名. 在进行文件名补齐时,如若想忽略的扩展名列表.各文件名之间用:隔开,例如"~:.sh"
+
+#### `FUNCNAME`
+   在函数式执行期,此变量内容即为函数式的名称 function fun { echo $FUNCNAME #fun }
+
+#### `GLOBIGNORE`
+    做样式比较时,要想忽略的文件名列表.各文件名之间用:隔开
+
+#### `GROUPS`
+    这是一个数组变量,包含用户所属的组群列表 echo ${GROUPS[2]}
+
+#### `HISTCMD`
+    当前指令执行完后,它在历史指令中的排列编号
+
+#### `HISTCONTROL`
+    控制指令是否存入历史脚本文件中.该变量有三个可能的值 1.ignorespace:凡是指令开头有空格符的不存入历史脚本中 2.ignoredups:连续重复指令只存一个 3.ignoreboth:结合前两者功能
+
+#### `HISTFILE`
+    设定历史脚本文件的路径文件名
+
+#### `HISTFILESIZE`
+    历史脚本文件存储指令的最大行数
+
+#### `HISTIGNORE`
+    不存入历史脚本文件中的指令样式,以:隔开 HISTIGNORE=ls:ps:t*:& #表示ls/ps/t开头的命令/已经重复指令不保存 &代表最后一个指令,这表示如果一直键入重复指令只会存一次.但需要对&先转义成单纯的字符
+
+#### `HISTSIZE`
+    设定在互动模式的shell中可记住的历史指令数目.一旦该shell结束历史记录脚本中只会保存HISTSIZE行数的指令.
+
+#### `HOME`
+    设定用户的家目录.
+
+#### `HOSTFILE`
+    包含自动补齐主机名的数据文件位置
+
+#### `HOSTNAME`
+    主机名
+
+#### `HOSTTYPE`
+    主机形态,例如i386
+
+#### `IFS`
+    定义字段的分割字符
+
+#### `IGNOREEOF`
+    设定在按ctrl+D时,出现几次EOF后才能注销系统.
+
+#### `INPUTRC`
+    设定命令行函数式库readline的启动配置文件,可覆盖~/.inputrc的设定
+
+#### `LANG`
+    目前语系(locale)的名称,locale是指一组地区性语言的信息
+
+#### `LC_ALL`
+    目前的locale,可覆盖LANG和LC_*的设定
+
+#### `LC_COLLATE`
+    locale的字母排序
+
+#### `LC_CTYPE`
+    locale的字符分类
+
+#### `LC_MESSAGES`
+    locale信息显示的转换
+
+#### `LINENO`
+    脚本以执行到的行数
+    
+#### `MACHTYPE`
+    描述主机形态的GNU格式:cpu-公司-系统
+
+#### `MAIL`
+    邮件文件的名称
+
+#### `MAILCHECK`
+    每隔多久就检查一次邮件,通常是60秒
+
+#### `MAILPATH`
+    设定检查新邮件的文件名,如果有两个以上用:分割
+
+#### `OLDPWD`
+    前一个工作目录
+
+#### `OPTARG`
+    用getopts处理选项时,取得的选项参数
+
+#### `OPTIND`
+    使用getopts处理选项时,选项的索引值
+
+#### `OPTERR`
+    如果吧OPTERR设为1,则getopts发生错误时,不管选项行第一个字符是否为:,仍然显示错误信息
+
+#### `OSTYPE`
+    执行bash 的操作系统种类
+
+#### `PATH`
+    设置环境变量的值.
+
+#### `PPID`
+    父进程的id
+
+#### `PRONPT_COMMAND`
+    出现主要提示符$PS1之前执行的命令
+
+#### `PS1`
+    主要提示符
+
+#### `PS2`
+    次级提示符
+
+#### `PS3`
+    select选单的提示符
+
+#### `PS4`
+    追踪程序时各行的提示符样式
+
+#### `PWD`
+    目前的工作路径
+
+#### `RANDOM`
+    随机函数,随机出现整数.在使用RANDOM变量之前,需要随意设置一个数字给RANDOM,当做随机数种子 `RANDOM=$$`  echo $RANDOM
+
+#### `REPLY`
+    select和read没有设定读取变量时的默认变量名称
+
+#### `SECONDS`
+    目前bash shell已经执行的时间
+
+#### `SHELL`
+    SHELL的文件路径
+
+#### `SHELLOPTS`
+    本变量的内容经set -o设定为以开启的shell选项,以:分割
+
+#### `SHLVL`
+    子shell的层级数
+
+#### `TIMEFORMAT`
+    设定time统计运行时间的格式
+
+#### `TMOUT`
+    如果TMOUT的值大于0,bash会在TMOUT秒后自动结束当前shell.
+
+#### `UID`
+    用户的编码
+
+#### `$1-$n`
+    位置参数,传入程序或者函数式的参数
+
+#### `$*`
+    代表所有的位置参数,并视为一个字符串
+
+#### `$@`
+    代表所有的传入参数,并将每一个参数视为一个字符串
+
+#### `$#`
+    表示传入参数的个数
+
+#### `$-`
+    bash shell目前使用的功能选项.
+
+#### `$?`
+    上一个命令结束时返回的退出状态码
+
+#### `$$`
+    目前shell的进程编号
+
+#### `$!`
+    上一个后台程序的进程号
+
+#### `$_`
+    用三种用途: 1.脚本执行时,表示bash的绝对路径 2.上一个命令执行时,最后一个位置参数 3.检查邮件时为邮件的文件名
+
+#### `HISTTIMEFORMAT`
+    如果设定这个变量为一个时间格式,则在执行history时会在每个历史命令前显示日期时间.该变量支持的时间格式与date命令的相同.
 
 ## 输入
 
@@ -736,6 +1147,68 @@ echo $?
 
 ```
 
+### 匿名函数
+
+```shell
+{
+ read line1
+ read line2
+} < 1.txt
+
+echo $line1
+echo $line2
+```
+
+```shell
+{
+echo 123
+echo 456
+} > 1.txt
+
+```
+
+### :
+
+NOP 函数，不做任何操作，可用于while，if等用
+
+```shell
+if condition
+then : # Do nothing and branch ahead
+else
+ take?some?action
+fi
+
+
+while :
+do
+	sleep 1
+done
+```
+
+用于避免副作用
+
+```shell
+$ ${username=`whoami`}
+-bash: li: command not found
+$ : ${username=`whoami`}
+$ echo $username
+li
+```
+
+判断变量是否全部设置
+
+```shell
+$ : ${HOSTNAME?} ${USER?} ${MAIL?}
+$ : ${HOSTNAME?} ${USER?} ${MAIL1?}
+-bash: MAIL1: parameter null or not set
+```
+
+清理文件
+
+```shell
+: > xxx.log
+```
+
 ### 引入外部脚本
 
 格式
@@ -743,7 +1216,9 @@ echo $?
 或
 `source filename`
 
-## 脚本运行时的调试参数
+## set
+
+脚本运行时的调试参数
 
 在写脚本的一开始加上`set -xeuo pipefail`，一般用于调试脚本
 
@@ -760,14 +1235,35 @@ set -x
 > -u: 试图使用未经定义的变量，立即退出
 > -o pipefail: 只要管道中的一个子命令失败，整个管道命令就失败。
 
+## export
+
+`export`命令用于设置环境变量。环境变量是在Shell会话期间可用的全局变量，可以被Shell及其子进程访问和使用
+
+```shell
+export VARIABLE_NAME="value"
+
+function a_func(){
+	echo 123
+}
+# 于将函数导出为环境变量
+export -f a_func
+```
+
 ## 循环
 
 c 风格的 for 循环
 
 ```shell
-for (( a=1;a<10;a++))
+for (( a=1;a<10;a++ ))
 do
    echo $a;
+done
+
+
+# 遍历文件
+for file in *.sh 
+do 
+echo $file;
 done
 ```
 
@@ -823,7 +1319,6 @@ while [ 1 ]
 do
       sleep 1s
 done
-
 ```
 
 ## 数据库相关
@@ -913,10 +1408,9 @@ clear
 li ALL=(root) NOPASSWD: /root/dhclient.sh
 ```
 
-
 ## debug
 
-对某一个脚本开启debug模式 
+对某一个脚本开启debug模式
 
 ```shell
 $ cat test.sh
@@ -935,6 +1429,7 @@ $ sh -x test.sh
 #!/bin/bash -x
 echo 123
 ```
+
 也可以指定一段范围内使用debug
 
 ```shell
@@ -961,6 +1456,48 @@ echo 3
 
 ![[configuration#命令行debug模式提示符]]
 
+## 调用java
+
+```java
+// 相当于标准输出
+System.out.println("123123")
+
+// 相当于标准错误
+System.err.println("error")
+
+
+// 相当于标准输入
+
+public void main(String [] args){
+
+}
+
+
+// 退出码，shell中使用 $?获取
+
+System.exit(1)
+
+```
+
+```shell
+java -jar  xxxx.jar  123123 > 1.log
+```
+
+## 测试框架
+
+[Bach Unit Testing Framework](https://bach.sh/)
+
+## 常用命令
+
+### 获取当前路径
+
+pwd 获得的是当前 shell 的执行路径，而不是当前脚本的执行路径。
+
+应当使用
+
+```shell
+$(dirname $(readlink -f $0 ))
+```
 
 ## 错误问题
 

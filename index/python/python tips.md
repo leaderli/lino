@@ -1,7 +1,7 @@
 ---
 tags:
   - python/tips
-date updated: 2022-05-27 17:03
+date updated: 2023-05-30 21:44
 ---
 
 ## 注释
@@ -57,9 +57,11 @@ list(filter(lambda x: x % 2 == 0, range(10)))
 [0, 2, 4, 6, 8]
 
 ```
+
 ## datetime
 
 ### strftime
+
 当天日期
 
 ```python
@@ -69,16 +71,14 @@ from datetime import  datetime
   print(datetime.strftime(datetime.now(),'%Y-%m-%d'))
 ```
 
-
-| 指令 | 解释     |
-| ---- | -------- |
+| 指令   | 解释   |
+| ---- | ---- |
 | `%Y` | 四位年份 |
 | `%m` | 两位月份 |
-| `%d` | 两位日   |
-|     `%H` |    两位小时      |
+| `%d` | 两位日  |
+| `%H` | 两位小时 |
 | `%M` | 两位分钟 |
-| `%S` | 两位秒         |
-
+| `%S` | 两位秒  |
 
 [datetime — Basic date and time types — Python 3.10.4 documentation](https://docs.python.org/3/library/datetime.html#strftime-strptime-behavior)
 
@@ -174,7 +174,7 @@ print(os.environ.get('APPDATA'))
 
 ```
 
-##  shutil
+## shutil
 
 压缩文件
 
@@ -261,8 +261,8 @@ re.sub('^/','',origin)
 ## tempfile
 
 ```python
-
 ```
+
 ## zip
 
 将多个数组打包成元组
@@ -273,8 +273,6 @@ b = [4,5,6,7,8]
 zipped =zip(a,b)       # 元素个数与最短的列表一致
 zip(*zipped)           # 与 zip 相反，*zipped 可理解为解压，返回二维矩阵式
 ```
-
-
 
 ## 示例
 
@@ -389,4 +387,10 @@ $ python test.py arg1 arg2 arg3
 import sys
 if sys.version_info[0] < 3:
     raise Exception("Must be using Python 3")
+```
+
+### 在命令行中格式化json
+
+```python
+python3 -m json.tool file.json
 ```

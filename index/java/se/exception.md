@@ -29,6 +29,10 @@ public void wrapException(String input) throws MyBusinessException {
 try块中的return语句执行成功后，并不马上返回，而是继续执行finally块中的语句，如果此处存在return语句，则在此直接返回，无情丢弃掉try块中的返回点。
 
 
+### final不执行的几种情况
+1. 在 `try` 或 `catch` 中使用了 `System.exit(1)`
+2. 线程关闭
+
 ### JVM处理异常的机制
 
 ```java

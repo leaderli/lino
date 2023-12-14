@@ -7,6 +7,7 @@
 - 📄 [[index/computer basics/cryptography|cryptography]]
 - 📄 [[index/computer basics/distributed locks|distributed locks]]
 - 📄 [[index/computer basics/file lock|file lock]]
+- 📄 [[index/computer basics/Fundamentals of Compiling|Fundamentals of Compiling]]
 - 📄 [[index/computer basics/go|go]]
 - 📄 [[index/computer basics/perl|perl]]
 - 📄 [[index/computer basics/principles of computer composition|principles of computer composition]]

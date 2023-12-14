@@ -33,3 +33,9 @@ public class Fooloop {
 通过日志，可以看出问题出在 `Fooloop.main(Fooloop.java:5)`
 
 `jstack` 日志中，可以分析是否某个线程持续的输出日志，说明锁的竞争比较激烈，就有可能造成性能问题。我们也可以通过 `jps -v` 或者 `ps -ef|grep java` 等来查看具体 java 进程的 `pid` 。
+
+### 生产dump文件
+
+```shell
+jmap -dump:format=b,file=dump.hprof <pid>
+```

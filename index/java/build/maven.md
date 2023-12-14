@@ -2,7 +2,7 @@
 aliases: maven
 tags:
   - catagory
-date updated: 2022-05-01 23:20
+date updated: 2023-06-13 22:17
 ---
 
 Maven – Download Apache Mavenpache Mavenorial
@@ -709,6 +709,7 @@ clean 插件主要清理编译生成的文件，默认的编译目录配置在�
 > `project.build.directory` > `project.build.outputDirectory` > `project.build.testOutputDirectory` > `project.reporting.outputDirectory`
 
 ### compiler
+
 ### dependency
 
 解决打包依赖的 jar 包
@@ -735,7 +736,6 @@ clean 插件主要清理编译生成的文件，默认的编译目录配置在�
 
 `outputDirectory`表示依赖 jar 默认输出目录，默认是`${basedir}`\
 `goal`:`copy-dependencies` [相关配置详细](https://maven.apache.org/plugins/maven-dependency-plugin/copy-dependencies-mojo.html)
-
 
 ```xml
  <plugin>
@@ -914,13 +914,138 @@ protected List<? extends InterpolationPostProcessor> createPostProcessors( final
 `directory` 源资源目录,默认是以`${basedir}`为前缀的\
 `finalName` 打包后的项目名,默认为`${project.artifactId}-${project.version}`
 
-
 ### versions
 
 修改mvn的版本号，可以统一修改同一项目不同模块的所有版本号
 
 `mvn versions:set -DnewVersion=1.1`
 
+### templating-maven-plugin
+
+实现在源码中使用pom的环境变量，编译时直接替换为实际值
+
+不支持在标准目录中添加
+
+我们新建一个非标准源码目录
+
+```java
+// src/main/java-templates/io/leaderli/litest
+
+package io.leaderli.litest;
+public class Version {
+    public static String VERSION =  "${project.version}";
+}
+
+
+// src/main/java/io/leaderli/litest
+package io.leaderli.litest;
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(Version.VERSION);
+    }
+}
+```
+
+pom中添加插件
+
+```xml
+<plugin>
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>templating-maven-plugin</artifactId>
+	<version>1.0.0</version>
+	<executions>
+		<execution>
+			<id>filter-src</id>
+			<goals>
+				<goal>filter-sources</goal>
+			</goals>
+			<configuration>
+			</configuration>
+		</execution>
+	</executions>
+</plugin>
+```
+
+执行打包 `mvn clean package`，其会将占位符替换后的源码放到`target/generated-sources/java-templates`。为了避免idea提示代码重复存在，将target忽略即可。
+
+```shell
+$ java -cp target/LiTest-1.0.jar  io.leaderli.litest.Main
+1.0
+```
+
+其大致的原理如下：
+
+1. 让maven将文件中的token替换
+   ```xml
+   <resources>
+       <resource>
+           <directory>src/main/templates</directory>
+           <includes>
+               <include>*.java</include>
+           </includes>
+           <filtering>true</filtering>
+           <targetPath>${project.build.directory}/generated-sources/java-templates</targetPath>
+       </resource>
+   </resources>
+   ```
+2. 将`generated-sources/java-templates`标记为编译的目录
+	```xml
+	<plugin>
+	    <groupId>org.codehaus.mojo</groupId>
+	    <artifactId>build-helper-maven-plugin</artifactId>
+	    <version>1.8</version>
+	    <executions>
+	        <execution>
+	             <id>add-source</id>
+	            <phase>generate-sources</phase>
+	            <goals>
+	                <goal>add-source</goal>
+	            </goals>
+	            <configuration>
+	                <sources>
+	                    <source>${project.build.directory}/generated-sources/java-templates/</source>
+	                </sources>
+	            </configuration>
+	        </execution>
+	    </executions>
+	</plugin>
+	```
+ 
+### maven-shade-plugin
+
+用于创建可执行的、包含所有依赖的独立 JAR 文件
+
+```xml
+<project>
+  <!-- 省略其他配置 -->
+  
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.3.0</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <!-- 配置 Shade 插件 -->
+              <transformers>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <mainClass>com.example.MainClass</mainClass>
+                </transformer>
+              </transformers>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+```
 ## 模块
 
 maven 的模块是在父类 pom 中定义聚合关系，其本质仅仅是一次性批量按顺序执行所有子模块的 mvn 命令而已
@@ -1170,6 +1295,14 @@ Maven 采用“最近获胜策略（nearest wins strategy）”的方式处理�
         </exclusion>
       </exclusions>
 </dependency>
+```
+
+## javadoc中文乱码
+
+idea 中 设置 `maven|runner |VM Options` 添加
+
+```shell
+-Dfile.encoding=GBK
 ```
 
 ## 参考文档

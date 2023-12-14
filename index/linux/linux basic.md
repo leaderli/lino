@@ -2,7 +2,7 @@
 aliases: linux基础知识
 tags:
   - linux/basic
-date updated: 2022-04-20 15:36
+date updated: 2023-05-15 21:59
 ---
 
 ## 用户
@@ -220,6 +220,13 @@ proc 目录下一些以数字命名的目录，它们是进程目录。系统中
    nonvoluntary_ctxt_switches: 18031
    ```
 
+### atime
+
+atime是Linux/UNIX系统下的一个文件属性，每当读取文件时，操作系统都会将读操作发生的时间回写到磁盘上。对于读写频繁的数据库文件来说，记录文件的访问时间一般没有任何用处，却会增加磁盘系统的负担，影响I/O的性能！因此，可以通过设置文件系统的mount属性，阻止操作系统写atime信息，以减轻磁盘I/O的负担。在Linux下的具体做法如下。
+
+1. 修改文件系统配置文件/etc/fstab，指定noatime选项：`LABEL=/home /home ext3 noatime 1 2`
+2. 重新mount文件系统：`mount -oremount /home`
+
 ## inode
 
 数据是保存在磁盘中的，磁盘上最小存储数据的是扇区，每个扇区一般都可以存放512字节的数据。
@@ -236,7 +243,6 @@ proc 目录下一些以数字命名的目录，它们是进程目录。系统中
 
 ## 其他
 
-
 ### 列出所有用户
 
 ```shell
@@ -246,6 +252,7 @@ awk -F: '{ print $1}' /etc/passwd
 ```shell
 cut -d: -f1 /etc/passwd
 ```
+
 ### 重复执行上次命令
 
 1. 使用上方向键，并回车执行。
@@ -322,3 +329,24 @@ echo 'ok'
 
 修改密码
 [[#密码过期时间]]
+
+### 查看系统编码等
+
+```shell
+$ locale
+LANG=en_US.UTF-8
+LC_CTYPE="en_US.UTF-8"
+LC_NUMERIC="en_US.UTF-8"
+LC_TIME="en_US.UTF-8"
+LC_COLLATE="en_US.UTF-8"
+LC_MONETARY="en_US.UTF-8"
+LC_MESSAGES="en_US.UTF-8"
+LC_PAPER="en_US.UTF-8"
+LC_NAME="en_US.UTF-8"
+LC_ADDRESS="en_US.UTF-8"
+LC_TELEPHONE="en_US.UTF-8"
+LC_MEASUREMENT="en_US.UTF-8"
+LC_IDENTIFICATION="en_US.UTF-8"
+LC_ALL=
+
+```

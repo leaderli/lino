@@ -181,6 +181,16 @@ ts=2021-12-20 00:13:20; [cost=0.243086ms] result=@ArrayList[
 ]
 ```
 
+查看某个方法被调用的情况
+```shell
+watch org.apache.commons.io.input.Tailer getRun
+```
+### trace
+
+查看某个方法执行细节
+```shell
+trace org.apache.commons.io.input.Tailer getRun
+```
 ### jvm
 
 查看当前 JVM 的信息
@@ -288,6 +298,34 @@ fields            modifierprivate,static
 | `[c: r:]`             | 用ClassLoader去查找resource           |
 | `[c: load:]`          | 用ClassLoader去加载指定的类               |
 
+
+### vmtool
+
+
+- `-c` 表示classloader
+- `-a` 表示动作
+
+查看某个类实例，无 --limit 参数默认10个
+```shell
+vmtool -c 3e2e18f2 -a getInstances --className *EncryptClass
+vmtool -c 3e2e18f2 -a getInstances --className *EncryptClass --express 'instances.length'
+vmtool -c 3e2e18f2 -a getInstances --className *EncryptClass --express 'instances[0]'
+
+```
+ 实例方法调用
+```shell
+vmtool -c 3e2e18f2 -a getInstances --className *EncryptClass --express '#val=instances[0],#val.getNote()'
+vmtool -c 3e2e18f2 -a getInstances --className *EncryptClass --express '#val=instances[0],#val.setNote("modify by instance"+#val.getNote())'
+
+```
+
+实例属性操作
+获取或者修改第一个实例 note 属性
+```shell
+vmtool -c 3e2e18f2 -a getInstances --className *EncryptClass --express '#val=instances[1].note'
+vmtool -c 3e2e18f2 -a getInstances --className *EncryptClass --express '#val=instances[1],#val.note="modify by instance"+#val.note'
+
+```
 ## ognl
 
 通过ognl表达式，直接执行java表达式

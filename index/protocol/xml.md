@@ -118,6 +118,7 @@ dom.selectNodes("child/name/text()")
 
 chapter[@title="one"]
 
+# dom4j不支持这种写法 需要一个个单独写 book/chapter/section|book/appendix/section
 book/(chapter|appendix)/section
 
 employee[@secretary and @assistant]
@@ -125,6 +126,8 @@ employee[@secretary and @assistant]
 chapter[@title="one" or @title="two" and  author="li"]
 ```
 
+
+[xpath-validator](https://www.atatus.com/tools/xpath-validator)
 ### 获取`tomcat`运行端口
 
 ```java

@@ -113,6 +113,18 @@ public class AnnotationAspect {
 
 `@Autowired(required = false)`若`Spring`容器中没有对应的`BeanDefinition`时不会注入值，可赋值一个默认值避免空指针的情况。
 
+### @Value
+
+注入数组类型配置 
+
+```properties
+list.node=123,456
+```
+
+```java
+@Value("${list.node}")
+private String[] nodes
+```
 ### 定时任务
 
 `Spring`的`@Scheduled`  可使用`crontab`语法，但是不同于`unix`的标准语法，它第一位是秒
@@ -269,4 +281,30 @@ class AspectJAutoProxyRegistrar implements ImportBeanDefinitionRegistrar {
     }  
   
 }
+```
+
+
+### 给bean添加默认属性
+
+当spring注入person时，会给hello赋值123
+```java
+RootBeanDefinition rootBeanDefinition = new RootBeanDefinition(Person.class);
+rootBeanDefinition.getPropertyValues().add("hello","123");
+//BeanDefinitionRegistry
+beanDefinitionRegistry.registerBeanDefinition("person",rootBeanDefinition);
+
+```
+
+```java
+ class Person{
+        private String hello;
+
+        public String getHello() {
+            return hello;
+        }
+
+        public void setHello(String hello) {
+            this.hello = hello;
+        }
+    }
 ```

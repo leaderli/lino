@@ -1,5 +1,5 @@
 {
-  "baseFontSize": 20,
+  "baseFontSize": 30,
   "theme": "moonstone",
   "translucency": false,
   "enabledCssSnippets": [
@@ -16,5 +16,5 @@
   "cssTheme": "Minimal",
   "baseFontSizeAction": true,
   "accentColor": "",
-  "showViewHeader": false
+  "showViewHeader": true
 }

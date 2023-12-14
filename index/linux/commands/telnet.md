@@ -14,11 +14,43 @@ yum -y install telnet
 
 `telnet [hostname/ipaddress] [port number]`
 
+
 例如
 
+```shell
+telnet 127.0.0.1 22
+Trying 127.0.0.1...
+Connected to 127.0.0.1.
+Escape character is '^]'.
 ```
-telnet 123.123.123.123 22
+
+使用`QUIT`命令退出telnet
+
+
+redis中使用telnet来交互
+
+
+```shell
+telnet 127.0.0.1 6379
+Trying 127.0.0.1...
+Connected to 127.0.0.1.
+Escape character is '^]'.
+
+# 输入密码
+AUTH  xxx 
++OK
+
+# 下面就可以执行redis的命令了 
+KEYS * 
+*1
+$1
+k1
+
+GET k1
+$1
+v1
 ```
+
 
 java中可以通过模拟发送 `ping` 消息来测试
 

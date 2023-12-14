@@ -1,7 +1,7 @@
 ---
 tags:
   - java/tips
-date updated: 2022-10-21 23:30
+date updated: 2023-10-06 16:34
 ---
 
 ### 读取 properties 中文乱码解决
@@ -370,7 +370,7 @@ void te(Supplier supplier) {
 
 ### access$000
 
-当外部类方法类的私有属性时会报的错
+当外部类访问内部类的私有属性时会报的错
 
 ### 获取所有get、set方法
 
@@ -391,4 +391,75 @@ for (MethodDescriptor methodDescriptor : beanInfo.getMethodDescriptors()) {
   
     methodDescriptor.getMethod();  
 }  
+```
+
+### 获取当前运行的jvm进程
+
+```java
+String jvmName = ManagementFactory.getRuntimeMXBean().getName();
+String jvmPid = jvmName.substring(0, jvmName.indexOf('@'));
+
+VirtualMachine self = VirtualMachine.attach(jvmPid);
+```
+
+JDK 9 之后需要添加额外的运行环境
+
+```c
+-Djdk.attach.allowAttachSelf=true
+```
+
+### 使集合支持多线程操作
+
+```java
+List<Integer> list = new LinkedList<>();  
+List<Integer> sync = Collections.synchronizedList(list);
+```
+
+### 获取项目根目录
+
+```java
+System.getProperty("user.dir");
+```
+
+### 判断是否在debug模式中执行
+
+```java
+import java.lang.management.ManagementFactory;
+import java.util.List;
+
+public class DebugModeExample {
+
+    public static void main(String[] args) {
+        if (isDebugMode()) {
+            // 在调试模式下执行的逻辑
+            System.out.println("执行调试模式下的代码");
+        } else {
+            // 在非调试模式下执行的逻辑
+            System.out.println("执行非调试模式下的代码");
+        }
+    }
+
+    private static boolean isDebugMode() {
+        RuntimeMXBean runtimeMXBean = ManagementFactory.getRuntimeMXBean();
+        List<String> inputArguments = runtimeMXBean.getInputArguments();
+        for (String argument : inputArguments) {
+            if (argument.contains("jdwp") || argument.contains("debug")) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+```
+
+### 获取执行目录
+
+```shell
+System.getenv("PWD")
+```
+
+### 获取java对象在内存中的索引
+
+```java
+System.identityHashCode(obj)
 ```

@@ -18,6 +18,26 @@ date updated: 2022-03-28 14:58
 </dependency>
 ```
 
+### 加载源码的方式
+
+编译整个源码目录
+```java
+ParserConfiguration parserConfiguration = new ParserConfiguration();  
+parserConfiguration.setLanguageLevel(ParserConfiguration.LanguageLevel.JAVA_8);
+SourceRoot sourceRoot = new SourceRoot(Paths.get(sourceDir), parserConfiguration);  
+try {  
+sourceRoot.tryToParse();  
+} catch (IOException e) {  
+throw new RuntimeException(e);  
+}  
+List<CompilationUnit> compilationUnits = sourceRoot.getCompilationUnits();
+```
+
+编译某个文件
+
+```java
+StaticJavaParser.parse(new File(javaFile));
+```
 ### 打印出语法树的结构
 
 #### 使用yaml结构
@@ -59,6 +79,7 @@ root(Type=CompilationUnit):
  FileWriter fileWriter = new FileWriter("ast.dot");  
  PrintWriter printWriter = new PrintWriter(fileWriter);  
  printWriter.print(printer.output(cu));
+ printWriter.flush();
 ```
 
 生成的文件，可通过[在线预览](https://dreampuf.github.io/GraphvizOnline/#digraph)dot文件，生成的图像如下

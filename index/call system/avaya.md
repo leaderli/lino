@@ -19,7 +19,6 @@ date updated: 2022-07-14 23:11
 9. ivr
 10. 座席
 
-[[awk]]
 
 ```mermaid
 graph LR
@@ -122,6 +121,10 @@ private String decodeHex(String hex) {
 - `/opt/Tomcat/apache-tomcat-6.0.41/lib/config/languages.properties`
 - `/opt/Tomcat/apache-tomcat-6.0.41/lib/messeages/languages.properties`
 
+语音服务器中的配置音色需要全选所有音色
+
+语音服务器中同一个引擎类型的，可以配置多个不同IP的语音服务器，这样可以实现负载的功能。
+
 配置文件大小写敏感
 
 ```ad-info
@@ -154,6 +157,13 @@ tts可以使用ssml的语法编写
 </form>
 ```
 
+
+avaya返回vxml时也会将sessionID放入到cookie中，从而F5等可以实现session保持。
+
+```c
+JESSIONID=03E80E97619B5627;Path=/Hello;HttpOnly
+__DDESSIONID=03E80E97619B5627;Path=/Hello;HttpOnly
+```
 ## ccxml
 
 一些方便使用的script脚本，因为ccxml中的js引擎版本较低，有些方法是不支持的
@@ -300,6 +310,7 @@ protocol: sip
 	<log expr="' eventData\n ' + objectToString(event$)">
 </transition>
 ```
+
 ## 常见问题
 
 ```ad-error
@@ -307,3 +318,4 @@ title: 按键无效，播音卡顿
 
 一般是由于中继线的问题
 ```
+

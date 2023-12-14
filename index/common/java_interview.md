@@ -52,6 +52,7 @@ https://pdai.tech/
 
 [[v4.0-JavaGuide面试突击版.pdf]]
 
+
 ## 曾总分享
 
 ## 项目
@@ -231,3 +232,9 @@ https://pdai.tech/
 - 你有什么想问我的吗？
 
 - 现在的薪资是多少？期望是多少？
+
+
+
+## 其他
+
+![[collection]]

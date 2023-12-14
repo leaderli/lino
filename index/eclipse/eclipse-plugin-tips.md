@@ -1,10 +1,11 @@
 ---
 tags:
   - eclipse/eclipse-plugin-tips
-date updated: 2022-03-28 15:41
+date updated: 2022-11-24 00:16
 ---
 
 ### 如何DEBUG插件
+
 1. 安装 [[eclipse-plugin#反编译插件]]
 2. 在 `plugin.xml` 文件中 的 `Dependencies` 中 Add 需要添加需要进行断点的jar，当 jar存在源码包时，也可以直接引入。一般为 `-source`结尾
 3. 找到需要断点的类，添加上断点
@@ -234,13 +235,55 @@ import org.eclipse.core.resources.IResource
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 
-LiMono<Object> element = LiMono.of(selection).map(IStructuredSelection::getFirstElement);
+Lino<Object> element = Lino.of(selection).map(IStructuredSelection::getFirstElement);
 
 // 根据选中的元素不同，通过不同的方式去获取当前的project
-LiMono<IProject> project = element
+Lino<IProject> project = element
 .cast(IJavaProject.class).map(IJavaProject::getProject)
 .or(element.cast(IResource.class).map(IResource::getProject))
 .or(element.cast(IJavaElement.class).map(IJavaElement::getResource).map(IResource::getProject))
+```
+
+### 在 packageExplorer 中显示指定文件
+
+```java
+PackageExplorerPart part = PackageExplorerPart.getFromActivePerspective();
+part.selectAndReveal(iFile)
+```
+
+### 查找指定视图
+
+```java
+//VIEW_ID org.eclipse.jdt.ui.PackageExplorer
+IWorkbenchWindow window= PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+window.getActivePage().findView(VIEW_ID);
+if (view instanceof PackageExplorerPart){
+
+}
+```
+
+### 定位 java 项目
+
+```java
+IProject project;
+
+PackageExplorerPart part = PackageExplorerPart.getFromActivePerspective();
+TreeViewer treeViewer = part.getTreeViewer();
+Control control = treeViewer.getControl();
+JavaModel javaModel = (JavaModel) control.getData();
+// 具体某个项目
+JavaProject javaProject = javaModel.getJavaProject(project.getName());
+
+IFolder folder = project.getFolder("src/java/main")
+// 源码根目录
+IPackageFragmentRoot sourceFolder = javaProject.getPackageFragmentRoot(folder);
+
+
+
+// 最简单的方式为
+JavaCore.create(project);
+JavaCore.create(javaProject.getPackageFragmentRoot(folder));
+
 ```
 
 ### log4j
@@ -259,7 +302,6 @@ String log4jConfPathBase = Platform
 String log4jConfPath = log4jConfPathBase + "/log4j.properties";
 PropertyConfigurator.configure(log4jConfPath);
 ```
-
 
 ```properties
 log4j.debug=true
@@ -282,31 +324,112 @@ log4j.appender.console.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %-5p %c.
 
 ```
 
-
 ### 源码对应的插件
-
 
 eclipse 插件 依赖其他插件时，可以引入其源码包
 
-例如 
+例如
 
 ![[Pasted image 20220704211213.png|left|400]]
 
+当找不到相关插件时，需要安装，安装时可以将其source也一同安装，这样就有了源码
 
-当找不到相关插件时，需要安装
-
-| extension         | plugin          | site | 
-| ----------------- | --------------- | ---- |
-| `org.eclipse.gef` | `GEF (MVC) SDK` |      `2020-06 - http://download.eclipse.org/releases/2020-06`|
-
-
+| extension         | plugin          | site                                                                      |
+| ----------------- | --------------- | ------------------------------------------------------------------------- |
+| `org.eclipse.gef` | `GEF (MVC) SDK` | `https://download.eclipse.org/tools/gef/classic/releases/latest/plugins/` |
 
 ### 常见错误
 
-
-`plugin.xml` 中配置了 `Bundle-ActivationPolicy: lazy` ，会影响 引入 `*.source.jar` ，造成无法启动插件 
+`plugin.xml` 中配置了 `Bundle-ActivationPolicy: lazy` ，会影响 引入 `*.source.jar` ，造成无法启动插件
 
 ```log
 org.osgi.framework.BundleException: Could not resolve module: io.leaderli.visual.editor [491]
   Unresolved requirement: Require-Bundle: org.eclipse.ltk.core.refactoring.source; 
 ```
+
+### 弹窗
+
+notifaction 错误信息
+
+```java
+                                MessageDialog.openError(LiFlowPlugin.getStandardDisplay().getActiveShell(), "fuck", "fuck");
+
+```
+
+
+### 在problem视图创建错误提醒
+
+[[eclipse-plugin-develop-tutorial-setup#新增扩展点]] ， 其中id会加上插件的唯一编号前缀
+
+
+```xml
+<extension
+	  id="li_flow_marker"
+	  name="li flow marker"
+	  point="org.eclipse.core.resources.markers">
+   <persistent
+		 value="true">
+   </persistent>
+   <super
+		 type="org.eclipse.core.resources.problemmarker">
+   </super>
+</extension>
+```
+
+
+新增提示
+
+```java
+public static IMarker createMarker(IResource resource, int severity, String message, String location) {
+	try {
+		final IMarker marker = resource.createMarker(Leaderli.FLOW_MARKER);
+		marker.setAttribute("location", location);
+		marker.setAttribute("message", message);
+		marker.setAttribute("severity", severity);
+		return marker;
+	} catch (CoreException e) {
+		LogUtil.logError(e);
+
+	}
+	return null;
+
+}
+```
+
+
+提示中定位节点，需要继承`IGotoMarker`， 省略大部分代码
+
+```java
+public class FlowEditor extends BaseGraphicalEditorWithFlyoutPalette implements IGotoMarker {
+
+	/**
+	 * 
+	 * 根据错误标记定位节点
+	 * 
+	 * @see
+	 */
+	@Override
+	public void gotoMarker(IMarker marker) {
+		String name = marker.getAttribute("location", null);
+		selectFlowObject(name);
+	}
+	
+	/**
+	 * 选择节点
+	 * 
+	 */
+	public EditPart selectFlowObject(String name) {
+		FlowDiagram flowDiagram = (FlowDiagram) getGraphicalViewer().getContents().getModel();
+	
+		return Lino.of(flowDiagram.getFlowNodeByName(name))
+				.map(FlowNode::getEditPart)
+				.ifPresent(editPart -> {
+					GraphicalViewer viewer = getGraphicalViewer();
+					viewer.setSelection(new StructuredSelection(editPart));
+					viewer.reveal(editPart);
+				})
+				.get();
+	}
+}
+```
+

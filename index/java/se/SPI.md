@@ -1,22 +1,23 @@
 ---
 aliases: SPI
 tags:
-- java/se/SPI
+  - java/se/SPI
+date updated: 2023-02-17 03:50
 ---
 
 ## 概述
 
-SPI（Service Provider Interface）,是JDK内置的一种服务提供发现机制，比如说 
- `java.sql.Driver` 接口，不同的数据库对同一个接口有不同的实现，而SPI就是为某个接口寻找服务实现。将装配的控制权移到程序之外。
+SPI（Service Provider Interface）,是JDK内置的一种服务提供发现机制，比如说
+`java.sql.Driver` 接口，不同的数据库对同一个接口有不同的实现，而SPI就是为某个接口寻找服务实现。将装配的控制权移到程序之外。
 
 ![[Java_SPI机制.png]]
 
-当服务的提供者提供了一种接口的实现之后，需要在classpath下的 [[maven#META-INF|META-INF]]`/services/` 目录中创建一个以服务接口命名的文件，这个文件里的内容就是接口的具体的实现类。当其他的程序需要这个服务的时候，就剋有通过查找这个jar包的 [[maven#META-INF|META-INF]]`/services/` 中的配置文件，配置文件中有接口的具体实现类名，可以根据这个类名进行加载实例化，就可以使用该服务了。JDK中查找服务的实现的工具类是：`java.util.ServiceLoader`。
+当服务的提供者提供了一种接口的实现之后，需要在classpath下的 [[maven#META-INF|META-INF]]`/services/` 目录中创建一个以服务接口命名的文件，这个文件里的内容就是接口的具体的实现类。当其他的程序需要这个服务的时候，就可以通过查找这个jar包的 [[maven#META-INF|META-INF]]`/services/` 中的配置文件，配置文件中有接口的具体实现类名，可以根据这个类名进行加载实例化，就可以使用该服务了。JDK中查找服务的实现的工具类是：`java.util.ServiceLoader`。
 
+## SPI机制的简单示例
 
- ## SPI机制的简单示例
- 
 定义一个接口
+
 ```java
 package com.leaderli.lidemo;  
   
@@ -25,7 +26,9 @@ public interface ISpiDemo {
     void print();  
 }
 ```
+
 定义实现类
+
 ```java
 package com.leaderli.lidemo;  
   
@@ -33,14 +36,16 @@ public class SpiDemo implements ISpiDemo{
     @Override  
  public void print() {  
         System.out.println("fuck");  
-    }  
+ }  
 }
 ```
 
 新建文件`src/main/resources/META-INF/services/com.leaderli.lidemo.ISpiDemo`
+
 ```txt
 com.leaderli.lidemo.SpiDemo
 ```
+
 使用 [[maven|maven]] 打包
 
 在测试项目中引入该jar包，然后编写测试类
@@ -145,20 +150,18 @@ private S nextService() {
 }
 ```
 
-
 ## 应用
-- JDBC DriverManager
 
+- JDBC DriverManager
 
 ## SPI机制的缺陷
 
 通过上面的解析，可以发现，我们使用SPI机制的缺陷：
 
--   不能按需加载，需要遍历所有的实现，并实例化，然后在循环中才能找到我们需要的实现。如果不想用某些实现类，或者某些类实例化很耗时，它也被载入并实例化了，这就造成了浪费。
-    
--   获取某个实现类的方式不够灵活，只能通过 Iterator 形式获取，不能根据某个参数来获取对应的实现类。
-    
--   多个并发多线程使用 ServiceLoader 类的实例是不安全的。
+- 不能按需加载，需要遍历所有的实现，并实例化，然后在循环中才能找到我们需要的实现。如果不想用某些实现类，或者某些类实例化很耗时，它也被载入并实例化了，这就造成了浪费。
 
+- 获取某个实现类的方式不够灵活，只能通过 Iterator 形式获取，不能根据某个参数来获取对应的实现类。
 
-我们可以根据其实现原理，来合理化构建一个适合自己使用的SPI服务。
+- 多个并发多线程使用 ServiceLoader 类的实例是不安全的。
+
+我们可以根据其实现原理，来合理化构建一个适合自己使用的SPI服务。 例如 Spring 使用 `META-INF/spring.factories` 来加载想要的实现类

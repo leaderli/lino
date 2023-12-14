@@ -2,7 +2,7 @@
 aliases: 字节码,class
 tags:
   - java/jvm/字节码
-date updated: 2022-05-04 15:36
+date updated: 2023-02-14 21:38
 ---
 
 class字节码文件是java跨平台的基础，其本质是一个满足JVM规范的二进制文件。class文件以一个个8位字节位基础单位，每个数据严格按照指定的数据结构排列在class文件之中。
@@ -64,8 +64,8 @@ public class Hello {
 
 根据数据结构的定义，前4位是magic，固定为 `CAFEBABE`，用于JVM认定该文件为一个合法的class字节码，通过第8位也可以看到其编译的 [[major_version|java 版本信息]]
 
-一般为了方便我们都使用  [[command#javap|javap]] 查看class字节码，查看
-[[command#^e7cce6|示例]] 我们可以方便的看到其 [[major_version|java 版本信息]]
+一般为了方便我们都使用  [[index/java/command#javap|javap]] 查看class字节码，查看
+[[index/java/command#^e7cce6|示例]] 我们可以方便的看到其 [[major_version|java 版本信息]]
 
 ## 描述符
 
@@ -88,7 +88,7 @@ public class Hello {
 
 方法的描述符，先参数列表后返回值的顺序来描述，参数列表按参数顺序放在 `()` 之间。
 
-通过查看  [[command#^e7cce6|示例]] ，我们观察到 [[constant pool| 常量池]] 中字段的描述符，也可以看到方法的描述符。例如最常见的main方法的描述符，`descriptor: ([Ljava/lang/String;)V`
+通过查看  [[index/java/command#^e7cce6|示例]] ，我们观察到 [[constant pool| 常量池]] 中字段的描述符，也可以看到方法的描述符。例如最常见的main方法的描述符，`descriptor: ([Ljava/lang/String;)V`
 
 描述符示例：
 
@@ -100,7 +100,7 @@ public class Hello {
 
 ### ldc
 
-int、float或String型常量从常量池推送至栈顶
+`int`, `float` 或 `String` 型常量从常量池推送至栈顶
 
 ### getstatic
 

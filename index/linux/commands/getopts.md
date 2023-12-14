@@ -42,6 +42,16 @@ done
 echo $S_DIR
 echo $D_DIR
 echo $upload
+
+# Shift the option arguments
+shift $((OPTIND - 1))
+
+# Process extra arguments
+while [[ $# -gt 0 ]]; do
+  extra_arg=$1
+  echo "Extra argument: $extra_arg"
+  shift
+done
 ```
 
 对于剩余的其他参数，可以使用 [[shift]] 来读取

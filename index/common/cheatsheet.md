@@ -36,10 +36,10 @@ date updated: 2022-08-24 23:05
 win中使用`alt`
 
 1. `command + enter` quick fix 快速修复
-2. `alt + 1` next annotaion 查找下一个错误
+2. `command + 1` next annotaion 查找下一个错误
 3. `command + e` 选择打开的文件
-4. `command + o`  quick outline 快速outline
-5. `command + r`  open resource 打开资源
+4. `command + 2`  quick outline 快速outline
+5. `command + o`  open resource 打开资源
 6. `command + b`  open call hierarchy 打开方法调用处
 7. `command + d`  open declaration 进入声明处
 8. `command + i` open implementation 打开实现类
@@ -97,6 +97,8 @@ mac 上使用 command 键替代 alt
 | ALT `↑`        | Jump to Navigation Bar |
 | ALT `[`        | BACK                   |
 | ALT `]`        | FORWARD                |
+| ALT `+`        | Expand|
+| ALT `-`        | Collapse|
 | SHIFT F6       | rename                 |
 | SHIFT  ALT `→` | Split And Move Right            |
 | SHIFT ALT `↓`  | Split And Move Down             |

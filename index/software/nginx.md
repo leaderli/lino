@@ -1,7 +1,7 @@
 ---
 tags:
   - 软件/nginx
-date updated: 2022-07-12 06:05
+date updated: 2022-11-16 23:35
 ---
 
 ## 安装
@@ -50,6 +50,8 @@ worker_processes 1;
 
 ```shell
 nginx -s signal
+
+nginx -t # 测试配置文件是否正确
 ```
 
 - stop — fast shutdown
@@ -249,6 +251,32 @@ server {
 
 通过 `rewite` 将请求 `localhost:18080/api/xxx` 的请求转发到 `localhost:12345/xxx` 上
 
+### map转发
+
+根据参数分发到固定的ip和端口上
+
+
+```nginx
+# arg_node 中的 node是实际请求的url上的参数的key，例如 http://ip:8081/aaa?node=1281
+# my_uri 是变量
+map $arg_node $my_uri{
+	default  127.0.0.1:8081 # default必须有，端口必须有
+	1281     127.0.0.1:8081
+	1282     127.0.0.1:8082
+	1382     127.0.0.2:8081
+	1382     127.0.0.2:8082
+}
+
+server {
+	listen 8000
+	server_name test
+	location /test {
+		rewrite ^/test(.*)$ $1 break
+		proxy_pass http://$my_uri
+	}
+}
+```
+
 ### 增加请求头
 
 配置，这样在服务器端的 headers 中就可以看到名为 name 的指定 header，需要注意的是，当值为空时，nginx 不会发送该请求头
@@ -264,6 +292,21 @@ server {
 }
 ```
 
+#### 保留原始请求地址
+
+nginx代理无法获取真实ip地址
+
+```nginx
+server {
+   listen 18080;
+   location / {
+      proxy_pass http://f5;
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+   }
+}
+```
 ## 负载均衡
 
 ### 测试用脚本
@@ -391,6 +434,41 @@ done
 
 **_当负载服务器停止服务时，nginx 会自动重新计算 hash_**
 
+如果使用`tenginx` 可以基于cookie设置session保持
+
+[ngx_http_upstream_session_sticky_module - The Tengine Web Server](https://tengine.taobao.org/document_cn/http_upstream_session_sticky_cn.html)
+
+```nginx
+# 默认配置：cookie=route mode=insert fallback=on  
+upstream foo {  
+    server 192.168.0.1;  
+    server 192.168.0.2;  
+    session_sticky;  
+}  
+  
+server {  
+    location / {  
+        proxy_pass http://foo;  
+    }  
+}
+```
+
+```nginx
+#insert + indirect模式：  
+upstream test {  
+    session_sticky cookie=uid domain=www.xxx.com fallback=on path=/ mode=insert option=indirect;  
+    server  127.0.0.1:8080;  
+}  
+  
+server {  
+    location / {  
+        #在insert + indirect模式或者prefix模式下需要配置session_sticky_hide_cookie  
+        #这种模式不会将保持会话使用的cookie传给后端服务，让保持会话的cookie对后端透明  
+        session_sticky_hide_cookie upstream=test;  
+        proxy_pass http://test;  
+    }  
+}
+```
 ## 日志
 
 我们可配置`http|log_format`来控制 nginx 的 access_log 日志的输出内容,你可以打印所有 nginx 中有关的 [[#可用变量]]

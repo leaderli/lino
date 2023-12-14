@@ -2,11 +2,10 @@
 aliases: 命令行
 tags:
   - java/command
-date updated: 2022-04-07 14:43
+date updated: 2023-05-17 06:01
 ---
 
 ### linux上查看java安装目录
-
 
 ```shell
 han@ubuntu:/etc$ whereis java
@@ -17,17 +16,42 @@ han@ubuntu:/etc$ ls -lrt /etc/alternatives/java
 lrwxrwxrwx 1 root root 46 4月   2 15:54 /etc/alternatives/java -> /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
 ```
 
+### java
+
+java 接受重定向符号，但是只能接受读取文件
+
+```java
+class Main
+{
+    public static void main(String[] args)
+    {
+        List<String> tokens = new ArrayList<>();
+ 
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNext()) {
+            tokens.add(scanner.next());
+        }
+ 
+        System.out.println(tokens);
+        scanner.close();
+    }
+}
+```
+
+```shell
+# main.class
+java Main < 1.txt
+```
+
+也可以java其命令的输出重定向到某个文件中，其用法类似于标准输出
+
 ### javap
-
-
-
 
 `javap [option] class`
 
 - `- v`  输出堆栈大小、各方法的 locals 及 args 数,以及class文件的 [[major_version|编译版本]]
 
 例如
-
 
 ```java
 public class Hello {

@@ -8,5 +8,6 @@
   "things-style@@minimal-icons-off": false,
   "quick-explorer@@qe-hide-breadcrumbs": false,
   "quick-explorer@@qe-obsidian-title": "qe-title-hide",
-  "minimal-advanced@@styled-scrollbars": true
+  "minimal-advanced@@styled-scrollbars": true,
+  "minimal-style@@window-title-off": false
 }

@@ -1,11 +1,37 @@
 ---
 tags:
   - linux/commands/ps
-date updated: 2022-04-14 11:20
+date updated: 2023-08-06 22:20
 ---
 
+当前正在运行的进程的快照信息
+
+- `-e` 显示所有进程，而不仅仅是当前用户的进程。
+- `-f` 显示完整格式的输出，包括更多的进程信息
+- ` -p  ` `<PID>`：仅显示指定PID的进程信息，可以不用关键字
+- `-o <FORMAT>`：自定义输出格式，指定要显示的列。
+
+  常用格式：
+
+  - `pid`：进程ID。
+  - `ppid`：父进程ID。
+  - `args`： 带参数的命令
+  - `cmd`： 带参数的命令
+  - `command`： 带参数的命令
+  - `comm`： 命令名称
+  - `%cpu`：CPU使用率。
+  - `%mem`：内存使用率。
+  - `start`：进程的启动时间。
+  - `time`：进程的累计运行时间。
+- `--no-headers`：禁止显示列标题行
+
+格式字段后面带`=` 一般表示不用标题行
 ## 示例
 
+
+```shell
+ps
+```
 ### 查询正在运行的进程信息
 
 ```shell
@@ -43,3 +69,7 @@ ps -aux
 ```shell
 ps -aux --sort=-rss|head 10
 ```
+
+## 参考
+
+[ps(1) - Linux manual page](https://man7.org/linux/man-pages/man1/ps.1.html)

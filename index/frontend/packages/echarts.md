@@ -549,3 +549,5 @@ query 可为 string 或者 Object。
 [官方教程](https://echarts.apache.org/zh/tutorial.html)
 
 [option 详细配置](https://echarts.apache.org/zh/option.html#title)
+
+[示例文档](https://echarts.apache.org/examples/zh/index.html)
