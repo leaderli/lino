@@ -3,7 +3,7 @@ date created: 2022-03-22 17:22
 aliases: Java诊断工具
 tags:
   - java/框架/arthas
-date updated: 2022-03-28 14:59
+date updated: 2023-12-14 22:33
 ---
 
 ---
@@ -48,11 +48,11 @@ java -jar arthas-boot.jar -v
 
 类似cli的程序，可输入命令进行操作，例如 `dashboard` ，`thread` 等
 
-### dashboard
+## dashboard
 
 展示进程的信息，`ctrl+c`中断执行
 
-### thread
+## thread
 
 查看所有进程
 `thread 1` 查看进程ID为1的进程
@@ -64,7 +64,23 @@ java -jar arthas-boot.jar -v
     at demo.MathGame.main(MathGame.java:17)
 ```
 
-### jad
+```shell
+# 支持一键展示当前最忙的前 N 个线程并打印堆栈
+$ thread -n 3 
+
+#  找出当前阻塞其他线程的线程
+$ thread -b 
+
+
+# 统计最近 1000ms 内的线程 CPU 时间
+$ thread -i 1000
+
+
+# 查看id为1的线程的堆栈
+$ thread 1
+```
+
+## jad
 
 反编译字节码，根据类的全名
 
@@ -149,7 +165,7 @@ public class MathGame {
 Affect(row-cnt:1) cost in 970 ms.
 ```
 
-### watch
+## watch
 
 监听`demo.MathGame#primeFactors`函数的返回值：
 
@@ -182,32 +198,81 @@ ts=2021-12-20 00:13:20; [cost=0.243086ms] result=@ArrayList[
 ```
 
 查看某个方法被调用的情况
+
 ```shell
-watch org.apache.commons.io.input.Tailer getRun
+$ watch org.apache.commons.io.input.Tailer getRun
+
+# -m 1000 指定最大匹配数量，默认50
+$ watch org.apache.* * -m 1000
 ```
-### trace
+
+## trace
 
 查看某个方法执行细节
+
 ```shell
-trace org.apache.commons.io.input.Tailer getRun
+$ trace org.apache.commons.io.input.Tailer getRun
+
+# -n 1 匹配一次就退出
+$ trace org.apache.commons.io.input.Tailer getRun -n 1
+
+# -m 1000 指定最大匹配数量，默认50
+$ trace org.apache.* * -m 1000
+
+# 显示更多信息
+$ trace org.apache.commons.io.input.Tailer getRun  -v
 ```
-### jvm
+
+## jvm
 
 查看当前 JVM 的信息
 
-### sysprop
+## sysprop
 
 查看和修改JVM的系统属性
 
-### sysenv
+## sysenv
 
 查看JVM的环境变量
 
-### profiler
+## profiler
 
-热点
+持生成应用热点的火焰图。本质上是通过不断的采样，然后把收集到的采样结果生成火焰图。
 
-### sc
+```shell
+# 采集的事件，默认采集cpu
+$ profiler list 
+# 采集内存回收事件
+$ profiler start --event alloc
+# 指定生成目录
+$ profiler start --file  /tmp/profiler.html
+# 开始采集
+$ profiler start
+# 采集状态
+$ profiler status
+# 结束采集
+$ profiler stop
+
+# 应用比较复杂，生成的内容很多，想只关注部分数据，可以通过 include/exclude 来过滤。 include/exclude 都支持设置多个值 ，但是需要配置在命令行的最后。
+profiler start --include 'java/*' --include 'demo/*' --exclude '*Unsafe.park*'
+
+
+# 指定运行时间
+profiler start --duration 300
+
+```
+
+## monitor
+
+对匹配的类的方法的调用进行监控
+
+```shell
+$ monitor -c 5 demo.MathGame primeFactors
+# -m 指定匹配的类的数量，默认是50，超过则不执行
+$ monitor -c 5 -m 100 demo.*  *
+```
+
+## sc
 
 查看JVM已加载的类信息
 
@@ -282,7 +347,7 @@ fields            modifierprivate,static
                   name    illegalArgumentCount
 ```
 
-### classloader
+## classloader
 
 查看类加载器
 
@@ -298,21 +363,22 @@ fields            modifierprivate,static
 | `[c: r:]`             | 用ClassLoader去查找resource           |
 | `[c: load:]`          | 用ClassLoader去加载指定的类               |
 
-
-### vmtool
-
+## vmtool
 
 - `-c` 表示classloader
 - `-a` 表示动作
 
 查看某个类实例，无 --limit 参数默认10个
+
 ```shell
 vmtool -c 3e2e18f2 -a getInstances --className *EncryptClass
 vmtool -c 3e2e18f2 -a getInstances --className *EncryptClass --express 'instances.length'
 vmtool -c 3e2e18f2 -a getInstances --className *EncryptClass --express 'instances[0]'
 
 ```
- 实例方法调用
+
+实例方法调用
+
 ```shell
 vmtool -c 3e2e18f2 -a getInstances --className *EncryptClass --express '#val=instances[0],#val.getNote()'
 vmtool -c 3e2e18f2 -a getInstances --className *EncryptClass --express '#val=instances[0],#val.setNote("modify by instance"+#val.getNote())'
@@ -321,11 +387,13 @@ vmtool -c 3e2e18f2 -a getInstances --className *EncryptClass --express '#val=ins
 
 实例属性操作
 获取或者修改第一个实例 note 属性
+
 ```shell
 vmtool -c 3e2e18f2 -a getInstances --className *EncryptClass --express '#val=instances[1].note'
 vmtool -c 3e2e18f2 -a getInstances --className *EncryptClass --express '#val=instances[1],#val.note="modify by instance"+#val.note'
 
 ```
+
 ## ognl
 
 通过ognl表达式，直接执行java表达式
@@ -368,6 +436,10 @@ null
 ```shell
 ognl -c 3d4eac69  '@demo.MathGame@illegalArgumentCount'
 ```
+
+## stop
+
+关闭 Arthas 服务端，所有 Arthas 客户端全部退出。
 
 ## 参考文档
 
