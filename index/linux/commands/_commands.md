@@ -40,6 +40,7 @@
 - 📄 [[index/linux/commands/man|man]]
 - 📄 [[index/linux/commands/mdls|mdls]]
 - 📄 [[index/linux/commands/mktemp|mktemp]]
+- 📄 [[index/linux/commands/netcat|netcat]]
 - 📄 [[index/linux/commands/netstat|netstat]]
 - 📄 [[index/linux/commands/nl|nl]]
 - 📄 [[index/linux/commands/nmap|nmap]]
