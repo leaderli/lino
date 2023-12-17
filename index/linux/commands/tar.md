@@ -1,7 +1,7 @@
 ---
 tags:
   - linux/commands/tar
-date updated: 2022-04-11 10:10
+date updated: 2023-12-17 20:18
 ---
 
 ```shell
@@ -9,4 +9,8 @@ date updated: 2022-04-11 10:10
 tar -zcvf myfile.tgz file1 file2
 # 解压
 tar -xvf file.tar
+
+# -C 指定目录
+
+tar -xvf file.tar -C /app/bin
 ```
