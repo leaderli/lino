@@ -53,3 +53,7 @@ ONBOOT="yes"
 ```shell
 systemctl restart network
 ```
+
+
+
+## 
