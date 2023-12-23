@@ -1,7 +1,7 @@
 ---
 tags:
   - 软件/flink
-date updated: 2023-12-18 22:11
+date updated: 2023-12-23 17:29
 ---
 
 ## 简介
@@ -129,6 +129,62 @@ nc -lk 7777
 启动后可以访问 <http://localhost:8081/>
 
 我们向socket端口输出数据时，就可以看到java控制台相关的输出信息
+
+## 读取数据
+
+### 读取文件
+
+```xml
+<dependency>  
+    <groupId>org.apache.flink</groupId>  
+    <artifactId>flink-runtime-web</artifactId>  
+    <version>${flink.version}</version>  
+</dependency>
+```
+
+```java
+package io.leaderli.flink.demo;  
+  
+import org.apache.commons.lang3.StringUtils;  
+import org.apache.flink.api.common.RuntimeExecutionMode;  
+import org.apache.flink.api.common.eventtime.WatermarkStrategy;  
+import org.apache.flink.api.common.typeinfo.Types;  
+import org.apache.flink.api.java.tuple.Tuple2;  
+import org.apache.flink.connector.file.src.FileSource;  
+import org.apache.flink.connector.file.src.reader.TextLineInputFormat;  
+import org.apache.flink.core.fs.Path;  
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;  
+import org.apache.flink.util.Collector;  
+  
+  
+public class FileSourceDemo {  
+  
+    public static void main(String[] args) throws Exception {  
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();  
+  
+        FileSource<String> source = FileSource.forRecordStreamFormat(new TextLineInputFormat(), new Path("pom.xml")).build();  
+  
+        env.setRuntimeMode(RuntimeExecutionMode.BATCH);  
+        env.fromSource(source, WatermarkStrategy.noWatermarks(), "file_source")  
+                .flatMap((String s, Collector<String> o) -> {  
+                    for (String word : s.replaceAll("\\W", " ").split(" ")) {  
+                        o.collect(word);  
+                    }  
+                })  
+                .returns(String.class)  
+                .filter(StringUtils::isNotBlank)  
+                .map(w -> Tuple2.of(w, 1))  
+                .returns(Types.TUPLE(Types.STRING, Types.INT))  
+                .keyBy(t -> t.f0)  
+                .sum(1)  
+                .print()  
+        ;  
+  
+        ;  
+        env.execute();  
+    }  
+}
+```
 
 ## 流处理基础
 
