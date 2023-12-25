@@ -1,7 +1,7 @@
 ---
 tags:
   - 软件/flink
-date updated: 2023-12-25 21:03
+date updated: 2023-12-25 22:37
 ---
 
 ## 简介
@@ -265,7 +265,9 @@ public class KafkaConsumerSourceDemo {
 8. minBy 返回包含字段最小值的整条数据。
 9. max
 10. maxBy
-11. reduce
+11. reduce 可以对已有的数据进行归约处理，把每一个新输入的数据和当前已经归约出来的
+
+值，再做一个聚合计算。
 
 示例：
 max
@@ -306,7 +308,7 @@ WaterSensor{id='s2', ts=2, vc=2}
 WaterSensor{id='s3', ts=3, vc=3}
 ```
 
-reduce，实现的类似于maxBy的功能
+reduce，
 
 ```java
 env.fromElements(  
@@ -316,14 +318,30 @@ env.fromElements(
                 new WaterSensor("s3", 3L, 3)  
         )  
         .keyBy(k -> k.id)  
-        .reduce((value1, value2) -> {  
-            if (value1.vc > value2.vc) {  
-                return value1;  
+        .reduce((prev, next) -> {  
+            if (prev.vc > next.vc) {  
+                return prev;  
             }  
-            return value2;  
+            return next;  
         })  
         .print()  
 ;
+```
+
+## 分区算子
+
+1. shuffle 随机分区
+2. rebalance 轮询分区
+3. rescale 缩放分区，轮询发送到下游并行任务的一部分中
+4. broadcast 输入数据复制并发送到下游算子的所有并行任务中去。
+5. global 所有的输入流数据都发送到下游算子的第一个并行子任务中去
+
+自定义分区
+
+```java
+env.fromSource(source, WatermarkStrategy.noWatermarks(), "datagen")  
+        .partitionCustom((key, numPartitions) -> key % numPartitions / 2, Integer::valueOf)  
+        .print();
 ```
 
 ## 流处理基础
