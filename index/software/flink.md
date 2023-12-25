@@ -1,7 +1,7 @@
 ---
 tags:
   - 软件/flink
-date updated: 2023-12-23 17:29
+date updated: 2023-12-25 21:03
 ---
 
 ## 简介
@@ -184,6 +184,146 @@ public class FileSourceDemo {
         env.execute();  
     }  
 }
+```
+
+### 读取kafka
+
+```xml
+<dependency>  
+    <groupId>org.apache.flink</groupId>  
+    <artifactId>flink-connector-kafka</artifactId>  
+    <version>${flink.version}</version>  
+    <scope>provided</scope>  
+</dependency>
+```
+
+```java
+package io.leaderli.flink.demo;  
+  
+import org.apache.commons.lang3.StringUtils;  
+import org.apache.flink.api.common.eventtime.WatermarkStrategy;  
+import org.apache.flink.api.common.serialization.SimpleStringSchema;  
+import org.apache.flink.api.common.typeinfo.Types;  
+import org.apache.flink.api.java.tuple.Tuple2;  
+import org.apache.flink.connector.kafka.source.KafkaSource;  
+import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;  
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;  
+import org.apache.flink.util.Collector;  
+  
+  
+public class KafkaConsumerSourceDemo {  
+  
+    public static void main(String[] args) throws Exception {  
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();  
+  
+        KafkaSource<String> source = KafkaSource.<String>builder()  
+                .setBootstrapServers("debian:9092")  
+                .setTopics("topic_demo")  
+                .setStartingOffsets(OffsetsInitializer.latest())  
+                .setValueOnlyDeserializer(new SimpleStringSchema())  
+                .build();  
+  
+        env.fromSource(source, WatermarkStrategy.noWatermarks(), "kafka_source")  
+                .flatMap((String s, Collector<String> o) -> {  
+                    for (String word : s.replaceAll("\\W", " ").split(" ")) {  
+                        o.collect(word);  
+                    }  
+                })  
+                .returns(String.class)  
+                .filter(StringUtils::isNotBlank)  
+                .map(w -> Tuple2.of(w, 1))  
+                .returns(Types.TUPLE(Types.STRING, Types.INT))  
+                .keyBy(t -> t.f0)  
+                .sum(1)  
+                .print()  
+        ;  
+  
+        env.execute();  
+    }  
+}
+```
+
+## flink的数据类型
+
+```java
+.map(word -> Tuple2.of(word, 1L))
+.returns(Types.TUPLE(Types.STRING, Types.LONG));
+
+// 定义泛型类
+.returns(new TypeHint<Tuple2<Integer, SomeType>>(){})
+```
+
+## 转换算子
+
+1. map
+2. filter
+3. flatMap
+4. keyBy
+5. reduce
+6. sum
+7. min 对指定的字段求最小值。
+8. minBy 返回包含字段最小值的整条数据。
+9. max
+10. maxBy
+11. reduce
+
+示例：
+max
+
+```java
+StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();  
+env.setParallelism(1);  
+  
+env.fromElements(  
+                new WaterSensor("s1", 1L, 1),  
+                new WaterSensor("s1", 2L, 11),  
+                new WaterSensor("s2", 2L, 2),  
+                new WaterSensor("s3", 3L, 3)  
+        )  
+        .keyBy(k -> k.id)  
+        .max("vc")  
+        .print()  
+;  
+  
+env.execute();
+```
+
+仅vc字段有变化
+
+```
+WaterSensor{id='s1', ts=1, vc=1}
+WaterSensor{id='s1', ts=1, vc=11}
+WaterSensor{id='s2', ts=2, vc=2}
+WaterSensor{id='s3', ts=3, vc=3}
+```
+
+如果使用maxBy，则使用最大的那一条数据
+
+```
+WaterSensor{id='s1', ts=1, vc=1}
+WaterSensor{id='s1', ts=2, vc=11}
+WaterSensor{id='s2', ts=2, vc=2}
+WaterSensor{id='s3', ts=3, vc=3}
+```
+
+reduce，实现的类似于maxBy的功能
+
+```java
+env.fromElements(  
+                new WaterSensor("s1", 1L, 1),  
+                new WaterSensor("s1", 2L, 11),  
+                new WaterSensor("s2", 2L, 2),  
+                new WaterSensor("s3", 3L, 3)  
+        )  
+        .keyBy(k -> k.id)  
+        .reduce((value1, value2) -> {  
+            if (value1.vc > value2.vc) {  
+                return value1;  
+            }  
+            return value2;  
+        })  
+        .print()  
+;
 ```
 
 ## 流处理基础
