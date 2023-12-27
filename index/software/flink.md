@@ -1,7 +1,7 @@
 ---
 tags:
   - 软件/flink
-date updated: 2023-12-25 22:37
+date updated: 2023-12-27 19:46
 ---
 
 ## 简介
@@ -342,6 +342,56 @@ env.fromElements(
 env.fromSource(source, WatermarkStrategy.noWatermarks(), "datagen")  
         .partitionCustom((key, numPartitions) -> key % numPartitions / 2, Integer::valueOf)  
         .print();
+```
+
+## 侧流
+
+```java
+package io.leaderli.flink.demo;  
+  
+import org.apache.flink.api.common.typeinfo.Types;  
+import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;  
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;  
+import org.apache.flink.streaming.api.functions.ProcessFunction;  
+import org.apache.flink.util.Collector;  
+import org.apache.flink.util.OutputTag;  
+  
+public class SideOutputDemo {  
+    public static void main(String[] args) throws Exception {  
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();  
+        env.setParallelism(1);  
+  
+        OutputTag<WaterSensor> tag1 = new OutputTag<>("s1", Types.POJO(WaterSensor.class));  
+        OutputTag<WaterSensor> tag2 = new OutputTag<>("s2", Types.POJO(WaterSensor.class));  
+        SingleOutputStreamOperator<WaterSensor> process = env.fromElements(  
+                        new WaterSensor("s1", 1L, 1),  
+                        new WaterSensor("s1", 2L, 11),  
+                        new WaterSensor("s2", 2L, 2),  
+                        new WaterSensor("s3", 3L, 3),  
+                        new WaterSensor("s4", 4L, 4)  
+                )  
+                .process(new ProcessFunction<WaterSensor, WaterSensor>() {  
+                    @Override  
+                    public void processElement(WaterSensor value, ProcessFunction<WaterSensor, WaterSensor>.Context ctx, Collector<WaterSensor> out) throws Exception {  
+  
+                        if ("s1".equals(value.id)) {  
+                            ctx.output(tag1, value);  
+                        } else if ("s2".equals(value.id)) {  
+                            ctx.output(tag2, value);  
+                        } else {  
+                            out.collect(value);  
+                        }  
+                    }  
+                });  
+        process.print();  
+  
+        process.getSideOutput(tag1).print("s1");  
+        process.getSideOutput(tag2).print("s2");  
+  
+  
+        env.execute();  
+    }  
+}
 ```
 
 ## 流处理基础
