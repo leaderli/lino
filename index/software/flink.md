@@ -1,7 +1,7 @@
 ---
 tags:
   - 软件/flink
-date updated: 2023-12-27 19:46
+date updated: 2023-12-27 22:27
 ---
 
 ## 简介
@@ -388,6 +388,73 @@ public class SideOutputDemo {
         process.getSideOutput(tag1).print("s1");  
         process.getSideOutput(tag2).print("s2");  
   
+  
+        env.execute();  
+    }  
+}
+```
+
+## 合流
+
+union
+
+```java
+package io.leaderli.flink.demo;  
+  
+import org.apache.flink.streaming.api.datastream.DataStreamSource;  
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;  
+  
+public class UnionDemo {  
+  
+    public static void main(String[] args) throws Exception {  
+  
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();  
+        env.setParallelism(1);  
+  
+        DataStreamSource<Integer> source1 = env.fromElements(1, 2, 3);  
+        DataStreamSource<Integer> source2 = env.fromElements(4, 5, 6);  
+        DataStreamSource<Integer> source3 = env.fromElements(7, 8, 9);  
+  
+        source1.union(source2,source3).print();  
+  
+        env.execute();  
+    }  
+}
+```
+
+connect
+
+多并行度的情况下，需要keyby将数据分配到合适的节点
+
+```java
+package io.leaderli.flink.demo;  
+  
+import org.apache.flink.streaming.api.datastream.DataStreamSource;  
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;  
+import org.apache.flink.streaming.api.functions.co.CoMapFunction;  
+  
+public class ConnectDemo {  
+  
+    public static void main(String[] args) throws Exception {  
+  
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();  
+        env.setParallelism(1);  
+  
+        DataStreamSource<Integer> source1 = env.fromElements(1, 2, 3);  
+        DataStreamSource<String> source2 = env.fromElements("4", "5", "6");  
+  
+        source1.connect(source2).map(new CoMapFunction<Integer, String, String>() {  
+                    @Override  
+                    public String map1(Integer value) {  
+                        return value + "";  
+                    }  
+  
+                    @Override  
+                    public String map2(String value) {  
+                        return value;  
+                    }  
+                })  
+                .print();  
   
         env.execute();  
     }  
