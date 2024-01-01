@@ -1,7 +1,7 @@
 ---
 tags:
   - 软件/flink
-date updated: 2023-12-27 22:27
+date updated: 2024-01-01 17:07
 ---
 
 ## 简介
@@ -465,6 +465,67 @@ public class ConnectDemo {
 
 ### 文件
 
+```java
+package io.leaderli.flink.demo;
+
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.flink.api.common.eventtime.WatermarkStrategy;
+import org.apache.flink.api.common.serialization.SimpleStringEncoder;
+import org.apache.flink.api.common.typeinfo.Types;
+import org.apache.flink.api.connector.source.util.ratelimit.RateLimiterStrategy;
+import org.apache.flink.configuration.MemorySize;
+import org.apache.flink.connector.datagen.source.DataGeneratorSource;
+import org.apache.flink.connector.file.sink.FileSink;
+import org.apache.flink.core.fs.Path;
+import org.apache.flink.streaming.api.CheckpointingMode;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.api.functions.sink.filesystem.OutputFileConfig;
+import org.apache.flink.streaming.api.functions.sink.filesystem.bucketassigners.DateTimeBucketAssigner;
+import org.apache.flink.streaming.api.functions.sink.filesystem.rollingpolicies.DefaultRollingPolicy;
+
+import java.time.Duration;
+import java.time.ZoneId;
+
+public class FileOutDemo {
+
+    public static void main(String[] args) throws Exception {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        env.setParallelism(2);
+        env.enableCheckpointing(1000, CheckpointingMode.EXACTLY_ONCE);
+        DataGeneratorSource<String> source = new DataGeneratorSource<>(
+                l -> RandomStringUtils.random(1000),
+                1000,
+                RateLimiterStrategy.perSecond(100),
+
+                Types.STRING);
+
+        FileSink<String> sink = FileSink
+                .<String>forRowFormat(
+                        // 路径
+                        new Path("D:/app"),
+                        // 解码，编码格式
+                        new SimpleStringEncoder<>("UTF-8"))
+                // 指定文件前缀，后缀
+                .withOutputFileConfig(OutputFileConfig.builder()
+                        .withPartPrefix("li_")
+                        .withPartSuffix(".log")
+                        .build())
+                // 按照日期分目录
+                .withBucketAssigner(new DateTimeBucketAssigner<>("yyyyMMdd", ZoneId.systemDefault()))
+                // 文件滚动策略，10s或者1M，生成新文件
+                .withRollingPolicy(DefaultRollingPolicy.builder()
+                        .withRolloverInterval(Duration.ofSeconds(10))
+                        .withMaxPartSize(MemorySize.parse("1M"))
+                        .build())
+                .build();
+        env.fromSource(source, WatermarkStrategy.noWatermarks(), "datagen")
+                .sinkTo(sink);
+
+
+        env.execute();
+    }
+}
+```
 
 ## 流处理基础
 
