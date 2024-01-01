@@ -1,7 +1,7 @@
 ---
 tags:
   - 软件/flink
-date updated: 2024-01-01 17:07
+date updated: 2024-01-01 18:55
 ---
 
 ## 简介
@@ -525,6 +525,57 @@ public class FileOutDemo {
         env.execute();
     }
 }
+```
+
+### kafka
+
+```java
+package io.leaderli.flink.demo;
+
+import org.apache.flink.api.common.serialization.SimpleStringSchema;
+import org.apache.flink.configuration.Configuration;
+import org.apache.flink.connector.base.DeliveryGuarantee;
+import org.apache.flink.connector.kafka.sink.KafkaRecordSerializationSchema;
+import org.apache.flink.connector.kafka.sink.KafkaSink;
+import org.apache.flink.streaming.api.CheckpointingMode;
+import org.apache.flink.streaming.api.datastream.DataStreamSource;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.kafka.clients.producer.ProducerConfig;
+
+public class KafkaSinkDemo {
+    public static void main(String[] args) throws Exception {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI(new Configuration());
+        env.setParallelism(1);
+        // 如果是精准一次，必须开启 checkpoint
+        env.enableCheckpointing(2000, CheckpointingMode.EXACTLY_ONCE);
+        DataStreamSource<String> ds = env.socketTextStream("debian", 7777);
+        /*
+         * Kafka Sink:
+         * 注意：如果要使用 精准一次 写入 Kafka，需要满足以下条件，缺一不可
+         * 1、开启 checkpoint（后续介绍）
+         * 2、设置事务前缀
+         * 3、设置事务超时时间： checkpoint 间隔 < 事务超时时间 < max
+         的 15 分钟
+         */
+        KafkaSink<String> sink = KafkaSink.<String>builder()
+                .setBootstrapServers("debian:9092")
+                // 指定序列化器，指定topic名称，具体的序列化
+                .setRecordSerializer(KafkaRecordSerializationSchema.<String>builder()
+                        .setTopic("ws")
+                        .setValueSerializationSchema(new SimpleStringSchema())
+                        .build())
+                // 写到 kafka 的一致性级别：精准一次，至少一次
+                .setDeliveryGuarantee(DeliveryGuarantee.EXACTLY_ONCE)
+                // 如果是精准一次，必须设置事务的前缀
+                .setTransactionalIdPrefix("li-")
+                // 如果是精准一次，必须设置事务超时时间：大于checkpoint间隔，小于max
+                .setProperty(ProducerConfig.TRANSACTION_TIMEOUT_CONFIG, 15 * 60 * 1000 + "")
+                .build();
+        ds.sinkTo(sink);
+        env.execute();
+    }
+}
+
 ```
 
 ## 流处理基础
