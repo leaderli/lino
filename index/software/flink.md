@@ -1,7 +1,7 @@
 ---
 tags:
   - 软件/flink
-date updated: 2024-01-01 18:55
+date updated: 2024-01-01 21:28
 ---
 
 ## 简介
@@ -576,6 +576,78 @@ public class KafkaSinkDemo {
     }
 }
 
+```
+
+### mysql
+
+```xml
+<dependency>  
+    <groupId>org.apache.flink</groupId>  
+    <artifactId>flink-connector-jdbc</artifactId>  
+    <version>3.1.0-1.17</version>  
+</dependency>
+```
+
+```java
+package io.leaderli.flink.demo;
+
+import org.apache.flink.api.common.functions.MapFunction;
+import org.apache.flink.configuration.Configuration;
+import org.apache.flink.connector.jdbc.JdbcConnectionOptions;
+import org.apache.flink.connector.jdbc.JdbcExecutionOptions;
+import org.apache.flink.connector.jdbc.JdbcSink;
+import org.apache.flink.connector.jdbc.JdbcStatementBuilder;
+import org.apache.flink.streaming.api.datastream.DataStreamSource;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.api.functions.sink.SinkFunction;
+
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.Objects;
+
+public class MysqlSinkDemo {
+    public static void main(String[] args) throws Exception {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI(new Configuration());
+        env.setParallelism(1);
+        DataStreamSource<String> ds = env.socketTextStream("debian", 7777);
+        SinkFunction<WaterSensor> sink = JdbcSink.sink("insert into ws values(?,?,?)",
+                new JdbcStatementBuilder<WaterSensor>() {
+                    @Override
+                    public void accept(PreparedStatement preparedStatement, WaterSensor waterSensor) throws SQLException {
+                        preparedStatement.setString(1, waterSensor.id);
+                        preparedStatement.setLong(2, waterSensor.ts);
+                        preparedStatement.setInt(3, waterSensor.vc);
+
+                    }
+                },
+                JdbcExecutionOptions.builder()
+                        .withBatchIntervalMs(3000)
+                        .withBatchSize(100)
+                        .withMaxRetries(3)
+                        .build(),
+                new JdbcConnectionOptions.JdbcConnectionOptionsBuilder()
+                        .withUrl("jdbc:mysql://centos7:3306/leaderli")
+                        .withUsername("root")
+                        .withPassword("123456")
+                        .withConnectionCheckTimeoutSeconds(6)
+                        .build());
+        ds.map(new MapFunction<String, WaterSensor>() {
+                    @Override
+                    public WaterSensor map(String value) throws Exception {
+                        String[] split = value.split(",");
+                        System.out.println(Arrays.toString(split));
+                        if (split.length == 3) {
+                            return new WaterSensor(split[0], Long.valueOf(split[1]), Integer.valueOf(split[2]));
+                        }
+                        return null;
+                    }
+                })
+                .filter(Objects::nonNull)
+                .addSink(sink);
+        env.execute();
+    }
+}
 ```
 
 ## 流处理基础
