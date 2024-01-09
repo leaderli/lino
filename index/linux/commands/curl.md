@@ -1,7 +1,7 @@
 ---
 tags:
   - linux/commands/curl
-date updated: 2022-05-06 15:06
+date updated: 2024-01-09 10:54
 ---
 
 参数
@@ -89,12 +89,12 @@ echo $response
 
 当返回码为 000 时，表示请求有问题，例如超时
 
-
-
 例如在不联网的机器上执行，其结果即为000
+
 ```shell
 curl -o /dev/null -m 5 -s -w "%{http_code}" www.baidu.com 
 ```
+
 ### 超时
 
 ```python
@@ -148,11 +148,10 @@ curl: (28) Operation timed out after 5002 milliseconds with 0 out of -1 bytes re
 
 ```
 
-
 ## 发送JSON请求
 
 ```shell
-curl -H "Content-Type: application/json" -X POST -d  '{'a':1}'  http://127.0.0.1/xxx
+curl -H "Content-Type: application/json" -X POST -d  '{"username":"1","password":"2"}' http://127.0.0.1/xxx
 ```
 
 ## 使用token

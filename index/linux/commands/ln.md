@@ -1,7 +1,7 @@
 ---
 tags:
   - linux/commands/ln
-date updated: 2023-08-20 19:56
+date updated: 2024-01-09 10:12
 ---
 
 软链接，全称是软链接文件，英文叫作 symbolic link。这类文件其实非常类似于 Windows 里的快捷方式，这个软链接文件（假设叫 VA）的内容，其实是另外一个文件（假设叫 B）的路径和名称，当打开 A 文件时，实际上系统会根据其内容找到并打开 B 文件。
@@ -24,5 +24,6 @@ ln -n [source] [link]
 stat <file>
 
 # 根据inode节点删除文件
+# 一些名字包含特殊字符，不方便删除的
 find ./ -inum <inum> -delete
 ```
