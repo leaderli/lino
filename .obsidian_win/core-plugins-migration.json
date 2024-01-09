@@ -2,11 +2,11 @@
   "file-explorer": true,
   "global-search": true,
   "switcher": false,
-  "graph": true,
+  "graph": false,
   "backlink": false,
   "outgoing-link": true,
-  "tag-pane": true,
-  "page-preview": true,
+  "tag-pane": false,
+  "page-preview": false,
   "daily-notes": false,
   "templates": false,
   "note-composer": false,
@@ -18,7 +18,7 @@
   "zk-prefixer": false,
   "random-note": false,
   "outline": true,
-  "word-count": true,
+  "word-count": false,
   "slides": false,
   "audio-recorder": false,
   "workspaces": false,
@@ -26,6 +26,6 @@
   "publish": false,
   "sync": false,
   "canvas": false,
-  "bookmarks": true,
-  "properties": true
+  "bookmarks": false,
+  "properties": false
 }

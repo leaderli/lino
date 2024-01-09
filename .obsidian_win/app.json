@@ -28,5 +28,7 @@
   "legacyEditor": false,
   "communityPluginSortOrder": "download",
   "showInlineTitle": false,
-  "rightToLeft": false
+  "rightToLeft": false,
+  "focusNewTab": false,
+  "showIndentGuide": true
 }
