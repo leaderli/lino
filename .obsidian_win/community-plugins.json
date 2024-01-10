@@ -9,15 +9,15 @@
   "supercharged-links-obsidian",
   "obsidian-outliner",
   "markdown-prettifier",
-  "obsidian-hider",
   "obsidian-image-toolkit",
   "various-complements",
   "obsidian-another-quick-switcher",
   "vim-im-select",
   "zoottelkeeper-obsidian-plugin",
-  "obsidian-minimal-settings",
   "obsidian-style-settings",
   "quick-explorer",
   "obsidian-tasks-plugin",
-  "link-headers-directly"
+  "link-headers-directly",
+  "homepage",
+  "obsidian-hider"
 ]

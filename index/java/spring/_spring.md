@@ -15,6 +15,7 @@
 - 📄 [[index/java/spring/ResourceHandlers|ResourceHandlers]]
 - 📄 [[index/java/spring/returnValueHandlers|returnValueHandlers]]
 - 📄 [[index/java/spring/scanner|scanner]]
+- 📄 [[index/java/spring/spring_war|spring_war]]
 - 📄 [[index/java/spring/tips|tips]]
 - 📄 [[index/java/spring/upload file|upload file]]
 - 📄 [[index/java/spring/YamlBeanRegistrar|YamlBeanRegistrar]]

@@ -8,7 +8,7 @@
   "showUnsupportedFiles": true,
   "attachmentFolderPath": "resource",
   "showFrontmatter": true,
-  "readableLineLength": true,
+  "readableLineLength": false,
   "newFileLocation": "current",
   "newFileFolderPath": "",
   "promptDelete": false,
@@ -28,5 +28,7 @@
   "legacyEditor": false,
   "communityPluginSortOrder": "download",
   "showInlineTitle": false,
-  "rightToLeft": false
+  "rightToLeft": false,
+  "focusNewTab": false,
+  "showIndentGuide": true
 }

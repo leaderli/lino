@@ -1,7 +1,7 @@
 ---
 tags:
   - java/tips
-date updated: 2023-10-06 16:34
+date updated: 2024-01-08 23:06
 ---
 
 ### 读取 properties 中文乱码解决
@@ -39,6 +39,11 @@ Comparator<Player> byAge = Comparator
 ```shell
 ls *.jar|xargs -I {} jadx {} -d src
 ```
+
+其他反编译软件
+
+fernflower idea中使用的
+[[fernflower.jar]]
 
 ### 读取文件
 

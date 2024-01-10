@@ -97,6 +97,8 @@ mac 上使用 command 键替代 alt
 | ALT `↑`        | Jump to Navigation Bar |
 | ALT `[`        | BACK                   |
 | ALT `]`        | FORWARD                |
+| ALT `+`        | Expand|
+| ALT `-`        | Collapse|
 | SHIFT F6       | rename                 |
 | SHIFT  ALT `→` | Split And Move Right            |
 | SHIFT ALT `↓`  | Split And Move Down             |

@@ -3,7 +3,7 @@ aliases: null
 tags:
   - 软件/kafka
   - 中间件
-date updated: 2022-04-07 09:14
+date updated: 2023-12-23 21:39
 ---
 
 ## 安装
@@ -17,9 +17,9 @@ tar -xvf kafka_2.13-2.6.0.tgz
 
 ```shell
 #启动zookeeper
-$ bin/zookeeper-server-start.sh config/zookeeper.properties
+$ bin/zookeeper-server-start.sh -daemon config/zookeeper.properties
 #启动kafka
-$ bin/kafka-server-start.sh config/server.properties
+$ bin/kafka-server-start.sh -daemon config/server.properties
 ```
 
 ## 相关命令
@@ -31,14 +31,10 @@ $ bin/kafka-topics.sh --create --topic quickstart-events --partitions 20 --repli
 Created topic quickstart-events.
 
 #查看topic
-$ bin/kafka-topics.sh --describe --topic --bootstrap-server localhost:9092
+$ bin/kafka-topics.sh --describe --topic quickstart-events --bootstrap-server localhost:9092
 Topic: quickstart-events    PartitionCount: 1   ReplicationFactor: 1    Configs: segment.bytes=1073741824
     Topic: quickstart-events    Partition: 0    Leader: 0   Replicas: 0 Isr: 0
 
-#可以筛选，quicks既可以看到
-$ bin/kafka-topics.sh --describe --topic quicks --bootstrap-server localhost:9092
-Topic: quickstart-events    PartitionCount: 1   ReplicationFactor: 1    Configs: segment.bytes=1073741824
-    Topic: quickstart-events    Partition: 0    Leader: 0   Replicas: 0 Isr: 0
 
 ## 删除topic
 $ bin/kafka-topics.sh --delete --topic quickstart-events --bootstrap-server localhost:9092
@@ -167,7 +163,6 @@ partition 是一个有序日志，在 partition 上每个 consumer 有唯一 off
 
 例如
 ![kafka简述_2020-06-03-22-49-47.png|400](kafka简述_2020-06-03-22-49-47.png)
-
 
 ## 问题
 
