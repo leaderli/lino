@@ -72,7 +72,7 @@ public interface Resource extends InputStreamSource {
 }
 ```
 
-[[Spring]] 框架中主要实现类有，通过实现类，可以将 [[spring]] 的配置文件放在任何地方，例如数据库、LDAP，只需要最终通过 Resource 接口返回配置信息即可。 [[spring]] 的 Resource 接口及其实现类可以脱离 [[spring]] 框架的情况下使用，比 [[JDK]] 自带的更方便更强大。
+Spring 框架中主要实现类有，通过实现类，可以将 spring 的配置文件放在任何地方，例如数据库、LDAP，只需要最终通过 Resource 接口返回配置信息即可。spring 的 Resource 接口及其实现类可以脱离 spring 框架的情况下使用，比 [[JDK]] 自带的更方便更强大。
 
 - `ByteArrayResource` 二进制数组表示的资源，二进制数组资源可以在内存中通过程序构造。
 
