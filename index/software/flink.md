@@ -1,7 +1,7 @@
 ---
 tags:
   - 软件/flink
-date updated: 2024-01-13 16:18
+date updated: 2024-01-13 20:53
 ---
 
 ## 简介
@@ -783,7 +783,7 @@ public class WindowDemo {
 }
 ```
 
-process  窗口函数，处理整个窗口所有的数据
+process  窗口函数，处理整个窗口所有的数据，包括窗口的上下文信息
 
 ```java
 package io.leaderli.flink.demo;  
@@ -830,7 +830,6 @@ public class WindowDemo {
 [13, 14, 15, 16, 17]
 [15, 16, 17, 18, 19]
 ```
-
 
 ```java
 package io.leaderli.flink.demo;  
@@ -880,6 +879,52 @@ public class WindowDemo {
 3->[3, 8, 13, 18]
 4->[4, 9, 14, 19]
 ```
+
+reduce 和 aggregate 可以传入一个process参数，该process中仅会存储 reduce 和 aggregate 的结果
+
+```java
+package io.leaderli.flink.demo;  
+  
+import org.apache.flink.streaming.api.datastream.DataStreamSource;  
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;  
+import org.apache.flink.streaming.api.functions.windowing.ProcessAllWindowFunction;  
+import org.apache.flink.streaming.api.windowing.windows.GlobalWindow;  
+import org.apache.flink.util.Collector;  
+  
+public class WindowAggrigateDemo {  
+  
+    public static void main(String[] args) throws Exception {  
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();  
+        env.setParallelism(1);  
+        DataStreamSource<Long> ds = env.fromSequence(0, 20);  
+        ds.countWindowAll(5, 2)  
+                .reduce(Long::sum, new ProcessAllWindowFunction<Long, String, GlobalWindow>() {  
+                    @Override  
+                    public void process(ProcessAllWindowFunction<Long, String, GlobalWindow>.Context context, Iterable<Long> elements, Collector<String> out) throws Exception {  
+                        out.collect(context.window().maxTimestamp() + "->" + elements.iterator().next());  
+                    }  
+                })  
+                .print();  
+  
+        env.execute();  
+    }  
+}
+```
+
+### 其他API
+
+```java
+// 触发器主要是用来控制窗口什么时候触发计算
+stream.keyBy(...)
+	.window(...)
+	.trigger(new MyTrigger())
+
+// 移除器主要用来定义移除某些数据的逻辑
+stream.keyBy(...)
+	.window(...)
+	.evictor(new MyEvictor())
+```
+
 ## 流处理基础
 
 Dataflow图
