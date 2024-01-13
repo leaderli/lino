@@ -1,7 +1,7 @@
 ---
 tags:
   - 软件/flink
-date updated: 2024-01-13 12:42
+date updated: 2024-01-13 16:18
 ---
 
 ## 简介
@@ -684,6 +684,202 @@ stream.keyBy(<key selector>)
 	.aggregate(<window function>)
 ```
 
+```java
+// 滚动处理时间窗口
+window(TumblingProcessingTimeWindows.of(Time.seconds(5)))
+
+// 滑动处理时间窗口   大小 步长
+window(SlidingProcessingTimeWindows.of(Time.seconds(10)))
+
+// 处理时间会话窗口
+window(ProcessingTimeSessionWindows.withGap(Time.seconds(10))
+	   
+// 滚动事件时间窗口
+window(TumblingEventTimeWindows.of(Time.seconds(5)))
+
+// 滑动事件时间窗口   大小 步长
+window(SlidingEventTimeWindows.of(Time.seconds(10)))
+
+// 事件时间会话窗口
+window(EventTimeSessionWindows.withGap(Time.seconds(10)))
+
+// 滚动计数窗口
+countWindow(10)
+// 滑动计数窗口
+countWindow(10, 3)
+```
+
+### 窗口函数
+
+reduce
+
+```java
+package io.leaderli.flink.demo;  
+  
+import org.apache.flink.streaming.api.datastream.DataStreamSource;  
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;  
+  
+public class WindowDemo {  
+  
+    public static void main(String[] args) throws Exception {  
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();  
+        env.setParallelism(1);  
+        DataStreamSource<Long> ds = env.fromSequence(0, 20);  
+        ds.countWindowAll(5, 2)  
+                .reduce((l1, l2) -> {  
+                    System.out.println(">" + l2);  
+                    return l1 + l2;  
+                })  
+                .print();  
+        env.execute();  
+    }  
+}
+```
+
+aggregate
+
+```java
+package io.leaderli.flink.demo;  
+  
+import org.apache.flink.api.common.functions.AggregateFunction;  
+import org.apache.flink.streaming.api.datastream.DataStreamSource;  
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;  
+  
+public class WindowDemo {  
+  
+    public static void main(String[] args) throws Exception {  
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();  
+        env.setParallelism(1);  
+        DataStreamSource<Long> ds = env.fromSequence(0, 20);  
+        ds.keyBy(l -> l % 10).countWindow(5, 2)  
+                .aggregate(new AggregateFunction<Long, Long, Long>() {  
+                    @Override  
+                    public Long createAccumulator() {  
+                        // 窗口创建时调用
+                        return 0L;  
+                    }  
+  
+                    @Override  
+                    public Long add(Long value, Long accumulator) {  
+                        System.out.println(">" + value);  
+                        return value + accumulator;  
+                    }  
+  
+                    @Override  
+                    public Long getResult(Long accumulator) {  
+                        // 窗口结束时调用  
+                        return accumulator;  
+                    }  
+  
+                    @Override  
+                    public Long merge(Long a, Long b) {  
+                        // 只有会话窗口才会用到  
+                        return null;  
+                    }  
+                })  
+                .print();  
+        env.execute();  
+    }  
+}
+```
+
+process  窗口函数，处理整个窗口所有的数据
+
+```java
+package io.leaderli.flink.demo;  
+  
+import org.apache.flink.streaming.api.datastream.DataStreamSource;  
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;  
+import org.apache.flink.streaming.api.functions.windowing.ProcessAllWindowFunction;  
+import org.apache.flink.streaming.api.windowing.windows.GlobalWindow;  
+import org.apache.flink.util.Collector;  
+  
+import java.util.ArrayList;  
+import java.util.List;  
+  
+public class WindowDemo {  
+  
+    public static void main(String[] args) throws Exception {  
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();  
+        env.setParallelism(1);  
+        DataStreamSource<Long> ds = env.fromSequence(0, 20);  
+        ds.countWindowAll(5, 2)  
+                .process(new ProcessAllWindowFunction<Long, Object, GlobalWindow>() {  
+                    @Override  
+                    public void process(ProcessAllWindowFunction<Long, Object, GlobalWindow>.Context context, Iterable<Long> elements, Collector<Object> out) throws Exception {  
+                        List<Long> list = new ArrayList<>();  
+                        elements.forEach(list::add);  
+                        out.collect(list.toString());  
+                    }  
+                })  
+                .print();  
+        env.execute();  
+    }  
+}
+```
+
+```python
+[0, 1]
+[0, 1, 2, 3]
+[1, 2, 3, 4, 5]
+[3, 4, 5, 6, 7]
+[5, 6, 7, 8, 9]
+[7, 8, 9, 10, 11]
+[9, 10, 11, 12, 13]
+[11, 12, 13, 14, 15]
+[13, 14, 15, 16, 17]
+[15, 16, 17, 18, 19]
+```
+
+
+```java
+package io.leaderli.flink.demo;  
+  
+import org.apache.flink.streaming.api.datastream.DataStreamSource;  
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;  
+import org.apache.flink.streaming.api.functions.windowing.ProcessWindowFunction;  
+import org.apache.flink.streaming.api.windowing.windows.GlobalWindow;  
+import org.apache.flink.util.Collector;  
+  
+import java.util.ArrayList;  
+import java.util.List;  
+  
+public class WindowDemo {  
+  
+    public static void main(String[] args) throws Exception {  
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();  
+        env.setParallelism(1);  
+        DataStreamSource<Long> ds = env.fromSequence(0, 20);  
+        ds.keyBy(l -> l % 5).countWindow(5, 2)  
+                .process(new ProcessWindowFunction<Long, String, Long, GlobalWindow>() {  
+                    @Override  
+                    public void process(Long key, ProcessWindowFunction<Long, String, Long, GlobalWindow>.Context context, Iterable<Long> elements, Collector<String> out) {  
+  
+                        List<Long> list = new ArrayList<>();  
+                        elements.forEach(list::add);  
+                        // key 分区键  
+                        out.collect(key + "->" + list);  
+  
+                    }  
+                })  
+                .print();  
+        env.execute();  
+    }  
+}
+```
+
+```python
+0->[0, 5]
+1->[1, 6]
+2->[2, 7]
+3->[3, 8]
+4->[4, 9]
+0->[0, 5, 10, 15]
+1->[1, 6, 11, 16]
+2->[2, 7, 12, 17]
+3->[3, 8, 13, 18]
+4->[4, 9, 14, 19]
+```
 ## 流处理基础
 
 Dataflow图
