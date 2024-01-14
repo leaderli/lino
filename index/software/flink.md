@@ -1,7 +1,7 @@
 ---
 tags:
   - 软件/flink
-date updated: 2024-01-14 13:51
+date updated: 2024-01-14 16:22
 ---
 
 ## 简介
@@ -723,7 +723,6 @@ package io.leaderli.flink.demo;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;  
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;  
   
-public class WindowDemo {  
   
     public static void main(String[] args) throws Exception {  
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();  
@@ -737,7 +736,6 @@ public class WindowDemo {
                 .print();  
         env.execute();  
     }  
-}
 ```
 
 aggregate
@@ -749,7 +747,6 @@ import org.apache.flink.api.common.functions.AggregateFunction;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;  
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;  
   
-public class WindowDemo {  
   
     public static void main(String[] args) throws Exception {  
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();  
@@ -784,7 +781,6 @@ public class WindowDemo {
                 .print();  
         env.execute();  
     }  
-}
 ```
 
 process  窗口函数，处理整个窗口所有的数据，包括窗口的上下文信息
@@ -801,7 +797,6 @@ import org.apache.flink.util.Collector;
 import java.util.ArrayList;  
 import java.util.List;  
   
-public class WindowDemo {  
   
     public static void main(String[] args) throws Exception {  
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();  
@@ -819,7 +814,6 @@ public class WindowDemo {
                 .print();  
         env.execute();  
     }  
-}
 ```
 
 ```python
@@ -847,7 +841,6 @@ import org.apache.flink.util.Collector;
 import java.util.ArrayList;  
 import java.util.List;  
   
-public class WindowDemo {  
   
     public static void main(String[] args) throws Exception {  
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();  
@@ -868,7 +861,6 @@ public class WindowDemo {
                 .print();  
         env.execute();  
     }  
-}
 ```
 
 ```python
@@ -895,7 +887,6 @@ import org.apache.flink.streaming.api.functions.windowing.ProcessAllWindowFuncti
 import org.apache.flink.streaming.api.windowing.windows.GlobalWindow;  
 import org.apache.flink.util.Collector;  
   
-public class WindowAggrigateDemo {  
   
     public static void main(String[] args) throws Exception {  
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();  
@@ -912,7 +903,6 @@ public class WindowAggrigateDemo {
   
         env.execute();  
     }  
-}
 ```
 
 ### 其他API
@@ -945,6 +935,135 @@ title:逻辑时钟
 
 用来衡量事件时间进展的标记，可以看做一条特殊的数据记录，主要内容就是一个时间戳，用来指示当前的事件时间。水位线是基于数据的时间戳生成的，是单调递增的。水位线可以通过设置延迟，来确保正确处理乱序数据。一个水位线Watermark(t)，表示在当前流中事件时间已经达到了时间戳t，这代表t之前的所有数据都到齐了，之后流中不会出现时间戳t’≤ t的数据。它往往会跟窗口一起配合
 
+```java
+package io.leaderli.flink.demo;  
+  
+import org.apache.flink.api.common.eventtime.WatermarkStrategy;  
+import org.apache.flink.streaming.api.datastream.DataStreamSource;  
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;  
+import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows;  
+import org.apache.flink.streaming.api.windowing.time.Time;  
+  
+  
+    public static void main(String[] args) throws Exception {  
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();  
+        env.setParallelism(1);  
+        DataStreamSource<Long> ds = env.fromSequence(0, 20);  
+        ds.assignTimestampsAndWatermarks(
+        // 指定 watermark 生成：升序的 watermark，没有等待时间
+        WatermarkStrategy.<Long>forMonotonousTimestamps()  
+						// 指定 时间戳分配器，从数据中提取
+                        .withTimestampAssigner((element, recordTimestamp) -> {  
+                            System.out.println(element + " < " + recordTimestamp);  
+                            return (element % 10) * 1000;  
+                        }))  
+                .windowAll(TumblingEventTimeWindows.of(Time.seconds(5)))  
+                .reduce((o, a) -> {  
+                    System.out.println("<" + a + " " + o);  
+                    return o + a;  
+                })  
+                .print();  
+  
+        env.execute();  
+    }  
+```
+
+```java
+package io.leaderli.flink.demo;  
+  
+import org.apache.flink.api.common.eventtime.WatermarkStrategy;  
+import org.apache.flink.streaming.api.datastream.DataStreamSource;  
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;  
+import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows;  
+import org.apache.flink.streaming.api.windowing.time.Time;  
+  
+import java.time.Duration;  
+import java.util.Random;  
+  
+  
+    public static void main(String[] args) throws Exception {  
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();  
+        env.setParallelism(1);  
+        DataStreamSource<Long> ds = env.fromSequence(0, 20);  
+        ds.assignTimestampsAndWatermarks(WatermarkStrategy.  
+						 // 指定 watermark 生成：乱序的，等待 3s
+                        <Long>forBoundedOutOfOrderness(Duration.ofSeconds(3))  
+                        .withTimestampAssigner((element, recordTimestamp) -> {  
+                            System.out.println(element + " < " + recordTimestamp);  
+                            return new Random().nextInt(20) * 1000;  
+                        }))  
+                .windowAll(TumblingEventTimeWindows.of(Time.seconds(5)))  
+                .reduce((o, a) -> {  
+                    System.out.println("<" + a + " " + o);  
+                    return o + a;  
+                })  
+                .print();  
+  
+        env.execute();  
+    }  
+```
+
+自定义水位线
+
+```java
+package io.leaderli.flink.demo;  
+  
+import org.apache.flink.api.common.eventtime.Watermark;  
+import org.apache.flink.api.common.eventtime.WatermarkGenerator;  
+import org.apache.flink.api.common.eventtime.WatermarkOutput;  
+import org.apache.flink.api.common.eventtime.WatermarkStrategy;  
+import org.apache.flink.streaming.api.datastream.DataStreamSource;  
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;  
+import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows;  
+import org.apache.flink.streaming.api.windowing.time.Time;  
+  
+  
+    private static class MyWatermarkGenerator implements WatermarkGenerator<Long> {  
+  
+        private long time;  
+  
+        @Override  
+        public void onEvent(Long event, long eventTimestamp, WatermarkOutput output) {  
+            this.time = Math.max(event, eventTimestamp);  
+			// 可通过 WatermarkOutput ，直接触发水位线的生成
+        }  
+  
+		// 周期性的调用该方法生成水位线
+        @Override  
+        public void onPeriodicEmit(WatermarkOutput output) {  
+            output.emitWatermark(new Watermark(time));  
+        }  
+    }  
+  
+    public static void main(String[] args) throws Exception {  
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();  
+		// 设置水位线周期，默认为200  
+		env.getConfig().setAutoWatermarkInterval(2000);
+        env.setParallelism(1);  
+        DataStreamSource<Long> ds = env.fromSequence(0, 20);  
+        ds.assignTimestampsAndWatermarks(WatermarkStrategy.  
+                        forGenerator(ctx -> new MyWatermarkGenerator())  
+                        .withTimestampAssigner((element, recordTimestamp) -> element))  
+                .windowAll(TumblingEventTimeWindows.of(Time.seconds(5)))  
+                .reduce((o, a) -> {  
+                    System.out.println("<" + a + " " + o);  
+                    return o + a;  
+                })  
+                .print();  
+  
+        env.execute();  
+    }  
+```
+
+在数据源中指定水位线
+
+```java
+env.fromSource(
+	kafkaSource,
+	WatermarkStrategy.forBoundedOutOfOrderness(Duration.ofSeconds(3)),
+	"kafkasource"
+)
+```
 
 ## 流处理基础
 
