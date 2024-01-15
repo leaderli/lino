@@ -1,7 +1,7 @@
 ---
 tags:
   - 软件/flink
-date updated: 2024-01-14 16:22
+date updated: 2024-01-14 22:22
 ---
 
 ## 简介
@@ -678,6 +678,11 @@ stream.keyBy(...).window(...)
 stream.windowAll(...)
 ```
 
+### 窗口的生命周期
+
+创建 属于窗口的第一个数据到来的时候
+销毁，关窗  数据时间 >= 窗口的最大时间戳 + 允许最大的延迟
+
 ### 窗口API
 
 窗口操作主要有两个部分：窗口分配器和窗口函数
@@ -917,11 +922,131 @@ stream.keyBy(...)
 stream.keyBy(...)
 	.window(...)
 	.evictor(new MyEvictor())
+// 延迟关闭窗口，只能运用在 event time 上
+stream.keyBy(...)
+	.window(TumblingEventTimeWindows.of(Time.seconds(5)))
+	.allowedLateness(Time.seconds(3))
+	// 关窗后的迟到数据，放入侧输出流
+	.sideOutputLateData(lateTag) 
+```
+
+## 窗口联结
+
+为基于一段时间的双流合并专门提供了一个窗口联结算子，可以定义时间窗口，并
+将两条流中共享一个公共键（key）的数据放在窗口中进行配对处理。
+
+```java
+stream1.join(stream2)
+	.where(<KeySelector>)
+	.equalTo(<KeySelector>)
+	.window(<WindowAssigner>)
+	.apply(<JoinFunction>)
+```
+
+类似
+
+```sql
+SELECT * FROM table1 t1, table2 t2 WHERE t1.id = t2.id;
+```
+
+针对一条流的每个数据，开辟出其时间戳前后的一段时间间隔，看这期间是否有来自另一条流的数据匹配。
+
+![[Pasted image 20240114210925.png]]
+
+```java
+stream1
+	.keyBy(<KeySelector>)
+	.intervalJoin(stream2.keyBy(<KeySelector>))
+	.between(Time.milliseconds(-2), Time.milliseconds(1))
+	.sideOutputLeftLateData(ks1LateTag) // 将 ks1 的迟到数据，放入侧输出流
+	.sideOutputRightLateData(ks2LateTag) // 将 ks2 的迟到数据，放入侧输出流
+	.process (new ProcessJoinFunction<Integer, Integer, String(){
+		@Override
+		public void processElement(Integer left, Integer right,Context ctx, Collector<String> out) {
+			out.collect(left + "," + right);
+		}
+	});
+```
+
+## 处理函数
+
+process 是最底层的API
+
+![[Pasted image 20240114215059.png]]
+
+```java
+stream.process(new MyProcessFunction())
+```
+
+```java
+class MyProcessFunction extends KeyedProcessFunction<String, WaterSensor, String> {  
+    /**  
+     * 来一条数据调用一次  
+     *  
+     * @param value 当前流中的输入元素，也就是正在处理的数据，类型与流中数据类型一致  
+     * @param ctx   类型是 ProcessFunction 中定义的内部抽象类 Context，表示当前运行的上下文，可以获取到当前的时间戳，并提供了用于查询时间和注册定时器的“定时服务”  
+     *              （TimerService），以及可以将数据发送到“侧输出流”（side output）的方法.output()。  
+     * @param out   “收集器”（类型为 Collector），用于返回输出数据。使用方式与 flatMap 算子中的收集器完全一样，直接调用 out.collect()方法就可以向下游发出一个数据。这个方法可以多次调用，也可以不调用  
+     */  
+    @Override  
+    public void processElement(WaterSensor value, Context ctx, Collector<String> out) throws Exception {  
+        //获取当前数据的 key        
+        String currentKey = ctx.getCurrentKey();  
+        // 1. 定时器注册  
+        TimerService timerService = ctx.timerService();// 1、事件时间的案例  
+        Long currentEventTime = ctx.timestamp(); //数据中提取出来的事件时间  
+        timerService.registerEventTimeTimer(5000L);  
+        System.out.println("当前 key=" + currentKey + ",当前时间=" + currentEventTime + ",注册了一个 5s 的定时器");  
+        // 2. 处理时间的案例  
+        long currentTs = timerService.currentProcessingTime();  
+        timerService.registerProcessingTimeTimer(currentTs + 5000L);  
+        System.out.println("当前 key=" + currentKey + ",当前时间=" + currentTs + ",注册了一个 5s 后的定时器");  
+        // 3. 获取 process 的 当前 watermark , watermark为上一条数据的位置的，因为还未生产当前数据的watermark       
+        long currentWatermark = timerService.currentWatermark();  
+        System.out.println("当前数据=" + value + ",当前 watermark = " + currentWatermark);  
+        // 4. 获取当前时间进展： 处理时间-当前系统时间， 事件时间 - 当前 watermark        
+        currentTs = timerService.currentProcessingTime();  
+        long wm = timerService.currentWatermark();  
+    }  
+  
+    /**  
+     * 
+     * 这个方法只有在注册好的定时器触发的时候才会调用，而定时器是通过“定时服务”TimerService 来注册的，只能在KeyedStream中设置定时器。TimerService 会以键（key）和时间戳为标准，对定时器进行去重；也就是说对于每个key 和时间戳，最多只有一个定时器，如果注册了多次，onTimer()方法也将只被调用一次
+     *  
+     * @param timestamp 当前时间进展，就是定时器被触发时的时间  
+     * @param ctx       上下文  
+     * @param out       采集器  
+     */  
+    @Override  
+    public void onTimer(long timestamp, OnTimerContext ctx, Collector<String> out) throws Exception {  
+        super.onTimer(timestamp, ctx, out);  
+        String currentKey = ctx.getCurrentKey();  
+        System.out.println("key=" + currentKey + "现 在时间是" + timestamp + " 定时器触发");  
+    }  
+}
+```
+
+TimerService
+
+```java
+// 获取当前的处理时间
+long currentProcessingTime();
+// 获取当前的水位线（事件时间）
+long currentWatermark();
+// 注册处理时间定时器，当处理时间超过 time 时触发
+void registerProcessingTimeTimer(long time);
+// 注册事件时间定时器，当水位线超过 time 时触发
+void registerEventTimeTimer(long time);
+// 删除触发时间为 time 的处理时间定时器
+void deleteProcessingTimeTimer(long time);
+// 删除触发时间为 time 的处理时间定时器
+void deleteEventTimeTimer(long time);
 ```
 
 ## 时间语义
 
 - 处理时间  当前流处理算子所在机器上的本地时钟时间。
+
 - 事件时间  数据流中事件实际发生的时间，它以附加在数据流中事件的时间戳为依据
 
 ```ad-info
@@ -1063,6 +1188,22 @@ env.fromSource(
 	WatermarkStrategy.forBoundedOutOfOrderness(Duration.ofSeconds(3)),
 	"kafkasource"
 )
+```
+
+### 水位线的传递
+
+在流处理中，上游任务处理完水位线、时钟改变之后，要把当前的水位线广播给所有的下游子任务，以最小的作为当前任务的事件时钟。每个任务以处理之前所有数据为标准来确定自己的时钟。
+
+![[Pasted image 20240114183143.png]]
+
+为了避免上游数据一直没有数据，可以设置最大等待时间
+
+```java
+WatermarkStrategy
+	.<Integer>forMonotonousTimestamps()
+	.withTimestampAssigner((r, ts) -> r * 1000L)
+	//空闲等待 5s
+	.withIdleness(Duration.ofSeconds(5))
 ```
 
 ## 流处理基础
