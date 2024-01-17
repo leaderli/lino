@@ -1,7 +1,7 @@
 ---
 tags:
   - 软件/flink
-date updated: 2024-01-15 23:14
+date updated: 2024-01-17 20:10
 ---
 
 # 简介
@@ -1241,6 +1241,65 @@ flink，一个算子任务会按照并行度分为多个子任务执行，而不
 
 也可以通过富函数类（RichFunction）来自定义KeyedState，所以只要提供了富函数类接口的算子，也都可以使用KeyedState
 
+示例：
+
+```java
+package io.leaderli.flink.demo;  
+  
+import org.apache.flink.api.common.state.ValueState;  
+import org.apache.flink.api.common.state.ValueStateDescriptor;  
+import org.apache.flink.api.common.typeinfo.Types;  
+import org.apache.flink.configuration.Configuration;  
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;  
+import org.apache.flink.streaming.api.functions.KeyedProcessFunction;  
+import org.apache.flink.util.Collector;  
+  
+public class StateDemo {  
+  
+    public static void main(String[] args) throws Exception {  
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();  
+  
+        env.fromElements(new WaterSensor("1", 1, 1));  
+        env.fromElements(  
+                        new WaterSensor("s1", 1, 1),  
+                        new WaterSensor("s1", 2, 11),  
+                        new WaterSensor("s2", 2, 2),  
+                        new WaterSensor("s3", 3, 3)  
+                )  
+                .keyBy(k -> k.id).process(new KeyedProcessFunction<String, WaterSensor, WaterSensor>() {  
+  
+                    ValueState<Integer> lastValue;  
+  
+                    @Override  
+                    public void open(Configuration parameters) throws Exception {  
+                        super.open(parameters);  
+                        lastValue = getRuntimeContext().getState(new ValueStateDescriptor<>("lastValue", Types.INT));  
+                    }  
+  
+                    @Override  
+                    public void processElement(WaterSensor value, KeyedProcessFunction<String, WaterSensor, WaterSensor>.Context ctx, Collector<WaterSensor> out) throws Exception {  
+//                        lastValue.clear();  
+                        System.out.println(value.id + "->" + lastValue.value());  
+                        if (lastValue.value() == null) {  
+                            lastValue.update(0);  
+                        }  
+                        if (value.vc > lastValue.value()) {  
+                            lastValue.update(value.vc);  
+                        }  
+                    }  
+                });  
+        env.execute();  
+  
+    }  
+}
+```
+
+还有其他保存值的函数
+
+- ListState
+- MapState
+- ReducingState
+- AggregatingState
 
 
 # 流处理基础
