@@ -1,16 +1,7 @@
 [
   "file-explorer",
   "global-search",
-  "graph",
-  "tag-pane",
-  "properties",
-  "page-preview",
-  "command-palette",
   "editor-status",
-  "bookmarks",
   "markdown-importer",
-  "outline",
-  "word-count",
-  "slides",
   "workspaces"
 ]

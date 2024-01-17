@@ -11,3 +11,13 @@ date updated: 2022-04-11 10:34
 ```shell
 od -c 1.txt
 ```
+
+ 判断文件是否包含CRLF，可以通过[[cat#^392707|cat -v ]] 查看，或者在vi中 [[vim#显示特殊字符]]
+
+```shell
+# 两个空格
+if [[ `od -c 1.txt` == *"\r  \n"*]]
+then
+	echo "found"
+fi
+```
