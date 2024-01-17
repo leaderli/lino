@@ -16,7 +16,7 @@
   "baseFontSizeAction": false,
   "interfaceFontFamily": "Consolas,Sarasa Mono HC,Arial,Sarasa Mono TC",
   "textFontFamily": "Sarasa Mono TC",
-  "accentColor": "",
+  "accentColor": "#0c8edf",
   "nativeMenus": true,
   "showViewHeader": false
 }
