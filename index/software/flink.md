@@ -1,7 +1,7 @@
 ---
 tags:
   - 软件/flink
-date updated: 2024-01-17 20:10
+date updated: 2024-01-17 22:15
 ---
 
 # 简介
@@ -1225,14 +1225,6 @@ WatermarkStrategy
 
 ## 状态的分类
 
-### 算子状态
-
-flink，一个算子任务会按照并行度分为多个子任务执行，而不同的子任务会占据不同的任务槽。由于不同的slot在计算资源上是物理隔离的，所以flink能管理的状态在并行任务间是无法共享的，每个状态只能针对当前子任务的实例有效。
-
-很多有状态的操作（聚合、窗口）都是要先做keyBy进行按键分区的。按键分区之后，任务所进行的所有计算都应该值针对key有效，所以状态也应该按照key彼此隔离。每个并行子任务维护着对应的状态，算子的子任务之间状态不共享。
-
-![[Pasted image 20240115225143.png]]
-
 ### 按键分区状态
 
 状态是根据输入流中定义的键（key）来维护和访问的，所以只能定义在按键分区流
@@ -1246,8 +1238,10 @@ flink，一个算子任务会按照并行度分为多个子任务执行，而不
 ```java
 package io.leaderli.flink.demo;  
   
+import org.apache.flink.api.common.state.StateTtlConfig;  
 import org.apache.flink.api.common.state.ValueState;  
 import org.apache.flink.api.common.state.ValueStateDescriptor;  
+import org.apache.flink.api.common.time.Time;  
 import org.apache.flink.api.common.typeinfo.Types;  
 import org.apache.flink.configuration.Configuration;  
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;  
@@ -1273,7 +1267,17 @@ public class StateDemo {
                     @Override  
                     public void open(Configuration parameters) throws Exception {  
                         super.open(parameters);  
-                        lastValue = getRuntimeContext().getState(new ValueStateDescriptor<>("lastValue", Types.INT));  
+                        StateTtlConfig ttlConfig = StateTtlConfig.newBuilder(Time.seconds(5))  
+                                // 创建和更新的时候，刷新过期时间  
+                                .setUpdateType(StateTtlConfig.UpdateType.OnCreateAndWrite)  
+                                // 因为清理的不是实时生效的，可以设定过期后是否可见，默认不可见  
+                                .setStateVisibility(StateTtlConfig.StateVisibility.ReturnExpiredIfNotCleanedUp)  
+                                .build();  
+                        ValueStateDescriptor<Integer> valueStateDescriptor = new ValueStateDescriptor<>("lastValue", Types.INT);  
+                        // 定期清理状态  
+                        valueStateDescriptor.enableTimeToLive(ttlConfig);  
+                        lastValue = getRuntimeContext().getState(valueStateDescriptor);  
+  
                     }  
   
                     @Override  
@@ -1301,6 +1305,60 @@ public class StateDemo {
 - ReducingState
 - AggregatingState
 
+### 算子状态
+
+flink，一个算子任务会按照并行度分为多个子任务执行，而不同的子任务会占据不同的任务槽。由于不同的slot在计算资源上是物理隔离的，所以flink能管理的状态在并行任务间是无法共享的，每个状态只能针对当前子任务的实例有效。
+
+很多有状态的操作（聚合、窗口）都是要先做keyBy进行按键分区的。按键分区之后，任务所进行的所有计算都应该值针对key有效，所以状态也应该按照key彼此隔离。每个并行子任务维护着对应的状态，算子的子任务之间状态不共享。
+
+![[Pasted image 20240115225143.png]]
+
+保存值的函数
+
+#### ListState
+
+每一个并行子任务上只会保留一个列表。当算子并行度进行缩放调整时，算子的列表状态中的所有元素项会被统一收集起来，相
+当于把多个分区的列表合并成了一个大列表，然后再均匀地分配给所有并行任务。这种均匀分配的具体方法就是轮询
+
+#### UnionListState
+
+UnionListState 与 ListState 区别在并行度调整时，常规列表状态是轮询分配状态项，而联合列表状态的算子则会直接广播状态的完整列表
+
+#### BroadcastState
+
+并行子任务都保持同一份“全局”状态
+
+## 状态后端
+
+状态的存储、访问以及维护，都是由一个可插拔的组件决定的，这个组件就叫作状态后端（state backend）。状态后端主要负责管理本地状态的存储方式和位置
+
+### 保存方式
+
+#### HashMapStateBackend
+
+状态存放在内存里，底层是一个HashMap
+
+#### RocksDB
+
+RocksDB 是一种内嵌的 key-value 存储介质，可以把数据持久化到本地硬盘。异步快照，增量式保存检查点。
+
+### 如何使用
+
+flink-conf.yaml
+
+```yml
+# 默认状态后端
+# rocksdb
+state.backend: hashmap
+# 存放检查点的文件路径
+state.checkpoints.dir: hdfs://hadoop102:8020/flink/checkpoints
+```
+
+```java
+StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+env.setStateBackend(new HashMapStateBackend());
+env.setStateBackend(new EmbeddedRocksDBStateBackend());
+```
 
 # 流处理基础
 

@@ -14,7 +14,7 @@
   ],
   "cssTheme": "Minimal",
   "baseFontSizeAction": false,
-  "interfaceFontFamily": "Consolas,Sarasa Mono HC,Arial,Sarasa Mono TC",
+  "interfaceFontFamily": "Consolas,Sarasa Mono HC,Sarasa Mono TC",
   "textFontFamily": "Sarasa Mono TC",
   "accentColor": "#0c8edf",
   "nativeMenus": true,
