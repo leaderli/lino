@@ -17,6 +17,15 @@ sudo yum-config-manager --enable remi
 sudo yum install redis
 ```
 
+离线安装
+
+```shell
+$ wget -c http://download.redis.io/redis-stable.tar.gz
+$ tar -xvzf redis-stable.tar.gz
+$ cd redis-stable
+$ make 
+$ sudo make install
+```
 ## 单点启动
 
 ```shell
