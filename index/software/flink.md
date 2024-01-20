@@ -1,7 +1,7 @@
 ---
 tags:
   - 软件/flink
-date updated: 2024-01-17 22:15
+date updated: 2024-01-21 01:42
 ---
 
 # 简介
@@ -1358,6 +1358,239 @@ state.checkpoints.dir: hdfs://hadoop102:8020/flink/checkpoints
 StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 env.setStateBackend(new HashMapStateBackend());
 env.setStateBackend(new EmbeddedRocksDBStateBackend());
+```
+
+# checkpoint
+
+![[Pasted image 20240121010425.png]]
+
+检查点的保存是周期性触发的，间隔时间可以进行设置.在所有任务（算子）都恰好处理完一个相同的输入数据的时候，将它们的状态保存下来。
+
+## Checkpoint Barrier
+
+借鉴水位线的设计，在数据流中插入一个特殊的数据结构，专门用来表示触发检查点保存的时间点。收到保存检查点的指令后，Source 任务可以在当前数据流中插入这个结构；之后的所有任务只要遇到它就开始对状态做持久化快照保存。由于数据流是保持顺序依次处理的，因此遇到这个标识就代表之前的数据都处理完了，可以保存一个检查点；而在它之后的数据，引起的状态改变就不会体现在这个检查点中，而需要保存到下一个检查点
+
+## 检查点配置
+
+```java
+StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+// 每隔 1 秒启动一次检查点保存
+env.enableCheckpointing(1000);
+
+// 配置存储检查点到 JobManager 堆内存
+env.getCheckpointConfig().setCheckpointStorage(new JobManagerCheckpointStorage());
+// 配置存储检查点到文件系统
+env.getCheckpointConfig().setCheckpointStorage(new FileSystemCheckpointStorage("hdfs://namenode:40010/flink/checkpoints"));
+```
+
+### 常用配置
+
+#### CheckpointingMode
+
+设置检查点一致性的保证级别，有“精确一次”（exactly-once）和“至少一次”（at-least-once）两个选项。默认级别为 exactly-once，而对于大多数低延迟的流处理程序，at-least-once就够用了，而且处理效率会更高。不开启的时候，就是最多一次（At-Most-Once）
+
+#### checkpointTimeout
+
+用于指定检查点保存的超时时间，超时没完成就会被丢弃掉。
+
+#### minPauseBetweenCheckpoints
+
+用于指定在上一个检查点完成之后，检查点协调器最快等多久可以出发保存下一个检查点的指令
+
+#### maxConcurrentCheckpoints
+
+用于指定运行中的检查点最多可以有多少个
+
+#### enableExternalizedCheckpoints
+
+用于开启检查点的外部持久化，而且默认在作业失败的时候不会自动清理，如果想释放空间需要自己手工清理。里面传入的参数 ExternalizedCheckpointCleanup 指定了当作业取消的时候外部的检查点该如何清理。DELETE_ON_CANCELLATION：在作业取消的时候会自动删除外部检查点，但是如果是作业失败退出，则会保留检查点。RETAIN_ON_CANCELLATION：作业取消的时候也会保留外部检查点。
+
+#### tolerableCheckpointFailureNumber
+
+用于指定检查点连续失败的次数，当达到这个次数，作业就失败退出。默认为 0，这意味着不能容忍检查点失败，并且作业将在第一次报告检查点失败时失败
+
+#### enableUnalignedCheckpoints
+
+不再执行检查点的分界线对齐操作，启用之后可以大大减少产生背压时的检查点保存时间。这个设置要求检查点模式（CheckpointingMode）必须为 exctly-once，并且最大并发的检查点个数为 1
+
+#### alignedCheckpointTimeout
+
+该参数只有在启用非对齐检查点的时候有效。参数默认是 0，表示一开始就直接用非对齐检查点。如果设置大于 0，一开始会使用对齐的检查点，当对齐时间超过该参数设定的时间，则会自动切换成非对齐检查点。
+
+# savepoint
+
+镜像保存功能,它的原理和算法与检查点完全相同，只是多了一些额外的元数据。不会自动创建，必须由用户明确地手动触发保存操作，所以就是“手动存盘”。
+
+适用于
+
+- 版本管理和归档存储
+- 更新 Flink 版本
+- 更新应用程序
+- 调整并行度
+- 暂停应用程序
+
+```shell
+# 创建保存点，可以通过配置文件 flink-conf.yaml 设置默认路径
+# state.savepoints.dir: hdfs:///flink/savepoints
+$ bin/flink savepoint :jobId [:targetDirectory]
+
+# 在stop时创建保存点
+$ bin/flink stop --savepointPath [:targetDirectory] :jobId
+
+
+# 从保存点重启应用
+$ bin/flink run -s :savepointPath [:runArgs]
+```
+
+# 状态一致性
+
+一致性其实就是结果的正确性，一般从数据丢失、数据重复来评估。
+
+- At-Most-Once
+- At-Least-Once
+- Exactly-Once
+
+完整的流处理应用，应该包括了数据源、流处理器和外部存储系统三个部分。这个完整应用的一致性，就叫做“端到端（end-to-end）的状态一致性”
+
+![[Pasted image 20240121012518.png]]
+
+## 数据源
+
+数据源可重放数据，或者说可重置读取数据偏移量，加上 Flink 的 Source 算子将偏移量作为状态保存进检查点，就可以保证数据不丢。这是达到 at-least-once 一致性语义的基本要求，当然也是实现端到端 exactly-once 的基本要求
+
+## 流处理器
+
+flink的checkponit可以保证
+
+## 输出端
+
+保证 exactly-once 一致性的写入方式有两种：
+
+### 幂等写入
+
+操作可以重复执行很多次，但只导致一次结果更改。比如 Redis 中键值存储，或者关系型数据库（如 MySQL）中满足查询条件的更新操作。
+
+### 事务写入
+
+构建一个事务，让写入操作可以随着检查点来提交和回滚。
+
+具体实现方式有两种：
+
+#### 预写日志（write-ahead-log，WAL）
+
+1. 先把结果数据作为日志（log）状态保存起来
+2. 进行检查点保存时，也会将这些结果数据一并做持久化存储
+3. 在收到检查点完成的通知时，将所有结果一次性写入外部系统。
+4. 在成功写入所有数据后，在内部再次确认相应的检查点，将确认信息也进行持久化保存。这才代表着检查点的真正完成。
+
+#### 两阶段提交（two-phase-commit，2PC）
+
+先做“预提交”，等检查点完成之后再正式提交。这种提交方式是真正基于事务的，它需要外部系统提供事务支持。
+
+## 应用
+
+kafka属于可重置偏移量的消息队列，且支持两阶段提交（2PC）。
+
+要实现精准一次需要的配置
+
+1. 必须启用检查点
+2. 指定 KafkaSink 的发送级别为 DeliveryGuarantee.EXACTLY_ONCE
+3. 配置 Kafka 读取数据的消费者的隔离级别
+4. 事务超时配置
+
+
+
+
+```java
+package io.leaderli.flink.demo;
+
+import org.apache.flink.api.common.eventtime.WatermarkStrategy;
+import org.apache.flink.api.common.serialization.SimpleStringSchema;
+import org.apache.flink.connector.base.DeliveryGuarantee;
+import org.apache.flink.connector.kafka.sink.KafkaRecordSerializationSchema;
+import org.apache.flink.connector.kafka.sink.KafkaSink;
+import org.apache.flink.connector.kafka.source.KafkaSource;
+import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
+import org.apache.flink.streaming.api.CheckpointingMode;
+import org.apache.flink.streaming.api.datastream.DataStreamSource;
+import org.apache.flink.streaming.api.environment.CheckpointConfig;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.kafka.clients.producer.ProducerConfig;
+
+import java.time.Duration;
+
+
+public class KafkaEOSDemo {
+    public static void main(String[] args) throws Exception {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        // 代码中用到 hdfs，需要导入 hadoop 依赖、指定访问 hdfs 的用户名
+        System.setProperty("HADOOP_USER_NAME", "atguigu");
+        // 1、启用检查点,设置为精准一次
+        env.enableCheckpointing(5000, CheckpointingMode.EXACTLY_ONCE);
+        CheckpointConfig checkpointConfig = env.getCheckpointConfig();
+        checkpointConfig.setCheckpointStorage("hdfs://hadoop102:8020/chk");
+        checkpointConfig.setExternalizedCheckpointCleanup(CheckpointConfig.ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION);
+        // 2.读取 kafka
+        KafkaSource<String> kafkaSource = KafkaSource.<String>builder().setBootstrapServers("hadoop102:9092,hadoop103:9092, hadoop104:9092 ").setGroupId("atguigu").setTopics("topic_1").setValueOnlyDeserializer(new SimpleStringSchema()).setStartingOffsets(OffsetsInitializer.latest()).build();
+        DataStreamSource<String> dataStreamSource = env.fromSource(kafkaSource, WatermarkStrategy.forBoundedOutOfOrderness(Duration.ofSeconds(3)), "kafkasource");
+        /*
+         * 3.写出到 Kafka
+         * 精准一次 写入 Kafka，需要满足以下条件，缺一不可
+         * 1、开启 checkpoint
+         * 2、sink 设置保证级别为 精准一次
+         * 3、sink 设置事务前缀
+         * 4、sink 设置事务超时时间： checkpoint 间隔 < 事务超时时间 <
+         max 的 15 分钟
+         */
+        KafkaSink<String> kafkaSink = KafkaSink.<String>builder()
+                // 指定 kafka 的地址和端口
+                .setBootstrapServers("hadoop102:9092,hadoop103:9092, hadoop104:9092 ")
+                // 指定序列化器：指定 Topic 名称、具体的序列化
+                .setRecordSerializer(KafkaRecordSerializationSchema.<String>builder().setTopic("ws").setValueSerializationSchema(new SimpleStringSchema()).build())
+                // 3.1 精准一次,开启 2pc
+                .setDeliveryGuarantee(DeliveryGuarantee.EXACTLY_ONCE)
+                // 3.2 精准一次，必须设置 事务的前缀
+                .setTransactionalIdPrefix("atguigu-")
+                // 3.3 精 准 一 次 ， 必 须 设 置 事 务 超 时 时 间 : 大 于checkpoint 间隔，小于 max 15 分钟
+                .setProperty(ProducerConfig.TRANSACTION_TIMEOUT_CONFIG, 10 * 60 * 1000 + "").build();
+        dataStreamSource.sinkTo(kafkaSink);
+        env.execute();
+    }
+}
+```
+后续读取“ws”这个 topic 的消费者，要设置事务的隔离级别为“读已提交”，如下：
+
+```java
+package io.leaderli.flink.demo;  
+  
+import org.apache.flink.api.common.eventtime.WatermarkStrategy;  
+import org.apache.flink.api.common.serialization.SimpleStringSchema;  
+import org.apache.flink.connector.kafka.source.KafkaSource;  
+import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;  
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;  
+import org.apache.kafka.clients.consumer.ConsumerConfig;  
+  
+import java.time.Duration;  
+  
+  
+public class KafkaEOSDemo {  
+    public static void main(String[] args) throws Exception {  
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();  
+// 消费 在前面使用两阶段提交写入的 Topic        KafkaSource<String> kafkaSource =  
+                KafkaSource.<String>builder()  
+                        .setBootstrapServers("hadoop102:9092,hadoop103:9092,hadoop104:9092")  
+                        .setGroupId("atguigu")  
+                        .setTopics("ws")  
+                        .setValueOnlyDeserializer(new SimpleStringSchema())  
+                        .setStartingOffsets(OffsetsInitializer.latest())  
+                        // 作为 下游的消费者，要设置 事务的隔离级别 = 读已提交  
+                        .setProperty(ConsumerConfig.ISOLATION_LEVEL_CONFIG, "read_committed")  
+                        .build();  
+        env.fromSource(kafkaSource, WatermarkStrategy.forBoundedOutOfOrderness(Duration.ofSeconds(3)), "kafkasource")  
+                .print();  
+        env.execute();  
+    }  
+}
 ```
 
 # 流处理基础
