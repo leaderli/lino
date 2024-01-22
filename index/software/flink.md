@@ -1,18 +1,18 @@
 ---
 tags:
   - 软件/flink
-date updated: 2024-01-15 21:43
+date updated: 2024-01-21 01:42
 ---
 
-## 简介
+# 简介
 
 flink 是一个分布式处理引擎，用于在无边界和有边界数据流上进行有状态的计算。任何类型的数据都可以形成一种事件流。
 
 [官网](https://flink.apache.org/)。
 
-## 快速入门
+# 快速入门
 
-### 安装
+## 安装
 
 [下载地址](https://flink.apache.org/downloads.html)，我们使用版本[flink-1.17.1](https://www.apache.org/dyn/closer.lua/flink/flink-1.17.1/flink-1.17.1-bin-scala_2.12.tgz)
 
@@ -45,7 +45,7 @@ $ tail log/flink-*-taskexecutor-*.out
 # 也可以使用Web UI界面查看，默认端口为8081，可在conf/flink-conf.yaml中修改rest.port配置
 ```
 
-### 配置允许ip访问 Web UI
+## 配置允许ip访问 Web UI
 
 ```yml
 rest.address: 0.0.0.0
@@ -65,7 +65,7 @@ tail -f ./log/flink-<user>-taskexecutor-<n>-<hostname>.out
 
 SensorReading 的第一个字段是 sensorld ，第二个字段是用自1970-01-01 00:00:00.000 以来的毫秒数所表示的时间戳，第三个字段是每隔 5 秒计算出的平均温度 。
 
-## 快速入门（java）
+# 快速入门（java）
 
 ```xml
 <properties>  
@@ -130,9 +130,9 @@ nc -lk 7777
 
 我们向socket端口输出数据时，就可以看到java控制台相关的输出信息
 
-## 读取数据
+# 读取数据
 
-### 读取文件
+## 读取文件
 
 ```xml
 <dependency>  
@@ -186,7 +186,7 @@ public class FileSourceDemo {
 }
 ```
 
-### 读取kafka
+## 读取kafka
 
 ```xml
 <dependency>  
@@ -243,7 +243,7 @@ public class KafkaConsumerSourceDemo {
 }
 ```
 
-## flink的数据类型
+# flink的数据类型
 
 ```java
 .map(word -> Tuple2.of(word, 1L))
@@ -253,7 +253,7 @@ public class KafkaConsumerSourceDemo {
 .returns(new TypeHint<Tuple2<Integer, SomeType>>(){})
 ```
 
-## 转换算子
+# 转换算子
 
 1. map
 2. filter
@@ -328,7 +328,7 @@ env.fromElements(
 ;
 ```
 
-## 分区算子
+# 分区算子
 
 1. shuffle 随机分区
 2. rebalance 轮询分区
@@ -344,7 +344,7 @@ env.fromSource(source, WatermarkStrategy.noWatermarks(), "datagen")
         .print();
 ```
 
-## 侧流
+# 侧流
 
 ```java
 package io.leaderli.flink.demo;  
@@ -394,7 +394,7 @@ public class SideOutputDemo {
 }
 ```
 
-## 合流
+# 合流
 
 union
 
@@ -461,9 +461,9 @@ public class ConnectDemo {
 }
 ```
 
-## 输出算子
+# 输出算子
 
-### 文件
+## 文件
 
 ```java
 package io.leaderli.flink.demo;
@@ -527,7 +527,7 @@ public class FileOutDemo {
 }
 ```
 
-### kafka
+## kafka
 
 ```java
 package io.leaderli.flink.demo;
@@ -578,7 +578,7 @@ public class KafkaSinkDemo {
 
 ```
 
-### mysql
+## mysql
 
 ```xml
 <dependency>  
@@ -650,25 +650,25 @@ public class MysqlSinkDemo {
 }
 ```
 
-## 窗口
+# 窗口
 
 窗口操作持续创建一些称为桶的有限事件集合，并允许我们基于这些有限集进行计算。事件通常会根据其时间或其他属性分配到不同桶中。
 
 窗口的行为是由一系列策略定义的，这些窗口策略决定了什么时间创建桶，事件如何分配到桶中以及桶内数据什么时间参与计算。其中参与计算的决策会根据触发条件判断，当触发条件满足时，桶内数据会发送给一个计算函数，由它来对桶中的元素应用计算逻辑。
 
-### 按照驱动类型分类
+## 按照驱动类型分类
 
 1. 时间窗口 以时间点来定义窗口的开始和结束
 2. 计数窗口 以元素的个数来截取数据
 
-### 按窗口分配的数据的规则分类
+## 按窗口分配的数据的规则分类
 
 1. 滚动窗口 具有固定的大小，对数据进行均匀切片，窗口之间没有重叠，也不会有间隔
 2. 滑动窗口 具有固定的大小，有一个滑动步长，它代表了窗口计算的评率。适用于计算结果更新评率非常高的场景
 3. 会话窗口 长度不固定，起始时间和结束时间也确定，其通过会话的超时时间，即相邻两个数据达到的时间间隔小于指定的大小，说明还在保持会话，他们就属于同一个窗口，否则，就关闭当前窗口，新建会话窗口。
 4. 全局窗口 把相同key的数据都分配到同一个窗口中，这种窗口默认不会做触发计算，如果希望对数据进行计算处理，需要自己定义触发器
 
-### 按键分区和非按键分区
+## 按键分区和非按键分区
 
 ```java
 // 经过keyBy分区后，分为多个子任务，窗口操作基于每个key进行单独的处理
@@ -678,12 +678,12 @@ stream.keyBy(...).window(...)
 stream.windowAll(...)
 ```
 
-### 窗口的生命周期
+## 窗口的生命周期
 
 创建 属于窗口的第一个数据到来的时候
 销毁，关窗  数据时间 >= 窗口的最大时间戳 + 允许最大的延迟
 
-### 窗口API
+## 窗口API
 
 窗口操作主要有两个部分：窗口分配器和窗口函数
 
@@ -910,7 +910,7 @@ import org.apache.flink.util.Collector;
     }  
 ```
 
-### 其他API
+## 其他API
 
 ```java
 // 触发器主要是用来控制窗口什么时候触发计算
@@ -930,7 +930,7 @@ stream.keyBy(...)
 	.sideOutputLateData(lateTag) 
 ```
 
-## 窗口联结
+# 窗口联结
 
 为基于一段时间的双流合并专门提供了一个窗口联结算子，可以定义时间窗口，并
 将两条流中共享一个公共键（key）的数据放在窗口中进行配对处理。
@@ -968,7 +968,7 @@ stream1
 	});
 ```
 
-## 处理函数
+# 处理函数
 
 process 是最底层的API
 
@@ -1043,7 +1043,7 @@ void deleteProcessingTimeTimer(long time);
 void deleteEventTimeTimer(long time);
 ```
 
-## 时间语义
+# 时间语义
 
 - 处理时间  当前流处理算子所在机器上的本地时钟时间。
 
@@ -1056,7 +1056,7 @@ title:逻辑时钟
 步，只是略微有一点延迟，同时保证了窗口计算的正确性
 ```
 
-### 水位线
+## 水位线
 
 用来衡量事件时间进展的标记，可以看做一条特殊的数据记录，主要内容就是一个时间戳，用来指示当前的事件时间。水位线是基于数据的时间戳生成的，是单调递增的。水位线可以通过设置延迟，来确保正确处理乱序数据。一个水位线Watermark(t)，表示在当前流中事件时间已经达到了时间戳t，这代表t之前的所有数据都到齐了，之后流中不会出现时间戳t’≤ t的数据。它往往会跟窗口一起配合
 
@@ -1190,7 +1190,7 @@ env.fromSource(
 )
 ```
 
-### 水位线的传递
+## 水位线的传递
 
 在流处理中，上游任务处理完水位线、时钟改变之后，要把当前的水位线广播给所有的下游子任务，以最小的作为当前任务的事件时钟。每个任务以处理之前所有数据为标准来确定自己的时钟。
 
@@ -1206,23 +1206,394 @@ WatermarkStrategy
 	.withIdleness(Duration.ofSeconds(5))
 ```
 
-## 状态
+# 状态
 
-#### 无状态
+## 无状态
 
 无状态的操作不会维持内部状态，即处理事件时无需依赖已处理过的事件，也不保存历史数据。事件处理互不影响且与事件到来的时间无关，易并行化。
 
-#### 有状态
+## 有状态
 
 依赖之前接收的事件信息，它们的状态会根据传入的事件更新，并用于未来事件的处理逻辑。需要保障在出错时进行可靠的故障恢复。
 
 有状态算子的一般处理流程，具体步骤如下。
+
 1. 算子任务接收到上游发来的数据；
 2. 获取当前状态；
 3. 根据业务逻辑进行计算，更新状态；
 4. 得到计算结果，输出发送到下游任务。
 
-## 流处理基础
+## 状态的分类
+
+### 按键分区状态
+
+状态是根据输入流中定义的键（key）来维护和访问的，所以只能定义在按键分区流
+（KeyedStream）中，也就keyBy之后才可以使用
+![[Pasted image 20240115231333.png]]
+
+也可以通过富函数类（RichFunction）来自定义KeyedState，所以只要提供了富函数类接口的算子，也都可以使用KeyedState
+
+示例：
+
+```java
+package io.leaderli.flink.demo;  
+  
+import org.apache.flink.api.common.state.StateTtlConfig;  
+import org.apache.flink.api.common.state.ValueState;  
+import org.apache.flink.api.common.state.ValueStateDescriptor;  
+import org.apache.flink.api.common.time.Time;  
+import org.apache.flink.api.common.typeinfo.Types;  
+import org.apache.flink.configuration.Configuration;  
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;  
+import org.apache.flink.streaming.api.functions.KeyedProcessFunction;  
+import org.apache.flink.util.Collector;  
+  
+public class StateDemo {  
+  
+    public static void main(String[] args) throws Exception {  
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();  
+  
+        env.fromElements(new WaterSensor("1", 1, 1));  
+        env.fromElements(  
+                        new WaterSensor("s1", 1, 1),  
+                        new WaterSensor("s1", 2, 11),  
+                        new WaterSensor("s2", 2, 2),  
+                        new WaterSensor("s3", 3, 3)  
+                )  
+                .keyBy(k -> k.id).process(new KeyedProcessFunction<String, WaterSensor, WaterSensor>() {  
+  
+                    ValueState<Integer> lastValue;  
+  
+                    @Override  
+                    public void open(Configuration parameters) throws Exception {  
+                        super.open(parameters);  
+                        StateTtlConfig ttlConfig = StateTtlConfig.newBuilder(Time.seconds(5))  
+                                // 创建和更新的时候，刷新过期时间  
+                                .setUpdateType(StateTtlConfig.UpdateType.OnCreateAndWrite)  
+                                // 因为清理的不是实时生效的，可以设定过期后是否可见，默认不可见  
+                                .setStateVisibility(StateTtlConfig.StateVisibility.ReturnExpiredIfNotCleanedUp)  
+                                .build();  
+                        ValueStateDescriptor<Integer> valueStateDescriptor = new ValueStateDescriptor<>("lastValue", Types.INT);  
+                        // 定期清理状态  
+                        valueStateDescriptor.enableTimeToLive(ttlConfig);  
+                        lastValue = getRuntimeContext().getState(valueStateDescriptor);  
+  
+                    }  
+  
+                    @Override  
+                    public void processElement(WaterSensor value, KeyedProcessFunction<String, WaterSensor, WaterSensor>.Context ctx, Collector<WaterSensor> out) throws Exception {  
+//                        lastValue.clear();  
+                        System.out.println(value.id + "->" + lastValue.value());  
+                        if (lastValue.value() == null) {  
+                            lastValue.update(0);  
+                        }  
+                        if (value.vc > lastValue.value()) {  
+                            lastValue.update(value.vc);  
+                        }  
+                    }  
+                });  
+        env.execute();  
+  
+    }  
+}
+```
+
+还有其他保存值的函数
+
+- ListState
+- MapState
+- ReducingState
+- AggregatingState
+
+### 算子状态
+
+flink，一个算子任务会按照并行度分为多个子任务执行，而不同的子任务会占据不同的任务槽。由于不同的slot在计算资源上是物理隔离的，所以flink能管理的状态在并行任务间是无法共享的，每个状态只能针对当前子任务的实例有效。
+
+很多有状态的操作（聚合、窗口）都是要先做keyBy进行按键分区的。按键分区之后，任务所进行的所有计算都应该值针对key有效，所以状态也应该按照key彼此隔离。每个并行子任务维护着对应的状态，算子的子任务之间状态不共享。
+
+![[Pasted image 20240115225143.png]]
+
+保存值的函数
+
+#### ListState
+
+每一个并行子任务上只会保留一个列表。当算子并行度进行缩放调整时，算子的列表状态中的所有元素项会被统一收集起来，相
+当于把多个分区的列表合并成了一个大列表，然后再均匀地分配给所有并行任务。这种均匀分配的具体方法就是轮询
+
+#### UnionListState
+
+UnionListState 与 ListState 区别在并行度调整时，常规列表状态是轮询分配状态项，而联合列表状态的算子则会直接广播状态的完整列表
+
+#### BroadcastState
+
+并行子任务都保持同一份“全局”状态
+
+## 状态后端
+
+状态的存储、访问以及维护，都是由一个可插拔的组件决定的，这个组件就叫作状态后端（state backend）。状态后端主要负责管理本地状态的存储方式和位置
+
+### 保存方式
+
+#### HashMapStateBackend
+
+状态存放在内存里，底层是一个HashMap
+
+#### RocksDB
+
+RocksDB 是一种内嵌的 key-value 存储介质，可以把数据持久化到本地硬盘。异步快照，增量式保存检查点。
+
+### 如何使用
+
+flink-conf.yaml
+
+```yml
+# 默认状态后端
+# rocksdb
+state.backend: hashmap
+# 存放检查点的文件路径
+state.checkpoints.dir: hdfs://hadoop102:8020/flink/checkpoints
+```
+
+```java
+StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+env.setStateBackend(new HashMapStateBackend());
+env.setStateBackend(new EmbeddedRocksDBStateBackend());
+```
+
+# checkpoint
+
+![[Pasted image 20240121010425.png]]
+
+检查点的保存是周期性触发的，间隔时间可以进行设置.在所有任务（算子）都恰好处理完一个相同的输入数据的时候，将它们的状态保存下来。
+
+## Checkpoint Barrier
+
+借鉴水位线的设计，在数据流中插入一个特殊的数据结构，专门用来表示触发检查点保存的时间点。收到保存检查点的指令后，Source 任务可以在当前数据流中插入这个结构；之后的所有任务只要遇到它就开始对状态做持久化快照保存。由于数据流是保持顺序依次处理的，因此遇到这个标识就代表之前的数据都处理完了，可以保存一个检查点；而在它之后的数据，引起的状态改变就不会体现在这个检查点中，而需要保存到下一个检查点
+
+## 检查点配置
+
+```java
+StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+// 每隔 1 秒启动一次检查点保存
+env.enableCheckpointing(1000);
+
+// 配置存储检查点到 JobManager 堆内存
+env.getCheckpointConfig().setCheckpointStorage(new JobManagerCheckpointStorage());
+// 配置存储检查点到文件系统
+env.getCheckpointConfig().setCheckpointStorage(new FileSystemCheckpointStorage("hdfs://namenode:40010/flink/checkpoints"));
+```
+
+### 常用配置
+
+#### CheckpointingMode
+
+设置检查点一致性的保证级别，有“精确一次”（exactly-once）和“至少一次”（at-least-once）两个选项。默认级别为 exactly-once，而对于大多数低延迟的流处理程序，at-least-once就够用了，而且处理效率会更高。不开启的时候，就是最多一次（At-Most-Once）
+
+#### checkpointTimeout
+
+用于指定检查点保存的超时时间，超时没完成就会被丢弃掉。
+
+#### minPauseBetweenCheckpoints
+
+用于指定在上一个检查点完成之后，检查点协调器最快等多久可以出发保存下一个检查点的指令
+
+#### maxConcurrentCheckpoints
+
+用于指定运行中的检查点最多可以有多少个
+
+#### enableExternalizedCheckpoints
+
+用于开启检查点的外部持久化，而且默认在作业失败的时候不会自动清理，如果想释放空间需要自己手工清理。里面传入的参数 ExternalizedCheckpointCleanup 指定了当作业取消的时候外部的检查点该如何清理。DELETE_ON_CANCELLATION：在作业取消的时候会自动删除外部检查点，但是如果是作业失败退出，则会保留检查点。RETAIN_ON_CANCELLATION：作业取消的时候也会保留外部检查点。
+
+#### tolerableCheckpointFailureNumber
+
+用于指定检查点连续失败的次数，当达到这个次数，作业就失败退出。默认为 0，这意味着不能容忍检查点失败，并且作业将在第一次报告检查点失败时失败
+
+#### enableUnalignedCheckpoints
+
+不再执行检查点的分界线对齐操作，启用之后可以大大减少产生背压时的检查点保存时间。这个设置要求检查点模式（CheckpointingMode）必须为 exctly-once，并且最大并发的检查点个数为 1
+
+#### alignedCheckpointTimeout
+
+该参数只有在启用非对齐检查点的时候有效。参数默认是 0，表示一开始就直接用非对齐检查点。如果设置大于 0，一开始会使用对齐的检查点，当对齐时间超过该参数设定的时间，则会自动切换成非对齐检查点。
+
+# savepoint
+
+镜像保存功能,它的原理和算法与检查点完全相同，只是多了一些额外的元数据。不会自动创建，必须由用户明确地手动触发保存操作，所以就是“手动存盘”。
+
+适用于
+
+- 版本管理和归档存储
+- 更新 Flink 版本
+- 更新应用程序
+- 调整并行度
+- 暂停应用程序
+
+```shell
+# 创建保存点，可以通过配置文件 flink-conf.yaml 设置默认路径
+# state.savepoints.dir: hdfs:///flink/savepoints
+$ bin/flink savepoint :jobId [:targetDirectory]
+
+# 在stop时创建保存点
+$ bin/flink stop --savepointPath [:targetDirectory] :jobId
+
+
+# 从保存点重启应用
+$ bin/flink run -s :savepointPath [:runArgs]
+```
+
+# 状态一致性
+
+一致性其实就是结果的正确性，一般从数据丢失、数据重复来评估。
+
+- At-Most-Once
+- At-Least-Once
+- Exactly-Once
+
+完整的流处理应用，应该包括了数据源、流处理器和外部存储系统三个部分。这个完整应用的一致性，就叫做“端到端（end-to-end）的状态一致性”
+
+![[Pasted image 20240121012518.png]]
+
+## 数据源
+
+数据源可重放数据，或者说可重置读取数据偏移量，加上 Flink 的 Source 算子将偏移量作为状态保存进检查点，就可以保证数据不丢。这是达到 at-least-once 一致性语义的基本要求，当然也是实现端到端 exactly-once 的基本要求
+
+## 流处理器
+
+flink的checkponit可以保证
+
+## 输出端
+
+保证 exactly-once 一致性的写入方式有两种：
+
+### 幂等写入
+
+操作可以重复执行很多次，但只导致一次结果更改。比如 Redis 中键值存储，或者关系型数据库（如 MySQL）中满足查询条件的更新操作。
+
+### 事务写入
+
+构建一个事务，让写入操作可以随着检查点来提交和回滚。
+
+具体实现方式有两种：
+
+#### 预写日志（write-ahead-log，WAL）
+
+1. 先把结果数据作为日志（log）状态保存起来
+2. 进行检查点保存时，也会将这些结果数据一并做持久化存储
+3. 在收到检查点完成的通知时，将所有结果一次性写入外部系统。
+4. 在成功写入所有数据后，在内部再次确认相应的检查点，将确认信息也进行持久化保存。这才代表着检查点的真正完成。
+
+#### 两阶段提交（two-phase-commit，2PC）
+
+先做“预提交”，等检查点完成之后再正式提交。这种提交方式是真正基于事务的，它需要外部系统提供事务支持。
+
+## 应用
+
+kafka属于可重置偏移量的消息队列，且支持两阶段提交（2PC）。
+
+要实现精准一次需要的配置
+
+1. 必须启用检查点
+2. 指定 KafkaSink 的发送级别为 DeliveryGuarantee.EXACTLY_ONCE
+3. 配置 Kafka 读取数据的消费者的隔离级别
+4. 事务超时配置
+
+
+
+
+```java
+package io.leaderli.flink.demo;
+
+import org.apache.flink.api.common.eventtime.WatermarkStrategy;
+import org.apache.flink.api.common.serialization.SimpleStringSchema;
+import org.apache.flink.connector.base.DeliveryGuarantee;
+import org.apache.flink.connector.kafka.sink.KafkaRecordSerializationSchema;
+import org.apache.flink.connector.kafka.sink.KafkaSink;
+import org.apache.flink.connector.kafka.source.KafkaSource;
+import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
+import org.apache.flink.streaming.api.CheckpointingMode;
+import org.apache.flink.streaming.api.datastream.DataStreamSource;
+import org.apache.flink.streaming.api.environment.CheckpointConfig;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.kafka.clients.producer.ProducerConfig;
+
+import java.time.Duration;
+
+
+public class KafkaEOSDemo {
+    public static void main(String[] args) throws Exception {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        // 代码中用到 hdfs，需要导入 hadoop 依赖、指定访问 hdfs 的用户名
+        System.setProperty("HADOOP_USER_NAME", "atguigu");
+        // 1、启用检查点,设置为精准一次
+        env.enableCheckpointing(5000, CheckpointingMode.EXACTLY_ONCE);
+        CheckpointConfig checkpointConfig = env.getCheckpointConfig();
+        checkpointConfig.setCheckpointStorage("hdfs://hadoop102:8020/chk");
+        checkpointConfig.setExternalizedCheckpointCleanup(CheckpointConfig.ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION);
+        // 2.读取 kafka
+        KafkaSource<String> kafkaSource = KafkaSource.<String>builder().setBootstrapServers("hadoop102:9092,hadoop103:9092, hadoop104:9092 ").setGroupId("atguigu").setTopics("topic_1").setValueOnlyDeserializer(new SimpleStringSchema()).setStartingOffsets(OffsetsInitializer.latest()).build();
+        DataStreamSource<String> dataStreamSource = env.fromSource(kafkaSource, WatermarkStrategy.forBoundedOutOfOrderness(Duration.ofSeconds(3)), "kafkasource");
+        /*
+         * 3.写出到 Kafka
+         * 精准一次 写入 Kafka，需要满足以下条件，缺一不可
+         * 1、开启 checkpoint
+         * 2、sink 设置保证级别为 精准一次
+         * 3、sink 设置事务前缀
+         * 4、sink 设置事务超时时间： checkpoint 间隔 < 事务超时时间 <
+         max 的 15 分钟
+         */
+        KafkaSink<String> kafkaSink = KafkaSink.<String>builder()
+                // 指定 kafka 的地址和端口
+                .setBootstrapServers("hadoop102:9092,hadoop103:9092, hadoop104:9092 ")
+                // 指定序列化器：指定 Topic 名称、具体的序列化
+                .setRecordSerializer(KafkaRecordSerializationSchema.<String>builder().setTopic("ws").setValueSerializationSchema(new SimpleStringSchema()).build())
+                // 3.1 精准一次,开启 2pc
+                .setDeliveryGuarantee(DeliveryGuarantee.EXACTLY_ONCE)
+                // 3.2 精准一次，必须设置 事务的前缀
+                .setTransactionalIdPrefix("atguigu-")
+                // 3.3 精 准 一 次 ， 必 须 设 置 事 务 超 时 时 间 : 大 于checkpoint 间隔，小于 max 15 分钟
+                .setProperty(ProducerConfig.TRANSACTION_TIMEOUT_CONFIG, 10 * 60 * 1000 + "").build();
+        dataStreamSource.sinkTo(kafkaSink);
+        env.execute();
+    }
+}
+```
+后续读取“ws”这个 topic 的消费者，要设置事务的隔离级别为“读已提交”，如下：
+
+```java
+package io.leaderli.flink.demo;  
+  
+import org.apache.flink.api.common.eventtime.WatermarkStrategy;  
+import org.apache.flink.api.common.serialization.SimpleStringSchema;  
+import org.apache.flink.connector.kafka.source.KafkaSource;  
+import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;  
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;  
+import org.apache.kafka.clients.consumer.ConsumerConfig;  
+  
+import java.time.Duration;  
+  
+  
+public class KafkaEOSDemo {  
+    public static void main(String[] args) throws Exception {  
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();  
+// 消费 在前面使用两阶段提交写入的 Topic        KafkaSource<String> kafkaSource =  
+                KafkaSource.<String>builder()  
+                        .setBootstrapServers("hadoop102:9092,hadoop103:9092,hadoop104:9092")  
+                        .setGroupId("atguigu")  
+                        .setTopics("ws")  
+                        .setValueOnlyDeserializer(new SimpleStringSchema())  
+                        .setStartingOffsets(OffsetsInitializer.latest())  
+                        // 作为 下游的消费者，要设置 事务的隔离级别 = 读已提交  
+                        .setProperty(ConsumerConfig.ISOLATION_LEVEL_CONFIG, "read_committed")  
+                        .build();  
+        env.fromSource(kafkaSource, WatermarkStrategy.forBoundedOutOfOrderness(Duration.ofSeconds(3)), "kafkasource")  
+                .print();  
+        env.execute();  
+    }  
+}
+```
+
+# 流处理基础
 
 Dataflow图
 
@@ -1236,22 +1607,22 @@ DataFlow描述了数据如何在不同操作之间流动。Dataflow通常表示�
 
 ![[Pasted image 20231122223703.png]]
 
-### 数据交换策略
+## 数据交换策略
 
 - 转发策略
 - 广播策略
 - 基于键值的策略
 - 随机策略
 
-### 延迟和吞吐
+## 延迟和吞吐
 
 延迟表示处理一个事件所需要的时间。流式应用关心从接受事件到输出观察到事件处理效果的时间间隔。延迟以时间片（例如毫秒）为单位测量的。
 
 吞吐是用来衡量系统处理能力（处理速率)的指标，它告诉我们系统每单位时间可以处理多少事件。
 
-### 数据流操作
+## 数据流操作
 
-### 输入输出
+## 输入输出
 
 数据接入和数据输出操作允许流处理引擎和外部系统进行通信。
 
