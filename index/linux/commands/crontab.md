@@ -71,4 +71,10 @@ crontab -u root -e
 0 0  * * * sh ~/demo.sh
 ```
 
+### 添加crontab权限
 
+文件中添加用户名
+
+```shell
+/etc/cron.allow
+```

@@ -1,6 +1,7 @@
 [
   "file-explorer",
   "global-search",
+  "command-palette",
   "editor-status",
   "markdown-importer",
   "workspaces"
