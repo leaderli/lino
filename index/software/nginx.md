@@ -38,6 +38,23 @@ module_hotfixes=true
 安装 nginx
 `sudo yum install nginx`
 
+离线安装
+
+```shell
+$ wget https://nginx.org/download/nginx-1.12.2.tar.gz
+$ tar xvzf nginx-1.12.2.tar.gz
+$ cd ~/nginx-1.12.2
+
+$ useradd nginx
+$ usermod -s /sbin/nologin nginx
+$ ./configure --user=nginx --group=nginx
+
+$ make
+$ make install
+```
+
+
+
 ## 启动
 
 nginx 有一个 master 线程和多个 worker 进程，master 进程用来读取，解析配置文件以及管理 worker 进程，worker 进程才是真正处理请求的进程。worker 进程的个数可通过配置文件去配置或自动设置为 cpu 的核心数。可通过修改配置设定

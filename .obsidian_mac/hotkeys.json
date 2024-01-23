@@ -176,14 +176,6 @@
       "key": "O"
     }
   ],
-  "obsidian-another-quick-switcher:search-command_recent-search": [
-    {
-      "modifiers": [
-        "Mod"
-      ],
-      "key": "O"
-    }
-  ],
   "workspace:new-tab": [],
   "workspace:goto-tab-1": [],
   "workspace:goto-tab-2": [],
@@ -199,6 +191,14 @@
         "Mod"
       ],
       "key": ","
+    }
+  ],
+  "obsidian-another-quick-switcher:search-command_recent-search": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "O"
     }
   ]
 }
