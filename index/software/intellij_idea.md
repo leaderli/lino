@@ -257,6 +257,17 @@ SLF4J: See <http://www.slf4j.org/codes.html#StaticLoggerBinder> for further deta
 
 ![[Pasted image 20220902205333.png]]
 
+## 设置shell
+
+shellcheck
+Editor|Inspections|Shell Script|shellCheck
+
+shfmt
+
+Editor|Code Style|Shell Script|Shfmt formatter
+
+
+
 ## 参考文档
 
 激活 破解
