@@ -283,7 +283,6 @@ not empty
 
    | 操作符 | 含义                          |
    | --: | :-------------------------- |
-   |  -a | 检查文件是否存在                    |
    |  -b | 检查是否为块特殊文件[1]               |
    |  -c | 检查是否为字符特殊文件[2]              |
    |  -d | 检查是否为文件夹                    |
@@ -311,7 +310,10 @@ not empty
    if [  -e "$myPath"]; then
      echo 'ok'
    fi
-
+   if [ !  -e "$myPath"]; then
+     echo 'File not exist'
+   fi
+   
    if [ ! -f /tmp/foo.txt ]; then
        echo "File not found!"
    fi
