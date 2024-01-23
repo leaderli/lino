@@ -1,7 +1,7 @@
 ---
 tags:
   - 软件/flink
-date updated: 2024-01-21 01:42
+date updated: 2024-01-21 14:02
 ---
 
 # 简介
@@ -1498,9 +1498,6 @@ kafka属于可重置偏移量的消息队列，且支持两阶段提交（2PC）
 3. 配置 Kafka 读取数据的消费者的隔离级别
 4. 事务超时配置
 
-
-
-
 ```java
 package io.leaderli.flink.demo;
 
@@ -1558,6 +1555,7 @@ public class KafkaEOSDemo {
     }
 }
 ```
+
 后续读取“ws”这个 topic 的消费者，要设置事务的隔离级别为“读已提交”，如下：
 
 ```java
@@ -1591,6 +1589,35 @@ public class KafkaEOSDemo {
         env.execute();  
     }  
 }
+```
+
+# flink-sql
+
+## sql-client
+
+```shell
+$ bin/sql-client
+
+$ vim conf/sql-client-init.sql
+SET sql-client.execution.result-mode=tableau;
+CREATE DATABASE mydatabase
+
+# 通过sql文件初始化
+$ bin/sql-client -i conf/sql-client-init.sql
+```
+
+```shell
+#默认 table，还可以设置为 tableau、changelog
+SET sql-client.execution.result-mode=tableau;
+
+#默认 streaming，也可以设置 batch
+SET execution.runtime-mode=streaming; 
+
+# 默认并行度 
+SET parallelism.default=1
+
+# 设置状态 TTL
+SET table.exec.state.ttl=1000;
 ```
 
 # 流处理基础

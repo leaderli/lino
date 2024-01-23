@@ -110,11 +110,7 @@ $ vmhgfs-fuse .host:/  /mnt/hgfs/
 
 ## 开机自启动虚拟机
 
-
-gpedit.msc打开组策略编辑器
-
-用户配置—》Windows设置—》脚本(登录|注销) 右边，名称下选择 “登录”
-![[Pasted image 20231225195823.png]]
+![[win10#开机自启动脚本]]
 
 ```shell
 "D:\ProgramFiles\VMware\vmrun.exe"  -T ws start  "D:\ProgramData\Virtual Machines\CentOS7\CentOS 7.vmx" nogui
