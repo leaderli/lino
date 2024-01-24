@@ -1,7 +1,11 @@
 ---
 tags:
   - 软件/flink
-date updated: 2024-01-21 14:02
+  - '#启动'
+  - '#停止'
+  - '#测试'
+  - '#默认'
+date updated: 2024-01-22 20:39
 ---
 
 # 简介
@@ -1619,6 +1623,57 @@ SET parallelism.default=1
 # 设置状态 TTL
 SET table.exec.state.ttl=1000;
 ```
+
+## 动态表和持续查询
+
+流的数据持续不断到来，基于这个表的SQL查询，就并不会停止，持续查询的结果也会是一个动态表。每次数据到来都会触发查询操作，一次查询面对的数据集，就是当前输入动态表中收到的所有数据，相当于对输入动态表做了一个快照。
+
+![[Pasted image 20240122201436.png]]
+
+持续查询的步骤如下：
+
+1. 流（stream）被转换为动态表（dynamic table）；
+2. 对动态表进行持续查询（continuous query），生成新的动态表；
+3. 生成的动态表被转换成流
+
+## 将流转换为动态表
+
+把流看作一张表，那么流中每个数据的到来，都应该看作是对表的一次 insert 操作。
+
+![[Pasted image 20240122202649.png]]
+
+## 用SQL持续查询
+
+当我们使用sql去查询时，随着原始动态表不停插入新的数据，查询的结果也不断更改。这里的更改可以是 insert ，也可能是对之前的数据的更新 update，这种查询被称为 update query
+
+![[Pasted image 20240122202952.png]]
+
+如果使用了窗口，因为窗口的结果是一次性写入结果表，因此结果表的更新日志流只包含 insert，而没有 update ，这里的持续查询是一个追加查询。
+![[Pasted image 20240122203004.png]]
+
+## 将动态表转换为流
+
+与关系型数据库中的表一样，动态表也可以通过插入（Insert）、更新（Update）和删除（Delete）操作，进行持续的更改。将动态表转换为流或将其写入外部系统时，就需要对这些更改操作进行编码，通过发送编码消息的方式告诉外部系统要执行的操作。在 FLink 中，支持三种编码方式：
+
+### Append-only
+
+仅通过 insert 更改来修改的动态表，可以直接转换为 "append-only" 流。这个流中发出的数据，其实就是动态表中新增的每一行
+
+### Retract
+
+撤回流中包含两类消息的流程， add 和 retract 消息。insert 就是 add，deltete 就是 retract ，update 就是 先 retract 后 add
+
+![[Pasted image 20240122203711.png]]
+
+### upsert
+
+类似retract，将 insert 和 update 合并了
+
+![[Pasted image 20240122203812.png]]
+
+## 时间属性
+
+时间属性的数据类型必须为 TIMESTAMPj， 时间属性的定义分成事件时间（event time）和处理时间（processing time）
 
 # 流处理基础
 
