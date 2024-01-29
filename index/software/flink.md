@@ -5,7 +5,7 @@ tags:
   - '#停止'
   - '#测试'
   - '#默认'
-date updated: 2024-01-28 22:58
+date updated: 2024-01-29 20:50
 ---
 
 # 简介
@@ -1870,13 +1870,31 @@ WITH (
 AS SELECT id, name, age FROM source_table WHERE mod(id, 10) = 0;
 ```
 
-
 查看表
+
 ```sql
 show tables
 
-describe table
+describe [table_name] 
+
+drop table [table_name]
 ```
+
+修改表
+
+```sql
+ALTER TABLE [catalog_name.][db_name.]table_name RENAME TO new_table_name
+// 修改表属性
+ALTER TABLE [catalog_name.][db_name.]table_name SET (key1=val1,key2=val2, ...)
+```
+
+## 查询
+
+```sql
+
+
+```
+
 # 流处理基础
 
 Dataflow图
