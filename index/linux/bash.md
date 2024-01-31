@@ -722,6 +722,13 @@ do
    echo $var
 done
 
+# 迭代形参
+for var in $@
+do
+   echo $var
+done
+
+
 
 # 下面这种方式也可以
 string='1 2 3 4'
