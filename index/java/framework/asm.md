@@ -1,7 +1,7 @@
 ---
 tags:
   - java/框架/asm
-date updated: 2022-03-22 19:53
+date updated: 2024-02-04 20:24
 ---
 
 ### 安装
@@ -209,3 +209,5 @@ class ByteClassLoader extends URLClassLoader {
 ### 参考文档
 
 [官网地址](https://asm.ow2.io/index.html)
+
+[替换加载后的类](https://bukkit.org/threads/tutorial-extreme-beyond-reflection-asm-replacing-loaded-classes.99376/)
