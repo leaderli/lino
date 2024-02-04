@@ -5,7 +5,7 @@ tags:
   - '#停止'
   - '#测试'
   - '#默认'
-date updated: 2024-01-29 20:50
+date updated: 2024-01-30 00:03
 ---
 
 # 简介
@@ -1608,6 +1608,10 @@ CREATE DATABASE mydatabase
 
 # 通过sql文件初始化
 $ bin/sql-client -i conf/sql-client-init.sql
+
+
+# 退出 sql-client
+$ exit
 ```
 
 ```shell
@@ -1890,8 +1894,163 @@ ALTER TABLE [catalog_name.][db_name.]table_name SET (key1=val1,key2=val2, ...)
 
 ## 查询
 
-```sql
+### datagen & print
 
+```sql
+create database mydatabase;
+use mydatabase;
+
+CREATE TABLE source (
+id INT,
+ts BIGINT,
+vc INT
+) WITH (
+'connector' = 'datagen',
+'rows-per-second'='1',
+-- fields.id.length='1' 表示随机1位数
+-- 可省略，通过 min,max
+'fields.id.kind'='random',
+'fields.id.min'='1',
+'fields.id.max'='10',
+-- 可省略，通过 start,end
+'fields.ts.kind'='sequence',
+'fields.ts.start'='1',
+'fields.ts.end'='1000000',
+'fields.vc.kind'='random',
+'fields.vc.min'='1',
+'fields.vc.max'='100'
+);
+
+select * from source;
+```
+
+table
+
+![[Pasted image 20240129220902.png]]
+
+tableau
+
+![[Pasted image 20240129221344.png]]
+
+changelog
+
+![[Pasted image 20240129221504.png]]
+
+```sql
+CREATE TABLE sink (
+id INT,
+ts BIGINT,
+vc INT
+) WITH (
+'connector' = 'print'
+);
+
+INSERT INTO sink select * from source;
+```
+
+提交的任务可以在web界面的任务里看到
+
+### with子句
+
+提供一种辅助语句的方法，以便在较大的查询中使用。这些语句通常被称为公共表达式（Common Table Expression, CTE ）。可以认为它们定义了仅为一个查询而存在的临时视图。
+
+```sql
+WITH <with_item_definition> [ , ... ]
+SELECT ... FROM ...;
+<with_item_defintion>:
+with_item_name (column_name[, ...n]) AS ( <select_query> )
+```
+
+```sql
+WITH source_with_total AS (
+SELECT id, vc+10 AS total
+FROM source
+)
+SELECT id, SUM(total) AS sum_total
+FROM source_with_total
+GROUP BY id;
+```
+
+嵌套
+
+```sql
+ with source3 as (
+ 
+	with source2 as (
+		select cast((UNIX_TIMESTAMP(CAST(row_time AS STRING))) / 1000 as bigint) as unix_time,row_time from source1
+	)
+ 
+  select unix_time from source2
+ )
+ 
+ select * from source3;
+```
+
+### group 案例
+
+```sql
+CREATE TABLE source1 (
+dim STRING,
+user_id BIGINT,
+price BIGINT,
+row_time AS cast(CURRENT_TIMESTAMP as timestamp(3)),
+WATERMARK FOR row_time AS row_time - INTERVAL '5' SECOND
+) WITH (
+'connector' = 'datagen',
+'rows-per-second' = '10',
+'fields.dim.length' = '1',
+'fields.user_id.min' = '1',
+'fields.user_id.max' = '100000',
+'fields.price.min' = '1',
+'fields.price.max' = '100000'
+);
+
+select dim,
+count(*) as pv,
+sum(price) as sum_price,
+max(price) as max_price,
+min(price) as min_price,
+-- 计算 uv 数
+count(distinct user_id) as uv,
+cast((UNIX_TIMESTAMP(CAST(row_time AS STRING))) / 60 as bigint) as
+window_start
+from source1
+group by
+dim,
+-- UNIX_TIMESTAMP 得到秒的时间戳，将秒级别时间戳 / 60 转化为 1min，
+cast((UNIX_TIMESTAMP(CAST(row_time AS STRING))) / 60 as bigint)
+```
+
+## 函数
+
+```sql
+select current_timestamp;
++----+-------------------------+
+| op |       current_timestamp |
++----+-------------------------+
+| +I | 2024-01-29 23:25:54.457 |
++----+-------------------------+
+
+select cast(  (select current_timestamp) as STRING);
++----+--------------------------------+
+| op |                         EXPR$0 |
++----+--------------------------------+
+| +I |        2024-01-29 23:28:29.885 |
++----+--------------------------------+
+
+select unix_timestamp(cast(  (select current_timestamp) as STRING));
++----+----------------------+
+| op |               EXPR$0 |
++----+----------------------+
+| +I |           1706542161 |
++----+----------------------+
+
+select TO_TIMESTAMP( FROM_UNIXTIME(1706542161));
++----+-------------------------+
+| op |                  EXPR$0 |
++----+-------------------------+
+| +I | 2024-01-29 23:29:21.000 |
++----+-------------------------+
 
 ```
 
@@ -1931,3 +2090,7 @@ DataFlow描述了数据如何在不同操作之间流动。Dataflow通常表示�
 数据接入操作时从外部数据源获取原始数据并将其转换成适合后续处理的格式。实现数据接入操作逻辑的算子称为数据源。数据源可以从TCP套接字、文件、kafka中获取数据。
 
 数据输出操作是将数据以适合外部系统使用的格式输出。负责数据输出的算子称为数据汇，其写入的目标可以是文件、数据库、消息队列或监控接口等。
+
+# 参考文档
+
+[SQL 客户端 | Apache Flink](https://nightlies.apache.org/flink/flink-docs-release-1.17/zh/docs/dev/table/sqlclient/)
