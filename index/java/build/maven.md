@@ -1297,6 +1297,44 @@ Maven 采用“最近获胜策略（nearest wins strategy）”的方式处理�
 </dependency>
 ```
 
+### 配置tools.jar
+
+```xml
+<profiles>
+	<profile>
+		<id>default-profile</id>
+		<activation>
+			<activeByDefault>true</activeByDefault>
+			<file>
+				<exists>${java.home}/../lib/tools.jar</exists>
+			</file>
+		</activation>
+		<properties>
+			<toolsjar>${java.home}/../lib/tools.jar</toolsjar>
+		</properties>
+	</profile>
+	<profile>
+		<id>mac-profile</id>
+		<activation>
+			<activeByDefault>false</activeByDefault>
+			<file>
+				<exists>${java.home}/../lib/tools.jar</exists>
+			</file>
+		</activation>
+		<properties>
+			<toolsjar>${java.home}/../lib/tools.jar</toolsjar>
+		</properties>
+	</profile>
+</profiles>
+
+ <dependency>
+		<groupId>com.sun</groupId>
+		<artifactId>tools.jar</artifactId>
+		<scope>system</scope>
+		<version>1.8</version>
+		<systemPath>${toolsjar}</systemPath>
+</dependency>
+```
 ## javadoc中文乱码
 
 idea 中 设置 `maven|runner |VM Options` 添加
