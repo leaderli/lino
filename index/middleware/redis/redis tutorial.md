@@ -1,7 +1,7 @@
 ---
 tags:
   - middleware/redis/tutorial
-date updated: 2022-04-17 16:08
+date updated: 2024-01-27 22:53
 ---
 
 ## 安装
@@ -26,6 +26,11 @@ $ cd redis-stable
 $ make 
 $ sudo make install
 ```
+
+gui客户端
+
+[tiny-redis](https://github.com/tiny-craft/tiny-rdm/releases)
+
 ## 单点启动
 
 ```shell
@@ -41,8 +46,6 @@ redis-server redis.conf
 ```
 
 **_可通过查看 redis 日志来查看启动过程或者运行过程中的各种问题_**
-
-
 
 日志开启需要在 `redis.conf` 配置
 

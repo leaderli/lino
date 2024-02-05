@@ -1,7 +1,11 @@
 ---
 tags:
   - 软件/flink
-date updated: 2024-01-21 14:02
+  - '#启动'
+  - '#停止'
+  - '#测试'
+  - '#默认'
+date updated: 2024-01-30 00:03
 ---
 
 # 简介
@@ -1604,6 +1608,10 @@ CREATE DATABASE mydatabase
 
 # 通过sql文件初始化
 $ bin/sql-client -i conf/sql-client-init.sql
+
+
+# 退出 sql-client
+$ exit
 ```
 
 ```shell
@@ -1618,6 +1626,432 @@ SET parallelism.default=1
 
 # 设置状态 TTL
 SET table.exec.state.ttl=1000;
+```
+
+## 动态表和持续查询
+
+流的数据持续不断到来，基于这个表的SQL查询，就并不会停止，持续查询的结果也会是一个动态表。每次数据到来都会触发查询操作，一次查询面对的数据集，就是当前输入动态表中收到的所有数据，相当于对输入动态表做了一个快照。
+
+![[Pasted image 20240122201436.png]]
+
+持续查询的步骤如下：
+
+1. 流（stream）被转换为动态表（dynamic table）；
+2. 对动态表进行持续查询（continuous query），生成新的动态表；
+3. 生成的动态表被转换成流
+
+## 将流转换为动态表
+
+把流看作一张表，那么流中每个数据的到来，都应该看作是对表的一次 insert 操作。
+
+![[Pasted image 20240122202649.png]]
+
+## 用SQL持续查询
+
+当我们使用sql去查询时，随着原始动态表不停插入新的数据，查询的结果也不断更改。这里的更改可以是 insert ，也可能是对之前的数据的更新 update，这种查询被称为 update query
+
+![[Pasted image 20240122202952.png]]
+
+如果使用了窗口，因为窗口的结果是一次性写入结果表，因此结果表的更新日志流只包含 insert，而没有 update ，这里的持续查询是一个追加查询。
+![[Pasted image 20240122203004.png]]
+
+## 将动态表转换为流
+
+与关系型数据库中的表一样，动态表也可以通过插入（Insert）、更新（Update）和删除（Delete）操作，进行持续的更改。将动态表转换为流或将其写入外部系统时，就需要对这些更改操作进行编码，通过发送编码消息的方式告诉外部系统要执行的操作。在 FLink 中，支持三种编码方式：
+
+### Append-only
+
+仅通过 insert 更改来修改的动态表，可以直接转换为 "append-only" 流。这个流中发出的数据，其实就是动态表中新增的每一行
+
+### Retract
+
+撤回流中包含两类消息的流程， add 和 retract 消息。insert 就是 add，deltete 就是 retract ，update 就是 先 retract 后 add
+
+![[Pasted image 20240122203711.png]]
+
+### upsert
+
+类似retract，将 insert 和 update 合并了
+
+![[Pasted image 20240122203812.png]]
+
+## 时间属性
+
+时间属性的数据类型必须为 TIMESTAMPj， 时间属性的定义分成事件时间（event time）和处理时间（processing time）
+
+通过 `WATERMARK FOR` 定义事件时间属性
+
+```sql
+// 这里我们把 ts 字段定义为事件时间属性，而且基于 ts 设置了 5 秒的水位线延迟。
+CREATE TABLE EventTable(
+	user STRING,
+	url STRING,
+	ts TIMESTAMP(3),
+	WATERMARK FOR ts AS ts - INTERVAL '5' SECOND
+) WITH (
+	...
+);
+```
+
+定义处理时间属性
+
+```sql
+CREATE TABLE EventTable(
+ user STRING,
+ url STRING,
+ ts as PROCTIME()
+) WITH(
+ ...	
+);
+```
+
+## 数据库
+
+```sql
+CREATE DATABASE [IF NOT EXISTS] [catalog_name.]db_name
+	[COMMENT database_comment]
+	WITH (key1=val1, key2=val2, ...);
+
+CREATE DATABASE db_flink;
+
+
+SHOW DATABASES;
+
+SHOW CURRENT DATABASE;
+
+// RESTRICT：删除非空数据库会触发异常。默认启用
+// CASCADE：删除非空数据库也会删除所有相关的表和函数
+DROP DATABASE [IF EXISTS] [catalog_name.]db_name [ (RESTRICT |
+CASCADE) 
+```
+
+## 表
+
+```sql
+CREATE TABLE [IF NOT EXISTS] [catalog_name.][db_name.]table_name
+(
+{ <physical_column_definition> | <metadata_column_definition> |
+<computed_column_definition> }[ , ...n]
+[ <watermark_definition> ]
+[ <table_constraint> ][ , ...n]
+)
+[COMMENT table_comment]
+[PARTITIONED
+BY
+(partition_column_name1,
+partition_column_name2, ...)]
+WITH (key1=val1, key2=val2, ...)
+[ LIKE source_table [( <like_options> )] | AS select_query ]
+```
+
+1. physical_column_definition
+   物理列是数据库中所说的常规列。其定义了物理介质中存储的数据中字段的名称、类型和顺序。其他类型的列可以在物理列之间声明，但不会影响最终的物理列的读取。
+2. metadata_column_definition
+   元数据列是 SQL 标准的扩展，允许访问数据源本身具有的一些元数据。元数据列由METADATA 关键字标识。例如，我们可以使用元数据列从 Kafka 记录中读取和写入时间戳
+
+```sql
+CREATE TABLE MyTable (
+	`user_id` BIGINT,
+	`name` STRING,
+	// 如果自定义的列名称和 Connector 中定义 metadata 字段的名称一样， FROM xxx 子句可省略
+	`record_time` TIMESTAMP_LTZ(3) METADATA FROM 'timestamp'
+) WITH (
+	'connector' = 'kafka'
+);
+```
+
+如果自定义列的数据类型和 Connector 中定义的 metadata 字段的数据类型不一致，程序运行时会自动 cast 强转
+
+```sql
+CREATE TABLE MyTable (
+`user_id` BIGINT,
+`name` STRING,
+-- 将时间戳强转为 BIGINT
+`timestamp` BIGINT METADATA
+) WITH (
+'connector' = 'kafka'
+...
+);
+```
+
+默认情况下，Flink SQL planner 认为 metadata 列可以读取和写入。然而，在许多情况下，外部系统提供的只读元数据字段比可写字段多。因此，可以使用 VIRTUAL 关键字排除元数据列的持久化(表示只读)。
+
+```sql
+CREATE TABLE MyTable (
+`timestamp` BIGINT METADATA,
+`offset` BIGINT METADATA VIRTUAL,
+`user_id` BIGINT,
+`name` STRING,
+) WITH (
+'connector' = 'kafka'
+...
+);
+```
+
+支持自定义运算生成的列
+
+```sql
+CREATE TABLE MyTable (
+`user_id` BIGINT,
+`price` DOUBLE,
+`quantity` DOUBLE,
+`cost` AS price * quanitity
+) WITH (
+'connector' = 'kafka'
+...
+);
+```
+
+定义watermark
+
+1. 严格升序：`WATERMARK FOR rowtime_column AS rowtime_column`。Flink 任务认为时间戳只会越来越大，也不存在相等的情况，只要相等或者小于之前的，就认为是迟到的数据
+
+2. 递增：`WATERMARK FOR rowtime_column AS rowtime_column - INTERVAL '0.001' SECOND` 。一般基本不用这种方式。如果设置此类，则允许有相同的时间戳出现
+
+3. 有界无序： `WATERMARK FOR rowtime_column AS rowtime_column – INTERVAL 'string' timeUnit` 。此 类 策 略 就 可 以 用 于 设 置 最 大 乱 序 时 间 ， 假 如 设 置 为 `WATERMARK FOR rowtime_column AS rowtime_column - INTERVAL '5' SECOND` ，则生成的是运行 5s 延迟的 Watermark。一般都用这种 Watermark 生成策略，此类 Watermark 生成策略通常用于有数据乱序的场景中，而对应到实际的场景中，数据都是会存在乱序的，所以基本都使用此类策略。
+
+主键
+
+主键约束表明表中的一列或一组列是唯一的，并且它们不包含 NULL 值。主键唯一地标识表中的一行，只支持 not enforced。
+
+```sql
+CREATE TABLE MyTable (
+`user_id` BIGINT,
+`name` STRING,
+PARYMARY KEY(user_id) not enforced
+) WITH (
+'connector' = 'kafka'
+...
+);
+```
+
+with 语句，用于创建表的属性，用于指定外部存储系统的元数据信息配置属性时，表达式key1=val1 的键和值都应该是字符串字面值。如下是 Kafka 的映射表：
+
+```sql
+CREATE TABLE KafkaTable (
+`user_id` BIGINT,
+`name` STRING,
+`ts` TIMESTAMP(3) METADATA FROM 'timestamp'
+) WITH (
+'connector' = 'kafka',
+'topic' = 'user_behavior',
+'properties.bootstrap.servers' = 'localhost:9092',
+'properties.group.id' = 'testGroup',
+'scan.startup.mode' = 'earliest-offset',
+'format' = 'csv'
+)
+```
+
+使用 like 基于现有表创建新表
+
+```sql
+CREATE TABLE Orders (
+`user` BIGINT,
+product STRING,
+order_time TIMESTAMP(3)
+) WITH (
+'connector' = 'kafka',
+'scan.startup.mode' = 'earliest-offset'
+);
+CREATE TABLE Orders_with_watermark (
+-- Add watermark definition
+WATERMARK FOR order_time AS order_time - INTERVAL '5' SECOND
+) WITH (
+-- Overwrite the startup-mode
+'scan.startup.mode' = 'latest-offset'
+)
+LIKE Orders;
+```
+
+as select 通过查询的结果创建和填充表
+
+```sql
+CREATE TABLE my_ctas_table
+WITH (
+'connector' = 'kafka',
+...
+)
+AS SELECT id, name, age FROM source_table WHERE mod(id, 10) = 0;
+```
+
+查看表
+
+```sql
+show tables
+
+describe [table_name] 
+
+drop table [table_name]
+```
+
+修改表
+
+```sql
+ALTER TABLE [catalog_name.][db_name.]table_name RENAME TO new_table_name
+// 修改表属性
+ALTER TABLE [catalog_name.][db_name.]table_name SET (key1=val1,key2=val2, ...)
+```
+
+## 查询
+
+### datagen & print
+
+```sql
+create database mydatabase;
+use mydatabase;
+
+CREATE TABLE source (
+id INT,
+ts BIGINT,
+vc INT
+) WITH (
+'connector' = 'datagen',
+'rows-per-second'='1',
+-- fields.id.length='1' 表示随机1位数
+-- 可省略，通过 min,max
+'fields.id.kind'='random',
+'fields.id.min'='1',
+'fields.id.max'='10',
+-- 可省略，通过 start,end
+'fields.ts.kind'='sequence',
+'fields.ts.start'='1',
+'fields.ts.end'='1000000',
+'fields.vc.kind'='random',
+'fields.vc.min'='1',
+'fields.vc.max'='100'
+);
+
+select * from source;
+```
+
+table
+
+![[Pasted image 20240129220902.png]]
+
+tableau
+
+![[Pasted image 20240129221344.png]]
+
+changelog
+
+![[Pasted image 20240129221504.png]]
+
+```sql
+CREATE TABLE sink (
+id INT,
+ts BIGINT,
+vc INT
+) WITH (
+'connector' = 'print'
+);
+
+INSERT INTO sink select * from source;
+```
+
+提交的任务可以在web界面的任务里看到
+
+### with子句
+
+提供一种辅助语句的方法，以便在较大的查询中使用。这些语句通常被称为公共表达式（Common Table Expression, CTE ）。可以认为它们定义了仅为一个查询而存在的临时视图。
+
+```sql
+WITH <with_item_definition> [ , ... ]
+SELECT ... FROM ...;
+<with_item_defintion>:
+with_item_name (column_name[, ...n]) AS ( <select_query> )
+```
+
+```sql
+WITH source_with_total AS (
+SELECT id, vc+10 AS total
+FROM source
+)
+SELECT id, SUM(total) AS sum_total
+FROM source_with_total
+GROUP BY id;
+```
+
+嵌套
+
+```sql
+ with source3 as (
+ 
+	with source2 as (
+		select cast((UNIX_TIMESTAMP(CAST(row_time AS STRING))) / 1000 as bigint) as unix_time,row_time from source1
+	)
+ 
+  select unix_time from source2
+ )
+ 
+ select * from source3;
+```
+
+### group 案例
+
+```sql
+CREATE TABLE source1 (
+dim STRING,
+user_id BIGINT,
+price BIGINT,
+row_time AS cast(CURRENT_TIMESTAMP as timestamp(3)),
+WATERMARK FOR row_time AS row_time - INTERVAL '5' SECOND
+) WITH (
+'connector' = 'datagen',
+'rows-per-second' = '10',
+'fields.dim.length' = '1',
+'fields.user_id.min' = '1',
+'fields.user_id.max' = '100000',
+'fields.price.min' = '1',
+'fields.price.max' = '100000'
+);
+
+select dim,
+count(*) as pv,
+sum(price) as sum_price,
+max(price) as max_price,
+min(price) as min_price,
+-- 计算 uv 数
+count(distinct user_id) as uv,
+cast((UNIX_TIMESTAMP(CAST(row_time AS STRING))) / 60 as bigint) as
+window_start
+from source1
+group by
+dim,
+-- UNIX_TIMESTAMP 得到秒的时间戳，将秒级别时间戳 / 60 转化为 1min，
+cast((UNIX_TIMESTAMP(CAST(row_time AS STRING))) / 60 as bigint)
+```
+
+## 函数
+
+```sql
+select current_timestamp;
++----+-------------------------+
+| op |       current_timestamp |
++----+-------------------------+
+| +I | 2024-01-29 23:25:54.457 |
++----+-------------------------+
+
+select cast(  (select current_timestamp) as STRING);
++----+--------------------------------+
+| op |                         EXPR$0 |
++----+--------------------------------+
+| +I |        2024-01-29 23:28:29.885 |
++----+--------------------------------+
+
+select unix_timestamp(cast(  (select current_timestamp) as STRING));
++----+----------------------+
+| op |               EXPR$0 |
++----+----------------------+
+| +I |           1706542161 |
++----+----------------------+
+
+select TO_TIMESTAMP( FROM_UNIXTIME(1706542161));
++----+-------------------------+
+| op |                  EXPR$0 |
++----+-------------------------+
+| +I | 2024-01-29 23:29:21.000 |
++----+-------------------------+
+
 ```
 
 # 流处理基础
@@ -1656,3 +2090,7 @@ DataFlow描述了数据如何在不同操作之间流动。Dataflow通常表示�
 数据接入操作时从外部数据源获取原始数据并将其转换成适合后续处理的格式。实现数据接入操作逻辑的算子称为数据源。数据源可以从TCP套接字、文件、kafka中获取数据。
 
 数据输出操作是将数据以适合外部系统使用的格式输出。负责数据输出的算子称为数据汇，其写入的目标可以是文件、数据库、消息队列或监控接口等。
+
+# 参考文档
+
+[SQL 客户端 | Apache Flink](https://nightlies.apache.org/flink/flink-docs-release-1.17/zh/docs/dev/table/sqlclient/)

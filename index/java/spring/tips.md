@@ -1,7 +1,7 @@
 ---
 tags:
   - java/spring/tips
-date updated: 2022-04-17 19:57
+date updated: 2024-01-24 19:01
 ---
 
 ### 反射工具类
@@ -115,7 +115,7 @@ public class AnnotationAspect {
 
 ### @Value
 
-注入数组类型配置 
+注入数组类型配置
 
 ```properties
 list.node=123,456
@@ -125,6 +125,7 @@ list.node=123,456
 @Value("${list.node}")
 private String[] nodes
 ```
+
 ### 定时任务
 
 `Spring`的`@Scheduled`  可使用`crontab`语法，但是不同于`unix`的标准语法，它第一位是秒
@@ -252,7 +253,6 @@ public class ContextWebListener implements ServletContextListener {
 spring.profiles.active=dev,hsqldb
 ```
 
-
 ### ImportBeanDefinitionRegistrar
 
 可以获取到所有被Spring加载的注解，可以取到类似`@Enable`系列的注解值， 该接口实现类可以通过`@import`引入，但是该类不会被加载到 Spring 容器中
@@ -283,10 +283,10 @@ class AspectJAutoProxyRegistrar implements ImportBeanDefinitionRegistrar {
 }
 ```
 
-
 ### 给bean添加默认属性
 
 当spring注入person时，会给hello赋值123
+
 ```java
 RootBeanDefinition rootBeanDefinition = new RootBeanDefinition(Person.class);
 rootBeanDefinition.getPropertyValues().add("hello","123");
@@ -307,4 +307,12 @@ beanDefinitionRegistry.registerBeanDefinition("person",rootBeanDefinition);
             this.hello = hello;
         }
     }
+```
+
+## 指定类加载器
+
+```java
+AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();  
+context.setClassLoader(classLoader);  
+context.refresh();
 ```
