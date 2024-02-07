@@ -124,6 +124,13 @@ clasz.isPrimitive();
 Father.class.isAssignableFrom(Son.class)
 ```
 
+
+## 字节码编辑软件
+
+
+![[Pasted image 20240206211329.png]]
+
+[JBE - Java Bytecode Editor](https://set.ee/jbe/)
 ## 参考文档
 
 1. [Java字节码文件结构剖析 - cexo - 博客园](https://www.cnblogs.com/webor2006/p/9404249.html)
