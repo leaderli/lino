@@ -450,8 +450,8 @@ ctClass.instrument(codeConverter);
 ctClass.toClass().newInstance();
 ```
 
-上述方法不会将成员变量id删除，而是新生成一个成员变量id2，以及替换所有使用到成员变量id的地方。
 
+上述方法不会将成员变量id删除，而是新生成一个成员变量id2，以及替换所有使用到成员变量id的地方。
 ### 修改方法
 
 ```java
