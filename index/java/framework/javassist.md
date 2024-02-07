@@ -1,7 +1,7 @@
 ---
 tags:
   - java/框架/javaassist
-date updated: 2022-04-05 17:26
+date updated: 2024-02-07 21:38
 ---
 
 ## 快速入门
@@ -450,8 +450,8 @@ ctClass.instrument(codeConverter);
 ctClass.toClass().newInstance();
 ```
 
-
 上述方法不会将成员变量id删除，而是新生成一个成员变量id2，以及替换所有使用到成员变量id的地方。
+
 ### 修改方法
 
 ```java
@@ -508,11 +508,31 @@ class Welcome {
 }
 ```
 
+### 添加异常捕获
+
+添加的catch 必须以 `throw` or `return` 结尾
+
+```java
+CtMethod m = ...;
+CtClass etype = ClassPool.getDefault().get("java.io.IOException");
+m.addCatch("{ System.out.println($e); throw $e; }", etype);
+```
+
+相当于
+
+```java
+try {
+   // the original method body_
+}
+catch (java.io.IOException e) {
+    System.out.println(e);
+    throw e;
+}
+```
 
 ## 替换已经加载类
 
 通过 java-agent的方式实现
-
 
 ```java
 package io.leaderli.demo.bytebuddy;  
@@ -762,7 +782,6 @@ public class ByteBuddyTest {
     }  
 }
 ```
-
 
 ## 参考文档
 
