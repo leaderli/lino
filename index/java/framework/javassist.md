@@ -487,19 +487,26 @@ public class javassist_1 {
         aClass = ctClass.toClass();  
         System.out.println(Welcome.sayHello());  
         System.out.println(Welcome.sayHello());  
-        System.out.println(Welcome.sayHello());  
+
+        ctClass.defrost();  
+		ctMethod = ctClass.getDeclaredMethod("sayHello","(Ljava/lang/String;)Ljava/lang/String;"); 
+        // 获取参数1，参数0表示this 
+        ctMethod.setBody("{ return $1; }");  
+        System.out.println(Welcome.sayHello2());  
   
     }  
   
   
 }  
 class Welcome {  
-    public static String sayHello() {  
+    public static String sayHello(String msg) {  
+        return "Hello!!!!";  
+    }  
+	public static String sayHello(String msg) {  
         return "Hello!!!!";  
     }  
 }
 ```
-
 
 
 ## 替换已经加载类
@@ -755,6 +762,8 @@ public class ByteBuddyTest {
     }  
 }
 ```
+
+
 ## 参考文档
 
 [tutorial](http://www.javassist.org/tutorial/tutorial.html)
