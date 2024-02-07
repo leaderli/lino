@@ -1,7 +1,7 @@
 ---
 tags:
   - java/tips
-date updated: 2024-01-08 23:06
+date updated: 2024-02-07 23:07
 ---
 
 ### 读取 properties 中文乱码解决
@@ -461,6 +461,23 @@ public class DebugModeExample {
 
 ```shell
 System.getenv("PWD")
+```
+
+### 获取jdk目录
+
+```java
+/**  
+ * @return 返回jdk目录  
+ */  
+public static String getJavaHome() {  
+    return System.getProperty("java.home");  
+}  
+  
+/**  
+ * @return 返回 tools.jar  
+ */public static File getJavaToolsJava() {  
+    return new File(System.getProperty("java.home"), "../lib/tools.jar");  
+}
 ```
 
 ### 获取java对象在内存中的索引
