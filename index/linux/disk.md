@@ -2,9 +2,8 @@
 aliases: 磁盘
 tags:
   - linux/disk
-date updated: 2022-04-14 11:18
+date updated: 2024-02-15 04:43
 ---
-
 
 给某个目录挂载一个分区的详细步骤
 
@@ -102,3 +101,103 @@ $ mount -a
 # 查看app目录的细节
 $ df -h /app
 ```
+
+## 一个扩展的示例
+
+实际有40G
+
+```shell
+[root@localhost ~]# fdisk -l
+
+Disk /dev/sda: 42.9 GB, 42949672960 bytes
+255 heads, 63 sectors/track, 5221 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sda1   *           1          13      104391   83  Linux
+/dev/sda2              14        2610    20860402+  8e  Linux LVM
+```
+
+但只用了20G
+
+```shell
+[root@localhost ~]# df -h
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/mapper/VolGroup00-LogVol00
+                       18G   12G  5.4G  68% /
+/dev/sda1              99M   13M   81M  14% /boot
+tmpfs                1004M     0 1004M   0% /dev/shm
+```
+
+扩展分区, n 新增分区 w 保存 然后重启
+
+```shell
+[root@localhost ~]# fdisk  /dev/sda
+Command action
+   a   toggle a bootable flag
+   b   edit bsd disklabel
+   c   toggle the dos compatibility flag
+   d   delete a partition
+   l   list known partition types
+   m   print this menu
+   n   add a new partition
+   o   create a new empty DOS partition table
+   p   print the partition table
+   q   quit without saving changes
+   s   create a new empty Sun disklabel
+   t   change a partition's system id
+   u   change display/entry units
+   v   verify the partition table
+   w   write table to disk and exit
+   x   extra functionality (experts only)
+
+```
+
+将新的分区添加到逻辑卷管理（LVM）组中
+
+```shell
+[root@localhost ~]#  pvcreate /dev/sda3
+```
+
+扩展现有的卷组（VG）
+
+```shell
+[root@localhost ~]# vgdisplay 
+  --- Volume group ---
+  VG Name               VolGroup00
+  System ID             
+  Format                lvm2
+  Metadata Areas        2
+  Metadata Sequence No  5
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                2
+  Open LV               1
+  Max PV                0
+  Cur PV                2
+  Act PV                2
+  VG Size               49.88 GB
+  PE Size               32.00 MB
+  Total PE              1596
+  Alloc PE / Size       956 / 29.88 GB
+  Free  PE / Size       640 / 20.00 GB
+  VG UUID               FLij4Y-dv68-oddG-6Oa3-goD6-ipyc-pmuraj 
+[root@localhost ~]# vgextend VolGroup00 /dev/sda3
+```
+
+使用所有可用的空闲空间来扩展逻辑卷
+
+
+```shell
+[root@localhost ~]# lvextend  -l +100%FREE /dev/mapper/VolGroup00-LogVol00
+  Extending logical volume LogVol00 to 47.91 GB
+  Logical volume LogVol00 successfully resized
+
+[root@localhost ~]# resize2fs  /dev/mapper/VolGroup00-LogVol00
+resize2fs 1.39 (29-May-2006)
+Filesystem at /dev/mapper/VolGroup00-LogVol00 is mounted on /; on-line resizing required
+Performing an on-line resize of /dev/mapper/VolGroup00-LogVol00 to 12558336 (4k) blocks.
+The filesystem on /dev/mapper/VolGroup00-LogVol00 is now 12558336 blocks long.
+```
+
