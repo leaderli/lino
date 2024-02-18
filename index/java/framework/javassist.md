@@ -1,7 +1,7 @@
 ---
 tags:
   - java/框架/javaassist
-date updated: 2024-02-07 21:38
+date updated: 2024-02-18 20:49
 ---
 
 ## 快速入门
@@ -528,6 +528,45 @@ catch (java.io.IOException e) {
     System.out.println(e);
     throw e;
 }
+```
+
+### 添加import
+
+```java
+ClassPool cl;
+cl.importPackage("io.leaderli.litool.test.LiMock");
+```
+
+## 替换代码中的变量
+
+| 值                     | 说明                                                                                                                 |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `$0`, `$1`, `$2`, ... | `this` and actual parameters                                                                                       |
+| `$args`               | An array of parameters. The type of `$args` is `Object[]`.                                                         |
+| `$$`                  | All actual parameters.                                                                                             |
+| `$cflow(`...`)`       | `cflow` variable                                                                                                   |
+| `$r`                  | The result type. It is used in a cast expression.                                                                  |
+| `$w`                  | The wrapper type. It is used in a cast expression.                                                                 |
+| `$sig`                | An array of `java.lang.Class` objects representing the formal parameter types.                                     |
+| `$type`               | A `java.lang.Class` object representing the formal result type.                                                    |
+| `$class`              | A `java.lang.Class` object representing the class that declares the method  <br>currently edited (the type of $0). |
+
+[Javassist Tutorial](https://www.javassist.org/tutorial/tutorial2.html)
+
+## 装箱
+
+javaassit 不会自动装箱、解箱，下面的代码都是无效的
+
+```java
+Integer a =  3;
+int a  =  new Integer(3)
+```
+
+需要手动如下调用
+
+```java
+Integer a = new Integer(3)
+int a  =  new Integer(3).intValue()
 ```
 
 ## 替换已经加载类
