@@ -1,7 +1,7 @@
 ---
 tags:
   - java/框架/javaassist
-date updated: 2024-02-18 23:24
+date updated: 2024-02-26 19:59
 ---
 
 ## 快速入门
@@ -822,6 +822,12 @@ public class ByteBuddyTest {
         ByteDemo.test();  
     }  
 }
+```
+
+## debug
+
+```java
+CtClass.debugDump = "./dump";
 ```
 
 ## 参考文档
