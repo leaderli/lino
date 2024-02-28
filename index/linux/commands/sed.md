@@ -134,3 +134,11 @@ $ sed 'N;s/\n/ /' file.txt
 $  sed "s/.*[/[:space:]]\([^/[:space:]]*\).sh.*/\1/g" <<< 'sh /aa/fuck1.sh -a '
 fuck1
 ```
+
+### 替换分割符为0x0f
+
+```shell
+# \t是tab符号，mysql查询的默认分割符
+sed -i 's/\t/'$'\x0f''/g' 1.dat
+```
+
