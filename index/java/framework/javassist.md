@@ -387,6 +387,7 @@ CtField id = CtField.make("public Integer id = new Integer(1);", ct);
 
 ## 常用API
 
+
 ### 定义新类
 
 ```java
@@ -396,6 +397,19 @@ CtClass cc = pool.makeClass("Point");
 //定义接口
 pool.makeInterface("IPoint");
 ```
+
+
+### 从字节码中加载类
+
+```java
+// 字节码
+byte[] classfileBuffer;
+CtClass ctClass = classPool.makeClass(new ByteArrayInputStream(classfileBuffer));
+
+```
+
+### 适配jacoco
+
 
 ### 添加注解
 
