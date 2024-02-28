@@ -17,6 +17,7 @@ date updated: 2022-04-07 14:38
 	- 制表符（Tab）：显示为 `^I`。
 	- 垂直制表符（VT）：显示为 `^K`。
 	- 起始标题（SOH）：显示为 `^A`
+	- 间隔符（SI）：显示为 `^O`
  
 
 显示目录并给每个文件加上一个编号
@@ -50,3 +51,12 @@ truncate -s 0 big.log
 ```shell
 cat /proc/meminfo | grep MemTotal
 ```
+
+
+### 打印0x0f
+
+```
+cat -A <<< $'\x0f'
+```
+
+
