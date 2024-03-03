@@ -181,6 +181,14 @@ $ java -jar lib/jacococli.jar  report jacoco.exec --sourcefiles src --classfiles
 [INFO] Analyzing 4 classes.
 ```
 
+
+## junit使用
+
+// 添加java启动参数
+
+```java
+-javaagent:D:/resource/java/maven/repository/org/jacoco/org.jacoco.agent/0.8.8/org.jacoco.agent-0.8.8-runtime.jar=destfile=D:/work/workspace/idea/litool/litool-test/target/coverage-reports/jacoco.exec 
+```
 ### 参考文档
 
 [jacoco-agent的参数](https://www.eclemma.org/jacoco/trunk/doc/prepare-agent-mojo.html)
