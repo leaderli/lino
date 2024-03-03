@@ -1,7 +1,7 @@
 ---
 tags:
   - 软件/win10
-date updated: 2022-04-02 00:09
+date updated: 2024-03-03 10:38
 ---
 
 ## 注册表
@@ -22,6 +22,7 @@ C:\Windows\System32\drivers\etc
 ```
 
 有时候域名不起作用，需要重新刷新一下
+
 ### 清空dns缓存
 
 ```shell
@@ -58,7 +59,6 @@ netsh winsock reset
 
 [解决办法](https://www.cnblogs.com/lumc5/p/15264886.html)
 
-
 ## 路由器
 
 ChinaNet-P74c
@@ -73,7 +73,6 @@ Pass1234qwe
 
 0070595165
 
-
 telecomadmin
 
 JHJTABbt51
@@ -83,10 +82,11 @@ KD1149597450
 
 解绑设备码、添加设备码
 
-
-###  修改键盘按键
+### 修改键盘按键
 
 将 Caps Lock 修改为 esc
+
+`计算机\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout` 新建值 `Scancode Map`
 
 ![[Pasted image 20220716090737.png|left|400]]
 
@@ -96,9 +96,12 @@ KD1149597450
 
 需要手动依次输入十六进制数字
 
+![[1135660-20220921142117118-1035407055.png]]
 
-#  开机自启动脚本
+![[1135660-20220921142305836-149811369.png]]
 
+修改后重启
+# 开机自启动脚本
 
 gpedit.msc打开组策略编辑器
 
