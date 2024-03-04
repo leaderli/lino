@@ -1,7 +1,7 @@
 ---
 tags:
   - java/框架/javaassist
-date updated: 2024-02-26 19:59
+date updated: 2024-02-28 22:55
 ---
 
 ## 快速入门
@@ -387,7 +387,6 @@ CtField id = CtField.make("public Integer id = new Integer(1);", ct);
 
 ## 常用API
 
-
 ### 定义新类
 
 ```java
@@ -397,7 +396,6 @@ CtClass cc = pool.makeClass("Point");
 //定义接口
 pool.makeInterface("IPoint");
 ```
-
 
 ### 从字节码中加载类
 
@@ -410,6 +408,65 @@ CtClass ctClass = classPool.makeClass(new ByteArrayInputStream(classfileBuffer))
 
 ### 适配jacoco
 
+[[jacoco]] 通过 [[java agent]] 来给类中添加属性，用以记录代码覆盖率。而javassist是从class文件中读取字节码的。
+
+当javassist通过 Instrumentation 将对字节码的修改重新加载时，会丢失jacoco添加的变量和方法，而 jvm 是不允许修改已加载类的属性和方法，会抛出 `class redefinition failed: attempted to change the schema (add/remove fields)`。
+
+那么我们就需要让javasssit去直接加载jacoco修改后的字节码。我们的思路是，在javassist加载类(getCtClass)时，添加一个临时 ClassFileTransformer，然后触发类的重新加载retransformClasses。此时可以拿到jacoco修改过的字节码，我们则直接通过该字节码来触发CtClass的加载。
+
+加载后立即删除临时的ClassFileTransformer。避免非必要的类，触发重复加载。
+
+下面是代码示例：
+
+```java
+public static ClassPool classPool = ClassPool.getDefault();  
+private static boolean jacoco;
+
+for (Class<?> loadedClass : instrumentation.getAllLoadedClasses()) {  
+    if (ClassFileTransformer.class.isAssignableFrom(loadedClass)) {  
+        if (loadedClass.getName().startsWith("org.jacoco.agent.rt")) {  
+            jacoco = true;  
+            return;  
+        }  
+    }  
+}
+
+
+
+static class TempClassFileTransformer implements ClassFileTransformer {  
+    final Instrumentation instrumentation;  
+  
+    TempClassFileTransformer(Instrumentation instrumentation) {  
+        this.instrumentation = instrumentation;  
+    }  
+  
+    @Override  
+    public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {  
+        try {  
+            CtClass ctClass = classPool.makeClass(new ByteArrayInputStream(classfileBuffer));  
+        } catch (IOException ignore) {  
+        }        
+        instrumentation.removeTransformer(this);  
+        return null;  
+    }  
+}
+
+
+// 在获取CtClass前，添加一个临时ClassFileTransformer用来读取已经加载的字节码，并用来加载到classPool中
+  
+public static CtClass getCtClass(Class<?> clazz) {  
+    try {  
+        if (instrumentation.isModifiableClass(clazz)) {  
+            instrumentation.addTransformer(new TempClassFileTransformer(instrumentation), true);  
+            instrumentation.retransformClasses(clazz);  
+        }  
+  
+        return classPool.getCtClass(clazz.getName());  
+    } catch (Exception e) {  
+        throw new RuntimeException(clazz + " : " + e);  
+    }  
+}
+```
 
 ### 添加注解
 
