@@ -1,7 +1,7 @@
 ---
 tags:
   - linux/commands/sed
-date updated: 2024-03-05 18:51
+date updated: 2024-03-05 18:54
 ---
 
 sed 命令是利用脚本来处理文本文件。sed 可依照脚本的指令来处理、编辑文本文件。
@@ -9,6 +9,13 @@ sed 命令是利用脚本来处理文本文件。sed 可依照脚本的指令来
 
 ```shell
 sed [-hnV][-e<script>][-f<script 文件>][文本文件]
+```
+
+也可以直接使用在管道上
+
+```shell
+echo 123 456|sed 's/\s/,/'
+123,456
 ```
 
 ## 参数说明
