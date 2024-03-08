@@ -24,6 +24,7 @@
 - 📄 [[index/java/framework/mock.java|mock.java]]
 - 📄 [[index/java/framework/mockito|mockito]]
 - 📄 [[index/java/framework/mybatis|mybatis]]
+- 📄 [[index/java/framework/ognl|ognl]]
 - 📄 [[index/java/framework/okhttp|okhttp]]
 - 📄 [[index/java/framework/picocli|picocli]]
 - 📄 [[index/java/framework/poi|poi]]
