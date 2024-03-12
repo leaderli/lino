@@ -201,3 +201,11 @@ Performing an on-line resize of /dev/mapper/VolGroup00-LogVol00 to 12558336 (4k)
 The filesystem on /dev/mapper/VolGroup00-LogVol00 is now 12558336 blocks long.
 ```
 
+
+
+## XFS文件系统
+
+```shell
+# 设置为100G   1024*1024*4
+xfs_growfs  /dev/sdXY -D 26214400
+```
