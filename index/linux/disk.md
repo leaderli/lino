@@ -209,3 +209,10 @@ The filesystem on /dev/mapper/VolGroup00-LogVol00 is now 12558336 blocks long.
 # 设置为100G   1024*1024*4
 xfs_growfs  /dev/sdXY -D 26214400
 ```
+
+## umout 
+
+> target is bussy
+
+`fuser -km /app`
+`lsof|grep -w /app` 查看所有进程，然后 `kill -9 `
