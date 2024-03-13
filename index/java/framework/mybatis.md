@@ -904,6 +904,77 @@ User findByColumn(@Param("column") String column, @Param("value") String value);
 
 ## Dynamic SQL
 
+
+## 自定义日志
+
+mybatis 内部统一管理日志，提供多种日志实现，可以指定日志打印方式。
+
+```java
+ Configuration configuration;
+
+configuration.setLogImpl(logImpl);
+
+public interface Log {  
+  
+  boolean isDebugEnabled();  
+  
+  boolean isTraceEnabled();  
+  
+  void error(String s, Throwable e);  
+  
+  void error(String s);  
+  
+  void debug(String s);  
+  
+  void trace(String s);  
+  
+  void warn(String s);  
+  
+}
+
+public class StdOutImpl implements Log {  
+  
+  public StdOutImpl(String clazz) {  
+    // Do Nothing  
+  }  
+  
+  @Override  
+  public boolean isDebugEnabled() {  
+    return true;  
+  }  
+  
+  @Override  
+  public boolean isTraceEnabled() {  
+    return true;  
+  }  
+  
+  @Override  
+  public void error(String s, Throwable e) {  
+    System.err.println(s);  
+    e.printStackTrace(System.err);  
+  }  
+  
+  @Override  
+  public void error(String s) {  
+    System.err.println(s);  
+  }  
+  
+  @Override  
+  public void debug(String s) {  
+    System.out.println(s);  
+  }  
+  
+  @Override  
+  public void trace(String s) {  
+    System.out.println(s);  
+  }  
+  
+  @Override  
+  public void warn(String s) {  
+    System.out.println(s);  
+  }  
+}
+```
 ## SpringBoot
 
 maven 依赖
