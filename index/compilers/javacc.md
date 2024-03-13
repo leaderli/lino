@@ -1,43 +1,35 @@
 ---
 tags:
   - compilers/antlr
-date updated: 2024-03-10 19:54
+date updated: 2024-03-11 22:40
 ---
 
 默认使用 [[LL(1)]] 文法，使用 [[EBNF]] 来描述语法
 
 ## 快速示例
 
-用来表示匹配大括号的语法 `{}, {{{{{}}}}} // … etc`
+用来匹配字母`a`
 
 ```java
-PARSER_BEGIN(Example)
-
-/** Simple brace matcher. */
-public class Example {
-
-  /** Main entry point. */
-  public static void main(String args[]) throws ParseException {
-    Example parser = new Example(System.in);
-    parser.Input();
-  }
-
-}
-
-PARSER_END(Example)
-
-/** Root production. */
-void Input() :
-{}
-{
-  MatchedBraces() ("\n"|"\r")* <EOF>
-}
-
-/** Brace matching production. */
-void MatchedBraces() :
-{}
-{
-  "{" [ MatchedBraces() ] "}"
+options {  
+}  
+  
+PARSER_BEGIN(SimpleParser)  
+import java.io.StringReader;  
+public class SimpleParser {  
+    public static void main(String[] args){  
+        String input = "a";  
+        SimpleParser parser = new  SimpleParser(new StringReader(input));  
+        parser.A();    }  
+}  
+PARSER_END(SimpleParser)  
+TOKEN : {  
+    <A: "a">  
+}  
+  
+void A():{}  
+{  
+    <A> {System.out.println("Found A");}  
 }
 ```
 
@@ -67,15 +59,70 @@ pom 插件
 执行后则会在target目录下生成相应的java文件
 
 ```shell
-mvn clean  generate-sources 
+$ mvn clean  generate-sources 
+
+$ ls
+ParseException.java    SimpleParserConstants.java     TokenMgrError.java
+SimpleCharStream.java  SimpleParserTokenManager.java
+SimpleParser.java      Token.java
+
 ```
 
 编译后执行
 
 ```shell
-$ java Example
-{{}}<return>
+$ java SimpleParser
+Found A
 ```
+
+其生成的parser类部分如下：其内容根据定义的jj文件而来。
+
+```java
+public class SimpleParser implements SimpleParserConstants {  
+    public static void main(String[] args) throws ParseException {  
+        String input = "a";  
+        SimpleParser parser = new SimpleParser(new StringReader(input));  
+        parser.A();  
+    }  
+  
+    static final public void A() throws ParseException {  
+        jj_consume_token(A);  
+        System.out.println("Found A");  
+    }
+...
+}
+```
+
+会生成一个Constants 文件来表示所有TOKEN和词法状态
+
+```java
+public interface SimpleParserConstants {  
+  
+  /** 默认的文件结束TOKEN. */  
+  int EOF = 0;  
+  /** TOKEN A. */  
+  int A = 1;  
+  
+  /** 词法状态. */  
+  int DEFAULT = 0;  
+  
+  /** 定义的所有token序列的字符串表现形式，角标与上面的TOKEN定义相同. */  
+  String[] tokenImage = {  
+    "<EOF>",  
+    "\"a\"",  
+  };  
+  
+}
+```
+
+## 语法结构
+
+由四个部分组成
+
+- options javaCC的设置
+- PARSER_BEGIN PARSER_END 定义解析类
+- 词法定义，`SKIP`,`MORE`,`TOKEN`,`SPECIAL_TOKEN`
+- 语法定义，定义token的顺序
 
 ## token
 
