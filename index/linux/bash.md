@@ -5,6 +5,17 @@ tags:
 date updated: 2023-08-21 21:42
 ---
 
+
+bash的详细用法可以参考
+```shell
+man bash 
+```
+
+作为登录用户执行命令，会加载环境变量
+
+```shell
+bash -l
+```
 ## shell
 
 shell 是系统内核和用户沟通的桥梁，它作为系统的命令解释器为用户提供解释命令的功能。linux 系统上存在多种 shell。可通过
