@@ -65,6 +65,15 @@ crontab -u root -e
 ## 注意事项
 
 crontab的脚本需要有执行权限
+
+crontab中默认不会加载用户环境变量，需要使用如下方式
+
+```shell
+* * * * * bash -l -c '/path/to/script.sh'
+```
+
+
+
 ## 示例
 
 ```shell
