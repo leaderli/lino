@@ -183,6 +183,13 @@ hello[0] = Lino.of(1); // 这里不会报错
 ```
 ## 数组常用API
 
+### 环形数组
+
+```java
+// 使用 % 来实现
+array[tail] = value;
+tail = (tail + 1) % array.length;
+```
 ### 数组的class
 
 ```java
