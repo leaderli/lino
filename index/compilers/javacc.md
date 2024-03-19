@@ -263,6 +263,43 @@ TOKEN : {
 }
 ```
 
+### 词法状态
+
+词法状态是TOKEN、SKIP、MORE 或 SPECIAL TOKEN的控制器。当处于特定的词法状态时，JavaCC 将只使用该状态下定义的正则表达式。
+
+词法的状态定义示例如下：
+
+```java
+PARSER_BEGIN(Demo)  
+package io.leaderli.c1;  
+import java.io.*;  
+public class Demo{  
+    public static void main(String[] args) {  
+  
+        String input = "redbluegreendefault";  
+        SimpleCharStream scs= new  SimpleCharStream(new StringReader(input));  
+        Token t = DemoTokenManager.getNextToken();        while(t.kind!=EOF){  
+            t = DemoTokenManager.getNextToken();        }    }  
+ }  
+PARSER_END(Demo)  
+  
+  
+TOKEN : {  
+    <RED: "red">{System.out.println("in red");}:IN_RED  
+}  
+<IN_RED>  
+TOKEN : {  
+    <BLUE: "blue">{System.out.println("in blue");}:IN_BLUE  
+}  
+<IN_BLUE>  
+TOKEN : {  
+    <GREEN: "green">{System.out.println("in green");}:IN_GREEN  
+}  
+<IN_GREEN>  
+TOKEN : {  
+    <DONE: "default">{System.out.println("in default");}: DEFAULT  
+}
+```
 ## 参考
 
 - [JavaCC](https://javacc.github.io/javacc/)
