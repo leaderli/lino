@@ -52,6 +52,9 @@ find ./my_dir -mtime +10 -type f -delete
 ~$ find . -name *.txt -o -name *.sql
 ./1.txt
 ./1.sql
+
+# 转换所有sql,sh
+~$ find . -name *.txt -o -name *.sql|xargs -I {} dos2unix {}
 ```
 
 若使用 `^1.*` 是搜索不出这个文件的
