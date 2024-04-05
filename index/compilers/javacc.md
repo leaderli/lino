@@ -1,7 +1,7 @@
 ---
 tags:
   - compilers/antlr
-date updated: 2024-04-05 16:04
+date updated: 2024-04-05 18:12
 ---
 
 默认使用 [[LL(1)]] 文法，使用 [[EBNF]] 来描述语法
@@ -165,12 +165,64 @@ The string valued options are:
 
 [JavaCC | The most popular parser generator for use with Java applications.](https://javacc.github.io/javacc/documentation/grammar.html#option-binding)
 
-## 语法结构
+一些参数的示例
 
-由四个部分组成
+### CommonTokenAction
+
+默认为false，设置为true时，会给某个token定义一个行为，需要在 TOKEN_MGR_DECLS 中新增方法 CommonTokenAction
+
+```java
+options {  
+    STATIC = false;  
+    JDK_VERSION = "1.8";  
+    COMMON_TOKEN_ACTION = true;  
+}  
+PARSER_BEGIN(Demo)  
+package io.leaderli.c1;  
+import java.io.*;  
+public class Demo{  
+    public static void main(String[] args) {  
+  
+        String input = "ABCBC";  
+        SimpleCharStream scs= new  SimpleCharStream(new StringReader(input));  
+       DemoTokenManager tmr = new DemoTokenManager(scs);  
+        while( tmr.getNextToken().kind!=EOF){}  
+    }  
+ }  
+PARSER_END(Demo)  
+TOKEN_MGR_DECLS:{  
+    private void CommonTokenAction(Token matchedToken) {  
+        if (matchedToken.kind != EOF) {  
+            System.out.println("Found token " + matchedToken.image);  
+        } else {  
+            System.out.println("Found the end of file token");  
+        }  
+    }  
+}  
+  
+TOKEN : {  
+    <A:"A">|  
+    <B:"B">|  
+    <C:"C">  
+}
+```
+
+编译后执行结果
+
+```txt
+Found token A
+Found token B
+Found token C
+Found token B
+Found token C
+Found the end of file token
+```
+
+## 语法结构
 
 - options javaCC的设置
 - PARSER_BEGIN PARSER_END 定义解析类
+- TOKEN_MGR_DECLS 定义token管理类
 - 词法定义，`SKIP`,`MORE`,`TOKEN`,`SPECIAL_TOKEN`
 - 语法定义，定义token的顺序
 
@@ -475,6 +527,7 @@ SPECIAL_TOKEN : {
     "\""  
 >
 ```
+
 ## 参考
 
 - [JavaCC](https://javacc.github.io/javacc/)
