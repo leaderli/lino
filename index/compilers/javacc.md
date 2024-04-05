@@ -1,7 +1,7 @@
 ---
 tags:
   - compilers/antlr
-date updated: 2024-04-05 14:30
+date updated: 2024-04-05 16:04
 ---
 
 默认使用 [[LL(1)]] 文法，使用 [[EBNF]] 来描述语法
@@ -421,6 +421,60 @@ TOKEN : {
 get:redbluegreendefault---
 ```
 
+### 示例
+
+#### 匹配注释
+
+```java
+options {  
+    STATIC = false;  
+    JDK_VERSION = "1.8";  
+}  
+PARSER_BEGIN(Demo)  
+package io.leaderli.c1;  
+import java.io.*;  
+public class Demo{  
+    public static void main(String[] args) {  
+  
+        String input = "/*redbluegreendefault---hello*/b";  
+        SimpleCharStream scs= new  SimpleCharStream(new StringReader(input));  
+       DemoTokenManager tmr = new DemoTokenManager(scs);  
+        while( tmr.getNextToken().kind!=EOF){}  
+    }  
+ }  
+PARSER_END(Demo)  
+MORE :{  
+ "/*": IN_MULTI_LINE_COMMENT  
+ }  
+<IN_MULTI_LINE_COMMENT>  
+MORE : {  
+    <~[]>  
+}  
+<IN_MULTI_LINE_COMMENT>  
+SPECIAL_TOKEN : {  
+    <MULTI_LINE_COMMEN: "*/"> {  
+            System.out.println("comment:"+matchedToken.image);  
+    }: DEFAULT  
+}
+```
+
+### java的string的grammar
+
+```java
+<STRING_LITERAL:  
+    "\""  
+     (    (~["\"","\\","\n","\r"])  
+        | ( "\\"  
+             ( ["n","t","b","r","f","\\","'","\""]  
+             | ["0"-"7"](["0"-"7"])?  
+             |["0"-"3"]["0"-"7"]["0"-"7"]  
+             )  
+          )  
+  
+     )*  
+    "\""  
+>
+```
 ## 参考
 
 - [JavaCC](https://javacc.github.io/javacc/)
