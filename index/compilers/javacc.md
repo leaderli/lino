@@ -1,7 +1,7 @@
 ---
 tags:
   - compilers/antlr
-date updated: 2024-03-17 17:33
+date updated: 2024-04-05 14:30
 ---
 
 默认使用 [[LL(1)]] 文法，使用 [[EBNF]] 来描述语法
@@ -115,6 +115,56 @@ public interface SimpleParserConstants {
 }
 ```
 
+## 编译参数
+
+```shell
+The boolean valued options are:
+
+    BUILD_PARSER                    (default : true)
+    BUILD_TOKEN_MANAGER             (default : true)
+    CACHE_TOKENS                    (default : false)
+    COMMON_TOKEN_ACTION             (default : false)
+    DEBUG_LOOKAHEAD                 (default : false)
+    DEBUG_PARSER                    (default : false)
+    DEBUG_TOKEN_MANAGER             (default : false)
+    ERROR_REPORTING                 (default : true)
+    FORCE_LA_CHECK                  (default : false)
+    GENERATE_ANNOTATIONS            (default : false)
+    GENERATE_BOILERPLATE            (default : true)
+    GENERATE_CHAINED_EXCEPTION      (default : false)
+    GENERATE_GENERICS               (default : false)
+    GENERATE_STRING_BUILDER         (default : false)
+    IGNORE_CASE                     (default : false)
+    JAVA_UNICODE_ESCAPE             (default : false)
+    KEEP_LINE_COLUMN                (default : true)
+    NO_DFA                          (default : false)
+    SANITY_CHECK                    (default : true)
+    STATIC                          (default : true)
+    SUPPORT_CLASS_VISIBILITY_PUBLIC (default : true)
+    TOKEN_MANAGER_USES_PARSER       (default : false)
+    UNICODE_INPUT                   (default : false)
+    USER_CHAR_STREAM                (default : false)
+    USER_TOKEN_MANAGER              (default : false)
+
+The string valued options are:
+
+    GRAMMAR_ENCODING             (default : <<empty>>)
+    JAVA_TEMPLATE_TYPE           (default : classic)
+    JDK_VERSION                  (default : 1.5)
+    OUTPUT_DIRECTORY             (default : .)
+    PARSER_CODE_GENERATOR        (default : <<empty>>)
+    PARSER_SUPER_CLASS
+    TOKEN_EXTENDS                (default : <<empty>>)
+    TOKEN_FACTORY                (default : <<empty>>)
+    TOKEN_INCLUDE                (default : <<empty>>)
+    TOKEN_MANAGER_CODE_GENERATOR (default : <<empty>>)
+    TOKEN_MANAGER_INCLUDE        (default : <<empty>>)
+    TOKEN_MANAGER_SUPER_CLASS
+    TOKEN_SUPER_CLASS
+```
+
+[JavaCC | The most popular parser generator for use with Java applications.](https://javacc.github.io/javacc/documentation/grammar.html#option-binding)
+
 ## 语法结构
 
 由四个部分组成
@@ -224,6 +274,14 @@ TOKEN: {
 - ("a")?
 - ("a")*
 
+示例
+
+```java
+TOKEN : {  
+    <GREETING: (["a"-"z"])+>
+}
+```
+
 ## 词法
 
 ### 自定义词法处理
@@ -300,6 +358,69 @@ TOKEN : {
     <DONE: "default">{System.out.println("in default");}: DEFAULT  
 }
 ```
+
+为多个状态定义同一个语法，例如 SKIP
+
+```java
+<DEFAULT,IN_RED,IN_BLUE,IN_GREEN>  
+SKIP : {  
+" "  
+}
+```
+
+```java
+<*>  
+SKIP : {  
+" "  
+}
+```
+
+### 非默认状态
+
+一般情况下，使用`DEFAULT`作为初始状态，可以定义非初始状态
+
+```java
+options {  
+    STATIC = false;  
+    JDK_VERSION = "1.8";  
+}  
+PARSER_BEGIN(Demo)  
+package io.leaderli.c1;  
+import java.io.*;  
+public class Demo{  
+    public static void main(String[] args) {  
+  
+        String input = "redbluegreendefault---hello";  
+        SimpleCharStream scs= new  SimpleCharStream(new StringReader(input));  
+       DemoTokenManager tmr = new DemoTokenManager(scs,IN_HEADER);  
+        while( tmr.getNextToken().kind!=EOF){}  
+    }  
+ }  
+PARSER_END(Demo)  
+  
+<IN_HEADER>  
+MORE : {  
+    <~[]>  
+}  
+<IN_HEADER>  
+SPECIAL_TOKEN : {  
+    <HEADER_NOTES: "---"> : DEFAULT  
+}  
+  
+<DEFAULT>  
+TOKEN : {  
+    <GREETING: (["a"-"z"])+>{  
+        System.out.println("get:"+matchedToken.specialToken.image);  
+    }  
+}
+```
+
+编译后运行
+
+```txt
+get:redbluegreendefault---
+```
+
 ## 参考
 
 - [JavaCC](https://javacc.github.io/javacc/)
