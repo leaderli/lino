@@ -1,7 +1,7 @@
 ---
 tags:
   - compilers/antlr
-date updated: 2024-04-05 22:08
+date updated: 2024-04-06 22:18
 ---
 
 默认使用 [[LL(1)]] 文法，使用 [[EBNF]] 来描述语法
@@ -781,6 +781,122 @@ SPECIAL_TOKEN : {
 >
 ```
 
+## jjtree
+
+pom配置，配置了clean插件，用于每次情况源码文件，以便重新生成
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>  
+<project xmlns="http://maven.apache.org/POM/4.0.0"  
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">  
+    <modelVersion>4.0.0</modelVersion>  
+  
+    <groupId>io.leaderli</groupId>  
+    <artifactId>javacc_demo</artifactId>  
+    <version>1.0-SNAPSHOT</version>  
+  
+    <properties>  
+        <maven.compiler.source>8</maven.compiler.source>  
+        <maven.compiler.target>8</maven.compiler.target>  
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  
+    </properties>  
+    <dependencies>  
+        <dependency>  
+            <groupId>net.java.dev.javacc</groupId>  
+            <artifactId>javacc</artifactId>  
+            <version>7.0.13</version>  
+            <scope>provided</scope>  
+        </dependency>  
+    </dependencies>  
+    <build>  
+        <plugins>  
+            <plugin>  
+                <groupId>org.apache.maven.plugins</groupId>  
+                <artifactId>maven-clean-plugin</artifactId>  
+                <version>3.1.0</version>  
+                <executions>  
+                    <execution>  
+                        <id>custom-clean</id>  
+                        <phase>clean</phase>  
+                        <goals>  
+                            <goal>clean</goal>  
+                        </goals>  
+                        <configuration>  
+                            <filesets>  
+                                <fileset>  
+                                    <directory>src/main/java</directory>  
+                                </fileset>  
+                            </filesets>  
+                        </configuration>  
+                    </execution>  
+                </executions>  
+            </plugin>  
+            <plugin>  
+                <groupId>org.codehaus.mojo</groupId>  
+                <artifactId>javacc-maven-plugin</artifactId>  
+                <version>3.0.1</version>  
+                <executions>  
+                    <execution>  
+                        <id>jjtree</id>  
+                        <goals>  
+                            <goal>jjtree-javacc</goal>  
+                        </goals>  
+                        <configuration>  
+                            <includes>*.jjt</includes>  
+                            <sourceDirectory>src/main/resources</sourceDirectory>  
+                            <interimDirectory>src/main/java</interimDirectory>  
+                            <outputDirectory>src/main/java</outputDirectory>  
+                        </configuration>  
+                    </execution>  
+                </executions>  
+            </plugin>  
+        </plugins>  
+    </build>  
+</project>
+```
+
+`d1.jjt`
+
+```java
+options {  
+    STATIC = false;  
+}  
+PARSER_BEGIN(DemoParser)  
+package io.leaderli.c1;  
+import java.io.*;  
+public class DemoParser{  
+    public static void main(String[] args) throws ParseException {  
+  
+        String input = "4 + 2";  
+        Reader reader= new StringReader(input);  
+        DemoParser demo= new DemoParser(reader);  
+        SimpleNode e =  demo.expression();        e.dump(">");  
+    }  
+ }  
+PARSER_END(DemoParser)  
+SKIP : {  
+    " "  
+}  
+TOKEN : {  
+    <DIGITS:(["0"-"9"])+>|<PLUS:"+">  
+}  
+SimpleNode expression():{}{  
+    operator() {  
+    return jjtThis;  
+    }  
+}  
+void operator():{}{  
+    operand()  
+    "+"  
+    operand()  
+}  
+void operand():{}{  
+     <DIGITS>  
+}
+```
+
+执行 `mvn clean generate-sources`
 ## 参考
 
 - [JavaCC](https://javacc.github.io/javacc/)
