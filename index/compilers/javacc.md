@@ -1,10 +1,12 @@
 ---
 tags:
   - compilers/antlr
-date updated: 2024-04-06 22:18
+date updated: 2024-04-07 20:52
 ---
 
 默认使用 [[LL(1)]] 文法，使用 [[EBNF]] 来描述语法
+
+# javacc
 
 ## 快速示例
 
@@ -115,7 +117,9 @@ public interface SimpleParserConstants {
 }
 ```
 
-## 编译参数
+## javacc options
+
+javacc的options
 
 ```shell
 The boolean valued options are:
@@ -781,7 +785,11 @@ SPECIAL_TOKEN : {
 >
 ```
 
-## jjtree
+# jjtree
+
+将源文件编译为语法树
+
+## 快速示例
 
 pom配置，配置了clean插件，用于每次情况源码文件，以便重新生成
 
@@ -897,6 +905,113 @@ void operand():{}{
 ```
 
 执行 `mvn clean generate-sources`
+
+## jjtree的options参数
+
+```shell
+BUILD_NODE_FILES (default: true)
+MULTI (default: false)
+NODE_DEFAULT_VOID (default: false)
+NODE_CLASS (default: "")
+NODE_FACTORY (default: "")
+NODE_PACKAGE (default: "")
+NODE_PREFIX (default: "AST")
+NODE_SCOPE_HOOK (default: false)
+NODE_SCOPE_HOOK (default: false)
+NODE_USES_PARSER (default: false)
+TRACK_TOKENS (default: false)
+STATIC (default: true)
+VISITOR (default: false)
+VISITOR_DATA_TYPE (default: "Object")
+VISITOR_RETURN_TYPE (default: "Object")
+VISITOR_EXCEPTION (default: "")
+JJTREE_OUTPUT_DIRECTORY (default: use value of OUTPUT_DIRECTORY)
+```
+
+## visitor
+
+使用访问者模式遍历所有节点
+
+```java
+options {  
+    STATIC = false;  
+    MULTI = true;  
+    VISITOR = true;  
+}  
+PARSER_BEGIN(DemoParser)  
+package io.leaderli.c1;  
+import java.io.*;  
+public class DemoParser{  
+    public static void main(String[] args) throws ParseException {  
+  
+        String input = "4 + 2";  
+        Reader reader= new StringReader(input);  
+        DemoParser demo= new DemoParser(reader);  
+        SimpleNode e =  demo.expression();        e.jjtAccept(new DemoParserDefaultVisitor(){  
+  
+              @Override              public Object visit(ASToperand node, Object data) {  
+                  System.out.println(node+" "+node.jjtGetValue());  
+                  return super.visit(node, data);  
+              }        },null);  
+    }  
+ }  
+PARSER_END(DemoParser)  
+SKIP : {  
+    " "  
+}  
+TOKEN : {  
+    <DIGITS:(["0"-"9"])+>|<PLUS:"+">  
+}  
+SimpleNode expression():{}{  
+    operator() {  
+    return jjtThis;  
+    }  
+}  
+void operator():{Token t;}{  
+    operand()  
+    t="+"{jjtThis.jjtSetValue(t.image);}  
+    operand()  
+}  
+void operand():{Token t;}{  
+     t=<DIGITS>{jjtThis.jjtSetValue(t.image);}  
+}
+```
+
+会生成如下文件
+
+```txt
+ASTexpression.java             DemoParserVisitor.java
+ASToperand.java                JJTDemoParserState.java
+ASToperator.java               Node.java
+DemoParser.java                ParseException.java
+DemoParserConstants.java       SimpleCharStream.java
+DemoParserDefaultVisitor.java  SimpleNode.java
+DemoParserTokenManager.java    Token.java
+DemoParserTreeConstants.java   TokenMgrError.java
+```
+
+可以修改生成的节点名,例如 `ASToperand.java` 文件更改为 `ASTOp.java`
+
+```java
+void operand() #Op:{Token t;}{  
+     t=<DIGITS>{jjtThis.jjtSetValue(t.image);}  
+}
+```
+
+也可以组合多个为一个
+
+```java
+void operator()#Op:{Token t;}{  
+    operand()  
+    t="+"{jjtThis.jjtSetValue(t.image);}  
+    operand()  
+}  
+void operand() #Op:{Token t;}{  
+     t=<DIGITS>{jjtThis.jjtSetValue(t.image);}  
+}
+```
+
+
 ## 参考
 
 - [JavaCC](https://javacc.github.io/javacc/)
