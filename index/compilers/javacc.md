@@ -1011,6 +1011,18 @@ void operand() #Op:{Token t;}{
 }
 ```
 
+也可以声明为 void类型，表示无子节点，可以节省性能
+
+```java
+void operator() #void:{}{  
+    operand()  
+    "+"  
+    operand()  
+}  
+void operand() :{Token t;}{  
+     t=<DIGITS>{jjtThis.jjtSetValue(t.image);}  
+}
+```
 
 ## 参考
 
