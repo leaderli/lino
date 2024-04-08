@@ -1,10 +1,12 @@
 ---
 tags:
   - compilers/antlr
-date updated: 2024-03-17 17:33
+date updated: 2024-04-07 20:52
 ---
 
 默认使用 [[LL(1)]] 文法，使用 [[EBNF]] 来描述语法
+
+# javacc
 
 ## 快速示例
 
@@ -115,14 +117,371 @@ public interface SimpleParserConstants {
 }
 ```
 
-## 语法结构
+## javacc options
 
-由四个部分组成
+javacc的options
+
+```shell
+The boolean valued options are:
+
+    BUILD_PARSER                    (default : true)
+    BUILD_TOKEN_MANAGER             (default : true)
+    CACHE_TOKENS                    (default : false)
+    COMMON_TOKEN_ACTION             (default : false)
+    DEBUG_LOOKAHEAD                 (default : false)
+    DEBUG_PARSER                    (default : false)
+    DEBUG_TOKEN_MANAGER             (default : false)
+    ERROR_REPORTING                 (default : true)
+    FORCE_LA_CHECK                  (default : false)
+    GENERATE_ANNOTATIONS            (default : false)
+    GENERATE_BOILERPLATE            (default : true)
+    GENERATE_CHAINED_EXCEPTION      (default : false)
+    GENERATE_GENERICS               (default : false)
+    GENERATE_STRING_BUILDER         (default : false)
+    IGNORE_CASE                     (default : false)
+    JAVA_UNICODE_ESCAPE             (default : false)
+    KEEP_LINE_COLUMN                (default : true)
+    NO_DFA                          (default : false)
+    SANITY_CHECK                    (default : true)
+    STATIC                          (default : true)
+    SUPPORT_CLASS_VISIBILITY_PUBLIC (default : true)
+    TOKEN_MANAGER_USES_PARSER       (default : false)
+    UNICODE_INPUT                   (default : false)
+    USER_CHAR_STREAM                (default : false)
+    USER_TOKEN_MANAGER              (default : false)
+
+The string valued options are:
+
+    GRAMMAR_ENCODING             (default : <<empty>>)
+    JAVA_TEMPLATE_TYPE           (default : classic)
+    JDK_VERSION                  (default : 1.5)
+    OUTPUT_DIRECTORY             (default : .)
+    PARSER_CODE_GENERATOR        (default : <<empty>>)
+    PARSER_SUPER_CLASS
+    TOKEN_EXTENDS                (default : <<empty>>)
+    TOKEN_FACTORY                (default : <<empty>>)
+    TOKEN_INCLUDE                (default : <<empty>>)
+    TOKEN_MANAGER_CODE_GENERATOR (default : <<empty>>)
+    TOKEN_MANAGER_INCLUDE        (default : <<empty>>)
+    TOKEN_MANAGER_SUPER_CLASS
+    TOKEN_SUPER_CLASS
+```
+
+[JavaCC | The most popular parser generator for use with Java applications.](https://javacc.github.io/javacc/documentation/grammar.html#option-binding)
+
+一些参数的示例
+
+### CommonTokenAction
+
+默认为false，设置为true时，会给某个token定义一个行为，需要在 TOKEN_MGR_DECLS 中新增方法 CommonTokenAction
+
+```java
+options {  
+    STATIC = false;  
+    JDK_VERSION = "1.8";  
+    COMMON_TOKEN_ACTION = true;  
+}  
+PARSER_BEGIN(Demo)  
+package io.leaderli.c1;  
+import java.io.*;  
+public class Demo{  
+    public static void main(String[] args) {  
+  
+        String input = "ABCBC";  
+        SimpleCharStream scs= new  SimpleCharStream(new StringReader(input));  
+       DemoTokenManager tmr = new DemoTokenManager(scs);  
+        while( tmr.getNextToken().kind!=EOF){}  
+    }  
+ }  
+PARSER_END(Demo)  
+TOKEN_MGR_DECLS:{  
+    private void CommonTokenAction(Token matchedToken) {  
+        if (matchedToken.kind != EOF) {  
+            System.out.println("Found token " + matchedToken.image);  
+        } else {  
+            System.out.println("Found the end of file token");  
+        }  
+    }  
+}  
+  
+TOKEN : {  
+    <A:"A">|  
+    <B:"B">|  
+    <C:"C">  
+}
+```
+
+编译后执行结果
+
+```txt
+Found token A
+Found token B
+Found token C
+Found token B
+Found token C
+Found the end of file token
+```
+
+## 语法结构
 
 - options javaCC的设置
 - PARSER_BEGIN PARSER_END 定义解析类
+- TOKEN_MGR_DECLS 定义token管理类
 - 词法定义，`SKIP`,`MORE`,`TOKEN`,`SPECIAL_TOKEN`
 - 语法定义，定义token的顺序
+
+## 解析
+
+匹配电话号码
+
+```java
+PARSER_BEGIN(DemoParser)  
+package io.leaderli.c1;  
+import java.io.*;  
+public class DemoParser{  
+    public static void main(String[] args) throws ParseException {  
+  
+        String input = "123-123-1234";  
+        Reader reader= new StringReader(input);  
+       DemoParser demo= new DemoParser(reader);  
+        demo.phoneNumber();    }  
+ }  
+PARSER_END(DemoParser)  
+  
+  
+TOKEN : {  
+    <FOUR:(<DIGITS>){4}>  
+    |<THREE:(<DIGITS>){3}>  
+    |<#DIGITS:["0"-"9"]>  
+}  
+void phoneNumber():{}{  
+    <THREE>"-"<THREE>"-"<FOUR><EOF>  
+}
+```
+
+将号码返回
+
+```java
+PARSER_BEGIN(DemoParser)  
+package io.leaderli.c1;  
+import java.io.*;  
+public class DemoParser{  
+    public static void main(String[] args) throws ParseException {  
+  
+        String input = "123-123-1234";  
+        Reader reader= new StringReader(input);  
+       DemoParser demo= new DemoParser(reader);  
+        System.out.println(demo.phoneNumber());    }  
+ }  
+PARSER_END(DemoParser)  
+  
+  
+TOKEN : {  
+    <FOUR:(<DIGITS>){4}>  
+    |<THREE:(<DIGITS>){3}>  
+    |<#DIGITS:["0"-"9"]>  
+}  
+StringBuilder phoneNumber():  
+{  
+StringBuilder number = new StringBuilder();  
+}{  
+    <THREE>{number.append(token.image);}  
+    "-"<THREE>{number.append(token.image);}  
+    "-"<FOUR>{number.append(token.image);}  
+    <EOF>{return number;}  
+}
+```
+
+### LOOKAHEAD
+
+回朔
+
+针对匹配 7位号码和10位号码的grammar
+
+```java
+PARSER_BEGIN(DemoParser)  
+package io.leaderli.c1;  
+import java.io.*;  
+public class DemoParser{  
+    public static void main(String[] args) throws ParseException {  
+  
+        String input = "123-123-1234";  
+        Reader reader= new StringReader(input);  
+        DemoParser demo= new DemoParser(reader);  
+        demo.phone();    
+    }  
+ }  
+PARSER_END(DemoParser)  
+  
+  
+TOKEN : {  
+    <FOUR:(<DIGITS>){4}>  
+    |<THREE:(<DIGITS>){3}>  
+    |<#DIGITS:["0"-"9"]>  
+}  
+  
+void phone():{}{  
+    (local() | country())<EOF>  
+}  
+void local():{}{  
+    area() "-"<FOUR>  
+}  
+void country():{}{  
+    area() "-"<THREE>"-"<FOUR>  
+}  
+  
+void  area():{}{  
+    <THREE>  
+}
+```
+
+上面无法编译，存在冲突，可以使用最左推导（Left Factoring）来解决冲突
+
+```java
+PARSER_BEGIN(DemoParser)  
+package io.leaderli.c1;  
+import java.io.*;  
+public class DemoParser{  
+    public static void main(String[] args) throws ParseException {  
+  
+        String input = "123-123-1234";  
+        Reader reader= new StringReader(input);  
+       DemoParser demo= new DemoParser(reader);  
+        demo.phone();    }  
+ }  
+PARSER_END(DemoParser)  
+TOKEN : {  
+    <FOUR:(<DIGITS>){4}>  
+    |<THREE:(<DIGITS>){3}>  
+    |<#DIGITS:["0"-"9"]>  
+}  
+void phone():{}{  
+    area()"-"(local() | country())<EOF>  
+}  
+void local():{}{  
+     <FOUR>  
+}  
+void country():{}{  
+     <THREE>"-"<FOUR>  
+}  
+void  area():{}{  
+    <THREE>  
+}
+```
+
+也可以用回朔来解决
+
+```java
+PARSER_BEGIN(DemoParser)  
+package io.leaderli.c1;  
+import java.io.*;  
+public class DemoParser{  
+    public static void main(String[] args) throws ParseException {  
+  
+        String input = "123-123-1234";  
+        Reader reader= new StringReader(input);  
+       DemoParser demo= new DemoParser(reader);  
+        demo.phone();    }  
+ }  
+PARSER_END(DemoParser)  
+TOKEN : {  
+    <FOUR:(<DIGITS>){4}>  
+    |<THREE:(<DIGITS>){3}>  
+    |<#DIGITS:["0"-"9"]>  
+}  
+void phone():{}{  
+    LOOKAHEAD(3)local() {System.out.println("found local");}  
+    | country(){System.out.println("found country");}<EOF>  
+}  
+void local():{}{  
+    area()"-"<FOUR>  
+}  
+void country():{}{  
+    area()"-"<THREE>"-"<FOUR>  
+}  
+void  area():{}{  
+    <THREE>  
+}
+```
+
+可以配置全局
+
+```java
+options:{
+	LOOKAHEAD=3
+}
+```
+
+回朔可以使用语义来指定
+
+```java
+PARSER_BEGIN(DemoParser)  
+package io.leaderli.c1;  
+import java.io.*;  
+public class DemoParser{  
+    public static void main(String[] args) throws ParseException {  
+  
+        String input = "123-123-1234";  
+        Reader reader= new StringReader(input);  
+       DemoParser demo= new DemoParser(reader);  
+        demo.phone();    }  
+ }  
+PARSER_END(DemoParser)  
+TOKEN : {  
+    <FOUR:(<DIGITS>){4}>  
+    |<THREE:(<DIGITS>){3}>  
+    |<#DIGITS:["0"-"9"]>  
+}  
+void phone():{}{  
+    LOOKAHEAD(area()"-"<FOUR>)local() {System.out.println("found local");}  
+    | country(){System.out.println("found country");}<EOF>  
+}  
+void local():{}{  
+    area()"-"<FOUR>  
+}  
+void country():{}{  
+    area()"-"<THREE>"-"<FOUR>  
+}  
+void  area():{}{  
+    <THREE>  
+}
+```
+
+基于语义的
+
+```java
+PARSER_BEGIN(DemoParser)  
+package io.leaderli.c1;  
+import java.io.*;  
+public class DemoParser{  
+    public static void main(String[] args) throws ParseException {  
+  
+        String input = "223-1234";  
+        Reader reader= new StringReader(input);  
+        DemoParser demo= new DemoParser(reader);  
+        demo.phone();    }  
+ }  
+PARSER_END(DemoParser)  
+TOKEN : {  
+    <FOUR:(<DIGITS>){4}>  
+    |<THREE:(<DIGITS>){3}>  
+    |<#DIGITS:["0"-"9"]>  
+}  
+void phone():{}{  
+    LOOKAHEAD({getToken(1).image.equals("123")})  
+     one() {System.out.println("found one");}  
+    | two() {System.out.println("found two");}<EOF>  
+}  
+void one():{}{  
+    area()"-"<FOUR>  
+}  
+void two():{}{  
+    area()"-"<FOUR>  
+}  
+void  area():{}{  
+    <THREE>  
+}
+```
 
 ## token
 
@@ -224,6 +583,14 @@ TOKEN: {
 - ("a")?
 - ("a")*
 
+示例
+
+```java
+TOKEN : {  
+    <GREETING: (["a"-"z"])+>
+}
+```
+
 ## 词法
 
 ### 自定义词法处理
@@ -300,6 +667,351 @@ TOKEN : {
     <DONE: "default">{System.out.println("in default");}: DEFAULT  
 }
 ```
+
+为多个状态定义同一个语法，例如 SKIP
+
+```java
+<DEFAULT,IN_RED,IN_BLUE,IN_GREEN>  
+SKIP : {  
+" "  
+}
+```
+
+```java
+<*>  
+SKIP : {  
+" "  
+}
+```
+
+### 非默认状态
+
+一般情况下，使用`DEFAULT`作为初始状态，可以定义非初始状态
+
+```java
+options {  
+    STATIC = false;  
+    JDK_VERSION = "1.8";  
+}  
+PARSER_BEGIN(Demo)  
+package io.leaderli.c1;  
+import java.io.*;  
+public class Demo{  
+    public static void main(String[] args) {  
+  
+        String input = "redbluegreendefault---hello";  
+        SimpleCharStream scs= new  SimpleCharStream(new StringReader(input));  
+       DemoTokenManager tmr = new DemoTokenManager(scs,IN_HEADER);  
+        while( tmr.getNextToken().kind!=EOF){}  
+    }  
+ }  
+PARSER_END(Demo)  
+  
+<IN_HEADER>  
+MORE : {  
+    <~[]>  
+}  
+<IN_HEADER>  
+SPECIAL_TOKEN : {  
+    <HEADER_NOTES: "---"> : DEFAULT  
+}  
+  
+<DEFAULT>  
+TOKEN : {  
+    <GREETING: (["a"-"z"])+>{  
+        System.out.println("get:"+matchedToken.specialToken.image);  
+    }  
+}
+```
+
+编译后运行
+
+```txt
+get:redbluegreendefault---
+```
+
+### 示例
+
+#### 匹配注释
+
+```java
+options {  
+    STATIC = false;  
+    JDK_VERSION = "1.8";  
+}  
+PARSER_BEGIN(Demo)  
+package io.leaderli.c1;  
+import java.io.*;  
+public class Demo{  
+    public static void main(String[] args) {  
+  
+        String input = "/*redbluegreendefault---hello*/b";  
+        SimpleCharStream scs= new  SimpleCharStream(new StringReader(input));  
+       DemoTokenManager tmr = new DemoTokenManager(scs);  
+        while( tmr.getNextToken().kind!=EOF){}  
+    }  
+ }  
+PARSER_END(Demo)  
+MORE :{  
+ "/*": IN_MULTI_LINE_COMMENT  
+ }  
+<IN_MULTI_LINE_COMMENT>  
+MORE : {  
+    <~[]>  
+}  
+<IN_MULTI_LINE_COMMENT>  
+SPECIAL_TOKEN : {  
+    <MULTI_LINE_COMMEN: "*/"> {  
+            System.out.println("comment:"+matchedToken.image);  
+    }: DEFAULT  
+}
+```
+
+### java的string的grammar
+
+```java
+<STRING_LITERAL:  
+    "\""  
+     (    (~["\"","\\","\n","\r"])  
+        | ( "\\"  
+             ( ["n","t","b","r","f","\\","'","\""]  
+             | ["0"-"7"](["0"-"7"])?  
+             |["0"-"3"]["0"-"7"]["0"-"7"]  
+             )  
+          )  
+  
+     )*  
+    "\""  
+>
+```
+
+# jjtree
+
+将源文件编译为语法树
+
+## 快速示例
+
+pom配置，配置了clean插件，用于每次情况源码文件，以便重新生成
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>  
+<project xmlns="http://maven.apache.org/POM/4.0.0"  
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">  
+    <modelVersion>4.0.0</modelVersion>  
+  
+    <groupId>io.leaderli</groupId>  
+    <artifactId>javacc_demo</artifactId>  
+    <version>1.0-SNAPSHOT</version>  
+  
+    <properties>  
+        <maven.compiler.source>8</maven.compiler.source>  
+        <maven.compiler.target>8</maven.compiler.target>  
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  
+    </properties>  
+    <dependencies>  
+        <dependency>  
+            <groupId>net.java.dev.javacc</groupId>  
+            <artifactId>javacc</artifactId>  
+            <version>7.0.13</version>  
+            <scope>provided</scope>  
+        </dependency>  
+    </dependencies>  
+    <build>  
+        <plugins>  
+            <plugin>  
+                <groupId>org.apache.maven.plugins</groupId>  
+                <artifactId>maven-clean-plugin</artifactId>  
+                <version>3.1.0</version>  
+                <executions>  
+                    <execution>  
+                        <id>custom-clean</id>  
+                        <phase>clean</phase>  
+                        <goals>  
+                            <goal>clean</goal>  
+                        </goals>  
+                        <configuration>  
+                            <filesets>  
+                                <fileset>  
+                                    <directory>src/main/java</directory>  
+                                </fileset>  
+                            </filesets>  
+                        </configuration>  
+                    </execution>  
+                </executions>  
+            </plugin>  
+            <plugin>  
+                <groupId>org.codehaus.mojo</groupId>  
+                <artifactId>javacc-maven-plugin</artifactId>  
+                <version>3.0.1</version>  
+                <executions>  
+                    <execution>  
+                        <id>jjtree</id>  
+                        <goals>  
+                            <goal>jjtree-javacc</goal>  
+                        </goals>  
+                        <configuration>  
+                            <includes>*.jjt</includes>  
+                            <sourceDirectory>src/main/resources</sourceDirectory>  
+                            <interimDirectory>src/main/java</interimDirectory>  
+                            <outputDirectory>src/main/java</outputDirectory>  
+                        </configuration>  
+                    </execution>  
+                </executions>  
+            </plugin>  
+        </plugins>  
+    </build>  
+</project>
+```
+
+`d1.jjt`
+
+```java
+options {  
+    STATIC = false;  
+}  
+PARSER_BEGIN(DemoParser)  
+package io.leaderli.c1;  
+import java.io.*;  
+public class DemoParser{  
+    public static void main(String[] args) throws ParseException {  
+  
+        String input = "4 + 2";  
+        Reader reader= new StringReader(input);  
+        DemoParser demo= new DemoParser(reader);  
+        SimpleNode e =  demo.expression();        e.dump(">");  
+    }  
+ }  
+PARSER_END(DemoParser)  
+SKIP : {  
+    " "  
+}  
+TOKEN : {  
+    <DIGITS:(["0"-"9"])+>|<PLUS:"+">  
+}  
+SimpleNode expression():{}{  
+    operator() {  
+    return jjtThis;  
+    }  
+}  
+void operator():{}{  
+    operand()  
+    "+"  
+    operand()  
+}  
+void operand():{}{  
+     <DIGITS>  
+}
+```
+
+执行 `mvn clean generate-sources`
+
+## jjtree的options参数
+
+```shell
+BUILD_NODE_FILES (default: true)
+MULTI (default: false)
+NODE_DEFAULT_VOID (default: false)
+NODE_CLASS (default: "")
+NODE_FACTORY (default: "")
+NODE_PACKAGE (default: "")
+NODE_PREFIX (default: "AST")
+NODE_SCOPE_HOOK (default: false)
+NODE_SCOPE_HOOK (default: false)
+NODE_USES_PARSER (default: false)
+TRACK_TOKENS (default: false)
+STATIC (default: true)
+VISITOR (default: false)
+VISITOR_DATA_TYPE (default: "Object")
+VISITOR_RETURN_TYPE (default: "Object")
+VISITOR_EXCEPTION (default: "")
+JJTREE_OUTPUT_DIRECTORY (default: use value of OUTPUT_DIRECTORY)
+```
+
+## visitor
+
+使用访问者模式遍历所有节点
+
+```java
+options {  
+    STATIC = false;  
+    MULTI = true;  
+    VISITOR = true;  
+}  
+PARSER_BEGIN(DemoParser)  
+package io.leaderli.c1;  
+import java.io.*;  
+public class DemoParser{  
+    public static void main(String[] args) throws ParseException {  
+  
+        String input = "4 + 2";  
+        Reader reader= new StringReader(input);  
+        DemoParser demo= new DemoParser(reader);  
+        SimpleNode e =  demo.expression();        e.jjtAccept(new DemoParserDefaultVisitor(){  
+  
+              @Override              public Object visit(ASToperand node, Object data) {  
+                  System.out.println(node+" "+node.jjtGetValue());  
+                  return super.visit(node, data);  
+              }        },null);  
+    }  
+ }  
+PARSER_END(DemoParser)  
+SKIP : {  
+    " "  
+}  
+TOKEN : {  
+    <DIGITS:(["0"-"9"])+>|<PLUS:"+">  
+}  
+SimpleNode expression():{}{  
+    operator() {  
+    return jjtThis;  
+    }  
+}  
+void operator():{Token t;}{  
+    operand()  
+    t="+"{jjtThis.jjtSetValue(t.image);}  
+    operand()  
+}  
+void operand():{Token t;}{  
+     t=<DIGITS>{jjtThis.jjtSetValue(t.image);}  
+}
+```
+
+会生成如下文件
+
+```txt
+ASTexpression.java             DemoParserVisitor.java
+ASToperand.java                JJTDemoParserState.java
+ASToperator.java               Node.java
+DemoParser.java                ParseException.java
+DemoParserConstants.java       SimpleCharStream.java
+DemoParserDefaultVisitor.java  SimpleNode.java
+DemoParserTokenManager.java    Token.java
+DemoParserTreeConstants.java   TokenMgrError.java
+```
+
+可以修改生成的节点名,例如 `ASToperand.java` 文件更改为 `ASTOp.java`
+
+```java
+void operand() #Op:{Token t;}{  
+     t=<DIGITS>{jjtThis.jjtSetValue(t.image);}  
+}
+```
+
+也可以组合多个为一个
+
+```java
+void operator()#Op:{Token t;}{  
+    operand()  
+    t="+"{jjtThis.jjtSetValue(t.image);}  
+    operand()  
+}  
+void operand() #Op:{Token t;}{  
+     t=<DIGITS>{jjtThis.jjtSetValue(t.image);}  
+}
+```
+
+
 ## 参考
 
 - [JavaCC](https://javacc.github.io/javacc/)
