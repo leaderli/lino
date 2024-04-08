@@ -3,3 +3,9 @@
 snippet/java/.idea
 snippet/java/*.iml
 
+
+
+
+
+# Ignore Smart Connections folder
+.smart-connections

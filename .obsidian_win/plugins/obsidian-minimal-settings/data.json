@@ -1,5 +1,4 @@
 {
-  "theme": "moonstone",
   "lightStyle": "minimal-light-white",
   "darkStyle": "minimal-dark",
   "lightScheme": "minimal-atom-light",
@@ -9,7 +8,7 @@
   "lineWidth": 40,
   "lineWidthWide": 50,
   "maxWidth": 88,
-  "textNormal": 14,
+  "textNormal": 17,
   "textSmall": 13,
   "imgGrid": true,
   "imgWidth": "img-default-width",
@@ -28,9 +27,10 @@
   "focusMode": false,
   "underlineInternal": false,
   "underlineExternal": false,
-  "useSystemTheme": false,
   "folding": true,
   "lineNumbers": true,
-  "readableLineLength": true,
-  "devBlockWidth": false
+  "readableLineLength": false,
+  "devBlockWidth": false,
+  "theme": "moonstone",
+  "useSystemTheme": false
 }
