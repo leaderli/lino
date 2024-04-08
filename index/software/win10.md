@@ -107,3 +107,11 @@ gpedit.msc打开组策略编辑器
 
 用户配置—》Windows设置—》脚本(登录|注销) 右边，名称下选择 “登录”
 ![[Pasted image 20231225195823.png]]
+
+
+## 常见设置
+
+设备管理器
+```shell
+devmgmt.msc
+```
