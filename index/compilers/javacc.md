@@ -1,7 +1,7 @@
 ---
 tags:
   - compilers/antlr
-date updated: 2024-04-07 20:52
+date updated: 2024-04-09 23:03
 ---
 
 默认使用 [[LL(1)]] 文法，使用 [[EBNF]] 来描述语法
@@ -879,7 +879,8 @@ public class DemoParser{
         String input = "4 + 2";  
         Reader reader= new StringReader(input);  
         DemoParser demo= new DemoParser(reader);  
-        SimpleNode e =  demo.expression();        e.dump(">");  
+        SimpleNode e =  demo.expression();       
+        e.dump(">");  
     }  
  }  
 PARSER_END(DemoParser)  
@@ -899,6 +900,7 @@ void operator():{}{
     "+"  
     operand()  
 }  
+// 使用< > 引用token
 void operand():{}{  
      <DIGITS>  
 }
@@ -947,12 +949,15 @@ public class DemoParser{
         String input = "4 + 2";  
         Reader reader= new StringReader(input);  
         DemoParser demo= new DemoParser(reader);  
-        SimpleNode e =  demo.expression();        e.jjtAccept(new DemoParserDefaultVisitor(){  
+        SimpleNode e =  demo.expression();        
+        e.jjtAccept(new DemoParserDefaultVisitor(){  
   
-              @Override              public Object visit(ASToperand node, Object data) {  
+              @Override              
+              public Object visit(ASToperand node, Object data) {  
                   System.out.println(node+" "+node.jjtGetValue());  
                   return super.visit(node, data);  
-              }        },null);  
+              }    
+        },null);  
     }  
  }  
 PARSER_END(DemoParser)  
@@ -1024,9 +1029,201 @@ void operand() :{Token t;}{
 }
 ```
 
+## 节点描述
+
+用来创建指定数量的子节点,默认都会有个隐含的 `(true)`，表示任意多
+
+```java
+options {
+    STATIC = false;
+    MULTI = true;
+    VISITOR = true;
+    VISITOR_DATA_TYPE="String";
+}
+PARSER_BEGIN(DemoParser)
+package io.leaderli.c1;
+import java.io.Reader;
+import java.io.StringReader;
+public class DemoParser{
+    public static void main(String[] args) throws ParseException {
+
+        String input = "ABC1C2C3";
+        Reader reader= new StringReader(input);
+        DemoParser demo= new DemoParser(reader);
+        SimpleNode e =  demo.A();
+        e.dump("");
+    }
+ }
+PARSER_END(DemoParser)
+TOKEN : {
+    <C_NUM: "C"["0"-"9"]>
+}
+SimpleNode A():{Token t;}{
+    t="A"{jjtThis.jjtSetValue(t.image);}
+    B() { return jjtThis;}
+}
+void B() :{Token t;}{
+    t="B"{jjtThis.jjtSetValue(t.image);}
+    (C())+
+
+}
+void C() :{Token t;}{
+    t=<C_NUM>{jjtThis.jjtSetValue(t.image);}
+}
+```
+
+为了方便观察，修改SimpleNode的toString方法
+
+```java
+public String toString() {  
+  return value.toString();  
+}
+```
+
+ABC1C2C3
+
+```txt
+A
+ B
+  C1
+  C2
+  C3
+```
+
+当指定B有两个子节点时
+
+```java
+void B() #B(2) :{Token t;}{
+    t="B"{jjtThis.jjtSetValue(t.image);}
+    (C())+
+
+}
+```
+
+ABC1C2
+
+```txt
+A
+ B
+  C1
+  C2
+```
+
+ABC1C2C3
+
+```txt
+A
+ C1
+ B
+  C2
+  C3
+```
+
+当定义为 `>2`时
+
+```java
+void B() #B(>2):{}{  
+    "B"(C())+  
+}
+```
+
+```txt
+A
+ B
+  C
+  C
+  C
+```
+
+当编译 `ABCC`时，因为B下面的C的数量不够，则不加载B
+
+```txt
+A
+  C
+  C
+```
+
+嵌入式的节点描述，一般用于添加额外的节点
+
+```java
+SimpleNode A():{}{  
+    "A"B() {  
+    return jjtThis;  
+    }  
+}  
+void B():{}{  
+    "B"(C())+ #B(2)
+  
+}  
+void C():{}{  
+    "C"  
+}
+```
+
+ABCC
+
+```shell
+A
+ B         # 额外的B
+  B
+   C
+   C
+```
+
+ABCCC
+
+```shell
+A
+ B         #额外的B
+  C
+  B
+   C
+   C
+```
+
+我们再看同时定义的时候
+
+```java
+SimpleNode A():{}{  
+    "A"B() {  
+    return jjtThis;  
+    }  
+}  
+void B() #B(>1):{}{  
+    "B"(C())+ #B(2)
+  
+}  
+void C():{}{  
+    "C"  
+}
+```
+
+ABCC
+
+```shell
+A
+ B         # 额外的B，因为子节点数量不满足，所以未加载另一个B
+   C
+   C
+```
+
+ABCCC
+
+```shell
+A
+ B         #额外的B
+  C
+  B
+   C
+   C
+```
+
 ## 参考
 
 - [JavaCC](https://javacc.github.io/javacc/)
 - [JavaCC - tutorials](https://javacc.github.io/javacc/tutorials/)
+
+[Fetching Title#wtoh](https://javacc.github.io/javacc/documentation/)
+
 - [JavaCC - 博客园](https://www.cnblogs.com/suhaha/tag/JavaCC/)
 - [[Generating Parsers with JavaCC (Tom Copeland) (Z-Library).pdf]]
