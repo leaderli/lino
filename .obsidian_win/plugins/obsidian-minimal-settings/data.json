@@ -26,7 +26,7 @@
   "minimalStatus": true,
   "focusMode": false,
   "underlineInternal": false,
-  "underlineExternal": false,
+  "underlineExternal": true,
   "folding": true,
   "lineNumbers": true,
   "readableLineLength": false,
