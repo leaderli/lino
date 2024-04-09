@@ -1,7 +1,7 @@
 ---
 tags:
   - compilers/antlr
-date updated: 2024-04-09 23:24
+date updated: 2024-04-09 23:36
 ---
 
 默认使用 [[LL(1)]] 文法，使用 [[EBNF]] 来描述语法
@@ -1080,7 +1080,7 @@ public String toString() {
 }
 ```
 
-ABC1C2C3
+`ABC1C2C3`
 
 ```txt
 A
@@ -1100,7 +1100,7 @@ void B() #B(2) :{Token t;}{
 }
 ```
 
-ABC1C2
+`ABC1C2`
 
 ```txt
 A
@@ -1109,7 +1109,7 @@ A
   C2
 ```
 
-ABC1C2C3
+`ABC1C2C3`
 
 B节点有两个节点时，就表示组装完成了，则向上构建
 
@@ -1121,6 +1121,10 @@ A
   C3
 ```
 
+`ABC1`
+
+则会抛出异常
+
 当定义为 `>2`时
 
 ```java
@@ -1131,21 +1135,27 @@ void B() #B(>2) :{Token t;}{
 }
 ```
 
+`ABC1C2C3`
+
 ```txt
 A
  B
-  C
-  C
-  C
+  C1
+  C2
+  C3
 ```
 
-当编译 `ABCC`时，因为B下面的C的数量不够，则不加载B
+`ABC1C2`
+
+B下面的C的数量不够，则不加载B
 
 ```txt
 A
-  C
-  C
+  C1
+  C2
 ```
+
+- [ ] #todo
 
 嵌入式的节点描述，一般用于添加额外的节点
 
