@@ -706,7 +706,43 @@ $ mvn failsafe:verify
 
 clean 插件主要清理编译生成的文件，默认的编译目录配置在以下属性中
 
-> `project.build.directory` > `project.build.outputDirectory` > `project.build.testOutputDirectory` > `project.reporting.outputDirectory`
+
+```shell
+project.build.directory
+project.build.outputDirectory  project.build.testOutputDirectory  project.reporting.outputDirectory
+```
+
+自定义clean目录，并排除某些文件，也可以使用includes来仅clean某些文件
+
+
+```xml
+<plugin>  
+    <groupId>org.apache.maven.plugins</groupId>  
+    <artifactId>maven-clean-plugin</artifactId>  
+    <version>3.1.0</version>  
+    <executions>  
+        <execution>  
+            <id>custom-clean</id>  
+            <phase>clean</phase>  
+            <goals>  
+                <goal>clean</goal>  
+            </goals>  
+            <configuration>  
+                <filesets>  
+                    <fileset>  
+                        <directory>src/main/java</directory>  
+                        <excludes>  
+                            <exclude>  
+                            io/leaderli/c1/SimpleNode.java  
+                            </exclude>  
+                        </excludes>  
+                    </fileset>  
+                </filesets>  
+            </configuration>  
+        </execution>  
+    </executions>  
+</plugin>
+```
 
 ### compiler
 
