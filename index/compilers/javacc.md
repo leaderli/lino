@@ -1,7 +1,7 @@
 ---
 tags:
   - compilers/antlr
-date updated: 2024-04-09 23:36
+date updated: 2024-04-10 22:56
 ---
 
 默认使用 [[LL(1)]] 文法，使用 [[EBNF]] 来描述语法
@@ -1076,7 +1076,7 @@ void C() :{Token t;}{
 
 ```java
 public String toString() {  
-  return value.toString();  
+	return value == null ? DemoParserTreeConstants.jjtNodeName[id]:value.toString();
 }
 ```
 
@@ -1131,7 +1131,6 @@ A
 void B() #B(>2) :{Token t;}{
     t="B"{jjtThis.jjtSetValue(t.image);}
     (C())+
-
 }
 ```
 
@@ -1155,81 +1154,74 @@ A
   C2
 ```
 
-- [ ] #todo
-
 嵌入式的节点描述，一般用于添加额外的节点
 
 ```java
-SimpleNode A():{}{  
-    "A"B() {  
-    return jjtThis;  
-    }  
+TOKEN : {  
+    <B_NUM: "B"["0"-"9"]>|  
+    <C_NUM: "C"["0"-"9"]>  
 }  
-void B():{}{  
-    "B"(C())+ #B(2)
-  
+SimpleNode A():{Token t;}{  
+    t="A"{jjtThis.jjtSetValue(t.image);}  
+    B() { return jjtThis;}  
 }  
-void C():{}{  
-    "C"  
+void B() :{Token t;}{  
+    t=<B_NUM> {jjtThis.jjtSetValue(t.image);}  
+    (C())+ #B(2)  
+}  
+void C() :{Token t;}{  
+    t=<C_NUM>{jjtThis.jjtSetValue(t.image);}  
 }
 ```
 
-ABCC
+`AB1C1C2`
 
 ```shell
 A
- B         # 额外的B
+ B1         
   B
-   C
-   C
+   C1
+   C2
 ```
 
-ABCCC
+`AB1C1C2C3`
 
 ```shell
 A
- B         #额外的B
-  C
+ B1
+  C1
   B
-   C
-   C
+   C2
+   C3
 ```
 
 我们再看同时定义的时候
 
 ```java
-SimpleNode A():{}{  
-    "A"B() {  
-    return jjtThis;  
-    }  
-}  
-void B() #B(>1):{}{  
-    "B"(C())+ #B(2)
-  
-}  
-void C():{}{  
-    "C"  
+void B() #B(>1):{Token t;}{  
+    t=<B_NUM> {jjtThis.jjtSetValue(t.image);}  
+    (C())+ #B(2)  
 }
 ```
 
-ABCC
+`AB1C1C2`
 
 ```shell
 A
  B         # 额外的B，因为子节点数量不满足，所以未加载另一个B
-   C
-   C
+   C1
+   C2
 ```
 
 ABCCC
 
 ```shell
 A
- B         #额外的B
-  C
+ B1
+  C1
   B
-   C
-   C
+   C2
+   C3
 ```
 
 ## 参考
