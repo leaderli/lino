@@ -1,7 +1,7 @@
 ---
 tags:
   - compilers/antlr
-date updated: 2024-04-10 22:56
+date updated: 2024-04-10 23:02
 ---
 
 默认使用 [[LL(1)]] 文法，使用 [[EBNF]] 来描述语法
@@ -1228,8 +1228,6 @@ A
 
 - [JavaCC](https://javacc.github.io/javacc/)
 - [JavaCC - tutorials](https://javacc.github.io/javacc/tutorials/)
-
-[Fetching Title#wtoh](https://javacc.github.io/javacc/documentation/)
-
+- [javaCC - documentation](https://javacc.github.io/javacc/documentation/)
 - [JavaCC - 博客园](https://www.cnblogs.com/suhaha/tag/JavaCC/)
 - [[Generating Parsers with JavaCC (Tom Copeland) (Z-Library).pdf]]
