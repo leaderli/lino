@@ -159,4 +159,7 @@ done
 
 ```shell
 sudo softwareupdate --ignore "macOS Catalina"
+
+# 关闭更新提醒
+defaults write com.apple.systempreferences AttentionPrefBundleIDs '{ "com.apple.preferences.softwareupdate" = 0; }'
 ```

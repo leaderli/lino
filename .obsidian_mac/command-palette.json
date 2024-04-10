@@ -2,6 +2,7 @@
   "pinned": [
     "obsidian-git:push",
     "obsidian-git:pull",
-    "app:open-settings"
+    "app:open-settings",
+    "omnisearch:show-modal"
   ]
 }
