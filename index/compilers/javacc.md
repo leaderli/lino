@@ -1,7 +1,7 @@
 ---
 tags:
   - compilers/antlr
-date updated: 2024-04-09 23:36
+date updated: 2024-04-10 23:02
 ---
 
 默认使用 [[LL(1)]] 文法，使用 [[EBNF]] 来描述语法
@@ -1029,9 +1029,12 @@ void operand() :{Token t;}{
 }
 ```
 
-## 节点描述
+## 节点构建与节点描述
 
-用来创建指定数量的子节点,默认都会有个隐含的 `(true)`，表示任意多。jjtree读取token时，先构建子节点，然后在依次向上构建，设定子节点的父节点，如下示例，从最后一个节点C3开始，依次到A。C3设置父节点为B，并插入B的子节点数组，C2设置父节点为B，并插入B的子节点数组在C3之前的位置
+
+jjtree从上到下依次构建节点，它为[[grammar#非终结符]]创建节点，并新建一个节点的上下文，该上下文维护在jjtree的stack上。当创建节点后，会调用 `jjtOpen`，然后展开[[grammar#非终结符]]。当展开后，所有的子节点都创建好后，调用`jjtClose`，将堆栈中的子节点挂载到节点下，若父节点因为节点描述符，未能挂载，则子节点则会保留在堆栈上，供后续节点`jjtClose`使用。
+
+
 
 ```java
 options {
@@ -1076,7 +1079,7 @@ void C() :{Token t;}{
 
 ```java
 public String toString() {  
-  return value.toString();  
+	return value == null ? DemoParserTreeConstants.jjtNodeName[id]:value.toString();
 }
 ```
 
@@ -1131,7 +1134,6 @@ A
 void B() #B(>2) :{Token t;}{
     t="B"{jjtThis.jjtSetValue(t.image);}
     (C())+
-
 }
 ```
 
@@ -1155,89 +1157,80 @@ A
   C2
 ```
 
-- [ ] #todo
-
 嵌入式的节点描述，一般用于添加额外的节点
 
 ```java
-SimpleNode A():{}{  
-    "A"B() {  
-    return jjtThis;  
-    }  
+TOKEN : {  
+    <B_NUM: "B"["0"-"9"]>|  
+    <C_NUM: "C"["0"-"9"]>  
 }  
-void B():{}{  
-    "B"(C())+ #B(2)
-  
+SimpleNode A():{Token t;}{  
+    t="A"{jjtThis.jjtSetValue(t.image);}  
+    B() { return jjtThis;}  
 }  
-void C():{}{  
-    "C"  
+void B() :{Token t;}{  
+    t=<B_NUM> {jjtThis.jjtSetValue(t.image);}  
+    (C())+ #B(2)  
+}  
+void C() :{Token t;}{  
+    t=<C_NUM>{jjtThis.jjtSetValue(t.image);}  
 }
 ```
 
-ABCC
+`AB1C1C2`
 
 ```shell
 A
- B         # 额外的B
+ B1         
   B
-   C
-   C
+   C1
+   C2
 ```
 
-ABCCC
+`AB1C1C2C3`
 
 ```shell
 A
- B         #额外的B
-  C
+ B1
+  C1
   B
-   C
-   C
+   C2
+   C3
 ```
 
 我们再看同时定义的时候
 
 ```java
-SimpleNode A():{}{  
-    "A"B() {  
-    return jjtThis;  
-    }  
-}  
-void B() #B(>1):{}{  
-    "B"(C())+ #B(2)
-  
-}  
-void C():{}{  
-    "C"  
+void B() #B(>1):{Token t;}{  
+    t=<B_NUM> {jjtThis.jjtSetValue(t.image);}  
+    (C())+ #B(2)  
 }
 ```
 
-ABCC
+`AB1C1C2`
 
 ```shell
 A
  B         # 额外的B，因为子节点数量不满足，所以未加载另一个B
-   C
-   C
+   C1
+   C2
 ```
 
 ABCCC
 
 ```shell
 A
- B         #额外的B
-  C
+ B1
+  C1
   B
-   C
-   C
+   C2
+   C3
 ```
 
 ## 参考
 
 - [JavaCC](https://javacc.github.io/javacc/)
 - [JavaCC - tutorials](https://javacc.github.io/javacc/tutorials/)
-
-[Fetching Title#wtoh](https://javacc.github.io/javacc/documentation/)
-
+- [javaCC - documentation](https://javacc.github.io/javacc/documentation/)
 - [JavaCC - 博客园](https://www.cnblogs.com/suhaha/tag/JavaCC/)
 - [[Generating Parsers with JavaCC (Tom Copeland) (Z-Library).pdf]]

@@ -122,3 +122,9 @@ devmgmt.msc
 `FN F9`关闭游戏模式，一般因为alt tab没有使用
 
 F2，F3没有用，使用 `ctrl FN` 关闭
+
+
+## 浏览器收藏夹
+
+
+![[xbs_backup_20240410223957.json]]
