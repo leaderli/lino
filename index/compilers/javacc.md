@@ -49,9 +49,12 @@ pom 插件
                 <goal>javacc</goal>  
             </goals>  
             <configuration>  
-                <includes>  
-                    <include>**/*.jj</include>  
-                </includes>  
+			    <includes>  
+			        <include>*.jj</include>  
+			    </includes>  
+			    <sourceDirectory>src/main/resources</sourceDirectory>  
+			    <packageName>io.leaderli.c1</packageName>  
+			    <outputDirectory>${project.build.sourceDirectory}</outputDirectory>  
             </configuration>  
         </execution>  
     </executions>  
