@@ -486,3 +486,14 @@ C语言中标识符的正则定义
 例如：$r = (a\mid b)^*abb$ 对应的[[automation#非确定型有穷自动机（NFA）|NFA]]
 
 ![[Pasted image 20211020221729.png]]
+
+
+## 示例
+
+表示含有负数的减法
+
+
+1. $expr  \to factor\mid expr - factor$
+2. $factor \to number\mid -number$
+3. $number \to 0\mid 1\mid2\mid\cdots\mid9$
+
