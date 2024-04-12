@@ -1237,3 +1237,4 @@ A
 - [javaCC - documentation](https://javacc.github.io/javacc/documentation/)
 - [JavaCC - 博客园](https://www.cnblogs.com/suhaha/tag/JavaCC/)
 - [[Generating Parsers with JavaCC (Tom Copeland) (Z-Library).pdf]]
+- [[javacc-tutorial.pdf]]
