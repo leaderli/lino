@@ -1095,13 +1095,18 @@ Listening for transport dt_socket at address: 8000
 
 在 idea 的 run 中新建
 
-![[Pasted image 20240413123633.png]]
+![[Pasted image 20240413123633.png|400]]
 
 在你需要的地方打上断点，`Debug`运行时，则会以debug模式执行对应的`mvn  clean generate-sources  compile`
 
+idea 会显示如下信息
 ```log
 Connected to the target VM, address: 'localhost:8000', transport: 'socket'
 ```
+
+maven插件执行的信息则会在终端显示
+
+![[Pasted image 20240413124019.png|600]]
 ## 模块
 
 maven 的模块是在父类 pom 中定义聚合关系，其本质仅仅是一次性批量按顺序执行所有子模块的 mvn 命令而已
