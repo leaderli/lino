@@ -788,6 +788,88 @@ SPECIAL_TOKEN : {
 >
 ```
 
+
+
+## 一个计算器的示例
+
+其文法如下：
+
+
+1. $expr\to term \space(+\mid-)\space term$
+2. $term\to primary\space(*\mid/)\space primary$
+4. $primary\to number\mid -number\mid (expr)$
+5. $num \to digits\mid digits.digits$
+6. $digits \to (0\mid 1\mid2\mid\cdots\mid9)+$
+
+```java
+options {  
+    STATIC = false;  
+}  
+PARSER_BEGIN(DemoParser)  
+package io.leaderli.c1;  
+public class DemoParser{  
+    public static void main(String[] args) throws Exception {  
+      DemoParser demo = new DemoParser(System.in);  
+      demo.Start();    }  
+ }  
+PARSER_END(DemoParser)  
+SKIP : {" "}  
+TOKEN : {  
+    <EOL: "\r"|"\n"|"\r\n">|  
+    <PLUS: "+"> |  
+    <MINUS: "-"> |  
+    <TIMES: "*"> |  
+    <DIVIDE: "/"> |  
+    <OPEN_PAR: "("> |  
+    <CLOSE_PAR: ")"> |  
+    <NUMBER: <DIGITS>|<DIGITS>"."<DIGITS>> |  
+    <#DIGITS: (["0"-"9"])+>  
+}  
+  
+void Start() :{double value;}{  
+   (  
+    value = expr()  
+    <EOL>{System.out.println(value);}  
+   )*  
+   <EOF>  
+}  
+  
+  
+double term() throws NumberFormatException:{double i;double value;}  
+{  
+    value = primary()  
+    (  
+        <TIMES>  
+        i = primary(){value *= i;}  
+        |  
+        <DIVIDE>  
+        i = primary(){value /= i;}  
+    )*  
+    {return value;}  
+  
+}  
+  
+  
+double expr() throws NumberFormatException:{double i;double value;}  
+{  
+    value = term()  
+    (  
+        <PLUS>{value +=  term();}  
+       |  
+        <MINUS>{value -=term();}  
+    )*  
+    {return value;}  
+  
+}  
+double primary() throws NumberFormatException:{Token t;double d;}  
+{  
+    t = <NUMBER> { return Double.parseDouble(t.image); }  
+|  
+    <OPEN_PAR>d = expr() <CLOSE_PAR>  { return d; }  
+|  
+    <MINUS> d=primary() { return -d; }  
+}
+```
 # jjtree
 
 将源文件编译为语法树
@@ -1229,6 +1311,9 @@ A
    C2
    C3
 ```
+
+
+
 
 ## 参考
 
