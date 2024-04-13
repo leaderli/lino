@@ -41,7 +41,7 @@ pom 插件
 <plugin>  
     <groupId>org.codehaus.mojo</groupId>  
     <artifactId>javacc-maven-plugin</artifactId>  
-    <version>3.0.1</version>  
+    <version>3.1.0</version>  
     <executions>  
         <execution>  
             <id>javacc</id>  
@@ -846,7 +846,7 @@ pom配置，配置了clean插件，用于每次情况源码文件，以便重新
             <plugin>  
                 <groupId>org.codehaus.mojo</groupId>  
                 <artifactId>javacc-maven-plugin</artifactId>  
-                <version>3.0.1</version>  
+                <version>3.1.0</version>  
                 <executions>  
                     <execution>  
                         <id>jjtree</id>  

@@ -2,7 +2,7 @@
 aliases: maven
 tags:
   - catagory
-date updated: 2023-06-13 22:17
+date updated: 2024-04-13 12:34
 ---
 
 Maven – Download Apache Mavenpache Mavenorial
@@ -706,14 +706,12 @@ $ mvn failsafe:verify
 
 clean 插件主要清理编译生成的文件，默认的编译目录配置在以下属性中
 
-
 ```shell
 project.build.directory
 project.build.outputDirectory  project.build.testOutputDirectory  project.reporting.outputDirectory
 ```
 
 自定义clean目录，并排除某些文件，也可以使用includes来仅clean某些文件
-
 
 ```xml
 <plugin>  
@@ -1025,28 +1023,28 @@ $ java -cp target/LiTest-1.0.jar  io.leaderli.litest.Main
    </resources>
    ```
 2. 将`generated-sources/java-templates`标记为编译的目录
-	```xml
-	<plugin>
-	    <groupId>org.codehaus.mojo</groupId>
-	    <artifactId>build-helper-maven-plugin</artifactId>
-	    <version>1.8</version>
-	    <executions>
-	        <execution>
-	             <id>add-source</id>
-	            <phase>generate-sources</phase>
-	            <goals>
-	                <goal>add-source</goal>
-	            </goals>
-	            <configuration>
-	                <sources>
-	                    <source>${project.build.directory}/generated-sources/java-templates/</source>
-	                </sources>
-	            </configuration>
-	        </execution>
-	    </executions>
-	</plugin>
-	```
- 
+   ```xml
+   <plugin>
+       <groupId>org.codehaus.mojo</groupId>
+       <artifactId>build-helper-maven-plugin</artifactId>
+       <version>1.8</version>
+       <executions>
+           <execution>
+                <id>add-source</id>
+               <phase>generate-sources</phase>
+               <goals>
+                   <goal>add-source</goal>
+               </goals>
+               <configuration>
+                   <sources>
+                       <source>${project.build.directory}/generated-sources/java-templates/</source>
+                   </sources>
+               </configuration>
+           </execution>
+       </executions>
+   </plugin>
+   ```
+
 ### maven-shade-plugin
 
 用于创建可执行的、包含所有依赖的独立 JAR 文件
@@ -1081,6 +1079,28 @@ $ java -cp target/LiTest-1.0.jar  io.leaderli.litest.Main
     </plugins>
   </build>
 </project>
+```
+
+## debug插件
+
+使用终端，在项目目录下运行和mvn命令相同的mvnDebug
+
+例如，你想debug ` mvn clean generate-sources  compile  `
+
+```shell
+$ mvnDebug  clean generate-sources  compile
+Preparing to execute Maven in debug mode
+Listening for transport dt_socket at address: 8000
+```
+
+在 idea 的 run 中新建
+
+![[Pasted image 20240413123633.png]]
+
+在你需要的地方打上断点，`Debug`运行时，则会以debug模式执行对应的`mvn  clean generate-sources  compile`
+
+```log
+Connected to the target VM, address: 'localhost:8000', transport: 'socket'
 ```
 ## 模块
 
@@ -1371,6 +1391,7 @@ Maven 采用“最近获胜策略（nearest wins strategy）”的方式处理�
 		<systemPath>${toolsjar}</systemPath>
 </dependency>
 ```
+
 ## javadoc中文乱码
 
 idea 中 设置 `maven|runner |VM Options` 添加
