@@ -1,7 +1,7 @@
 ---
 tags:
   - compilers/antlr
-date updated: 2024-04-10 23:02
+date updated: 2024-04-15 22:39
 ---
 
 默认使用 [[LL(1)]] 文法，使用 [[EBNF]] 来描述语法
@@ -788,18 +788,15 @@ SPECIAL_TOKEN : {
 >
 ```
 
-
-
 ## 一个计算器的示例
 
 其文法如下：
 
-
 1. $expr\to term \space(+\mid-)\space term$
 2. $term\to primary\space(*\mid/)\space primary$
-4. $primary\to number\mid -number\mid (expr)$
-5. $num \to digits\mid digits.digits$
-6. $digits \to (0\mid 1\mid2\mid\cdots\mid9)+$
+3. $primary\to number\mid -number\mid (expr)$
+4. $num \to digits\mid digits.digits$
+5. $digits \to (0\mid 1\mid2\mid\cdots\mid9)+$
 
 ```java
 options {  
@@ -870,6 +867,7 @@ double primary() throws NumberFormatException:{Token t;double d;}
     <MINUS> d=primary() { return -d; }  
 }
 ```
+
 # jjtree
 
 将源文件编译为语法树
@@ -1116,10 +1114,9 @@ void operand() :{Token t;}{
 
 ## 节点构建与节点描述
 
-
 jjtree从上到下依次构建节点，它为[[grammar#非终结符]]创建节点，并新建一个节点的上下文，该上下文维护在jjtree的stack上。当创建节点后，会调用 `jjtOpen`，然后展开[[grammar#非终结符]]。当展开后，所有的子节点都创建好后，调用`jjtClose`，将堆栈中的子节点挂载到节点下，若父节点因为节点描述符，未能挂载，则子节点则会保留在堆栈上，供后续节点`jjtClose`使用。
 
-
+实例可以参考 [github](https://github.com/javacc/javacc) 下的 `example/JJTreeExamples/java` 示例
 
 ```java
 options {
@@ -1312,9 +1309,6 @@ A
    C3
 ```
 
-
-
-
 ## 参考
 
 - [JavaCC](https://javacc.github.io/javacc/)
@@ -1323,3 +1317,4 @@ A
 - [JavaCC - 博客园](https://www.cnblogs.com/suhaha/tag/JavaCC/)
 - [[Generating Parsers with JavaCC (Tom Copeland) (Z-Library).pdf]]
 - [[javacc-tutorial.pdf]]
+- [[JavaCC.jj]]
