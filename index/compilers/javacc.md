@@ -1,7 +1,7 @@
 ---
 tags:
   - compilers/antlr
-date updated: 2024-04-15 22:39
+date updated: 2024-04-16 22:48
 ---
 
 默认使用 [[LL(1)]] 文法，使用 [[EBNF]] 来描述语法
@@ -1116,7 +1116,6 @@ void operand() :{Token t;}{
 
 jjtree从上到下依次构建节点，它为[[grammar#非终结符]]创建节点，并新建一个节点的上下文，该上下文维护在jjtree的stack上。当创建节点后，会调用 `jjtOpen`，然后展开[[grammar#非终结符]]。当展开后，所有的子节点都创建好后，调用`jjtClose`，将堆栈中的子节点挂载到节点下，若父节点因为节点描述符，未能挂载，则子节点则会保留在堆栈上，供后续节点`jjtClose`使用。
 
-
 ```java
 options {
     STATIC = false;
@@ -1236,6 +1235,24 @@ B下面的C的数量不够，则不加载B
 A
   C1
   C2
+```
+
+当定义为 `#void` ， 不加载B , 也可以设置options参数，`NODE_DEFAULT_VOID=true`，使得默认都是`#void`
+
+```java
+void B() #void :{Token t;}{
+    "B"
+    (C())+
+}
+```
+
+`ABC1C2C3`
+
+```txt
+A
+  C1
+  C2
+  C3
 ```
 
 嵌入式的节点描述，一般用于添加额外的节点
