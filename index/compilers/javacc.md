@@ -1116,7 +1116,6 @@ void operand() :{Token t;}{
 
 jjtree从上到下依次构建节点，它为[[grammar#非终结符]]创建节点，并新建一个节点的上下文，该上下文维护在jjtree的stack上。当创建节点后，会调用 `jjtOpen`，然后展开[[grammar#非终结符]]。当展开后，所有的子节点都创建好后，调用`jjtClose`，将堆栈中的子节点挂载到节点下，若父节点因为节点描述符，未能挂载，则子节点则会保留在堆栈上，供后续节点`jjtClose`使用。
 
-实例可以参考 [github](https://github.com/javacc/javacc) 下的 `example/JJTreeExamples/java` 示例
 
 ```java
 options {
