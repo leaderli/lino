@@ -1325,6 +1325,155 @@ A
    C3
 ```
 
+
+
+## 一个计算器的示例
+
+```java
+options {  
+  STATIC = false;  
+  MULTI=true;  
+  VISITOR=true;  
+  VISITOR_DATA_TYPE="Integer";  
+  VISITOR_RETURN_TYPE="Integer";  
+}  
+  
+PARSER_BEGIN(DemoParser)  
+package io.leaderli.c1;  
+import java.io.StringReader;  
+public class DemoParser {  
+
+	public static void main(String[] args) throws Exception {  
+	    String input = "1+3*4-12/2";  
+	    System.out.println(input);  
+	    DemoParser parser = new DemoParser(new StringReader(input));  
+	    SimpleNode start = parser.Start();  
+	    start.dump("");  
+	    System.out.println(start.jjtAccept(new DemoParserDefaultVisitor(), null));  
+	  
+	    input = "-(1+3)*4-12/2";  
+	    parser = new DemoParser(new StringReader(input));  
+	    start = parser.Start();  
+	    start.dump("");  
+	    System.out.println(start.jjtAccept(new DemoParserDefaultVisitor(), null));  
+	}
+}  
+PARSER_END  (DemoParser)  
+SKIP : {" "}  
+TOKEN : {  
+    <EOL: "\r"|"\n"|"\r\n">|  
+    <PLUS: "+"> |  
+    <MINUS: "-"> |  
+    <TIMES: "*"> |  
+    <DIVIDE: "/"> |  
+    <OPEN_PAR: "("> |  
+    <CLOSE_PAR: ")"> |  
+    <NUMBER: <DIGITS>|<DIGITS>"."<DIGITS>> |  
+    <#DIGITS: (["0"-"9"])+>  
+}  
+  
+SimpleNode Start() :{}  
+{  
+    expr()<EOF>  
+    {  
+        return jjtThis;  
+    }  
+}  
+  
+void expr() #expr(>1) :{Token t; }  
+{  
+   term() ( (t=<PLUS>|t=<MINUS>){jjtThis.jjtSetValue(t.image);} expr()) ?  
+}  
+void term() #term(>1) :{Token t; }  
+{  
+   primary() ( (t=<TIMES> |t=<DIVIDE> ){jjtThis.jjtSetValue(t.image);} term()) ?  
+  
+}  
+  
+void primary() #void :{ Token t; }  
+{  
+  t=<NUMBER>{ jjtThis.jjtSetValue(Integer.parseInt(t.image)); }#primary  
+|  
+  <OPEN_PAR>expr() <CLOSE_PAR>  
+|  
+  <MINUS> primary() #neg  
+}
+```
+
+`DemoParserDefaultVisitor` 实现执行
+
+```java
+package io.leaderli.c1;  
+  
+public class DemoParserDefaultVisitor implements DemoParserVisitor {  
+  
+  
+    public Integer visit(ASTStart node, Integer data) {  
+        return node.children[0].jjtAccept(this, null);  
+    }  
+  
+    public Integer visit(ASTexpr node, Integer data) {  
+        Integer left = node.children[0].jjtAccept(this, null);  
+        Integer right = node.children[1].jjtAccept(this, null);  
+        String op = (String) node.jjtGetValue();  
+        if ("+".equals(op)) {  
+            return left + right;  
+        } else {  
+            return left - right;  
+        }  
+    }  
+  
+    public Integer visit(ASTterm node, Integer data) {  
+        Integer left = node.children[0].jjtAccept(this, null);  
+        Integer right = node.children[1].jjtAccept(this, null);  
+        String op = (String) node.jjtGetValue();  
+        if ("*".equals(op)) {  
+            return left * right;  
+        } else {  
+            return left / right;  
+        }  
+    }  
+  
+    public Integer visit(ASTprimary node, Integer data) {  
+        return (Integer) node.jjtGetValue();  
+    }  
+  
+    public Integer visit(ASTneg node, Integer data) {  
+        return -node.children[0].jjtAccept(this, null);  
+    }  
+}
+```
+
+
+编译运行后，其语法树如下
+
+```shell
+1+3*4-12/2
+Start
+ +
+  1
+  -
+   *
+    3
+    4
+   /
+    12
+    2
+7
+-(1+3)*4-12/2
+Start
+ -
+  *
+   neg
+    +
+     1
+     3
+   4
+  /
+   12
+   2
+-22
+```
 ## 参考
 
 - [JavaCC](https://javacc.github.io/javacc/)
