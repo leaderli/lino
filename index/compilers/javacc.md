@@ -1,7 +1,7 @@
 ---
 tags:
   - compilers/antlr
-date updated: 2024-04-16 22:48
+date updated: 2024-04-17 21:11
 ---
 
 默认使用 [[LL(1)]] 文法，使用 [[EBNF]] 来描述语法
@@ -870,7 +870,7 @@ double primary() throws NumberFormatException:{Token t;double d;}
 
 # jjtree
 
-将源文件编译为语法树
+将源文件编译为语法树，先编译成jj文件，然后在生成相应的java代码
 
 ## 快速示例
 
