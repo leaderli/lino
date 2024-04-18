@@ -1,12 +1,16 @@
 ---
-aliases:  自动机理论
-tags: 
-- compilers/自动机理论
+aliases: 自动机理论
+tags:
+  - compilers/自动机理论
+date updated: 2024-04-12 23:39
 ---
+
 ## 定义
 
 [[grammar|文法]]
+
 ### 状态
+
 概况了对过去输入信息处理的状况
 
 ### 有穷自动机
@@ -36,10 +40,11 @@ graph LR
 
 ```
 
-
 ### 状态转移图
+
 Transition Graph
-1.	节点：[[#有穷自动机|FA]]的[[#状态]]
+
+1. 节点：[[#有穷自动机|FA]]的[[#状态]]
 2. 初始状态（开始状态）：只有一个
 3. 终止状态（接受状态）：可以有多个
 4. 带标记的有向边：如果对于输入`a`，存在一个从状态`p`到状态`q`的转换，就在`p`，`q`之间画一条有向边，并标记上`a`
@@ -53,19 +58,20 @@ graph LR
 ```
 
 ### 状态转移表
+
 一个状态和输入组成的 [[#^030625|扩展转移函数]]$\delta$ 的表
 
 其中$\rightarrow$ 表示起始状态 ，$*$ 表示含有终止状态，`-`表示无转移
 例如：
 
-   |                   | 0     | 1     |
-   | -----------------:|:----- |:----- |
-   | $\rightarrow q_0$ | $q_1$ | $q_0$ |
-   |             $q_1$ | $q_1$ | $q_2$ |
-   |             $*q_2$ | - | $q_2$ | 
-
+|                   | 0     | 1     |
+| ----------------: | :---- | :---- |
+| $\rightarrow q_0$ | $q_1$ | $q_0$ |
+|             $q_1$ | $q_1$ | $q_2$ |
+|            $*q_2$ | -     | $q_2$ |
 
 ### 当两个状态机交互时
+
 当其状态处于$(i,x)$，对于一个合法的输入$Z$，可使$i \rightarrow j$，$x \rightarrow y$，那么我们可以认为$(i,x) \rightarrow (j,y)$是可达的
 
 ## 确定型有穷自动机（DFA）
@@ -76,16 +82,16 @@ graph LR
 2. 初始状态记做$q_0$,
 3. 终止状态记做$F$
 4. 一个有穷输入集合，记做$\Sigma$
-5. 状态转移函数，记做$\delta$，以一个状态$q$和一个输入符号$a$作为参数，返回一个状态$p$。$\delta(q,a) = p;p\in Q$ 
-6. 扩展状态转移函数，记做$\hat{\delta}$，以一个状态 $q$ 和一个输入串 $\omega$ 作为参数，返回一个状态 $p$ 
+5. 状态转移函数，记做$\delta$，以一个状态$q$和一个输入符号$a$作为参数，返回一个状态$p$。$\delta(q,a) = p;p\in Q$
+6. 扩展状态转移函数，记做$\hat{\delta}$，以一个状态 $q$ 和一个输入串 $\omega$ 作为参数，返回一个状态 $p$
    - $\hat{\delta}(q,\varepsilon)=q$
    - 假定$\omega = xa$，a 是最后的输入，$\hat{\delta}(q,\omega)=\delta(\hat{\delta}(q,x),a)$
 
 DFA 的定义:
-$$A = (Q,\Sigma,\delta,q_0,F)$$
+$A = (Q,\Sigma,\delta,q_0,F)$
 
 对于所有 DFA，我们可以定义为
-$$L(A) = \lbrace \omega|\hat{\delta}(q_0,\omega)   \in F\rbrace$$
+$L(A) = \lbrace \omega|\hat{\delta}(q_0,\omega)   \in F\rbrace$
 
 例如$\lbrace\omega|\omega$出现 01 字符串$\rbrace$可能出现三个状态
 
@@ -94,31 +100,31 @@ $$L(A) = \lbrace \omega|\hat{\delta}(q_0,\omega)   \in F\rbrace$$
 3. $q_2$ 已遇到 01，可接受任意 0 或 1，$\delta(q_2,0)=q_2,\delta(q_2,1)=q_2$
 
 其 DFA 表达式：
-$$A = (\lbrace q_0,q_1,q_2\rbrace,\lbrace 0,1\rbrace,\delta,q_0,{q_2})$$
+$A = (\lbrace q_0,q_1,q_2\rbrace,\lbrace 0,1\rbrace,\delta,q_0,{q_2})$
 
 对 DFA 的细节描述难以阅读，通常使用两种方式来更好的描述
 
 1. [[# 状态转移图]]
-   
+
    ```mermaid
    graph LR
-	  start-->q0
-	  q0-- 1 -->q0
-	  q0-- 0 -->q1
-	  q1-- 1 -->q2:::terminal
-	  q2-- 0,1 -->q2
-	  
-	  style start fill:#fff ,stroke:#fff;
-	  classDef terminal fill:#f96;
+      start-->q0
+      q0-- 1 -->q0
+      q0-- 0 -->q1
+      q1-- 1 -->q2:::terminal
+      q2-- 0,1 -->q2
+      
+      style start fill:#fff ,stroke:#fff;
+      classDef terminal fill:#f96;
    ```
 
 2. [[#状态转移表]]
 
    |                   | 0     | 1     |
-   | -----------------:|:----- |:----- |
+   | ----------------: | :---- | :---- |
    | $\rightarrow q_0$ | $q_1$ | $q_0$ |
    |             $q_1$ | $q_1$ | $q_2$ |
-   |             $q_2$ | $q_2$ | $q_2$ | 
+   |             $q_2$ | $q_2$ | $q_2$ |
 
 使用扩展转移函数，对一个串 0011 进行计算
 
@@ -148,18 +154,19 @@ $$A = (\lbrace q_0,q_1,q_2\rbrace,\lbrace 0,1\rbrace,\delta,q_0,{q_2})$$
 4. 一个有穷输入集合，记做 $\Sigma$
 
 5. 状态转移函数，记做 $\delta$ ，以一个状态 $q$ 和一个输入符号 $a$ 作为参数，返回一个状态 $p$ 的集合。$\delta(q,a) = \lbrace p1,p2,\cdots,p_k \rbrace;\lbrace p1,p2,\cdots,p_k \rbrace\in Q$
- ^030625
+
+^030625
 6. 扩展状态转移函数，记做$\hat{\delta}$，以一个状态$q$和一个输入串$\omega$作为参数，返回一个状态$p$。
-   - $\hat{\delta}(q,\varepsilon)=q$
-   - 假定$\omega = xa$，$\hat{\delta}(q,x)=\lbrace p_1,p_2,\cdots,p_k \rbrace$，那么$\hat{\delta}(q,\omega)=\displaystyle\bigcup_{i=1}^k\delta(p_i,a)=\lbrace r_1,r_2,\cdots,r_m \rbrace$
+
+- $\hat{\delta}(q,\varepsilon)=q$
+- 假定$\omega = xa$，$\hat{\delta}(q,x)=\lbrace p_1,p_2,\cdots,p_k \rbrace$，那么$\hat{\delta}(q,\omega)=\displaystyle\bigcup_{i=1}^k\delta(p_i,a)=\lbrace r_1,r_2,\cdots,r_m \rbrace$
 
 对于 NFA，可以定义为
-$$L(A) = \lbrace \omega|\hat{\delta}(q_0,\omega)   \cap F\rbrace \ne \emptyset$$
+$L(A) = \lbrace \omega|\hat{\delta}(q_0,\omega)   \cap F\rbrace \ne \emptyset$
 
 例如，$\lbrace \lbrace0,1\rbrace|$以 01 结尾$\rbrace$
 
 其状态转移图如下
-
 
 ```mermaid
 graph LR
@@ -183,7 +190,7 @@ classDef terminal fill:#f96;
 | ----------------: | -----------------------: | -------------------: |
 | $\rightarrow q_0$ | $\lbrace q_0,q_1\rbrace$ | $\lbrace q_0\rbrace$ |
 |             $q_1$ |              $\emptyset$ | $\lbrace q_2\rbrace$ |
-|          \* $q_2$ |              $\emptyset$ |          $\emptyset$ |
+|           * $q_2$ |              $\emptyset$ |          $\emptyset$ |
 
 使用扩展转移函数的处理过程如下
 
@@ -210,7 +217,7 @@ $\varepsilon\text{-}NFA$的正式定义
 
 $\varepsilon\text{-}NFA$的定义与 NFA 基本一致，除了$\delta$函数必须含有在$\varepsilon$上转移的信息。
 
-$$A = (Q,\Sigma,\delta,q_0,F)$$
+$A = (Q,\Sigma,\delta,q_0,F)$
 
 其中$\delta$的参数
 
@@ -241,40 +248,43 @@ $\varepsilon\text{-}NFA$扩展转移函数
 ## 等价性
 
 1. 对任何非确定的有穷自动机 $N$，存在定义统一语言的确定的有穷自动机 $D$
+
 2. 对任何确定的有穷自动机 $D$，存在定义统一语言的非确定的有穷自动机 $N$
+
 3. DFA和NFA可以识别相同的语言
-	例如：
-	 NFA
-	```mermaid
-	graph LR
-	start-->0
-	0--a,b-->0
-	0--a-->1
-	1--b-->2
-	2--b-->3:::terminal
+   例如：
+   NFA
+   ```mermaid
+   graph LR
+   start-->0
+   0--a,b-->0
+   0--a-->1
+   1--b-->2
+   2--b-->3:::terminal
 
-	  style start fill:#fff ,stroke:#fff;
-	  classDef terminal fill:#f96;
-	```
-	DFA
-	```mermaid
-	graph LR
-	start-->0
-	0--b-->0
-	0--a-->1
-	1--a-->1
-	1--b-->2
-	2--a-->1
-	2--b-->3:::terminal
-	3--b-->0
-	3--a-->1
+     style start fill:#fff ,stroke:#fff;
+     classDef terminal fill:#f96;
+   ```
+   DFA
+   ```mermaid
+   graph LR
+   start-->0
+   0--b-->0
+   0--a-->1
+   1--a-->1
+   1--b-->2
+   2--a-->1
+   2--b-->3:::terminal
+   3--b-->0
+   3--a-->1
 
-	  style start fill:#fff ,stroke:#fff;
-	  classDef terminal fill:#f96;
-	```
-	
-4.  $NFA$ 和 $\varepsilon\text{-} NFA$ 具有等价性
-	例如正则表达式 $r = 1^*2^*3^*$ 的两种状态图如下 ：
+     style start fill:#fff ,stroke:#fff;
+     classDef terminal fill:#f96;
+   ```
+
+4. $NFA$ 和 $\varepsilon\text{-} NFA$ 具有等价性
+   例如正则表达式 $r = 1^*2^*3^*$ 的两种状态图如下 ：
+
 ```mermaid
 graph LR
  start --> A
@@ -299,7 +309,9 @@ graph LR
   style start fill:#fff ,stroke:#fff;
   classDef terminal fill:#f96;
 ```
+
 ## NFA 与 DFA 的转换，子集构造
+
 ```ad-summary
 ### 子集构造
 DFA的每个状态都是一个由NFA中的状态构成的集合,即NFA状态集合的一个子集
@@ -309,7 +321,6 @@ DFA的每个状态都是一个由NFA中的状态构成的集合,即NFA状态集�
 
 通常来说，构造 NFA 比构造 DFA 更直观更容易，但DFA更易于用代码来实现，每一个用 NFA 描述的语言也能用 DFA 来描述。这个可以用[[#^5d6d92|子集构造]]来证明。
 
-
 子集构造从一个 NFA $N = (Q_n,\Sigma,\delta_n,q_0,F_n)$ 开始，转换为 $D = (Q_d,\Sigma,\delta_d,\lbrace q_0 \rbrace,F_d)$
 
 1. 两个自动机的输入字母表是相同的
@@ -317,7 +328,7 @@ DFA的每个状态都是一个由NFA中的状态构成的集合,即NFA状态集�
 3. $Q_d$是$Q_n$子集的集合，即幂集合。假如$Q_n$有 n 个状态，那么$Q_d$有$2^n$状态，通常不是所有的状态都是从$q_0$可达的，这些状态可以丢弃，所以实际上$Q_d$的状态要远远小于$2^n$
 4. $F_D$所有满足$S\cap F_n \neq \emptyset$的$Q_n$的子集的集合 S，也就是说，$F_D$是$Q_N$状态子集中至少包含一个$F_N$的集合。
 5. 对于$S \subseteq Q_n$的集合 S 中每个状态来说，其对应的每个属于$\Sigma$的输入符号$a$的转移函数为：
-   $$\delta_D(S,a)= \bigcup_{p \in S} \delta_N(p,a)$$
+   $\delta_D(S,a)= \bigcup_{p \in S} \delta_N(p,a)$
 
 示例，我们以接受所有 01 结尾的串的 NFA 向 DFA 转换，由于$Q_n = \lbrace q_0,q_1,q_2\rbrace$，所以子集构造产生一个带有$2^3 = 8$(并非所有状态都是有意义的)种状态的 DFA
 
@@ -333,29 +344,29 @@ DFA的每个状态都是一个由NFA中的状态构成的集合,即NFA状态集�
 |    $*\lbrace q_0,q_1,q_2\rbrace$ | $\lbrace q_0,q_1\rbrace$ | $\lbrace q_0,q_2\rbrace$ |
 
 <empty></empty>
-上述表格的详细证明如下（列举 2、5 两行）：
-<empty></empty>
+上述表格的详细证明如下（列举 2、5 两行）： <empty></empty>
 
 - $\delta_D(\lbrace q_0\rbrace,0) = \delta_N(q_0,0) = \lbrace q_0,q_1\rbrace$
 
 - $\delta_D(\lbrace q_0\rbrace,1) = \delta_N(q_0,1) = \lbrace q_0\rbrace$
 
 - $\delta_D(\lbrace q_0,q_1\rbrace,0) = \delta_N(q_0,0) \cup \delta_N(q_1,0)  = \lbrace q_0,q_1\rbrace \cup \emptyset = \lbrace q_0,q_1\rbrace$
+
 - $\delta_D(\lbrace q_0,q_1\rbrace,1) = \delta_N(q_0,1) \cup \delta_N(q_1,1)  = \lbrace q_0\rbrace \cup \lbrace q_2\rbrace= \lbrace q_0,q_2\rbrace$
 
 <empty></empty>
 我们给这 8 中状态设计新的名字，如$A$表示$\emptyset$，$B$表示$\lbrace q_0 \rbrace$等。
 
-|                 | 0   | 1   |
-| --------------: | :-- | :-- |
-|               A | A   | A   |
-| $\rightarrow B$ | E   | B   |
-|               C | A   | D   |
-|            $*D$ | A   | A   |
-|               E | E   | F   |
-|            $*F$ | E   | B   |
-|            $*G$ | A   | D   |
-|            $*H$ | E   | F   |
+|                 | 0  | 1  |
+| --------------: | :- | :- |
+|               A | A  | A  |
+| $\rightarrow B$ | E  | B  |
+|               C | A  | D  |
+|            $*D$ | A  | A  |
+|               E | E  | F  |
+|            $*F$ | E  | B  |
+|            $*G$ | A  | D  |
+|            $*H$ | E  | F  |
 
 从状态 B 开始，只能到达状态 B、E 和 F。其余五种状态都是从初始状态不可达的，也可以不出现在表中。如果向下面这样在子集合中执行`惰性求值`，通常就能避免以指数时间步骤为每个状态子集合构造转移表项目。一般情况下，我们可以从初始状态 A 开始计算可到达状态，若有新的可达状态，我们继续计算，直到没有新的可达状态。
 
@@ -396,11 +407,12 @@ $\delta_D(\lbrace q_0\rbrace,x)= \lbrace p_1,p_2,\cdots,p_k\rbrace$
 $\hat{\delta_D}(\lbrace q_0\rbrace,w) = \delta_D(\hat{\delta_D}(\lbrace q_0\rbrace,x),a) =\delta_D( \lbrace p_1,p_2,\cdots,p_k\rbrace,a)=\displaystyle\bigcup_{i=1}^k\delta_N(p_i,a)$
 
 示例见[[#通过 NFA 来实现]]
+
 ## $\varepsilon$ 转移的子集构造
 
 对于给定的$\varepsilon\text{-}NFA$的集合$E$，我们可以求出一个与$E$接受相同语言的$DFA$集合$D$，设$E = (Q_E,\Sigma,\delta_E,\lbrace q_0 \rbrace,F_E)$，
 则等价的 DFA 为
-$$D = (Q_D,\Sigma,\delta_D,q_D ,F_D)$$
+$D = (Q_D,\Sigma,\delta_D,q_D ,F_D)$
 
 1. $Q_D$是$Q_E$的子集的集合
 2. $q_D= ECLOSE(q_0)$
@@ -411,11 +423,13 @@ $$D = (Q_D,\Sigma,\delta_D,q_D ,F_D)$$
    3. 则$\delta_D(S,a)=\displaystyle\bigcup_{j=1}^mECLOSE(r_j)$
 
 ## 子集构造的各种示例
+
 ### 文本搜索
 
 识别 web 和 ebay 出现
 
 #### 通过 NFA 来实现
+
 ![自动机理论_web_ebay.png](自动机理论_web_ebay.png)
 
 对终止状态`[4,8]`增加了回到`1`的转移，以支持 web 和 ebay 出现在中间位置。
@@ -474,6 +488,7 @@ console.log(hat_delat(q0, "abc"));
 ```
 
 通过子集构造的方式来转换为 DFA，省略`[4,8]`的`1`出口
+
 ![自动机理论_ndf_dfa.png](自动机理论_ndf_dfa.png)
 
 ```javascript
@@ -823,7 +838,7 @@ console.log(hal_delta([q0], "webay"));
 [ 1, 8 ]
 ```
 
-####  通过 $\varepsilon\text{-}NFA$ 来实现
+#### 通过 $\varepsilon\text{-}NFA$ 来实现
 
 ```javascript
 function noepsilon(input, next, compared_value) {
@@ -1271,7 +1286,6 @@ console.log(hal_delta([q0], "webay"));
 
 ```
 
-
 ### 识别无符号数
 
 正则表达式如下
@@ -1288,8 +1302,10 @@ console.log(hal_delta([q0], "webay"));
 | 3               | $\lbrace 3,6\rbrace$   | $\lbrace 4,5\rbrace$ | $\emptyset$        | $\emptyset$        | $\emptyset$        |
 | 4               | $\emptyset$            | $\emptyset$          | $\lbrace 5\rbrace$ | $\lbrace 5\rbrace$ | $\emptyset$        |
 | 5               | $\lbrace 6\rbrace$     | $\emptyset$          | $\emptyset$        | $\emptyset$        | $\emptyset$        |
-| $*6$            | $\lbrace 6\rbrace$     | $\emptyset$          | $\emptyset$        | $\emptyset$        | $\emptyset$        | 
+| $*6$            | $\lbrace 6\rbrace$     | $\emptyset$          | $\emptyset$        | $\emptyset$        | $\emptyset$        |
+
 其[[#状态转移图]]如下
+
 ![[Pasted image 20211020232735.png]]
 
 将上述[[#非确定型有穷自动机（NFA）|NFA]] 转换为 [[#确定型有穷自动机（DFA）|DFA]]
@@ -1298,28 +1314,28 @@ console.log(hal_delta([q0], "webay"));
 
 为了方便给上述所涉及的所有状态定一个别名，
 
-|                        |    别名 |
-| ---------------------- | --- |
-| $0$                    | A   |
-| $\lbrace 1,3,6\rbrace$ | B   |
-| $2$                    | C   |
-|   | D   |
-|  | E   |
-| $5$                    | F   |
-| $6$                    | G   |
+|                        | 别名 |
+| ---------------------- | -- |
+| $0$                    | A  |
+| $\lbrace 1,3,6\rbrace$ | B  |
+| $2$                    | C  |
+|                        | D  |
+|                        | E  |
+| $5$                    | F  |
+| $6$                    | G  |
 
-
-|                        | d                      | E                    | +   | -   | `.` |
-| ---------------------- | ---------------------- | -------------------- | --- | --- | --- |
-| $\rightarrow$ 0        | $\lbrace 1,3,6\rbrace$ |          -            |  -   | -    |  -   |
-| $\lbrace 1,3,6\rbrace$ | $\lbrace 1,3,6\rbrace$ | $\lbrace 4,5\rbrace$ |  -   |  -   | 2   |
-| 2                      |       -                 |       -               |  -   |-     |   -  |
-| $\lbrace 3,6\rbrace$   | $\lbrace 3,6\rbrace$   | $\lbrace 4,5\rbrace$ |   -  | -    |   -  |
-| $\lbrace 4,5\rbrace$   | $\lbrace 3,6\rbrace$   |             -         | 5   | 5   |  -   |
-| 5                      | 6                      |      -                |   -  |  -   |  -   |
-| $* 6$                   | 6                      |     -                 |  -   |   -  | -    |
+|                        | d                      | E                    | + | - | `.` |
+| ---------------------- | ---------------------- | -------------------- | - | - | --- |
+| $\rightarrow$ 0        | $\lbrace 1,3,6\rbrace$ | -                    | - | - | -   |
+| $\lbrace 1,3,6\rbrace$ | $\lbrace 1,3,6\rbrace$ | $\lbrace 4,5\rbrace$ | - | - | 2   |
+| 2                      | -                      | -                    | - | - | -   |
+| $\lbrace 3,6\rbrace$   | $\lbrace 3,6\rbrace$   | $\lbrace 4,5\rbrace$ | - | - | -   |
+| $\lbrace 4,5\rbrace$   | $\lbrace 3,6\rbrace$   | -                    | 5 | 5 | -   |
+| 5                      | 6                      | -                    | - | - | -   |
+| $* 6$                  | 6                      | -                    | - | - | -   |
 
 其[[#状态转移图]]如下
+
 ![[Pasted image 20211020234311.png]]
 
 ### 识别注释

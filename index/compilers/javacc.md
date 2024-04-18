@@ -1,7 +1,7 @@
 ---
 tags:
   - compilers/antlr
-date updated: 2024-04-10 23:02
+date updated: 2024-04-17 21:11
 ---
 
 默认使用 [[LL(1)]] 文法，使用 [[EBNF]] 来描述语法
@@ -41,7 +41,7 @@ pom 插件
 <plugin>  
     <groupId>org.codehaus.mojo</groupId>  
     <artifactId>javacc-maven-plugin</artifactId>  
-    <version>3.0.1</version>  
+    <version>3.1.0</version>  
     <executions>  
         <execution>  
             <id>javacc</id>  
@@ -49,9 +49,12 @@ pom 插件
                 <goal>javacc</goal>  
             </goals>  
             <configuration>  
-                <includes>  
-                    <include>**/*.jj</include>  
-                </includes>  
+			    <includes>  
+			        <include>*.jj</include>  
+			    </includes>  
+			    <sourceDirectory>src/main/resources</sourceDirectory>  
+			    <packageName>io.leaderli.c1</packageName>  
+			    <outputDirectory>${project.build.sourceDirectory}</outputDirectory>  
             </configuration>  
         </execution>  
     </executions>  
@@ -785,9 +788,89 @@ SPECIAL_TOKEN : {
 >
 ```
 
+## 一个计算器的示例
+
+其文法如下：
+
+1. $expr\to term \space(+\mid-)\space term$
+2. $term\to primary\space(*\mid/)\space primary$
+3. $primary\to number\mid -number\mid (expr)$
+4. $num \to digits\mid digits.digits$
+5. $digits \to (0\mid 1\mid2\mid\cdots\mid9)+$
+
+```java
+options {  
+    STATIC = false;  
+}  
+PARSER_BEGIN(DemoParser)  
+package io.leaderli.c1;  
+public class DemoParser{  
+    public static void main(String[] args) throws Exception {  
+      DemoParser demo = new DemoParser(System.in);  
+      demo.Start();    }  
+ }  
+PARSER_END(DemoParser)  
+SKIP : {" "}  
+TOKEN : {  
+    <EOL: "\r"|"\n"|"\r\n">|  
+    <PLUS: "+"> |  
+    <MINUS: "-"> |  
+    <TIMES: "*"> |  
+    <DIVIDE: "/"> |  
+    <OPEN_PAR: "("> |  
+    <CLOSE_PAR: ")"> |  
+    <NUMBER: <DIGITS>|<DIGITS>"."<DIGITS>> |  
+    <#DIGITS: (["0"-"9"])+>  
+}  
+  
+void Start() :{double value;}{  
+   (  
+    value = expr()  
+    <EOL>{System.out.println(value);}  
+   )*  
+   <EOF>  
+}  
+  
+  
+double term() throws NumberFormatException:{double i;double value;}  
+{  
+    value = primary()  
+    (  
+        <TIMES>  
+        i = primary(){value *= i;}  
+        |  
+        <DIVIDE>  
+        i = primary(){value /= i;}  
+    )*  
+    {return value;}  
+  
+}  
+  
+  
+double expr() throws NumberFormatException:{double i;double value;}  
+{  
+    value = term()  
+    (  
+        <PLUS>{value +=  term();}  
+       |  
+        <MINUS>{value -=term();}  
+    )*  
+    {return value;}  
+  
+}  
+double primary() throws NumberFormatException:{Token t;double d;}  
+{  
+    t = <NUMBER> { return Double.parseDouble(t.image); }  
+|  
+    <OPEN_PAR>d = expr() <CLOSE_PAR>  { return d; }  
+|  
+    <MINUS> d=primary() { return -d; }  
+}
+```
+
 # jjtree
 
-将源文件编译为语法树
+将源文件编译为语法树，先编译成jj文件，然后在生成相应的java代码
 
 ## 快速示例
 
@@ -843,7 +926,7 @@ pom配置，配置了clean插件，用于每次情况源码文件，以便重新
             <plugin>  
                 <groupId>org.codehaus.mojo</groupId>  
                 <artifactId>javacc-maven-plugin</artifactId>  
-                <version>3.0.1</version>  
+                <version>3.1.0</version>  
                 <executions>  
                     <execution>  
                         <id>jjtree</id>  
@@ -1031,10 +1114,7 @@ void operand() :{Token t;}{
 
 ## 节点构建与节点描述
 
-
 jjtree从上到下依次构建节点，它为[[grammar#非终结符]]创建节点，并新建一个节点的上下文，该上下文维护在jjtree的stack上。当创建节点后，会调用 `jjtOpen`，然后展开[[grammar#非终结符]]。当展开后，所有的子节点都创建好后，调用`jjtClose`，将堆栈中的子节点挂载到节点下，若父节点因为节点描述符，未能挂载，则子节点则会保留在堆栈上，供后续节点`jjtClose`使用。
-
-
 
 ```java
 options {
@@ -1157,6 +1237,24 @@ A
   C2
 ```
 
+当定义为 `#void` ， 不加载B , 也可以设置options参数，`NODE_DEFAULT_VOID=true`，使得默认都是`#void`
+
+```java
+void B() #void :{Token t;}{
+    "B"
+    (C())+
+}
+```
+
+`ABC1C2C3`
+
+```txt
+A
+  C1
+  C2
+  C3
+```
+
 嵌入式的节点描述，一般用于添加额外的节点
 
 ```java
@@ -1227,6 +1325,155 @@ A
    C3
 ```
 
+
+
+## 一个计算器的示例
+
+```java
+options {  
+  STATIC = false;  
+  MULTI=true;  
+  VISITOR=true;  
+  VISITOR_DATA_TYPE="Integer";  
+  VISITOR_RETURN_TYPE="Integer";  
+}  
+  
+PARSER_BEGIN(DemoParser)  
+package io.leaderli.c1;  
+import java.io.StringReader;  
+public class DemoParser {  
+
+	public static void main(String[] args) throws Exception {  
+	    String input = "1+3*4-12/2";  
+	    System.out.println(input);  
+	    DemoParser parser = new DemoParser(new StringReader(input));  
+	    SimpleNode start = parser.Start();  
+	    start.dump("");  
+	    System.out.println(start.jjtAccept(new DemoParserDefaultVisitor(), null));  
+	  
+	    input = "-(1+3)*4-12/2";  
+	    parser = new DemoParser(new StringReader(input));  
+	    start = parser.Start();  
+	    start.dump("");  
+	    System.out.println(start.jjtAccept(new DemoParserDefaultVisitor(), null));  
+	}
+}  
+PARSER_END  (DemoParser)  
+SKIP : {" "}  
+TOKEN : {  
+    <EOL: "\r"|"\n"|"\r\n">|  
+    <PLUS: "+"> |  
+    <MINUS: "-"> |  
+    <TIMES: "*"> |  
+    <DIVIDE: "/"> |  
+    <OPEN_PAR: "("> |  
+    <CLOSE_PAR: ")"> |  
+    <NUMBER: <DIGITS>|<DIGITS>"."<DIGITS>> |  
+    <#DIGITS: (["0"-"9"])+>  
+}  
+  
+SimpleNode Start() :{}  
+{  
+    expr()<EOF>  
+    {  
+        return jjtThis;  
+    }  
+}  
+  
+void expr() #expr(>1) :{Token t; }  
+{  
+   term() ( (t=<PLUS>|t=<MINUS>){jjtThis.jjtSetValue(t.image);} expr()) ?  
+}  
+void term() #term(>1) :{Token t; }  
+{  
+   primary() ( (t=<TIMES> |t=<DIVIDE> ){jjtThis.jjtSetValue(t.image);} term()) ?  
+  
+}  
+  
+void primary() #void :{ Token t; }  
+{  
+  t=<NUMBER>{ jjtThis.jjtSetValue(Integer.parseInt(t.image)); }#primary  
+|  
+  <OPEN_PAR>expr() <CLOSE_PAR>  
+|  
+  <MINUS> primary() #neg  
+}
+```
+
+`DemoParserDefaultVisitor` 实现执行
+
+```java
+package io.leaderli.c1;  
+  
+public class DemoParserDefaultVisitor implements DemoParserVisitor {  
+  
+  
+    public Integer visit(ASTStart node, Integer data) {  
+        return node.children[0].jjtAccept(this, null);  
+    }  
+  
+    public Integer visit(ASTexpr node, Integer data) {  
+        Integer left = node.children[0].jjtAccept(this, null);  
+        Integer right = node.children[1].jjtAccept(this, null);  
+        String op = (String) node.jjtGetValue();  
+        if ("+".equals(op)) {  
+            return left + right;  
+        } else {  
+            return left - right;  
+        }  
+    }  
+  
+    public Integer visit(ASTterm node, Integer data) {  
+        Integer left = node.children[0].jjtAccept(this, null);  
+        Integer right = node.children[1].jjtAccept(this, null);  
+        String op = (String) node.jjtGetValue();  
+        if ("*".equals(op)) {  
+            return left * right;  
+        } else {  
+            return left / right;  
+        }  
+    }  
+  
+    public Integer visit(ASTprimary node, Integer data) {  
+        return (Integer) node.jjtGetValue();  
+    }  
+  
+    public Integer visit(ASTneg node, Integer data) {  
+        return -node.children[0].jjtAccept(this, null);  
+    }  
+}
+```
+
+
+编译运行后，其语法树如下
+
+```shell
+1+3*4-12/2
+Start
+ +
+  1
+  -
+   *
+    3
+    4
+   /
+    12
+    2
+7
+-(1+3)*4-12/2
+Start
+ -
+  *
+   neg
+    +
+     1
+     3
+   4
+  /
+   12
+   2
+-22
+```
 ## 参考
 
 - [JavaCC](https://javacc.github.io/javacc/)
@@ -1234,3 +1481,5 @@ A
 - [javaCC - documentation](https://javacc.github.io/javacc/documentation/)
 - [JavaCC - 博客园](https://www.cnblogs.com/suhaha/tag/JavaCC/)
 - [[Generating Parsers with JavaCC (Tom Copeland) (Z-Library).pdf]]
+- [[javacc-tutorial.pdf]]
+- [[JavaCC.jj]]
