@@ -4,7 +4,7 @@ tags:
 date updated: 2023-04-20 23:49
 ---
 
-#office	#tutorial
+#office	#tutorial #visio
 
 ## word
 
@@ -39,6 +39,9 @@ word 的层级结构可以通过增加或减少缩进量来控制层级
 
 工具｜自动更正选项
 
+### 调整画布大小
+
+形状｜配置布局｜放大页面以适应绘图（勾选）｜应用
 ## excel
 
 ### 折线图
