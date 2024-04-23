@@ -156,6 +156,10 @@ cat 1.txt|sed -i 's/\t/'$'\x0f''/g'
 ### 删除某行
 
 ```shell
+# 删除第一行
 sed -i  '1d' 1.txt
-sed -i  '2d' 1.txt
+# 删除1到3行
+sed -i  '1,3d' 1.txt
+# 删除1,3,5行
+sed -i  '1d;3d;5d' 1.txt
 ```
