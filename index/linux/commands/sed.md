@@ -151,3 +151,11 @@ sed -i 's/\t/'$'\x0f''/g' 1.dat
 # 直接替换管道的输出
 cat 1.txt|sed -i 's/\t/'$'\x0f''/g'
 ```
+
+
+### 删除某行
+
+```shell
+sed -i  '1d' 1.txt
+sed -i  '2d' 1.txt
+```
