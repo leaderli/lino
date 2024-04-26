@@ -1,7 +1,7 @@
 ---
 tags:
   - compilers/antlr
-date updated: 2024-04-17 21:11
+date updated: 2024-04-22 23:43
 ---
 
 默认使用 [[LL(1)]] 文法，使用 [[EBNF]] 来描述语法
@@ -585,6 +585,15 @@ TOKEN: {
 - ("a")+
 - ("a")?
 - ("a")*
+
+节点内部使用 `[]` 表示可能存在
+
+```java
+// 可以匹配 ab 或者 a
+void ab():{Token t;}{  
+	"a"["b"]
+}
+```
 
 示例
 
@@ -1325,8 +1334,6 @@ A
    C3
 ```
 
-
-
 ## 一个计算器的示例
 
 ```java
@@ -1444,7 +1451,6 @@ public class DemoParserDefaultVisitor implements DemoParserVisitor {
 }
 ```
 
-
 编译运行后，其语法树如下
 
 ```shell
@@ -1474,6 +1480,7 @@ Start
    2
 -22
 ```
+
 ## 参考
 
 - [JavaCC](https://javacc.github.io/javacc/)
