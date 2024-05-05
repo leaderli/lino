@@ -2,7 +2,7 @@
 aliases: maven
 tags:
   - catagory
-date updated: 2024-04-13 12:34
+date updated: 2024-05-05 20:29
 ---
 
 Maven – Download Apache Mavenpache Mavenorial
@@ -1081,6 +1081,31 @@ $ java -cp target/LiTest-1.0.jar  io.leaderli.litest.Main
 </project>
 ```
 
+### formatter-maven-plugin
+
+代码格式化插件
+
+```xml
+<plugin>  
+    <groupId>net.revelc.code.formatter</groupId>  
+    <artifactId>formatter-maven-plugin</artifactId>  
+    <version>2.11.0</version>  
+    <executions>  
+        <execution>  
+            <goals>  
+                <goal>format</goal>  
+            </goals>  
+            <configuration>  
+                <includes>  
+                    <include>io/leaderli/c1</include>  
+                </includes>  
+            </configuration>  
+        </execution>  
+  
+    </executions>  
+</plugin>
+```
+
 ## debug插件
 
 使用终端，在项目目录下运行和mvn命令相同的mvnDebug
@@ -1100,6 +1125,7 @@ Listening for transport dt_socket at address: 8000
 在你需要的地方打上断点，`Debug`运行时，则会以debug模式执行对应的`mvn  clean generate-sources  compile`
 
 idea 会显示如下信息
+
 ```log
 Connected to the target VM, address: 'localhost:8000', transport: 'socket'
 ```
@@ -1107,6 +1133,7 @@ Connected to the target VM, address: 'localhost:8000', transport: 'socket'
 maven插件执行的信息则会在终端显示
 
 ![[Pasted image 20240413124019.png|600]]
+
 ## 模块
 
 maven 的模块是在父类 pom 中定义聚合关系，其本质仅仅是一次性批量按顺序执行所有子模块的 mvn 命令而已
