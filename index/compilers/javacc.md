@@ -1323,7 +1323,7 @@ A
    C2
 ```
 
-ABCCC
+AB1C1C2C3
 
 ```shell
 A
