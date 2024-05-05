@@ -877,6 +877,70 @@ double primary() throws NumberFormatException:{Token t;double d;}
 }
 ```
 
+## 一个解析占位符的示例
+
+
+
+```java
+options {  
+    STATIC = false;  
+}  
+PARSER_BEGIN(DemoParser)  
+package io.leaderli.c1;  
+import java.io.StringReader;  
+public class DemoParser{  
+    public static void main(String[] args) throws Exception {  
+      DemoParser demo = new DemoParser(new StringReader("aa"));  
+      demo.Start();      demo = new DemoParser(new StringReader("aa#"));  
+      demo.Start();      demo = new DemoParser(new StringReader("aa##wav:12345##1111#11##wav:22345####break##bb"));  
+      demo.Start();    }  
+ }  
+PARSER_END(DemoParser)  
+  
+<DEFAULT>  
+TOKEN : {  
+    <D_TTS: (~["#"])+>|  
+    <D_TAG: "#">:TAG_BEGIN  
+}  
+<TAG_BEGIN>  
+TOKEN : {  
+    <B_TTS: (~["#"])+>:DEFAULT|  
+    <B_TAG: "#">:TAG_STATE  
+}  
+  
+<TAG_STATE>  
+TOKEN : {  
+    <WAV: "wav"> |  
+    <BREAK: "break"> |  
+    <COMMA: ":"> |  
+    <DIGITS: (["0"-"9"])+>|  
+    <T_TAG: "##"> :DEFAULT  
+}  
+  
+void Start() :{}{  
+    (tts()) +<EOF>  
+}  
+void wav():{Token t;}{  
+    <WAV>  
+    <COMMA>    t=<DIGITS>{System.out.println("wav:"+t.image);}  
+}  
+void tts():{Token t;}{  
+    t= <D_TTS>{System.out.println(t.image);}  
+    |  
+    <D_TAG>[t=<B_TTS>{System.out.println("#"+t.image);return;}|tag(){return ;}]  
+    {  
+       System.out.println("#");  
+    }  
+}  
+  
+  
+void  tag():{Token t;}{  
+     <B_TAG>  
+     (wav()|<BREAK>{System.out.println("break");})  
+     <T_TAG>  
+}
+```
+
 # jjtree
 
 将源文件编译为语法树，先编译成jj文件，然后在生成相应的java代码
