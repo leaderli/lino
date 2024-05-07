@@ -214,3 +214,44 @@ linux中处理xml文件的类库
 xmllint --format pom.xml|sed 's/xmlns=".*"//g'
 xmllint --format pom.xml|sed 's/xmlns=".*"//g'|xmllint --xpath "//version" - 
 ```
+
+## 转义字符
+
+
+|   |   |   |
+|---|---|---|
+|`&lt;`|<|小于|
+|`&gt;`|>|大于|
+|`&amp;`|&|和号|
+|`&apos;`|'|省略号|
+|`&quot;`|"|引号|
+
+> 严格地讲，在 XML 中仅有字符 "<"和"&" 是非法的。省略号、引号和大于号是合法的，但是把它们替换为实体引用是个好的习惯。
+
+##  cdata
+
+术语 CDATA 指的是不应由 XML 解析器进行解析的文本数据（Unparsed Character Data）。在 XML 元素中，`<` 和 `&` 是非法的。
+
+CDATA 部分中的所有内容都会被解析器忽略。CDATA 部分由 `<![CDATA[` 开始，由 `]]` 结束：
+
+```xml
+<root>
+<![CDATA[
+function matchwo(a,b)
+{
+if (a < b && a < 0) then
+  {
+  return 1;
+  }
+else
+  {
+  return 0;
+  }
+}
+]]>
+</root>
+```
+
+> CDATA 部分不能包含字符串 `]]>`。也不允许嵌套的 CDATA 部分。
+
+> 标记 CDATA 部分结尾的 `]]>` 不能包含空格或折行。

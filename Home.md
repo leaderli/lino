@@ -24,13 +24,7 @@
 ## 其他
 
 - [ ] java agent
-- [ ] litool-agent
-- [ ] 编译原理
-- [ ] doclet 自定义markdown
 
-- [ ] Apache Calcite
-- [ ] Janino
-- [ ] 数据密集型应用系统设计 pdf
 
 
 
