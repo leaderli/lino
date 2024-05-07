@@ -1,7 +1,7 @@
 ---
 tags:
   - compilers/antlr
-date updated: 2024-04-22 23:43
+date updated: 2024-05-05 23:20
 ---
 
 默认使用 [[LL(1)]] 文法，使用 [[EBNF]] 来描述语法
@@ -877,6 +877,68 @@ double primary() throws NumberFormatException:{Token t;double d;}
 }
 ```
 
+## 一个解析占位符的示例
+
+```java
+options {  
+    STATIC = false;  
+}  
+PARSER_BEGIN(DemoParser)  
+package io.leaderli.c1;  
+import java.io.StringReader;  
+public class DemoParser{  
+    public static void main(String[] args) throws Exception {  
+      DemoParser demo = new DemoParser(new StringReader("aa"));  
+      demo.Start();      demo = new DemoParser(new StringReader("aa#"));  
+      demo.Start();      demo = new DemoParser(new StringReader("aa##wav:12345##1111#11##wav:22345####break##bb"));  
+      demo.Start();    }  
+ }  
+PARSER_END(DemoParser)  
+  
+<DEFAULT>  
+TOKEN : {  
+    <D_TTS: (~["#"])+>|  
+    <D_TAG: "#">:TAG_BEGIN  
+}  
+<TAG_BEGIN>  
+TOKEN : {  
+    <B_TTS: (~["#"])+>:DEFAULT|  
+    <B_TAG: "#">:TAG_STATE  
+}  
+  
+<TAG_STATE>  
+TOKEN : {  
+    <WAV: "wav"> |  
+    <BREAK: "break"> |  
+    <COMMA: ":"> |  
+    <DIGITS: (["0"-"9"])+>|  
+    <T_TAG: "##"> :DEFAULT  
+}  
+  
+void Start() :{}{  
+    (tts()) +<EOF>  
+}  
+void wav():{Token t;}{  
+    <WAV>  
+    <COMMA>    t=<DIGITS>{System.out.println("wav:"+t.image);}  
+}  
+void tts():{Token t;}{  
+    t= <D_TTS>{System.out.println(t.image);}  
+    |  
+    <D_TAG>[t=<B_TTS>{System.out.println("#"+t.image);return;}|tag(){return ;}]  
+    {  
+       System.out.println("#");  
+    }  
+}  
+  
+  
+void  tag():{Token t;}{  
+     <B_TAG>  
+     (wav()|<BREAK>{System.out.println("break");})  
+     <T_TAG>  
+}
+```
+
 # jjtree
 
 将源文件编译为语法树，先编译成jj文件，然后在生成相应的java代码
@@ -1323,7 +1385,7 @@ A
    C2
 ```
 
-ABCCC
+AB1C1C2C3
 
 ```shell
 A
@@ -1479,6 +1541,126 @@ Start
    12
    2
 -22
+```
+
+## 一个解析占位符的示例
+
+```java
+options {
+  STATIC = false;
+  MULTI=true;
+  VISITOR=true;
+  VISITOR_DATA_TYPE="StringBuilder";
+  VISITOR_RETURN_TYPE="void";
+}
+PARSER_BEGIN(DemoParser)
+package io.leaderli.c1;
+import java.io.StringReader;
+public class DemoParser{
+    public static void main(String[] args) throws Exception {
+      DemoParser demo = new DemoParser(new StringReader("aa"));
+      SimpleNode node = demo.Start();
+      node.dump(" ");
+      demo = new DemoParser(new StringReader("aa#"));
+      node = demo.Start();
+      node.dump(" ");
+      demo = new DemoParser(new StringReader("aa##wav:12345##1111#11##wav:22345####break##bb"));
+      node = demo.Start();
+      node.dump(" ");
+      DemoParserDefaultVisitor demoParserDefaultVisitor = new DemoParserDefaultVisitor();
+      StringBuilder sb = new StringBuilder();
+      demoParserDefaultVisitor.visit(node, sb);
+      System.out.println(sb);
+    }
+ }
+PARSER_END(DemoParser)
+
+<DEFAULT>
+TOKEN : {
+    <D_TTS: (~["#"])+>|
+    <D_TAG: "#">:TAG_BEGIN
+}
+<TAG_BEGIN>
+TOKEN : {
+    <B_TTS: (~["#"])+>:DEFAULT|
+    <B_TAG: "#">:TAG_STATE
+}
+
+<TAG_STATE>
+TOKEN : {
+    <WAV: "wav"> |
+    <BREAK: "break"> |
+    <COMMA: ":"> |
+    <DIGITS: (["0"-"9"])+>|
+    <T_TAG: "##"> :DEFAULT
+}
+
+SimpleNode Start() :{}{
+    (tts()) +<EOF>{
+        return jjtThis;
+    }
+}
+void wav():{Token t;}{
+    <WAV>
+    <COMMA>
+    t=<DIGITS>{jjtThis.jjtSetValue(t.image);}
+}
+void tts() #void:{Token t;}{
+    t= <D_TTS>{jjtThis.jjtSetValue(t.image);}#tts
+    |
+    <D_TAG>[t=<B_TTS>{jjtThis.jjtSetValue("#"+t.image);return;}#tts|tag(){return ;}]
+    {
+       jjtThis.jjtSetValue("#");
+    }#tts
+}
+
+void  _break():{}{
+    <BREAK>
+}
+
+void  tag()#void:{Token t;}{
+     <B_TAG>
+     (wav()|_break())
+     <T_TAG>
+}
+```
+
+visitor 中添加处理逻辑
+
+```java
+
+package io.leaderli.c1;  
+  
+public class DemoParserDefaultVisitor implements DemoParserVisitor {  
+    public void defaultVisit(SimpleNode node, StringBuilder data) {  
+        node.childrenAccept(this, data);  
+        return;  
+    }  
+  
+    public void visit(SimpleNode node, StringBuilder data) {  
+        defaultVisit(node, data);  
+    }  
+  
+    public void visit(ASTStart node, StringBuilder data) {  
+        defaultVisit(node, data);  
+    }  
+  
+    public void visit(ASTwav node, StringBuilder data) {  
+        data  
+                .append("\r\n")  
+                .append("wav:")  
+                .append(node.jjtGetValue())  
+                .append("\r\n");  
+    }  
+  
+    public void visit(ASTtts node, StringBuilder data) {  
+        data.append(node.jjtGetValue());  
+    }  
+  
+    public void visit(AST_break node, StringBuilder data) {  
+        data.append("\r\n");  
+    }  
+}  
 ```
 
 ## 参考
