@@ -159,3 +159,8 @@ curl -H "Content-Type: application/json" -X POST -d  '{"username":"1","password"
 ```shell
 curl -u glb:abc123xxxa  http://127.0.0.1/xxx
 ```
+
+
+## 相似软件
+
+[hurl](https://github.com/Orange-OpenSource/hurl)
