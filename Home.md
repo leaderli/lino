@@ -23,15 +23,8 @@
 
 ## 其他
 
-- [x] beaninfo ✅ 2022-11-04
 - [ ] java agent
-- [ ] litool-agent
-- [ ] 编译原理
-- [x] SQL 21天自学通 ✅ 2023-04-19
-- [ ] doclet 自定义markdown
 
-- [ ] Apache Calcite
-- [ ] Janino
 
 
 
