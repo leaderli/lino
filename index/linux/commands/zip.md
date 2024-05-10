@@ -34,3 +34,10 @@ zip -s 100m a.zip  --out  b.zip
 # 解压到某个目录
 $ unzip app.zip -d app
 ```
+
+
+> bad zipfile offse
+
+```shell
+zip -F file.zip --out file-large.zip
+```
