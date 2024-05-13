@@ -261,3 +261,39 @@ int c = a + b;
 2. 使用了 volatile 关键字修饰的变量，在进行写入操作时，会插入 StoreLoad 内存屏障。
 3. Unsafe.putOrderedObject 类似这样的方法,会插入 StoreStore 内存屏障
 4. Unsafe.putVolatiObject 则是插入了 StoreLoad 屏障
+
+
+## 多线程工具类
+
+### exchange
+
+两个线程之间交换持有的对象，两个线程都调用exchange方法之后，传入的参数就会交换。
+
+
+```java
+Exchanger<String> exchanger = new Exchanger<>();  
+  
+new Thread(() -> {  
+try {  
+System.out.println("a change");  
+System.out.println("a:"+exchanger.exchange("a"));  
+} catch (InterruptedException e) {  
+throw new RuntimeException(e);  
+}  
+}).start();  
+new Thread(() -> {  
+try {  
+System.out.println("b sleep");  
+Thread.sleep(1000);  
+System.out.println("b change");  
+System.out.println("b:"+exchanger.exchange("b"));  
+} catch (InterruptedException e) {  
+throw new RuntimeException(e);  
+}  
+}).start();  
+  
+Thread.sleep(2000);
+```
+
+### [[ExecutorService]]
+
