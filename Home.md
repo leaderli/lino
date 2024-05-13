@@ -24,6 +24,20 @@
 ## 其他
 
 - [ ] java agent
+数据密集型应用系统设计 (Martin Kleppmann) (Z-Library)
+尚硅谷大数据技术之Flink
+Janino
+Apache Calcite
+java agent
+executor
+档案管理
+混沌工程
+你真的会写代码吗
+程序员超强大脑
+形式逻辑
+算法之美：指导工作与生活的算法
+简单统计学
+
 
 
 
