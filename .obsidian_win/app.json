@@ -29,6 +29,7 @@
   "communityPluginSortOrder": "download",
   "showInlineTitle": false,
   "rightToLeft": false,
-  "focusNewTab": false,
-  "showIndentGuide": true
+  "focusNewTab": true,
+  "showIndentGuide": true,
+  "propertiesInDocument": "hidden"
 }
