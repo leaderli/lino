@@ -12,7 +12,7 @@
     "supercharged-links-gen"
   ],
   "cssTheme": "Minimal",
-  "baseFontSizeAction": false,
+  "baseFontSizeAction": true,
   "interfaceFontFamily": "Consolas,Sarasa Mono HC,Sarasa Mono TC",
   "textFontFamily": "Sarasa Mono TC",
   "accentColor": "#003cf0",

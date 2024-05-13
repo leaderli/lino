@@ -3,9 +3,9 @@
   "search": "",
   "showTags": false,
   "showAttachments": false,
-  "hideUnresolved": false,
-  "showOrphans": true,
-  "collapse-color-groups": true,
+  "hideUnresolved": true,
+  "showOrphans": false,
+  "collapse-color-groups": false,
   "colorGroups": [
     {
       "query": "path:index/linux",
@@ -89,5 +89,5 @@
   "linkStrength": 1,
   "linkDistance": 30,
   "scale": 0.3684048987021727,
-  "close": true
+  "close": false
 }

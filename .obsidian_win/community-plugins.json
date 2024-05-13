@@ -7,7 +7,6 @@
   "find-unlinked-files",
   "obsidian-auto-link-title",
   "supercharged-links-obsidian",
-  "obsidian-outliner",
   "markdown-prettifier",
   "obsidian-image-toolkit",
   "various-complements",
@@ -21,5 +20,6 @@
   "homepage",
   "obsidian-hider",
   "obsidian-minimal-settings",
-  "obsidian-quiet-outline"
+  "obsidian-quiet-outline",
+  "obsidian-dynamic-highlights"
 ]

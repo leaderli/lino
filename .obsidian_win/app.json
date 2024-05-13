@@ -31,5 +31,7 @@
   "rightToLeft": false,
   "focusNewTab": true,
   "showIndentGuide": true,
-  "propertiesInDocument": "hidden"
+  "propertiesInDocument": "hidden",
+  "showRibbon": false,
+  "autoConvertHtml": true
 }
