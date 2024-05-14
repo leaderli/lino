@@ -6,7 +6,6 @@ kanban-plugin: basic
 
 ## 待看文档
 
-- [ ] [学了编译原理能否用 Java 写一个编译器或解释器？ - 知乎 (zhihu.com)](https://www.zhihu.com/question/39835953)
 - [ ] [(2 封私信 / 34 条消息) 如何评价西安交大计算机系开设的课程《计算机图形学》课程2021年改良版？ - 知乎 (zhihu.com)](https://www.zhihu.com/question/500385117/answer/2546569612)
 - [ ] [如何阅读《深入理解计算机系统》这本书？ - 知乎 (zhihu.com)](https://www.zhihu.com/question/20402534/answer/2655186100)
 
@@ -35,6 +34,7 @@ kanban-plugin: basic
 
 ## 已完成
 
+- [ ] [学了编译原理能否用 Java 写一个编译器或解释器？ - 知乎 (zhihu.com)](https://www.zhihu.com/question/39835953)
 
 
 ## 暂停
@@ -57,6 +57,6 @@ kanban-plugin: basic
 
 %% kanban:settings
 ```
-{"kanban-plugin":"basic","hide-card-count":true,"show-checkboxes":true,"hide-tags-in-title":true,"tag-colors":[],"show-relative-date":true,"date-colors":[{"isToday":false,"distance":1,"unit":"days","direction":"after","color":"rgba(222, 55, 18, 1)"},{"isToday":false,"distance":1,"unit":"months","direction":"after","color":"rgba(16, 33, 232, 1)"},{"isToday":false,"distance":1,"unit":"weeks","direction":"after","color":"rgba(197, 19, 242, 1)"}],"archive-with-date":true,"date-picker-week-start":1,"hide-date-display":true,"hide-date-in-title":true}
+{"kanban-plugin":"basic","hide-card-count":true,"show-checkboxes":false,"hide-tags-in-title":true,"tag-colors":[],"show-relative-date":true,"date-colors":[{"isToday":false,"distance":1,"unit":"days","direction":"after","color":"rgba(222, 55, 18, 1)"},{"isToday":false,"distance":1,"unit":"months","direction":"after","color":"rgba(16, 33, 232, 1)"},{"isToday":false,"distance":1,"unit":"weeks","direction":"after","color":"rgba(197, 19, 242, 1)"}],"archive-with-date":true,"date-picker-week-start":1,"hide-date-display":true,"hide-date-in-title":true}
 ```
 %%
