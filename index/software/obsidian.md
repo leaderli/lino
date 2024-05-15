@@ -1,7 +1,7 @@
 ---
 tags:
   - 软件/obsidian
-date updated: 2024-05-15 23:03
+date updated: 2024-05-15 23:06
 ---
 
 ## 常用设置
@@ -43,7 +43,6 @@ date updated: 2024-05-15 23:03
 ![[Pasted image 20210927231336.png]]
 
 ![[Pasted image 20210927231336.png|300]]
-![[Pasted image 20210927231336.png|right|300]]
 
 ## 代办
 
