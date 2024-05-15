@@ -222,7 +222,7 @@
       "modifiers": [
         "Alt"
       ],
-      "key": "-"
+      "key": "="
     }
   ],
   "editor:fold-more": [
@@ -230,7 +230,7 @@
       "modifiers": [
         "Alt"
       ],
-      "key": "="
+      "key": "-"
     }
   ]
 }

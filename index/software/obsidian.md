@@ -1,7 +1,7 @@
 ---
 tags:
   - 软件/obsidian
-date updated: 2024-05-15 23:06
+date updated: 2024-05-15 23:08
 ---
 
 ## 常用设置
