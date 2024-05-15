@@ -1,0 +1,24 @@
+{
+  "status": {
+    "plugin-various-complements;1": {
+      "position": 1,
+      "visible": false,
+      "exists": true
+    },
+    "plugin-editor-status;1": {
+      "position": 2,
+      "visible": true,
+      "exists": true
+    },
+    "left-region;1": {
+      "position": 3,
+      "visible": false,
+      "exists": true
+    },
+    "plugin-backlink;1": {
+      "position": 4,
+      "visible": true,
+      "exists": true
+    }
+  }
+}

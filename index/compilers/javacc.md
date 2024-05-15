@@ -10,6 +10,7 @@ date updated: 2024-05-14 09:06
 
 ## 快速示例
 
+
 用来匹配字母`a`
 
 ```java
@@ -175,6 +176,7 @@ The string valued options are:
 一些参数的示例
 
 ### CommonTokenAction
+
 
 默认为false，设置为true时，会给某个token定义一个行为，需要在 TOKEN_MGR_DECLS 中新增方法 CommonTokenAction
 
