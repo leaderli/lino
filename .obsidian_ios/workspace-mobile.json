@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/java/framework/arthas.md",
-                "mode": "preview",
+                "file": "index/software/obsidian.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": false
               }
@@ -45,7 +45,7 @@
         "state": {
           "type": "search",
           "state": {
-            "query": "arthas",
+            "query": "ant",
             "matchingCase": false,
             "explainSearch": false,
             "collapseAll": false,
@@ -90,7 +90,7 @@
         }
       }
     ],
-    "currentTab": 1
+    "currentTab": 0
   },
   "right": {
     "id": "d289502a870b353a",
@@ -102,7 +102,7 @@
         "state": {
           "type": "outline",
           "state": {
-            "file": "index/java/framework/arthas.md"
+            "file": "index/software/obsidian.md"
           }
         }
       },
@@ -112,7 +112,7 @@
         "state": {
           "type": "outgoing-link",
           "state": {
-            "file": "index/java/framework/arthas.md",
+            "file": "index/software/obsidian.md",
             "linksCollapsed": false,
             "unlinkedCollapsed": true
           }
@@ -124,7 +124,7 @@
         "state": {
           "type": "backlink",
           "state": {
-            "file": "index/java/framework/arthas.md",
+            "file": "index/software/obsidian.md",
             "collapseAll": true,
             "extraContext": false,
             "sortOrder": "alphabetical",
@@ -147,31 +147,42 @@
   },
   "active": "576264e27207f269",
   "lastOpenFiles": [
-    "index/java/framework/_framework.md",
-    "index/java/java tips.md",
-    "index/java/command.md",
-    "index/linux/commands/_commands.md",
-    "index/linux/commands/zip.md",
-    "index/java/framework/arthas.md",
-    "index/common/java_interview.md",
-    "index/java/spring/encryptableProperties.md",
-    "index/java/jdk.md",
-    "index/linux/commands/wget.md",
-    "index/java/framework/mockito.md",
-    "index/java/framework/mock.java.md",
-    "index/linux/bash.md",
-    "index/linux/_linux.md",
-    "index/java/jvm/classloader.md",
-    "index/design pattern/finite-state machine mode.md",
-    "index/computer basics/principles of computer composition.md",
-    "index/computer basics/code style.md",
-    "index/reading note/motivation science.md",
-    "index/reading note/being logical.md",
-    "index/computer basics/regex.md",
-    "index/computer basics/computer fundametation.md",
-    "index/call system/voicexml.md",
+    "index/call system/freeswitch.md",
+    "index/rust/rust.md",
+    "index/computer basics/Fundamentals of Compiling.md",
+    "index/computer basics/go.md",
+    "index/compilers/grammar.md",
+    "index/compilers/automation.md",
+    "index/compilers/_compilers.md",
     "index/compilers/fundamentals of compiling.md",
-    "index/computer basics/cryptography.md",
-    "index/compilers/automation.md"
+    "index/computer basics/computer fundametation.md",
+    "index/java/framework/gson.md",
+    "index/java/framework/fastjson.md",
+    "index/java/framework/jacoco.md",
+    "index/linux/commands/printf.md",
+    "index/linux/commands/sed.md",
+    "index/java/framework/javassist.md",
+    "index/linux/commands/svn.md",
+    "index/protocol/ant.md",
+    "index/linux/bash.md",
+    "index/java/se/reflect.md",
+    "index/linux/commands/crontab.md",
+    "resource/Pasted image 20240114215059.png",
+    "resource/Pasted image 20240114135133.png",
+    "resource/Pasted image 20240114135131.png",
+    "resource/Pasted image 20240114183143.png",
+    "resource/Pasted image 20240121012518.png",
+    "resource/Pasted image 20240115231333.png",
+    "resource/Pasted image 20240115225143.png",
+    "resource/Pasted image 20240121010425.png",
+    "resource/Pasted image 20240114210925.png",
+    "index/linux/commands/find.md",
+    "index/common/java_interview.md",
+    "index/linux/commands/date.md",
+    "index/software/intellij_idea.md",
+    "index/linux/commands/netcat.md",
+    "resource/Pasted image 20231225195823.png",
+    "resource/fernflower.jar",
+    "index/java/spring/spring_war.md"
   ]
 }
