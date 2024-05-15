@@ -1,17 +1,19 @@
 ---
 tags:
   - 软件/obsidian
-date updated: 2022-07-01 06:10
+date updated: 2024-05-15 23:03
 ---
 
 ## 常用设置
 
 不同平台或者不同用户可以使用独立的配置，例如使用`.obsidian_win`
+
 ![[Pasted image 20210927231208.png]]
 
 ### 配置默认笔记目录
 
 设置默认新建笔记的目录，例如`md`
+
 ![[Pasted image 20210927231336.png]]
 
 ## 快捷键
@@ -31,22 +33,17 @@ date updated: 2022-07-01 06:10
 [file](file:///D:\download\obsidian-kanban-1.0.21.zip)
 ```
 
-
-
 ## 图片布局
 
-
 ```markdown
-![[Pasted image 20220704211640.png]]
-![[Pasted image 20220704211640.png|100]]
-![[Pasted image 20220704211640.png|left|100]]
-![[Pasted image 20220704211640.png|right|100]]
+![[Pasted image 20210927231336.png]]
+![[Pasted image 20210927231336.png|300]]
 ```
 
-![[Pasted image 20220704211640.png]]
-![[Pasted image 20220704211640.png|100]]
-![[Pasted image 20220704211640.png|left|100]]
-![[Pasted image 20220704211640.png|right|100]]
+![[Pasted image 20210927231336.png]]
+
+![[Pasted image 20210927231336.png|300]]
+
 ## 代办
 
 可点击完成
@@ -89,7 +86,7 @@ date updated: 2022-07-01 06:10
 
 [ 📒 recent-files-obsidian](https://github.com/tgrosinger/recent-files-obsidian)
 
-### Embed Code File 
+### Embed Code File
 
 链接代码文件
 
@@ -108,7 +105,7 @@ TITLE: "<some-title>"
 
 自动窗口文件导航目录
 
-###  quick-explorer
+### quick-explorer
 
 显示层级目录 `obsidian://show-plugin?id=quick-explorer`
 
@@ -237,6 +234,14 @@ vim 模式自动切换输入法的插件
 ### various-complements
 
 自动补全的插件
+
+### new Tab ++
+
+用新tab打开笔记
+
+### clear unused images
+
+清理失效的图片、附近
 
 ### 自定义插件
 

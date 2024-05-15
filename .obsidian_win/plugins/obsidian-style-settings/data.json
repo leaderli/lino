@@ -15,5 +15,6 @@
   "minimal-style@@h4-variant": "normal",
   "minimal-advanced@@cursor": "default",
   "minimal-advanced@@hide-markdown": false,
-  "minimal-style@@active-line-on": false
+  "minimal-style@@active-line-on": false,
+  "minimal-style@@header-height": "35px"
 }

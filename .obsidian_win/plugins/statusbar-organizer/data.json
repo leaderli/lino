@@ -1,22 +1,32 @@
 {
   "status": {
     "plugin-various-complements;1": {
-      "position": 1,
+      "position": 0,
       "visible": false,
       "exists": true
     },
     "plugin-editor-status;1": {
-      "position": 2,
+      "position": 3,
       "visible": true,
       "exists": true
     },
     "left-region;1": {
-      "position": 3,
-      "visible": false,
+      "position": 1,
+      "visible": true,
       "exists": true
     },
     "plugin-backlink;1": {
-      "position": 4,
+      "position": 2,
+      "visible": true,
+      "exists": true
+    },
+    "plugin-obsidian-git-obsidian-git-statusbar-failed-init-obsidian-git-statusbar-idle-obsidian-git-statusbar-pull-obsidian-git-statusbar-message;1": {
+      "position": 5,
+      "visible": true,
+      "exists": false
+    },
+    "plugin-obsidian-git-obsidian-git-statusbar-failed-init-obsidian-git-statusbar-idle-obsidian-git-statusbar-pull;1": {
+      "position": 6,
       "visible": true,
       "exists": true
     }
