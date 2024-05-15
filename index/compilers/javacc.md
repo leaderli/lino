@@ -1,7 +1,7 @@
 ---
 tags:
   - compilers/antlr
-date updated: 2024-05-14 09:06
+date updated: 2024-05-15 22:22
 ---
 
 默认使用 [[LL(1)]] 文法，使用 [[EBNF]] 来描述语法
@@ -9,7 +9,6 @@ date updated: 2024-05-14 09:06
 # javacc
 
 ## 快速示例
-
 
 用来匹配字母`a`
 
@@ -176,7 +175,6 @@ The string valued options are:
 一些参数的示例
 
 ### CommonTokenAction
-
 
 默认为false，设置为true时，会给某个token定义一个行为，需要在 TOKEN_MGR_DECLS 中新增方法 CommonTokenAction
 
