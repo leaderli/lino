@@ -13,14 +13,25 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index/software/obsidian.md",
-                "mode": "source",
+                "file": "index/common/bookmark.md",
+                "mode": "preview",
                 "backlinks": false,
                 "source": false
               }
             }
+          },
+          {
+            "id": "08de3701b1dbe4f3",
+            "type": "leaf",
+            "state": {
+              "type": "kanban",
+              "state": {
+                "file": "Home.md"
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -102,7 +113,7 @@
         "state": {
           "type": "outline",
           "state": {
-            "file": "index/software/obsidian.md"
+            "file": "Home.md"
           }
         }
       },
@@ -112,7 +123,7 @@
         "state": {
           "type": "outgoing-link",
           "state": {
-            "file": "index/software/obsidian.md",
+            "file": "Home.md",
             "linksCollapsed": false,
             "unlinkedCollapsed": true
           }
@@ -124,7 +135,7 @@
         "state": {
           "type": "backlink",
           "state": {
-            "file": "index/software/obsidian.md",
+            "file": "Home.md",
             "collapseAll": true,
             "extraContext": false,
             "sortOrder": "alphabetical",
@@ -142,11 +153,15 @@
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
-      "markdown-importer:Open format converter": false
+      "markdown-importer:Open format converter": false,
+      "homepage:Open homepage": false
     }
   },
-  "active": "576264e27207f269",
+  "active": "08de3701b1dbe4f3",
   "lastOpenFiles": [
+    "index/common/bookmark.md",
+    "Home.md",
+    "index/software/obsidian.md",
     "index/call system/freeswitch.md",
     "index/rust/rust.md",
     "index/computer basics/Fundamentals of Compiling.md",
@@ -179,10 +194,7 @@
     "index/linux/commands/find.md",
     "index/common/java_interview.md",
     "index/linux/commands/date.md",
-    "index/software/intellij_idea.md",
-    "index/linux/commands/netcat.md",
     "resource/Pasted image 20231225195823.png",
-    "resource/fernflower.jar",
-    "index/java/spring/spring_war.md"
+    "resource/fernflower.jar"
   ]
 }
