@@ -1,7 +1,7 @@
 ---
 tags:
   - compilers/antlr
-date updated: 2024-05-14 09:06
+date updated: 2024-05-15 22:22
 ---
 
 默认使用 [[LL(1)]] 文法，使用 [[EBNF]] 来描述语法

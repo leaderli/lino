@@ -21,7 +21,9 @@
   "obsidian-hider",
   "obsidian-minimal-settings",
   "obsidian-quiet-outline",
-  "obsidian-dynamic-highlights",
-  "obsidian-linter",
-  "obsidian-kanban"
+  "obsidian-kanban",
+  "codeblock-customizer",
+  "statusbar-organizer",
+  "new-tab-plus",
+  "settings-search"
 ]

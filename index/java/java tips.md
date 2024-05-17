@@ -28,10 +28,8 @@ Comparator<Player> byRanking
 类似`Collectors`提供了快捷的`Comparator`方法
 
 ```java
-Comparator<Player> byRanking = Comparator
-  .comparing(Player::getRanking);
-Comparator<Player> byAge = Comparator
-  .comparing(Player::getAge);
+Comparator<Player> byRanking = Comparator.comparing(Player::getRanking);
+Comparator<Player> byAge = Comparator.comparing(Player::getAge);
 ```
 
 ### 批量反编译 jar 包
@@ -49,7 +47,6 @@ fernflower idea中使用的
 
 ```java
 String javaSource = new String(Files.readAllBytes(Paths.get("src/Hello.java")));
-
 ```
 
 ### 返回空的集合
@@ -75,6 +72,8 @@ Test.class.getResource("/");
 ```
 
 下面是具体 [[classloader]] 的源码，可以看出不是以 `/` 开头的，会去找当前类的路径下文件，否则找 classpath 路径
+
+
 
 ```java
 public java.net.URL getResource(String name) {  
