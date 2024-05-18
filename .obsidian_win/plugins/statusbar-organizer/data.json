@@ -28,6 +28,11 @@
     "plugin-obsidian-git-obsidian-git-statusbar-failed-init-obsidian-git-statusbar-idle-obsidian-git-statusbar-pull;1": {
       "position": 6,
       "visible": true,
+      "exists": false
+    },
+    "plugin-obsidian-git-obsidian-git-statusbar-failed-init;1": {
+      "position": 7,
+      "visible": true,
       "exists": true
     }
   }
