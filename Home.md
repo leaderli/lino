@@ -28,14 +28,15 @@ kanban-plugin: basic
 
 ## 进行中
 
-- [ ] executor @{2024-05-17}
 - [ ] 简单统计学 @{2024-05-31}
 - [ ] 尚硅谷大数据技术之Flink @{2024-07-31}
 
 
 ## 已完成
 
+**Complete**
 - [ ] [学了编译原理能否用 Java 写一个编译器或解释器？ - 知乎 (zhihu.com)](https://www.zhihu.com/question/39835953)
+- [ ] executor @{2024-05-17}
 
 
 ## 暂停
