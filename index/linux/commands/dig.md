@@ -2,11 +2,19 @@
 tags:
   - linux/commands/dig
   - dns
-date updated: 2022-04-14 11:53
+date updated: 2024-05-19 11:40
 ---
 
 查看 dns 解析过程
 
 ```shell
 dig www.example.com
+```
+
+## 其他
+
+debian上安装
+
+```shell
+apt install dnsutils
 ```
