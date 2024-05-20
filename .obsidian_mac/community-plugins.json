@@ -8,7 +8,6 @@
   "obsidian-auto-link-title",
   "supercharged-links-obsidian",
   "obsidian-hider",
-  "obsidian-outliner",
   "markdown-prettifier",
   "obsidian-image-toolkit",
   "vim-im-select",
@@ -23,5 +22,11 @@
   "quick-explorer",
   "obsidian-another-quick-switcher",
   "omnisearch",
-  "obsidian-quiet-outline"
+  "obsidian-quiet-outline",
+  "obsidian-dynamic-highlights",
+  "obsidian-kanban",
+  "various-complements",
+  "codeblock-customizer",
+  "new-tab-plus",
+  "statusbar-organizer"
 ]
