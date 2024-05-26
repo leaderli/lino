@@ -1,5 +1,5 @@
 {
-  "baseFontSize": 17,
+  "baseFontSize": 14,
   "theme": "moonstone",
   "translucency": false,
   "enabledCssSnippets": [
@@ -14,9 +14,9 @@
   "cssTheme": "Minimal",
   "baseFontSizeAction": true,
   "interfaceFontFamily": "Consolas",
-  "textFontFamily": "Consolas",
+  "textFontFamily": "Sarasa Mono HC",
   "accentColor": "#003cf0",
   "nativeMenus": false,
   "showViewHeader": true,
-  "monospaceFontFamily": "Consolas"
+  "monospaceFontFamily": "Sarasa Mono HC"
 }
