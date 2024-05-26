@@ -13,10 +13,10 @@
   ],
   "cssTheme": "Minimal",
   "baseFontSizeAction": true,
-  "interfaceFontFamily": "Consolas,Sarasa Mono HC,Sarasa Mono TC",
-  "textFontFamily": "Sarasa Mono TC",
+  "interfaceFontFamily": "Consolas",
+  "textFontFamily": "Consolas",
   "accentColor": "#003cf0",
   "nativeMenus": false,
-  "showViewHeader": false,
-  "monospaceFontFamily": "Sarasa Mono TC"
+  "showViewHeader": true,
+  "monospaceFontFamily": "Consolas"
 }

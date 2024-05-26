@@ -27,11 +27,11 @@
   "spellcheck": false,
   "legacyEditor": false,
   "communityPluginSortOrder": "download",
-  "showInlineTitle": false,
+  "showInlineTitle": true,
   "rightToLeft": false,
   "focusNewTab": true,
   "showIndentGuide": true,
   "propertiesInDocument": "hidden",
-  "showRibbon": false,
+  "showRibbon": true,
   "autoConvertHtml": true
 }
