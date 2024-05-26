@@ -17,6 +17,6 @@
   "textFontFamily": "Sarasa Mono HC",
   "accentColor": "#003cf0",
   "nativeMenus": false,
-  "showViewHeader": true,
+  "showViewHeader": false,
   "monospaceFontFamily": "Sarasa Mono HC"
 }

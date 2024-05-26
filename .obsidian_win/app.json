@@ -27,7 +27,7 @@
   "spellcheck": false,
   "legacyEditor": false,
   "communityPluginSortOrder": "download",
-  "showInlineTitle": true,
+  "showInlineTitle": false,
   "rightToLeft": false,
   "focusNewTab": true,
   "showIndentGuide": true,
