@@ -13,7 +13,7 @@ tags:
 
 [Library Genesis](http://gen.lib.rus.ec/)
 
-[zlibray](https://b-ok.cc/s/?extension=mobi)
+[zlibray](https://zh.zlibrary-global.se/)
 
 ### 查找资源
 
