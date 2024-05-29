@@ -28,5 +28,6 @@
   "obsidian-outliner",
   "obsidian-export-image",
   "codeblock-customizer",
-  "obs-text-wrapper"
+  "obs-text-wrapper",
+  "li-text-wrapper"
 ]
