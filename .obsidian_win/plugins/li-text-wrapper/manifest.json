@@ -1,9 +1,0 @@
-{
-	"id": "li-text-wrapper",
-	"name": "Text Wrapper",
-	"version": "1.0.0",
-	"minAppVersion": "0.15.0",
-	"description": "Quickly wrap selected text with ",
-	"authorUrl": "",
-	"isDesktopOnly": false
-}
