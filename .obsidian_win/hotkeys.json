@@ -232,5 +232,21 @@
       ],
       "key": "-"
     }
+  ],
+  "obs-text-wrapper:quick-link": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "T"
+    }
+  ],
+  "li-text-wrapper:quick-link": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "T"
+    }
   ]
 }

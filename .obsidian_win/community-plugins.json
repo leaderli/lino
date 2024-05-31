@@ -27,5 +27,7 @@
   "settings-search",
   "obsidian-outliner",
   "obsidian-export-image",
-  "codeblock-customizer"
+  "codeblock-customizer",
+  "obs-text-wrapper",
+  "li-text-wrapper"
 ]
