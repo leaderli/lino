@@ -2,7 +2,9 @@
 aliases: 资源站
 tags:
   - 常用/资源站
+date updated: 2024-06-01 20:35
 ---
+
 ### 常用链接
 
 [联想的电脑一些常用设置](https://iknow.lenovo.com.cn/detail/dc_172545.html)
@@ -13,12 +15,12 @@ tags:
 
 [Library Genesis](http://gen.lib.rus.ec/)
 
-[zlibray](https://zh.zlibrary-global.se/)
+[zlibray](https://singlelogin.re/)
 
 ### 查找资源
 
 [wiki](https://en.wikipedia.org/)
- 
+
 [好用工具](https://www.fosshub.com/categories.html)
 
 ### w3c
@@ -26,7 +28,6 @@ tags:
 [voicexml](https://www.w3.org/TR/voicexml20/)
 
 [ccxml](https://www.w3.org/TR/ccxml/)
-
 
 ### 资源整合站
 
