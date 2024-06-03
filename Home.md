@@ -31,7 +31,6 @@ kanban-plugin: basic
 
 - [ ] 尚硅谷大数据技术之Flink @{2024-07-31}
 - [ ] linux就该这么学
-- [ ] Google-技术写作
 
 
 ## 已完成
@@ -40,6 +39,7 @@ kanban-plugin: basic
 - [ ] [学了编译原理能否用 Java 写一个编译器或解释器？ - 知乎 (zhihu.com)](https://www.zhihu.com/question/39835953)
 - [x] 程序员超强大脑
 - [ ] executor @{2024-05-17}
+- [x] Google-技术写作
 - [x] 简单统计学 @{2024-05-31}
 
 
