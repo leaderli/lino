@@ -5,7 +5,7 @@ tags:
   - '#停止'
   - '#测试'
   - '#默认'
-date updated: 2024-06-03 23:03
+date updated: 2024-06-03 23:31
 ---
 
 # 简介
@@ -2057,6 +2057,99 @@ group by
 dim,
 -- UNIX_TIMESTAMP 得到秒的时间戳，将秒级别时间戳 / 60 转化为 1min，
 cast((UNIX_TIMESTAMP(CAST(row_time AS STRING))) / 60 as bigint)
+```
+
+###  窗口聚合
+
+```sql
+CREATE TABLE ws (
+id INT,
+vc INT,
+pt AS PROCTIME(), --处理时间
+et AS cast(CURRENT_TIMESTAMP as timestamp(3)), --事件时间
+WATERMARK FOR et AS et - INTERVAL '5' SECOND --watermark
+) WITH (
+'connector' = 'datagen',
+'rows-per-second' = '10',
+'fields.id.min' = '1',
+'fields.id.max' = '3',
+'fields.vc.min' = '1',
+'fields.vc.max' = '100'
+);
+```
+
+#### 分组窗口聚合
+
+```sql
+--  滚动窗口示例（时间属性字段，窗口长度）
+select
+id,
+TUMBLE_START(et, INTERVAL '5' SECOND) wstart,
+TUMBLE_END(et, INTERVAL '5' SECOND) wend,
+sum(vc) sumVc
+from ws
+group by id, TUMBLE(et, INTERVAL '5' SECOND);
+
+
+
+-- 滑动窗口（时间属性字段，滑动步长，窗口长度）
+select
+id,
+HOP_START(pt, INTERVAL '3' SECOND,INTERVAL '5' SECOND)
+wstart,
+HOP_END(pt, INTERVAL '3' SECOND,INTERVAL '5' SECOND) wend,
+sum(vc) sumVc
+from ws
+group by id, HOP(et, INTERVAL '3' SECOND,INTERVAL '5' SECOND);
+
+
+-- 会话窗口（时间属性字段，会话间隔）
+select
+id,
+SESSION_START(et, INTERVAL '5' SECOND) wstart,
+SESSION_END(et, INTERVAL '5' SECOND) wend,
+sum(vc) sumVc
+from ws
+group by id, SESSION(et, INTERVAL '5' SECOND);
+```
+
+#### 窗口表值函数（TVF）聚合
+
+```sql
+-- 滚动窗口
+
+SELECT
+window_start,
+window_end,
+id , SUM(vc)
+sumVC
+FROM TABLE(
+TUMBLE(TABLE ws, DESCRIPTOR(et), INTERVAL '5' SECONDS))
+GROUP BY window_start, window_end, id;
+
+
+--  滑动窗口 窗口长度=滑动步长的整数倍（底层会优化成多个小滚动窗口）
+
+SELECT window_start, window_end, id , SUM(vc) sumVC
+FROM TABLE(
+HOP(TABLE ws, DESCRIPTOR(et), INTERVAL '5' SECONDS , INTERVAL
+'10' SECONDS))
+GROUP BY window_start, window_end, id;
+
+-- 累积窗口 累积窗口可以认为是首先开一个最大窗口大小的滚动窗口，然后根据用户设置的触发的时间间隔将这个滚动窗口拆分为多个窗口，这些窗口具有相同的窗口起点和不同的窗口终点。
+-- 窗口最大长度 = 累积步长的整数倍
+SELECT
+window_start,
+window_end,
+id ,
+SUM(vc) sumVC
+FROM TABLE(
+CUMULATE(TABLE ws, DESCRIPTOR(et), INTERVAL '2' SECONDS ,
+INTERVAL '6' SECONDS))
+GROUP BY window_start, window_end, id;
+
+
+
 ```
 
 ## 函数
