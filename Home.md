@@ -13,12 +13,10 @@ kanban-plugin: basic
 
 ## 新建
 
-- [ ] java agent
 - [ ] 数据密集型应用系统设计 (Martin Kleppmann) (Z-Library)
 - [ ] Janino
 - [ ] Apache Calcite
 - [ ] java agent
-- [ ] 档案管理
 - [ ] 混沌工程
 - [ ] 你真的会写代码吗
 - [ ] 形式逻辑
