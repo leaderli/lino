@@ -34,6 +34,11 @@
       "position": 7,
       "visible": true,
       "exists": false
+    },
+    "plugin-word-count;1": {
+      "position": 8,
+      "visible": true,
+      "exists": true
     }
   }
 }
