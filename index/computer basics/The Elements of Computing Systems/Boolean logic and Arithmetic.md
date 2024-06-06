@@ -30,3 +30,6 @@ date updated: 2024-06-06 23:52
 $Xor(a,b) = a \cdot \overline b +  \overline a \cdot b$
 
 ![[Pasted image 20240606235555.png|400]]
+
+
+[Hardware Simulator](https://nand2tetris.github.io/web-ide/chip/)
