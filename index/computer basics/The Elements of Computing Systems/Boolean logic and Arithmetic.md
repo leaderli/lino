@@ -2,7 +2,7 @@
 aliases: 逻辑门
 tags:
   - 计算机基础/计算机系统要素/布尔逻辑与运算
-date updated: 2024-06-06 23:52
+date updated: 2024-06-07 22:43
 ---
 
 # 布尔代数
@@ -19,20 +19,17 @@ date updated: 2024-06-06 23:52
 
 ![[Pasted image 20240606234914.png|400]]
 
-
 门可以连起来构成具有任意复杂度的复合门电路
 
 例如  $a \cdot b \cdot c =  (a \cdot b) \cdot c$
 
 ![[Pasted image 20240606235417.png|400]]
 
-
 $Xor(a,b) = a \cdot \overline b +  \overline a \cdot b$
 
 ![[Pasted image 20240606235555.png|400]]
 
-
-[Hardware Simulator](https://nand2tetris.github.io/web-ide/chip/)
-
+## 参考文档
 
 [与非门 · 从零开始打造一台简易计算机](https://www.xiaogd.net/book/spcp/gate/nand-gate.html)
+[Hardware Simulator](https://nand2tetris.github.io/web-ide/chip/)
