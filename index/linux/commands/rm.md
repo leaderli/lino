@@ -9,3 +9,10 @@ date updated: 2023-08-20 19:53
 参数
 
 - `-i` 根据 [[linux basic#inode|inode]] 删除文件
+
+
+
+```shell
+# 当文件数量过多时，可能无法通过 rm -rf * 删除
+ls|xargs rm -rf
+```

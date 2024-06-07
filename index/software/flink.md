@@ -5,7 +5,7 @@ tags:
   - '#停止'
   - '#测试'
   - '#默认'
-date updated: 2024-01-30 00:03
+date updated: 2024-06-05 22:55
 ---
 
 # 简介
@@ -49,13 +49,6 @@ $ tail log/flink-*-taskexecutor-*.out
 # 也可以使用Web UI界面查看，默认端口为8081，可在conf/flink-conf.yaml中修改rest.port配置
 ```
 
-## 配置允许ip访问 Web UI
-
-```yml
-rest.address: 0.0.0.0
-rest.bind-address: 0.0.0.0
-```
-
 下载示例程序
 
 [examples-scala.jar](https://streaming-with-flink.github.io/examples/download/examples-scala.jar)
@@ -68,6 +61,23 @@ tail -f ./log/flink-<user>-taskexecutor-<n>-<hostname>.out
 ```
 
 SensorReading 的第一个字段是 sensorld ，第二个字段是用自1970-01-01 00:00:00.000 以来的毫秒数所表示的时间戳，第三个字段是每隔 5 秒计算出的平均温度 。
+
+# 常见配置项
+
+`conf/flink-conf.yaml`
+
+## 设置slot
+
+```yml
+taskmanager.numberOfTaskSlots: 9
+```
+
+## 配置允许ip访问 Web UI
+
+```yml
+rest.address: 0.0.0.0
+rest.bind-address: 0.0.0.0
+```
 
 # 快速入门（java）
 
@@ -133,6 +143,22 @@ nc -lk 7777
 启动后可以访问 <http://localhost:8081/>
 
 我们向socket端口输出数据时，就可以看到java控制台相关的输出信息
+
+# 终端命令
+
+```shell
+# 显示所有执行任务
+$ bin/flink list
+Waiting for response...
+------------------ Running/Restarting Jobs -------------------
+15.05.2024 23:29:11 : 781b11e4a4a54daef1d0210033299008 : insert-into_default_catalog.mydatabase.sink (RUNNING)
+--------------------------------------------------------------
+
+# 取消任务
+$ bin/flink cancel 781b11e4a4a54daef1d0210033299008
+Cancelling job 781b11e4a4a54daef1d0210033299008.
+Cancelled job 781b11e4a4a54daef1d0210033299008.
+```
 
 # 读取数据
 
@@ -1611,7 +1637,7 @@ $ bin/sql-client -i conf/sql-client-init.sql
 
 
 # 退出 sql-client
-$ exit
+$ exit;
 ```
 
 ```shell
@@ -1626,6 +1652,20 @@ SET parallelism.default=1
 
 # 设置状态 TTL
 SET table.exec.state.ttl=1000;
+
+# 显示所有设置
+SET;
+
+# 重置设置
+RESET sql-client.execution.result-mode;
+# 重置所有设置
+RESET;
+
+# 清屏
+clear;
+
+# 查看所有job
+show jobs;
 ```
 
 ## 动态表和持续查询
@@ -1924,17 +1964,21 @@ vc INT
 select * from source;
 ```
 
-table
+#### 显示模式
 
-![[Pasted image 20240129220902.png]]
+`sql-client.execution.result-mode`
 
-tableau
+1. table
 
-![[Pasted image 20240129221344.png]]
+   ![[Pasted image 20240129220902.png]]
 
-changelog
+2. tableau
 
-![[Pasted image 20240129221504.png]]
+   ![[Pasted image 20240129221344.png]]
+
+3. changelog
+
+   ![[Pasted image 20240129221504.png]]
 
 ```sql
 CREATE TABLE sink (
@@ -1947,6 +1991,8 @@ vc INT
 
 INSERT INTO sink select * from source;
 ```
+
+^9ca748
 
 提交的任务可以在web界面的任务里看到
 
@@ -2021,6 +2067,279 @@ dim,
 cast((UNIX_TIMESTAMP(CAST(row_time AS STRING))) / 60 as bigint)
 ```
 
+### 窗口聚合
+
+```sql
+CREATE TABLE ws (
+id INT,
+vc INT,
+pt AS PROCTIME(), --处理时间
+et AS cast(CURRENT_TIMESTAMP as timestamp(3)), --事件时间
+WATERMARK FOR et AS et - INTERVAL '5' SECOND --watermark
+) WITH (
+'connector' = 'datagen',
+'rows-per-second' = '10',
+'fields.id.min' = '1',
+'fields.id.max' = '3',
+'fields.vc.min' = '1',
+'fields.vc.max' = '100'
+);
+```
+
+#### 分组窗口聚合
+
+```sql
+--  滚动窗口示例（时间属性字段，窗口长度）
+select
+id,
+TUMBLE_START(et, INTERVAL '5' SECOND) wstart,
+TUMBLE_END(et, INTERVAL '5' SECOND) wend,
+sum(vc) sumVc
+from ws
+group by id, TUMBLE(et, INTERVAL '5' SECOND);
+
+
+
+-- 滑动窗口（时间属性字段，滑动步长，窗口长度）
+select
+id,
+HOP_START(pt, INTERVAL '3' SECOND,INTERVAL '5' SECOND)
+wstart,
+HOP_END(pt, INTERVAL '3' SECOND,INTERVAL '5' SECOND) wend,
+sum(vc) sumVc
+from ws
+group by id, HOP(et, INTERVAL '3' SECOND,INTERVAL '5' SECOND);
+
+
+-- 会话窗口（时间属性字段，会话间隔）
+select
+id,
+SESSION_START(et, INTERVAL '5' SECOND) wstart,
+SESSION_END(et, INTERVAL '5' SECOND) wend,
+sum(vc) sumVc
+from ws
+group by id, SESSION(et, INTERVAL '5' SECOND);
+```
+
+#### 窗口表值函数（TVF）聚合
+
+```sql
+-- 滚动窗口
+
+SELECT
+window_start,
+window_end,
+id , SUM(vc)
+sumVC
+FROM TABLE(
+TUMBLE(TABLE ws, DESCRIPTOR(et), INTERVAL '5' SECONDS))
+GROUP BY window_start, window_end, id;
+
+
+--  滑动窗口 窗口长度=滑动步长的整数倍（底层会优化成多个小滚动窗口）
+
+SELECT window_start, window_end, id , SUM(vc) sumVC
+FROM TABLE(
+HOP(TABLE ws, DESCRIPTOR(et), INTERVAL '5' SECONDS , INTERVAL
+'10' SECONDS))
+GROUP BY window_start, window_end, id;
+
+-- 累积窗口 累积窗口可以认为是首先开一个最大窗口大小的滚动窗口，然后根据用户设置的触发的时间间隔将这个滚动窗口拆分为多个窗口，这些窗口具有相同的窗口起点和不同的窗口终点。
+-- 窗口最大长度 = 累积步长的整数倍
+SELECT
+window_start,
+window_end,
+id ,
+SUM(vc) sumVC
+FROM TABLE(
+CUMULATE(TABLE ws, DESCRIPTOR(et), INTERVAL '2' SECONDS ,
+INTERVAL '6' SECONDS))
+GROUP BY window_start, window_end, id;
+```
+
+### over聚合
+
+OVER 聚合为一系列有序行的每个输入行计算一个聚合值。与GROUP BY 聚合相比，OVER 聚合不会将每个组的结果行数减少为一行。相反，OVER 聚合为每个输入行生成一个聚合值。可以在事件时间或处理时间，以及指定为时间间隔、或行计数的范围内，定义Overwindows。
+
+```sql
+-- 统计每个传感器前10 秒到现在收到的水位数据条数
+SELECT
+id,
+et,
+vc,
+count(vc) OVER (
+PARTITION BY id
+ORDER BY et
+RANGE BETWEEN INTERVAL '10' SECOND PRECEDING AND CURRENT ROW
+) AS cnt
+FROM ws;
+
+-- 统计每个传感器前5 条到现在数据的平均水位
+
+
+SELECT
+id,
+et,
+vc,
+avg(vc) OVER (
+PARTITION BY id
+ORDER BY et
+ROWS BETWEEN 5 PRECEDING AND CURRENT ROW
+) AS avgVC
+FROM ws;
+
+
+-- 也可以用WINDOW 子句来在SELECT 外部单独定义一个OVER 窗口,可以多次使用
+
+SELECT
+id,
+et,
+vc,
+count(vc) OVER w AS cnt,
+sum(vc) OVER w AS sumVC
+FROM ws
+WINDOW w AS (
+PARTITION BY id
+ORDER BY et
+RANGE BETWEEN INTERVAL '10' SECOND PRECEDING AND CURRENT ROW
+);
+```
+
+### join
+
+具体语法与标准SQL 的联结完全相同，通过关键字JOIN 来联结两个表，后面用关键字ON来指明联结条件。
+
+```sql
+CREATE TABLE ws1 (
+id INT,
+vc INT,
+pt AS PROCTIME(), --处理时间
+et AS cast(CURRENT_TIMESTAMP as timestamp(3)), --事件时间
+WATERMARK FOR et AS et - INTERVAL '0.001' SECOND --watermark
+) WITH (
+'connector' = 'datagen',
+'rows-per-second' = '1',
+'fields.id.min' = '3',
+'fields.id.max' = '5',
+'fields.vc.min' = '1',
+'fields.vc.max' = '100'
+);
+```
+
+```sql
+-- 内联结
+SELECT *
+FROM ws
+INNER JOIN ws1
+ON ws.id = ws1.id;
+
+
+-- 左联结
+SELECT *
+FROM ws
+LEFT JOIN ws1
+ON ws.id = ws1.id;
+
+-- 右联结
+SELECT *
+FROM ws
+RIGHT JOIN ws1
+ON ws.id = ws1.id;
+
+-- 全联结
+SELECT *
+FROM ws
+FULL OUTER JOIN ws1
+ON ws.id = ws.id;
+
+```
+
+交叉联结
+
+```sql
+SELECT *
+FROM ws,ws1
+WHERE ws.id = ws1. id
+AND ws.et BETWEEN ws1.et - INTERVAL '2' SECOND AND ws1.et + INTERVAL
+'2' SECOND;
+```
+
+### 维表连接
+
+实时查找外部缓存的join
+
+```sql
+CREATE TABLE Customers (
+id INT,
+name STRING,
+country STRING,
+zip STRING
+) WITH (
+'connector' = 'jdbc',
+'url' = 'jdbc:mysql://hadoop102:3306/customerdb',
+'table-name' = 'customers'
+);
+-- order 表每来一条数据，都会去mysql 的customers 表查找维度数据
+SELECT o.order_id, o.total, c.country, c.zip
+FROM Orders AS o
+JOIN Customers FOR SYSTEM_TIME AS OF o.proc_time AS c
+ON o.customer_id = c.id;
+```
+
+### SQL Hints
+
+在执行查询时，可以在表名后面添加SQL Hints 来临时修改表属性，对当前job 生效
+
+```sql
+select * from ws1/*+ OPTIONS('rows-per-second'='10')*/;
+```
+
+### union
+
+```sql
+-- 将集合合并并且去重
+(SELECT id FROM ws) UNION (SELECT id FROM ws1);
+--  将集合合并，不做去重
+(SELECT id FROM ws) UNION ALL (SELECT id FROM ws1);
+
+-- 交集并且去重
+(SELECT id FROM ws) INTERSECT (SELECT id FROM ws1);
+-- 交集并且不去重
+(SELECT id FROM ws) INTERSECT ALL (SELECT id FROM ws1);
+
+
+-- 差集并且去重
+(SELECT id FROM ws) EXCEPT (SELECT id FROM ws1);
+-- 差集不做去重
+(SELECT id FROM ws) EXCEPT ALL (SELECT id FROM ws1);
+```
+
+上述 SQL 在流式任务中，如果一条左流数据先来了，没有从右流集合数据中找到对应的数据时会直接输出，当右流对应数据后续来了之后，会下发回撤流将之前的数据給撤回。这也是一个回撤流
+
+例如：
+
+```sql
+Flink SQL> (SELECT id FROM ws) EXCEPT (SELECT id FROM ws1);
++----+-------------+
+| op |          id |
++----+-------------+
+| +I |           2 |
+| +I |           1 |
+| +I |           3 |
+| -D |           3 |
+```
+
+### in
+
+```sql
+-- In 子查询的结果集只能有一列
+SELECT id, vc
+FROM ws
+WHERE id IN (
+SELECT id FROM ws1
+)
+```
+
 ## 函数
 
 ```sql
@@ -2051,45 +2370,102 @@ select TO_TIMESTAMP( FROM_UNIXTIME(1706542161));
 +----+-------------------------+
 | +I | 2024-01-29 23:29:21.000 |
 +----+-------------------------+
-
 ```
 
-# 流处理基础
+1. value1 = value2 判断两个值相等；
+2. value1 <> value2 判断两个值不相等
+3. value IS NULL 判断value 为空
+4. value IS NOT NULL 判断value 不为空
+5. value IS TRUE  布尔值为true
+6. value IS FALSE 布尔值为false
+7. string1||string2 字符串的连接
 
-Dataflow图
+## module
 
-DataFlow描述了数据如何在不同操作之间流动。Dataflow通常表示为有向图。
+Module 允许 Flink 扩展函数能力。它是可插拔的，Flink 官方本身已经提供了一些 Module，用户也可以编写自己的 Module。
 
-图中顶点称为算子，表示计算；而边表示数据依赖关系。算子是Dataflow的基本功能单元，他们从输入获取数据，对其精选计算，然后阐述数据并发往输出供后续处理。没有输入端的算子称为数据源，没有输出端的算子称为数据汇。
+```sql
+-- 加载
+LOAD MODULE module_name [WITH ('key1' = 'val1', 'key2' = 'val2', ...)]
+-- 卸载
+UNLOAD MODULE module_name
+-- 查看
+SHOW MODULES;
+SHOW FULL MODULES;
+```
 
-![[Pasted image 20231122215103.png]]
+## 使用savepoint
 
-上图被称为逻辑图，为了执行，需要将逻辑图转化为物理图。在分布式处理引擎时，每个算子可能在不同物理机上运行多个并行任务。
+![[#^9ca748]]
 
-![[Pasted image 20231122223703.png]]
+```sql
+-- 显示任务 f5edfe60e91e29fdbd51e64c27fa4c8f
+show jobs;
 
-## 数据交换策略
+SET state.checkpoints.dir='file:///home/li/temp/savepoint/chk';
+SET state.savepoints.dir='file:///home/li/temp/savepoint/sp';
 
-- 转发策略
-- 广播策略
-- 基于键值的策略
-- 随机策略
 
-## 延迟和吞吐
 
-延迟表示处理一个事件所需要的时间。流式应用关心从接受事件到输出观察到事件处理效果的时间间隔。延迟以时间片（例如毫秒）为单位测量的。
+STOP JOB 'f5edfe60e91e29fdbd51e64c27fa4c8f' WITH SAVEPOINT;
++---------------------------------------------------------------+
+|                                                savepoint path |
++---------------------------------------------------------------+
+| file:/home/li/temp/savepoint/sp/savepoint-f5edfe-e75452880eb7 |
++---------------------------------------------------------------+
 
-吞吐是用来衡量系统处理能力（处理速率)的指标，它告诉我们系统每单位时间可以处理多少事件。
+-- 设置从savepoint 恢复的路径
+SET execution.savepoint.path='file:/home/li/temp/savepoint/sp/savepoint-f5edfe-e75452880eb7';
 
-## 数据流操作
 
-## 输入输出
+-- 之后直接提交sql，就会从savepoint 恢复
 
-数据接入和数据输出操作允许流处理引擎和外部系统进行通信。
+INSERT INTO sink select * from source;
 
-数据接入操作时从外部数据源获取原始数据并将其转换成适合后续处理的格式。实现数据接入操作逻辑的算子称为数据源。数据源可以从TCP套接字、文件、kafka中获取数据。
+--允许跳过无法还原的保存点状态
+set 'execution.savepoint.ignore-unclaimed-state' = 'true';
 
-数据输出操作是将数据以适合外部系统使用的格式输出。负责数据输出的算子称为数据汇，其写入的目标可以是文件、数据库、消息队列或监控接口等。
+-- 指定execution.savepoint.path 后，将影响后面执行的所有DML 语句，可以使用RESET 命令重置这个配置选项。
+RESET execution.savepoint.path;
+```
+
+## 常用Connector
+
+DataGen 和Print 都是一种connector，其他connector 参考官网
+### Kafka
+
+### File
+
+### JDBC（MySQL）
+
+# 在代码中使用FlinkSQL
+
+略
+
+## 自定义函数(UDF)
+
+Flink 的Table API 和SQL 提供了多种自定义函数的接口，以抽象类的形式定义。
+
+UDF 主要有以下几类：
+
+- 标量函数（Scalar Functions）：将输入的标量值转换成一个新的标量值；
+- 表函数（Table Functions）：将标量值转换成一个或多个新的行数据，也就是扩展成一个表；
+- 聚合函数（Aggregate Functions）：将多行数据里的标量值转换成一个新的标量值；
+- 表聚合函数（Table Aggregate Functions）：将多行数据里的标量值转换成一个或多个新的行数据。
+
+整体调用流程
+
+```java
+// 注册函数
+tableEnv.createTemporarySystemFunction("MyFunction",MyFunction.class);
+```
+
+```sql
+-- sql 中调用
+SELECT MyFunction(myField) FROM MyTable
+```
+
+具体UDP实现类，略，后续补充
 
 # 参考文档
 

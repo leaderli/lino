@@ -2,7 +2,7 @@
 aliases: linux基础知识
 tags:
   - linux/basic
-date updated: 2023-05-15 21:59
+date updated: 2024-06-03 23:14
 ---
 
 ## 用户
@@ -112,7 +112,6 @@ li$ more 1.txt
 
 `linux` 一切都是基于文本的，许多操作文本的命令都可以对其他各种命令其作用，比如说 [[grep]] ，可以作用于 [[top]]
 
-
 linux 使用虚拟目录来管理硬盘，第一个被加载的硬盘被视为 root 驱动器，root 驱动包含虚拟目录的核心部分，在 root 驱动器上，linux 创建一个特殊的目录被称为 mount points,用来挂载其他硬盘。使用虚拟目录可以将所有文件都存储在一起，尽管他们可能存储在不同的硬盘上，通常来说，系统的核心文件存储在 root 驱动器上。
 
 **Linux 系统中常见的目录名称以及相应内容**
@@ -138,7 +137,6 @@ linux 使用虚拟目录来管理硬盘，第一个被加载的硬盘被视为 r
 | /var        | 主要存放经常变化的文件，如日志                   |
 | /lost+found | 当文件系统发生错误时，将一些丢失的文件片段存放在这里        |
 
-
 ### dev
 
 | 设备类型      | 设备文件                |
@@ -152,7 +150,6 @@ linux 使用虚拟目录来管理硬盘，第一个被加载的硬盘被视为 r
 | 光驱        | /dev/cdrom          |
 | 鼠标        | /dev/mouse          |
 | 磁带机<br>   | /dev/st0 或 /dev/ht0 |
-
 
 现在一般硬盘设置都是 `/dev/sd` ，用 `a~z` 来代表不同的硬盘（默认从a开始分配），硬盘分区主分区或扩展分区的编号从1开始，到4结束，逻辑分区从编号5开始。
 
@@ -293,11 +290,11 @@ atime是Linux/UNIX系统下的一个文件属性，每当读取文件时，操�
 7. 文件的特殊权限(SUID、SGID、SBIT);
 8. 该文件的真实数据地址(point)。
 
-
 而文件的实际内容则保存在 block 块中(大小一般是 1KB、2KB 或 4KB)，一个 inode 的 默认大小仅为 128 字节，记录一个 block 则消耗 4 字节。当文件的 inode 被写满后，Linux 系 统会自动分配出一个 block，专门用于像 inode 那样记录其他 block 块的信息，这样把各个 block 块的内容串到一起，就能够让用户读到完整的文件内容了。对于存储文件内容的 block 块，有 下面两种常见的情况(以 4KB 大小的 block 为例进行说明)。
 
--   情况 1:文件很小(1KB)，但依然会占用一个 block，因此会潜在地浪费 3KB
--  情况 2:文件很大(5KB)，那么会占用两个 block(5KB−4KB 后剩下的 1KB 也要占用一个 block)
+-  情况 1:文件很小(1KB)，但依然会占用一个 block，因此会潜在地浪费 3KB
+- 情况 2:文件很大(5KB)，那么会占用两个 block(5KB−4KB 后剩下的 1KB 也要占用一个 block)
+
 ### 参考文档
 
 [Linux文件系统和inode - 简书](https://www.jianshu.com/p/9ef6542ced92)
@@ -416,7 +413,16 @@ LC_ALL=
 
 ```
 
+<<<<<<< HEAD
 
 ### Resource temporarily unavailable
 
 使用df命令，查看 inode 资源是否占满了
+=======
+### 光标不显示
+
+```shell
+# cursor not visible
+tput cnorm
+```
+>>>>>>> origin/master

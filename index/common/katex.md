@@ -1,6 +1,7 @@
 ---
 
 tags:
+  - 常用/latex
   - 常用/katex
   - markdown
 date updated: 2022-04-07 09:15
@@ -54,6 +55,21 @@ date updated: 2022-04-07 09:15
 | `\alpha \Rightarrow^n\alpha_n` | $\alpha \Rightarrow^n\alpha_n$ |
 | `\displaystyle\sum_{i=1}^n`    | $\displaystyle\sum_{i=1}^n$    |
 | `\Rightarrow`                  | $\Rightarrow$                  |
+
+
+
+
+### 布尔运算
+
+
+|                    |                    |
+| ------------------ | ------------------ |
+| `\overline{x}`     | $\overline{x}$     |
+| `\overline{x + y}` | $\overline{x + y}$ |
+| `x + y`            | $x + y$            |
+| `x \cdot y`        | $x \cdot y$        |
+
+
 
 ### 颜色
 
