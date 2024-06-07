@@ -415,3 +415,8 @@ LC_IDENTIFICATION="en_US.UTF-8"
 LC_ALL=
 
 ```
+
+
+### Resource temporarily unavailable
+
+使用df命令，查看 inode 资源是否占满了

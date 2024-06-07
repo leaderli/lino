@@ -4,6 +4,7 @@ tags:
   - linux/process
 date updated: 2022-04-10 12:56
 ---
+进程会显示在文件目录 `/proc` 下，具体参考 [[linux basic#文件描述符]]
 
 ## 后台运行
 
