@@ -33,3 +33,6 @@ $Xor(a,b) = a \cdot \overline b +  \overline a \cdot b$
 
 
 [Hardware Simulator](https://nand2tetris.github.io/web-ide/chip/)
+
+
+[与非门 · 从零开始打造一台简易计算机](https://www.xiaogd.net/book/spcp/gate/nand-gate.html)
