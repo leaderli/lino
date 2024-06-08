@@ -2,7 +2,7 @@
 aliases: 逻辑门
 tags:
   - 计算机基础/计算机系统要素/布尔逻辑与运算
-date updated: 2024-06-08 13:17
+date updated: 2024-06-08 23:10
 ---
 
 # 布尔代数
@@ -52,7 +52,6 @@ $Xor(a,b) = a \cdot \overline b +  \overline a \cdot b$
 
 ### 连接继电器
 
-
 [[#继电器]]的输出与开关的状态一致
 
 ![[Pasted image 20240608120858.png|200]]
@@ -79,7 +78,6 @@ $Xor(a,b) = a \cdot \overline b +  \overline a \cdot b$
 
 ### 或门
 
-
 ![[Pasted image 20240608131812.png|300]]
 
 ![[Pasted image 20240608131843.png|300]]
@@ -88,17 +86,15 @@ $Xor(a,b) = a \cdot \overline b +  \overline a \cdot b$
 
 ![[Pasted image 20240608132402.png|300]]
 
-
 ![[Pasted image 20240608132422.png|200]]
 
 ### 与非门
 
-
 ![[Pasted image 20240608132521.png|300]]
 
 ![[Pasted image 20240608132558.png|200]]
-## 复合门
 
+## 复合门
 
 门可以连起来构成具有任意复杂度的复合门电路
 
@@ -106,11 +102,13 @@ $Xor(a,b) = a \cdot \overline b +  \overline a \cdot b$
 
 ![[Pasted image 20240606235417.png|400]]
 
+# 仿真软件
+
+
+[[logicsim.html| 逻辑电路在线仿真工具]]
+
 # 参考文档
 
 [与非门 · 从零开始打造一台简易计算机](https://www.xiaogd.net/book/spcp/gate/nand-gate.html)
 [Hardware Simulator](https://nand2tetris.github.io/web-ide/chip/)
-
-[逻辑电路在线仿真工具 LogicSim](https://tool.chipdebug.com/logicsim/)
-
 [VP Online - Online Drawing Tool](https://online.visual-paradigm.com/app/diagrams/#diagram:proj=0&type=LogicDiagram&width=11&height=8.5&unit=inch)
