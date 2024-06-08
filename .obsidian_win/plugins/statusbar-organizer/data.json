@@ -12,12 +12,12 @@
     },
     "left-region;1": {
       "position": 1,
-      "visible": true,
+      "visible": false,
       "exists": true
     },
     "plugin-backlink;1": {
       "position": 2,
-      "visible": true,
+      "visible": false,
       "exists": true
     },
     "plugin-obsidian-git-obsidian-git-statusbar-failed-init-obsidian-git-statusbar-idle-obsidian-git-statusbar-pull-obsidian-git-statusbar-message;1": {
