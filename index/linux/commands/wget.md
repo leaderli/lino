@@ -17,3 +17,11 @@ wget -r -np --accept=iso,c,h
 # 使用用户名和密码
 wget --user=username --password=password URL
 ```
+
+
+
+下载为离线网站，克隆网站
+
+```shell
+wget --page-requisites --convert-links --no-clobber --htmlify https://tool.chipdebug.com/logicsim/
+```
