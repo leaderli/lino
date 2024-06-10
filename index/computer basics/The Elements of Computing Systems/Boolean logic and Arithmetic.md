@@ -2,12 +2,31 @@
 aliases: 逻辑门
 tags:
   - 计算机基础/计算机系统要素/布尔逻辑与运算
-date updated: 2024-06-08 23:10
+date updated: 2024-06-10 16:16
 ---
 
 # 布尔代数
 
-有两个基本值 1 和 0 ，三个基本算子 `And` `Or` `Not`，分别使用 $x \bullet y$ , $x + y$ , $\bar{x}$
+参与布尔运算的变量交逻辑变量，用字母A，B，... 表示，每个变量的取值非0即1，0,1不表示数的大小，而是表示两种不同的逻辑状态。
+
+基本运算:
+
+1. 与   $x * y$ , 当 x=y=1时为1，其他情况下为0
+2. 或   $x + y$，当x=y=0时为0，其他情况下未1
+3. 非   $\overline x$，当x=1是为0，其他情况为1
+
+|                                                  |                                                  |           |
+| ------------------------------------------------ | ------------------------------------------------ | --------- |
+| $a * ( b * c ) = (a * b ) * c$                   | $a + (b+c) = (a + b) + c$                        | 结合律       |
+| $a*b = b*a$                                      | $a+b = b+a$                                      | 交换律       |
+| $a+(a*b)=a$                                      | $a*(a+b) = a$                                    | 吸收律       |
+| $a+(b*c) = (a+b)*(a+c)$                          | $a*(b+c) = (a*b)+(a*c)$                          | 分配律       |
+| $a+\overline a = 1$                              | $a* \overline a = 0$                             | 互补律       |
+| $a + a = a$                                      | $a * a = a$                                      | 幂等律       |
+| $a+0 =a$                                         | $a*1=a$                                          | 有界律       |
+| $a+1 =1$                                         | $a*0=0$                                          | 有界律       |
+| $\overline {a+b} = \overline{a} * \overline {b}$ | $\overline {a*b} = \overline{a} + \overline {b}$ | 对偶律,德摩根定律 |
+| $\overline {\overline x} =  x$                   |                                                  | 对合律       |
 
 下面是两个布尔参数所有可能的布尔函数
 
@@ -102,8 +121,17 @@ $Xor(a,b) = a \cdot \overline b +  \overline a \cdot b$
 
 ![[Pasted image 20240606235417.png|400]]
 
-# 仿真软件
+## 使用与非门构建其他门
 
+- 非门 $\overline {x * y} \to \overline {x * x} = \overline {x}$
+- 与门$\overline {x * y} \to \overline{\overline {x * y}} =  x * y$
+- 或门$\overline {x * y} = \overline x + \overline y \to \overline{\overline x}  + \overline{\overline y}  = x + y$
+
+根据公式电路图如下
+
+![[Pasted image 20240610160608.png|400]]
+
+# 仿真软件
 
 [[logicsim.html| 逻辑电路在线仿真工具]]
 
