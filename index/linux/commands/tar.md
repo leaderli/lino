@@ -13,4 +13,5 @@ tar -xvf file.tar
 # -C 指定目录
 
 tar -xvf file.tar -C /app/bin
+
 ```
