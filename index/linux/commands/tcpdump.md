@@ -112,6 +112,12 @@ tcpdump 能够抓取并解码多种协议类型的数据报文，如 TCP、UDP�
    tcpdump -i enp0s3 icmp
    ```
 
+
+6. 使用 not
+
+```shell
+   sudo tcpdump -i any -c5 -nn dst not 54.204.39.132
+```
 当然，可以使用多条件组合来筛选数据包，使用 and 以及 or 逻辑操作符来创建过滤规则。例如，筛选来自源 IP 地址 192.168.122.98 的 HTTP 数据包：
 
 ```shell
