@@ -203,7 +203,7 @@ proto[x:y] = z      : proto[x:y]等于z
 sudo tcpdump -i any 'ip[40:4] = 0x47455420' -A -nn -f
 ```
 
-来抓取数据报文中中请求方法为<code>GET </code>的请求
+	来抓取数据报文中中请求方法为<code>GET </code>的请求
 
 ## 示例
 
