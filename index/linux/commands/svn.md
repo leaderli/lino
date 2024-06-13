@@ -11,7 +11,7 @@ date updated: 2022-04-07 14:36
 ## subversion edge 权限设置
 
 
-```toml
+```ini
 [/]
 * = r   // 所有用户，所有都有读权限
 [myrepository:/]
