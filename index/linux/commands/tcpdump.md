@@ -31,7 +31,7 @@ tcpdump 会持续抓包直到收到中断信号。你可以按 Ctrl+C 来停止�
 
 6. `-X` 以十六进制打印出数据报文内容
 
-7. `-A` 以 ASCII 值打印出数据报文内容
+7. `-A` 以 ASCII 值打印出数据报文内容，中文会显示为 `...`
 
 8. `-r` tcpdump 若在`-W`保存文件不使用`-X`或`-A`时会将数据包保存在二进制文件中，所以不能简单的用文本编辑器去打开它。使用 -r 选项参数来阅读该文件中的报文内容，你还可以使用我们讨论过的任何过滤规则来过滤文件中的内容，就像使用实时数据一样
 
@@ -105,13 +105,22 @@ tcpdump 能够抓取并解码多种协议类型的数据报文，如 TCP、UDP�
 5. 按协议过滤
 
    ```shell
+   # enp0s3 为网络设置  tcpdump -D
    tcpdump -i enp0s3 arp
    tcpdump -i enp0s3 ip
    tcpdump -i enp0s3 tcp
    tcpdump -i enp0s3 udp
    tcpdump -i enp0s3 icmp
+   
+   tcpdump -i enp0s3 host 54.204.39.132 and udp
    ```
 
+
+6. 使用 not
+
+```shell
+   sudo tcpdump -i any -c5 -nn dst not 54.204.39.132
+```
 当然，可以使用多条件组合来筛选数据包，使用 and 以及 or 逻辑操作符来创建过滤规则。例如，筛选来自源 IP 地址 192.168.122.98 的 HTTP 数据包：
 
 ```shell
@@ -194,7 +203,7 @@ proto[x:y] = z      : proto[x:y]等于z
 sudo tcpdump -i any 'ip[40:4] = 0x47455420' -A -nn -f
 ```
 
-来抓取数据报文中中请求方法为<code>GET </code>的请求
+	来抓取数据报文中中请求方法为<code>GET </code>的请求
 
 ## 示例
 

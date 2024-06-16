@@ -439,6 +439,10 @@ a = orient:portrait
 
 使用 tcpdump 抓取报文，可以观察到具体细节
 
+```shell
+tcpdump -i any  host  10.211.55.2 and udp
+```
+
 ```http
 16:15:09.171545 IP 10.211.55.2.56752 > 10.211.55.6.5060: SIP: REGISTER sip:10.211.55.6 SIP/2.0
 E.."+E..@...
