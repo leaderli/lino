@@ -31,6 +31,11 @@ System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true")
 
 `JDK` 动态代理仅支持代理接口(因为代理类继承 `Proxy`，而 `java` 不支持多继承)。由`JDK`动态生成继承接口的子类，子类的所有方法调用都由创建代理类时使用的参数`java.lang.reflect.InvocationHandler` 的 `invoke` 方法去完成。
 
+
+```ad-important
+需要注意的是，当代理的方法抛出一个未声明的异常时，JDK动态代理会抛出一个 UndeclaredThrowableException
+```
+
 ```java
 package com.li.springboot.aop;
 
