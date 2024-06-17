@@ -626,6 +626,13 @@ cal leaderli
 cal dengqiankun
 ```
 
+
+下载到指定目录，且不要历史提交记录
+
+```shell
+git clone  --depth 1  git@github.com:mybatis/spring.git   mybatis-spring
+```
+
 ## 参考文档
 
 [git log命令](https://www.yiibai.com/git/git_log.html)
