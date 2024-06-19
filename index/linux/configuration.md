@@ -75,7 +75,9 @@ export TIME_STYLE="+%Y-%m-%d %H:%M:%S"
 
 ```shell
 # 一个高亮紫色的$符号
+# 切换到root时会显示为#
 PS1='\[\e[1m\]\[\e[35m\]\$ \[\e[0m\]'
+
 ```
 
 ### 命令行debug模式提示符

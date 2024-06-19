@@ -4,10 +4,12 @@ tags:
   - linux/disk
 date updated: 2024-02-15 04:43
 ---
-`blkid` 命令用于显示设备的属性信息
+## blkid 
+
+命令用于显示设备的属性信息
 
 ```shell
-[root@CentOS7 ~]# blkid
+[root@CentOS7_Temp ~]# blkid
 /dev/sda1: UUID="0ae18c31-cc28-4d90-bf6a-f65a96b2f57a" TYPE="xfs"
 /dev/sda2: UUID="yaZCkD-Sek2-Xluo-rItp-Ed3V-vWuv-jOdAfy" TYPE="LVM2_member"
 /dev/mapper/centos-root: UUID="3e9bbf71-0636-4505-b38f-7b88784faaab" TYPE="xfs"
@@ -22,6 +24,21 @@ mount UUID=yaZCkD-Sek2-Xluo-rItp-Ed3V-vWuv-jOdAfy /backup
 ```
 
 手动挂载的文件系统，重启系统后失效，如果要开机后自动挂在，则需要写入到 `/etc/fstab` 中
+
+```shell
+[root@CentOS7_Temp ~]# cat -n /etc/fstab
+     1
+     2	#
+     3	# /etc/fstab
+     4	# Created by anaconda on Fri Jan 10 01:26:50 2020
+     5	#
+     6	# Accessible filesystems, by reference, are maintained under '/dev/disk'
+     7	# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
+     8	#
+     9	/dev/mapper/centos-root /                       xfs     defaults        0 0
+    10	UUID=0ae18c31-cc28-4d90-bf6a-f65a96b2f57a /boot                   xfs     defaults        0 0
+    11	/dev/mapper/centos-swap swap                    swap    defaults        0 0
+```
 
 
 ## fdisk
@@ -40,22 +57,10 @@ fdisk 命令用于新建、修改及删除磁盘的分区表信息
 
 ### 一个示例 
 
-#TODO 重新尝试
+我们可以看到 `/dev/sdb`为新增的1G的硬盘
 
-首先使用 fdisk 命令来尝试管理/dev/sda 硬盘设备。在看到提示信息后输入参数 p 来查看硬盘设备内已有的分区信息，其中包括了硬盘的容量大小、扇区个数等信息:
 ```shell
-[root@CentOS7 ~]# fdisk  /dev/sda
-
-The device presents a logical sector size that is smaller than
-the physical sector size. Aligning to a physical sector (or optimal
-I/O) size boundary is recommended, or performance may be impacted.
-Welcome to fdisk (util-linux 2.23.2).
-
-Changes will remain in memory only, until you decide to write them.
-Be careful before using the write command.
-
-
-Command (m for help): p
+# fdisk  -l
 
 Disk /dev/sda: 34.4 GB, 34359738368 bytes, 67108864 sectors
 Units = sectors of 1 * 512 = 512 bytes
@@ -67,6 +72,58 @@ Disk identifier: 0x000a93c2
    Device Boot      Start         End      Blocks   Id  System
 /dev/sda1   *        2048     2099199     1048576   83  Linux
 /dev/sda2         2099200    67108863    32504832   8e  Linux LVM
+
+Disk /dev/sdb: 1073 MB, 1073741824 bytes, 2097152 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+
+
+Disk /dev/mapper/centos-root: 31.1 GB, 31130124288 bytes, 60801024 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+
+
+Disk /dev/mapper/centos-swap: 2147 MB, 2147483648 bytes, 4194304 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+```
+
+
+准备操作这块磁盘
+
+```shell
+# fdisk  /dev/sdb
+Welcome to fdisk (util-linux 2.23.2).
+
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+Device does not contain a recognized partition table
+Building a new DOS disklabel with disk identifier 0x664619d4.
+
+The device presents a logical sector size that is smaller than
+the physical sector size. Aligning to a physical sector (or optimal
+I/O) size boundary is recommended, or performance may be impacted.
+
+Command (m for help):
+```
+
+输入参数p 来查看硬盘设备内已有的分区信息，其中包括了硬盘的容量大小、扇区个数等信息:
+
+```shell
+Command (m for help): p
+
+Disk /dev/sdb: 1073 MB, 1073741824 bytes, 2097152 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+Disk label type: dos
+Disk identifier: 0x664619d4
+
+   Device Boot      Start         End      Blocks   Id  System
 ```
 
 输入参数 n 尝试添加新的分区。系统会要求用户是选择继续输入参数 p 来创建主分区， 还是输入参数 e 来创建扩展分区。这里输入参数 p 来创建一个主分区:
@@ -74,37 +131,44 @@ Disk identifier: 0x000a93c2
 ```shell
 Command (m for help): n
 Partition type:
-   p   primary (2 primary, 0 extended, 2 free)
+   p   primary (0 primary, 0 extended, 4 free)
    e   extended
-Select (default p):
+Select (default p): p
 ```
 
-在确认创建一个主分区后，系统要求用户先输入主分区的编号。在前文得知，主分区 的编号范围是 1~4，因此这里输入默认的 1 就可以了。接下来系统会提示定义起始的扇 区位置，这不需要改动，敲击回车键保留默认设置即可，系统会自动计算出最靠前的空闲 扇区的位置。最后，系统会要求定义分区的结束扇区位置，这其实就是要去定义整个分区 的大小是多少。我们不用去计算扇区的个数，只需要输入+2G 即可创建出一个容量为 2GB 的硬盘分区。
+在确认创建一个主分区后，系统要求用户先输入主分区的编号。在前文得知，主分区 的编号范围是 1~4，因此这里输入默认的 1 就可以了。接下来系统会提示定义起始的扇 区位置，这不需要改动，敲击回车键保留默认设置即可，系统会自动计算出最靠前的空闲 扇区的位置。最后，系统会要求定义分区的结束扇区位置，这其实就是要去定义整个分区 的大小是多少。我们不用去计算扇区的个数，只需要输入+500M 即可创建出一个容量为 500M 的硬盘分区。
 
 ```shell
-Partition number (1-4, default 1): 1  
-First sector (2048-41943039, default 2048):  
-Last sector, +sectors or +size{K,M,G,T,P} (2048-41943039, default 41943039): +2G
-
-Created a new partition 1 of type 'Linux' and of size 2 GiB.
+Partition number (1-4, default 1): 1
+First sector (2048-2097151, default 2048):
+Using default value 2048
+Last sector, +sectors or +size{K,M,G} (2048-2097151, default 2097151): +500M
+Partition 1 of type Linux and of size 500 MiB is set
 ```
 
-再次使用参数 p 来查看硬盘设备中的分区信息。果然就能看到一个名称为/dev/sdb1、起 始扇区位置为 2048、结束扇区位置为 4196351 的主分区了。这时千万不要直接关闭窗口，而 应该敲击参数 w 后按回车键，这样分区信息才是真正地写入成功啦。
-
+再次使用参数 p 来查看硬盘设备中的分区信息。果然就能看到一个名称为/dev/sdb1、起 始扇区位置为 2048、结束扇区位置为 1026047的主分区了。这时千万不要直接关闭窗口，而 应该敲击参数 w 后按回车键，这样分区信息才是真正地写入成功啦。
 
 ```shell
-Command (m for help): p  
-Disk /dev/sdb: 20 GiB, 21474836480 bytes, 41943040 sectors Units: sectors of 1 * 512 = 512 bytes  
-Sector size (logical/physical): 512 bytes / 512 bytes  
-I/O size (minimum/optimal): 512 bytes / 512 bytes Disklabel type: dos  
-Disk identifier: 0x88b2c2b0
+Command (m for help): p
 
-    Device     Boot Start     End Sectors Size Id Type
-    /dev/sdb1        2048 4196351 4194304   2G 83 Linux
+Disk /dev/sdb: 1073 MB, 1073741824 bytes, 2097152 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+Disk label type: dos
+Disk identifier: 0x664619d4
 
-Command (m for help): w  
-The partition table has been altered. Calling ioctl() to re-read partition table. Syncing disks.
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdb1            2048     1026047      512000   83  Linux
+
+Command (m for help): w
+The partition table has been altered!
+
+Calling ioctl() to re-read partition table.
+Syncing disks.
 ```
+
+
 
 分区信息中第 6 个字段的 Id 值是一个编码，用于标识该分区的作用，可帮助用户快速了 解该分区的作用，一般没必要修改。使用 l 参数查看一下磁盘编码都有哪些
 
@@ -141,6 +205,63 @@ Command (m for help): l
 在上述步骤执行完毕之后，Linux 系统会自动把这个硬盘主分区抽象成/dev/sdb1 设备文 件。可以使用 file 命令查看该文件的属性，但我在讲课和工作中发现，有些时候系统并没有 自动把分区信息同步给 Linux 内核，而且这种情况似乎还比较常见(但不能算作严重的 bug)。 可以输入 partprobe 命令手动将分区信息同步到内核，而且一般推荐连续两次执行该命令，效果会更好。如果使用这个命令都无法解决问题，那么就重启计算机吧，这个“杀手锏”百试 百灵，一定会有用的。
 
 
+此时该磁盘还未格式化，我们可以通过[[#mkfs]] 命令来对分区进行格式化
+
+新建目录，并挂载
+
+```shell
+# mkdir /newFS
+# mount /dev/sdb1 newFS/
+# df -h
+Filesystem               Size  Used Avail Use% Mounted on
+devtmpfs                 906M     0  906M   0% /dev
+tmpfs                    917M  4.0K  917M   1% /dev/shm
+tmpfs                    917M  8.9M  908M   1% /run
+tmpfs                    917M     0  917M   0% /sys/fs/cgroup
+/dev/mapper/centos-root   29G   16G   14G  54% /
+/dev/sda1               1014M  151M  864M  15% /boot
+Home                     234G  183G   52G  79% /media/psf/Home
+tmpfs                    184M     0  184M   0% /run/user/1002
+/dev/sdb1                494M   26M  469M   6% /newFS
+```
+
+此时使用 [[#blkid]] 也可以看到新挂载的设备
+
+```shell
+# blkid
+/dev/sda1: UUID="0ae18c31-cc28-4d90-bf6a-f65a96b2f57a" TYPE="xfs"
+/dev/sda2: UUID="yaZCkD-Sek2-Xluo-rItp-Ed3V-vWuv-jOdAfy" TYPE="LVM2_member"
+/dev/mapper/centos-root: UUID="3e9bbf71-0636-4505-b38f-7b88784faaab" TYPE="xfs"
+/dev/mapper/centos-swap: UUID="8362ec6f-0e9a-4baa-8187-ea0d434de878" TYPE="swap"
+/dev/sdb1: UUID="e20a43ff-020a-41d0-87a3-e133bbfb64b4" TYPE="xfs"
+```
+
+
+## mkfs
+
+分区格式化命令，根据分区类型有很多扩展命令
+
+```shell
+# mkfs
+mkfs         mkfs.cramfs  mkfs.ext3    mkfs.fat     mkfs.msdos   mkfs.xfs
+mkfs.btrfs   mkfs.ext2    mkfs.ext4    mkfs.minix   mkfs.vfat
+```
+
+如果你想格式化为 `xfs` 则如下使用
+
+
+```shell
+# mkfs.xfs  /dev/sdb1
+meta-data=/dev/sdb1              isize=512    agcount=4, agsize=32000 blks
+         =                       sectsz=4096  attr=2, projid32bit=1
+         =                       crc=1        finobt=0, sparse=0
+data     =                       bsize=4096   blocks=128000, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0 ftype=1
+log      =internal log           bsize=4096   blocks=1605, version=2
+         =                       sectsz=4096  sunit=1 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+```
 ## 挂载分区步骤
 
 给某个目录挂载一个分区的详细步骤

@@ -24,14 +24,6 @@ TYPE列以确定磁盘的类型。常见的磁盘类型包括以下几种：
 - `lvm`：表示逻辑卷管理器（LVM）创建的逻辑卷。
 
 
-可以使用`blkid`查看磁盘的文件类型
+可以使用[[disk#blkid]]查看磁盘的文件类型
 
-```shell
-$ blkid  /dev/mapper/*
-
-$ blkid /dev/sda*
-/dev/sda: PTTYPE="dos"
-/dev/sda1: UUID="0ae18c31-cc28-4d90-bf6a-f65a96b2f57a" TYPE="xfs"
-/dev/sda2: UUID="yaZCkD-Sek2-Xluo-rItp-Ed3V-vWuv-jOdAfy" TYPE="LVM2_member"
-
-```
+如果某个分区没有信息，可能未格式化
