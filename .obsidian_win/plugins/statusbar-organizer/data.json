@@ -33,7 +33,7 @@
     "plugin-obsidian-git-obsidian-git-statusbar-failed-init;1": {
       "position": 7,
       "visible": true,
-      "exists": false
+      "exists": true
     },
     "plugin-word-count;1": {
       "position": 8,
@@ -43,7 +43,7 @@
     "plugin-obsidian-git-obsidian-git-statusbar-failed-init-obsidian-git-statusbar-idle;1": {
       "position": 9,
       "visible": true,
-      "exists": true
+      "exists": false
     }
   }
 }
