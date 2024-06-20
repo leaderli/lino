@@ -4,6 +4,9 @@ tags:
   - linux/disk
 date updated: 2024-02-15 04:43
 ---
+
+![[linux basic#dev|硬盘设备信息]]
+
 ## blkid 
 
 命令用于显示设备的属性信息
@@ -56,6 +59,8 @@ fdisk 命令用于新建、修改及删除磁盘的分区表信息
 
 
 ### 一个示例 
+
+给某个目录挂载一个分区的详细步骤
 
 我们可以看到 `/dev/sdb`为新增的1G的硬盘
 
@@ -262,7 +267,16 @@ log      =internal log           bsize=4096   blocks=1605, version=2
          =                       sectsz=4096  sunit=1 blks, lazy-count=1
 realtime =none                   extsz=4096   blocks=0, rtextents=0
 ```
-## 挂载分区步骤
+
+
+扩展
+
+```shell
+# 设置为100G   1024*1024*4
+xfs_growfs  /dev/sdXY -D 26214400
+```
+
+## 扩展分区
 
 给某个目录挂载一个分区的详细步骤
 
@@ -361,7 +375,7 @@ $ mount -a
 $ df -h /app
 ```
 
-## 一个扩展硬盘的示例
+### 一个扩展分区的示例
 
 
 
@@ -464,12 +478,6 @@ The filesystem on /dev/mapper/VolGroup00-LogVol00 is now 12558336 blocks long.
 
 
 
-## XFS文件系统
-
-```shell
-# 设置为100G   1024*1024*4
-xfs_growfs  /dev/sdXY -D 26214400
-```
 
 ## umout 
 

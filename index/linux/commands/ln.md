@@ -27,3 +27,7 @@ stat <file>
 # 一些名字包含特殊字符，不方便删除的
 find ./ -inum <inum> -delete
 ```
+
+
+
+![[Pasted image 20240620125609.png]]
