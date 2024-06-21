@@ -11,7 +11,7 @@ date updated: 2024-06-19 23:08
 
 文档类型定义（DTD）可定义合法的XML文档构建模块。它使用一系列合法的元素来定义文档的结构。DTD 可被成行地声明于 XML 文档中，也可作为一个外部引用。
 
-dtd在开发工具中，可以用于补全
+dtd在开发工具中，可以用于补全。idea中可以在xml上右键 `Generate DTD from xml File`自动生成dtd文件
 
 
 ## 声明方式
@@ -22,14 +22,16 @@ dtd在开发工具中，可以用于补全
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>  
 <!DOCTYPE funcs [  
-        <!ELEMENT funcs (func+)>  
-        <!ELEMENT func (param+)>  
-        <!ATTLIST func name CDATA #REQUIRED>  
-        <!ATTLIST func label CDATA #IMPLIED>  
-        <!ATTLIST func instruct CDATA #REQUIRED>  
-        <!ATTLIST func type CDATA #IMPLIED >  
+        <!ELEMENT funcs (func)+>  
+        <!ELEMENT func (param)*>  
+        <!ATTLIST func  
+                instruct CDATA #REQUIRED  
+                label CDATA #REQUIRED  
+                name CDATA #REQUIRED  
+                type CDATA #IMPLIED>  
         <!ELEMENT param (#PCDATA)>  
-        <!ATTLIST param type CDATA #IMPLIED>  
+        <!ATTLIST param  
+                type (int|str|double)#IMPLIED>
         ]>  
 <funcs>  
     <func name="add1" label="add1" instruct="add">  
@@ -45,6 +47,36 @@ dtd在开发工具中，可以用于补全
 
 
 ###  外部文档声明
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE funcs SYSTEM "funcs.dtd">  
+<funcs>  
+    <func name="add1" label="add1" instruct="add">  
+        <param type="int">1</param>  
+        <param type="int">1</param>  
+    </func>  
+    <func name="add2" label="add2" instruct="add" type="double">  
+        <param type="double">1</param>  
+        <param type="double">1</param>  
+    </func>  
+</funcs>
+```
+
+```xml
+<!ELEMENT funcs (func)*>  
+        <!ELEMENT func (param)*>  
+        <!ATTLIST func  
+                instruct CDATA #REQUIRED  
+                label CDATA #REQUIRED  
+                name CDATA #REQUIRED  
+                type CDATA #IMPLIED>  
+        <!ELEMENT param (#PCDATA)>  
+        <!ATTLIST param  
+                type (int|str|double)#IMPLIED>
+```
+
+###  远程文档声明
 
 `<!DOCTYPE 根元素 PUBLIC "名称" "链接">`
 
