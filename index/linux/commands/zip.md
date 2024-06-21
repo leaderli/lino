@@ -1,6 +1,7 @@
 ---
 tags:
   - linux/commands/zip
+  - linux/commands/unzip
 date updated: 2023-12-24 12:47
 ---
 
