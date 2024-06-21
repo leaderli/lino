@@ -413,16 +413,13 @@ LC_ALL=
 
 ```
 
-<<<<<<< HEAD
 
 ### Resource temporarily unavailable
 
 使用df命令，查看 inode 资源是否占满了
-=======
 ### 光标不显示
 
 ```shell
 # cursor not visible
 tput cnorm
 ```
->>>>>>> origin/master
