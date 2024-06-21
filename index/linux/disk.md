@@ -2,12 +2,12 @@
 aliases: 磁盘
 tags:
   - linux/disk
-date updated: 2024-02-15 04:43
+date updated: 2024-06-21 12:47
 ---
 
 ![[linux basic#dev|硬盘设备信息]]
 
-## blkid 
+## blkid
 
 命令用于显示设备的属性信息
 
@@ -20,7 +20,6 @@ date updated: 2024-02-15 04:43
 ```
 
 UUID 是一串用于标识每块独立硬盘的字符串，具有唯一性及稳定性，特 别适合用来挂载网络设备
-
 
 ```shell
 mount UUID=yaZCkD-Sek2-Xluo-rItp-Ed3V-vWuv-jOdAfy /backup
@@ -43,7 +42,6 @@ mount UUID=yaZCkD-Sek2-Xluo-rItp-Ed3V-vWuv-jOdAfy /backup
     11	/dev/mapper/centos-swap swap                    swap    defaults        0 0
 ```
 
-
 ## fdisk
 
 fdisk 命令用于新建、修改及删除磁盘的分区表信息
@@ -57,8 +55,7 @@ fdisk 命令用于新建、修改及删除磁盘的分区表信息
 - `-w`: 保存并退出
 - `-q`: 不保存直接退出
 
-
-### 一个示例 
+### 一个示例
 
 给某个目录挂载一个分区的详细步骤
 
@@ -95,7 +92,6 @@ Units = sectors of 1 * 512 = 512 bytes
 Sector size (logical/physical): 512 bytes / 4096 bytes
 I/O size (minimum/optimal): 4096 bytes / 4096 bytes
 ```
-
 
 准备操作这块磁盘
 
@@ -173,8 +169,6 @@ Calling ioctl() to re-read partition table.
 Syncing disks.
 ```
 
-
-
 分区信息中第 6 个字段的 Id 值是一个编码，用于标识该分区的作用，可帮助用户快速了 解该分区的作用，一般没必要修改。使用 l 参数查看一下磁盘编码都有哪些
 
 ```shell
@@ -209,7 +203,6 @@ Command (m for help): l
 
 在上述步骤执行完毕之后，Linux 系统会自动把这个硬盘主分区抽象成/dev/sdb1 设备文 件。可以使用 file 命令查看该文件的属性，但我在讲课和工作中发现，有些时候系统并没有 自动把分区信息同步给 Linux 内核，而且这种情况似乎还比较常见(但不能算作严重的 bug)。 可以输入 partprobe 命令手动将分区信息同步到内核，而且一般推荐连续两次执行该命令，效果会更好。如果使用这个命令都无法解决问题，那么就重启计算机吧，这个“杀手锏”百试 百灵，一定会有用的。
 
-
 此时该磁盘还未格式化，我们可以通过[[#mkfs]] 命令来对分区进行格式化
 
 新建目录，并挂载
@@ -241,7 +234,6 @@ tmpfs                    184M     0  184M   0% /run/user/1002
 /dev/sdb1: UUID="e20a43ff-020a-41d0-87a3-e133bbfb64b4" TYPE="xfs"
 ```
 
-
 ## mkfs
 
 分区格式化命令，根据分区类型有很多扩展命令
@@ -253,7 +245,6 @@ mkfs.btrfs   mkfs.ext2    mkfs.ext4    mkfs.minix   mkfs.vfat
 ```
 
 如果你想格式化为 `xfs` 则如下使用
-
 
 ```shell
 # mkfs.xfs  /dev/sdb1
@@ -268,7 +259,6 @@ log      =internal log           bsize=4096   blocks=1605, version=2
 realtime =none                   extsz=4096   blocks=0, rtextents=0
 ```
 
-
 扩展
 
 ```shell
@@ -276,6 +266,14 @@ realtime =none                   extsz=4096   blocks=0, rtextents=0
 xfs_growfs  /dev/sdXY -D 26214400
 ```
 
+
+## LVM
+
+逻辑卷管理器，LVM 技术是在硬盘分区和文件系统之间添加了一个逻辑层，它提供了一个抽象的卷组，可以把多块硬盘进行卷组合并。 这样一来，用户不必关心物理硬盘设备的底层架构和布局，就可以实现对硬盘分区的动态调 整。
+
+在日常的使用中，如果卷组(VG)的剩余容量不足，可以随时将新的物理卷(PV)加 入到里面，进行不断地扩容
+
+![[Pasted image 20240621125024.png|800]]
 ## 扩展分区
 
 给某个目录挂载一个分区的详细步骤
@@ -377,8 +375,6 @@ $ df -h /app
 
 ### 一个扩展分区的示例
 
-
-
 实际有40G
 
 ```shell
@@ -463,7 +459,6 @@ Command action
 
 使用所有可用的空闲空间来扩展逻辑卷
 
-
 ```shell
 [root@localhost ~]# lvextend  -l +100%FREE /dev/mapper/VolGroup00-LogVol00
   Extending logical volume LogVol00 to 47.91 GB
@@ -476,12 +471,19 @@ Performing an on-line resize of /dev/mapper/VolGroup00-LogVol00 to 12558336 (4k)
 The filesystem on /dev/mapper/VolGroup00-LogVol00 is now 12558336 blocks long.
 ```
 
-
-
-
-## umout 
+## umout
 
 > target is bussy
 
 `fuser -km /app`
-`lsof|grep -w /app` 查看所有进程，然后 `kill -9 `
+`lsof|grep -w /app` 查看所有进程，然后 ` kill -9  `
+
+## RAID
+
+独立冗余磁盘阵列。把多个硬盘设备组合成一个容量更大、安全性更好的磁盘阵列，并把数据切割成多 个区段后分别存放在各个不同的物理硬盘设备上，然后利用分散读写技术来提升磁盘阵列整 体的性能，同时把多个重要数据的副本同步到不同的物理硬盘设备上，从而起到了非常好的 数据冗余备份效果。
+
+![[Pasted image 20240621124209.png]]
+
+## 参考文档
+
+Linux 就该这么学（第2版 RHEL 8） (刘遄)
