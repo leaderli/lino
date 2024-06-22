@@ -2,7 +2,7 @@
 aliases: vi
 tags:
   - 软件/vim
-date updated: 2022-04-17 03:14
+date updated: 2024-06-22 23:40
 ---
 
 从本质上讲，我们的工作是重复性的 。不论是在几个不同的地方做相同的小改动，还是在文档的相似结构间移动，我们都会重复很多操作，凡是可以简化重复性操作的方式，都会成倍地节省我们的事件
@@ -311,6 +311,8 @@ call plug#end()
 
 [Vrapper](http://vrapper.sourceforge.net/update-site/stable)
 
+### intellij
 
-###  intellij
+vim模式下自动切换输入法
 
+[im-select-imm](https://github.com/PEMessage/im-select-imm/releases)
