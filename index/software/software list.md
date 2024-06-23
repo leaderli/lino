@@ -21,6 +21,7 @@ tags:
 11.  [chrome翻译插件](https://chrome.google.com/webstore/detail/google-dictionary-by-goog/mgijmajocgfcbeboacabfgobmjgjcoja/related?hl=en)
 12. [ 哔哩下载姬](https://github.com/leiurayer/downkyi)
 13. [sumatra pdf reader](https://www.sumatrapdfreader.org/free-pdf-reader)
+14. [ScreenToGif](https://github.com/NickeManarin/ScreenToGif/releases?page=4) gif录取工具
 
 
 #### IOS
