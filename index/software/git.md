@@ -633,6 +633,25 @@ cal dengqiankun
 git clone  --depth 1  git@github.com:mybatis/spring.git   mybatis-spring
 ```
 
+使用tag维护litool版本的脚本
+
+```shell
+#!/bin/bash
+cd /Users/li/java/workspace/litool || exit
+
+current=`git tag|grep v|cut -c 2-|sort  -n|tail -n 1`
+next="v$(($current+1))"
+echo "current tag is v${current}, next tag is ${next}"
+
+git diff "v${current}" --stat|grep -q . || { echo 'no change'; exit 1;}
+
+git diff "v${current}" > /Users/li/Downloads/$next.diff
+git tag  $next
+git push  --tags
+
+echo "/Users/li/Downloads/$next.diff"
+```
+
 ## 参考文档
 
 [git log命令](https://www.yiibai.com/git/git_log.html)

@@ -2,7 +2,7 @@
 aliases: 磁盘
 tags:
   - linux/disk
-date updated: 2024-06-21 12:47
+date updated: 2024-06-24 13:06
 ---
 
 ![[linux basic#dev|硬盘设备信息]]
@@ -12,7 +12,7 @@ date updated: 2024-06-21 12:47
 命令用于显示设备的属性信息
 
 ```shell
-[root@CentOS7_Temp ~]# blkid
+$ blkid
 /dev/sda1: UUID="0ae18c31-cc28-4d90-bf6a-f65a96b2f57a" TYPE="xfs"
 /dev/sda2: UUID="yaZCkD-Sek2-Xluo-rItp-Ed3V-vWuv-jOdAfy" TYPE="LVM2_member"
 /dev/mapper/centos-root: UUID="3e9bbf71-0636-4505-b38f-7b88784faaab" TYPE="xfs"
@@ -28,7 +28,7 @@ mount UUID=yaZCkD-Sek2-Xluo-rItp-Ed3V-vWuv-jOdAfy /backup
 手动挂载的文件系统，重启系统后失效，如果要开机后自动挂在，则需要写入到 `/etc/fstab` 中
 
 ```shell
-[root@CentOS7_Temp ~]# cat -n /etc/fstab
+$ cat -n /etc/fstab
      1
      2	#
      3	# /etc/fstab
@@ -62,7 +62,7 @@ fdisk 命令用于新建、修改及删除磁盘的分区表信息
 我们可以看到 `/dev/sdb`为新增的1G的硬盘
 
 ```shell
-# fdisk  -l
+$ fdisk  -l
 
 Disk /dev/sda: 34.4 GB, 34359738368 bytes, 67108864 sectors
 Units = sectors of 1 * 512 = 512 bytes
@@ -96,7 +96,7 @@ I/O size (minimum/optimal): 4096 bytes / 4096 bytes
 准备操作这块磁盘
 
 ```shell
-# fdisk  /dev/sdb
+$ fdisk  /dev/sdb
 Welcome to fdisk (util-linux 2.23.2).
 
 Changes will remain in memory only, until you decide to write them.
@@ -208,9 +208,9 @@ Command (m for help): l
 新建目录，并挂载
 
 ```shell
-# mkdir /newFS
-# mount /dev/sdb1 newFS/
-# df -h
+$ mkdir /newFS
+$ mount /dev/sdb1 newFS/
+$ df -h
 Filesystem               Size  Used Avail Use% Mounted on
 devtmpfs                 906M     0  906M   0% /dev
 tmpfs                    917M  4.0K  917M   1% /dev/shm
@@ -226,7 +226,7 @@ tmpfs                    184M     0  184M   0% /run/user/1002
 此时使用 [[#blkid]] 也可以看到新挂载的设备
 
 ```shell
-# blkid
+$ blkid
 /dev/sda1: UUID="0ae18c31-cc28-4d90-bf6a-f65a96b2f57a" TYPE="xfs"
 /dev/sda2: UUID="yaZCkD-Sek2-Xluo-rItp-Ed3V-vWuv-jOdAfy" TYPE="LVM2_member"
 /dev/mapper/centos-root: UUID="3e9bbf71-0636-4505-b38f-7b88784faaab" TYPE="xfs"
@@ -239,7 +239,7 @@ tmpfs                    184M     0  184M   0% /run/user/1002
 分区格式化命令，根据分区类型有很多扩展命令
 
 ```shell
-# mkfs
+$ mkfs
 mkfs         mkfs.cramfs  mkfs.ext3    mkfs.fat     mkfs.msdos   mkfs.xfs
 mkfs.btrfs   mkfs.ext2    mkfs.ext4    mkfs.minix   mkfs.vfat
 ```
@@ -247,7 +247,7 @@ mkfs.btrfs   mkfs.ext2    mkfs.ext4    mkfs.minix   mkfs.vfat
 如果你想格式化为 `xfs` 则如下使用
 
 ```shell
-# mkfs.xfs  /dev/sdb1
+$ mkfs.xfs  /dev/sdb1
 meta-data=/dev/sdb1              isize=512    agcount=4, agsize=32000 blks
          =                       sectsz=4096  attr=2, projid32bit=1
          =                       crc=1        finobt=0, sparse=0
@@ -262,215 +262,275 @@ realtime =none                   extsz=4096   blocks=0, rtextents=0
 扩展
 
 ```shell
-# 设置为100G   1024*1024*4
+$ 设置为100G   1024*1024*4
 xfs_growfs  /dev/sdXY -D 26214400
 ```
 
-
 ## LVM
+
+### 概述
 
 逻辑卷管理器，LVM 技术是在硬盘分区和文件系统之间添加了一个逻辑层，它提供了一个抽象的卷组，可以把多块硬盘进行卷组合并。 这样一来，用户不必关心物理硬盘设备的底层架构和布局，就可以实现对硬盘分区的动态调 整。
 
 在日常的使用中，如果卷组(VG)的剩余容量不足，可以随时将新的物理卷(PV)加 入到里面，进行不断地扩容
 
 ![[Pasted image 20240621125024.png|800]]
-## 扩展分区
 
-给某个目录挂载一个分区的详细步骤
+### 新增逻辑卷
+
+让新添加两块新的硬盘支持LVM技术
 
 ```shell
-# 显示系统中所有磁盘的分区信息，包括磁盘设备名称、分区类型、起始扇区和大小等
-$ fdisk -l 
+$ pvcreate  /dev/sdb /dev/sdc
+Physical volume "/dev/sdb" successfully created. 
+Physical volume "/dev/sdc" successfully created.
+```
 
-#用于显示块设备信息的命令行工具。它以树状结构的形式列出系统中的块设备，包括硬盘、分区、逻辑卷等
-$ lsblk
-NAME            MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-sda               8:0    0   32G  0 disk
-├─sda1            8:1    0    1G  0 part /boot
-└─sda2            8:2    0   31G  0 part
-  ├─centos-root 253:0    0   29G  0 lvm  /
-  └─centos-swap 253:1    0    2G  0 lvm  [SWAP]
-sr0              11:0    1 1024M  0 rom
+```shell
+$ vgcreate  storage /dev/sdb /dev/sdc
+ Volume group "storage" successfully created
 
-#是一个用于显示卷组（Volume Group）信息的命令行工具。卷组是逻辑卷管理器（LVM）中的一个概念，它将物理磁盘合并成一个逻辑单元，为逻辑卷提供存储空间
 $ vgdisplay
   --- Volume group ---
-  VG Name               centos
+  VG Name               storage
   System ID
   Format                lvm2
-  Metadata Areas        1
-  Metadata Sequence No  3
-  VG Access             read/write
-  VG Status             resizable
-  MAX LV                0
-  Cur LV                2
-  Open LV               2
-  Max PV                0
-  Cur PV                1
-  Act PV                1
-  VG Size               <31.00 GiB
-  PE Size               4.00 MiB
-  Total PE              7935
-  Alloc PE / Size       7934 / 30.99 GiB
-  Free  PE / Size       1 / 4.00 MiB
-  VG UUID               Y28iBc-qR9z-Gkv0-epZG-VgwO-ARgx-Neyxco
-
-# 用于显示逻辑卷（Logical Volume）信息的命令行工具，逻辑卷是逻辑卷管理器（LVM）中的一个概念，它是从卷组中划分出的逻辑存储单元，提供给文件系统或其他应用使用
-$ lvdisplay
-  --- Logical volume ---
-  LV Path                /dev/centos/swap
-  LV Name                swap
-  VG Name                centos
-  LV UUID                NqgmcB-ODrF-BK5e-UkAq-JeAr-deXG-CSdbm1
-  LV Write Access        read/write
-  LV Creation host, time 192.168.0.106, 2020-01-10 01:26:49 +0800
-  LV Status              available
-  # open                 2
-  LV Size                2.00 GiB
-  Current LE             512
-  Segments               1
-  Allocation             inherit
-  Read ahead sectors     auto
-  - currently set to     8192
-  Block device           253:1
-
-  --- Logical volume ---
-  LV Path                /dev/centos/root
-  LV Name                root
-  VG Name                centos
-  LV UUID                xVFqgO-vE3B-do1C-a9a1-vUNW-DcFs-JKmkLq
-  LV Write Access        read/write
-  LV Creation host, time 192.168.0.106, 2020-01-10 01:26:50 +0800
-  LV Status              available
-  # open                 1
-  LV Size                28.99 GiB
-  Current LE             7422
-  Segments               1
-  Allocation             inherit
-  Read ahead sectors     auto
-  - currently set to     8192
-  Block device           253:0
-
-# 如果我们需要新增逻辑卷，在卷组空间还有剩余的情况下
-
-# app 为逻辑卷名称 centos为卷组
-$ lvcreate -L 10G -n app centos
-
-# 创建成功后，用lvdisplay 和 vgdisplay可以看到创建的app逻辑卷
-
-# 格式化分区 xxx为逻辑卷的文件类型，可以通过lsblk查看
-$ mkfs.xxx /dev/centos/app
-
-
-# 将逻辑卷写入分区表配置中，这样系统启动时会自动挂载
-# xxx为逻辑卷的文件类型
-$ echo '/dev/centos/app /app xxx defaults 0 0 ' >> /etc/fstab
-
-# 触发分区表的挂载
-$ mount -a
-
-# 查看app目录的细节
-$ df -h /app
-```
-
-### 一个扩展分区的示例
-
-实际有40G
-
-```shell
-[root@localhost ~]# fdisk -l
-
-Disk /dev/sda: 42.9 GB, 42949672960 bytes
-255 heads, 63 sectors/track, 5221 cylinders
-Units = cylinders of 16065 * 512 = 8225280 bytes
-
-   Device Boot      Start         End      Blocks   Id  System
-/dev/sda1   *           1          13      104391   83  Linux
-/dev/sda2              14        2610    20860402+  8e  Linux LVM
-```
-
-但只用了20G
-
-```shell
-[root@localhost ~]# df -h
-Filesystem            Size  Used Avail Use% Mounted on
-/dev/mapper/VolGroup00-LogVol00
-                       18G   12G  5.4G  68% /
-/dev/sda1              99M   13M   81M  14% /boot
-tmpfs                1004M     0 1004M   0% /dev/shm
-```
-
-扩展分区, n 新增分区 w 保存 然后重启
-
-```shell
-[root@localhost ~]# fdisk  /dev/sda
-Command action
-   a   toggle a bootable flag
-   b   edit bsd disklabel
-   c   toggle the dos compatibility flag
-   d   delete a partition
-   l   list known partition types
-   m   print this menu
-   n   add a new partition
-   o   create a new empty DOS partition table
-   p   print the partition table
-   q   quit without saving changes
-   s   create a new empty Sun disklabel
-   t   change a partition's system id
-   u   change display/entry units
-   v   verify the partition table
-   w   write table to disk and exit
-   x   extra functionality (experts only)
-
-```
-
-将新的分区添加到逻辑卷管理（LVM）组中
-
-```shell
-[root@localhost ~]#  pvcreate /dev/sda3
-```
-
-扩展现有的卷组（VG）
-
-```shell
-[root@localhost ~]# vgdisplay 
-  --- Volume group ---
-  VG Name               VolGroup00
-  System ID             
-  Format                lvm2
   Metadata Areas        2
-  Metadata Sequence No  5
+  Metadata Sequence No  1
   VG Access             read/write
   VG Status             resizable
   MAX LV                0
-  Cur LV                2
-  Open LV               1
+  Cur LV                0
+  Open LV               0
   Max PV                0
   Cur PV                2
   Act PV                2
-  VG Size               49.88 GB
-  PE Size               32.00 MB
-  Total PE              1596
-  Alloc PE / Size       956 / 29.88 GB
-  Free  PE / Size       640 / 20.00 GB
-  VG UUID               FLij4Y-dv68-oddG-6Oa3-goD6-ipyc-pmuraj 
-[root@localhost ~]# vgextend VolGroup00 /dev/sda3
+  VG Size               1.99 GiB
+  PE Size               4.00 MiB
+  Total PE              510
+  Alloc PE / Size       0 / 0
+  Free  PE / Size       510 / 1.99 GiB
+  VG UUID               yhG160-pYkf-j4o1-OoOf-uSrb-DvnZ-iRM9TN
+# 省略部分信息
 ```
 
-使用所有可用的空闲空间来扩展逻辑卷
+在对逻辑卷进行切割时有两种计量单位。第一种是以容 量为单位，所使用的参数为-L。例如，使用-L 150M 生成一个大小为 150MB 的逻辑卷。另外 一种是以基本单元的个数为单位，所使用的参数为-l。每个基本单元的大小默认为 4MB。例 如，使用-l 37 可以生成一个大小为 37×4MB=148MB 的逻辑卷。
 
 ```shell
-[root@localhost ~]# lvextend  -l +100%FREE /dev/mapper/VolGroup00-LogVol00
-  Extending logical volume LogVol00 to 47.91 GB
-  Logical volume LogVol00 successfully resized
-
-[root@localhost ~]# resize2fs  /dev/mapper/VolGroup00-LogVol00
-resize2fs 1.39 (29-May-2006)
-Filesystem at /dev/mapper/VolGroup00-LogVol00 is mounted on /; on-line resizing required
-Performing an on-line resize of /dev/mapper/VolGroup00-LogVol00 to 12558336 (4k) blocks.
-The filesystem on /dev/mapper/VolGroup00-LogVol00 is now 12558336 blocks long.
+$ lvcreate  -n vo -l 37 storage
+  Logical volume "vo" created.
 ```
 
+```shell
+$ lvdisplay
+
+# 省略部分信息
+  --- Logical volume ---
+  LV Path                /dev/storage/vo
+  LV Name                vo
+  VG Name                storage
+  LV UUID                HBQ9zU-4DST-CEab-GfR1-FekX-6jNE-IuVbNs
+  LV Write Access        read/write
+  LV Creation host, time CentOS7_Temp, 2024-02-04 18:15:50 +0800
+  LV Status              available
+  # open                 0
+  LV Size                148.00 MiB
+  Current LE             37
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     8192
+  Block device           253:2
+```
+
+使用[[#mkfs]]格式化 ，xfs文件系统与LVM兼容性不好。且xfs本身可以使用`xfs_growfs`扩容
+
+```shell
+$ mkfs.ext4  /dev/storage/vo
+mke2fs 1.42.9 (28-Dec-2013)
+Discarding device blocks: done
+Filesystem label=
+OS type: Linux
+Block size=1024 (log=0)
+Fragment size=1024 (log=0)
+Stride=4 blocks, Stripe width=4 blocks
+38000 inodes, 151552 blocks
+7577 blocks (5.00%) reserved for the super user
+First data block=1
+Maximum filesystem blocks=33816576
+19 block groups
+8192 blocks per group, 8192 fragments per group
+2000 inodes per group
+Superblock backups stored on blocks:
+	8193, 24577, 40961, 57345, 73729
+
+Allocating group tables: done
+Writing inode tables: done
+Creating journal (4096 blocks): done
+Writing superblocks and filesystem accounting information: done
+$ mkdir /vo
+$ mount /dev/storage/vo  /vo
+$ df -h
+Filesystem               Size  Used Avail Use% Mounted on
+devtmpfs                 906M     0  906M   0% /dev
+tmpfs                    917M  4.0K  917M   1% /dev/shm
+tmpfs                    917M  8.9M  908M   1% /run
+tmpfs                    917M     0  917M   0% /sys/fs/cgroup
+/dev/mapper/centos-root   29G   15G   15G  49% /
+/dev/sda1               1014M  151M  864M  15% /boot
+Home                     234G  177G   58G  76% /media/psf/Home
+tmpfs                    184M     0  184M   0% /run/user/0
+tmpfs                    184M     0  184M   0% /run/user/1002
+/dev/mapper/storage-vo   140M  1.6M  128M   2% /vo
+```
+
+写入配置文件，使其永久生效
+
+```shell
+$ echo "/dev/storage/vo /vo ext4 defaults 0 0" >> /etc/fstab
+$ cat /etc/fstab
+
+#
+# /etc/fstab
+# Created by anaconda on Fri Jan 10 01:26:50 2020
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk'
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
+#
+/dev/mapper/centos-root /                       xfs     defaults        0 0
+UUID=0ae18c31-cc28-4d90-bf6a-f65a96b2f57a /boot                   xfs     defaults        0 0
+/dev/mapper/centos-swap swap                    swap    defaults        0 0
+/dev/storage/vo /vo ext4 defaults 0 0
+
+```
+
+### 扩容逻辑卷
+
+一定要先卸载设备和挂载点的关联，然后使用lvextend进行扩展
+
+```shell
+$ umount  /vo
+$ lvextend  -L 290M /dev/storage/vo
+  Rounding size to boundary between physical extents: 292.00 MiB.
+  Size of logical volume storage/vo changed from 148.00 MiB (37 extents) to 292.00 MiB (73 extents).
+  Logical volume storage/vo successfully resized.
+```
+
+检查硬盘的完整性，确认目录结构、内容和文件内容没有丢失。一般情况下没 有报错，均为正常情况。
+
+```shell
+$ e2fsck  -f /dev/storage/vo
+e2fsck 1.42.9 (28-Dec-2013)
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+/dev/storage/vo: 11/38000 files (0.0% non-contiguous), 10453/151552 blocks
+```
+
+重置设备在系统中的容量。刚刚是对 LV(逻辑卷)设备进行了扩容操作，但系 统内核还没有同步到这部分新修改的信息，需要手动进行同步。
+
+```shell
+$ resize2fs  /dev/storage/vo
+resize2fs 1.42.9 (28-Dec-2013)
+Resizing the filesystem on /dev/storage/vo to 299008 (1k) blocks.
+The filesystem on /dev/storage/vo is now 299008 blocks long.
+```
+
+重新挂载硬盘设备并查看挂载状态。
+
+```shell
+# 触发分区表的挂载 /etc/fstb
+$ mount -a 
+$ df -h
+Filesystem               Size  Used Avail Use% Mounted on
+devtmpfs                 906M     0  906M   0% /dev
+tmpfs                    917M  4.0K  917M   1% /dev/shm
+tmpfs                    917M  8.9M  908M   1% /run
+tmpfs                    917M     0  917M   0% /sys/fs/cgroup
+/dev/mapper/centos-root   29G   15G   15G  49% /
+/dev/sda1               1014M  151M  864M  15% /boot
+Home                     234G  177G   58G  76% /media/psf/Home
+tmpfs                    184M     0  184M   0% /run/user/0
+tmpfs                    184M     0  184M   0% /run/user/1002
+/dev/mapper/storage-vo   279M  2.1M  259M   1% /vo
+```
+
+### 缩减逻辑卷
+
+
+先卸载，然后检查硬盘完整
+
+```shell
+$ umount /vo
+$ e2fsck -f /dev/storage/vo
+e2fsck 1.42.9 (28-Dec-2013)
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+/dev/storage/vo: 12/74000 files (0.0% non-contiguous), 15509/299008 blocks
+```
+
+先通知系统内核将逻辑卷 vo 的容量减小到 120MB，然后将 LV(逻辑卷)的容量修改为 120MB。
+
+
+```shell
+$ resize2fs  /dev/storage/vo 120M
+resize2fs 1.42.9 (28-Dec-2013)
+Resizing the filesystem on /dev/storage/vo to 122880 (1k) blocks.
+The filesystem on /dev/storage/vo is now 122880 blocks long.
+
+$ lvreduce -L 120M /dev/storage/vo
+  WARNING: Reducing active logical volume to 120.00 MiB.
+  THIS MAY DESTROY YOUR DATA (filesystem etc.)
+Do you really want to reduce storage/vo? [y/n]: y
+  Size of logical volume storage/vo changed from 292.00 MiB (73 extents) to 120.00 MiB (30 extents).
+  Logical volume storage/vo successfully resized.
+```
+
+重新挂载并查看状态
+
+```shell
+$ mount -a
+$ df -h
+Filesystem               Size  Used Avail Use% Mounted on
+devtmpfs                 906M     0  906M   0% /dev
+tmpfs                    917M  4.0K  917M   1% /dev/shm
+tmpfs                    917M  8.9M  908M   1% /run
+tmpfs                    917M     0  917M   0% /sys/fs/cgroup
+/dev/mapper/centos-root   29G   15G   15G  49% /
+/dev/sda1               1014M  151M  864M  15% /boot
+Home                     234G  177G   58G  76% /media/psf/Home
+tmpfs                    184M     0  184M   0% /run/user/0
+tmpfs                    184M     0  184M   0% /run/user/1002
+/dev/mapper/storage-vo   113M  1.6M  103M   2% /vo
+```
+
+
+### 逻辑卷快照
+
+略
+
+### 删除逻辑卷
+
+```shell
+$ umount /vo
+# 删除分区表中vo挂载的行
+$ vi /etc/fstab
+$ lvremove  /dev/storage/vo
+Do you really want to remove active logical volume storage/vo? [y/n]: y
+  Logical volume "vo" successfully removed
+
+$ vgremove storage
+  Volume group "storage" successfully removed
+$ pvremove  /dev/sdb /dev/sdc
+  Labels on physical volume "/dev/sdb" successfully wiped.
+  Labels on physical volume "/dev/sdc" successfully wiped.
+```
+ 
 ## umout
 
 > target is bussy

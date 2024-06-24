@@ -59,6 +59,9 @@ a123456bcd
 # 查找含有tab的行
 ~$ grep -P '\t' 1.log 
 ~$ grep -rnP '\t'  .   --include='*.yml'
+# some_command的输出为空，则执行
+~$ some_command|grep -q .|| echo 'empty'
+
 ```
 
 ## fgrep
