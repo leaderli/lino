@@ -457,6 +457,80 @@ tmpfs                    184M     0  184M   0% /run/user/1002
 /dev/mapper/storage-vo   279M  2.1M  259M   1% /vo
 ```
 
+### 缩减逻辑卷
+
+
+先卸载，然后检查硬盘完整
+
+```shell
+$ umount /vo
+$ e2fsck -f /dev/storage/vo
+e2fsck 1.42.9 (28-Dec-2013)
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+/dev/storage/vo: 12/74000 files (0.0% non-contiguous), 15509/299008 blocks
+```
+
+先通知系统内核将逻辑卷 vo 的容量减小到 120MB，然后将 LV(逻辑卷)的容量修改为 120MB。
+
+
+```shell
+$ resize2fs  /dev/storage/vo 120M
+resize2fs 1.42.9 (28-Dec-2013)
+Resizing the filesystem on /dev/storage/vo to 122880 (1k) blocks.
+The filesystem on /dev/storage/vo is now 122880 blocks long.
+
+$ lvreduce -L 120M /dev/storage/vo
+  WARNING: Reducing active logical volume to 120.00 MiB.
+  THIS MAY DESTROY YOUR DATA (filesystem etc.)
+Do you really want to reduce storage/vo? [y/n]: y
+  Size of logical volume storage/vo changed from 292.00 MiB (73 extents) to 120.00 MiB (30 extents).
+  Logical volume storage/vo successfully resized.
+```
+
+重新挂载并查看状态
+
+```shell
+$ mount -a
+$ df -h
+Filesystem               Size  Used Avail Use% Mounted on
+devtmpfs                 906M     0  906M   0% /dev
+tmpfs                    917M  4.0K  917M   1% /dev/shm
+tmpfs                    917M  8.9M  908M   1% /run
+tmpfs                    917M     0  917M   0% /sys/fs/cgroup
+/dev/mapper/centos-root   29G   15G   15G  49% /
+/dev/sda1               1014M  151M  864M  15% /boot
+Home                     234G  177G   58G  76% /media/psf/Home
+tmpfs                    184M     0  184M   0% /run/user/0
+tmpfs                    184M     0  184M   0% /run/user/1002
+/dev/mapper/storage-vo   113M  1.6M  103M   2% /vo
+```
+
+
+### 逻辑卷快照
+
+略
+
+### 删除逻辑卷
+
+```shell
+$ umount /vo
+# 删除分区表中vo挂载的行
+$ vi /etc/fstab
+$ lvremove  /dev/storage/vo
+Do you really want to remove active logical volume storage/vo? [y/n]: y
+  Logical volume "vo" successfully removed
+
+$ vgremove storage
+  Volume group "storage" successfully removed
+$ pvremove  /dev/sdb /dev/sdc
+  Labels on physical volume "/dev/sdb" successfully wiped.
+  Labels on physical volume "/dev/sdc" successfully wiped.
+```
+ 
 ## umout
 
 > target is bussy
