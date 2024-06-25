@@ -16,3 +16,9 @@ $ nc -lk 7777
 # 发布一个端口，可以发送数据 debian
 $ nc -l -p 7777
 ```
+
+
+```shell
+# 查看zookeeper节点状态
+echo stat | nc 127.0.0.1 2181
+```
