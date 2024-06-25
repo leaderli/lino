@@ -11,3 +11,5 @@ $ which vi
 alias vi='vim'
    /usr/bin/vim
 ```
+
+如果找不到，可以尝试 whereis，该命令搜索更大范围的系统目录。或者尝试使用[[locate]]

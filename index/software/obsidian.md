@@ -1,9 +1,24 @@
 ---
-
 tags:
   - 软件/obsidian
-date updated: 2024-05-15 23:08
+date updated: 2024-06-25 12:52
 ---
+
+## 笔记规范
+
+### 命令规范
+
+1. 中括号`[`和`]`之间的任何内容都是可选的
+2. 英文省略号`...`后面的任何内容都是可以重复的
+3. 大括号`{`和`}`表示应该选择由竖线`|`隔开的各项中的 一个。
+4. 星号`*`匹配零个或多个字符
+5. 问号`?`匹配一个字符
+
+例如：
+
+```shell
+bork [-x] {on | off } filename ...
+```
 
 ## 常用设置
 
@@ -114,10 +129,6 @@ TITLE: "<some-title>"
 
 [📒 obsidian-admonition](https://github.com/valentine195/obsidian-admonition)
 
-
-
-
-
 `````ad-note
 title: Nested Admonitions
 collapse: open
@@ -136,7 +147,6 @@ this is a nested nested
 
 This is in the original admonition.
 `````
-
 
 `````ad-note
 title: Nested Admonitions
