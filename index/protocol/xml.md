@@ -2,6 +2,7 @@
 aliases: xml
 tags:
   - protocol/xml
+  - protocol/dtd
   - java
   - linux
 date updated: 2024-06-19 23:08
