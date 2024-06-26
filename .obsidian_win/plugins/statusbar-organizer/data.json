@@ -1,7 +1,43 @@
 {
   "activePreset": "Default",
   "presets": {
-    "Default": {},
+    "Default": {
+      "plugin-obsidian-git-obsidian-git-statusbar-failed-init-obsidian-git-statusbar-idle;1": {
+        "position": 0,
+        "visible": false,
+        "exists": true
+      },
+      "plugin-various-complements;1": {
+        "position": 2,
+        "visible": false,
+        "exists": true
+      },
+      "plugin-edit-history;1": {
+        "position": 3,
+        "visible": true,
+        "exists": true
+      },
+      "plugin-backlink;1": {
+        "position": 4,
+        "visible": true,
+        "exists": true
+      },
+      "plugin-editor-status;1": {
+        "position": 5,
+        "visible": true,
+        "exists": true
+      },
+      "plugin-word-count;1": {
+        "position": 6,
+        "visible": true,
+        "exists": true
+      },
+      "left-region;1": {
+        "position": 1,
+        "visible": true,
+        "exists": true
+      }
+    },
     "default": {
       "plugin-various-complements;1": {
         "position": 0,

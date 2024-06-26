@@ -1,0 +1,10 @@
+{
+  "minSecondsBetweenEdits": "60",
+  "maxEditAge": "0",
+  "maxEdits": "3",
+  "maxHistoryFileSizeKB": "0",
+  "editHistoryRootFolder": "",
+  "extensionWhitelist": ".md",
+  "showOnStatusBar": false,
+  "debugLevel": "warn"
+}

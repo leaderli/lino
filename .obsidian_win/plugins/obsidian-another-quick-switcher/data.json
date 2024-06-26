@@ -3,13 +3,15 @@
   "maxNumberOfSuggestions": 37,
   "normalizeAccentsAndDiacritics": false,
   "useSelectionWordsAsDefaultInputQuery": true,
+  "preventDuplicateTabs": true,
   "showDirectory": false,
   "showDirectoryAtNewLine": false,
   "showFullPathOfDirectory": false,
-  "showAliasesOnTop": false,
+  "showAliasesOnTop": true,
+  "displayAliaseAsTitle": true,
   "showExistingFilesOnly": false,
-  "hideGutterIcons": false,
-  "hideHotkeyGuides": false,
+  "hideGutterIcons": true,
+  "hideHotkeyGuides": true,
   "userAltInsteadOfModForQuickResultSelection": false,
   "hotkeys": {
     "main": {
@@ -219,6 +221,31 @@
         }
       ]
     },
+    "folder": {
+      "up": [
+        {
+          "modifiers": [
+            "Mod"
+          ],
+          "key": "p"
+        }
+      ],
+      "down": [
+        {
+          "modifiers": [
+            "Mod"
+          ],
+          "key": "n"
+        }
+      ],
+      "open in default app": [],
+      "dismiss": [
+        {
+          "modifiers": [],
+          "key": "Escape"
+        }
+      ]
+    },
     "move": {
       "up": [
         {
@@ -289,6 +316,15 @@
             "Mod"
           ],
           "key": ","
+        }
+      ],
+      "insert all to editor": [
+        {
+          "modifiers": [
+            "Alt",
+            "Shift"
+          ],
+          "key": "Enter"
         }
       ],
       "dismiss": [
@@ -494,6 +530,47 @@
         }
       ]
     },
+    "in-file": {
+      "up": [
+        {
+          "modifiers": [
+            "Mod"
+          ],
+          "key": "p"
+        }
+      ],
+      "down": [
+        {
+          "modifiers": [
+            "Mod"
+          ],
+          "key": "n"
+        }
+      ],
+      "show all results": [
+        {
+          "modifiers": [
+            "Shift",
+            "Alt"
+          ],
+          "key": "a"
+        }
+      ],
+      "toggle auto preview": [
+        {
+          "modifiers": [
+            "Mod"
+          ],
+          "key": ","
+        }
+      ],
+      "dismiss": [
+        {
+          "modifiers": [],
+          "key": "Escape"
+        }
+      ]
+    },
     "grep": {
       "search": [
         {
@@ -620,13 +697,17 @@
       "searchBy": {
         "tag": true,
         "link": false,
-        "header": false
+        "header": true,
+        "property": false
       },
+      "keysOfPropertyToSearch": [],
       "searchTarget": "file",
-      "allowFuzzySearchForSearchTarget": false,
-      "minFuzzyMatchScore": 0.5,
-      "targetExtensions": [],
-      "floating": false,
+      "allowFuzzySearchForSearchTarget": true,
+      "minFuzzyMatchScore": 10,
+      "targetExtensions": [
+        "md"
+      ],
+      "floating": true,
       "showFrontMatter": false,
       "excludeFrontMatterKeys": [
         "aliases",
@@ -637,6 +718,7 @@
         "publish"
       ],
       "defaultInput": "",
+      "restoreLastInput": false,
       "commandPrefix": ":e ",
       "sortPriorities": [
         "Name match",
@@ -652,8 +734,10 @@
       "searchBy": {
         "tag": false,
         "link": false,
-        "header": false
+        "header": false,
+        "property": false
       },
+      "keysOfPropertyToSearch": [],
       "searchTarget": "file",
       "allowFuzzySearchForSearchTarget": false,
       "minFuzzyMatchScore": 0.5,
@@ -669,6 +753,7 @@
         "publish"
       ],
       "defaultInput": "",
+      "restoreLastInput": false,
       "commandPrefix": ":f ",
       "sortPriorities": [
         "Prefix name match",
@@ -685,8 +770,10 @@
       "searchBy": {
         "tag": true,
         "link": true,
-        "header": true
+        "header": true,
+        "property": false
       },
+      "keysOfPropertyToSearch": [],
       "searchTarget": "file",
       "allowFuzzySearchForSearchTarget": false,
       "minFuzzyMatchScore": 0.5,
@@ -702,6 +789,7 @@
         "publish"
       ],
       "defaultInput": "",
+      "restoreLastInput": false,
       "commandPrefix": ":l ",
       "sortPriorities": [
         "Prefix name match",
@@ -721,8 +809,10 @@
       "searchBy": {
         "tag": false,
         "link": false,
-        "header": false
+        "header": false,
+        "property": false
       },
+      "keysOfPropertyToSearch": [],
       "searchTarget": "file",
       "allowFuzzySearchForSearchTarget": false,
       "minFuzzyMatchScore": 0.5,
@@ -738,6 +828,7 @@
         "publish"
       ],
       "defaultInput": "",
+      "restoreLastInput": false,
       "commandPrefix": ":s ",
       "sortPriorities": [
         "Star",
@@ -753,8 +844,10 @@
       "searchBy": {
         "tag": false,
         "link": false,
-        "header": false
+        "header": false,
+        "property": false
       },
+      "keysOfPropertyToSearch": [],
       "searchTarget": "backlink",
       "allowFuzzySearchForSearchTarget": false,
       "minFuzzyMatchScore": 0.5,
@@ -770,6 +863,7 @@
         "publish"
       ],
       "defaultInput": "",
+      "restoreLastInput": false,
       "commandPrefix": "",
       "sortPriorities": [
         "Last opened",
@@ -782,6 +876,9 @@
   ],
   "autoPreviewInFloatingHeaderSearch": true,
   "backlinkExcludePrefixPathPatterns": [],
+  "inFileContextLines": 2,
+  "autoPreviewInFloatingInFileSearch": false,
+  "inFileMaxDisplayLengthAroundMatchedWord": 64,
   "ripgrepCommand": "rg",
   "grepExtensions": [
     "md"

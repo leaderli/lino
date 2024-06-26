@@ -19,16 +19,13 @@
   "homepage",
   "obsidian-hider",
   "obsidian-minimal-settings",
-  "obsidian-quiet-outline",
   "obsidian-kanban",
   "statusbar-organizer",
   "settings-search",
   "obsidian-outliner",
-  "obsidian-export-image",
   "codeblock-customizer",
   "obs-text-wrapper",
   "li-text-wrapper",
   "page-scroll",
-  "edit-history",
-  "obisidian-note-linker"
+  "edit-history"
 ]
