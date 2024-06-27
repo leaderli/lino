@@ -10,7 +10,7 @@
       "plugin-edit-history;1": {
         "position": 2,
         "visible": true,
-        "exists": true
+        "exists": false
       },
       "plugin-backlink;1": {
         "position": 3,
