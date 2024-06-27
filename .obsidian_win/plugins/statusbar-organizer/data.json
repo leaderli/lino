@@ -5,7 +5,7 @@
       "plugin-obsidian-git-obsidian-git-statusbar-failed-init-obsidian-git-statusbar-idle;1": {
         "position": 0,
         "visible": false,
-        "exists": true
+        "exists": false
       },
       "plugin-various-complements;1": {
         "position": 2,
@@ -34,6 +34,11 @@
       },
       "left-region;1": {
         "position": 1,
+        "visible": true,
+        "exists": true
+      },
+      "plugin-obsidian-git-obsidian-git-statusbar-failed-init-obsidian-git-statusbar-idle-obsidian-git-statusbar-pull;1": {
+        "position": 8,
         "visible": true,
         "exists": true
       }
