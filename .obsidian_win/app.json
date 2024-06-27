@@ -8,7 +8,7 @@
   "showUnsupportedFiles": true,
   "attachmentFolderPath": "resource",
   "showFrontmatter": true,
-  "readableLineLength": false,
+  "readableLineLength": true,
   "newFileLocation": "current",
   "newFileFolderPath": "",
   "promptDelete": false,
@@ -31,7 +31,8 @@
   "rightToLeft": false,
   "focusNewTab": true,
   "showIndentGuide": true,
-  "propertiesInDocument": "hidden",
+  "propertiesInDocument": "visible",
   "showRibbon": false,
-  "autoConvertHtml": true
+  "autoConvertHtml": true,
+  "smartIndentList": true
 }
