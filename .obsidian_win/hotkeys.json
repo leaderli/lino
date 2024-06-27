@@ -46,14 +46,6 @@
     }
   ],
   "editor:toggle-italics": [],
-  "editor:unfold-all": [
-    {
-      "modifiers": [
-        "Alt"
-      ],
-      "key": "ArrowDown"
-    }
-  ],
   "app:toggle-left-sidebar": [
     {
       "modifiers": [
@@ -76,14 +68,6 @@
         "Alt"
       ],
       "key": "L"
-    }
-  ],
-  "editor:fold-all": [
-    {
-      "modifiers": [
-        "Alt"
-      ],
-      "key": "ArrowUp"
     }
   ],
   "insert-template": [
@@ -247,6 +231,22 @@
         "Alt"
       ],
       "key": "T"
+    }
+  ],
+  "quick-snippets-and-navigation:goToNextHeading": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "ArrowDown"
+    }
+  ],
+  "quick-snippets-and-navigation:goToPrevHeading": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "ArrowUp"
     }
   ]
 }

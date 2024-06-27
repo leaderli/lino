@@ -15,7 +15,6 @@
   "obsidian-style-settings",
   "quick-explorer",
   "obsidian-tasks-plugin",
-  "link-headers-directly",
   "homepage",
   "obsidian-hider",
   "obsidian-minimal-settings",
@@ -26,5 +25,9 @@
   "codeblock-customizer",
   "obs-text-wrapper",
   "li-text-wrapper",
-  "page-scroll"
+  "page-scroll",
+  "obsidian-alias-from-heading",
+  "insert-heading-link",
+  "short-internal-links-to-headings",
+  "quick-snippets-and-navigation"
 ]

@@ -1,7 +1,7 @@
 ---
 tags:
   - 软件/obsidian
-date updated: 2024-06-25 12:52
+date updated: 2024-06-27 20:04
 ---
 
 ## 笔记规范
@@ -277,6 +277,10 @@ vim 模式自动切换输入法的插件
 ### clear unused images
 
 清理失效的图片、附近
+
+### obsidian-alias-from-heading
+
+文件别名
 
 ### 自定义插件
 
