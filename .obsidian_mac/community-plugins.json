@@ -22,11 +22,13 @@
   "quick-explorer",
   "obsidian-another-quick-switcher",
   "omnisearch",
-  "obsidian-quiet-outline",
   "obsidian-dynamic-highlights",
   "obsidian-kanban",
   "various-complements",
   "codeblock-customizer",
   "statusbar-organizer",
-  "li-text-wrapper"
+  "li-text-wrapper",
+  "page-scroll",
+  "edit-history",
+  "settings-search"
 ]

@@ -23,7 +23,7 @@
     "plugin-obsidian-git-obsidian-git-statusbar-failed-init-obsidian-git-statusbar-idle-obsidian-git-statusbar-pull-obsidian-git-statusbar-message;1": {
       "position": 5,
       "visible": true,
-      "exists": false
+      "exists": true
     },
     "plugin-obsidian-git-obsidian-git-statusbar-failed-init-obsidian-git-statusbar-idle-obsidian-git-statusbar-pull;1": {
       "position": 6,
@@ -37,6 +37,11 @@
     },
     "plugin-obsidian-vimrc-support;1": {
       "position": 8,
+      "visible": true,
+      "exists": true
+    },
+    "plugin-edit-history;1": {
+      "position": 9,
       "visible": true,
       "exists": true
     }

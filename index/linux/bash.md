@@ -1430,6 +1430,12 @@ clear
 li ALL=(root) NOPASSWD: /root/dhclient.sh
 ```
 
+sudo的操作会被记录日志，不同操作系统可能记录位置不同，可能在下面位置
+
+```shell
+cat /var/log/secure
+```
+
 ## debug
 
 对某一个脚本开启debug模式
