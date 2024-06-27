@@ -34,5 +34,5 @@
   "propertiesInDocument": "hidden",
   "showRibbon": false,
   "autoConvertHtml": true,
-  "smartIndentList": true
+  "smartIndentList": false
 }
