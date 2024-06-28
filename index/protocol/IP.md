@@ -1,9 +1,27 @@
 ---
-aliases: IP
+aliases: 
+- IP
+- 网络地址
+- 网段
 tags: 
 - protocol/IP
+
+cssclass: academia
 ---
 
+## 概述
+
+Ineternet地址都是由网络部分和主机部分构成的。网络部分标识这个地址所属的逻辑网络，主机部分标识在网络上的一个节点。IPv4的地址有4字节长，网络部分和主机部分的界限要专门规定
+
+若一个地址的第一个字节是127，则表示环回网络，环回网络没有实际的硬件接口且只有一台主机的虚拟网络。环回地址`127.0.0.1`始终指向当前主机，它的符号名是`localhost`
+
+
+IPv4地址分类，根据最左边的第一个比特位的不同而进行分类
+
+![[Pasted image 20240628125918.png]]
+
+
+## 报文
 IP4 报文的报文头由 14 个属性构成，其中 13 个是必须的，第 14 个属性是可选的。
 
 ![ip_header.png](ip_header.png)
@@ -55,3 +73,4 @@ ac14 0a04
     ![ip_address.png](ip_address.png)
 13. `Destination address` 目标地址
 14. `Options` 扩展字段
+
