@@ -69,14 +69,6 @@
     }
   ],
   "editor:toggle-fold": [],
-  "editor:fold-all": [
-    {
-      "modifiers": [
-        "Alt"
-      ],
-      "key": "ArrowUp"
-    }
-  ],
   "insert-template": [
     {
       "modifiers": [
@@ -216,6 +208,22 @@
         "Mod"
       ],
       "key": "L"
+    }
+  ],
+  "quick-snippets-and-navigation:goToNextHeading": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "ArrowDown"
+    }
+  ],
+  "quick-snippets-and-navigation:goToPrevHeading": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "ArrowUp"
     }
   ]
 }

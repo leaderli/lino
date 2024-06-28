@@ -1,49 +1,97 @@
 {
-  "status": {
-    "plugin-various-complements;1": {
-      "position": 0,
-      "visible": false,
-      "exists": true
+  "activePreset": "Default",
+  "presets": {
+    "Default": {
+      "plugin-various-complements;1": {
+        "position": 1,
+        "visible": false,
+        "exists": true
+      },
+      "plugin-edit-history;1": {
+        "position": 2,
+        "visible": true,
+        "exists": false
+      },
+      "plugin-backlink;1": {
+        "position": 3,
+        "visible": true,
+        "exists": true
+      },
+      "plugin-editor-status;1": {
+        "position": 5,
+        "visible": true,
+        "exists": true
+      },
+      "plugin-word-count;1": {
+        "position": 4,
+        "visible": true,
+        "exists": true
+      },
+      "left-region;1": {
+        "position": 0,
+        "visible": false,
+        "exists": true
+      },
+      "plugin-obsidian-git-obsidian-git-statusbar-failed-init-obsidian-git-statusbar-idle-obsidian-git-statusbar-pull;1": {
+        "position": 6,
+        "visible": false,
+        "exists": true
+      }
     },
-    "plugin-editor-status;1": {
-      "position": 3,
-      "visible": true,
-      "exists": true
-    },
-    "left-region;1": {
-      "position": 1,
-      "visible": true,
-      "exists": true
-    },
-    "plugin-backlink;1": {
-      "position": 2,
-      "visible": true,
-      "exists": false
-    },
-    "plugin-obsidian-git-obsidian-git-statusbar-failed-init-obsidian-git-statusbar-idle-obsidian-git-statusbar-pull-obsidian-git-statusbar-message;1": {
-      "position": 5,
-      "visible": true,
-      "exists": true
-    },
-    "plugin-obsidian-git-obsidian-git-statusbar-failed-init-obsidian-git-statusbar-idle-obsidian-git-statusbar-pull;1": {
-      "position": 6,
-      "visible": true,
-      "exists": false
-    },
-    "plugin-obsidian-git-obsidian-git-statusbar-failed-init;1": {
-      "position": 7,
-      "visible": true,
-      "exists": false
-    },
-    "plugin-obsidian-vimrc-support;1": {
-      "position": 8,
-      "visible": true,
-      "exists": true
-    },
-    "plugin-edit-history;1": {
-      "position": 9,
-      "visible": true,
-      "exists": true
+    "default": {
+      "plugin-various-complements;1": {
+        "position": 0,
+        "visible": false,
+        "exists": true
+      },
+      "plugin-editor-status;1": {
+        "position": 3,
+        "visible": true,
+        "exists": true
+      },
+      "left-region;1": {
+        "position": 1,
+        "visible": false,
+        "exists": true
+      },
+      "plugin-backlink;1": {
+        "position": 2,
+        "visible": false,
+        "exists": true
+      },
+      "plugin-obsidian-git-obsidian-git-statusbar-failed-init-obsidian-git-statusbar-idle-obsidian-git-statusbar-pull-obsidian-git-statusbar-message;1": {
+        "position": 5,
+        "visible": true,
+        "exists": false
+      },
+      "plugin-obsidian-git-obsidian-git-statusbar-failed-init-obsidian-git-statusbar-idle-obsidian-git-statusbar-pull;1": {
+        "position": 6,
+        "visible": true,
+        "exists": true
+      },
+      "plugin-obsidian-git-obsidian-git-statusbar-failed-init;1": {
+        "position": 7,
+        "visible": true,
+        "exists": false
+      },
+      "plugin-word-count;1": {
+        "position": 8,
+        "visible": true,
+        "exists": true
+      },
+      "plugin-obsidian-git-obsidian-git-statusbar-failed-init-obsidian-git-statusbar-idle;1": {
+        "position": 9,
+        "visible": true,
+        "exists": false
+      },
+      "plugin-obsidian-git-obsidian-git-statusbar-idle-obsidian-git-statusbar-pull;1": {
+        "position": 10,
+        "visible": true,
+        "exists": false
+      }
     }
-  }
+  },
+  "presetsOrder": [
+    "Default"
+  ]
 }

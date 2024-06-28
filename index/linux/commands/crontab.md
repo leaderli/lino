@@ -1,7 +1,7 @@
 ---
 tags:
   - linux/commands/crontab
-date updated: 2024-06-27 13:24
+date updated: 2024-06-28 08:51
 ---
 
 crond 是linux用来定期执行程序的命令。当安装完成操作系统之后，默认便会启动此任务调度命令。crond命令每分锺会定期检查是否有要执行的工作，如果有要执行的工作便会自动执行该工作。
@@ -68,9 +68,9 @@ crontab -u root -e
 2. crontab的脚本需要有执行权限
 3. crontab中默认不会加载用户环境变量（~/.bash_profile等），需要使用如下方式
 
-	```shell
-	* * * * * bash -l -c '/path/to/script.sh'
-	```
+   ```shell
+   * * * * * bash -l -c '/path/to/script.sh'
+   ```
 
 ## 示例
 
@@ -84,10 +84,15 @@ crontab -u root -e
 0 0  * * * sh ~/demo.sh
 ```
 
-### 添加crontab权限
+## 添加crontab权限
 
 文件中添加用户名
 
 ```shell
 /etc/cron.allow
 ```
+
+## 预装命令
+
+1. 在 `/etc/cron.daily` 目录下的脚本每天运行一次
+2. 在 `/etc/cron.weekly` 目录下的脚本每周运行一次

@@ -20,7 +20,7 @@
     "includeName": true,
     "pageSize": "Letter",
     "landscape": false,
-    "margin": "2",
+    "margin": "1",
     "downscalePercent": 100
   },
   "strictLineBreaks": true,

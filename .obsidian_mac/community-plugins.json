@@ -29,6 +29,10 @@
   "statusbar-organizer",
   "li-text-wrapper",
   "page-scroll",
-  "edit-history",
-  "settings-search"
+  "settings-search",
+  "obsidian-alias-from-heading",
+  "obsidian-export-image",
+  "insert-heading-link",
+  "short-internal-links-to-headings",
+  "quick-snippets-and-navigation"
 ]
