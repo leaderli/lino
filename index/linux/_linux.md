@@ -11,6 +11,7 @@
 - 📄 [[index/linux/linux basic|linux basic]]
 - 📄 [[index/linux/make|make]]
 - 📄 [[index/linux/process|process]]
+- 📄 [[index/linux/rpm 1|rpm 1]]
 - 📄 [[index/linux/rpm|rpm]]
 - 📄 [[index/linux/systemd|systemd]]
 - 📄 [[index/linux/yum|yum]]
