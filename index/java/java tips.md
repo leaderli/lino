@@ -47,6 +47,9 @@ fernflower idea中使用的
 
 ```java
 String javaSource = new String(Files.readAllBytes(Paths.get("src/Hello.java")));
+
+
+Files.readAllLines(Paths.get("E:/Hello.java"))
 ```
 
 ### 返回空的集合
