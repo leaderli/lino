@@ -8,7 +8,6 @@ date updated: 2024-07-03 13:08
 
 ```shell
 You have new mail in /var/spool/mail/li
-
 ```
 
 查看邮件并清空邮件
