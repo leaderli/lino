@@ -3,6 +3,7 @@ aliases:
   - IP
   - 网络地址
   - 网段
+  - DHCP
 tags:
   - protocol/IP
 cssclass: academia
@@ -78,6 +79,17 @@ Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
 
 客户机必须定期向DHCP服务器报告，为借用的参数续期，续期的时间可以配置，通常是数小时或数天
 
+### 基本的网络配置
+
+把一台主机加入到本地网络的基本步骤：
+1. 分配唯一的IP地址和主机名
+2. 确保在系统引导时正确配置网络接口
+3. 设置一条默认路由，或许还有其他更复杂的路由配置
+4. 指向一台DNS服务器
+
+如果网络采用了[[#DHCP]]，那么大部分配置工作都会在DHCP服务器上完成
+
+
 ## 报文
 
 IP4 报文的报文头由 14 个属性构成，其中 13 个是必须的，第 14 个属性是可选的。
@@ -143,3 +155,4 @@ ac14 0a04
 13. `Destination address` 目标地址
 
 14. `Options` 扩展字段
+

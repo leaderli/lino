@@ -1,11 +1,12 @@
 ---
+alias:
+  - hostname
 tags:
   - linux/commands/hostnamectl
-date updated: 2022-04-07 14:38
+date updated: 2024-07-04 12:31
 ---
 
 查看系统信息
-
 
 ```shell
 $ hostnamectl
@@ -22,4 +23,16 @@ Transient hostname: CentOS7
       Architecture: x86-64
 ```
 
-也可以通过 [[uname]] , 或者 ` cat /etc/os-release` 查看
+也可以通过 [[uname]] , 或者 `  cat /etc/os-release ` 查看
+
+
+## 修改主机名称
+
+在`/etc/hostname`中修改名称
+
+```shell
+$ hostnamectl  set-hostname leaderli
+$ cat /etc/hostname
+leaderli
+```
+
