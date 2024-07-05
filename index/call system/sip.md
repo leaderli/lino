@@ -819,3 +819,10 @@ FreeSwitch 是一个 B2BUA，上面的过程建立了一通会话，其中有两
 
 - SIPUA 直接把 INVITE 送到任意端口，一般用于中继方式对接
 - FreeSwitch 作为一个客户端，若要添加一个网关，则该网关会被放到 `sip_profiles/external/` 的文件中，它就会被包含到 `sip_profiles/external.xml` 中。它向其他服务器注册时，其中的 Contact 地址就是 IP:5080，如果有来话，对方的服务器就会把 INVITE 送到它的 5080 端口
+
+
+
+## 参考文档
+
+
+[sngrep: 最好用的sip可视化抓包工具 | 洞香春](https://wdd.js.org/opensips/tools/sngrep/)
