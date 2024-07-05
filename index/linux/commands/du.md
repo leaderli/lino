@@ -1,7 +1,6 @@
 ---
 tags:
   - linux/commands/du
-  - dns
 date updated: 2022-04-17 02:44
 ---
 

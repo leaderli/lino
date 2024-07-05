@@ -5,7 +5,7 @@ tags:
 date updated: 2024-05-19 11:40
 ---
 
-查看 dns 解析过程
+查看 [[net#DNS]] 解析过程
 
 ```shell
 dig www.example.com
