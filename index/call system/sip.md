@@ -5,7 +5,7 @@ tags:
   - ivr
   - sdp
   - protocol
-date updated: 2022-04-05 23:09
+date updated: 2024-07-06 12:26
 ---
 
 SIP 是一个对等的协议，类似 P2P。它可以在不需要服务器的情况下进行通信，只要通信双方都彼此指导对方的地址（或者只有一方知道另一方的地址）即可，这种情况称为点对点通信。详细标准可查看 [RFC3261](https://tools.ietf.org/html/rfc3261#section-7.3)
@@ -813,16 +813,17 @@ external.xml 的配置与 internal.xml 的配置大部分相同，最大的不�
 
 4. 找到呼叫字符串后，FreeSwitch 又启动另外一个会话作为一个 UAC 给 1001 发送 INVITE 请求，如果 1001 摘机，则 1001 向 FreeSwitch 回送 200 OK 消息，FreeSwitch 再向 100 返回 200OK，通话开始。
 
-FreeSwitch 是一个 B2BUA，上面的过程建立了一通会话，其中有两个 Channel。我们可以跟踪 SIP 消息试一下 `sofia profile internal siptrace on/off` 
+FreeSwitch 是一个 B2BUA，上面的过程建立了一通会话，其中有两个 Channel。我们可以跟踪 SIP 消息试一下 `sofia profile internal siptrace on/off`
 
 在 FreeSwitch 的默认配置中，external 对应的 Profile 是不鉴权的，凡是送到 5080 端口的 INVITE 都不需要鉴权。
 
 - SIPUA 直接把 INVITE 送到任意端口，一般用于中继方式对接
 - FreeSwitch 作为一个客户端，若要添加一个网关，则该网关会被放到 `sip_profiles/external/` 的文件中，它就会被包含到 `sip_profiles/external.xml` 中。它向其他服务器注册时，其中的 Contact 地址就是 IP:5080，如果有来话，对方的服务器就会把 INVITE 送到它的 5080 端口
 
-
-
 ## 参考文档
 
+![[sngrep-static-i386-linux-gnu-1.8.zip]]
+
+[sngrep 离线软件地址](https://packages.irontec.com/binaries/)
 
 [sngrep: 最好用的sip可视化抓包工具 | 洞香春](https://wdd.js.org/opensips/tools/sngrep/)

@@ -1,10 +1,8 @@
 ---
 tags:
   - 软件/wireshark
-date updated: 2022-04-02 00:09
+date updated: 2024-07-06 12:04
 ---
-
-
 
 wireshark 显示过滤器表达式是根据 `协议` + `.` + `属性` 来判断的。
 
@@ -16,17 +14,17 @@ wireshark 显示过滤器表达式是根据 `协议` + `.` + `属性` 来判断�
 
 ## 过滤器表达式基本语法
 
-| english      | c-like | desc                                           |
-| :----------- | :----- | :--------------------------------------------- |
-| eq           | ==     | ip.src=10.0.0.5                                |
-| ne           | !=     | ip.src!=10.0.0.5                               |
-| gt           | >      | frame.len>10                                   |
-| lt           | <      | frame.len<10                                   |
-| ge           | >=     | frame.len>=10                                  |
-| le           | <=     | frame.len<=10                                  |
-| contains     |        | sip.TO contains "a123"                         |
-| matches      | ~      | 使用正则，http.host matches "acme\.(org\|com)" |
-| bitewire_and | &      | 二进制 and 运算结果不为 0， tcp.flags & 0x02   |
+| english      | c-like | desc                                    |
+| :----------- | :----- | :-------------------------------------- |
+| eq           | ==     | ip.src=10.0.0.5                         |
+| ne           | !=     | ip.src!=10.0.0.5                        |
+| gt           | >      | frame.len>10                            |
+| lt           | <      | frame.len<10                            |
+| ge           | >=     | frame.len>=10                           |
+| le           | <=     | frame.len<=10                           |
+| contains     |        | sip.TO contains "a123"                  |
+| matches      | ~      | 使用正则，http.host matches "acme.(org|com)" |
+| bitewire_and | &      | 二进制 and 运算结果不为 0， tcp.flags & 0x02      |
 
 数字值可以使用十进制、八进制、十六进制
 
@@ -59,11 +57,11 @@ udp contains 81:60:03
 | english | c-like | desc                                  |
 | :------ | :----- | :------------------------------------ |
 | and     | &&     | ip.src==10.0.0.5 and tcp.flags.fin    |
-| or      | \|\|   | ip.src==10.0.0.5 or ip.src=10.0.0.6   |
+| or      | ||     | ip.src==10.0.0.5 or ip.src=10.0.0.6   |
 | xor     | ^^     | tr.src==10.0.0.5 xor tr.dst==10.0.0.5 |
 | not     | !      | not tcp                               |
-| [...]   |        | 子序列比较                            |
-| in      |        | 是否在集合中                          |
+| [...]   |        | 子序列比较                                 |
+| in      |        | 是否在集合中                                |
 
 一些示例
 
@@ -80,8 +78,8 @@ tcp.port in {443 4430..4434}
 tcp.port == 443 || (tcp.port >= 4430 && tcp.port <= 4434)
 ```
 
+## 参考文档
 
-
-## 参考文档 
+各种类型的网络包的demo文件
 
 [SampleCaptures - Wireshark Wiki](https://wiki.wireshark.org/SampleCaptures#sip-and-rtp)
