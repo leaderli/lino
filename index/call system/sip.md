@@ -5,7 +5,7 @@ tags:
   - ivr
   - sdp
   - protocol
-date updated: 2024-07-06 12:26
+date updated: 2024-07-06 12:44
 ---
 
 SIP 是一个对等的协议，类似 P2P。它可以在不需要服务器的情况下进行通信，只要通信双方都彼此指导对方的地址（或者只有一方知道另一方的地址）即可，这种情况称为点对点通信。详细标准可查看 [RFC3261](https://tools.ietf.org/html/rfc3261#section-7.3)
@@ -820,9 +820,32 @@ FreeSwitch 是一个 B2BUA，上面的过程建立了一通会话，其中有两
 - SIPUA 直接把 INVITE 送到任意端口，一般用于中继方式对接
 - FreeSwitch 作为一个客户端，若要添加一个网关，则该网关会被放到 `sip_profiles/external/` 的文件中，它就会被包含到 `sip_profiles/external.xml` 中。它向其他服务器注册时，其中的 Contact 地址就是 IP:5080，如果有来话，对方的服务器就会把 INVITE 送到它的 5080 端口
 
-## 参考文档
+## sngrep
 
-![[sngrep-static-i386-linux-gnu-1.8.zip]]
+[[sngrep-static-i386-linux-gnu-1.8.zip]] [[MagicJack-_short_call.pcap]]
+
+- `-d --device`: 指定抓包的网卡
+- `-I --input`: 从pacp文件中解析sip包
+- `-O --output`: 输出捕获的包到pacp文件中
+- `-c --calls`: 仅显示invite消息
+- `-r --rtp`: Capture RTP packets payload 捕获rtp包
+- `-l --limit`: 限制捕获对话的数量
+- `-k --keyfile` RSA加密的私钥
+- `-f --config`: 指定配置文件
+
+```shell
+sngrep -I MagicJack-_short_call 1.pcap
+```
+
+进入主菜单，可以按F1查看帮助文档，F7可以筛选，F8可以做配置
+
+![[Pasted image 20240706124254.png]]
+
+进入某一通交互，可以按F1查看帮助文档，F2打开SDP，F3打开RTP
+
+![[Pasted image 20240706123827.png]]
+
+## 参考文档
 
 [sngrep 离线软件地址](https://packages.irontec.com/binaries/)
 
