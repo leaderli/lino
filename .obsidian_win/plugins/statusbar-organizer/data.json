@@ -30,7 +30,7 @@
       "left-region;1": {
         "position": 0,
         "visible": false,
-        "exists": true
+        "exists": false
       },
       "plugin-obsidian-git-obsidian-git-statusbar-failed-init-obsidian-git-statusbar-idle-obsidian-git-statusbar-pull;1": {
         "position": 6,
