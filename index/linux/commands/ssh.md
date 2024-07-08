@@ -2,7 +2,7 @@
 aliases: ssh免密
 tags:
   - linux/commands/ssh
-date updated: 2023-12-23 20:46
+date updated: 2024-07-08 11:43
 ---
 
 ## ssh免密
@@ -91,4 +91,14 @@ $ apt-get install openssh-server
 
 # 查看状态
 $ systemctl status ssh
+```
+
+## 一些配置
+
+`/etc/ssh/sshd_config`
+
+```shell
+AllowAgentForwarding yes # 选项控制是否允许 SSH 代理转发功能
+AllowTcpForwarding yes # 选项控制是否允许 TCP 转发，而
+GatewayPorts yes #选项则控制是否允许绑定到非本地地址。
 ```
