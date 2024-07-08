@@ -2,6 +2,7 @@
 aliases: 设置
 tags:
   - linux/configuration
+  - linux/PS1
 date updated: 2022-04-14 11:18
 ---
 
@@ -78,6 +79,11 @@ export TIME_STYLE="+%Y-%m-%d %H:%M:%S"
 # 切换到root时会显示为#
 PS1='\[\e[1m\]\[\e[35m\]\$ \[\e[0m\]'
 
+
+# 获取本地 IP 地址
+IP_ADDRESS=$(hostname -i | awk '{print $1}')
+# 设置 PS1 变量，包括 IP 地址
+PS1="\u@${IP_ADDRESS}\w $ "
 ```
 
 ### 命令行debug模式提示符
