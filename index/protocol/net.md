@@ -9,7 +9,7 @@ tags:
   - protocol/IP
 cssclasses:
   - academia
-date updated: 2024-07-05 08:59
+date updated: 2024-07-08 08:40
 ---
 
 ## 概述
@@ -72,6 +72,8 @@ default         gateway         0.0.0.0         UG    100    0        0 eth0
 
 ### DNS
 
+根据域名查找IP地址，可以使用[[dig]]查看解析过程
+
 `/etc/resolve.conf` 文件列出了应用搜索哪些DNS域来解析不完全的名字，文件首先列出最近的稳定的名字服务器，因为按顺序来联络名字服务器的，在前一个名字服务器联络超时之后，才会访问下一个名字服务器
 
 一些DNS地址
@@ -80,6 +82,7 @@ default         gateway         0.0.0.0         UG    100    0        0 eth0
 nameserver 119.29.29.29
 nameserver 223.5.5.5
 ```
+
 
 ### ICMP
 

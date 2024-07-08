@@ -28,6 +28,7 @@ kanban-plugin: board
 ## 进行中
 
 - [ ] 尚硅谷大数据技术之Flink @{2024-07-31}
+- [ ] linux系统管理手册
 
 
 ## 已完成
