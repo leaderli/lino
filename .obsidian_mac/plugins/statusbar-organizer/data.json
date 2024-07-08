@@ -36,6 +36,11 @@
         "position": 6,
         "visible": false,
         "exists": true
+      },
+      "plugin-obsidian-vimrc-support;1": {
+        "position": 8,
+        "visible": true,
+        "exists": true
       }
     },
     "default": {
