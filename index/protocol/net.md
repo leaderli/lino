@@ -9,7 +9,7 @@ tags:
   - protocol/IP
 cssclasses:
   - academia
-date updated: 2024-07-08 08:40
+date updated: 2024-07-08 13:02
 ---
 
 ## 概述
@@ -82,7 +82,6 @@ default         gateway         0.0.0.0         UG    100    0        0 eth0
 nameserver 119.29.29.29
 nameserver 223.5.5.5
 ```
-
 
 ### ICMP
 
@@ -198,6 +197,28 @@ BROADCAST=192.168.1.255 #网卡广播地址
 $ nmcli connection show
 NAME  UUID                                  TYPE      DEVICE
 eth0  ed724115-8db4-4a95-bb1d-f8305bc0acb1  ethernet  eth0
+```
+
+## MTU
+
+MTU 是网络通信中的一个重要参数，它代表最大传输单元（Maximum Transmission Unit）。MTU 是指在网络通信中，可以一次性传输的最大数据包的大小，以字节为单位。
+
+网络中的每个链路（例如，以太网、Wi-Fi、互联网等）都有其特定的 MTU 值。当发送数据时，数据将被分割成适合于 MTU 大小的数据包进行传输，并在接收端重新组装。MTU 的值对网络通信的效率和性能起着重要的影响。
+
+较大的 MTU 值可以提高网络吞吐量，因为每个数据包携带更多的有效数据，减少了头部开销。然而，较大的 MTU 值也会增加传输过程中的延迟，因为较大的数据包需要更长的时间传输。此外，如果网络中某个链路的 MTU 值小于发送数据的 MTU 值，数据包将被分割成更小的片段，这可能会导致额外的开销和性能下降。
+
+不同类型的网络和协议具有不同的 MTU 值。例如，以太网通常使用 1500 字节的 MTU，而某些广域网连接可能具有更大的 MTU 值（例如，1500 字节以上）。在互联网中，IP 协议的默认 MTU 值为 1500 字节。
+
+
+
+例如：
+
+```shell
+$ netstat  -i
+Kernel Interface table
+Iface             MTU    RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg
+eth0             1500     8573      0      0 0          4679      0      0      0 BMRU
+lo              65536     6120      0      0 0          6120      0      0      0 LRU
 ```
 
 ## IP报文
