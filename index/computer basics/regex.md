@@ -2,7 +2,7 @@
 tags:
   - 计算机基础/regex
   - perl
-date updated: 2024-07-03 00:35
+date updated: 2024-07-09 11:13
 ---
 
 ## 占有字符和零宽度
@@ -143,6 +143,14 @@ java 正则匹配时，行尾占有字符`$`是不包括换行符`\n`的，java8
 string = string.replaceAll("\\R", " --linebreak-- ");
 ```
 
+## 转义
+
+```shell
+# 匹配数字或-，在中括号中-表示范围，如果匹配-，需要转义
+
+[0-9\-]
+```
+
 ## 示例
 
 ### 脱敏
@@ -174,6 +182,6 @@ echo "${BASH_REMATCH[2]}"
 
 ## 参考文档
 
-![[Pattern.pdf]]
+[[Pattern.pdf]]
 
 [regex101](https://regex101.com/)
