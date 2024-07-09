@@ -2,7 +2,7 @@
 aliases: ssh免密
 tags:
   - linux/commands/ssh
-date updated: 2024-07-09 08:56
+date updated: 2024-07-09 08:57
 ---
 
 ## ssh免密
@@ -101,6 +101,8 @@ ssh使用几种不同的方式验证用户的登录
 2. 使用公钥加密来验证远程主机的身份，远程主机的公钥必须在本地主机的`ect/ssh_known_hosts`或`~/.ssh/known_hosts`文件中列出
 3. 使用公钥加密来建立用户的身份，在登录时，还需要提供私钥文件。
 4. 简单地允许用户输入正常登录口令
+
+身份验证规则在`/etc/ssh/sshd_config`中设置
 
 ## 一些配置
 
