@@ -2,7 +2,7 @@
 aliases: ssh免密
 tags:
   - linux/commands/ssh
-date updated: 2024-07-08 11:43
+date updated: 2024-07-09 08:56
 ---
 
 ## ssh免密
@@ -93,12 +93,24 @@ $ apt-get install openssh-server
 $ systemctl status ssh
 ```
 
+## 登录验证
+
+ssh使用几种不同的方式验证用户的登录
+
+1. 如果在 `~/.rhosts` `~/.shosts` `/etc/hosts.equiv` `/etc/shosts.equiv` 中列出了用户从远程登录的主机名，那么用户无需检查口令就可以登录
+2. 使用公钥加密来验证远程主机的身份，远程主机的公钥必须在本地主机的`ect/ssh_known_hosts`或`~/.ssh/known_hosts`文件中列出
+3. 使用公钥加密来建立用户的身份，在登录时，还需要提供私钥文件。
+4. 简单地允许用户输入正常登录口令
+
 ## 一些配置
 
 `/etc/ssh/sshd_config`
 
 ```shell
+RhostsAuthentication yes # 允许通过~/.shosts /etc/shosts.equiv等文件登录
 AllowAgentForwarding yes # 选项控制是否允许 SSH 代理转发功能
 AllowTcpForwarding yes # 选项控制是否允许 TCP 转发，而
 GatewayPorts yes #选项则控制是否允许绑定到非本地地址。
+IgnoreRootRhosts yes # 禁止对root进行rhosts/shots验证
+PasswordAuthentication yes # 允许使用正常的口令登录
 ```

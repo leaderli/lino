@@ -23,6 +23,7 @@ kanban-plugin: board
 - [ ] 形式逻辑
 - [ ] 算法之美：指导工作与生活的算法
 - [ ] how tomcat work
+- [ ] ssh 转发
 
 
 ## 进行中
