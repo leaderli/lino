@@ -1,7 +1,7 @@
 ---
 tags:
   - linux/commands/crontab
-date updated: 2024-06-28 08:51
+date updated: 2024-07-09 12:55
 ---
 
 crond 是linux用来定期执行程序的命令。当安装完成操作系统之后，默认便会启动此任务调度命令。crond命令每分锺会定期检查是否有要执行的工作，如果有要执行的工作便会自动执行该工作。
@@ -71,6 +71,16 @@ crontab -u root -e
    ```shell
    * * * * * bash -l -c '/path/to/script.sh'
    ```
+
+## 日志
+
+crontab的执行日志会显示在系统日志目录下，可以去下述几个目录查找一下
+
+```shell
+cat /var/log/syslog
+cat /var/log/cron
+cat /var/log/messages
+```
 
 ## 示例
 
