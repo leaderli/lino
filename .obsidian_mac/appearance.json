@@ -13,6 +13,6 @@
   ],
   "cssTheme": "Minimal",
   "baseFontSizeAction": true,
-  "accentColor": "",
+  "accentColor": "#1a55e0",
   "showViewHeader": true
 }
