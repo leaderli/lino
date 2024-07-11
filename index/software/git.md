@@ -603,7 +603,7 @@ git clone li@centos7:~/temp/sample.git
 
 ```
 
-使用`git clone`需要配置[[ssh|ssh免密]]
+使用`git clone`需要配置[[ssh|概述]]
 
 ## 常用命令
 
