@@ -5,7 +5,7 @@
 - 📄 [[Untitled 3|Untitled 3]]
 - 📄 [[Untitled 4|Untitled 4]]
 - 📄 [[Untitled|Untitled]]
-- 🗂️ [[excalidraw/_excalidraw|_excalidraw]]
+- 🗂️ [[Excalidraw/_Excalidraw|_Excalidraw]]
 - 🗂️ [[index/_index|_index]]
 - 🗂️ [[resource/_resource|_resource]]
 - 🗂️ [[snippet/_snippet|_snippet]]
