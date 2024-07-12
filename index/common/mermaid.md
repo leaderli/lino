@@ -35,6 +35,17 @@ graph 标明当前为流程图，LR 标明方向
 - RL - right to left
 - LR - left to right
 
+````txt
+	```mermaid
+	graph TB
+		Start --> Stop
+	```
+````
+
+```mermaid
+graph TB
+    Start --> Stop
+```
 ### 节点形状
 
 节点可以设置显示文本用于区分与唯一 id
