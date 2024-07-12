@@ -12,6 +12,7 @@
 - 📄 [[index/software/kafka|kafka]]
 - 📄 [[index/software/mac|mac]]
 - 📄 [[index/software/nginx|nginx]]
+- 📄 [[index/software/obsidian.md.edtz|obsidian.md.edtz]]
 - 📄 [[index/software/obsidian|obsidian]]
 - 📄 [[index/software/office|office]]
 - 📄 [[index/software/software list|software list]]
