@@ -81,6 +81,8 @@
 - 📄 [[index/linux/commands/type|type]]
 - 📄 [[index/linux/commands/uname|uname]]
 - 📄 [[index/linux/commands/uniq|uniq]]
+- 📄 [[index/linux/commands/Untitled 1|Untitled 1]]
+- 📄 [[index/linux/commands/Untitled|Untitled]]
 - 📄 [[index/linux/commands/useradd|useradd]]
 - 📄 [[index/linux/commands/w|w]]
 - 📄 [[index/linux/commands/wall|wall]]

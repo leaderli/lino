@@ -1,14 +1,13 @@
 ---
 tags:
   - linux/commands/df
-date updated: 2022-04-11 10:08
+date updated: 2024-07-12 13:07
 ---
 
 查看文件系统以及它们的相关信息，显示文件系统的磁盘空间使用情况
 
 - `-h` 使用  `K` 、`M` 、`G` 显示
--  `-i` 显示文件系统 inode 使用情况
-
+- `-i` 显示文件系统 inode 使用情况
 
 ```shell
 ~$ df -h

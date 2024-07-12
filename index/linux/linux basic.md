@@ -2,7 +2,7 @@
 aliases: linux基础知识
 tags:
   - linux/basic
-date updated: 2024-07-09 14:38
+date updated: 2024-07-12 13:05
 ---
 
 ## 用户
@@ -172,13 +172,15 @@ Linux 内核提供了一种通过 proc 文件系统，在运行时访问内核�
 
 4. locks 内核锁住的文件列表
 
-5. meminfo RAM 使用的相关信息
+5. loadavg 系统负载信息
 
-6. swaps 交换空间的使用情况
+6. meminfo RAM 使用的相关信息
 
-7. version Linux 内核版本和 gcc 版本
+7. swaps 交换空间的使用情况
 
-8. self 链接到当前正在运行的进程
+8. version Linux 内核版本和 gcc 版本
+
+9. self 链接到当前正在运行的进程
 
 proc 目录下一些以数字命名的目录，它们是进程目录。系统中当前运行的每一个进程都有对应的一个目录在 proc 下，以进程的 PID 号为目录名，它们是读取进程信息的接口。而 self 目录则是读取进程本身的信息接口，是一个 link。
 
