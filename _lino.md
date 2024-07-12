@@ -2,6 +2,8 @@
 - 📄 [[Home|Home]]
 - 📄 [[Untitled 1|Untitled 1]]
 - 📄 [[Untitled 2|Untitled 2]]
+- 📄 [[Untitled 3|Untitled 3]]
+- 📄 [[Untitled 4|Untitled 4]]
 - 📄 [[Untitled|Untitled]]
 - 🗂️ [[excalidraw/_excalidraw|_excalidraw]]
 - 🗂️ [[index/_index|_index]]

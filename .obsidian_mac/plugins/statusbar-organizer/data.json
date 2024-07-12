@@ -40,7 +40,7 @@
       "plugin-obsidian-vimrc-support;1": {
         "position": 8,
         "visible": true,
-        "exists": false
+        "exists": true
       }
     },
     "default": {
