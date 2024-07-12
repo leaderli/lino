@@ -1,7 +1,7 @@
 ---
 tags:
   - linux/commands/curl
-date updated: 2024-01-09 10:54
+date updated: 2024-07-11 21:13
 ---
 
 参数
@@ -12,6 +12,7 @@ date updated: 2024-01-09 10:54
 - `-m` 设置最大处理的时间（秒钟），超时则直接结束
 - `-v` 显示请求的详细信息
 - `-i` 显示返回报文详细信息
+- `-I` 仅请求报文Header
 - `-s`  不显示信息
 - `-o`  另存为文件
 - `-u` 使用token
@@ -159,7 +160,6 @@ curl -H "Content-Type: application/json" -X POST -d  '{"username":"1","password"
 ```shell
 curl -u glb:abc123xxxa  http://127.0.0.1/xxx
 ```
-
 
 ## 相似软件
 

@@ -2,7 +2,7 @@
 tags:
   - linux/commands/uname
   - linux/commands/lsb_release
-date updated: 2024-07-08 09:13
+date updated: 2024-07-12 00:19
 ---
 
 显示系统信息
@@ -33,4 +33,10 @@ CENTOS_MANTISBT_PROJECT="CentOS-7"
 CENTOS_MANTISBT_PROJECT_VERSION="7"
 REDHAT_SUPPORT_PRODUCT="centos"
 REDHAT_SUPPORT_PRODUCT_VERSION="7"
+```
+
+查看linux操作系统版本详情
+
+```shell
+lsb_release -a 
 ```
