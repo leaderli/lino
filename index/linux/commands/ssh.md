@@ -2,26 +2,48 @@
 aliases: ssh
 tags:
   - linux/commands/ssh
-date updated: 2024-07-12 22:26
+date updated: 2024-07-13 17:15
 ---
 
 ## 概述
 
 ssh 是一种协议，有关如何在网络上构建安全通信的规范。协议内容涉及认证、加密、传输数据的完整性。
 
-## ssh免密
+## 登录验证
 
-操作机上生成秘钥`ssh-keygen -t rsa`,将会生成一对秘钥，将公钥内容追加到服务器的`~/.ssh/authorized_keys`中，
+ssh使用几种不同的方式验证用户的登录
 
-- 可通过 [[#执行远程命令]]
+1. 如果在 `~/.rhosts` `~/.shosts` `/etc/hosts.equiv` `/etc/shosts.equiv` 中列出了用户从远程登录的主机名，那么用户无需检查口令就可以登录
+2. 使用公钥加密来验证远程主机的身份，远程主机的公钥必须在本地主机的`ect/ssh_known_hosts`或`~/.ssh/known_hosts`文件中列出
+3. 使用公钥加密来建立用户的身份，在登录时，还需要提供私钥文件。
+4. 简单地允许用户输入正常登录口令
+
+身份验证规则在`/etc/ssh/sshd_config`中设置
+
+### 公钥验证的过程
+
+![[ssh_公钥验密过程|800]]
+
+```shell
+# 在客户端生成秘钥
+$ ssh-keygen -t rsa
+```
+
+将公钥追加到服务器的的`~/.ssh/authorized_keys`文件中
+
+- 将公钥的内容复制后直接追加到服务器文件
+- 可通过 [[#执行远程命令]] 来完成
 - 可以简单的使用
-	```shell
-	ssh-copy-id user@example.com
-	```
+  ```shell
+  # 采用的是默认的22端口，拷贝的公钥是默认的id_rsa.pub
+  $ ssh-copy-id user@example.com
+  # 会自动生成一对密钥
+  $ ssh-copy-id -i user@example.com
+  ```
 
-采用的是默认的`22`端口，拷贝的公钥是默认的`id_rsa.pub`
+### 无法登录的原因
 
-确保服务器的文件及目录权限
+#### 确保服务器的文件及目录权限
 
 1. 设置 authorized_keys 权限\
    `chmod 600 authorized_keys`
@@ -29,20 +51,25 @@ ssh 是一种协议，有关如何在网络上构建安全通信的规范。协�
    `chmod 700 -R .ssh`
 3. 设置用户目录权限\
    `chmod go-w ~`
-4. 检查 AuthorizedKeysFile 配置是否启用 authorized_keys
 
-   ```shell
-   $ cat /etc/ssh/sshd_config |egrep AuthorizedKeysFile
-   #AuthorizedKeysFile    .ssh/authorized_keys
-   ```
+#### 检测服务器配置项
 
-   把下面几个选项打开
+检查 AuthorizedKeysFile 配置是否启用 authorized_keys
 
-   ```conf
-   AuthorizedKeysFile  .ssh/authorized_keys
-   ```
+```shell
+$ cat /etc/ssh/sshd_config |egrep AuthorizedKeysFile
+#AuthorizedKeysFile    .ssh/authorized_keys
+```
+
+把下面几个选项打开
+
+```conf
+AuthorizedKeysFile  .ssh/authorized_keys
+```
 
 后续再执行`ssh`操作，或者`scp`等操作，则不需要再输入密码
+
+#### 通过日志分析
 
 通过系统日志文件我们可以查看无法登陆远程服务器的原因
 
@@ -52,14 +79,24 @@ tail /var/log/secure -n 20
 ssh -vvv root@192.168.0.1
 ```
 
+#### 尝试使用ssh-agent
+
 默认情况下，ssh 去`~/.ssh/`目录下去找私钥，有时候无法，可以使用`ssh-agent`将私钥加载到内存中
 
 ```shell
 # 启动ssh代理
-$ eval `ssh-agent`
-# 将私钥注册到agent
+$ ssh-agent
+# 将默认私钥注册到agent
+$ ssh-add 
+# 将指定私钥注册到agent
 $ ssh-add  ~/.ssh/id_rsa
+# 查看已经加载的私钥
+$ ssh-add  -l
+# 删除
+$ ssh-add  -d
 ```
+
+当私钥有密码时，也可以使用这种方式来避免重复输入密码
 
 ## 执行远程命令
 
@@ -97,22 +134,11 @@ $ apt-get install openssh-server
 $ systemctl status ssh
 ```
 
-## 登录验证
+## 客户端配置
 
-ssh使用几种不同的方式验证用户的登录
+`/etc/ssh/ssh_config`
 
-1. 如果在 `~/.rhosts` `~/.shosts` `/etc/hosts.equiv` `/etc/shosts.equiv` 中列出了用户从远程登录的主机名，那么用户无需检查口令就可以登录
-2. 使用公钥加密来验证远程主机的身份，远程主机的公钥必须在本地主机的`ect/ssh_known_hosts`或`~/.ssh/known_hosts`文件中列出
-3. 使用公钥加密来建立用户的身份，在登录时，还需要提供私钥文件。
-4. 简单地允许用户输入正常登录口令
-
-身份验证规则在`/etc/ssh/sshd_config`中设置
-
-## 其他
-
-1. 当未指定远程服务器的用户名时，默认使用当前客户端相同的用户名
-
-## 一些配置
+## 服务器配置
 
 `/etc/ssh/sshd_config`
 
@@ -124,3 +150,16 @@ GatewayPorts yes #选项则控制是否允许绑定到非本地地址。
 IgnoreRootRhosts yes # 禁止对root进行rhosts/shots验证
 PasswordAuthentication yes # 允许使用正常的口令登录
 ```
+
+检查配置
+
+```shell
+$ sshd -t 
+Could not load host key: /etc/ssh/ssh_host_rsa_key
+Could not load host key: /etc/ssh/ssh_host_ecdsa_key
+Could not load host key: /etc/ssh/ssh_host_ed25519_key
+```
+
+## 其他
+
+1. 当未指定远程服务器的用户名时，默认使用当前客户端相同的用户名
