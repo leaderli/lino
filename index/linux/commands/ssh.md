@@ -2,7 +2,7 @@
 aliases: ssh
 tags:
   - linux/commands/ssh
-date updated: 2024-07-13 17:15
+date updated: 2024-07-13 22:33
 ---
 
 ## 概述
@@ -122,6 +122,16 @@ ssh -q  user@ip  'cd dir && ls < /dev/null'
 echo "qwerty" | ssh user@Server-2 "cat > output.txt"
 ssh user@Server-1 "<command>" | ssh user@Server-2 "cat > output.txt"
 ```
+
+## 端口转发
+
+在服务器使用[[netcat]]，或者使用python发布一个http服务，使用端口 7777
+
+```shell
+ssh -L2001:localhost:7777 centos7
+```
+
+上面的命令会登录到centos7上，在关闭连接之前，所有在客户端服务器的2001的端口，将会被转发到centos7的7777
 
 ## 服务器安装sshd
 
