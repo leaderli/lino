@@ -16,7 +16,6 @@ kanban-plugin: board
 - [ ] 数据密集型应用系统设计 (Martin Kleppmann) (Z-Library)
 - [ ] java agent
 - [ ] 混沌工程
-- [ ] 你真的会写代码吗
 - [ ] 形式逻辑
 - [ ] 算法之美：指导工作与生活的算法
 - [ ] how tomcat work
