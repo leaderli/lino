@@ -2,7 +2,7 @@
 aliases: ssh
 tags:
   - linux/commands/ssh
-date updated: 2024-07-14 12:13
+date updated: 2024-07-14 13:37
 ---
 
 ## 概述
@@ -125,6 +125,8 @@ ssh user@Server-1 "<command>" | ssh user@Server-2 "cat > output.txt"
 
 ## 端口转发
 
+### 本地转发
+
 在服务器使用[[netcat]]，或者使用python发布一个http服务，使用端口 7777
 
 ```shell
@@ -142,6 +144,13 @@ ssh -g -L2001:localhost:7777 centos7
 ```
 
 或者将 [[#客户端配置|ssh_config]] 中允许使用远程主机进行端口转发
+
+我们也可以在[[#客户端配置|ssh_config]] 中做如下配置，则在连接debian2时，自动启用转发
+
+```shell
+Host debian2
+	LocalForward 2001 localhost:8000
+```
 
 ## 服务器安装sshd
 
