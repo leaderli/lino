@@ -2,7 +2,7 @@
 aliases: ssh
 tags:
   - linux/commands/ssh
-date updated: 2024-07-13 22:33
+date updated: 2024-07-14 12:13
 ---
 
 ## 概述
@@ -128,10 +128,20 @@ ssh user@Server-1 "<command>" | ssh user@Server-2 "cat > output.txt"
 在服务器使用[[netcat]]，或者使用python发布一个http服务，使用端口 7777
 
 ```shell
+# 只转发回环地址的2001端口
 ssh -L2001:localhost:7777 centos7
 ```
 
 上面的命令会登录到centos7上，在关闭连接之前，所有在客户端服务器的2001的端口，将会被转发到centos7的7777
+
+如果想要在其服务器访问上述客户端的2001，可以通过如下方式
+
+```shell
+# 只转发回环地址的2001端口
+ssh -g -L2001:localhost:7777 centos7
+```
+
+或者将 [[#客户端配置|ssh_config]] 中允许使用远程主机进行端口转发
 
 ## 服务器安装sshd
 
@@ -147,6 +157,11 @@ $ systemctl status ssh
 ## 客户端配置
 
 `/etc/ssh/ssh_config`
+
+```shell
+# 指定SSH服务器是否允许远程主机通过该服务器进行端口转发，默认为no
+GatewayPorts yes
+```
 
 ## 服务器配置
 
