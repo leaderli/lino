@@ -2,12 +2,16 @@
 aliases: ssh
 tags:
   - linux/commands/ssh
-date updated: 2024-07-14 13:37
+date updated: 2024-07-14 14:23
 ---
 
 ## 概述
 
 ssh 是一种协议，有关如何在网络上构建安全通信的规范。协议内容涉及认证、加密、传输数据的完整性。
+
+- `-N` 不执行任何命令
+
+- `-f` 后台执行
 
 ## 登录验证
 
@@ -125,22 +129,33 @@ ssh user@Server-1 "<command>" | ssh user@Server-2 "cat > output.txt"
 
 ## 端口转发
 
+客户端 debian，服务端 debian2
+
 ### 本地转发
 
-在服务器使用[[netcat]]，或者使用python发布一个http服务，使用端口 7777
+![[Pasted image 20240714135806.png]]
+
+在服务器使用[[netcat]]，或者使用python发布一个http服务，使用端口 8000
 
 ```shell
 # 只转发回环地址的2001端口
-ssh -L2001:localhost:7777 centos7
+ssh -L2001:localhost:8000 debian2
+
+# 等价于上述命令，上述命令的localhost指的是debian2的
+ssh -L2001:debian2:8000 debian2
 ```
 
-上面的命令会登录到centos7上，在关闭连接之前，所有在客户端服务器的2001的端口，将会被转发到centos7的7777
+上述命令的解释：
+
+1. 客户端发布了一个2001的端口的TCP监听
+2. 所有请求客户端2001端口的请求，会通过建立的ssh的session通过隧道转发到服务端的8000端口
+3. 只要ssh的session未断开，会一直生效
 
 如果想要在其服务器访问上述客户端的2001，可以通过如下方式
 
 ```shell
 # 只转发回环地址的2001端口
-ssh -g -L2001:localhost:7777 centos7
+ssh -g -L2001:localhost:8000 debian2
 ```
 
 或者将 [[#客户端配置|ssh_config]] 中允许使用远程主机进行端口转发
@@ -150,6 +165,29 @@ ssh -g -L2001:localhost:7777 centos7
 ```shell
 Host debian2
 	LocalForward 2001 localhost:8000
+```
+
+端口转发适用于多台服务器
+
+![[Pasted image 20240714140036.png]]
+
+### 远程转发
+
+类似[[#本地转发]]不过是在服务端建立到客户端的连接
+
+```shell
+ssh -R2001:localhost:8000 debian
+```
+
+上面的命令会登录到debian，在关闭连接之前，所有在客户端服务器的2001的端口，将会被转发到centos7的8000
+
+不同于[[#本地转发]]，远程转发无法使用远程主机连接的方式
+
+也可以通过配置 [[#客户端配置|ssh_config]] 的方式自动启用
+
+```shell
+Host debian
+	RemoteForward 2001 localhost:8000 
 ```
 
 ## 服务器安装sshd
@@ -165,7 +203,9 @@ $ systemctl status ssh
 
 ## 客户端配置
 
-`/etc/ssh/ssh_config`
+`/etc/ssh/ssh_config`  `~/.ssh/config`
+
+`Host *` 表示为所有ip的通用配置，也可指定具体ip的配置
 
 ```shell
 # 指定SSH服务器是否允许远程主机通过该服务器进行端口转发，默认为no
