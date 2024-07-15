@@ -23,24 +23,7 @@ kanban-plugin: board
 
 ## 进行中
 
-
-
-## 已完成
-
-**Complete**
-- [ ] [学了编译原理能否用 Java 写一个编译器或解释器？ - 知乎 (zhihu.com)](https://www.zhihu.com/question/39835953)
-- [x] 尚硅谷大数据技术之Flink @{2024-07-31} ✅ 2024-07-14
-- [x] Apache Calcite ✅ 2024-07-14
-- [x] Janino ✅ 2024-07-14
-- [x] The Elements of Computing Systems  Building a Modern Computer from First Principles (Noam Nisan, Shimon Schocken) (Z-Library) ✅ 2024-07-14
-- [x] 程序员超强大脑
-- [x] ssh 转发 ✅ 2024-07-14
-- [ ] executor @{2024-05-17}
-- [x] linux就该这么学 ✅ 2024-07-06
-- [x] Google-技术写作
-- [x] 简单统计学 @{2024-05-31}
-- [x] 修改代码的艺术
-- [x] linux系统管理手册 ✅ 2024-07-11
+- [ ] 自动化测试系统开发
 
 
 ## 暂停
@@ -51,6 +34,19 @@ kanban-plugin: board
 
 ## Archive
 
+- [ ] 2024-07-15 23:00 [学了编译原理能否用 Java 写一个编译器或解释器？ - 知乎 (zhihu.com)](https://www.zhihu.com/question/39835953)
+- [x] 2024-07-15 23:00 尚硅谷大数据技术之Flink @{2024-07-31} ✅ 2024-07-14
+- [x] 2024-07-15 23:00 Apache Calcite ✅ 2024-07-14
+- [x] 2024-07-15 23:00 Janino ✅ 2024-07-14
+- [x] 2024-07-15 23:00 The Elements of Computing Systems  Building a Modern Computer from First Principles (Noam Nisan, Shimon Schocken) (Z-Library) ✅ 2024-07-14
+- [x] 2024-07-15 23:00 程序员超强大脑
+- [x] 2024-07-15 23:00 ssh 转发 ✅ 2024-07-14
+- [ ] 2024-07-15 23:00 executor @{2024-05-17}
+- [x] 2024-07-15 23:00 linux就该这么学 ✅ 2024-07-06
+- [x] 2024-07-15 23:00 Google-技术写作
+- [x] 2024-07-15 23:00 简单统计学 @{2024-05-31}
+- [x] 2024-07-15 23:00 修改代码的艺术
+- [x] 2024-07-15 23:00 linux系统管理手册 ✅ 2024-07-11
 - [x] delete action ⏫ ✅ 2022-12-07
 - [x] rigth menu 🛫 📅 ✅ 2022-12-07
 - [x] flowEditor isDirty ✅ 2022-11-25
@@ -63,6 +59,6 @@ kanban-plugin: board
 
 %% kanban:settings
 ```
-{"kanban-plugin":"board","hide-card-count":true,"show-checkboxes":false,"hide-tags-in-title":true,"tag-colors":[],"show-relative-date":true,"date-colors":[{"isToday":false,"distance":1,"unit":"days","direction":"after","color":"rgba(222, 55, 18, 1)"},{"isToday":false,"distance":1,"unit":"months","direction":"after","color":"rgba(16, 33, 232, 1)"},{"isToday":false,"distance":1,"unit":"weeks","direction":"after","color":"rgba(197, 19, 242, 1)"}],"archive-with-date":true,"date-picker-week-start":1,"hide-date-display":true,"hide-date-in-title":true}
+{"kanban-plugin":"board","hide-card-count":true,"show-checkboxes":false,"hide-tags-in-title":true,"tag-colors":[],"show-relative-date":true,"date-colors":[{"isToday":false,"distance":1,"unit":"days","direction":"after","color":"rgba(222, 55, 18, 1)"},{"isToday":false,"distance":1,"unit":"months","direction":"after","color":"rgba(16, 33, 232, 1)"},{"isToday":false,"distance":1,"unit":"weeks","direction":"after","color":"rgba(197, 19, 242, 1)"}],"archive-with-date":true,"date-picker-week-start":1,"hide-date-display":true,"hide-date-in-title":true,"list-collapse":[false]}
 ```
 %%
