@@ -9,7 +9,7 @@
   "folderEmoji": ":card_index_dividers:",
   "fileEmoji": ":page_facing_up:",
   "enableEmojis": true,
-  "foldersExcluded": "resource\nExcalidraw\n",
+  "foldersExcluded": "resource\nexcalidraw\n",
   "foldersIncluded": "",
   "sortOrder": "asc",
   "addSquareBrackets": false,
