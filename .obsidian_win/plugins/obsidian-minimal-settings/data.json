@@ -1,7 +1,7 @@
 {
   "lightStyle": "minimal-light",
   "darkStyle": "minimal-dark",
-  "lightScheme": "minimal-default-light",
+  "lightScheme": "minimal-atom-light",
   "darkScheme": "minimal-default-dark",
   "editorFont": "14",
   "lineHeight": 1.5,
@@ -17,7 +17,7 @@
   "mapWidth": "map-default-width",
   "chartWidth": "chart-default-width",
   "colorfulHeadings": true,
-  "colorfulFrame": true,
+  "colorfulFrame": false,
   "colorfulActiveStates": true,
   "trimNames": true,
   "labeledNav": true,
