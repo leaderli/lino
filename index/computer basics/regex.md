@@ -160,11 +160,16 @@ string = string.replaceAll("\\R", " --linebreak-- ");
 msg.replace("(?<=\\D|^)\\d{6,8}(?=\\D|$)|(?<=\\D|^)\\d{3,13}(?=\\d{6}(\\D|$))","****");
 ```
 
-```shell
+```java
 // 不包含换行符
 str.match("[^\\r\\n]+")
 ```
 
+
+```java
+// 1  或 2  或 12
+str.match("^(?!$)(1)?|(2)?$")
+```
 # shell匹配字符串
 
 ```shell
