@@ -65,6 +65,7 @@
 - 📄 [[index/linux/commands/sort|sort]]
 - 📄 [[index/linux/commands/ss|ss]]
 - 📄 [[index/linux/commands/ssh|ssh]]
+- 📄 [[index/linux/commands/strace|strace]]
 - 📄 [[index/linux/commands/strings|strings]]
 - 📄 [[index/linux/commands/svn|svn]]
 - 📄 [[index/linux/commands/tail|tail]]
