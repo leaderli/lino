@@ -13,7 +13,6 @@ kanban-plugin: board
 
 ## 新建
 
-- [ ] 数据密集型应用系统设计 (Martin Kleppmann) (Z-Library)
 - [ ] java agent
 - [ ] 混沌工程
 - [ ] 形式逻辑
