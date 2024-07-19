@@ -68,9 +68,15 @@ crontab -u root -e
 2. crontab的脚本需要有执行权限
 3. crontab中默认不会加载用户环境变量（~/.bash_profile等），需要使用如下方式
 
-   ```shell
-   * * * * * bash -l -c '/path/to/script.sh'
-   ```
+	```shell
+	* * * * * bash -l -c '/path/to/script.sh'
+	```
+4. crontable的执行日志可能会输出到邮件中，可以通过编辑如下文件禁用
+
+	```shell
+	# /etc/anacrontab
+	MAILTO=""
+	```
 
 ## 日志
 
