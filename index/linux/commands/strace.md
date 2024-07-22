@@ -1,7 +1,7 @@
 ---
 tags:
   - linux/commands/strace
-date updated: 2024-07-17 12:38
+date updated: 2024-07-19 23:58
 ---
 
 跟踪系统调用，linux系统支持的系统调用命令可以通过如下方式查看。strace 还可以模拟系统的调用，使系统调用失败等，例如写文件失败等
@@ -10,11 +10,10 @@ date updated: 2024-07-17 12:38
 $ man syscalls
 ```
 
-
-
 - `-c` 汇总调用时间，调用次数，错误等统计信息
--  `-C` 与 `-c`类似，但是还是会正常显示系统调用信息
--  `-p` 追踪指定进程的系统调用
+- `-C` 与 `-c`类似，但是还是会正常显示系统调用信息
+- `-p` 追踪指定进程的系统调用
+- `-f` 跟踪由fork调用所产生的子进程
 
 ```shell
 $ strace sleep 1
@@ -54,7 +53,6 @@ close(2)                                = 0
 exit_group(0)                           = ?
 +++ exited with 0 +++
 ```
-
 
 带统计信息
 
@@ -113,8 +111,7 @@ exit_group(0)                           = ?
 100.00    0.000367                    33         1 total
 ```
 
-
-一个追踪`tail -f `的示例
+一个追踪` tail -f  `的示例
 
 ```shell
 #  pid 19503
@@ -124,7 +121,6 @@ $ tail -f 123.txt
 # 开启追踪
 $ strace -C -p 19503
 ```
-
 
 写入几行信息
 
@@ -141,7 +137,6 @@ tail 进程输出
 456
 tail: 2.txt: file truncated
 ```
-
 
 strace进程输出
 
@@ -193,3 +188,31 @@ read(4, ^Cstrace: Process 19503 detached
 100.00    0.000238                    30         6 total
 
 ```
+
+### 控制跟踪
+
+`-e expr` 指定一个表达式,用来控制如何跟踪.格式如下:
+
+`[qualifier=][!]value1[,value2]...`
+
+qualifier 取值范围 （默认trace）
+
+- trace
+- abbrev
+- verbose
+- raw
+- signal
+- read
+- write
+
+`!`是否定符号.例如: `-etrace!=open`表示跟踪除了open以外的其他调用
+
+value是用来限定的符号或数字，有两个特殊的符号 all 和 none.
+
+-eopen等价于 -e trace=open,表示只跟踪open调用.
+
+示例：
+
+- -e trace=set 只跟踪指定的系统 调用.例如:-e trace=open,close,rean,write表示只跟踪这四个系统调用.默认的为set=all.
+- -e trace=network 跟踪与网络有关的所有系统调用.
+- -e trace=file 只跟踪有关文件操作的系统调用.

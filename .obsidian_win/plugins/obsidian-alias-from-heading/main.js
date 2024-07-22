@@ -183,18 +183,19 @@ var AliasFromHeadingPlugin = class extends import_obsidian.Plugin {
       getCache(originalMethod) {
         return function(path) {
           const cache = originalMethod(path);
-          const { headings = [] } = cache;
+          const _cache = cache || {};
+          const { headings = [] } = _cache;
           if (!Array.isArray(headings) || !headings.length) {
             return cache;
           }
-          const { frontmatter = {} } = cache;
+          const { frontmatter = {} } = _cache;
           const { aliases: _aliases = [] } = frontmatter;
           const aliases = Array.isArray(_aliases) ? _aliases : [_aliases];
           const { heading } = headings[0];
           if (aliases.includes(heading)) {
             return cache;
           }
-          return __spreadProps(__spreadValues({}, cache), {
+          return __spreadProps(__spreadValues({}, _cache), {
             frontmatter: __spreadProps(__spreadValues({}, frontmatter), {
               aliases: [heading, ...aliases]
             })

@@ -17,7 +17,6 @@
   "obsidian-tasks-plugin",
   "homepage",
   "obsidian-hider",
-  "obsidian-minimal-settings",
   "obsidian-kanban",
   "statusbar-organizer",
   "settings-search",
@@ -31,5 +30,6 @@
   "short-internal-links-to-headings",
   "quick-snippets-and-navigation",
   "obsidian-export-image",
-  "obsidian-excalidraw-plugin"
+  "obsidian-excalidraw-plugin",
+  "obsidian-minimal-settings"
 ]
