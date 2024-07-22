@@ -1,7 +1,7 @@
 ---
 tags:
   - java/框架/tomcat
-date updated: 2022-04-05 23:18
+date updated: 2024-07-22 20:56
 ---
 
 ## 配置 JNDI
@@ -168,3 +168,7 @@ tomcat 的类加载模型违背了 jvm 的双亲委派模式，除了 Bootstrap 
 
 1. tomcat 内部使用`tomcat-juli.jar`作为日志组件，其使用配置为`$CATALINA_HOME/conf/logging.properties`
 2. 应用可以使用自定义日志组件。不同的 web 应用使用的日志组件是独立的，因为其 WebappX 类加载器是独立的，但是若日志组件在 Common 共享类加载器，或者 Share 类类加载器，那么他们使用的日志组件则是共享的
+
+## 参考文档
+
+[Tomcat 虚拟主机配置 - 小禾点点 - 博客园](https://www.cnblogs.com/jalja/p/6396244.html)
