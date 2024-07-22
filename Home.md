@@ -14,7 +14,6 @@ kanban-plugin: board
 ## 新建
 
 - [ ] java agent
-- [ ] 混沌工程
 - [ ] 形式逻辑
 - [ ] 算法之美：指导工作与生活的算法
 - [ ] how tomcat work
@@ -27,6 +26,11 @@ kanban-plugin: board
 
 ## 暂停
 
+
+
+## 已完成
+
+- [ ] 混沌工程
 
 
 ***
@@ -58,6 +62,6 @@ kanban-plugin: board
 
 %% kanban:settings
 ```
-{"kanban-plugin":"board","hide-card-count":true,"show-checkboxes":false,"hide-tags-in-title":true,"tag-colors":[],"show-relative-date":true,"date-colors":[{"isToday":false,"distance":1,"unit":"days","direction":"after","color":"rgba(222, 55, 18, 1)"},{"isToday":false,"distance":1,"unit":"months","direction":"after","color":"rgba(16, 33, 232, 1)"},{"isToday":false,"distance":1,"unit":"weeks","direction":"after","color":"rgba(197, 19, 242, 1)"}],"archive-with-date":true,"date-picker-week-start":1,"hide-date-display":true,"hide-date-in-title":true,"list-collapse":[false]}
+{"kanban-plugin":"board","hide-card-count":true,"show-checkboxes":false,"hide-tags-in-title":true,"tag-colors":[],"show-relative-date":true,"date-colors":[{"isToday":false,"distance":1,"unit":"days","direction":"after","color":"rgba(222, 55, 18, 1)"},{"isToday":false,"distance":1,"unit":"months","direction":"after","color":"rgba(16, 33, 232, 1)"},{"isToday":false,"distance":1,"unit":"weeks","direction":"after","color":"rgba(197, 19, 242, 1)"}],"archive-with-date":true,"date-picker-week-start":1,"hide-date-display":true,"hide-date-in-title":true,"list-collapse":[false,false]}
 ```
 %%
