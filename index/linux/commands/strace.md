@@ -220,3 +220,9 @@ value是用来限定的符号或数字，有两个特殊的符号 all 和 none.
 - -e trace=file 只跟踪有关文件操作的系统调用.
 - -e write 只跟踪有关写操作
 - -e read 只跟踪有关读操作
+
+
+### 其他
+
+
+write和read的系统调用，第一个参数为[[linux basic#文件描述符]]，可以通过查看`proc/[pid]/fd` 查看具体文件描述符指代的文件
