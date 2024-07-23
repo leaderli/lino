@@ -242,6 +242,9 @@ vim -b XXX.class
 ```shell
 :set fileencoding
 #fileencoding=utf-8
+
+# 修改文件编码格式
+:set fileencoding GBK
 ```
 
 ## 多文件操作
