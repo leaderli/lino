@@ -14,6 +14,8 @@ $ man syscalls
 - `-C` 与 `-c`类似，但是还是会正常显示系统调用信息
 - `-p` 追踪指定进程的系统调用
 - `-f` 跟踪由fork调用所产生的子进程
+- `-q` 不打印  attaching, detaching 信息
+
 
 ```shell
 $ strace sleep 1
@@ -216,3 +218,5 @@ value是用来限定的符号或数字，有两个特殊的符号 all 和 none.
 - -e trace=set 只跟踪指定的系统 调用.例如:-e trace=open,close,rean,write表示只跟踪这四个系统调用.默认的为set=all.
 - -e trace=network 跟踪与网络有关的所有系统调用.
 - -e trace=file 只跟踪有关文件操作的系统调用.
+- -e write 只跟踪有关写操作
+- -e read 只跟踪有关读操作
