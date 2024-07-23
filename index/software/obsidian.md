@@ -1,7 +1,7 @@
 ---
 tags:
   - 软件/obsidian
-date updated: 2024-06-27 20:04
+date updated: 2024-07-23 11:56
 ---
 
 ## 笔记规范
@@ -77,6 +77,12 @@ bork [-x] {on | off } filename ...
 - [x] 03
 
 ## 插件
+
+### insert-heading-link
+
+[📒 insert-heading-link](https://github.com/Signynt/insert-heading-link)
+
+使用`[[##`触发，会查找所有笔记的head
 
 ### obsidian-copy-block-link
 

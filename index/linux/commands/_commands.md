@@ -86,8 +86,6 @@
 - 📄 [[index/linux/commands/type|type]]
 - 📄 [[index/linux/commands/uname|uname]]
 - 📄 [[index/linux/commands/uniq|uniq]]
-- 📄 [[index/linux/commands/Untitled 6|Untitled 6]]
-- 📄 [[index/linux/commands/Untitled 7|Untitled 7]]
 - 📄 [[index/linux/commands/useradd|useradd]]
 - 📄 [[index/linux/commands/vmstat|vmstat]]
 - 📄 [[index/linux/commands/w|w]]
