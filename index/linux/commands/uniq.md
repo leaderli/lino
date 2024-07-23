@@ -14,8 +14,30 @@ date updated: 2024-07-23 11:39
 - `-f num`  忽略前 num 个字符，切割符号为 [[configuration#IFS]]
 
 ```bash
-more 1.txt|uniq -c
+$ more 1.txt|uniq -c
    3 a
    3 b
    1 a
+```
+
+
+```shell
+$ cat 1.txt
+a 1
+a 1
+a 2
+b 2
+b 3
+b 3
+a 4
+a 4
+c 5
+$ uniq -f 1 1.txt
+a 1
+a 2
+b 3
+a 4
+c 5
+$ uniq -f 1 -u 1.txt
+c 5
 ```
