@@ -1,9 +1,10 @@
 ---
 tags:
   - linux/commands/curl
-date updated: 2024-07-11 21:13
+date updated: 2024-07-20 22:33
 ---
 
+参数的设置可以写在配置文件 `~/.curlrc`中
 参数
 
 - `-X` 请求方法 `-X POST`
@@ -16,6 +17,7 @@ date updated: 2024-07-11 21:13
 - `-s`  不显示信息
 - `-o`  另存为文件
 - `-u` 使用token
+- `--no-progress-meter` 不显示进度条
 
 ### 示例
 
@@ -164,3 +166,7 @@ curl -u glb:abc123xxxa  http://127.0.0.1/xxx
 ## 相似软件
 
 [hurl](https://github.com/Orange-OpenSource/hurl)
+
+## 参考文档
+
+[curl - Tutorial](https://curl.se/docs/tutorial.html)
