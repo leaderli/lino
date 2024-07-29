@@ -923,6 +923,50 @@ protected List<? extends InterpolationPostProcessor> createPostProcessors( final
 使用 dependencyManagement 可以统一管理项目的版本号，确保应用的各个项目的依赖和版本一致，不用每个模块项目都弄一个版本号，不利于管理，当需要变更版本号的时候只需要在父类容器里更新，不需要任何一个子项目的修改；如果某个子项目需要另外一个特殊的版本号时，只需要在自己的模块 dependencies 中声明一个版本号即可。子类就会使用子类声明的版本号，不继承于父类版本号。
 **_dependencyManagement 不会引入包，仅控制版本_**
 
+
+
+dependencyManagement 中可以通过 `import`的 `<scope>` 来引入一个pom文件中的所有版本
+
+
+
+```xml
+<dependencies>
+
+	<dependency>
+		<groupId>io.leaderli.litool</groupId>
+		<artifactId>litool-core</artifactId>
+	</dependency>
+</dependencies>
+<dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>io.leaderli.litool</groupId>
+			<artifactId>litool-dependency</artifactId>
+			<version>release</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
+	</dependencies>
+</dependencyManagement>
+```
+
+引入的pom本身起依赖也需要在 dependencyManagement 中
+
+```xml
+<artifactId>litool-dependency</artifactId>
+<version>release</version>
+<packaging>pom</packaging>
+<dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>io.leaderli.litool</groupId>
+			<artifactId>litool-core</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+	</dependencies>
+</dependencyManagement>
+```
+
 #### 与 dependencies 区别
 
 1. Dependencies 相对于 dependencyManagement，所有生命在 dependencies 里的依赖都会自动引入，并默认被所有的子项目继承。
