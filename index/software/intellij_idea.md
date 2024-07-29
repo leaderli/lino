@@ -14,7 +14,13 @@ date updated: 2022-10-07 13:54
 
 ## 插件
 
-`editorconfig` 提供代码规范的一些配置，可以多个ide公用
+### editorconfig 
+提供代码规范的一些配置，可以多个ide公用
+
+### jar editor
+
+[JarEditor一款无需解压直接编辑修改jar内容的IDEA插件 - 刘布斯yy - 博客园](https://www.cnblogs.com/liubsyy/p/18211860)
+
 
 ## 快捷键
 
