@@ -3,50 +3,59 @@ aliases: c语言
 tags:
   - 计算机基础/c语言
 date created: 2022-03-24 16:22
-date updated: 2022-03-24 16:22
+date updated: 2024-07-31 13:08
 ---
 
 ## 基础知识
 
 ### 关键字
 
-- const 指向 const 的变量的值为只读。指向 const 的指针通常用于函数形参中，表明该函数不会使用指针改变数据。
+#### const
 
-  ```cpp
-  // const 数据或非 const 数据的地址初始化为指向 const 的指针或为其赋值时合法的
-  // 只能把非 const 数据的地址赋给普通指针
-  int rates[1]={1};
-  const int locked[1]={10};
+指向 const 的变量的值为只读。指向 const 的指针通常用于函数形参中，表明该函数不会使用指针改变数据。
 
-  const int *pc = rates;  //有效
-  pc = locked;            //有效
-  pc = &locked[0];        //有效
+```cpp
+// const 数据或非 const 数据的地址初始化为指向 const 的指针或为其赋值时合法的
+// 只能把非 const 数据的地址赋给普通指针
+int rates[1]={1};
+const int locked[1]={10};
 
-  int *pnc = rates;       //有效
-  pnc = locked;           //无效
-  pnc = &locked[0];       //有效
+const int *pc = rates;  //有效
+pc = locked;            //有效
+pc = &locked[0];        //有效
 
-  ```
+int *pnc = rates;       //有效
+pnc = locked;           //无效
+pnc = &locked[0];       //有效
 
-  ```cpp
-  const * pc; //不能修改指针指向地址上的值， 但是可以修改它所指向的地址
-  * const  pc; //能修改指针指向地址上的值， 但是不能修改它所指向的地址
-  const * const pc; //不能修改指针指向地址上的值， 也不能修改它所指向的地址
-  ```
+```
 
-- static 声明变量具有静态存储期
+```cpp
+const * pc; //不能修改指针指向地址上的值， 但是可以修改它所指向的地址
+* const  pc; //能修改指针指向地址上的值， 但是不能修改它所指向的地址
+const * const pc; //不能修改指针指向地址上的值， 也不能修改它所指向的地址
+```
 
-- _thread_local 声明变量为线程独占
+#### static 
+声明变量具有静态存储期
 
-- register 声明变量为寄存器变量
+####  _thread_local 
+声明变量为线程独占
 
-- extern 声明变量的定义在别处
+####  register 
+声明变量为寄存器变量
 
-- restrict 它只可以用于限定和约束指针，并表明指针是访问一个数据对象的唯一且初始的方式。关键字 restrict 有两个读者。一个是编译器，它告诉编译器可以自由地做一些有关优化的假定。另一个读者是用户，他告诉用户仅使用满足 restrict 要求的参数。
+####  extern
+声明变量的定义在别处
 
-- unsigned 将数字类型无符号化，  例如 int 型的范围：-2^du31 ~ 2^31 - 1，而 unsigned int 的范围：0 ~ 2^32。
+####  restrict 
+它只可以用于限定和约束指针，并表明指针是访问一个数据对象的唯一且初始的方式。关键字 restrict 有两个读者。一个是编译器，它告诉编译器可以自由地做一些有关优化的假定。另一个读者是用户，他告诉用户仅使用满足 restrict 要求的参数。
 
-- typedef 为某一类型自定义名称
+####  unsigned
+将数字类型无符号化，  例如 int 型的范围：-2^du31 ~ 2^31 - 1，而 unsigned int 的范围：0 ~ 2^32。
+
+####  typedef
+为某一类型自定义名称
 
   1. 与`#define`不同，typedef 创建的符号名只受限于类型，不能用于值
   2. typedef 由编译器解释，不是预处理器
@@ -185,7 +194,7 @@ int main() {
 // -->y + 5<--is 7
 ```
 
-预处理器粘合剂：`##运算符`，把两个几号组合成一个记号。例如
+预处理器粘合剂：`##运算符`，把两个记号组合成一个记号。例如
 
 ```cpp
 #include <stdio.h>
@@ -195,7 +204,7 @@ int main() {
 
 int main() {
     int XNAME(1) = 14; //变成int x1 = 14;
-    int XNAME(2) = 14; //变成int x2 = 20;
+    int XNAME(2) = 14; //变成int x2 = 14;
     PRINT_XN(1);       //变成 printf("x1 = %d\n",x1);
     PRINT_XN(2);       //变成 printf("x2 = %d\n",x2);
 
