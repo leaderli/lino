@@ -35,12 +35,12 @@
       "plugin-obsidian-git-obsidian-git-statusbar-failed-init-obsidian-git-statusbar-idle-obsidian-git-statusbar-pull;1": {
         "position": 6,
         "visible": false,
-        "exists": false
+        "exists": true
       },
       "plugin-obsidian-git-obsidian-git-statusbar-failed-init-obsidian-git-statusbar-idle;1": {
         "position": 8,
         "visible": true,
-        "exists": true
+        "exists": false
       }
     },
     "default": {
