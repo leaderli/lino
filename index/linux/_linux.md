@@ -7,6 +7,7 @@
 - 📄 [[index/linux/debian|debian]]
 - 📄 [[index/linux/disk|disk]]
 - 📄 [[index/linux/fork|fork]]
+- 📄 [[index/linux/gcc|gcc]]
 - 📄 [[index/linux/linux basic|linux basic]]
 - 📄 [[index/linux/mail|mail]]
 - 📄 [[index/linux/make|make]]
