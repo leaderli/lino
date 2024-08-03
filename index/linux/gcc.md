@@ -33,3 +33,22 @@ $ ./a.out
 
 Hello World!
 ```
+
+
+编译运行的shell脚本
+
+```shell
+if test -z $1
+then
+	echo '无参数'
+	exit 1
+fi
+c=$(basename -s .c $1)
+
+gcc $1 -o $c
+if test -e $c 
+then
+	./$c
+	rm ./$c
+fi
+```
