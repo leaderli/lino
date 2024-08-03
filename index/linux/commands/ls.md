@@ -1,9 +1,8 @@
 ---
 tags:
   - linux/commands/ls
-date updated: 2024-07-05 10:08
+date updated: 2024-08-03 19:43
 ---
-
 
 ls输出的结果是带换行的，虽然可能显示的时候没有
 
@@ -28,7 +27,10 @@ ls输出的结果是带换行的，虽然可能显示的时候没有
 - `-R` 递归显示文件
 
 - `-i` 显示 [[linux basic#inode|inode]] 节点编号
--  `-r` 倒序输出
+
+- `-r` 倒序输出
+
+- `-n` 显示用户uid、gid
 
 ## 设置
 
