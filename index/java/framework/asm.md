@@ -8,7 +8,7 @@ date updated: 2024-02-04 20:24
 
 ASM是一个直接生成 java [[bytecode|字节码]] 的框架
 
-```maven
+```xml
 <dependency>
     <groupId>org.ow2.asm</groupId>
     <artifactId>asm</artifactId>
