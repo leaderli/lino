@@ -2,14 +2,16 @@
 aliases: 字节码,class
 tags:
   - java/jvm/字节码
-date updated: 2024-08-18 14:53
+date updated: 2024-08-18 20:48
 ---
 
-class字节码文件是java跨平台的基础，其本质是一个满足JVM规范的二进制文件。class文件以一个个8位字节位基础单位，每个数据严格按照指定的数据结构排列在class文件之中。
+class字节码文件是java跨平台的基础，其本质是一个满足JVM规范的二进制文件。class文件是一组8位字节位为最小基础单位，每个数据严格按照指定的数据结构排列在class文件之中，中间没有任何分隔符。
 
 ## 类文件的数据结构
 
-```c++
+### 概述
+
+```c
 ClassFile {
     u4             magic;
     u2             minor_version;
@@ -30,42 +32,193 @@ ClassFile {
 }
 ```
 
-- `u4` `u2`表示占用4字节和2字节
-- `info` 表示指针
+字节码文件结构，有两种最基本的数据类型来表示字节码文件格式：无符号数和表
+
+**无符号数**
+
+它以 u1、u2、u4、u8 六七分别代表 1 个字节、2 个字节、4 个字节、8 个字节的无符号数。
+
+**表**
+
+有多个无符号数或其他表作为数据项构成的符合数据类型，所有表一般以`_info`结尾
+
+整个字节码文件本质上就是一张表，它由下面几个部分组成：
+
+1. 魔数与Class文件版本
+2. 常量池
+3. 访问标志
+4. 类索引、父类索引、接口索引
+5. 字段表集合
+6. 方法表集合
+7. 属性表集合
+
+![[Pasted image 20240818191659.png]]
+
+其内存布局如下
+
+![[Pasted image 20240818193923.png]]
 
 对下述代码编译
 
 ```java
-public class Hello {
-	public static void main(String[] args) {
-        System.out.println("hello");
-	}
+public class Demo {
+public static void main(String[] args) {
+System.out.println("hello");
+}
 }
 ```
 
-得到 hello.class文件，我们查看其二进制内容
+得到 Demo.class文件，我们[[vim#查看字节]]内容
 
-```http
-  Offset: 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10 11 12 13 14 15 16 17 18 19 1A 1B 1C 1D 1E 1F 	
-00000000: CA FE BA BE 00 00 00 34 00 1D 0A 00 06 00 0F 09 00 10 00 11 08 00 12 0A 00 13 00 14 07 00 15 07    J~:>...4........................
-00000020: 00 16 01 00 06 3C 69 6E 69 74 3E 01 00 03 28 29 56 01 00 04 43 6F 64 65 01 00 0F 4C 69 6E 65 4E    .....<init>...()V...Code...LineN
-00000040: 75 6D 62 65 72 54 61 62 6C 65 01 00 04 6D 61 69 6E 01 00 16 28 5B 4C 6A 61 76 61 2F 6C 61 6E 67    umberTable...main...([Ljava/lang
-00000060: 2F 53 74 72 69 6E 67 3B 29 56 01 00 0A 53 6F 75 72 63 65 46 69 6C 65 01 00 0A 48 65 6C 6C 6F 2E    /String;)V...SourceFile...Hello.
-00000080: 6A 61 76 61 0C 00 07 00 08 07 00 17 0C 00 18 00 19 01 00 05 68 65 6C 6C 6F 07 00 1A 0C 00 1B 00    java................hello.......
-000000a0: 1C 01 00 05 48 65 6C 6C 6F 01 00 10 6A 61 76 61 2F 6C 61 6E 67 2F 4F 62 6A 65 63 74 01 00 10 6A    ....Hello...java/lang/Object...j
-000000c0: 61 76 61 2F 6C 61 6E 67 2F 53 79 73 74 65 6D 01 00 03 6F 75 74 01 00 15 4C 6A 61 76 61 2F 69 6F    ava/lang/System...out...Ljava/io
-000000e0: 2F 50 72 69 6E 74 53 74 72 65 61 6D 3B 01 00 13 6A 61 76 61 2F 69 6F 2F 50 72 69 6E 74 53 74 72    /PrintStream;...java/io/PrintStr
-00000100: 65 61 6D 01 00 07 70 72 69 6E 74 6C 6E 01 00 15 28 4C 6A 61 76 61 2F 6C 61 6E 67 2F 53 74 72 69    eam...println...(Ljava/lang/Stri
-00000120: 6E 67 3B 29 56 00 21 00 05 00 06 00 00 00 00 00 02 00 01 00 07 00 08 00 01 00 09 00 00 00 1D 00    ng;)V.!.........................
-00000140: 01 00 01 00 00 00 05 2A B7 00 01 B1 00 00 00 01 00 0A 00 00 00 06 00 01 00 00 00 01 00 09 00 0B    .......*7..1....................
-00000160: 00 0C 00 01 00 09 00 00 00 25 00 02 00 01 00 00 00 09 B2 00 02 12 03 B6 00 04 B1 00 00 00 01 00    .........%........2....6..1.....
-00000180: 0A 00 00 00 0A 00 02 00 00 00 03 00 08 00 04 00 01 00 0D 00 00 00 02 00 0E                         .........................
+```txt
+cafe babe 0000 0034 001d 0a00 0600 0f09
+0010 0011 0800 120a 0013 0014 0700 1507
+0016 0100 063c 696e 6974 3e01 0003 2829
+5601 0004 436f 6465 0100 0f4c 696e 654e
+756d 6265 7254 6162 6c65 0100 046d 6169
+6e01 0016 285b 4c6a 6176 612f 6c61 6e67
+2f53 7472 696e 673b 2956 0100 0a53 6f75
+7263 6546 696c 6501 0009 4465 6d6f 2e6a
+6176 610c 0007 0008 0700 170c 0018 0019
+0100 0b48 656c 6c6f 2057 6f72 6c64 0700
+1a0c 001b 001c 0100 0444 656d 6f01 0010
+6a61 7661 2f6c 616e 672f 4f62 6a65 6374
+0100 106a 6176 612f 6c61 6e67 2f53 7973
+7465 6d01 0003 6f75 7401 0015 4c6a 6176
+612f 696f 2f50 7269 6e74 5374 7265 616d
+3b01 0013 6a61 7661 2f69 6f2f 5072 696e
+7453 7472 6561 6d01 0007 7072 696e 746c
+6e01 0015 284c 6a61 7661 2f6c 616e 672f
+5374 7269 6e67 3b29 5600 2100 0500 0600
+0000 0000 0200 0100 0700 0800 0100 0900
+0000 1d00 0100 0100 0000 052a b700 01b1
+0000 0001 000a 0000 0006 0001 0000 0001
+0009 000b 000c 0001 0009 0000 0025 0002
+0001 0000 0009 b200 0212 03b6 0004 b100
+0000 0100 0a00 0000 0a00 0200 0000 0300
+0800 0400 0100 0d00 0000 0200 0e
 ```
 
-根据数据结构的定义，前4位是magic，固定为 `CAFEBABE`，用于JVM认定该文件为一个合法的class字节码，通过第8位也可以看到其编译的 [[major_version|java 版本信息]]
+### 魔数与Class文件版本
 
-一般为了方便我们都使用  [[index/java/command#javap|javap]] 查看class字节码，查看
-[[index/java/command#^e7cce6|示例]] 我们可以方便的看到其 [[major_version|java 版本信息]]
+1. 1~4位 magic，固定为 `CAFEBABE`，用于JVM认定该文件为一个合法的class字节码
+2. 5~6位 Minor Version，即编译该 Class 文件的 JDK 次版本号。
+3. 7~8位 Major Version，即编译该 Class 文件的 JDK 主版本号。可以看到其编译的 [[major_version|java 版本信息]]，一般为了方便我们都使用  [[index/java/command#javap|javap]] 查看class字节码，查看[[index/java/command#^e7cce6|示例]] 我们可以方便的看到其 [[major_version|java 版本信息]]
+
+### 常量池
+
+紧跟版本信息之后的是常量池信息，其中前 2 个字节表示常量池个数，其后的不定长数据则表示常量池的具体信息。
+
+常量池的常量都是由`cp_info`这种表结构组成的，而且表结构不同其大小也不同。在 Java 虚拟机规范中一共有 14 种 `cp_info` 类型的表结构。
+
+![](https://img2018.cnblogs.com/blog/595137/201812/595137-20181219204324926-1691668396.png)
+
+而上面这些 `cp_info` 表结构又有不同的数据结构，其对应的数据结构如下图所示。
+
+![](https://img2018.cnblogs.com/blog/595137/201812/595137-20181219204338051-305022474.png)
+
+`cp_info`表结构一共有三个字段，第一个字段表示这个表结构的标示值，有一个字节大小，对应我们上一个表格中的数字。第二、三个字段表示其表结构的描述
+
+第 1 个常量。
+
+![[Pasted image 20240818195507.png]]
+
+紧接着 001d 的后一个字节为 0A，为十进制数字 10，查表可知其为方法引用类型（CONSTANT_Methodref_info）的常量。再查 cp_info 对应的表结构知道，该常量项第 2 - 3 个字节表示类信息，第 4 - 5 个字节表示名称及类描述符。
+
+该常量项第 2 - 3 个字节，其值为 `00 06`，表示指向常量池第 6 个常量所表示的信息。根据后面我们分析的结果知道第 6 个常量是 `java/lang/Object` 。第 4 - 5 个字节，其值为 `000f`，表示指向常量池第 15 个常量所表示的信息，根据 javap 反编译出来的信息可知第 10 个常量是 `<init>:()V`。将这两者组合起来就是：`java/lang/Object.<init>:V`，即 Object 的 init 初始化方法。
+
+### 访问标志
+
+这个标志用于识别一些类或者接口层次的访问信息，包括：这个Class是类还是接口、是否定义为public类型、是否定义为abstract类型等。具体的标志位以及标志的含义见下表。
+
+| 标志类型           | 标志值                 | 标志意义                          |
+| -------------- | ------------------- | ----------------------------- |
+| ACC_PUBLIC     | 0000 0000 0000 0001 | 是否为 public 类型                 |
+| ACC_FINAL      | 0000 0000 0001 0000 | 是否被声明为 final 类型               |
+| ACC_SUPER      | 0000 0000 0010 0000 | 是否允许使用 invokespcial 字节码指令的新语义 |
+| ACC_INTERFACE  | 0000 0001 0000 0000 | 标识这是一个接口                      |
+| ACC_ABSTRACT   | 0000 0010 0000 0000 | 是否为抽象类型                       |
+| ACC_SYNTHETIC  | 0001 0000 0000 0000 | 标识这个类并非由用户代码生成                |
+| ACC_ANNOTATION | 0010 0000 0000 0000 | 标识这是一个注解                      |
+| ACC_ENUM       | 0100 0000 0000 0000 | 标识这是一个枚举                      |
+
+在这里这两个字节是 `00 21`，其二进制值为`0000 0000 0010 0001`，根据标志位上是否为1表示是否有某个标志，如下图所示，则表示为 `ACC_PUBLIC` 和
+
+![[Pasted image 20240818200343.png]]
+
+### 类索引、父类索引、接口索引
+
+类索引和父类索引都是一个u2类型的数据，而接口索引集合是一组u2类型的数据的集合，Class 文件中由这三项数据来确定这个类的继承关系。
+
+### 字段表集合
+
+字段表集合用于描述接口或者类中声明的变量
+
+这里说的字段包括类级变量和实例级变量，但不包括在方法内部声明的局部变量。在类接口集合后的2个字节是一个字段计数器，表示总有有几个属性字段。在字段计数器后，才是具体的属性数据。
+
+字段表的每个字段用一个名为 field_info 的表来表示，field_info 表的数据结构如下所示：
+
+![[Pasted image 20240818202739.png]]
+
+### 方法表集合
+
+方法表中的每个方法都用一个 method_info 表示，其数据结构如下：
+
+![[Pasted image 20240818202814.png]]
+
+### 属性表集合
+
+属性表用于class文件格式中的ClassFile，field_info，method_info和Code_attribute结构，以用于描述某些场景专有的信息。与 Class 文件中其它的数据项目要求的顺序、长度和内容不同，属性表集合的限制稍微宽松一些，不再要求各个属性表具有严格的顺序，并且只要不与已有的属性名重复，任何人实现的编译器都可以向属性表中写 入自己定义的属性信息，Java 虚拟机运行时会忽略掉它不认识的属性。
+
+对于每个属性，它的名称需要从常量池中引用一个CONSTANT_Utf8_info类型的常量来表示，而属性值的结构则是完全自定义的，只需要通过一个u4的长度去说明属性值所占用的位数即可。
+
+attribute_info 表的结构如下图所示
+
+![[Pasted image 20240818203028.png]]
+
+**《java虚拟机规范 JavaSE8》中预定义23项虚拟机实现应当能识别的属性:**
+
+| 属性                                   | 可用位置                                     | 含义                                                                                                                                                                                            |
+| ------------------------------------ | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| SourceFile                           | ClassFile                                | 记录源文件名称                                                                                                                                                                                       |
+| InnerClasses                         | ClassFile                                | 内部类列表                                                                                                                                                                                         |
+| EnclosingMethod                      | ClassFile                                | 仅当一个类为局部类或者匿名类时，才能拥有这个属性，这个属性用于表示这个类所在的外围方法                                                                                                                                                   |
+| SourceDebugExtension                 | ClassFile                                | JDK1.6中新增的属性，SourceDebugExtension用于存储额外的调试信息。如在进行JSP文件调试时，无法通过Java堆栈来定位到JSP文件的行号，JSR-45规范为这些非Java语言编写，却需要编译成字节码运行在Java虚拟机汇中的程序提供了一个进行调试的标准机制，使用SourceDebugExtension就可以存储这些调试信息。               |
+| BootstrapMethods                     | ClassFile                                | JDK1.7新增的属性，用于保存invokedynamic指令引用的引导方法限定符                                                                                                                                                     |
+| ConstantValue                        | field_info                               | final关键字定义的常量值                                                                                                                                                                                |
+| Code                                 | method_info                              | Java代码编译成的字节码指令(即：具体的方法逻辑字节码指令)                                                                                                                                                               |
+| Exceptions                           | method_info                              | 方法声明的异常                                                                                                                                                                                       |
+| RuntimeVisibleAnnotations            | ClassFile, field_info, method_info       | JDK1.5中新增的属性，为动态注解提供支持。RuntimeVisibleAnnotations属性，用于指明哪些注解是运行时(实际上运行时就是进行反射调用)可见的。                                                                                                           |
+| RuntimeInvisibleAnnotations          | ClassFile, field_info, method_info       | JDK1.5中新增的属性，作用与RuntimeVisibleAnnotations相反用于指明哪些注解是运行时不可见的。                                                                                                                                  |
+| RuntimeVisibleParameterAnnotations   | method_info                              | JDK1.5中新增的属性，作用与RuntimeVisibleAnnotations类似，只不过作用对象为方法的参数。                                                                                                                                    |
+| RuntimeInvisibleParameterAnnotations | method_info                              | JDK1.5中新增的属性，作用与RuntimeInvisibleAnnotations类似，只不过作用对象为方法的参数。                                                                                                                                  |
+| AnnotationDefault                    | method_info                              | JDK1.5中新增的属性，用于记录注解类元素的默认值                                                                                                                                                                    |
+| MethodParameters                     | method_info                              | 52.0                                                                                                                                                                                          |
+| Synthetic                            | ClassFile, field_info, method_info       | 标识方法或字段为编译器自动产生的                                                                                                                                                                              |
+| Deprecated                           | ClassFile, field_info, method_info       | 被声明为deprecated的方法和字段                                                                                                                                                                          |
+| Signature                            | ClassFile, field_info, method_info       | JDK1.5新增的属性，这个属性用于支持泛型情况下的方法签名，在Java语言中，任何类、接口、初始化方法或成员的泛型签名如果包含了类型变量(Type Variables)或参数类型(Parameterized Types),则Signature属性会为它记录泛型签名信息。由于Java的泛型采用擦除法实现，在为了避免类型信息被擦除后导致签名混乱，需要这个属性记录泛型中的相关信息 |
+| RuntimeVisibleAnnotations            | ClassFile, field_info, method_info       | JDK1.5中新增的属性，为动态注解提供支持。RuntimeVisibleAnnotations属性，用于指明哪些注解是运行时(实际上运行时就是进行反射调用)可见的。                                                                                                           |
+| RuntimeInvisibleAnnotations          | ClassFile, field_info, method_info       | JDK1.5中新增的属性，作用与RuntimeVisibleAnnotations相反用于指明哪些注解是运行时不可见的。                                                                                                                                  |
+| LineNumberTable                      | Code                                     | Java源码的行号与字节码指令的对应关系                                                                                                                                                                          |
+| LocalVariableTable                   | Code                                     | 方法的局部变量描述                                                                                                                                                                                     |
+| LocalVariableTypeTable               | Code                                     | JDK1.5中新增的属性，它使用特征签名代替描述符，是为了引入泛型语法之后能描述泛型参数化类型而添加                                                                                                                                            |
+| StackMapTable                        | Code                                     | JDK1.6中新增的属性，供新的类型检查验证器(Type Checker)检查和处理目标方法的局部变量和操作数栈所需要的类型是否匹配                                                                                                                            |
+| MethodParameters                     | method_info                              | JDK1.8中新加的属性，用于标识方法参数的名称和访问标志。                                                                                                                                                                |
+| RuntimeVisibleTypeAnnotations        | ClassFile, field_info, method_info, Code | JDK1.8中新加的属性，在运行时可见的注释，用于泛型类型，指令等。                                                                                                                                                            |
+| RuntimeInvisibleTypeAnnotations      | ClassFile, field_info, method_info, Code | JDK1.8中新加的属性，在编译时可见的注释，用于泛型类型，指令等。                                                                                                                                                            |
+
+Code属性的数据结构如下：
+
+![[Pasted image 20240818204608.png]]
+
+LineNumberTable属性的数据结构如下
+
+![[Pasted image 20240818204729.png]]
+
+ line_number_info属性的数据结构
+![[Pasted image 20240818204747.png]]
+
+start_pc 表示的字节码行号， line_number 表示 Java 源码行号
 
 ## 描述符
 
@@ -110,31 +263,11 @@ public class Hello {
 
 给类的静态字段赋值
 
-## 示例
-
-### 查看 Class 是否是基本类型
-
-```java
-clasz.isPrimitive();
-```
-
-### 判断类是否继承自
-
-```java
-Father.class.isAssignableFrom(Son.class)
-```
-
-## 字节码编辑软件
-
-![[Pasted image 20240206211329.png]]
-
-[JBE - Java Bytecode Editor](https://set.ee/jbe/)
-
 ## 字节码指令表
 
 字节码指令根据功能、属性不同，可以分为11大类。下面附上字节码指令的分类，用于简单、临时查看，字节码指令的详细介绍，还需要查看官网的介绍。
 
-### 4.1 Constants 常量相关
+### Constants 常量相关
 
 |     |      |             |                                          |
 | --- | ---- | ----------- | ---------------------------------------- |
@@ -161,7 +294,7 @@ Father.class.isAssignableFrom(Son.class)
 | 19  | 0x13 | ldc_w       | 把常量池中的int，float，String型常量取出并推到操作数栈顶（宽索引） |
 | 20  | 0x14 | ldc2_w      | 把常量池中的long，double型常量取出并推到操作数栈顶（宽索引）      |
 
-### 4.2 Loads 加载相关
+### Loads 加载相关
 
 |     |      |         |                               |
 | --- | ---- | ------- | ----------------------------- |
@@ -200,7 +333,7 @@ Father.class.isAssignableFrom(Son.class)
 | 52  | 0x34 | caload  | 把 char 型数组指定索引的值推到操作数栈        |
 | 53  | 0x35 | saload  | 把 short 型数组指定索引的值推到操作数栈       |
 
-### 4.3 Store 存储相关
+### Store 存储相关
 
 |     |      |          |                                   |
 | --- | ---- | -------- | --------------------------------- |
@@ -239,7 +372,7 @@ Father.class.isAssignableFrom(Son.class)
 | 85  | 0x55 | castore  | 把栈顶 char 型数值存入数组指定索引位置            |
 | 86  | 0x56 | sastore  | 把栈顶 short 型数值存入数组指定索引位置           |
 
-### 4.4 Stack 栈相关
+### Stack 栈相关
 
 |     |      |         |                                            |
 | --- | ---- | ------- | ------------------------------------------ |
@@ -254,7 +387,7 @@ Father.class.isAssignableFrom(Son.class)
 | 94  | 0x5E | dup2_x2 | dup_x2 指令的双倍版本                             |
 | 95  | 0x5F | swap    | 把栈顶端的两个数的值交换（数值不能是long 或double 类型< td >的）  |
 
-### 4.5 Math 运算相关
+### Math 运算相关
 
 Java 虚拟机在处理浮点数运算时，不会抛出任何运行时异常，当一个操作产生溢出时，将会使用有符号的无穷大来表示，如果某个操作结果没有明确的数学定义的话，将会使用 NaN 值来表示。所有使用 NaN 值作为操作数的算术操作，结果都会返回 NaN。
 
@@ -299,7 +432,7 @@ Java 虚拟机在处理浮点数运算时，不会抛出任何运行时异常，
 | 131 | 0x83 | lxor  | 把栈顶两个 long 型数值 按位异或 并将结果入栈 |
 | 132 | 0x84 | iinc  | 把指定 int 型增加指定值             |
 
-### 4.6 Conversions 转换相关
+### Conversions 转换相关
 
 类型转换指令可以将两种不同的数值类型进行相互转换，这些转换操作一般用于实现用户代码中的显示类型转换操作。
 
@@ -324,7 +457,7 @@ Java 虚拟机直接支持（即转换时无需显示的转换指令）小范围
 | 146 | 0x92 | i2c | 把栈顶 int 强转 char 并入栈     |
 | 147 | 0x93 | i2s | 把栈顶 int 强转 short 并入栈    |
 
-### 4.7 Comparisons 比较相关
+### Comparisons 比较相关
 
 |     |      |           |                                                            |
 | --- | ---- | --------- | ---------------------------------------------------------- |
@@ -349,7 +482,7 @@ Java 虚拟机直接支持（即转换时无需显示的转换指令）小范围
 | 165 | 0xA5 | if_acmpeq | 比较栈顶两个 引用 型数值，相等时跳转                                        |
 | 166 | 0xA6 | if_acmpne | 比较栈顶两个 引用 型数值，不相等时跳转                                       |
 
-### 4.8 Control 控制相关
+### Control 控制相关
 
 控制转移指令可以让 Java 虚拟机有条件或无条件地从指定的位置指令而不是控制转移指令的下一条指令继续执行程序，从概念模型上理解，可以认为控制转移指令就是在有条件或无条件地修改 PC 寄存器的值。
 
@@ -368,7 +501,7 @@ Java 虚拟机直接支持（即转换时无需显示的转换指令）小范围
 | 176 | 0xB0 | areturn      | 从当前方法返回 对象引用                              |
 | 177 | 0xB1 | return       | 从当前方法返回 void                              |
 
-### 4.9 references 引用、方法、异常、同步相关
+### references 引用、方法、异常、同步相关
 
 |     |      |                 |                                                                                                                                  |
 | --- | ---- | --------------- | -------------------------------------------------------------------------------------------------------------------------------- |
@@ -394,13 +527,13 @@ Java 虚拟机直接支持（即转换时无需显示的转换指令）小范围
 
 Java 虚拟机可以支持方法级的同步和方法内部一段指令序列的同步，这两种同步结构都是使用管程（Monitor）来支持的。
 
-**方法级的同步是隐式的，即无须通过字节码指令来控制，它实现在方法调用和返回操作之中。**虚拟机可以从方法常量池的方法表结构中的 ACC_SYNCHRONIZED 方法标志得知一个方法是否声明为同步方法。当方法调用时，调用指令将会检查方法的 ACC_SYNCHRONIZED 访问标志是否被设置，如果设置了，执行线程就要求先成功持有管程，然后才能执行方法，最后当方法完成（无论是正常完成还是非正常完成）时释放管程。在方法执行期间，执行线程持有了管程，其他任何线程都无法再获取到同一个管程。如果一个同步方法执行期间抛出了异常，并且在方法内部无法处理此异常，那么这个同步方法所持有的管程将在异常抛到同步方法之外时自动释放。
+方法级的同步是隐式的，即无须通过字节码指令来控制，它实现在方法调用和返回操作之中。虚拟机可以从方法常量池的方法表结构中的 ACC_SYNCHRONIZED 方法标志得知一个方法是否声明为同步方法。当方法调用时，调用指令将会检查方法的 ACC_SYNCHRONIZED 访问标志是否被设置，如果设置了，执行线程就要求先成功持有管程，然后才能执行方法，最后当方法完成（无论是正常完成还是非正常完成）时释放管程。在方法执行期间，执行线程持有了管程，其他任何线程都无法再获取到同一个管程。如果一个同步方法执行期间抛出了异常，并且在方法内部无法处理此异常，那么这个同步方法所持有的管程将在异常抛到同步方法之外时自动释放。
 
-**同步一段指令集序列通常是由Java语言中的synchronized语句块来表示的，Java虚拟机的指令集中有monitorenter和monitorexit两条指令来支持synchronized关键字的语义**
+同步一段指令集序列通常是由Java语言中的synchronized语句块来表示的，Java虚拟机的指令集中有monitorenter和monitorexit两条指令来支持synchronized关键字的语义
 
 编译器必须确保无论方法通过何种方式完成，方法中调用过的每条monitorenter指令都必须执行其对应的monitorexit指令，而无论这个方法是正常结束还是异常结束。
 
-### 4.10 Extended 扩展相关
+### Extended 扩展相关
 
 |     |      |                |                                                     |
 | --- | ---- | -------------- | --------------------------------------------------- |
@@ -412,7 +545,7 @@ Java 虚拟机可以支持方法级的同步和方法内部一段指令序列的
 | 200 | 0xC8 | goto_w         | 无条件跳转（宽索引）                                          |
 | 201 | 0xC9 | jsr_w          | 跳转指定32bit偏移位置，并将jsr_w下一条指令地址入栈                      |
 
-### 4.11 Reserved 保留指令
+### Reserved 保留指令
 
 |     |      |            |                 |
 | --- | ---- | ---------- | --------------- |
@@ -421,9 +554,16 @@ Java 虚拟机可以支持方法级的同步和方法内部一段指令序列的
 | 254 | 0xFE | impdep1    | 用于在特定硬件中使用的语言后门 |
 | 255 | 0xFF | impdep2    | 用于在特定硬件中使用的语言后门 |
 
+## 字节码编辑软件
+
+![[Pasted image 20240206211329.png]]
+
+[JBE - Java Bytecode Editor](https://set.ee/jbe/)
+
 ## 参考文档
 
 1. [Java字节码文件结构剖析 - cexo - 博客园](https://www.cnblogs.com/webor2006/p/9404249.html)
 2. [Java字节码结构剖析一：常量池 - 简书](https://www.jianshu.com/p/bc3cfbebef25)
 3. [JVM规范 Java SE8官方文档](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.oracle.com%2Fjavase%2Fspecs%2Fjvms%2Fse8%2Fhtml%2Findex.html "https://docs.oracle.com/javase/specs/jvms/se8/html/index.html")
 4. [JVM规范中《操作码助记符表》](https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-7.html)
+5. [JVM入门教程第5讲：字节码文件结构 - 陈树义 - 博客园](https://www.cnblogs.com/chanshuyi/p/jvm_serial_05_jvm_bytecode_analysis.html)
