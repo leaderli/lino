@@ -2,7 +2,7 @@
 aliases: 字节码,class
 tags:
   - java/jvm/字节码
-date updated: 2024-08-18 20:48
+date updated: 2024-08-18 22:01
 ---
 
 class字节码文件是java跨平台的基础，其本质是一个满足JVM规范的二进制文件。class文件是一组8位字节位为最小基础单位，每个数据严格按照指定的数据结构排列在class文件之中，中间没有任何分隔符。
@@ -166,6 +166,8 @@ cafe babe 0000 0034 001d 0a00 0600 0f09
 
 ![[Pasted image 20240818202814.png]]
 
+方法的属性表一般包括一个重要的[[#Code属性的数据结构如下|Code]]属性
+
 ### 属性表集合
 
 属性表用于class文件格式中的ClassFile，field_info，method_info和Code_attribute结构，以用于描述某些场景专有的信息。与 Class 文件中其它的数据项目要求的顺序、长度和内容不同，属性表集合的限制稍微宽松一些，不再要求各个属性表具有严格的顺序，并且只要不与已有的属性名重复，任何人实现的编译器都可以向属性表中写 入自己定义的属性信息，Java 虚拟机运行时会忽略掉它不认识的属性。
@@ -205,20 +207,46 @@ attribute_info 表的结构如下图所示
 | StackMapTable                        | Code                                     | JDK1.6中新增的属性，供新的类型检查验证器(Type Checker)检查和处理目标方法的局部变量和操作数栈所需要的类型是否匹配                                                                                                                            |
 | MethodParameters                     | method_info                              | JDK1.8中新加的属性，用于标识方法参数的名称和访问标志。                                                                                                                                                                |
 | RuntimeVisibleTypeAnnotations        | ClassFile, field_info, method_info, Code | JDK1.8中新加的属性，在运行时可见的注释，用于泛型类型，指令等。                                                                                                                                                            |
-| RuntimeInvisibleTypeAnnotations      | ClassFile, field_info, method_info, Code | JDK1.8中新加的属性，在编译时可见的注释，用于泛型类型，指令等。                                                                                                                                                            |
+| RuntimeInvisibleTypeAnnotations<br>  | ClassFile, field_info, method_info, Code | JDK1.8中新加的属性，在编译时可见的注释，用于泛型类型，指令等。                                                                                                                                                            |
 
-Code属性的数据结构如下：
+
+
+![[Pasted image 20240818215117.png]]
+#### Code属性的数据结构如下：
 
 ![[Pasted image 20240818204608.png]]
 
-LineNumberTable属性的数据结构如下
+
+根据 Code 属性对应表结构知道，前 2 个字节为 0009，即常量池第 9 个常量，查询知道是字符串常量`Code`。接着 4 个字节表示属性长度，这里值为 1D，即 29 的长度。下面我们继续分析 Code 属性的数据内容。
+
+紧接着 2 个字节为 max_stack 属性。这里数据为 00 01，表示操作数栈深度的最大值。
+
+紧接着 2 个字节为 max_locals属性。这里是数据为 00 01，表示局部变量表所需的存储空间为 1 个 Slot。在这里 max_locals的单位是Slot，Slot是虚拟机为局部变量分配内存所使用的最小单位。
+
+接着 4 个字节为 code_length，表示生成字节码这里给的长度。这里数据为 00 00 00 05，表示生成字节码长度为 5 个字节。那么紧接着 5 个自己就是对应的数据，这里数据为 2a b7 00 01 b1，这一串数据其实就是字节码指令。通过查询字节码指令表，可知其对应的字节码指令：
+
+- 读入2A，查表得0x2A对应的指令为aload_0，这个指令的含义是将第0个Slot中为reference类型的本地变量推送到操作数栈顶。
+- 读入B7，查表得0xB7对应的指令为invokespecial，这条指令的作用是以栈顶的reference类型的数据所指向的对象作为方法接收者，调用此对象的实例构造器方法、private方法或者它的父类的方法。这个方法有一个u2类型的参数说明具体调用哪一个方法，它指向常量池中的一个CONSTANT_Methodref_info类型常量，即此方法的方法符号引用。
+- 读入00 01，这是invokespecial的参数，查常量池得0x0001对应的常量为实例构造器“”方法的符号引用。
+- 读入B1，查表得0xB1对应的指令为return，含义是返回此方法，并且返回值为void。这条指令执行后，当前方法结束。
+
+接着 2 个字节为异常表长度，这里数据为 00 00，表示没有异常表数据。那么接下来也就不会有异常表的值。
+
+紧接着 2 个字节是属性表的长度，这里数据为 00 01，表示有一个属性。该属性长度为一个 attribute_info 那么长
+#### LineNumberTable属性的数据结构如下
 
 ![[Pasted image 20240818204729.png]]
 
- line_number_info属性的数据结构
+#### line_number_info属性的数据结构
+
 ![[Pasted image 20240818204747.png]]
 
 start_pc 表示的字节码行号， line_number 表示 Java 源码行号
+
+
+第 1 个 line_number_info，即接下来 2 个字节为 00 00，即 start_pc 表示的字节码行号为第 0 行。接着 00 03，即 line_number 表示 Java 源码行号为第 3 行。
+
+第 2 个 line_number_info，即接下来 2 个字节为 00 08，即 start_pc 表示的字节码行号为第 8 行。接着 00 04，即 line_number 表示 Java 源码行号为第 4 行。
 
 ## 描述符
 
