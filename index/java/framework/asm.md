@@ -4,7 +4,7 @@ tags:
 date updated: 2024-02-04 20:24
 ---
 
-### 安装
+## 安装
 
 ASM是一个直接生成 java [[bytecode|字节码]] 的框架
 
@@ -21,7 +21,7 @@ ASM是一个直接生成 java [[bytecode|字节码]] 的框架
 </dependency>
 ```
 
-### 快速入门
+## 快速入门
 
 一个用于生成 `HelloWorld` 的demo
 
@@ -206,7 +206,121 @@ class ByteClassLoader extends URLClassLoader {
 }
 ```
 
-### 参考文档
+
+## 解析字节码
+
+
+```java
+ClassReader classReader = new ClassReader(Person.class.getName());  
+Map<String, Textifier> methodVisitors = new HashMap<>();  
+ClassVisitor classVisitor = new ClassVisitor(ASM6) {  
+    @Override  
+    public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {  
+        String id = Modifier.toString(access) + " " + name + " " + desc + " " + signature + " " + Arrays.toString(exceptions);  
+        Textifier textifier = new Textifier();  
+        methodVisitors.put(id, textifier);  
+        return new TraceMethodVisitor(textifier);  
+    }  
+};  
+classReader.accept(classVisitor, 0);  
+methodVisitors.forEach((k, v) -> {  
+    System.out.println(k);  
+    System.out.println(v.getText());  
+});
+```
+
+```java
+public getAAge ()I null null
+[   L0
+,     LINENUMBER 14 L0
+,     ALOAD 0
+,     GETFIELD io/leaderli/demo/bean/Person.aAge : I
+,     IRETURN
+,    L1
+,     LOCALVARIABLE this Lio/leaderli/demo/bean/Person; L0 L1 0
+,     MAXSTACK = 1
+,     MAXLOCALS = 1
+]
+public getFuck ()Ljava/lang/String; null null
+[   L0
+,     LINENUMBER 22 L0
+,     ALOAD 0
+,     GETFIELD io/leaderli/demo/bean/Person.aName : Ljava/lang/String;
+,     ARETURN
+,    L1
+,     LOCALVARIABLE this Lio/leaderli/demo/bean/Person; L0 L1 0
+,     MAXSTACK = 1
+,     MAXLOCALS = 1
+]
+public setFuck (Ljava/lang/String;)V null null
+[   L0
+,     LINENUMBER 26 L0
+,     ALOAD 0
+,     ALOAD 1
+,     PUTFIELD io/leaderli/demo/bean/Person.aName : Ljava/lang/String;
+,    L1
+,     LINENUMBER 27 L1
+,     RETURN
+,    L2
+,     LOCALVARIABLE this Lio/leaderli/demo/bean/Person; L0 L2 0
+,     LOCALVARIABLE aName Ljava/lang/String; L0 L2 1
+,     MAXSTACK = 2
+,     MAXLOCALS = 2
+]
+public toString ()Ljava/lang/String; null null
+[   L0
+,     LINENUMBER 31 L0
+,     NEW java/lang/StringBuilder
+,     DUP
+,     INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+,     LDC "Person{aAge="
+,     INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+,     ALOAD 0
+,     GETFIELD io/leaderli/demo/bean/Person.aAge : I
+,     INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+,     LDC ", aName="
+,     INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+,     ALOAD 0
+,     GETFIELD io/leaderli/demo/bean/Person.aName : Ljava/lang/String;
+,     INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+,     BIPUSH 125
+,     INVOKEVIRTUAL java/lang/StringBuilder.append (C)Ljava/lang/StringBuilder;
+,     INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;
+,     ARETURN
+,    L1
+,     LOCALVARIABLE this Lio/leaderli/demo/bean/Person; L0 L1 0
+,     MAXSTACK = 2
+,     MAXLOCALS = 1
+]
+public setAAge (I)V null null
+[   L0
+,     LINENUMBER 18 L0
+,     ALOAD 0
+,     ILOAD 1
+,     PUTFIELD io/leaderli/demo/bean/Person.aAge : I
+,    L1
+,     LINENUMBER 19 L1
+,     RETURN
+,    L2
+,     LOCALVARIABLE this Lio/leaderli/demo/bean/Person; L0 L2 0
+,     LOCALVARIABLE aAge I L0 L2 1
+,     MAXSTACK = 2
+,     MAXLOCALS = 2
+]
+public <init> ()V null null
+[   L0
+,     LINENUMBER 7 L0
+,     ALOAD 0
+,     INVOKESPECIAL java/lang/Object.<init> ()V
+,     RETURN
+,    L1
+,     LOCALVARIABLE this Lio/leaderli/demo/bean/Person; L0 L1 0
+,     MAXSTACK = 1
+,     MAXLOCALS = 1
+]
+```
+
+## 参考文档
 
 [官网地址](https://asm.ow2.io/index.html)
 
