@@ -588,6 +588,15 @@ Java 虚拟机可以支持方法级的同步和方法内部一段指令序列的
 
 [JBE - Java Bytecode Editor](https://set.ee/jbe/)
 
+## 注意事项
+
+
+涉及到字节码操作时，编译器的一些自动行为需要注意
+
+1. 装箱、拆箱
+2. 泛型擦除
+3. 桥接方法
+
 ## 参考文档
 
 1. [Java字节码文件结构剖析 - cexo - 博客园](https://www.cnblogs.com/webor2006/p/9404249.html)
