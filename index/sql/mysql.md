@@ -89,6 +89,7 @@ mycli -u root -p 123456
 - `-e`, --execute=name 执行SQL语句并退出
 - `-E` , --vertical 将输出方式按照字段顺序竖着显示。“-E”选项类似于mysql里面执行SQL语句后加“\G”，可以将输出内容比较多的行更清晰完整地进行显示，经常和“-e”选项一起使用
 - `-s` , --silent 去掉mysql中的线条框显示
+- `-N` 不显示表头信息
 - `-f`, --force 强制执行SQL。在一个批量执行的SQL中，如果有其中一个SQL执行出错，正常情况下，该批处理将停止退出。加上-f 选项，则跳过出错 SQL，强制执行后面的 SQL；加上-v 选项，则显示出错的SQL语句；加上--showwarnings，则会显示全部错误信息
 - `-v`, --verbose 显示更多信息
 - `--show-warnings` 显示警告信息
