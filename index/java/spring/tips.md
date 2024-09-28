@@ -1,7 +1,7 @@
 ---
 tags:
   - java/spring/tips
-date updated: 2024-01-24 19:01
+date updated: 2024-09-28 08:44
 ---
 
 ### 反射工具类
@@ -315,4 +315,16 @@ beanDefinitionRegistry.registerBeanDefinition("person",rootBeanDefinition);
 AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();  
 context.setClassLoader(classLoader);  
 context.refresh();
+```
+
+## EnableAspectJAutoProxy
+
+默认情况下，Spring会尝试使用DJK接口代理来实现切面，可强制使用cglib代理
+
+```java
+@EnableAspectJAutoProxy(proxyTargetClass=true)
+@Configuration
+public class SpringConfig{
+
+}
 ```
