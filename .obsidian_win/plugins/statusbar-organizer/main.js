@@ -27,7 +27,7 @@ __export(main_exports, {
   default: () => StatusBarOrganizer
 });
 module.exports = __toCommonJS(main_exports);
-var import_obsidian3 = require("obsidian");
+var import_obsidian4 = require("obsidian");
 
 // src/spooler.ts
 var Spooler = class {
@@ -129,16 +129,122 @@ function generatePresetId(preset) {
   return preset.replace(/-/g, "\\-").replace(/\s/g, "-");
 }
 
-// src/presets.ts
-var import_obsidian2 = require("obsidian");
+// src/util.ts
+function deepCopy(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
+
+// src/menu.ts
+var import_obsidian = require("obsidian");
+
+// src/fullscreen.ts
+var menuListener;
+function monitorFullscreen(plugin) {
+  electronWindow.addListener("enter-full-screen", fullscreenChange(plugin));
+  electronWindow.addListener("leave-full-screen", fullscreenChange(plugin));
+  fullscreenChange(plugin)();
+}
+function fullscreenChange(plugin) {
+  return async () => {
+    const settings = plugin.settings;
+    if (!settings.separateFullscreenPreset || !(getActivePreset(plugin) in settings.presets)) {
+      if (isFullscreen())
+        settings.activeFullscreenPreset = settings.activePreset;
+      else
+        settings.activePreset = settings.activeFullscreenPreset;
+      await plugin.saveSettings();
+    }
+    fixOrder(plugin);
+    menuListener == null ? void 0 : menuListener();
+  };
+}
+function isFullscreen() {
+  return electronWindow.isFullScreen();
+}
+function setFullscreenListener(callback) {
+  menuListener = callback;
+}
+
+// src/menu.ts
+async function showSettings(plugin, topContainer) {
+  topContainer.empty();
+  const dummyInput = document.createElement("input");
+  dummyInput.setAttribute("autofocus", "autofocus");
+  dummyInput.setAttribute("type", "hidden");
+  topContainer.appendChild(dummyInput);
+  const presetsContainer = document.createElement("div");
+  presetsContainer.addClass("statusbar-organizer-presets-container");
+  topContainer.appendChild(presetsContainer);
+  const settingsContainer = document.createElement("div");
+  settingsContainer.addClass("statusbar-organizer-rows-container-wrapper");
+  topContainer.appendChild(settingsContainer);
+  await initializePresets(plugin, presetsContainer, settingsContainer);
+  await initializeRows(plugin, settingsContainer);
+  new import_obsidian.Setting(topContainer).setName("Separate fullscreen and windowed mode").setDesc("When enabled, the plugin will remember which preset was active for fullscreen mode and which for windowed mode and switch correspondingly. This is useful for example when you want to display more information in fullscreen mode, like a clock.").addToggle(
+    (toggle) => toggle.setValue(plugin.settings.separateFullscreenPreset).onChange(async (value) => {
+      plugin.settings.separateFullscreenPreset = value;
+      plugin.saveSettings();
+    })
+  );
+  setFullscreenListener(async () => {
+    await initializePresets(plugin, presetsContainer, settingsContainer);
+    await initializeRows(plugin, settingsContainer);
+  });
+}
+async function savePreset(plugin, currentBarStatus) {
+  plugin.settings.presets[getActivePreset(plugin)] = deepCopy(currentBarStatus);
+  await plugin.saveSettings();
+}
+async function consolidateSettingsAndElements(plugin) {
+  const loadedElementStatus = plugin.settings.presets[getActivePreset(plugin)] || {};
+  const unorderedStatusBarElements = getStatusBarElements(plugin.statusBar);
+  const defaultElementStatus = {};
+  for (const [index, statusBarElement] of unorderedStatusBarElements.entries()) {
+    defaultElementStatus[statusBarElement.id] = {
+      position: index,
+      visible: true
+    };
+  }
+  const barStatus = {};
+  const existsStatus = {};
+  for (const [index, status] of Object.entries(loadedElementStatus)) {
+    barStatus[index] = status;
+    existsStatus[index] = index in defaultElementStatus;
+  }
+  let insertPosition = Object.keys(barStatus).length + 1;
+  for (const element of unorderedStatusBarElements) {
+    if (element.id in barStatus)
+      continue;
+    const status = defaultElementStatus[element.id];
+    status.position = insertPosition++;
+    barStatus[element.id] = status;
+    existsStatus[element.id] = true;
+  }
+  const disabledStatusBarElements = Object.keys(loadedElementStatus).filter((x) => !existsStatus[x]).map((x) => {
+    const parsed = parseElementId(x);
+    return {
+      name: parsed.name,
+      index: parsed.index,
+      id: x
+    };
+  });
+  const rows = unorderedStatusBarElements.concat(disabledStatusBarElements).map((x) => [x, barStatus[x.id].position]).sort((a, b) => a[1] - b[1]).map((x) => x[0]);
+  savePreset(plugin, barStatus);
+  plugin.spooler.spoolFix(0);
+  return {
+    rows,
+    barStatus,
+    existsStatus
+  };
+}
 
 // src/rows.ts
-var import_obsidian = require("obsidian");
+var import_obsidian2 = require("obsidian");
 var dragging;
 async function initializeRows(plugin, settingsContainer) {
   settingsContainer.empty();
   dragging = false;
-  const { rows, barStatus } = await consolidateSettingsAndElements(plugin);
+  const { rows, barStatus, existsStatus } = await consolidateSettingsAndElements(plugin);
   const rowsContainer = document.createElement("div");
   rowsContainer.addClass("statusbar-organizer-rows-container");
   settingsContainer.appendChild(rowsContainer);
@@ -151,9 +257,10 @@ async function initializeRows(plugin, settingsContainer) {
   }
   for (const row of rows) {
     const currentStatus = barStatus[row.id];
+    const currentExists = existsStatus[row.id];
     const entry = document.createElement("div");
     entry.addClass("statusbar-organizer-row");
-    if (!currentStatus.exists)
+    if (!currentExists)
       entry.addClass("statusbar-organizer-row-disabled");
     if (!currentStatus.visible)
       entry.addClass("statusbar-organizer-row-hidden");
@@ -164,7 +271,7 @@ async function initializeRows(plugin, settingsContainer) {
     handle.addClass("statusbar-organizer-row-handle");
     handle.addEventListener(
       "mousedown",
-      (event) => handleMouseDown(event, plugin, barStatus, settingsContainer, rowsContainer, rows, row)
+      (event) => handleMouseDown(event, plugin, barStatus, existsStatus, settingsContainer, rowsContainer, rows, row)
     );
     entry.appendChild(handle);
     const formattedName = row.name.replace(/^plugin-(obsidian-)?/, "").split("-").map((x) => x.charAt(0).toUpperCase() + x.slice(1)).join(" ") + (nameCollisions[row.name] ? ` (${row.index})` : "");
@@ -173,19 +280,19 @@ async function initializeRows(plugin, settingsContainer) {
     entry.appendChild(titleSpan);
     const previewSpan = document.createElement("span");
     previewSpan.addClass("statusbar-organizer-row-preview");
-    if (currentStatus.exists) {
+    if (currentExists) {
       previewSpan.innerHTML = row.element.innerHTML;
     }
     entry.appendChild(previewSpan);
     const visibilitySpan = document.createElement("span");
     visibilitySpan.addClass("statusbar-organizer-row-visibility");
     visibilitySpan.onclick = () => {
-      if (currentStatus.exists)
+      if (currentExists)
         toggleVisibility(plugin, barStatus, row);
       else
         removeOrphan(plugin, rowsContainer, barStatus, row);
     };
-    (0, import_obsidian.setIcon)(visibilitySpan, currentStatus.exists ? currentStatus.visible ? "eye" : "eye-off" : "trash-2");
+    (0, import_obsidian2.setIcon)(visibilitySpan, currentExists ? currentStatus.visible ? "eye" : "eye-off" : "trash-2");
     entry.appendChild(visibilitySpan);
   }
   return {
@@ -200,11 +307,11 @@ async function toggleVisibility(plugin, barStatus, row) {
   if (status.visible = !status.visible) {
     (_a = row.element) == null ? void 0 : _a.removeClass("statusbar-organizer-element-hidden");
     (_b = row.entry) == null ? void 0 : _b.removeClass("statusbar-organizer-row-hidden");
-    (0, import_obsidian.setIcon)(row.entry.children[3], "eye");
+    (0, import_obsidian2.setIcon)(row.entry.children[3], "eye");
   } else {
     (_c = row.element) == null ? void 0 : _c.addClass("statusbar-organizer-element-hidden");
     (_d = row.entry) == null ? void 0 : _d.addClass("statusbar-organizer-row-hidden");
-    (0, import_obsidian.setIcon)(row.entry.children[3], "eye-off");
+    (0, import_obsidian2.setIcon)(row.entry.children[3], "eye-off");
   }
   savePreset(plugin, barStatus);
 }
@@ -215,13 +322,13 @@ async function removeOrphan(plugin, rowsContainer, barStatus, row) {
     barStatus[entry.getAttribute("data-statusbar-organizer-id")].position = entryIndex;
   savePreset(plugin, barStatus);
 }
-function cloneRow(settingsContainer, barStatus, rowsContainer, event, row) {
+function cloneRow(settingsContainer, barStatus, existsStatus, rowsContainer, event, row) {
   const realEntry = row.entry;
   realEntry.addClass("statusbar-organizer-row-clone");
   const fauxEntry = document.createElement("div");
   fauxEntry.addClass("statusbar-organizer-row");
   fauxEntry.addClass("statusbar-organizer-row-drag");
-  if (!barStatus[row.id].exists)
+  if (!existsStatus[row.id])
     fauxEntry.addClass("statusbar-organizer-row-disabled");
   if (!barStatus[row.id].visible)
     fauxEntry.addClass("statusbar-organizer-row-hidden");
@@ -261,10 +368,10 @@ function calculateRowIndex(event, rowsContainer, movableRow, stationaryRow, offs
   }
   return index;
 }
-function handlePositionChange(barStatus, rowsContainer, rows, row, stationaryRow, newIndex) {
+function handlePositionChange(barStatus, existsStatus, rowsContainer, rows, row, stationaryRow, newIndex) {
   const passedEntry = rowsContainer.children[newIndex];
   const passedId = passedEntry.getAttribute("data-statusbar-organizer-id");
-  const statusBarChangeRequired = barStatus[row.id].exists && barStatus[passedId].exists;
+  const statusBarChangeRequired = existsStatus[row.id] && existsStatus[passedId];
   if (statusBarChangeRequired && row.element) {
     const passedElement = rows.filter((x) => x.id == passedId)[0].element;
     const temp = passedElement.style.order;
@@ -279,16 +386,16 @@ function handlePositionChange(barStatus, rowsContainer, rows, row, stationaryRow
   for (const [entryIndex, entry] of Array.from(rowsContainer.children).entries())
     barStatus[entry.getAttribute("data-statusbar-organizer-id")].position = entryIndex;
 }
-function handleMouseDown(event, plugin, barStatus, settingsContainer, rowsContainer, rows, row) {
+function handleMouseDown(event, plugin, barStatus, existsStatus, settingsContainer, rowsContainer, rows, row) {
   if (dragging)
     return;
   dragging = true;
-  let { stationaryRow, movableRow, offsetX, offsetY, index } = cloneRow(settingsContainer, barStatus, rowsContainer, event, row);
+  let { stationaryRow, movableRow, offsetX, offsetY, index } = cloneRow(settingsContainer, barStatus, existsStatus, rowsContainer, event, row);
   function handleMouseMove(event2) {
     plugin.spooler.disableObserver();
     const newIndex = calculateRowIndex(event2, rowsContainer, movableRow, stationaryRow, offsetX, offsetY, index);
     if (newIndex != index) {
-      handlePositionChange(barStatus, rowsContainer, rows, row, stationaryRow, newIndex);
+      handlePositionChange(barStatus, existsStatus, rowsContainer, rows, row, stationaryRow, newIndex);
       index = newIndex;
     }
     plugin.spooler.enableObserver();
@@ -304,24 +411,47 @@ function handleMouseDown(event, plugin, barStatus, settingsContainer, rowsContai
   window.addEventListener("mouseup", handleMouseUp);
 }
 
+// src/hotkeys.ts
+function commandCallback(plugin, index) {
+  return (checking) => {
+    const presets = plugin.settings.presetsOrder;
+    if (presets.length <= index)
+      return false;
+    if (!checking) {
+      setActivePreset(plugin, presets[index]);
+      fixOrder(plugin);
+    }
+  };
+}
+async function registerHotkeys(plugin, presetNames) {
+  for (const [i, preset] of presetNames.entries()) {
+    plugin.addCommand({
+      id: `statusbar-organizer-preset-${i}`,
+      name: `Switch to preset "${preset}"`,
+      checkCallback: commandCallback(plugin, i)
+    });
+  }
+}
+
 // src/presets.ts
+var import_obsidian3 = require("obsidian");
 async function initializePresets(plugin, presetsContainer, settingsContainer) {
   presetsContainer.empty();
   if (plugin.settings.presetsOrder.length == 0) {
     plugin.settings.presetsOrder.push("Default");
     plugin.settings.presets["Default"] = {};
-    plugin.settings.activePreset = "Default";
+    setActivePreset(plugin, "Default");
     await plugin.saveSettings();
   }
-  if (!(plugin.settings.activePreset in plugin.settings.presets)) {
-    plugin.settings.activePreset = plugin.settings.presetsOrder[0];
+  if (!(getActivePreset(plugin) in plugin.settings.presets)) {
+    setActivePreset(plugin, plugin.settings.presetsOrder[0]);
     await plugin.saveSettings();
   }
   for (let presetName of plugin.settings.presetsOrder) {
     const presetEntry = document.createElement("div");
     presetEntry.addClass("statusbar-organizer-preset");
     presetEntry.id = getPresetId(presetName);
-    if (presetName == plugin.settings.activePreset)
+    if (presetName == getActivePreset(plugin))
       presetEntry.addClass("statusbar-organizer-preset-active");
     presetsContainer.appendChild(presetEntry);
     const nameField = document.createElement("input");
@@ -332,56 +462,59 @@ async function initializePresets(plugin, presetsContainer, settingsContainer) {
     presetEntry.appendChild(nameField);
     const renameButton = document.createElement("span");
     renameButton.addClass("statusbar-organizer-preset-delete");
-    (0, import_obsidian2.setIcon)(renameButton, "pencil");
+    (0, import_obsidian3.setIcon)(renameButton, "pencil");
     renameButton.addEventListener("click", async (event) => {
       event.stopPropagation();
       select();
       nameField.focus();
     });
     const rename = async () => {
+      nameField.blur();
       presetName = await renamePreset(plugin, presetEntry, nameField, presetName);
     };
     nameField.addEventListener("change", async () => rename());
-    nameField.addEventListener("focusout", async () => rename());
     nameField.addEventListener("input", () => {
       nameField.setAttribute("size", Math.max(nameField.value.length, 1).toString());
     });
     presetEntry.appendChild(renameButton);
     const deleteButton = document.createElement("span");
     deleteButton.addClass("statusbar-organizer-preset-delete");
-    (0, import_obsidian2.setIcon)(deleteButton, "x");
+    (0, import_obsidian3.setIcon)(deleteButton, "x");
     deleteButton.addEventListener("click", async (event) => {
       event.stopPropagation();
       await deletePreset(plugin, presetsContainer, settingsContainer, presetName);
     });
     presetEntry.appendChild(deleteButton);
     const select = async () => {
-      await switchPreset(plugin, presetEntry, presetName, settingsContainer);
+      await selectPreset(plugin, presetEntry, presetName, settingsContainer);
     };
     presetEntry.addEventListener("click", async () => select());
   }
   const newPresetEntry = document.createElement("div");
   newPresetEntry.addClass("statusbar-organizer-preset");
-  (0, import_obsidian2.setIcon)(newPresetEntry, "plus");
+  (0, import_obsidian3.setIcon)(newPresetEntry, "plus");
   newPresetEntry.addEventListener("click", () => addPreset(plugin, presetsContainer, settingsContainer));
   presetsContainer.appendChild(newPresetEntry);
+  registerHotkeys(plugin, plugin.settings.presetsOrder);
 }
 async function addPreset(plugin, presetsContainer, settingsContainer) {
   const presetName = disambiguate("New Preset", plugin.settings.presetsOrder);
-  plugin.settings.presets[presetName] = JSON.parse(JSON.stringify(plugin.settings.presets[plugin.settings.activePreset]));
+  plugin.settings.presets[presetName] = deepCopy(plugin.settings.presets[getActivePreset(plugin)]);
   plugin.settings.presetsOrder.push(presetName);
-  plugin.settings.activePreset = presetName;
+  setActivePreset(plugin, presetName);
   await plugin.saveSettings();
   await initializePresets(plugin, presetsContainer, settingsContainer);
 }
 async function deletePreset(plugin, presetsContainer, settingsContainer, presetName) {
-  const currentIndex = plugin.settings.presetsOrder.indexOf(presetName);
-  if (currentIndex > 0)
-    plugin.settings.activePreset = plugin.settings.presetsOrder[currentIndex - 1];
-  else if (currentIndex < plugin.settings.presetsOrder.length - 1)
-    plugin.settings.activePreset = plugin.settings.presetsOrder[currentIndex + 1];
-  else
-    plugin.settings.activePreset = "Default";
+  if (getActivePreset(plugin) == presetName) {
+    const currentIndex = plugin.settings.presetsOrder.indexOf(presetName);
+    if (currentIndex > 0)
+      setActivePreset(plugin, plugin.settings.presetsOrder[currentIndex - 1]);
+    else if (currentIndex < plugin.settings.presetsOrder.length - 1)
+      setActivePreset(plugin, plugin.settings.presetsOrder[currentIndex + 1]);
+    else
+      setActivePreset(plugin, "Default");
+  }
   delete plugin.settings.presets[presetName];
   plugin.settings.presetsOrder = plugin.settings.presetsOrder.filter((x) => x != presetName);
   await plugin.saveSettings();
@@ -396,23 +529,35 @@ async function renamePreset(plugin, presetEntry, nameField, presetName) {
   nameField.setAttribute("size", newName.length.toString());
   if (newName == presetName)
     return presetName;
-  if (presetName == plugin.settings.activePreset)
-    plugin.settings.activePreset = newName;
   presetEntry.id = getPresetId(newName);
   plugin.settings.presets[newName] = plugin.settings.presets[presetName];
   delete plugin.settings.presets[presetName];
   plugin.settings.presetsOrder = plugin.settings.presetsOrder.map((x) => x == presetName ? newName : x);
-  plugin.settings.activePreset = newName;
+  setActivePreset(plugin, newName);
   await plugin.saveSettings();
   return newName;
 }
-async function switchPreset(plugin, presetEntry, presetName, settingsContainer) {
+async function selectPreset(plugin, presetEntry, presetName, settingsContainer) {
   var _a;
-  (_a = document.getElementById(getPresetId(plugin.settings.activePreset))) == null ? void 0 : _a.removeClass("statusbar-organizer-preset-active");
+  (_a = document.getElementById(getPresetId(getActivePreset(plugin)))) == null ? void 0 : _a.removeClass("statusbar-organizer-preset-active");
   presetEntry.addClass("statusbar-organizer-preset-active");
-  plugin.settings.activePreset = presetName;
-  await plugin.saveSettings();
+  await setActivePreset(plugin, presetName);
   await initializeRows(plugin, settingsContainer);
+}
+async function setActivePreset(plugin, presetName) {
+  if (isFullscreen()) {
+    plugin.settings.activeFullscreenPreset = presetName;
+  } else {
+    plugin.settings.activePreset = presetName;
+  }
+  await plugin.saveSettings();
+}
+function getActivePreset(plugin) {
+  if (isFullscreen()) {
+    return plugin.settings.activeFullscreenPreset;
+  } else {
+    return plugin.settings.activePreset;
+  }
 }
 function disambiguate(presetName, presets, start = 1, allowNoNumber = false) {
   if (allowNoNumber && !presets.includes(presetName))
@@ -425,67 +570,10 @@ function getPresetId(presetName) {
   return `statusbar-organizer-preset-${generatePresetId(presetName)}`;
 }
 
-// src/menu.ts
-async function showSettings(plugin, topContainer) {
-  topContainer.empty();
-  const presetsContainer = document.createElement("div");
-  presetsContainer.addClass("statusbar-organizer-presets-container");
-  topContainer.appendChild(presetsContainer);
-  const settingsContainer = document.createElement("div");
-  settingsContainer.addClass("statusbar-organizer-rows-container-wrapper");
-  topContainer.appendChild(settingsContainer);
-  await initializePresets(plugin, presetsContainer, settingsContainer);
-  await initializeRows(plugin, settingsContainer);
-}
-async function savePreset(plugin, currentBarStatus) {
-  plugin.settings.presets[plugin.settings.activePreset] = currentBarStatus;
-  await plugin.saveSettings();
-}
-async function consolidateSettingsAndElements(plugin) {
-  const loadedElementStatus = plugin.settings.presets[plugin.settings.activePreset] || {};
-  const unorderedStatusBarElements = getStatusBarElements(plugin.statusBar);
-  const defaultElementStatus = {};
-  for (const [index, statusBarElement] of unorderedStatusBarElements.entries()) {
-    defaultElementStatus[statusBarElement.id] = {
-      position: index,
-      visible: true,
-      exists: true
-    };
-  }
-  const barStatus = {};
-  for (const [index, status] of Object.entries(loadedElementStatus)) {
-    status.exists = index in defaultElementStatus;
-    barStatus[index] = status;
-  }
-  let insertPosition = Object.keys(barStatus).length + 1;
-  for (const element of unorderedStatusBarElements) {
-    if (element.id in barStatus)
-      continue;
-    const status = defaultElementStatus[element.id];
-    status.position = insertPosition++;
-    barStatus[element.id] = status;
-  }
-  const disabledStatusBarElements = Object.keys(loadedElementStatus).filter((x) => !barStatus[x].exists).map((x) => {
-    const parsed = parseElementId(x);
-    return {
-      name: parsed.name,
-      index: parsed.index,
-      id: x
-    };
-  });
-  const rows = unorderedStatusBarElements.concat(disabledStatusBarElements).map((x) => [x, barStatus[x.id].position]).sort((a, b) => a[1] - b[1]).map((x) => x[0]);
-  savePreset(plugin, barStatus);
-  plugin.spooler.spoolFix(0);
-  return {
-    rows,
-    barStatus
-  };
-}
-
 // src/organizer.ts
 function fixOrder(plugin) {
   const elements = getStatusBarElements(plugin.statusBar);
-  const status = plugin.settings.presets[plugin.settings.activePreset];
+  const status = plugin.settings.presets[getActivePreset(plugin)];
   const known = [];
   const orphans = [];
   for (const element of elements) {
@@ -506,39 +594,109 @@ function fixOrder(plugin) {
     element.style.order = (i + 1).toString();
 }
 
+// src/upgrade.ts
+var upgrades = /* @__PURE__ */ new Map();
+function ver(major, minor, patch) {
+  return { major, minor, patch };
+}
+function parseVersion(version) {
+  const [major, minor, patch] = version.split(".").map((x) => Number.parseInt(x));
+  return { major, minor, patch };
+}
+function registerUpdate(version, upgrade2) {
+  let majorCollection = upgrades.get(version.major);
+  if (!majorCollection) {
+    majorCollection = /* @__PURE__ */ new Map();
+    upgrades.set(version.major, majorCollection);
+  }
+  let minorCollection = majorCollection.get(version.minor);
+  if (!minorCollection) {
+    minorCollection = /* @__PURE__ */ new Map();
+    majorCollection.set(version.minor, minorCollection);
+  }
+  minorCollection.set(version.patch, upgrade2);
+}
+function filterCollections(collection, threshold) {
+  return [...collection.entries()].filter((x) => x[0] >= threshold).sort((a, b) => a[0] - b[0]);
+}
+function getUpgradeList(upgrades2, version) {
+  const upgradesList = [];
+  for (let majorUpgrades of filterCollections(upgrades2, version.major)) {
+    for (let minorUpgrades of filterCollections(majorUpgrades[1], version.minor)) {
+      for (let [patch, upgrade2] of filterCollections(minorUpgrades[1], version.patch)) {
+        if (majorUpgrades[0] === version.major && minorUpgrades[0] === version.minor && patch === version.patch) {
+          continue;
+        }
+        upgradesList.push({ version: { major: majorUpgrades[0], minor: minorUpgrades[0], patch }, upgrade: upgrade2 });
+      }
+    }
+  }
+  return upgradesList;
+}
+function upgrade(settings) {
+  const oldSettings = settings;
+  let version;
+  if ("version" in oldSettings) {
+    version = parseVersion(oldSettings.version);
+  } else {
+    version = ver(0, 0, 0);
+  }
+  getUpgradeList(upgrades, version).forEach((x) => x.upgrade(settings));
+  settings.version = "2.1.2";
+}
+registerUpdate(ver(2, 0, 0), (settings) => {
+  const oldSettings = settings;
+  if ("status" in oldSettings) {
+    oldSettings.presets.default = oldSettings.status;
+    delete oldSettings.status;
+    settings = oldSettings;
+  }
+});
+registerUpdate(ver(2, 1, 1), (settings) => {
+  Object.entries(settings.presets).forEach(([preset, presetSettings]) => {
+    Object.entries(presetSettings).forEach(([element, elementSettings]) => {
+      delete elementSettings["exists"];
+    });
+  });
+});
+
 // main.ts
 var DEFAULT_SETTINGS = {
   activePreset: "Default",
+  activeFullscreenPreset: "Default",
+  separateFullscreenPreset: false,
   presets: {
     "Default": {}
   },
-  presetsOrder: ["Default"]
+  presetsOrder: ["Default"],
+  version: "2.1.2"
 };
-var StatusBarOrganizer = class extends import_obsidian3.Plugin {
+var StatusBarOrganizer = class extends import_obsidian4.Plugin {
   async onload() {
     await this.loadSettings();
     this.addSettingTab(new StatusBarSettingTab(this.app, this));
+    registerHotkeys(this, this.settings.presetsOrder);
     this.statusBar = document.getElementsByClassName("status-bar")[0];
     this.spooler = new Spooler(this, fixOrder);
+    monitorFullscreen(this);
   }
   onunload() {
     this.spooler.disableObserver();
   }
   async loadSettings() {
-    this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
-    const oldSettings = this.settings;
-    if ("status" in oldSettings) {
-      oldSettings.presets.default = oldSettings.status;
-      delete oldSettings.status;
-      this.settings = oldSettings;
-      await this.saveSettings();
-    }
+    const savedData = await this.loadData() || {};
+    console.log(savedData);
+    if (Object.keys(savedData).length != 0 && !("version" in savedData))
+      savedData["version"] = "0.0.0";
+    this.settings = Object.assign({}, DEFAULT_SETTINGS, savedData);
+    upgrade(this.settings);
+    await this.saveSettings();
   }
   async saveSettings() {
     await this.saveData(this.settings);
   }
 };
-var StatusBarSettingTab = class extends import_obsidian3.PluginSettingTab {
+var StatusBarSettingTab = class extends import_obsidian4.PluginSettingTab {
   constructor(app, plugin) {
     super(app, plugin);
     this.plugin = plugin;
@@ -548,3 +706,5 @@ var StatusBarSettingTab = class extends import_obsidian3.PluginSettingTab {
     return showSettings(this.plugin, containerEl);
   }
 };
+
+/* nosourcemap */
