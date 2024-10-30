@@ -8,7 +8,7 @@
   "showUnsupportedFiles": true,
   "attachmentFolderPath": "resource",
   "showFrontmatter": true,
-  "readableLineLength": true,
+  "readableLineLength": false,
   "newFileLocation": "current",
   "newFileFolderPath": "",
   "promptDelete": false,

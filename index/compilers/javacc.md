@@ -1,7 +1,7 @@
 ---
 tags:
   - compilers/antlr
-date updated: 2024-05-15 22:22
+date updated: 2024-10-30 23:11
 ---
 
 默认使用 [[LL(1)]] 文法，使用 [[EBNF]] 来描述语法
@@ -233,259 +233,6 @@ Found the end of file token
 - 词法定义，`SKIP`,`MORE`,`TOKEN`,`SPECIAL_TOKEN`
 - 语法定义，定义token的顺序
 
-## 解析
-
-匹配电话号码
-
-```java
-PARSER_BEGIN(DemoParser)  
-package io.leaderli.c1;  
-import java.io.*;  
-public class DemoParser{  
-    public static void main(String[] args) throws ParseException {  
-  
-        String input = "123-123-1234";  
-        Reader reader= new StringReader(input);  
-       DemoParser demo= new DemoParser(reader);  
-        demo.phoneNumber();    }  
- }  
-PARSER_END(DemoParser)  
-  
-  
-TOKEN : {  
-    <FOUR:(<DIGITS>){4}>  
-    |<THREE:(<DIGITS>){3}>  
-    |<#DIGITS:["0"-"9"]>  
-}  
-void phoneNumber():{}{  
-    <THREE>"-"<THREE>"-"<FOUR><EOF>  
-}
-```
-
-将号码返回
-
-```java
-PARSER_BEGIN(DemoParser)  
-package io.leaderli.c1;  
-import java.io.*;  
-public class DemoParser{  
-    public static void main(String[] args) throws ParseException {  
-  
-        String input = "123-123-1234";  
-        Reader reader= new StringReader(input);  
-       DemoParser demo= new DemoParser(reader);  
-        System.out.println(demo.phoneNumber());    }  
- }  
-PARSER_END(DemoParser)  
-  
-  
-TOKEN : {  
-    <FOUR:(<DIGITS>){4}>  
-    |<THREE:(<DIGITS>){3}>  
-    |<#DIGITS:["0"-"9"]>  
-}  
-StringBuilder phoneNumber():  
-{  
-StringBuilder number = new StringBuilder();  
-}{  
-    <THREE>{number.append(token.image);}  
-    "-"<THREE>{number.append(token.image);}  
-    "-"<FOUR>{number.append(token.image);}  
-    <EOF>{return number;}  
-}
-```
-
-### LOOKAHEAD
-
-回朔
-
-针对匹配 7位号码和10位号码的grammar
-
-```java
-PARSER_BEGIN(DemoParser)  
-package io.leaderli.c1;  
-import java.io.*;  
-public class DemoParser{  
-    public static void main(String[] args) throws ParseException {  
-  
-        String input = "123-123-1234";  
-        Reader reader= new StringReader(input);  
-        DemoParser demo= new DemoParser(reader);  
-        demo.phone();    
-    }  
- }  
-PARSER_END(DemoParser)  
-  
-  
-TOKEN : {  
-    <FOUR:(<DIGITS>){4}>  
-    |<THREE:(<DIGITS>){3}>  
-    |<#DIGITS:["0"-"9"]>  
-}  
-  
-void phone():{}{  
-    (local() | country())<EOF>  
-}  
-void local():{}{  
-    area() "-"<FOUR>  
-}  
-void country():{}{  
-    area() "-"<THREE>"-"<FOUR>  
-}  
-  
-void  area():{}{  
-    <THREE>  
-}
-```
-
-上面无法编译，存在冲突，可以使用最左推导（Left Factoring）来解决冲突
-
-```java
-PARSER_BEGIN(DemoParser)  
-package io.leaderli.c1;  
-import java.io.*;  
-public class DemoParser{  
-    public static void main(String[] args) throws ParseException {  
-  
-        String input = "123-123-1234";  
-        Reader reader= new StringReader(input);  
-       DemoParser demo= new DemoParser(reader);  
-        demo.phone();    }  
- }  
-PARSER_END(DemoParser)  
-TOKEN : {  
-    <FOUR:(<DIGITS>){4}>  
-    |<THREE:(<DIGITS>){3}>  
-    |<#DIGITS:["0"-"9"]>  
-}  
-void phone():{}{  
-    area()"-"(local() | country())<EOF>  
-}  
-void local():{}{  
-     <FOUR>  
-}  
-void country():{}{  
-     <THREE>"-"<FOUR>  
-}  
-void  area():{}{  
-    <THREE>  
-}
-```
-
-也可以用回朔来解决
-
-```java
-PARSER_BEGIN(DemoParser)  
-package io.leaderli.c1;  
-import java.io.*;  
-public class DemoParser{  
-    public static void main(String[] args) throws ParseException {  
-  
-        String input = "123-123-1234";  
-        Reader reader= new StringReader(input);  
-       DemoParser demo= new DemoParser(reader);  
-        demo.phone();    }  
- }  
-PARSER_END(DemoParser)  
-TOKEN : {  
-    <FOUR:(<DIGITS>){4}>  
-    |<THREE:(<DIGITS>){3}>  
-    |<#DIGITS:["0"-"9"]>  
-}  
-void phone():{}{  
-    LOOKAHEAD(3)local() {System.out.println("found local");}  
-    | country(){System.out.println("found country");}<EOF>  
-}  
-void local():{}{  
-    area()"-"<FOUR>  
-}  
-void country():{}{  
-    area()"-"<THREE>"-"<FOUR>  
-}  
-void  area():{}{  
-    <THREE>  
-}
-```
-
-可以配置全局
-
-```java
-options:{
-	LOOKAHEAD=3
-}
-```
-
-回朔可以使用语义来指定
-
-```java
-PARSER_BEGIN(DemoParser)  
-package io.leaderli.c1;  
-import java.io.*;  
-public class DemoParser{  
-    public static void main(String[] args) throws ParseException {  
-  
-        String input = "123-123-1234";  
-        Reader reader= new StringReader(input);  
-       DemoParser demo= new DemoParser(reader);  
-        demo.phone();    }  
- }  
-PARSER_END(DemoParser)  
-TOKEN : {  
-    <FOUR:(<DIGITS>){4}>  
-    |<THREE:(<DIGITS>){3}>  
-    |<#DIGITS:["0"-"9"]>  
-}  
-void phone():{}{  
-    LOOKAHEAD(area()"-"<FOUR>)local() {System.out.println("found local");}  
-    | country(){System.out.println("found country");}<EOF>  
-}  
-void local():{}{  
-    area()"-"<FOUR>  
-}  
-void country():{}{  
-    area()"-"<THREE>"-"<FOUR>  
-}  
-void  area():{}{  
-    <THREE>  
-}
-```
-
-基于语义的
-
-```java
-PARSER_BEGIN(DemoParser)  
-package io.leaderli.c1;  
-import java.io.*;  
-public class DemoParser{  
-    public static void main(String[] args) throws ParseException {  
-  
-        String input = "223-1234";  
-        Reader reader= new StringReader(input);  
-        DemoParser demo= new DemoParser(reader);  
-        demo.phone();    }  
- }  
-PARSER_END(DemoParser)  
-TOKEN : {  
-    <FOUR:(<DIGITS>){4}>  
-    |<THREE:(<DIGITS>){3}>  
-    |<#DIGITS:["0"-"9"]>  
-}  
-void phone():{}{  
-    LOOKAHEAD({getToken(1).image.equals("123")})  
-     one() {System.out.println("found one");}  
-    | two() {System.out.println("found two");}<EOF>  
-}  
-void one():{}{  
-    area()"-"<FOUR>  
-}  
-void two():{}{  
-    area()"-"<FOUR>  
-}  
-void  area():{}{  
-    <THREE>  
-}
-```
-
 ## token
 
 javaCC 由一组词法来构成，每个词法由一组正则表达式构成，默认的词法为`DEFAULT`。
@@ -600,6 +347,263 @@ void ab():{Token t;}{
 ```java
 TOKEN : {  
     <GREETING: (["a"-"z"])+>
+}
+```
+
+## 解析
+
+匹配电话号码
+
+```java
+PARSER_BEGIN(DemoParser)  
+package io.leaderli.c1;  
+import java.io.*;  
+public class DemoParser{  
+    public static void main(String[] args) throws ParseException {  
+  
+        String input = "123-123-1234";  
+        Reader reader= new StringReader(input);  
+       DemoParser demo= new DemoParser(reader);  
+        demo.phoneNumber();    }  
+ }  
+PARSER_END(DemoParser)  
+  
+  
+TOKEN : {  
+    <FOUR:(<DIGITS>){4}>  
+    |<THREE:(<DIGITS>){3}>  
+    |<#DIGITS:["0"-"9"]>  
+}  
+void phoneNumber():{}{  
+    <THREE>"-"<THREE>"-"<FOUR><EOF>  
+}
+```
+
+将号码返回
+
+```java
+PARSER_BEGIN(DemoParser)  
+package io.leaderli.c1;  
+import java.io.*;  
+public class DemoParser{  
+    public static void main(String[] args) throws ParseException {  
+  
+        String input = "123-123-1234";  
+        Reader reader= new StringReader(input);  
+       DemoParser demo= new DemoParser(reader);  
+        System.out.println(demo.phoneNumber());    }  
+ }  
+PARSER_END(DemoParser)  
+  
+  
+TOKEN : {  
+    <FOUR:(<DIGITS>){4}>  
+    |<THREE:(<DIGITS>){3}>  
+    |<#DIGITS:["0"-"9"]>  
+}  
+StringBuilder phoneNumber():  
+{  
+StringBuilder number = new StringBuilder();  
+}{  
+    <THREE>{number.append(token.image);}  
+    "-"<THREE>{number.append(token.image);}  
+    "-"<FOUR>{number.append(token.image);}  
+    <EOF>{return number;}  
+}
+```
+
+### LOOKAHEAD
+
+token的匹配按照可选组顺序匹配，当有两个组具有相同的token时，便无法进行选择，这个时候我们就需要处理歧义。
+
+针对匹配 7位号码和10位号码的grammar
+
+```java
+PARSER_BEGIN(DemoParser)  
+package io.leaderli.c1;  
+import java.io.*;  
+public class DemoParser{  
+    public static void main(String[] args) throws ParseException {  
+  
+        String input = "123-123-1234";  
+        Reader reader= new StringReader(input);  
+        DemoParser demo= new DemoParser(reader);  
+        demo.phone();    
+    }  
+ }  
+PARSER_END(DemoParser)  
+  
+  
+TOKEN : {  
+    <FOUR:(<DIGITS>){4}>  
+    |<THREE:(<DIGITS>){3}>  
+    |<#DIGITS:["0"-"9"]>  
+}  
+  
+void phone():{}{  
+    (local() | country())<EOF>  
+}  
+void local():{}{  
+    area() "-"<FOUR>  
+}  
+void country():{}{  
+    area() "-"<THREE>"-"<FOUR>  
+}  
+  
+void  area():{}{  
+    <THREE>  
+}
+```
+
+上面无法编译，因为 `local()` 和 `country()` 有相同的前缀，存在冲突，可以使用最左推导（Left Factoring）来解决冲突
+
+```java
+PARSER_BEGIN(DemoParser)  
+package io.leaderli.c1;  
+import java.io.*;  
+public class DemoParser{  
+    public static void main(String[] args) throws ParseException {  
+  
+        String input = "123-123-1234";  
+        Reader reader= new StringReader(input);  
+       DemoParser demo= new DemoParser(reader);  
+        demo.phone();    }  
+ }  
+PARSER_END(DemoParser)  
+TOKEN : {  
+    <FOUR:(<DIGITS>){4}>  
+    |<THREE:(<DIGITS>){3}>  
+    |<#DIGITS:["0"-"9"]>  
+}  
+void phone():{}{  
+    area()"-"(local() | country())<EOF>  
+}  
+void local():{}{  
+     <FOUR>  
+}  
+void country():{}{  
+     <THREE>"-"<FOUR>  
+}  
+void  area():{}{  
+    <THREE>  
+}
+```
+
+也可以用回朔来解决，LOOKAHEAD(n)表示先后查看n个token，判断当前是否匹配，如果匹配则选用
+
+```java
+PARSER_BEGIN(DemoParser)  
+package io.leaderli.c1;  
+import java.io.*;  
+public class DemoParser{  
+    public static void main(String[] args) throws ParseException {  
+  
+        String input = "123-123-1234";  
+        Reader reader= new StringReader(input);  
+       DemoParser demo= new DemoParser(reader);  
+        demo.phone();    }  
+ }  
+PARSER_END(DemoParser)  
+TOKEN : {  
+    <FOUR:(<DIGITS>){4}>  
+    |<THREE:(<DIGITS>){3}>  
+    |<#DIGITS:["0"-"9"]>  
+}  
+void phone():{}{  
+    LOOKAHEAD(3) 
+      local() {System.out.println("found local");}  
+    | country(){System.out.println("found country");}<EOF>  
+}  
+void local():{}{  
+    area()"-"<FOUR>  
+}  
+void country():{}{  
+    area()"-"<THREE>"-"<FOUR>  
+}  
+void  area():{}{  
+    <THREE>  
+}
+```
+
+可以配置全局
+
+```java
+options:{
+	LOOKAHEAD=3
+}
+```
+
+LOOKAHEAD可以使用语义来指定
+
+```java
+PARSER_BEGIN(DemoParser)  
+package io.leaderli.c1;  
+import java.io.*;  
+public class DemoParser{  
+    public static void main(String[] args) throws ParseException {  
+  
+        String input = "123-123-1234";  
+        Reader reader= new StringReader(input);  
+       DemoParser demo= new DemoParser(reader);  
+        demo.phone();    }  
+ }  
+PARSER_END(DemoParser)  
+TOKEN : {  
+    <FOUR:(<DIGITS>){4}>  
+    |<THREE:(<DIGITS>){3}>  
+    |<#DIGITS:["0"-"9"]>  
+}  
+void phone():{}{  
+    LOOKAHEAD(local())local() {System.out.println("found local");}  
+    | country(){System.out.println("found country");} 
+}  
+void phone2():{}{  
+    LOOKAHEAD(country()) country(){System.out.println("found country");}
+	| local() {System.out.println("found local");}  
+}  
+void local():{}{  
+    area()"-"<FOUR>  
+}  
+void country():{}{  
+    area()"-"<THREE>"-"<FOUR>  
+}  
+void  area():{}{  
+    <THREE>  
+}
+```
+
+基于语义的
+
+```java
+PARSER_BEGIN(DemoParser)  
+package io.leaderli.c1;  
+import java.io.*;  
+public class DemoParser{  
+    public static void main(String[] args) throws ParseException {  
+  
+        String input = "223-1234";  
+        Reader reader= new StringReader(input);  
+        DemoParser demo= new DemoParser(reader);  
+        demo.phone();    }  
+ }  
+PARSER_END(DemoParser)  
+TOKEN : {  
+    <FOUR:(<DIGITS>){4}>  
+    |<THREE:(<DIGITS>){3}>  
+    |<#DIGITS:["0"-"9"]>  
+}  
+void phone():{}{  
+    LOOKAHEAD({getToken(1).image.equals("123")})  one() {System.out.println("found one");}  
+    | two() {System.out.println("found two");}
+}  
+void one():{}{  
+    area()"-"<FOUR>  
+}  
+void two():{}{  
+    area()"-"<FOUR>  
+}  
+void  area():{}{  
+    <THREE>  
 }
 ```
 
@@ -1668,6 +1672,7 @@ public class DemoParserDefaultVisitor implements DemoParserVisitor {
 - [JavaCC](https://javacc.github.io/javacc/)
 - [JavaCC - tutorials](https://javacc.github.io/javacc/tutorials/)
 - [javaCC - documentation](https://javacc.github.io/javacc/documentation/)
+- [javaCC - lookahead](https://javacc.github.io/javacc/tutorials/lookahead.htm)
 - [JavaCC - 博客园](https://www.cnblogs.com/suhaha/tag/JavaCC/)
 - [[Generating Parsers with JavaCC (Tom Copeland) (Z-Library).pdf]]
 - [[javacc-tutorial.pdf]]
