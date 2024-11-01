@@ -1,7 +1,7 @@
 ---
 tags:
   - compilers/antlr
-date updated: 2024-10-30 23:11
+date updated: 2024-10-31 00:18
 ---
 
 默认使用 [[LL(1)]] 文法，使用 [[EBNF]] 来描述语法
@@ -223,6 +223,18 @@ Found token C
 Found token B
 Found token C
 Found the end of file token
+```
+
+### 调试
+
+将几个debug的options打开
+
+```java
+options {  
+  DEBUG_PARSER = true;  
+  DEBUG_TOKEN_MANAGER = true;  
+  DEBUG_LOOKAHEAD = true;  
+}
 ```
 
 ## 语法结构
