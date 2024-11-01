@@ -1199,6 +1199,65 @@ void operand() :{Token t;}{
 }
 ```
 
+## 节点构建的方法体
+
+
+```java
+void math():{}{  
+      <PLUS>{ jjtThis.jjtSetValue(PLUS);}  
+}
+void math():{}{  
+      <PLUS>{ jjtThis.jjtSetValue(PLUS);} {}
+}
+```
+
+上述两种jjt编译后生成的代码如下，其主要差异在于何时关闭scope，将自身加入到父节点的children中。
+
+```java
+final public void math() throws ParseException {/* @bgen(jjtree) math */  
+    ast_math jjtn000 = new ast_math(JJTMATH);  
+    boolean jjtc000 = true;  
+    jjtree.openNodeScope(jjtn000);  
+    try {  
+        jj_consume_token(PLUS);  
+        jjtn000.jjtSetValue(PLUS);  
+        jjtree.closeNodeScope(jjtn000, true);  
+        jjtc000 = false;  
+  
+    } finally {  
+        if (jjtc000) {  
+            jjtree.closeNodeScope(jjtn000, true);  
+        }  
+    }  
+}
+
+final public void math() throws ParseException {/* @bgen(jjtree) math */  
+    ast_math jjtn000 = new ast_math(JJTMATH);  
+    boolean jjtc000 = true;  
+    jjtree.openNodeScope(jjtn000);  
+    try {  
+        jj_consume_token(PLUS);  
+        jjtree.closeNodeScope(jjtn000, true);  
+        jjtc000 = false;  
+        jjtn000.jjtSetValue(PLUS);  
+    } finally {  
+        if (jjtc000) {  
+            jjtree.closeNodeScope(jjtn000, true);  
+        }  
+    }  
+}
+```
+
+
+
+```java
+void expr():{}{
+	(num1()|num2()){
+	   jjtree.peekNode(); // 此种方式可以获取上一个匹配的节点
+	}{} // 避免scope在peekNode之前关闭，从而取不到
+}
+```
+
 ## 节点构建与节点描述
 
 jjtree从上到下依次构建节点，它为[[grammar#非终结符]]创建节点，并新建一个节点的上下文，该上下文维护在jjtree的stack上。当创建节点后，会调用 `jjtOpen`，然后展开[[grammar#非终结符]]。当展开后，所有的子节点都创建好后，调用`jjtClose`，将堆栈中的子节点挂载到节点下，若父节点因为节点描述符，未能挂载，则子节点则会保留在堆栈上，供后续节点`jjtClose`使用。
