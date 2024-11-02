@@ -1,7 +1,7 @@
 ---
 tags:
   - compilers/antlr
-date updated: 2024-10-31 00:18
+date updated: 2024-11-02 16:20
 ---
 
 默认使用 [[LL(1)]] 文法，使用 [[EBNF]] 来描述语法
@@ -1201,7 +1201,6 @@ void operand() :{Token t;}{
 
 ## 节点构建的方法体
 
-
 ```java
 void math():{}{  
       <PLUS>{ jjtThis.jjtSetValue(PLUS);}  
@@ -1247,8 +1246,6 @@ final public void math() throws ParseException {/* @bgen(jjtree) math */
     }  
 }
 ```
-
-
 
 ```java
 void expr():{}{
@@ -1744,6 +1741,7 @@ public class DemoParserDefaultVisitor implements DemoParserVisitor {
 - [JavaCC - tutorials](https://javacc.github.io/javacc/tutorials/)
 - [javaCC - documentation](https://javacc.github.io/javacc/documentation/)
 - [javaCC - lookahead](https://javacc.github.io/javacc/tutorials/lookahead.htm)
+- [JavaCC - jjtree ](https://javacc.github.io/javacc/documentation/jjtree.html)
 - [JavaCC - 博客园](https://www.cnblogs.com/suhaha/tag/JavaCC/)
 - [[Generating Parsers with JavaCC (Tom Copeland) (Z-Library).pdf]]
 - [[javacc-tutorial.pdf]]
