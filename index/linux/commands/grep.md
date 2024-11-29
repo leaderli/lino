@@ -30,6 +30,7 @@ grep 支持不同的匹配模式，比如默认的 BRE 模式，增强型的 ERE
 - `--exclude-dir=[PATTERN]` 排除一些目录(注意，这里设置的也是正则表达式),还可以同时指定多个表达式,例如`grep -r --exclude-dir={.git,xgit} 'email' .`
 - `--include` 仅搜索某些文件，可使用正则表达式，同时可以指定多个表达式 `grep -rn 'stream' . --include='*.cpp'`
 - `-P` 使用 perl 的正则引擎
+- `-q` ：表示静默模式，不输出任何内容，只返回状态码。
 
 grep 支持简单的正则表达式，
 
