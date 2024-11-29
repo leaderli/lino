@@ -24,7 +24,7 @@ func() {
     echo "Description:"
     echo "S_DIR,the path of source."
     echo "D_DIR,the path of destination."
-    exit -1
+    exit 1
 }
  
 upload="false"

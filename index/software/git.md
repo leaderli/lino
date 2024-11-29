@@ -652,6 +652,12 @@ git push  --tags
 echo "/Users/li/Downloads/$next.diff"
 ```
 
+
+### 显示当前sha1
+
+```shell
+git rev-parse HEAD
+```
 ## 参考文档
 
 [git log命令](https://www.yiibai.com/git/git_log.html)
