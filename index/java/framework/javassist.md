@@ -901,6 +901,61 @@ public class ByteBuddyTest {
 CtClass.debugDump = "./dump";
 ```
 
+
+## 同时调用同一个jar的不同版本
+
+
+```java
+package io.leaderli.rule;  
+  
+public class Main {  
+  
+    public static int test(){  
+
+        // return 0;  1.0
+        return 1;  // 2.0
+    }  
+}
+```
+
+```java
+package com.leaderli.demo.javassit;  
+  
+import javassist.ClassPool;  
+import javassist.CtClass;  
+import javassist.CtMethod;  
+import org.junit.jupiter.api.Test;  
+  
+import java.net.MalformedURLException;  
+import java.net.URL;  
+import java.net.URLClassLoader;  
+import java.time.temporal.Temporal;  
+  
+@SuppressWarnings("resource")  
+class MainTest {  
+  
+    public static void main(String[] args) throws Exception {  
+            // Load the first version of the JAR  
+            URL url1 = new URL("file:////Users/li/Downloads/RuleTree-1.0.jar");  
+            URLClassLoader classLoader1 = new URLClassLoader(new URL[]{url1});  
+            String className = "io.leaderli.rule.Main";  
+            String methodName = "test";  
+            Class<?> classV1 = classLoader1.loadClass(className);  
+  
+            URL url2 = new URL("file:////Users/li/Downloads/RuleTree-2.0.jar");  
+            URLClassLoader classLoader2 = new URLClassLoader(new URL[]{url2});  
+            Class<?> classV2 = classLoader2.loadClass(className);  
+  
+            Object instanceV1 = classV1.getDeclaredConstructor().newInstance();  
+            Object instanceV2 = classV2.getDeclaredConstructor().newInstance();  
+  
+            System.out.println("1.0:"+classV1.getMethod(methodName).invoke(instanceV1));  
+            System.out.println("2.0:"+classV2.getMethod(methodName).invoke(instanceV2));  
+  
+    }  
+}
+```
+
 ## 参考文档
 
 [tutorial](http://www.javassist.org/tutorial/tutorial.html)
