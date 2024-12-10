@@ -68,6 +68,18 @@ hello World
 ```
 
 
+## 目录结构
+
+
+```groovy
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+// 修改默认构建目录，默认为build
+buildDir = 'out'
+```
 
 
 ## 刷新依赖
