@@ -82,6 +82,31 @@ buildDir = 'out'
 ```
 
 
+
+## 常用配置
+
+
+```groovy
+sourceSets {  
+    main {  
+        java {  
+            srcDirs = ['src/main/java']  //修改源码目录
+        }  
+    }  
+    test {  
+        java {  
+            srcDirs = ['src/test/java']  // 修改测试目录
+        }  
+    }  
+}
+
+dependencies {  
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1' // 引入 JUnit 测试框架  
+}
+test {  
+    useJUnitPlatform() // 启用 JUnit 5 平台  
+}
+```
 ## 刷新依赖
 
 ```shell
