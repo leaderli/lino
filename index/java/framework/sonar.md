@@ -1,13 +1,13 @@
 ---
-aliases:  sonar
+aliases: sonar
 tags:
-- java/框架/sonar
+  - java/框架/sonar
+date updated: 2024-12-16 16:46
 ---
-
 
 ## [sonar](https://www.sonarqube.org/)
 
-###  下载
+### 下载
 
 可以下载 [zip包](https://www.sonarqube.org/downloads/)，解压后即可运行
 
@@ -19,25 +19,23 @@ tags:
 # 例如在linux下
 /opt/sonarquebe/bin/linux-x86-64/sonar.sh start
 ```
-	
-###  查看
-	默认情况下，可以通过`localhost:9000`进行访问，默认密码为`admin:admin`
-	
+
+### 查看
+
+```
+默认情况下，可以通过`localhost:9000`进行访问，默认密码为`admin:admin`
+```
+
 ### 一些配置
 
 - 配置扫描引擎的jvm大小
-	修改`conf/sonar.properties`中的配置项
-	```properties
-	# 默认大小为512m
-	sonar.ce.javaOpts=Xmx2048m -Xms512m -XX:+HeadDumpOnOutOfMemeroyError
-	```
-
-
-
-
+  修改`conf/sonar.properties`中的配置项
+  ```properties
+  # 默认大小为512m
+  sonar.ce.javaOpts=Xmx2048m -Xms512m -XX:+HeadDumpOnOutOfMemeroyError
+  ```
 
 ## maven集成
-
 
 项目中配置
 
@@ -71,3 +69,9 @@ tags:
             </properties>
 </profile>
 ```
+
+## API
+
+查看覆盖率情况
+
+[measures](https://next.sonarqube.com/sonarqube/web_api/api/measures)
