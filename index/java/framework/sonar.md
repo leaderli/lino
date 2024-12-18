@@ -75,3 +75,5 @@ date updated: 2024-12-16 16:46
 查看覆盖率情况
 
 [measures](https://next.sonarqube.com/sonarqube/web_api/api/measures)
+
+[metrics](https://docs.sonarsource.com/sonarqube-server/10.6/user-guide/code-metrics/metrics-definition/)
