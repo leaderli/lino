@@ -101,6 +101,18 @@ Status: 200 OK
 1. 查销户看一个项目的所有 tag `GET /projects/:id/repository/tags`
 2. 查询组下所有项目 `GET /groups/:group_id/projects`
 
+
+### 常用参数
+
+[REST API | GitLab](https://docs.gitlab.com/ee/api/rest/)
+
+| 参数         | 是否笔数 | 备注                                                              |
+| ------------ | -------- | ------------------------------------------------------------- |
+| `pagination` | yes      | `keyset` (to enable keyset pagination).                       |
+| `per_page`   | no       | Number of items to list per page (default: `20`, max: `100`). |
+| `order_by`   | yes      | Column by which to order by.                                  |
+| `sort`       | yes      | Sort order (`asc` or `desc`)                                  |
+
 ## 参考文档
 
 [官方文档](https://about.gitlab.com/install/#centos-7)
