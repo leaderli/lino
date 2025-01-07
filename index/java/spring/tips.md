@@ -328,3 +328,19 @@ public class SpringConfig{
 
 }
 ```
+
+
+## @WebAppConfiguration
+
+
+构建spring的web测试环境，实际是通过创建一个MockServletContext来实现的
+[@WebAppConfiguration :: Spring Framework](https://docs.spring.io/spring-framework/reference/testing/annotations/integration-spring/annotation-webappconfiguration.html)
+
+
+```java
+AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();  
+context.setServletContext(new MockServletContext("/src/main/webapp"))
+context.refresh
+```
+
+
