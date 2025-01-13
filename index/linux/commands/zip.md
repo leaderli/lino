@@ -11,7 +11,7 @@ date updated: 2023-12-24 12:47
 
 ```shell
 zip -r  test.zip   test_folder1/  test_foler2/
-zip -r -s 100mb  test.zip   test_folder1/  test_foler2/
+zip -r -s 100m test.zip   test_folder1/  test_foler2/
 ```
 
 ## 分卷压缩
