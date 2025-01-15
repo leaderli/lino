@@ -13,7 +13,7 @@ date updated: 2022-04-05 16:15
 以可执行和有序的任务来表达自动化需求，任务和它们的相互依赖被模块化成一个有向非循环图（DAG）
 
 ![[Pasted image 20241209134000.png]]
-
+	
 
 
 ## 安装
@@ -63,7 +63,7 @@ hello World
 任务执行可以使用缩写，只要保证唯一性即可
 
 ```shell
-$ gradle -q hw
+$ gradle -q hW
 hello World
 ```
 
@@ -87,6 +87,10 @@ buildDir = 'out'
 
 
 ```groovy
+ext { // 定义变量
+    myVersion = '1.0.0'
+    myLibrary = 'com.example:my-library:${myVersion}'
+}
 sourceSets {  
     main {  
         java {  
@@ -102,6 +106,14 @@ sourceSets {
 
 dependencies {  
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1' // 引入 JUnit 测试框架  
+}
+repositories {  
+	mavenLocal()     //指向本地 Maven 存储库
+    mavenCentral()   // 配置中央仓库
+	// 使用自定义的第三方 Maven 仓库
+    maven {
+        url "https://your.custom.maven.repo/repository/maven-releases/"
+    }
 }
 test {  
     useJUnitPlatform() // 启用 JUnit 5 平台  
