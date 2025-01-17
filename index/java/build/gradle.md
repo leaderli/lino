@@ -50,28 +50,55 @@ task helloWorld {
         println 'hello World'
     }
 }
+helloWorld.doFirst { println "first action"}   // 添加一些动作
+helloWorld.doLast  { println "last action"}   //  添加一些动作
 ```
 
 ```shell
 $ gradle -q helloWorld
+first action
 hello World
+last action
 ```
 
 任务执行可以使用缩写，只要保证唯一性即可
 
 ```shell
 $ gradle -q hW
+first action
 hello World
+last action
 ```
 
 
 ## 基本原理
 
-每个Gradle构建都包含三个基本构建块:project、task和 property。每个构建包含至少一个project，进而又包含一个或多个 task。project和task暴露的属性可以用来控制构建
+每个Gradle构建都包含三个基本构建块:project、task和 property。每个构建包含至少一个project，进而又包含一个或多个 task。project和task暴露的属性可以用来控制构建。Gradle构建中的两个基本概念是project和task。在多项目构建中一个 project可以依赖于其他的project。相似的，task可以形成一个依赖关系图来确保它们的执行顺序。
 
  
 ![[Pasted image 20250117132859.png]]
+
+task的一些重要功能:任务动作(task action)和任务依赖(task dependency)。任务动作定义了一个当任 务执行时最小的工作单元
+
+
+## task
+
+
+### dependsOn
+
+```groovy
+task hello << {
+    println 'Hello world!'
+}
+
+task intro(dependsOn: hello) << {
+    println "I'm Gradle"
+}
+```
+
+定义任务依赖
 ## 目录结构
+
 
 ```groovy
 plugins {
