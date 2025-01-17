@@ -1,20 +1,16 @@
 ---
 tags:
   - java/maven/grade
-date updated: 2022-04-05 16:15
+date updated: 2025-01-17 13:15
 ---
-
 
 基于5.2.1的版本
 
 ## 什么是构建工具
 
-
 以可执行和有序的任务来表达自动化需求，任务和它们的相互依赖被模块化成一个有向非循环图（DAG）
 
 ![[Pasted image 20241209134000.png]]
-	
-
 
 ## 安装
 
@@ -31,20 +27,22 @@ export PATH=$PATH:$GRADLE_HOME/bin
 gradle -v
 ```
 
-
-
 ## 命令行参数
-
 
 - `-v` 显示版本信息
 - `-q` 仅显示任务执行输出
 
+## 命令行示例
 
-##  快速入门
+### 刷新依赖
 
+```shell
+gradle build --refresh-dependencies
+```
+
+## 快速入门
 
 新建目录，新增文件`build.gradle`
-
 
 ```groovy
 task helloWorld {
@@ -59,7 +57,6 @@ $ gradle -q helloWorld
 hello World
 ```
 
-
 任务执行可以使用缩写，只要保证唯一性即可
 
 ```shell
@@ -68,8 +65,13 @@ hello World
 ```
 
 
-## 目录结构
+## 基本原理
 
+每个Gradle构建都包含三个基本构建块:project、task和 property。每个构建包含至少一个project，进而又包含一个或多个 task。project和task暴露的属性可以用来控制构建
+
+ 
+![[Pasted image 20250117132859.png]]
+## 目录结构
 
 ```groovy
 plugins {
@@ -81,10 +83,7 @@ plugins {
 buildDir = 'out'
 ```
 
-
-
 ## 常用配置
-
 
 ```groovy
 ext { // 定义变量
@@ -119,13 +118,7 @@ test {
     useJUnitPlatform() // 启用 JUnit 5 平台  
 }
 ```
-## 刷新依赖
-
-```shell
-gradle build --refresh-dependencies
-```
-
 
 ## 参考文档
 
-[Groovy 基本语法\_w3cschool](https://www.w3cschool.cn/groovy/groovy_basic_syntax.html)
+[Groovy 基本语法_w3cschool](https://www.w3cschool.cn/groovy/groovy_basic_syntax.html)
