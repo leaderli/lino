@@ -322,6 +322,23 @@ implementation("io.leaderli.litool:litool-test:2.3.5"){
 ```
 
 
+排除所有的依赖传递
+
+```groovy
+implementation("io.leaderli.litool:litool-test:2.3.5"){  
+    transitive  false
+}
+```
+
+
+动态版本配置
+
+
+
+```groovy
+implementation("io.leaderli.litool:litool-test:2.3.+")
+```
+
 
 ## 插件
 
