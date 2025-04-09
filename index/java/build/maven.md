@@ -1343,6 +1343,13 @@ maven 的模块是在父类 pom 中定义聚合关系，其本质仅仅是一次
 - 强制刷新本地缓存`mvn dependency:purge-local-repository`
 - `mvn clean install -U`
 
+
+## 打包到中央仓库
+
+133133
+
+[mp.weixin.qq.com/s/WPWwEH6jxSlN9mYZGAerQA](https://mp.weixin.qq.com/s/WPWwEH6jxSlN9mYZGAerQA)
+
 ## 其他
 
 ### SpringBoot打包
