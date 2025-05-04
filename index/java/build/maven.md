@@ -1350,6 +1350,8 @@ maven 的模块是在父类 pom 中定义聚合关系，其本质仅仅是一次
 
 [mp.weixin.qq.com/s/WPWwEH6jxSlN9mYZGAerQA](https://mp.weixin.qq.com/s/WPWwEH6jxSlN9mYZGAerQA)
 
+![[如何发布自己的项目到 Maven Central Repository？ (5_5_2025 6：09：24 AM).html]]
+
 ## 其他
 
 ### SpringBoot打包
