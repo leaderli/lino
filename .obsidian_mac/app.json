@@ -28,6 +28,5 @@
   "spellcheck": false,
   "legacyEditor": false,
   "communityPluginSortOrder": "download",
-  "showInlineTitle": true,
-  "showRibbon": false
+  "showInlineTitle": true
 }
