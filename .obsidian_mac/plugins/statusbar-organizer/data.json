@@ -50,6 +50,11 @@
       "plugin-obsidian-git-obsidian-git-statusbar-failed-init;1": {
         "position": 10,
         "visible": true,
+        "exists": false
+      },
+      "plugin-obsidian-git-obsidian-git-statusbar-failed-init-obsidian-git-statusbar-idle;1": {
+        "position": 11,
+        "visible": true,
         "exists": true
       }
     },
