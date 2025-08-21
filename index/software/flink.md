@@ -2470,3 +2470,8 @@ SELECT MyFunction(myField) FROM MyTable
 # 参考文档
 
 [SQL 客户端 | Apache Flink](https://nightlies.apache.org/flink/flink-docs-release-1.17/zh/docs/dev/table/sqlclient/)
+
+
+但是在某些情况下 JSON 的最外层数据可能是一个 JSON Array，我们期望它可以被展开成多条结果。 JSON Array 的每个元素都是一个 JSON Object， 这些 JSON Object 的 schema 需要和 SQL 定义一致。然后每个 JSON Object 会被转成一行结果。Flink JSON Format 支持对这种情况的默认处理。
+
+[JSON | Apache Flink](https://nightlies.apache.org/flink/flink-docs-master/zh/docs/connectors/table/formats/json/)
