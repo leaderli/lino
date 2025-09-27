@@ -3,7 +3,7 @@ aliases: 设置
 tags:
   - linux/configuration
   - linux/PS1
-date updated: 2022-04-14 11:18
+date updated: 2025-09-27 15:22
 ---
 
 ## 配置文件的加载
@@ -56,7 +56,7 @@ unset hello     # 移除变量，当你尝试移除一个全局变量时，仅�
 | PATH | shell 用来查找命令的目录，不同的目录用 `:` 分割 |
 | PS1  | 原始的 shell 提示字符串               |
 | PS2  | 提示继续进行输入的提示符                  |
-| PS4  | debug脚本的提示符，默认为`+`|
+| PS4  | debug脚本的提示符，默认为`+`            |
 | PWD  | 当前目录                          |
 
 ## 常见配置
@@ -163,23 +163,24 @@ export HISTCONTROL=ignoreboth:erasedups
 export HISTTIMEFORMAT="%Y-%m-%d %T"
 ```
 
-同时我们可以设置 `~/.bashrc` ，使得可以使用上下箭头补全历史命令
-
-```shell
-if [[ $- == *i* ]]
-then
-        bind '"\e[A": history-search-backward'
-        bind '"\e[B": history-search-forward'
-fi
-```
-
 需要确保 `/etc/inputrc` 的两个配置打开了
 
 ```shell
-"\e[5~": history-search-backward
-"\e[6~": history-search-forward
+
+
+# 按上箭头补全历史中以当前输入为前缀的命令
+"\e[A": history-search-backward
+# 按下箭头补全历史中以当前输入为前缀的命令
+"\e[B": history-search-forward
+# 忽略命令中的空格前缀（避免重复记录带空格的命令）
+set history-preserve-point on
 ```
 
+**使配置立即生效**（无需重启终端）
+
+```shell
+bind -f ~/.inputrc
+```
 
 history的命令也可以直接用 `!n`  执行，例如
 
